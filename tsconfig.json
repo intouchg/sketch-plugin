@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "lib": [ "dom", "esnext" ],
+        "jsx": "react",
+        "allowJs": false,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "removeComments": true,
+        "sourceMap": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "./app/**/*"
+    ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "Intouch Design System",
+  "description": "Intouch Design System Sketch Plugin",
+  "author": "Intouch Group",
+  "version": "0.0.1",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "scope": "application",
+  "commands": [
+    {
+      "name": "Start",
+      "identifier": "intouch-design-system.index-identifier",
+      "script": "./index.js",
+      "handlers": {
+        "run": "onRun",
+        "actions": {
+          "SelectionChanged.finish": "onSelectionChanged",
+          "Shutdown": "onShutdown"
+        }
+      }
+    }
+  ],
+  "menu": {
+    "title": "Intouch Design System",
+    "items": [
+      "intouch-design-system.index-identifier"
+    ]
+  }
+}
