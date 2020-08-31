@@ -1,8 +1,7 @@
 import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
-import { fromNative } from 'sketch'
-import { toArray } from 'util'
+// import { toArray } from 'util'
 import fs from '@skpm/fs'
 import path from '@skpm/path'
 import dialog from '@skpm/dialog'
@@ -10,10 +9,10 @@ import { AzureUserConnection } from '@i/azure'
 import { parseEnv } from '@i/utility'
 import { openStorybook, updateStorybookTempTheme, killStorybook } from './storybook'
 import { cloneAzureGitRepo } from './git'
+import { importSketchStyles } from './styles'
 
 const WEBVIEW_IDENTIFIER = 'intouch-design-system.webview'
 const IDSCONFIG_FILENAME = '.idsconfig'
-const PARSE_IDSCONFIG_REGEX = /^.*$/gm
 const AZURE_INSTANCE_URL = 'https://intazdoweb.intouchsol.com'
 
 const THEME_VALUES_VALIDATION = {
