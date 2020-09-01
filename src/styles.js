@@ -1,6 +1,8 @@
 import { getSelectedDocument } from 'sketch'
 
-const getColorValue = (color) => color.charAt(0) === '#' ? color.substr(0, color.length - 2) : color
+const filterNonStrings = (value) => typeof value === 'string'
+
+const filterNonNumbers = (value) => typeof value === 'number'
 
 export const importSketchStyles = () => {
 	const document = getSelectedDocument()
@@ -8,32 +10,35 @@ export const importSketchStyles = () => {
 	const fonts = []
 	const fontSizes = []
 	const fontWeights = []
+	const lineHeights = []
+	const letterSpacings = []
 
 	const updateColors = (color) => {
-		const colorValue = getColorValue(color)
+		const colorValue = color.charAt(0) === '#' ? color.substr(0, color.length - 2) : color
 
 		if (!colors.includes(colorValue)) {
 			colors.push(colorValue)
 		}
 	}
 
-	document.colors.forEach(({ name, color }) => updateColors(color))
-
-	document.gradients.forEach(({ name, stops }) => {
-		stops.forEach(({ color }) => updateColors(color))
-	})
-
 	const extractColorStyles = ({ color, gradient }) => {
-		updateColors(color)
-		gradient.stops.forEach(({ color }) => updateColors(color))
+		if (color) {
+			updateColors(color)
+		}
+
+		if (gradient) {
+			gradient.stops.forEach(({ color }) => updateColors(color))
+		}
 	}
 
-	document.sharedLayerStyles.forEach(({ style: { fills, borders } }) => {
+	const extractFillAndBorderStyles = ({ fills, borders }) => {
 		fills.forEach(extractColorStyles)
 		borders.forEach(extractColorStyles)
-	})
+	}
 
-	document.sharedTextStyles.forEach(({ name, style: { fontFamily, fontSize, fontWeight } }) => {
+	const extractTextStyles = ({ textColor, fontFamily, fontSize, fontWeight, lineHeight, kerning }) => {
+		updateColors(textColor)
+
 		if (!fonts.includes(fontFamily)) {
 			fonts.push(fontFamily)
 		}
@@ -45,15 +50,51 @@ export const importSketchStyles = () => {
 		if (!fontWeights.includes(fontWeight)) {
 			fontWeights.push(fontWeight)
 		}
-	})
+
+		if (!lineHeights.includes(lineHeight)) {
+			lineHeights.push(lineHeight)
+		}
+
+		if (!letterSpacings.includes(kerning)) {
+			letterSpacings.push(kerning)
+		}
+	}
+
+	const extractStylesFromLayers = ({ name, type, style, background, layers }) => {
+		if (background) {
+			updateColors(background.color)
+		}
+
+		if (style) {
+			extractFillAndBorderStyles(style)
+
+			if (type === 'Text') {
+				extractTextStyles(style)
+			}
+		}
+
+		if (layers) {
+			layers.forEach(extractStylesFromLayers)
+		}
+	}
+
+	document.colors.forEach(({ name, color }) => updateColors(color))
+	document.gradients.forEach(({ name, gradient }) => extractColorStyles({ gradient }))
+	document.pages.forEach(extractStylesFromLayers)
+	document.sharedLayerStyles.forEach(extractStylesFromLayers)
+	document.sharedTextStyles.forEach(extractStylesFromLayers)
 
 	fontSizes.sort((a, b) => a - b)
 	fontWeights.sort((a, b) => a - b)
+	lineHeights.sort((a, b) => a - b)
+	letterSpacings.sort((a, b) => a - b)
 
 	return {
-		colors,
-		fonts,
-		fontSizes,
-		fontWeights,
+		colors: colors.filter(filterNonStrings),
+		fonts: fonts.filter(filterNonStrings),
+		fontSizes: fontSizes.filter(filterNonNumbers),
+		fontWeights: fontWeights.filter(filterNonNumbers),
+		lineHeights: lineHeights.filter(filterNonNumbers),
+		letterSpacings: letterSpacings.filter(filterNonNumbers),
 	}
 }
