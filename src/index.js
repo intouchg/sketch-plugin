@@ -9,7 +9,7 @@ import { AzureUserConnection } from '@i/azure'
 import { parseEnv } from '@i/utility'
 import { openStorybook, updateStorybookTempTheme, killStorybook } from './storybook'
 import { cloneAzureGitRepo } from './git'
-import { importSketchStyles } from './styles'
+import { extractSketchDocumentStyles } from './extract'
 
 const WEBVIEW_IDENTIFIER = 'intouch-design-system.webview'
 const IDSCONFIG_FILENAME = '.idsconfig'
@@ -173,6 +173,19 @@ export default function () {
 
 		if (selectedCloneDirectory) {
 			await cloneAzureGitRepo(remoteUrl, selectedCloneDirectory, webContents, displayErrorInWebview)
+		}
+	})
+
+	webContents.on('extractSketchDocumentStyles', async () => {
+		try {
+			const styles = extractSketchDocumentStyles()
+			webContents.executeJavaScript(`window.receiveImportedSketchStyles(${JSON.stringify(styles)})`)
+		}
+		catch (error) {
+			const message = `Error attempting to import Sketch document styles: ${error}`
+			console.error(message)
+			webContents.executeJavaScript('window.setSaveThemeDataResult(false)')
+			displayErrorInWebview(message)
 		}
 	})
 

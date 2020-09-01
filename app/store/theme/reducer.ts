@@ -1,5 +1,5 @@
 import { enablePatches, produce, applyPatches } from 'immer'
-import { createThemeValue, createThemeGroup } from '@i/theme'
+import { createThemeValue, createThemeGroup, themeTypePropertyMap } from '@i/theme'
 import { sketchRequest } from '../../sketchApi'
 import {
 	UNDO,
@@ -15,9 +15,10 @@ import {
 	SET_DELETING_VALUE,
 	SET_SELECTED_COMPONENT,
 	SAVE_THEME_DATA,
+	IMPORT_SKETCH_DOCUMENT_STYLES,
 } from './actions'
 import { initialState } from './state'
-import type { StyleProperty, ThemeColor } from '@i/theme'
+import type { StyleProperty, ThemeColor, ThemeValue } from '@i/theme'
 import type { ThemeActionType } from './actions'
 import type { ThemeState } from './state'
 
@@ -30,6 +31,7 @@ const findThemeGroupError = (id: string) => new Error(`Could not locate ThemeGro
 const changeHistory: { [key: number]: any } = {}
 let currentVersion = -1
 const maxNumberOfVersions = 100
+
 const UNDOABLE_ACTIONS = [
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
@@ -250,6 +252,25 @@ export const themeReducer = (
 					groups: state.groups,
 					components: state.components,
 				})
+
+				break
+			}
+
+			case IMPORT_SKETCH_DOCUMENT_STYLES: {
+				const styles = action.payload
+				const themeValues: ThemeValue[] = []
+
+				Object.entries(themeTypePropertyMap).forEach(([ themeValueType, themeProperty ]) => {
+					if (styles[themeProperty]) {
+						styles[themeProperty].forEach((value: string | number) => {
+							const data = createThemeValue(themeValues, themeValueType as ThemeValue['type'], { value })
+							themeValues.push(data)
+						})
+					}
+				})
+
+				nextState.values.push(...themeValues)
+				window.setImportSketchStylesResult(true)
 
 				break
 			}

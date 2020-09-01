@@ -1,5 +1,7 @@
-import type { ThemeValue, ThemeGroup, ThemeComponent } from '@i/theme'
+import type { ThemeValue, ThemeGroup, ThemeComponent, themeTypePropertyMap } from '@i/theme'
 import type { AzureGitRepo } from '@i/azure'
+
+export type ImportedSketchStyles = { [key in typeof themeTypePropertyMap[ThemeValue['type']]]: string[] | number[] }
 
 // These are the functions that exist on the window object
 // so that Sketch can call into the webview frontend. You
@@ -17,6 +19,8 @@ interface WebviewListeners {
     azureRequestError: (error: { status: number, url: string }) => void
     cloningAzureGitRepo: () => void
     clonedAzureGitRepo: () => void
+    receiveImportedSketchStyles: (styles: ImportedSketchStyles) => void
+    setImportSketchStylesResult: (result: boolean) => void
 }
 
 declare global {
@@ -41,6 +45,7 @@ interface SketchListeners {
     getAzureGitRepos: (credentials: { username: string, accessToken: string }) => void
     openStorybook: () => void
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
+    extractSketchDocumentStyles: () => void
 }
 
 export type SketchListenerType = keyof SketchListeners

@@ -4,7 +4,7 @@ const filterNonStrings = (value) => typeof value === 'string'
 
 const filterNonNumbers = (value) => typeof value === 'number'
 
-export const importSketchStyles = () => {
+export const extractSketchDocumentStyles = () => {
 	const document = getSelectedDocument()
 	const colors = []
 	const fonts = []

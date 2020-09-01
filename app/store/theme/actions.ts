@@ -1,5 +1,6 @@
 import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeSnippet } from '@i/theme'
 import type { ThemeState } from './state'
+import type { ImportedSketchStyles } from '../../sketchApi'
 
 export const UNDO = 'UNDO'
 export type UndoAction = {
@@ -136,6 +137,16 @@ export const saveThemeData = (): SaveThemeDataAction => ({
 	payload: undefined,
 })
 
+export const IMPORT_SKETCH_DOCUMENT_STYLES = 'IMPORT_SKETCH_DOCUMENT_STYLES'
+export type ImportSketchDocumentStylesAction = {
+    type: typeof IMPORT_SKETCH_DOCUMENT_STYLES
+    payload: ImportedSketchStyles
+}
+export const importSketchDocumentStyles = (styles: ImportedSketchStyles): ImportSketchDocumentStylesAction => ({
+	type: IMPORT_SKETCH_DOCUMENT_STYLES,
+	payload: styles,
+})
+
 export type ThemeActionType =
     UndoAction
     | RedoAction
@@ -150,3 +161,4 @@ export type ThemeActionType =
     | SetDeletingValueAction
     | SetSelectedComponentAction
     | SaveThemeDataAction
+    | ImportSketchDocumentStylesAction

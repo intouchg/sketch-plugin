@@ -9,8 +9,11 @@ const SaveTheme = () => {
 	const [ saveResult, setSaveResult ] = useState<boolean | null>(null)
 
 	useEffect(() => {
-		window.setSaveThemeDataResult = (result) => setSaveResult(result)
-		setTimeout(() => setSaveResult(null), 3000)
+		window.setSaveThemeDataResult = (result) => {
+			setSaveResult(result)
+			setTimeout(() => setSaveResult(null), 3000)
+		}
+
 		return () => void delete window.setSaveThemeDataResult
 	}, [])
 
