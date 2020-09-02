@@ -15,7 +15,7 @@ export const killAuthServer = () => {
 export const startAuthServer = (port, webContents, displayErrorInWebview) => {
 	try {
 		serverRunning = true
-		serverProcess = spawn('msal-server', [ port ], { shell: true, cwd: process.cwd() })
+		serverProcess = spawn('node', [ './Contents/Sketch/msal-server/msal-server-cli.cjs.js', port ], { shell: true, cwd: process.cwd() })
 
 		serverProcess.on('error', (error) => {
 			serverProcess = null

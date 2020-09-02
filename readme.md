@@ -21,6 +21,13 @@ The `resources/` directory contains the `webview.html` page and the `styles.css`
 The `app/` directory contains the React TypeScript application code which is rendered into the Webview. This code gets bundled into `app-bundle.js` and is referenced from `resources/webview.html`. The `app/` directory uses Tarot and the `webpack.app.config.js` configuration file.
 
 **NOTE:** Communication from the Sketch Plugin backend to the React TypeScript frontend app is achieved through the `browserWindow.executeJavaScript()` API. Communication from the React TypeScript frontend app to the Sketch Plugin backend is achieved through the `window.postMessage()` API.
+<br>
+
+
+### MSAL Server
+
+This plugin includes the [@i/msal-server](https://intazdoweb.intouchsol.com/IntouchDesignSystem/IntouchDesignSystem/_git/msal-server) module in the production bundle using the `copy-webpack-plugin` as part of the `webpack.skpm.config.js`. The MSAL Server is initialized using NodeJS `child_process.spawn` and passing the port number.
+<br>
 
 
 ## Development Guide
