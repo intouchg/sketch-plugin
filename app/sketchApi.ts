@@ -46,6 +46,7 @@ interface SketchListeners {
     openStorybook: () => void
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
     extractSketchDocumentStyles: () => void
+    startAuthServer: () => void
 }
 
 export type SketchListenerType = keyof SketchListeners

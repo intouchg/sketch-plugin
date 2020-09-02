@@ -4,9 +4,10 @@ import { Box, Button, Flex, Text } from '@i/components'
 import { importSketchDocumentStyles } from '../../store'
 import { sketchRequest } from '../../sketchApi'
 
+const startSketchStyleImport = () => sketchRequest('extractSketchDocumentStyles')
+
 const ImportSketchStyles = () => {
 	const dispatch = useDispatch()
-	const startSketchStyleImport = () => sketchRequest('extractSketchDocumentStyles')
 	const [ importResult, setImportResult ] = useState<boolean | null>(null)
 
 	useEffect(() => {

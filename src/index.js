@@ -5,15 +5,17 @@ import UI from 'sketch/ui'
 import fs from '@skpm/fs'
 import path from '@skpm/path'
 import dialog from '@skpm/dialog'
+import { IDSCONFIG_FILENAME } from '@i/theme'
 import { AzureUserConnection } from '@i/azure'
 import { parseEnv } from '@i/utility'
 import { openStorybook, updateStorybookTempTheme, killStorybook } from './storybook'
 import { cloneAzureGitRepo } from './git'
 import { extractSketchDocumentStyles } from './extract'
+import { startAuthServer } from './auth'
 
 const WEBVIEW_IDENTIFIER = 'intouch-design-system.webview'
-const IDSCONFIG_FILENAME = '.idsconfig'
 const AZURE_INSTANCE_URL = 'https://intazdoweb.intouchsol.com'
+const OAUTH_SERVER_PORT = 8089
 
 const THEME_VALUES_VALIDATION = {
 	VALUES: 'Missing "VALUES" config option',
@@ -187,6 +189,10 @@ export default function () {
 			webContents.executeJavaScript('window.setSaveThemeDataResult(false)')
 			displayErrorInWebview(message)
 		}
+	})
+
+	webContents.on('startAuthServer', () => {
+		startAuthServer(OAUTH_SERVER_PORT, webContents, displayErrorInWebview)
 	})
 
 	browserWindow.loadURL(require('../resources/webview.html'))

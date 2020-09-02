@@ -1,6 +1,4 @@
-import fs from '@skpm/fs'
-import path from '@skpm/path'
-import { spawn, exec } from '@skpm/child_process'
+import { spawn } from '@skpm/child_process'
 
 let gitRunning = false
 let gitProcess = null
