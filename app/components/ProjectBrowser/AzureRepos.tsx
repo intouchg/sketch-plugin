@@ -68,54 +68,58 @@ const AzureRepos = ({
 	return (
 		<Box padding={6}>
 			{repos.map(([ organizationName, repos ]) => (
-				<Accordion
+				<Box
 					key={organizationName}
-					defaultActiveId={organizationName}
+					padding={3}
 				>
-					<AccordionToggle id={organizationName}>
-						{(active) => (
-							<>
-								<Button
-									padding={2}
-									fontSize={3}
-									color="blue"
-									backgroundColor="transparent"
+					<Accordion defaultActiveId={organizationName}>
+						<AccordionToggle id={organizationName}>
+							{(active) => (
+								<>
+									<Button
+										padding={2}
+										fontSize={3}
+										color="blue"
+										backgroundColor="transparent"
+										style={{
+											transform: `rotate(${active ? 90 : 0}deg)`,
+										}}
+									>
+										{'>'}
+									</Button>
+									<Heading
+										display="inline-block"
+										padding={2}
+									>
+										{organizationName}
+									</Heading>
+								</>
+							)}
+						</AccordionToggle>
+						<AccordionCollapse id={organizationName}>
+							{(active) => (
+								<Flex
+									height={active ? '100%' : 0}
+									flexWrap="wrap"
+									justifyContent="flex-start"
 									style={{
-										transform: `rotate(${active ? 90 : 0}deg)`,
+										overflow: 'hidden',
 									}}
 								>
-									{'>'}
-								</Button>
-								<Heading
-									display="inline-block"
-									padding={2}
-								>
-									{organizationName}
-								</Heading>
-							</>
-						)}
-					</AccordionToggle>
-					<AccordionCollapse id={organizationName}>
-						{(active) => (
-							<Flex
-								height={active ? '100%' : '0%'}
-								padding={3}
-								flexWrap="wrap"
-								justifyContent="flex-start"
-							>
-								{repos.map(({ id, name }) => (
-									<AzureRepo
-										key={id}
-										id={id}
-										name={name}
-										selected={Boolean(selectedRepo && id === selectedRepo.id)}
-										onClick={updateSelectedRepo}
-									/>
-								))}
-							</Flex>
-						)}
-					</AccordionCollapse>
-				</Accordion>
+									{repos.map(({ id, name }) => (
+										<AzureRepo
+											key={id}
+											id={id}
+											name={name}
+											selected={Boolean(selectedRepo && id === selectedRepo.id)}
+											onClick={updateSelectedRepo}
+										/>
+									))}
+								</Flex>
+							)}
+						</AccordionCollapse>
+					</Accordion>
+				</Box>
 			))}
 			<Box
 				position="fixed"
