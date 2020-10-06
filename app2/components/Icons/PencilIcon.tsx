@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon } from '@i/components'
 
 const PencilIcon = ({
-	fill = 'blue',
+	fill = 'Primary',
 	width = 96,
 	height = 96,
 	style,

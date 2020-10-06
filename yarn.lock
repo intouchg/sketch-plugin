@@ -1186,9 +1186,9 @@
     "@i/utility" latest
 
 "@i/components@latest":
-  version "0.0.14"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.14.tgz#c2faf065d2af4f07516a7cc6429855a384ea15ed"
-  integrity sha1-wvrwZdKvTwdRanzGQphVo4TqFe0=
+  version "0.0.16"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.16.tgz#337754e34429f4c605d7c06210fa2ce081e25064"
+  integrity sha1-M3dU40Qp9MYF18BiEPos4IHiUGQ=
   dependencies:
     "@babel/runtime" "7.11.2"
     "@i/theme" latest
@@ -1212,9 +1212,9 @@
     passport-azure-ad "4.2.1"
 
 "@i/theme@latest":
-  version "0.0.9"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/theme/-/theme-0.0.9.tgz#d40832f64074919afd646ac970a0205741d4592e"
-  integrity sha1-1Agy9kB0kZr9ZGrJcKAgV0HUWS4=
+  version "0.0.10"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/theme/-/theme-0.0.10.tgz#6c007db3279de5ef2405f15654d688e9a064817b"
+  integrity sha1-bAB9syed5e8kBfFWVNaI6aBkgXs=
   dependencies:
     "@babel/runtime" "7.11.2"
     "@i/utility" latest
@@ -2234,9 +2234,9 @@
     form-data "^3.0.0"
 
 "@types/node@*":
-  version "14.11.4"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/node/-/node-14.11.4.tgz#bf6ea3d5f7b1504232b11acbc40e1ac4c750d3b9"
-  integrity sha1-v26j1fexUEIysRrLxA4axMdQ07k=
+  version "14.11.5"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/node/-/node-14.11.5.tgz#fecad41c041cae7f2404ad4b2d0742fdb628b305"
+  integrity sha1-/srUHAQcrn8kBK1LLQdC/bYoswU=
 
 "@types/node@^8.0.47":
   version "8.10.64"
@@ -3949,9 +3949,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001035, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001135:
-  version "1.0.30001143"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/caniuse-lite/-/caniuse-lite-1.0.30001143.tgz#560f2cfb9f313d1d7e52eb8dac0e4e36c8821c0d"
-  integrity sha1-Vg8s+58xPR1+UuuNrA5ONsiCHA0=
+  version "1.0.30001144"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/caniuse-lite/-/caniuse-lite-1.0.30001144.tgz#bca0fffde12f97e1127a351fec3bfc1971aa3b3d"
+  integrity sha1-vKD//eEvl+ESejUf7Dv8GXGqOz0=
 
 case-sensitive-paths-webpack-plugin@^2.2.0:
   version "2.3.0"
@@ -5318,9 +5318,9 @@ ejs@^3.1.2:
     jake "^10.6.1"
 
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.571:
-  version "1.3.576"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/electron-to-chromium/-/electron-to-chromium-1.3.576.tgz#2e70234484e03d7c7e90310d7d79fd3775379c34"
-  integrity sha1-LnAjRITgPXx+kDENfXn9N3U3nDQ=
+  version "1.3.577"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/electron-to-chromium/-/electron-to-chromium-1.3.577.tgz#9885f3f72c6e3367010b461ff6f2d9624a929720"
+  integrity sha1-mIXz9yxuM2cBC0Yf9vLZYkqSlyA=
 
 element-resize-detector@^1.2.1:
   version "1.2.1"
@@ -12483,7 +12483,7 @@ tarot-babel-config@latest:
 tarot-eslint-config@latest:
   version "0.0.9"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tarot-eslint-config/-/tarot-eslint-config-0.0.9.tgz#4a909a44577d5c2d26c251444f5dfacd47e30b47"
-  integrity sha512-ZvVprhfQj6bdAEihzCQhx/ZT6B22r4u+eKtQgUxG6gcSxiZSZN6ixRUcVfxEhHHDjGbWNSyXt2cXpY5S+694cQ==
+  integrity sha1-SpCaRFd9XC0mwlFET136zUfjC0c=
 
 tarot-stylelint-config@latest:
   version "0.0.3"

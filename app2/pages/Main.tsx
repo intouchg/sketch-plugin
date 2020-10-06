@@ -4,8 +4,8 @@ import { Box } from '@i/components'
 const Main = () => {
 	return (
 		<Box>
-            Main
-        </Box>
+			Main
+		</Box>
 	)
 }
 

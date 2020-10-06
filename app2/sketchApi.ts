@@ -60,6 +60,6 @@ interface SketchListeners {
 export type SketchListenerType = keyof SketchListeners
 
 export const sketchRequest = <T extends SketchListenerType>(
-    type: T,
-    payload?: Parameters<SketchListeners[T]>[0]
+	type: T,
+	payload?: Parameters<SketchListeners[T]>[0],
 ) => window.postMessage(type, payload as any)

@@ -1,2 +1,3 @@
-export * from './CheckIcon'
-export * from './PencilIcon'
+export * from './AccentText'
+export * from './Buttons'
+export * from './Icons'
