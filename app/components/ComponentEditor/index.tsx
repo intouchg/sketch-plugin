@@ -21,6 +21,7 @@ const componentList = {
 	text: Text,
 	link: Link,
 	icon: Icon,
+	input: Input,
 } as const
 
 // TO DO: after abstracting componentList into @i/components,
