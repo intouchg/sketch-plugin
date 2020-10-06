@@ -26,8 +26,7 @@ export default {
 	borders: {},
 	radii: {
 		Small: '4px',
-		Medium: '8px',
-		Large: '22px',
+		Large: '6px',
 	},
 	shadows: {
 		Small: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
