@@ -1,13 +1,13 @@
 import React from 'react'
-import { Box, Stack, Flex, Heading, Text, Button } from '@i/components'
-import { AccentText } from '../components'
+import { Box, Stack, Flex, Heading, Button, Input } from '@i/components'
+import { AccentText, TertiaryButton } from '../components'
 import pkg from '../../package.json'
 
 const Welcome = () => {
 	return (
 		<Box>
 			<Stack>
-				<Heading>
+				<Heading variant="secondary">
 					IDS Editor
 				</Heading>
 				<AccentText>
@@ -15,44 +15,42 @@ const Welcome = () => {
 				</AccentText>
 			</Stack>
 			<Stack>
-				<Text>
+				<AccentText>
 					Open Project
-				</Text>
-				<Button>
-					https://github.com/codynova/tarot
-				</Button>
+				</AccentText>
+				<Input value="https://github.com/codynova/tarot" />
 			</Stack>
 			<Flex>
 				<Stack>
-					<Text>
+					<AccentText>
 						Recent
-					</Text>
+					</AccentText>
 					<Stack>
-						<Text>
+						<TertiaryButton>
 							IDS Plugin
-						</Text>
-						<Text>
+						</TertiaryButton>
+						<TertiaryButton>
 							Exec Demo
-						</Text>
-						<Text>
+						</TertiaryButton>
+						<TertiaryButton>
 							More...
-						</Text>
+						</TertiaryButton>
 					</Stack>
 				</Stack>
 				<Stack>
-					<Text>
+					<AccentText>
 						Resources
-					</Text>
+					</AccentText>
 					<Stack>
-						<Text>
+						<TertiaryButton>
 							Getting Started
-						</Text>
-						<Text>
+						</TertiaryButton>
+						<TertiaryButton>
 							Coming Soon
-						</Text>
-						<Text>
+						</TertiaryButton>
+						<TertiaryButton>
 							Support
-						</Text>
+						</TertiaryButton>
 					</Stack>
 				</Stack>
 			</Flex>
