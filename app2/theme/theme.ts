@@ -94,7 +94,7 @@ export default {
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: 14,
 			lineHeight: '19px',
-			fontWeight: 900,
+			fontWeight: 600,
 		},
 		secondary: {
 			color: '#232323',
@@ -129,8 +129,10 @@ export default {
 		accent: {
 			color: '#999999',
 			fontFamily: '\'Avenir Next\', sans-serif',
-			fontSize: 16,
-			lineHeight: '24px',
+			fontSize: 12,
+			lineHeight: '16px',
+			fontWeight: 400,
+			textTransform: 'uppercase',
 		},
 	},
 	headings: {
@@ -139,14 +141,14 @@ export default {
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: 16,
 			lineHeight: '20px',
-			fontWeight: 900,
+			fontWeight: 700,
 		},
 		secondary: {
 			color: '#232323',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: 32,
 			lineHeight: '24px',
-			fontWeight: 900,
+			fontWeight: 700,
 		},
 	},
 	links: {
