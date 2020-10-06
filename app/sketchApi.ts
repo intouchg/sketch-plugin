@@ -9,18 +9,18 @@ export type ImportedSketchStyles = { [key in typeof themeTypePropertyMap[ThemeVa
 // function names as keys:
 // window.setThemeData = (data) => console.log(data)
 interface WebviewListeners {
-    setThemeData: (data: any) => void
-    displayError: (message: string) => void
-    displaySuccess: (message: string) => void
-    setSaveThemeDataResult: (result: boolean) => void
-    showStorybookLoading: (show: boolean) => void
-    storybookLoadingProgress: (progress: number) => void
-    setGitRepos: (repos: any) => void
-    azureRequestError: (error: { status: number, url: string }) => void
+    setThemeData?: (data: any) => void
+    displayError?: (message: string) => void
+    displaySuccess?: (message: string) => void
+    setSaveThemeDataResult?: (result: boolean) => void
+    showStorybookLoading?: (show: boolean) => void
+    storybookLoadingProgress?: (progress: number) => void
+    setGitRepos?: (repos: any) => void
+    azureRequestError?: (error: { status: number, url: string }) => void
     cloningAzureGitRepo: () => void
     clonedAzureGitRepo: () => void
-    receiveImportedSketchStyles: (styles: ImportedSketchStyles) => void
-    setImportSketchStylesResult: (result: boolean) => void
+    receiveImportedSketchStyles?: (styles: ImportedSketchStyles) => void
+    setImportSketchStylesResult?: (result: boolean) => void
 }
 
 declare global {

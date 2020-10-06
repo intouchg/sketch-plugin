@@ -270,7 +270,7 @@ export const themeReducer = (
 				})
 
 				nextState.values.push(...themeValues)
-				window.setImportSketchStylesResult(true)
+				window.setImportSketchStylesResult!(true)
 
 				break
 			}

@@ -16,7 +16,7 @@ const ProjectBrowser = () => {
 	useEffect(() => {
 		window.azureRequestError = ({ status }) => {
 			setShowLoading(false)
-			window.displayError(`Failed to login to Azure${status === 401 ? ' with status code 401 unauthorized.' : '.'}`)
+			window.displayError!(`Failed to login to Azure${status === 401 ? ' with status code 401 unauthorized.' : '.'}`)
 		}
 
 		window.setGitRepos = (repos) => {
