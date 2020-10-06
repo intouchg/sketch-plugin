@@ -2,7 +2,7 @@ import React from 'react'
 import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import { ThemeProvider } from 'styled-components'
-import { Flex, Stack, Box, Button, Text, Heading, Link, Icon } from '@i/components'
+import { Flex, Stack, Box, Button, Text, Heading, Link, Icon, Input } from '@i/components'
 import { componentNames } from '@i/theme'
 import type { Theme } from '@i/theme'
 
@@ -15,6 +15,7 @@ const components = {
 	text: Text,
 	link: Link,
 	icon: Icon,
+	input: Input,
 } as const
 
 const ComponentView = ({
