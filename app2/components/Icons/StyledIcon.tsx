@@ -6,8 +6,8 @@ const StyledIcon = ({
 	fill = 'Primary',
 	width = 96,
 	height = 96,
-    style,
-    children,
+	style,
+	children,
 }: {
 	fill?: string
 	width?: string | number
