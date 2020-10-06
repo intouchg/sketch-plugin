@@ -12,7 +12,10 @@ const SuccessBanner = ({
 		padding={4}
 		backgroundColor="green"
 	>
-		<Flex>
+		<Flex
+			alignItems="center"
+			justifyContent="space-evenly"
+		>
 			<Heading color="white">
 				Success - {message}
 			</Heading>

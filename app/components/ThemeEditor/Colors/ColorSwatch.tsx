@@ -24,7 +24,10 @@ const ColorSwatch = ({
 
 	return (
 		<Box padding={4}>
-			<Stack>
+			<Stack
+				alignItems="center"
+				justifyContent="space-evenly"
+			>
 				<Box
 					{...colorSwatchProp}
 					ref={colorBox}

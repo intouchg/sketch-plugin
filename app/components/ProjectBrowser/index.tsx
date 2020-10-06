@@ -113,6 +113,8 @@ const ProjectBrowser = () => {
 				<Stack
 					width={1}
 					height="50vh"
+					alignItems="center"
+					justifyContent="space-evenly"
 				>
 					<Loading
 						borderColor="grey.2"

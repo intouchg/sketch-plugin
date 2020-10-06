@@ -32,6 +32,8 @@ const SaveTheme = () => {
 				<Flex
 					display="inline-flex"
 					paddingX={4}
+					alignItems="center"
+					justifyContent="space-evenly"
 				>
 					<Flex
 						width={26}
@@ -40,6 +42,8 @@ const SaveTheme = () => {
 						color="white"
 						backgroundColor={saveResult ? 'green' : 'red'}
 						borderRadius="100%"
+						alignItems="center"
+						justifyContent="space-evenly"
 					>
 						{saveResult ? '✓' : '✗'}
 					</Flex>

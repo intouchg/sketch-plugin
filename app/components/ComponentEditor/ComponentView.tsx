@@ -43,6 +43,8 @@ const ComponentView = ({
 				top={0}
 				left={0}
 				padding={2}
+				alignItems="center"
+				justifyContent="space-evenly"
 			>
 				<Heading paddingX={2}>
 					<animated.span>
@@ -56,10 +58,16 @@ const ComponentView = ({
 				</Heading>
 			</Flex>
 			<Box padding={4}>
-				<Flex flexDirection="column">
+				<Flex
+					flexDirection="column"
+					alignItems="center"
+					justifyContent="space-evenly"
+				>
 					<Stack
 						backgroundColor="white"
 						boxShadow="small"
+						alignItems="center"
+						justifyContent="space-evenly"
 					>
 						<animated.div
 							{...bindDragGesture()}

@@ -67,6 +67,7 @@ const ColorSwatches = ({
 		<Box paddingBottom={2}>
 			<Accordion defaultActiveId={name}>
 				<Flex
+					alignItems="center"
 					justifyContent="flex-start"
 					paddingY={3}
 				>
@@ -190,6 +191,7 @@ const ColorSwatches = ({
 								padding={3}
 								paddingBottom={4}
 								flexWrap="wrap"
+								alignItems="center"
 								justifyContent="center"
 							>
 								{colors.map(({ id, name, value }) => (

@@ -17,6 +17,8 @@ const StorybookLoading = () => {
 			left={0}
 			padding={2}
 			zIndex={100}
+			alignItems="center"
+			justifyContent="space-evenly"
 		>
 			<Text
 				color="grey.3"

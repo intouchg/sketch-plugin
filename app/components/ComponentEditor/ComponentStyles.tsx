@@ -26,6 +26,7 @@ const Edit = ({
 		<Flex
 			width="200px"
 			padding={2}
+			alignItems="center"
 			justifyContent="flex-start"
 		>
 			<Input

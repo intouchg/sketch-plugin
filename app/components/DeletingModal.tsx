@@ -23,6 +23,8 @@ const DeletingModal = () => {
 			right={0}
 			backgroundColor="black"
 			zIndex={100}
+			alignItems="center"
+			justifyContent="space-evenly"
 		>
 			<Box
 				padding={4}
@@ -32,7 +34,10 @@ const DeletingModal = () => {
 				<Text padding={3}>
 					{message}
 				</Text>
-				<Flex>
+				<Flex
+					alignItems="center"
+					justifyContent="space-evenly"
+				>
 					<Button
 						padding={2}
 						onClick={cancelDeleting}

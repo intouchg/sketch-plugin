@@ -39,6 +39,8 @@ const ImportSketchStyles = () => {
 				<Flex
 					display="inline-flex"
 					paddingX={4}
+					alignItems="center"
+					justifyContent="space-evenly"
 				>
 					<Flex
 						width={26}
@@ -47,6 +49,8 @@ const ImportSketchStyles = () => {
 						color="white"
 						backgroundColor={importResult ? 'green' : 'red'}
 						borderRadius="100%"
+						alignItems="center"
+						justifyContent="space-evenly"
 					>
 						{importResult ? '✓' : '✗'}
 					</Flex>

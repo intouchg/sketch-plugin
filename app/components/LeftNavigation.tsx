@@ -18,6 +18,7 @@ const LeftNavigation = ({
 			left={0}
 			width={width}
 			height="100%"
+			alignItems="center"
 			justifyContent="center"
 			backgroundColor="grey.1"
 			boxShadow="small"

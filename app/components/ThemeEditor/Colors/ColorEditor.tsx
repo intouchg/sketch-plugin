@@ -58,6 +58,8 @@ const ColorEditor = () => {
 				position="relative"
 				top={2}
 				flexWrap="wrap"
+				alignItems="center"
+				justifyContent="space-evenly"
 			>
 				<Text
 					height={20}
@@ -110,6 +112,8 @@ const ColorEditor = () => {
 				bottom={0}
 				width={1}
 				paddingY={3}
+				alignItems="center"
+				justifyContent="space-evenly"
 			>
 				<Button onClick={resetSelectedColor}>
 					Cancel

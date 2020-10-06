@@ -101,6 +101,7 @@ const AzureRepos = ({
 								<Flex
 									height={active ? '100%' : 0}
 									flexWrap="wrap"
+									alignItems="center"
 									justifyContent="flex-start"
 									style={{
 										overflow: 'hidden',

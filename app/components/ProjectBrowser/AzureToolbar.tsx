@@ -20,6 +20,7 @@ const AzureToolbar = ({
 		<Flex
 			width={1}
 			height={31}
+			alignItems="center"
 			justifyContent="space-between"
 			paddingLeft={themeEditorLeftNavWidth}
 			paddingRight={themeEditorLeftNavWidth}

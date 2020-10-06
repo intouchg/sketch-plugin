@@ -28,11 +28,15 @@ const AzureLogin = ({
 			right={0}
 			backgroundColor="black"
 			zIndex={100}
+			alignItems="center"
+			justifyContent="space-evenly"
 		>
 			<Stack
 				padding={4}
 				borderRadius="medium"
 				backgroundColor="white"
+				alignItems="center"
+				justifyContent="space-evenly"
 			>
 				<Heading
 					paddingTop={4}
@@ -43,6 +47,8 @@ const AzureLogin = ({
 				<Stack
 					width={480}
 					padding={4}
+					alignItems="center"
+					justifyContent="space-evenly"
 				>
 					<Input
 						width={3 / 4}
@@ -71,7 +77,10 @@ const AzureLogin = ({
 						onChange={handleFormChange}
 					/>
 				</Stack>
-				<Flex>
+				<Flex
+					alignItems="center"
+					justifyContent="space-evenly"
+				>
 					<Box
 						display="inline-block"
 						padding={4}

@@ -19,6 +19,8 @@ const TopNavigation = ({
 			width={1}
 			position="fixed"
 			zIndex={10}
+			alignItems="center"
+			justifyContent="space-evenly"
 		>
 			{entries.map(([ title, path ], index) => (
 				<Button

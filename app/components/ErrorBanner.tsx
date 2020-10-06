@@ -12,7 +12,10 @@ const ErrorBanner = ({
 		padding={4}
 		backgroundColor="red"
 	>
-		<Flex>
+		<Flex
+			alignItems="center"
+			justifyContent="space-evenly"
+		>
 			<Heading color="white">
 				Error - {message}
 			</Heading>
