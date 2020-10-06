@@ -13,11 +13,12 @@ export default {
 		Positive: '#1dce4a',
 		Warning: '#ffe31e',
 	},
+	space: [ '0', '0.25em', '0.5em', '1em', '1.5em', '2em', '3em' ],
 	fonts: {
 		Avenir: '\'Avenir Next\', sans-serif',
 	},
 	fontSizes: [ '0', '0.75rem', '0.875rem', '1rem', '2rem' ],
-	lineHeights: [ '0', '1rem', '1.25rem', '2rem' ],
+	lineHeights: [ '0', '1rem', '1.25rem', '1.5rem', '2rem' ],
 	fontWeights: {
 		Regular: '400',
 		Demibold: '600',
@@ -93,8 +94,8 @@ export default {
 		secondary: {
 			color: '#232323',
 			fontFamily: '\'Avenir Next\', sans-serif',
-			fontSize: '32px',
-			lineHeight: '32px',
+			fontSize: '2rem',
+			lineHeight: '1.5rem',
 			fontWeight: '700',
 		},
 	},
