@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Stack, Flex, Heading, Input } from '@i/components'
+import { Box, Stack, Flex, Heading } from '@i/components'
 import { AccentText, TertiaryButton, DirectoryInput } from '../components'
 import pkg from '../../package.json'
 

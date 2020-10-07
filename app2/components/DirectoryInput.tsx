@@ -6,6 +6,7 @@ const DirectoryInput = () => (
 		value="https://github.com/codynova/tarot"
 		paddingX="1em"
 		paddingY="0.875em"
+		borderRadius="Large"
 	/>
 )
 
