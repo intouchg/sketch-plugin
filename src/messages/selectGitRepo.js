@@ -2,7 +2,7 @@ import fs from '@skpm/fs'
 import path from '@skpm/path'
 import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
-import { updateStorybookTempTheme } from '../services'
+import { updateStorybookTempTheme, writeRecentProjectMetadata } from '../services'
 
 export const selectGitRepo = (webContents, displayErrorInWebview) => {
 	let selectedProjectDirectory = null
@@ -58,6 +58,8 @@ export const selectGitRepo = (webContents, displayErrorInWebview) => {
 	if (!error) {
 		webContents.executeJavaScript(`window.setThemeData(${JSON.stringify(themeData)})`)
 		updateStorybookTempTheme(themeData)
+		const recentProjects = writeRecentProjectMetadata({ filepath: selectedProjectDirectory })
+		webContents.executeJavaScript(`window.setRecentProjects(${JSON.stringify(recentProjects)})`)
 	}
 
 	return { themeFilepaths, themeData }
