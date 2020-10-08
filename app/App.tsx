@@ -3,7 +3,7 @@ import { useHistory, Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { setThemeData, undoAction, redoAction } from './store'
-import { ErrorBanner, SuccessBanner, TopNavigation, FileMenu, ThemeEditor, ComponentEditor, SnippetEditor, StyleGuide, SettingsMenu, ProjectBrowser, DeletingModal, StorybookLoading } from './components'
+import { ErrorBanner, SuccessBanner, TopNavigation, FileMenu, ThemeEditor, ComponentEditor, StyleGuide, SettingsMenu, ProjectBrowser, DeletingModal, StorybookLoading } from './components'
 import { Box } from '@i/components'
 import { themeProcessor } from '@i/theme'
 import pluginTheme from './theme.json'
@@ -11,8 +11,8 @@ import pluginTheme from './theme.json'
 const App = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
-	const { values, groups, components, variants, snippets } = useSelector((state) => state.theme)
-	const theme = useMemo(() => values.length ? themeProcessor({ values, groups, components, variants }) : undefined, [ values, groups, components ])
+	const { values, groups, components, variants } = useSelector((state) => state.theme)
+	const theme = useMemo(() => values.length ? themeProcessor({ values, components, variants }) : undefined, [ values, groups, components ])
 	const [ error, setError ] = useState<string | null>(null)
 	const [ success, setSuccess ] = useState<string | null>(null)
 	const [ showStorybookLoading, setShowStorybookLoading ] = useState(false)
@@ -95,9 +95,6 @@ const App = () => {
 					</Route>
 					<Route path="/components">
 						<ComponentEditor theme={theme} />
-					</Route>
-					<Route path="/snippets">
-						<SnippetEditor snippets={snippets} />
 					</Route>
 					<Route path="/guide">
 						<StyleGuide theme={theme} />

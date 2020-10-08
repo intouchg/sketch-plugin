@@ -3,7 +3,6 @@ import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import { ThemeProvider } from 'styled-components'
 import { Flex, Stack, Box, Button, Text, Heading, Link, Icon, Input } from '@i/components'
-import { componentNames } from '@i/theme'
 import type { Theme } from '@i/theme'
 
 const INITIAL_WIDTH = 600

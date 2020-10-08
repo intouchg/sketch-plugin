@@ -5,7 +5,7 @@ import UI from 'sketch/ui'
 import fs from '@skpm/fs'
 import path from '@skpm/path'
 import dialog from '@skpm/dialog'
-import { IDSCONFIG_FILENAME } from '@i/theme'
+import { configFilename, validateConfig } from '@i/theme'
 import { AzureUserConnection } from '@i/azure'
 import { parseEnv } from '@i/utility'
 import { openStorybook, updateStorybookTempTheme, killStorybook } from './storybook'
@@ -16,22 +16,6 @@ import { startAuthServer } from './auth'
 const WEBVIEW_IDENTIFIER = 'intouch-design-system.webview'
 const AZURE_INSTANCE_URL = 'https://intazdoweb.intouchsol.com'
 const OAUTH_SERVER_PORT = 8089
-
-const THEME_VALUES_VALIDATION = {
-	VALUES: 'Missing "VALUES" config option',
-	GROUPS: 'Missing "GROUPS" config option',
-	COMPONENTS: 'Missing "COMPONENTS" config option',
-	SNIPPETS: 'Missing "SNIPPETS" config option',
-}
-
-const THEME_CONFIG_VALIDATION = {
-	THEME_OUTPUT: 'Missing "THEME_OUTPUT" config option',
-}
-
-const IDSCONFIG_VALIDATION = {
-	...THEME_VALUES_VALIDATION,
-	...THEME_CONFIG_VALIDATION,
-}
 
 export default function () {
 	const windowOptions = {
@@ -65,32 +49,37 @@ export default function () {
 
 		if (selectedProjectDirectory) {
 			let error = false
-			const configFilepath = path.resolve(selectedProjectDirectory, IDSCONFIG_FILENAME)
+			const configFilepath = path.resolve(selectedProjectDirectory, configFilename)
 
 			// Check for .idsconfig file
 			if (!fs.existsSync(configFilepath)) {
 				error = true
-				displayErrorInWebview(`The folder you selected is not a valid Intouch Design System project. Could not locate an .idsconfig file at ${configFilepath} `)
+				displayErrorInWebview(`The folder you selected is not a valid Intouch Design System project. Could not locate a ${configFilename} config file at filepath: ${configFilepath}`)
 			}
 
-			const config = parseEnv(fs.readFileSync(configFilepath).toString('utf-8'))
+			const configData = fs.readFileSync(configFilepath).toString('utf-8')
+			const config = validateConfig(JSON.parse(configData))
 
-			// Validate .idsconfig file
-			for (const key in IDSCONFIG_VALIDATION) {
-				if (!config.hasOwnProperty(key)) {
-					error = true
-					displayErrorInWebview(`The .idsconfig file at ${configFilepath} is not valid: ${IDSCONFIG_VALIDATION[key]}`)
-				}
+			if (!config) {
+				error = true
+				displayErrorInWebview(`Invalid format for ${configFilename} config file at filepath: ${configFilepath}`)
 			}
 
-			// Load each theme file referenced in .idsconfig and populate themeData
-			Object.keys(THEME_VALUES_VALIDATION).forEach((key) => {
+			const filepaths = {
+				values: config.values,
+				groups: config.groups,
+				components: config.components,
+				variants: config.variants,
+			}
+
+			// Load each theme file referenced in the config file (except the "output" file) and populate themeData
+			Object.keys(filepaths).forEach((key) => {
 				const lowercaseKey = key.toLowerCase()
 				const filepath = path.resolve(selectedProjectDirectory, config[key])
 
 				if (!fs.existsSync(filepath)) {
 					error = true
-					displayErrorInWebview(`The folder you selected is not a valid Intouch Design System project. Could not locate theme ${key.toLowerCase()} file at ${filepath}`)
+					displayErrorInWebview(`Could not locate theme ${key.toLowerCase()} file at filepath: ${filepath}`)
 				}
 
 				themeFilepaths[lowercaseKey] = filepath
