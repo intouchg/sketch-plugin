@@ -1,8 +1,8 @@
 import fs from '@skpm/fs'
 import path from '@skpm/path'
 import { exec } from '@skpm/child_process'
-import ChildProcess from './ChildProcess'
 import { themeProcessor } from '@i/theme'
+import ChildProcess from '../ChildProcess'
 
 const PARSE_STORYBOOK_WEBPACK_PROGRESS_REGEX = /\[webpack\.Progress\] (\d*)%/
 const STORYBOOK_TEMP_THEME_FILENAME = '.storybook/temp-theme.json'

@@ -1,4 +1,4 @@
-import ChildProcess from './ChildProcess'
+import ChildProcess from '../ChildProcess'
 
 let serverProcess = null
 
