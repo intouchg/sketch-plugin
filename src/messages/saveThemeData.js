@@ -1,13 +1,13 @@
 import fs from '@skpm/fs'
 import { updateStorybookTempTheme } from '../services'
 
-export const saveThemeData = async (webContents, displayErrorInWebview, themeData, themeFilepaths) => {
+export const saveThemeData = async (webContents, displayErrorInWebview, newThemeData, themeFilepaths) => {
 	try {
-		await Promise.all(Object.entries(themeData).map(async ([ key, value ]) => {
+		await Promise.all(Object.entries(newThemeData).map(async ([ key, value ]) => {
 			fs.writeFileSync(themeFilepaths[key], JSON.stringify(value, null, '\t'))
 		}))
 
-		updateStorybookTempTheme(themeData)
+		updateStorybookTempTheme(newThemeData)
 
 		webContents.executeJavaScript('window.saveResult(true)')
 		webContents.executeJavaScript('window.setSaveThemeDataResult(true)')

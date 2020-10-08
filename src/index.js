@@ -35,7 +35,6 @@ export default function () {
 	let themeFilepaths = {}
 	let themeData = {}
 
-	// Stop the storybook process if the plugin browser window is closed
 	browserWindow.on('closed', () => stopStorybook())
 
 	webContents.on('selectGitRepo', () => {
@@ -46,7 +45,7 @@ export default function () {
 
 	webContents.on('openStorybook', () => openStorybook(webContents, displayErrorInWebview, themeData))
 
-	webContents.on('saveThemeData', (themeData) => saveThemeData(webContents, displayErrorInWebview, themeData, themeFilepaths))
+	webContents.on('saveThemeData', (newThemeData) => saveThemeData(webContents, displayErrorInWebview, newThemeData, themeFilepaths))
 
 	webContents.on('getAzureGitRepos', (credentialsData) => getAzureGitRepos(webContents, displayErrorInWebview, credentialsData))
 
