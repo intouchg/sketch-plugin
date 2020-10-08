@@ -7,8 +7,7 @@ import path from '@skpm/path'
 import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
 import { AzureUserConnection } from '@i/azure'
-import { parseEnv } from '@i/utility'
-import { openStorybook, updateStorybookTempTheme, killStorybook } from './storybook'
+import { openStorybook, stopStorybook, updateStorybookTempTheme } from './storybook'
 import { cloneAzureGitRepo } from './git'
 import { extractSketchDocumentStyles } from './extract'
 import { startAuthServer } from './auth'
@@ -41,8 +40,8 @@ export default function () {
 	const themeData = {}
 	let azureConnection = null
 
-	// Kill the storybook process if the plugin browser window is closed
-	browserWindow.on('closed', () => killStorybook())
+	// Stop the storybook process if the plugin browser window is closed
+	browserWindow.on('closed', () => stopStorybook())
 
 	webContents.on('selectGitRepo', () => {
 		selectedProjectDirectory = dialog.showOpenDialogSync({ properties: [ 'openDirectory' ] })[0]
