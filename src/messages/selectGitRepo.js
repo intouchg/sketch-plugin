@@ -4,7 +4,7 @@ import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
 import { updateStorybookTempTheme, writeRecentProjectMetadata } from '../services'
 
-export const selectGitRepo = (webContents, displayErrorInWebview) => {
+export const selectGitRepo = (webContents, showError) => {
 	let selectedProjectDirectory = null
 	const themeFilepaths = {}
 	const themeData = {}
@@ -21,7 +21,7 @@ export const selectGitRepo = (webContents, displayErrorInWebview) => {
 	// Check for .idsconfig file
 	if (!fs.existsSync(configFilepath)) {
 		error = true
-		displayErrorInWebview(`The folder you selected is not a valid Intouch Design System project. Could not locate a ${configFilename} config file at filepath: ${configFilepath}`)
+		showError(`The folder you selected is not a valid Intouch Design System project. Could not locate a ${configFilename} config file at filepath: ${configFilepath}`)
 	}
 
 	const configData = fs.readFileSync(configFilepath).toString('utf-8')
@@ -29,7 +29,7 @@ export const selectGitRepo = (webContents, displayErrorInWebview) => {
 
 	if (!config) {
 		error = true
-		displayErrorInWebview(`Invalid format for ${configFilename} config file at filepath: ${configFilepath}`)
+		showError(`Invalid format for ${configFilename} config file at filepath: ${configFilepath}`)
 	}
 
 	const filepaths = {
@@ -46,7 +46,7 @@ export const selectGitRepo = (webContents, displayErrorInWebview) => {
 
 		if (!fs.existsSync(filepath)) {
 			error = true
-			displayErrorInWebview(`Could not locate theme ${key.toLowerCase()} file at filepath: ${filepath}`)
+			showError(`Could not locate theme ${key.toLowerCase()} file at filepath: ${filepath}`)
 		}
 
 		themeFilepaths[lowercaseKey] = filepath

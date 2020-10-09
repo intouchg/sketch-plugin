@@ -9,18 +9,18 @@ export type ImportedSketchStyles = { [key in typeof themeTypePropertyMap[ThemeVa
 // function names as keys:
 // window.setThemeData = (data) => console.log(data)
 interface WebviewListeners {
-    setThemeData?: (data: any) => void
+    azureRequestError?: (error: { status: number, url: string }) => void
+    clonedAzureGitRepo: () => void
+    cloningAzureGitRepo: () => void
     displayError?: (message: string) => void
     displaySuccess?: (message: string) => void
+    receiveImportedSketchStyles?: (styles: ImportedSketchStyles) => void
+    setGitRepos?: (repos: any) => void
+    setImportSketchStylesResult?: (result: boolean) => void
+    setThemeData?: (data: any) => void
     setSaveThemeDataResult?: (result: boolean) => void
     showStorybookLoading?: (show: boolean) => void
     storybookLoadingProgress?: (progress: number) => void
-    setGitRepos?: (repos: any) => void
-    azureRequestError?: (error: { status: number, url: string }) => void
-    cloningAzureGitRepo: () => void
-    clonedAzureGitRepo: () => void
-    receiveImportedSketchStyles?: (styles: ImportedSketchStyles) => void
-    setImportSketchStylesResult?: (result: boolean) => void
 }
 
 declare global {
@@ -36,16 +36,16 @@ export type WebviewListenerType = keyof WebviewListeners
 // call into the Sketch backend:
 // window.postMessage('selectGitRepo')
 interface SketchListeners {
-    selectGitRepo: () => void
+    cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
+    extractSketchDocumentStyles: () => void
+    getAzureGitRepos: (credentials: { username: string, accessToken: string }) => void
+    openStorybook: () => void
     saveThemeData: (data: {
         values: ThemeValue[]
         groups: ThemeGroup[]
         components: ThemeComponent[]
     }) => void
-    getAzureGitRepos: (credentials: { username: string, accessToken: string }) => void
-    openStorybook: () => void
-    cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
-    extractSketchDocumentStyles: () => void
+    selectGitRepo: () => void
     startAuthServer: () => void
 }
 

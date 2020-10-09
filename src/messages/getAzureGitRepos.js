@@ -4,7 +4,7 @@ const AZURE_INSTANCE_URL = 'https://intazdoweb.intouchsol.com'
 
 let azureConnection = null
 
-export const getAzureGitRepos = async (webContents, displayErrorInWebview, { username, accessToken }) => {
+export const getAzureGitRepos = async (webContents, showError, { username, accessToken }) => {
 	try {
 		if (!azureConnection) {
 			azureConnection = new AzureUserConnection({

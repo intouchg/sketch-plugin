@@ -1,6 +1,6 @@
 import { extractSketchDocumentStyles as extract } from '../services'
 
-export const extractSketchDocumentStyles = async (webContents, displayErrorInWebview) => {
+export const extractSketchDocumentStyles = async (webContents, showError) => {
 	try {
 		const styles = extract()
 		webContents.executeJavaScript(`window.receiveImportedSketchStyles(${JSON.stringify(styles)})`)
@@ -9,6 +9,6 @@ export const extractSketchDocumentStyles = async (webContents, displayErrorInWeb
 		const message = `Error attempting to import Sketch document styles: ${error}`
 		console.error(message)
 		webContents.executeJavaScript('window.setSaveThemeDataResult(false)')
-		displayErrorInWebview(message)
+		showError(message)
 	}
 }

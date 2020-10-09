@@ -13,11 +13,11 @@ let storybookProcess = null
 
 export const stopStorybook = () => storybookProcess && storybookProcess.stop()
 
-export const openStorybook = (webContents, displayErrorInWebview) => {
+export const openStorybook = (webContents, showError) => {
 	if (!storybookProcess) {
 		webContents.executeJavaScript('window.showStorybookLoading(true)')
 
-		const onError = (error) => displayErrorInWebview(`Could not start Storybook and Playroom: ${error}`)
+		const onError = (error) => showError(`Could not start Storybook and Playroom: ${error}`)
 
 		const onStdOut = (data) => {
 			if (data.toString('utf-8').includes('DONE  Compiled successfully')) {
@@ -45,7 +45,7 @@ export const openStorybook = (webContents, displayErrorInWebview) => {
 		}
 		catch (error) {
 			stopStorybook()
-			displayErrorInWebview(`Could not open Storybook in Google Chrome: ${error}`)
+			showError(`Could not open Storybook in Google Chrome: ${error}`)
 		}
 	}
 }

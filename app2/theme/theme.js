@@ -30,7 +30,7 @@ export default {
 		Large: '6px',
 	},
 	shadows: {
-		Small: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+		Medium: '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
 	},
 	buttons: {
 		primary: {

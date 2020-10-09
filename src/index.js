@@ -30,7 +30,7 @@ export default function () {
 	const webContents = browserWindow.webContents
 	webContents.on('nativeLog', (message) => UI.message(message))
 
-	const displayErrorInWebview = (message) => webContents.executeJavaScript(`window.displayError(${JSON.stringify(message)})`)
+	const showError = (message) => webContents.executeJavaScript(`window.displayError(${JSON.stringify(message)})`)
 
 	let themeFilepaths = {}
 	let themeData = {}
@@ -38,22 +38,22 @@ export default function () {
 	browserWindow.on('closed', () => stopStorybook())
 
 	webContents.on('selectGitRepo', () => {
-		const results = selectGitRepo(webContents, displayErrorInWebview)
+		const results = selectGitRepo(webContents, showError)
 		themeFilepaths = results.themeFilepaths
 		themeData = results.themeData
 	})
 
-	webContents.on('openStorybook', () => openStorybook(webContents, displayErrorInWebview, themeData))
+	webContents.on('openStorybook', () => openStorybook(webContents, showError, themeData))
 
-	webContents.on('saveThemeData', (newThemeData) => saveThemeData(webContents, displayErrorInWebview, newThemeData, themeFilepaths))
+	webContents.on('saveThemeData', (newThemeData) => saveThemeData(webContents, showError, newThemeData, themeFilepaths))
 
-	webContents.on('getAzureGitRepos', (credentialsData) => getAzureGitRepos(webContents, displayErrorInWebview, credentialsData))
+	webContents.on('getAzureGitRepos', (credentialsData) => getAzureGitRepos(webContents, showError, credentialsData))
 
-	webContents.on('cloneAzureGitRepo', (selectedRepoData) => cloneAzureGitRepo(webContents, displayErrorInWebview, selectedRepoData))
+	webContents.on('cloneAzureGitRepo', (selectedRepoData) => cloneAzureGitRepo(webContents, showError, selectedRepoData))
 
-	webContents.on('extractSketchDocumentStyles', () => extractSketchDocumentStyles(webContents, displayErrorInWebview))
+	webContents.on('extractSketchDocumentStyles', () => extractSketchDocumentStyles(webContents, showError))
 
-	webContents.on('startAuthServer', () => startAuthServer(webContents, displayErrorInWebview))
+	webContents.on('startAuthServer', () => startAuthServer(webContents, showError))
 
 	browserWindow.loadURL(require('../resources/webview.html'))
 }
