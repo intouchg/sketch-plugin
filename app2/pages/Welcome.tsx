@@ -1,9 +1,7 @@
 import React from 'react'
 import { Box, Stack, Flex, Heading } from '@i/components'
-import { AccentText, WelcomeButton } from '../../components'
-import { RecentProjects } from './RecentProjects'
-import { HelpfulResources } from './HelpfulResources'
-import pkg from '../../../package.json'
+import { AccentText, WelcomeButton, RecentProjects, HelpfulResources } from '../components'
+import pkg from '../../package.json'
 
 const Welcome = () => {
 	return (
