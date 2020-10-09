@@ -33,7 +33,7 @@ export default {
 		Medium: '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
 	},
 	buttons: {
-		primary: {
+		Primary: {
 			color: '#ffffff',
 			backgroundColor: '#2c90ce',
 			activeColor: '#ffffff',
@@ -44,7 +44,7 @@ export default {
 			lineHeight: '1.25rem',
 			fontWeight: '600',
 		},
-		secondary: {
+		Secondary: {
 			color: '#232323',
 			backgroundColor: '#f8f8f8',
 			activeColor: '#232323',
@@ -55,7 +55,7 @@ export default {
 			lineHeight: '1.25rem',
 			fontWeight: '400',
 		},
-		tertiary: {
+		Tertiary: {
 			color: '#2c90ce',
 			backgroundColor: 'transparent',
 			activeColor: '#2c90ce',
@@ -68,13 +68,13 @@ export default {
 		},
 	},
 	texts: {
-		primary: {
+		Primary: {
 			color: '#232323',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '0.875rem',
 			lineHeight: '1rem',
 		},
-		accent: {
+		Accent: {
 			color: '#999999',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '0.75rem',
@@ -84,14 +84,14 @@ export default {
 		},
 	},
 	headings: {
-		primary: {
+		Primary: {
 			color: '#232323',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '1rem',
 			lineHeight: '1.25rem',
 			fontWeight: '700',
 		},
-		secondary: {
+		Secondary: {
 			color: '#232323',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '2rem',
@@ -100,7 +100,7 @@ export default {
 		},
 	},
 	links: {
-		primary: {
+		Primary: {
 			color: '#2c90ce',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '1rem',
@@ -109,12 +109,12 @@ export default {
 		},
 	},
 	icons: {
-		primary: {
+		Primary: {
 			fill: '#2c90ce',
 		},
 	},
 	inputs: {
-		primary: {
+		Primary: {
 			color: '#232323',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '0.875rem',

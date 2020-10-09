@@ -19,7 +19,7 @@ const Welcome = () => {
 					marginBottom={6}
 				>
 					<Heading
-						variant="secondary"
+						variant="Secondary"
 						marginBottom={1}
 					>
 						IDS Editor

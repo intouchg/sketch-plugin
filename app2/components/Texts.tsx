@@ -1,7 +1,7 @@
 import { Text } from '@i/components'
 
 const AccentText = Text
-AccentText.defaultProps = { variant: 'accent' }
+AccentText.defaultProps = { variant: 'Accent' }
 AccentText.displayName = 'AccentText'
 
 export {
