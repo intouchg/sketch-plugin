@@ -1,10 +1,5 @@
+import styled from 'styled-components'
 import { Text } from '@i/components'
 
-const AccentText = Text
-AccentText.defaultProps = { variant: 'Accent' }
+export const AccentText = styled(Text).attrs({ variant: 'Accent' })``
 AccentText.displayName = 'AccentText'
-
-export {
-	Text,
-	AccentText,
-}

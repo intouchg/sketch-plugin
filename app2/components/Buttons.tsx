@@ -1,25 +1,14 @@
+import styled from 'styled-components'
 import { Button } from '@i/components'
 
-const PrimaryButton = Button
+export const PrimaryButton = styled(Button).attrs({ variant: 'Primary' })``
 PrimaryButton.displayName = 'PrimaryButton'
-PrimaryButton.defaultProps = { variant: 'Primary' }
 
-const SecondaryButton = Button
+export const SecondaryButton = styled(Button).attrs({ variant: 'Secondary' })``
 SecondaryButton.displayName = 'SecondaryButton'
-SecondaryButton.defaultProps = { variant: 'Secondary' }
 
-const TertiaryButton = Button
+export const TertiaryButton = styled(Button).attrs({ variant: 'Tertiary' })``
 TertiaryButton.displayName = 'TertiaryButton'
-TertiaryButton.defaultProps = { variant: 'Tertiary' }
 
-const WelcomeButton = Button
+export const WelcomeButton = styled(Button).attrs({ variant: 'Welcome' })``
 WelcomeButton.displayName = 'WelcomeButton'
-WelcomeButton.defaultProps = { variant: 'Welcome' }
-
-export {
-	Button,
-	PrimaryButton,
-	SecondaryButton,
-	TertiaryButton,
-	WelcomeButton,
-}
