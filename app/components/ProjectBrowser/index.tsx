@@ -5,7 +5,7 @@ import { AzureLogin } from './AzureLogin'
 import { AzureRepos } from './AzureRepos'
 import { Loading } from '../Loading'
 
-const openProject = () => sketchRequest('selectGitRepo')
+const openProject = () => sketchRequest('selectLocalProject')
 
 const ProjectBrowser = () => {
 	const [ showAzureRepos, setShowAzureRepos ] = useState(false)

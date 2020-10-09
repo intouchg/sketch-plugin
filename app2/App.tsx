@@ -1,12 +1,19 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useHistory, Switch, Route } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import sketchPluginTheme from './theme/theme'
+import { setThemeData } from './store'
 import { Welcome, Main } from './pages'
 
 const App = () => {
-	const [ state, setState ] = useState()
+	const history = useHistory()
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		window.setThemeData = (data) => dispatch(setThemeData(data)) && history.push('/main')
+		return () => void delete window.setThemeData
+	}, [ history, dispatch ])
 
 	return (
 		<ThemeProvider theme={sketchPluginTheme}>

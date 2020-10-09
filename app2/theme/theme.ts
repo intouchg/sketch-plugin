@@ -25,6 +25,7 @@ export default {
 		Bold: '700',
 	},
 	borders: {},
+	zIndices: [ 0, 1, 10, 100, 1000 ],
 	radii: {
 		Small: '4px',
 		Large: '6px',

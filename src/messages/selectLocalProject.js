@@ -4,7 +4,7 @@ import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
 import { updateStorybookTempTheme, writeRecentProjectMetadata } from '../services'
 
-export const selectGitRepo = (webContents, showError) => {
+export const selectLocalProject = (webContents, showError) => {
 	let selectedProjectDirectory = null
 	const themeFilepaths = {}
 	const themeData = {}

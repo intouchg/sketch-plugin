@@ -1,11 +1,16 @@
 import React from 'react'
 import { Box } from '@i/components'
+import { TopToolbar, LeftNavbar } from '../components'
 
 const Main = () => {
 	return (
-		<Box>
-			Main
-		</Box>
+		<>
+			<TopToolbar />
+			<LeftNavbar />
+			<Box>
+				Main
+			</Box>
+		</>
 	)
 }
 

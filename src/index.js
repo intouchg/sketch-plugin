@@ -4,7 +4,7 @@ import UI from 'sketch/ui'
 // import { toArray } from 'util'
 import { stopStorybook } from './services'
 import {
-	selectGitRepo,
+	selectLocalProject,
 	openStorybook,
 	saveThemeData,
 	getAzureGitRepos,
@@ -37,8 +37,8 @@ export default function () {
 
 	browserWindow.on('closed', () => stopStorybook())
 
-	webContents.on('selectGitRepo', () => {
-		const results = selectGitRepo(webContents, showError)
+	webContents.on('selectLocalProject', () => {
+		const results = selectLocalProject(webContents, showError)
 		themeFilepaths = results.themeFilepaths
 		themeData = results.themeData
 	})

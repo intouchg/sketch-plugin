@@ -34,7 +34,7 @@ export type WebviewListenerType = keyof WebviewListeners
 // is expected to have 0 or 1 parameters. The function
 // names can be used as window.postMessage types to
 // call into the Sketch backend:
-// window.postMessage('selectGitRepo')
+// window.postMessage('selectLocalProject')
 interface SketchListeners {
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
     extractSketchDocumentStyles: () => void
@@ -45,7 +45,7 @@ interface SketchListeners {
         groups: ThemeGroup[]
         components: ThemeComponent[]
     }) => void
-    selectGitRepo: () => void
+    selectLocalProject: () => void
     startAuthServer: () => void
 }
 
