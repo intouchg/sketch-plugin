@@ -18,7 +18,7 @@ export const selectGitRepo = (webContents, showError) => {
 	let error = false
 	const configFilepath = path.resolve(selectedProjectDirectory, configFilename)
 
-	// Check for .idsconfig file
+	// Check for .idsconfig.json file
 	if (!fs.existsSync(configFilepath)) {
 		error = true
 		showError(`The folder you selected is not a valid Intouch Design System project. Could not locate a ${configFilename} config file at filepath: ${configFilepath}`)
