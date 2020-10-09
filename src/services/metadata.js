@@ -6,7 +6,6 @@ const RECENT_PROJECTS_MAX_LENGTH = 5
 
 if (!fs.existsSync(METADATA_FILEPATH)) {
 	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify({}))
-	return {}
 }
 
 export const readMetadata = () => {
