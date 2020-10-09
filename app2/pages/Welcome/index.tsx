@@ -12,10 +12,7 @@ const Welcome = () => {
 			alignItems="center"
 			justifyContent="center"
 		>
-			<Box
-				width={552}
-				height={364}
-			>
+			<Box width={552}>
 				<Stack
 					paddingX={1}
 					marginBottom={4}
