@@ -1,4 +1,4 @@
-import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeVariant, ThemeSnippet, ThemeColor } from '@i/theme'
+import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeSnippet, ThemeColor } from '@i/theme'
 
 export type ThemeState = {
 	canUndo: boolean
@@ -6,7 +6,6 @@ export type ThemeState = {
 	values: ThemeValue[]
 	groups: ThemeGroup[]
 	components: ThemeComponent[]
-	variants: ThemeVariant[]
 	snippets: ThemeSnippet[]
 	selectedColor: ThemeColor
 	deletingValue: { id: string, message?: string }
@@ -19,7 +18,6 @@ export const initialState: ThemeState = {
 	values: [] as ThemeValue[],
 	groups: [] as ThemeGroup[],
 	components: [] as ThemeComponent[],
-	variants: [] as ThemeVariant[],
 	snippets: [] as ThemeSnippet[],
 	selectedColor: {} as ThemeColor,
 	deletingValue: { id: '', message: '' },

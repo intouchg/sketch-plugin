@@ -69,11 +69,12 @@ export const themeReducer = (
 			}
 
 			case SET_THEME_DATA: {
-				const { values, groups, components, snippets } = action.payload
+				const { values, groups, components, variants, snippets } = action.payload
 
 				nextState.values = values
 				nextState.groups = groups
 				nextState.components = components
+				nextState.variants = variants
 				nextState.snippets = snippets
 				break
 			}

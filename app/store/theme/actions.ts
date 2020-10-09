@@ -1,4 +1,4 @@
-import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeVariant, ThemeSnippet } from '@i/theme'
+import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeSnippet } from '@i/theme'
 import type { ThemeState } from './state'
 import type { ImportedSketchStyles } from '../../sketchApi'
 
@@ -29,7 +29,6 @@ export type SetThemeAction = {
         values: ThemeValue[]
         groups: ThemeGroup[]
         components: ThemeComponent[]
-        variants: ThemeVariant[]
         snippets: ThemeSnippet[]
     }
 }
