@@ -1,6 +1,8 @@
 import React from 'react'
 import { Box, Stack, Flex, Heading } from '@i/components'
-import { AccentText, TertiaryButton, WelcomeButton } from '../../components'
+import { AccentText, WelcomeButton } from '../../components'
+import { RecentProjects } from './RecentProjects'
+import { HelpfulResources } from './HelpfulResources'
 import pkg from '../../../package.json'
 
 const Welcome = () => {
@@ -33,22 +35,7 @@ const Welcome = () => {
 						<WelcomeButton marginBottom={4}>
 							Open
 						</WelcomeButton>
-						<Stack paddingX={1}>
-							<AccentText marginBottom={2}>
-								Recent
-							</AccentText>
-							<Stack alignItems="flex-start">
-								<TertiaryButton marginBottom={1}>
-									IDS Plugin
-								</TertiaryButton>
-								<TertiaryButton marginBottom={1}>
-									Exec Demo
-								</TertiaryButton>
-								<TertiaryButton marginBottom={1}>
-									More...
-								</TertiaryButton>
-							</Stack>
-						</Stack>
+						<RecentProjects />
 					</Stack>
 					<WelcomeButton marginX="1.125em">
 						Download
@@ -57,22 +44,7 @@ const Welcome = () => {
 						<WelcomeButton marginBottom={4}>
 							New
 						</WelcomeButton>
-						<Stack paddingX={1}>
-							<AccentText marginBottom={2}>
-								Resources
-							</AccentText>
-							<Stack alignItems="flex-start">
-								<TertiaryButton marginBottom={1}>
-									Getting Started
-								</TertiaryButton>
-								<TertiaryButton marginBottom={1}>
-									Coming Soon
-								</TertiaryButton>
-								<TertiaryButton marginBottom={1}>
-									Support
-								</TertiaryButton>
-							</Stack>
-						</Stack>
+						<HelpfulResources />
 					</Stack>
 				</Flex>
 			</Box>
