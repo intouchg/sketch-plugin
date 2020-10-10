@@ -1,14 +1,14 @@
 
-export default {
+const theme = {
 	breakpoints: [ '30em', '43em', '62em', '82em' ],
 	colors: {
 		Card: '#ffffff',
 		Background: '#f8f8f8',
 		Accent: '#dddddd',
 		Primary: '#2c90ce',
-		PrimaryLight: '#e0eff9',
+		'Primary Light': '#e0eff9',
 		Text: '#232323',
-		TextLight: '#999999',
+		'Text Light': '#999999',
 		Critical: '#ff4867',
 		Positive: '#1dce4a',
 		Warning: '#ffe31e',
@@ -148,4 +148,12 @@ export default {
 			lineHeight: '1rem',
 		},
 	},
+} as const
+
+type StyleTheme = typeof theme
+
+declare module 'styled-components' {
+	export interface DefaultTheme extends StyleTheme {}
 }
+
+export default theme

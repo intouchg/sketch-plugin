@@ -1,65 +1,86 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { Stack } from '@i/components'
-import { AccentText, PrimaryLink } from './index'
+import { NavLink } from 'react-router-dom'
+import { createUuid } from '@i/utility'
+import { Stack, Link } from '@i/components'
+import { AccentText } from './index'
 
-const StyledLink = styled(Link)`
-	color: red;
+const activeLinkClass = 'c' + createUuid()
+
+const StyledLink = styled(Link).attrs({
+	as: NavLink,
+	activeClassName: activeLinkClass,
+})<React.ComponentProps<NavLink>>`
+	${({ theme }) => `
+		padding: ${theme.space[2]};
+		padding-bottom: calc(${theme.space[2]} - 2px);
+		margin-left: -${theme.space[2]};
+		margin-right: -${theme.space[2]};
+		border-radius: ${theme.radii.Small};
+		line-height: 1;
+		text-decoration: none;
+
+		&.${activeLinkClass} {
+			background-color: ${theme.colors['Primary Light']};
+		}
+	`}
 `
 
 const ThemeNavigation = () => (
 	<Stack paddingBottom={3}>
-		<AccentText marginBottom={2}>
+		<AccentText marginBottom={1}>
 			Theme
 		</AccentText>
 		<Stack>
-			<StyledLink to="/">
+			<StyledLink to="/theme/colors">
 				Colors
 			</StyledLink>
-			{/* <Link>
+			<StyledLink to="/theme/fonts">
 				Fonts
-			</Link>
-			<Link>
+			</StyledLink>
+			<StyledLink to="/theme/typescale">
 				Type Scale
-			</Link>
-			<Link>
+			</StyledLink>
+			<StyledLink to="/theme/elevation">
 				Elevation
-			</Link>
-			<Link>
+			</StyledLink>
+			<StyledLink to="/theme/spacing">
 				Spacing
-			</Link>
-			<Link>
+			</StyledLink>
+			<StyledLink to="/theme/borders">
 				Borders
-			</Link> */}
+			</StyledLink>
 		</Stack>
 	</Stack>
 )
 
 const ComponentNavigation = () => (
 	<Stack paddingBottom={3}>
-		<AccentText marginBottom={2}>
+		<AccentText marginBottom={1}>
 			Components
 		</AccentText>
 		<Stack>
-			{/* <Link>
+			<StyledLink to="/">
+				Colors
+			</StyledLink>
+			<StyledLink to="/components/button">
 				Button
-			</Link>
-			<Link>
+			</StyledLink>
+			<StyledLink to="/components/heading">
 				Heading
-			</Link>
-			<Link>
+			</StyledLink>
+			<StyledLink to="/components/icon">
 				Icon
-			</Link>
-			<Link>
+			</StyledLink>
+			<StyledLink to="/components/input">
 				Input
-			</Link>
-			<Link>
+			</StyledLink>
+			<StyledLink to="/components/link">
 				Link
-			</Link>
-			<Link>
+			</StyledLink>
+			<StyledLink to="/components/text">
 				Text
-			</Link> */}
+			</StyledLink>
 		</Stack>
 	</Stack>
 )
