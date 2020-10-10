@@ -1,10 +1,49 @@
 import React from 'react'
+import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Stack, Text, Box } from '@i/components'
 import { AccentText, TertiaryButton } from '../../components'
 import { sketchRequest } from '../../sketchApi'
 
 const selectRecentProject = (filepath: string) => sketchRequest('selectLocalProject', { filepath })
+
+const TruncatedTextBox = styled(Box)`
+	max-width: 320px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+`
+
+const RecentProject = ({
+	name,
+	filepath,
+}: {
+	name?: string
+	filepath: string
+}) => {
+	const selectProject = () => selectRecentProject(filepath)
+
+	return (
+		<Stack
+			as={TertiaryButton}
+			maxWidth="320px"
+			overflow="hidden"
+			textOverflow="ellipsis"
+			marginBottom={1}
+			onClick={selectProject}
+		>
+			<TruncatedTextBox>
+				{name}
+			</TruncatedTextBox>
+			<Text
+				variant="Accent Small"
+				as={TruncatedTextBox}
+			>
+				{filepath}
+			</Text>
+		</Stack>
+	)
+}
 
 const RecentProjects = () => {
 	const recentProjects = useSelector((state) => state.theme.recentProjects)
@@ -20,18 +59,11 @@ const RecentProjects = () => {
 				Recent
 			</AccentText>
 			<Stack alignItems="flex-start">
-				{formattedRecentProjects.map(({ name, filepath }) => (
-					<TertiaryButton
-						key={filepath}
-						marginBottom={1}
-						overflow="hidden"
-						onClick={() => selectRecentProject(filepath)}
-					>
-						{name}
-						{/* <Text variant="Accent Small">
-							{filepath}
-						</Text> */}
-					</TertiaryButton>
+				{formattedRecentProjects.map((props) => (
+					<RecentProject
+						key={props.filepath}
+						{...props}
+					/>
 				))}
 			</Stack>
 		</Stack>
