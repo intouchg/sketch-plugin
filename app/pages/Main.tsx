@@ -1,15 +1,24 @@
-import React from 'react'
-import { Box } from '@i/components'
-import { TopToolbar, LeftNavbar } from '../components'
+import React, { useState } from 'react'
+import { Button, Flex } from '@i/components'
+import { TopToolbar, LeftNavbar, ImportModal } from '../components'
 
 const Main = () => {
+	const [ showImportModal, setShowImportModal ] = useState(false)
+
+	const toggleImportModal = () => setShowImportModal((show) => !show)
+
 	return (
 		<>
 			<TopToolbar />
-			<LeftNavbar />
-			<Box>
-				Main
-			</Box>
+			<Flex>
+				<LeftNavbar />
+				<Button onClick={toggleImportModal}>
+					Main
+				</Button>
+			</Flex>
+			{showImportModal && (
+				<ImportModal closeImportModal={toggleImportModal} />
+			)}
 		</>
 	)
 }
