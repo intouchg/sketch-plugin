@@ -100,6 +100,7 @@ export default {
 			lineHeight: '1rem',
 			fontWeight: '400',
 			textTransform: 'uppercase',
+			letterSpacing: '1px',
 		},
 		'Accent Small': {
 			color: '#999999',
