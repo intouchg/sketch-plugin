@@ -29,17 +29,19 @@ const Welcome = () => (
 			</Stack>
 			<Flex justifyContent="center">
 				<Stack>
-					<WelcomeButton
-						marginBottom={4}
-						onClick={selectLocalProject}
-					>
-						Open
-					</WelcomeButton>
+					<Flex>
+						<WelcomeButton
+							marginBottom={4}
+							onClick={selectLocalProject}
+						>
+							Open
+						</WelcomeButton>
+						<WelcomeButton marginX="1.125em">
+							Download
+						</WelcomeButton>
+					</Flex>
 					<RecentProjects />
 				</Stack>
-				<WelcomeButton marginX="1.125em">
-					Download
-				</WelcomeButton>
 				<Stack>
 					<WelcomeButton marginBottom={4}>
 						New

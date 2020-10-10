@@ -4,12 +4,14 @@ import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
 import { updateStorybookTempTheme, writeRecentProjectMetadata } from '../services'
 
-export const selectLocalProject = (webContents, showError) => {
-	let selectedProjectDirectory = null
+export const selectLocalProject = (webContents, showError, filepath) => {
+	let selectedProjectDirectory = filepath
 	const themeFilepaths = {}
 	const themeData = {}
 
-	selectedProjectDirectory = dialog.showOpenDialogSync({ properties: [ 'openDirectory' ] })[0]
+	if (!filepath) {
+		selectedProjectDirectory = dialog.showOpenDialogSync({ properties: [ 'openDirectory' ] })[0]
+	}
 
 	if (!selectedProjectDirectory) {
 		return

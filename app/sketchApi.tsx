@@ -7,6 +7,8 @@ import type { AzureGitRepo } from '@i/azure'
 
 export type ImportedSketchStyles = { [key in typeof themeTypePropertyMap[ThemeValue['type']]]: string[] | number[] }
 
+export type RecentProject = { filepath: string }
+
 // These are the functions that exist on the window object
 // so that Sketch can call into the webview frontend. You
 // can assign callbacks on the window object, using these
@@ -22,7 +24,7 @@ interface WebviewListeners {
     setGitRepos?: (repos: any) => void
     setImportSketchStylesResult?: (result: boolean) => void
     setThemeData?: (data: any) => void
-    setRecentProjects?: (data: { filepath: string }[]) => void
+    setRecentProjects?: (data: RecentProject[]) => void
     setSaveThemeDataResult?: (result: boolean) => void
     showStorybookLoading?: (show: boolean) => void
     storybookLoadingProgress?: (progress: number) => void
@@ -44,13 +46,14 @@ interface SketchListeners {
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
     extractSketchDocumentStyles: () => void
     getAzureGitRepos: (credentials: { username: string, accessToken: string }) => void
+    getRecentProjects: () => RecentProject[]
     openStorybook: () => void
     saveThemeData: (data: {
         values: ThemeValue[]
         groups: ThemeGroup[]
         components: ThemeComponent[]
     }) => void
-    selectLocalProject: () => void
+    selectLocalProject: (recentProject?: RecentProject) => void
     startAuthServer: () => void
 }
 
@@ -64,11 +67,7 @@ export const useGlobalSketchListeners = () => {
 
 	useEffect(() => {
 		window.setThemeData = (themeData) => dispatch(setThemeData(themeData)) && history.push('/main')
-
-		window.setRecentProjects = (recentProjects) => {
-			console.log('SET RECENT PROJECTS')
-			dispatch(setRecentProjects(recentProjects))
-		}
+		window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
 
 		return () => {
 			delete window.setThemeData

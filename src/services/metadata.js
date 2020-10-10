@@ -17,10 +17,14 @@ export const writeMetadata = (mergeFunction) => {
 	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify(newMetadata, null, '\t'))
 }
 
+export const readRecentProjectMetadata = () => {
+	const { recentProjects } = readMetadata()
+	return recentProjects || []
+}
+
 export const writeRecentProjectMetadata = (project) => {
 	const { filepath } = project
-	let { recentProjects } = readMetadata()
-	recentProjects = recentProjects || []
+	const recentProjects = readRecentProjectMetadata()
 	const otherRecentProjects = recentProjects.filter((recentProject) => recentProject.filepath !== filepath)
 	const newRecentProjects = [ project, ...otherRecentProjects ]
 

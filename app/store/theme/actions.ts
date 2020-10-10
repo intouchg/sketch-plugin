@@ -1,6 +1,6 @@
-import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeSnippet } from '@i/theme'
+import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeVariant } from '@i/theme'
 import type { ThemeState } from './state'
-import type { ImportedSketchStyles } from '../../sketchApi'
+import type { ImportedSketchStyles, RecentProject } from '../../sketchApi'
 
 export const UNDO = 'UNDO'
 export type UndoAction = {
@@ -29,7 +29,7 @@ export type SetThemeDataAction = {
         values: ThemeValue[]
         groups: ThemeGroup[]
         components: ThemeComponent[]
-        snippets: ThemeSnippet[]
+        variants: ThemeVariant[]
     }
 }
 export const setThemeData = (theme: SetThemeDataAction['payload']): SetThemeDataAction => ({
@@ -40,7 +40,7 @@ export const setThemeData = (theme: SetThemeDataAction['payload']): SetThemeData
 export const SET_RECENT_PROJECTS = 'SET_RECENT_PROJECTS'
 export type SetRecentProjectsAction = {
     type: typeof SET_RECENT_PROJECTS
-    payload: { filepath: string }[]
+    payload: RecentProject[]
 }
 export const setRecentProjects = (recentProjects: SetRecentProjectsAction['payload']): SetRecentProjectsAction => ({
 	type: SET_RECENT_PROJECTS,
@@ -161,6 +161,7 @@ export type ThemeActionType =
     UndoAction
     | RedoAction
     | SetThemeDataAction
+    | SetRecentProjectsAction
     | CreateThemeValueAction
     | UpdateThemeValueAction
     | DeleteThemeValueAction

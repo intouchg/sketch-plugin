@@ -5,6 +5,7 @@ import {
 	UNDO,
 	REDO,
 	SET_THEME_DATA,
+	SET_RECENT_PROJECTS,
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
@@ -69,12 +70,17 @@ export const themeReducer = (
 			}
 
 			case SET_THEME_DATA: {
-				const { values, groups, components, snippets } = action.payload
+				const { values, groups, components, variants } = action.payload
 
 				nextState.values = values
 				nextState.groups = groups
 				nextState.components = components
-				nextState.snippets = snippets
+				nextState.variants = variants
+				break
+			}
+
+			case SET_RECENT_PROJECTS: {
+				nextState.recentProjects = action.payload
 				break
 			}
 

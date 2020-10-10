@@ -20,7 +20,8 @@ export default {
 	fontSizes: [ '0', '0.75rem', '0.875rem', '1rem', '2rem' ],
 	lineHeights: [ '0', '1rem', '1.25rem', '1.5rem', '2rem' ],
 	fontWeights: {
-		Regular: '400',
+		Regular: '300',
+		Medium: '400',
 		Demibold: '600',
 		Bold: '700',
 	},
@@ -99,6 +100,13 @@ export default {
 			lineHeight: '1rem',
 			fontWeight: '400',
 			textTransform: 'uppercase',
+		},
+		'Accent Small': {
+			color: '#999999',
+			fontFamily: '\'Avenir Next\', sans-serif',
+			fontSize: '0.75rem',
+			lineHeight: '1rem',
+			fontWeight: '300',
 		},
 	},
 	headings: {

@@ -5,6 +5,7 @@ import UI from 'sketch/ui'
 import { stopStorybook } from './services'
 import {
 	selectLocalProject,
+	getRecentProjects,
 	openStorybook,
 	saveThemeData,
 	getAzureGitRepos,
@@ -37,11 +38,14 @@ export default function () {
 
 	browserWindow.on('closed', () => stopStorybook())
 
-	webContents.on('selectLocalProject', () => {
-		const results = selectLocalProject(webContents, showError)
+	webContents.on('selectLocalProject', (recentProject) => {
+		const filepath = recentProject ? recentProject.filepath : null
+		const results = selectLocalProject(webContents, showError, filepath)
 		themeFilepaths = results.themeFilepaths
 		themeData = results.themeData
 	})
+
+	webContents.on('getRecentProjects', () => getRecentProjects(webContents, showError))
 
 	webContents.on('openStorybook', () => openStorybook(webContents, showError, themeData))
 
