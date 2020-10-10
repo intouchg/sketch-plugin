@@ -1,6 +1,12 @@
 import React from 'react'
-import { Stack, Link } from '@i/components'
-import { AccentText } from './index'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { Stack } from '@i/components'
+import { AccentText, PrimaryLink } from './index'
+
+const StyledLink = styled(Link)`
+	color: red;
+`
 
 const ThemeNavigation = () => (
 	<Stack paddingBottom={3}>
@@ -8,10 +14,10 @@ const ThemeNavigation = () => (
 			Theme
 		</AccentText>
 		<Stack>
-			<Link>
+			<StyledLink to="/">
 				Colors
-			</Link>
-			<Link>
+			</StyledLink>
+			{/* <Link>
 				Fonts
 			</Link>
 			<Link>
@@ -25,7 +31,7 @@ const ThemeNavigation = () => (
 			</Link>
 			<Link>
 				Borders
-			</Link>
+			</Link> */}
 		</Stack>
 	</Stack>
 )
@@ -36,7 +42,7 @@ const ComponentNavigation = () => (
 			Components
 		</AccentText>
 		<Stack>
-			<Link>
+			{/* <Link>
 				Button
 			</Link>
 			<Link>
@@ -53,7 +59,7 @@ const ComponentNavigation = () => (
 			</Link>
 			<Link>
 				Text
-			</Link>
+			</Link> */}
 		</Stack>
 	</Stack>
 )

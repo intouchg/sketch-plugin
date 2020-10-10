@@ -23,7 +23,7 @@ export const redoAction = (): RedoAction => ({
 })
 
 export const SET_THEME_DATA = 'SET_THEME_DATA'
-export type SetThemeAction = {
+export type SetThemeDataAction = {
     type: typeof SET_THEME_DATA
     payload: {
         values: ThemeValue[]
@@ -33,7 +33,7 @@ export type SetThemeAction = {
         snippets: ThemeSnippet[]
     }
 }
-export const setThemeData = (theme: SetThemeAction['payload']): SetThemeAction => ({
+export const setThemeData = (theme: SetThemeDataAction['payload']): SetThemeDataAction => ({
 	type: SET_THEME_DATA,
 	payload: theme,
 })
@@ -151,7 +151,7 @@ export const importSketchDocumentStyles = (styles: ImportedSketchStyles): Import
 export type ThemeActionType =
     UndoAction
     | RedoAction
-    | SetThemeAction
+    | SetThemeDataAction
     | CreateThemeValueAction
     | UpdateThemeValueAction
     | DeleteThemeValueAction

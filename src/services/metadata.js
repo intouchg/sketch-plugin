@@ -1,12 +1,9 @@
 import fs from '@skpm/fs'
 
 const METADATA_FILENAME = '.idsmetadata.json'
-const METADATA_FILEPATH = './metadata/' + METADATA_FILENAME
+const METADATA_STORAGE_FILEPATH = './Contents/Sketch/metadata'
+const METADATA_FILEPATH = METADATA_STORAGE_FILEPATH + METADATA_FILENAME
 const RECENT_PROJECTS_MAX_LENGTH = 5
-
-if (!fs.existsSync(METADATA_FILEPATH)) {
-	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify({}))
-}
 
 export const readMetadata = () => {
 	const filedata = fs.readFileSync(METADATA_FILEPATH).toString('utf-8')
@@ -22,9 +19,9 @@ export const writeMetadata = (mergeFunction) => {
 
 export const writeRecentProjectMetadata = (project) => {
 	const { filepath } = project
-	const { recentProjects } = readMetadata()
-	const projectIndex = recentProjects.findIndex((recentProject) => recentProject.filepath === filepath)
-	const otherRecentProjects = projectIndex === -1 ? recentProjects : recentProjects.splice(projectIndex, 1)
+	let { recentProjects } = readMetadata()
+	recentProjects = recentProjects || []
+	const otherRecentProjects = recentProjects.filter((recentProject) => recentProject.filepath !== filepath)
 	const newRecentProjects = [ project, ...otherRecentProjects ]
 
 	if (newRecentProjects.length > RECENT_PROJECTS_MAX_LENGTH) {

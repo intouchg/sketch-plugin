@@ -1,5 +1,7 @@
 import ChildProcess from '../ChildProcess'
 
+const MSAL_SERVER_LIB_FILEPATH = './Contents/Sketch/msal-server/msal-server-cli.cjs.js'
+
 let serverProcess = null
 
 export const stopAuthServer = () => serverProcess && serverProcess.stop()
@@ -11,5 +13,5 @@ export const startAuthServer = (port, webContents, showError) => {
 
 	const onError = (error) => showError(`Could not start MSALServer auth server: ${error}`)
 
-	serverProcess = new ChildProcess(`node ./Contents/Sketch/msal-server/msal-server-cli.cjs.js ${port}`, { onClose, onError })
+	serverProcess = new ChildProcess(`node ${MSAL_SERVER_LIB_FILEPATH} ${port}`, { onClose, onError })
 }

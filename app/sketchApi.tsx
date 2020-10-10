@@ -1,3 +1,7 @@
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setThemeData, setRecentProjects } from './store'
 import type { ThemeValue, ThemeGroup, ThemeComponent, themeTypePropertyMap } from '@i/theme'
 import type { AzureGitRepo } from '@i/azure'
 
@@ -18,6 +22,7 @@ interface WebviewListeners {
     setGitRepos?: (repos: any) => void
     setImportSketchStylesResult?: (result: boolean) => void
     setThemeData?: (data: any) => void
+    setRecentProjects?: (data: { filepath: string }[]) => void
     setSaveThemeDataResult?: (result: boolean) => void
     showStorybookLoading?: (show: boolean) => void
     storybookLoadingProgress?: (progress: number) => void
@@ -52,3 +57,22 @@ interface SketchListeners {
 export type SketchListenerType = keyof SketchListeners
 
 export const sketchRequest = <T extends SketchListenerType>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage(type, payload as any)
+
+export const useGlobalSketchListeners = () => {
+	const history = useHistory()
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		window.setThemeData = (themeData) => dispatch(setThemeData(themeData)) && history.push('/main')
+
+		window.setRecentProjects = (recentProjects) => {
+			console.log('SET RECENT PROJECTS')
+			dispatch(setRecentProjects(recentProjects))
+		}
+
+		return () => {
+			delete window.setThemeData
+			delete window.setRecentProjects
+		}
+	}, [ history, dispatch ])
+}
