@@ -24,7 +24,8 @@ const RightToolbar = ({
 					onClick={closeImportModal}
 				>
 					<CloseIcon
-						width="64px"
+						width="13px"
+						fill="Accent"
 					/>
 				</InvisibleButton>
 				<AccentText

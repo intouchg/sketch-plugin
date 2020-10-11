@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { HashRouter, Switch, Route } from 'react-router-dom'
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { Flex, Box } from '@i/components'
 import { RightToolbar } from './RightToolbar'
 
@@ -35,8 +35,26 @@ const ImportModal = ({
 				>
 					<ResponsiveContainer>
 						<Switch>
-							<Route path="/">
+							<Route path="/colors">
 								Colors
+							</Route>
+							<Route path="/fonts">
+								Fonts
+							</Route>
+							<Route path="/typescale">
+								Type Scale
+							</Route>
+							<Route path="/shadows">
+								Shadows
+							</Route>
+							<Route path="/borders">
+								Borders
+							</Route>
+							<Route path="/radii">
+								Radii
+							</Route>
+							<Route path="/">
+								<Redirect to="/colors" />
 							</Route>
 						</Switch>
 					</ResponsiveContainer>
