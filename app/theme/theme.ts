@@ -22,7 +22,7 @@ const theme = {
 	fontWeights: {
 		Regular: '300',
 		Medium: '400',
-		Demibold: '600',
+		Demibold: '500',
 		Bold: '700',
 	},
 	borders: {},
@@ -46,6 +46,9 @@ const theme = {
 			fontSize: '0.875rem',
 			lineHeight: '1.25rem',
 			fontWeight: '600',
+			textTransform: 'uppercase',
+			letterSpacing: '1px',
+			padding: '14px 24px',
 		},
 		Secondary: {
 			color: '#232323',
@@ -67,7 +70,7 @@ const theme = {
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '1rem',
 			lineHeight: '1.25rem',
-			fontWeight: '600',
+			fontWeight: '500',
 		},
 		Welcome: {
 			display: 'flex',
@@ -84,7 +87,7 @@ const theme = {
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '1rem',
 			lineHeight: '1.25rem',
-			fontWeight: '600',
+			fontWeight: '500',
 		},
 		Invisible: {
 			backgroundColor: 'transparent',
@@ -97,6 +100,13 @@ const theme = {
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '0.875rem',
 			lineHeight: '1rem',
+		},
+		Secondary: {
+			color: '#232323',
+			fontFamily: '\'Avenir Next\', sans-serif',
+			fontSize: '1rem',
+			lineHeight: '1.25rem',
+			fontWeight: '700',
 		},
 		Accent: {
 			color: '#999999',
@@ -137,7 +147,7 @@ const theme = {
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '1rem',
 			lineHeight: '1.25rem',
-			fontWeight: '600',
+			fontWeight: '500',
 		},
 	},
 	icons: {

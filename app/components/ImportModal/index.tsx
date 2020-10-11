@@ -1,18 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex, Box } from '@i/components'
 import { RightToolbar } from './RightToolbar'
+import { Colors } from './Colors'
+import { Fonts } from './Fonts'
+import { TypeScale } from './TypeScale'
+import { Shadows } from './Shadows'
+import { Borders } from './Borders'
+import { Radii } from './Radii'
 
 const ResponsiveContainer = styled(Box)`
     flex-grow: 1;
     overflow-y: scroll;
 `
 
+const views = {
+	Colors: Colors,
+	Fonts: Fonts,
+	'Type Scale': TypeScale,
+	Shadows: Shadows,
+	Borders: Borders,
+	Radii: Radii,
+} as const
+
+export const routes = Object.keys(views) as (keyof typeof views)[]
+
 const ImportModal = ({
 	closeImportModal,
 }: {
 	closeImportModal: () => void
 }) => {
+	const [ route, setRoute ] = useState<typeof routes[number]>('Colors')
+	const ImportView = views[route]
+
 	return (
 		<Flex
 			position="fixed"
@@ -32,9 +52,13 @@ const ImportModal = ({
 				borderRadius="Large"
 			>
 				<ResponsiveContainer>
-					Content goes here
+					<ImportView />
 				</ResponsiveContainer>
-				<RightToolbar closeImportModal={closeImportModal} />
+				<RightToolbar
+					route={route}
+					setRoute={setRoute}
+					closeImportModal={closeImportModal}
+				/>
 			</Flex>
 		</Flex>
 	)

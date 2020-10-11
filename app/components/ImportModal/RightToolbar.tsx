@@ -1,10 +1,15 @@
 import React from 'react'
-import { Stack, Box } from '@i/components'
+import { Stack, Box, Text } from '@i/components'
 import { AccentText, InvisibleButton, CloseIcon, PrimaryButton } from '../index'
+import { routes } from './index'
 
 const RightToolbar = ({
+	route,
+	setRoute,
 	closeImportModal,
 }: {
+	route: typeof routes[number]
+	setRoute: (route: typeof routes[number]) => void
 	closeImportModal: () => void
 }) => {
 	return (
@@ -38,6 +43,16 @@ const RightToolbar = ({
 				>
 					Select All
 				</AccentText>
+				{routes.map((route) => (
+					<InvisibleButton
+						key={route}
+						onClick={() => setRoute(route)}
+					>
+						<Text variant="Secondary">
+							{route}
+						</Text>
+					</InvisibleButton>
+				))}
 				<PrimaryButton
 					position="absolute"
 					bottom="0"
