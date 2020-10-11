@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Stack, Box, Button } from '@i/components'
-import { AccentText } from '../index'
-
-const CloseIcon = styled.div``
+import { AccentText, CloseIcon } from '../index'
 
 const RightToolbar = ({
 	closeImportModal,
