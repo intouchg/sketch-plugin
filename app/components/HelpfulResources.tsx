@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stack } from '@i/components'
-import { AccentText, TertiaryButton } from '../../components'
+import { AccentText, TertiaryButton } from '../components'
 
 const HelpfulResources = () => {
 	return (

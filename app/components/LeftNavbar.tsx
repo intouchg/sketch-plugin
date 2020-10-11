@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useRouteMatch } from 'react-router-dom'
 import { createUuid } from '@i/utility'
 import { Stack, Link } from '@i/components'
 import { AccentText } from './index'
@@ -26,66 +26,63 @@ const StyledLink = styled(Link).attrs({
 	`}
 `
 
-const ThemeNavigation = () => (
+const ThemeNavigation = ({ url }: { url: string }) => (
 	<Stack paddingBottom={3}>
 		<AccentText marginBottom={1}>
 			Theme
 		</AccentText>
 		<Stack>
-			<StyledLink to="/theme/colors">
+			<StyledLink to={`${url}/theme/colors`}>
 				Colors
 			</StyledLink>
-			<StyledLink to="/theme/fonts">
+			<StyledLink to={`${url}/theme/fonts`}>
 				Fonts
 			</StyledLink>
-			<StyledLink to="/theme/typescale">
+			<StyledLink to={`${url}/theme/typescale`}>
 				Type Scale
 			</StyledLink>
-			<StyledLink to="/theme/elevation">
+			<StyledLink to={`${url}/theme/elevation`}>
 				Elevation
 			</StyledLink>
-			<StyledLink to="/theme/spacing">
+			<StyledLink to={`${url}/theme/spacing`}>
 				Spacing
 			</StyledLink>
-			<StyledLink to="/theme/borders">
+			<StyledLink to={`${url}/theme/borders`}>
 				Borders
 			</StyledLink>
 		</Stack>
 	</Stack>
 )
 
-const ComponentNavigation = () => (
+const ComponentNavigation = ({ url }: { url: string }) => (
 	<Stack paddingBottom={3}>
 		<AccentText marginBottom={1}>
 			Components
 		</AccentText>
 		<Stack>
-			<StyledLink to="/">
-				Colors
-			</StyledLink>
-			<StyledLink to="/components/button">
+			<StyledLink to={`${url}/components/button`}>
 				Button
 			</StyledLink>
-			<StyledLink to="/components/heading">
+			<StyledLink to={`${url}/components/heading`}>
 				Heading
 			</StyledLink>
-			<StyledLink to="/components/icon">
+			<StyledLink to={`${url}/components/icon`}>
 				Icon
 			</StyledLink>
-			<StyledLink to="/components/input">
+			<StyledLink to={`${url}/components/input`}>
 				Input
 			</StyledLink>
-			<StyledLink to="/components/link">
+			<StyledLink to={`${url}/components/link`}>
 				Link
 			</StyledLink>
-			<StyledLink to="/components/text">
+			<StyledLink to={`${url}/components/text`}>
 				Text
 			</StyledLink>
 		</Stack>
 	</Stack>
 )
 
-const LeftNavbar = () => {
+const LeftNavbar = ({ url }: { url: string }) => {
 	return (
 		<Stack
 			width="236px"
@@ -94,8 +91,8 @@ const LeftNavbar = () => {
 			padding={3}
 			backgroundColor="Card"
 		>
-			<ThemeNavigation />
-			<ComponentNavigation />
+			<ThemeNavigation url={url} />
+			<ComponentNavigation url={url} />
 		</Stack>
 	)
 }
