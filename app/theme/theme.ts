@@ -41,6 +41,7 @@ const theme = {
 			activeColor: '#ffffff',
 			border: '1px solid',
 			borderColor: '#2c90ce',
+			borderRadius: '6px',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '0.875rem',
 			lineHeight: '1.25rem',

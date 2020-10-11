@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stack, Box } from '@i/components'
-import { AccentText, InvisibleButton, CloseIcon } from '../index'
+import { AccentText, InvisibleButton, CloseIcon, PrimaryButton } from '../index'
 
 const RightToolbar = ({
 	closeImportModal,
@@ -14,7 +14,10 @@ const RightToolbar = ({
 			borderTopRightRadius="Large"
 			borderBottomRightRadius="Large"
 		>
-			<Stack position="relative">
+			<Stack
+				position="relative"
+				height="100%"
+			>
 				<InvisibleButton
 					position="absolute"
 					top="0"
@@ -35,6 +38,14 @@ const RightToolbar = ({
 				>
 					Select All
 				</AccentText>
+				<PrimaryButton
+					position="absolute"
+					bottom="0"
+					width="calc(100% - 40px)"
+					margin="20px"
+				>
+					Import
+				</PrimaryButton>
 			</Stack>
 		</Box>
 	)
