@@ -4,21 +4,23 @@ import type { ComponentProps } from 'react'
 
 const StyledIcon = ({
 	fill = 'Primary',
-	width = 96,
-	height = 96,
+	width,
+	height,
+	viewBox,
 	style,
 	children,
 }: {
 	fill?: string
 	width?: string | number
 	height?: string | number
+	viewBox: string
     style?: React.CSSProperties
     children: React.ReactNode
 }) => {
 	return (
 		<Icon
 			fill={fill}
-			viewBox="0 0 26 26"
+			viewBox={viewBox}
 			width={width}
 			height={height}
 			style={style}
@@ -28,6 +30,6 @@ const StyledIcon = ({
 	)
 }
 
-export type IconProps = Omit<ComponentProps<typeof StyledIcon>, 'children'>
+export type IconProps = Omit<ComponentProps<typeof StyledIcon>, 'children' | 'viewBox'>
 
 export { StyledIcon }
