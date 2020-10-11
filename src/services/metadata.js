@@ -19,7 +19,7 @@ export const readMetadata = () => {
 		return JSON.parse(filedata)
 	}
 	catch (error) {
-		console.log(error)
+		console.error(error)
 	}
 }
 
