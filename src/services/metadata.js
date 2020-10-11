@@ -1,13 +1,26 @@
 import fs from '@skpm/fs'
 
 const METADATA_FILENAME = '.idsmetadata.json'
-const METADATA_STORAGE_FILEPATH = './Contents/Sketch/metadata'
+const METADATA_STORAGE_FILEPATH = './Contents/Sketch/metadata/'
 const METADATA_FILEPATH = METADATA_STORAGE_FILEPATH + METADATA_FILENAME
 const RECENT_PROJECTS_MAX_LENGTH = 5
 
+if (!fs.existsSync(METADATA_STORAGE_FILEPATH)) {
+	fs.mkdirSync(METADATA_STORAGE_FILEPATH, { recursive: true })
+}
+
+if (!fs.existsSync(METADATA_FILEPATH)) {
+	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify({}))
+}
+
 export const readMetadata = () => {
-	const filedata = fs.readFileSync(METADATA_FILEPATH).toString('utf-8')
-	return JSON.parse(filedata)
+	try {
+		const filedata = fs.readFileSync(METADATA_FILEPATH).toString('utf-8')
+		return JSON.parse(filedata)
+	}
+	catch (error) {
+		console.log(error)
+	}
 }
 
 export const writeMetadata = (mergeFunction) => {
