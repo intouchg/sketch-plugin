@@ -85,6 +85,10 @@ const theme = {
 			lineHeight: '1.25rem',
 			fontWeight: '600',
 		},
+		Invisible: {
+			backgroundColor: 'transparent',
+			border: '0',
+		},
 	},
 	texts: {
 		Primary: {

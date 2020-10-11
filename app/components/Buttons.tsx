@@ -12,3 +12,6 @@ TertiaryButton.displayName = 'TertiaryButton'
 
 export const WelcomeButton = styled(Button).attrs({ variant: 'Welcome' })``
 WelcomeButton.displayName = 'WelcomeButton'
+
+export const InvisibleButton = styled(Button).attrs({ variant: 'Invisible' })``
+InvisibleButton.displayName = 'InvisibleButton'
