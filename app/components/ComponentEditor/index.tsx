@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRouteMatch, Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 const ComponentEditor = ({ path }: { path: string }) => (
 	<Switch>

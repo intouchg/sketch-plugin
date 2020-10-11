@@ -1,5 +1,6 @@
 export * from './AzureStatus'
 export * from './Buttons'
+export * from './ColorSwatch'
 export * from './ComponentEditor'
 export * from './DirectoryInput'
 export * from './HelpfulResources'
