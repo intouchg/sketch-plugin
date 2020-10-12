@@ -3,11 +3,13 @@ import { Box, Stack, Text } from '@i/components'
 import { AccentText } from './index'
 
 const ColorSwatch = ({
+	id,
 	name,
-	color,
+	value,
 }: {
+	id: string
     name: string
-    color: string
+    value: string
 }) => {
 	return (
 		<Box
@@ -15,8 +17,10 @@ const ColorSwatch = ({
 			width="196px"
 			height="128px"
 			borderRadius="Small"
-			backgroundColor={color}
+			backgroundColor={value}
 			border="1px solid Accent"
+			marginX={2}
+			marginBottom={4}
 		>
 			<Stack
 				position="absolute"
@@ -24,11 +28,11 @@ const ColorSwatch = ({
 				left="0"
 				padding={3}
 			>
-				<Text>
+				<Text variant="Secondary">
 					{name}
 				</Text>
-				<AccentText>
-					{color}
+				<AccentText color="Text">
+					{value}
 				</AccentText>
 			</Stack>
 		</Box>

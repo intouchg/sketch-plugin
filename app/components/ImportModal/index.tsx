@@ -53,9 +53,13 @@ const ImportModal = ({
 
 	const ImportView = views[route]
 
-	useEffect(() => {
-		sketchRequest('extractSketchDocumentStyles', selectedSketchDocumentIndex)
-	}, [ sketchDocumentNames, selectedSketchDocumentIndex ])
+	useEffect(() => void setSelectedSketchDocumentIndex(0), [ sketchDocumentNames ])
+
+	useEffect(() => void sketchRequest('extractSketchDocumentStyles', selectedSketchDocumentIndex), [ selectedSketchDocumentIndex ])
+
+	if (!sketchDocumentNames.length) {
+		return null
+	}
 
 	const routeThemeValues = {} as any
 

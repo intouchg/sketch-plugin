@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex, Box, Text } from '@i/components'
+import { ColorSwatch } from '../ColorSwatch'
 import type { ThemeColor } from '@i/theme'
 
 const Colors = ({
@@ -9,13 +10,16 @@ const Colors = ({
 	colors: ThemeColor[]
 }) => {
 	return (
-		<Flex>
-			{colors.map(({ id, value }) => (
-				<Box
+		<Flex
+			flexWrap="wrap"
+			padding={6}
+		>
+			{colors.map(({ id, name, value }) => (
+				<ColorSwatch
 					key={id}
-					width="30px"
-					height="30px"
-					backgroundColor={value}
+					id={id}
+					name={name}
+					value={value}
 				/>
 			))}
 		</Flex>

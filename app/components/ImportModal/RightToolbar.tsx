@@ -60,7 +60,7 @@ const RightToolbar = ({
 
 	return (
 		<Box
-			width="280px"
+			minWidth="280px"
 			backgroundColor="Background"
 			borderTopRightRadius="Large"
 			borderBottomRightRadius="Large"

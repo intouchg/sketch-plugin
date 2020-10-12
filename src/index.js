@@ -26,10 +26,8 @@ const WINDOW_OPTIONS = {
 	remembersWindowFrame: true,
 }
 
-let sketchDocuments = []
-
 const updateSketchDocumentNames = () => {
-	sketchDocuments = (getDocuments() || []).filter((document) => document.path)
+	const sketchDocuments = (getDocuments() || []).filter((document) => document.path)
 	const webview = getWebview(WEBVIEW_IDENTIFIER)
 
 	if (webview) {
@@ -70,7 +68,10 @@ export default () => {
 
 	webContents.on('cloneAzureGitRepo', (selectedRepoData) => cloneAzureGitRepo(webContents, showError, selectedRepoData))
 
-	webContents.on('extractSketchDocumentStyles', (sketchDocumentIndex) => extractSketchDocumentStyles(webContents, showError, sketchDocuments[sketchDocumentIndex]))
+	webContents.on('extractSketchDocumentStyles', (sketchDocumentIndex) => {
+		const sketchDocuments = (getDocuments() || []).filter((document) => document.path)
+		extractSketchDocumentStyles(webContents, showError, sketchDocuments[sketchDocumentIndex])
+	})
 
 	webContents.on('startAuthServer', () => startAuthServer(webContents, showError))
 
