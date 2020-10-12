@@ -47,6 +47,16 @@ export const setRecentProjects = (recentProjects: SetRecentProjectsAction['paylo
 	payload: recentProjects,
 })
 
+export const SET_SKETCH_DOCUMENT_NAMES = 'SET_SKETCH_DOCUMENT_NAMES'
+export type SetSketchDocumentNamesAction = {
+    type: typeof SET_SKETCH_DOCUMENT_NAMES
+    payload: string[]
+}
+export const setSketchDocumentNames = (sketchDocumentNames: SetSketchDocumentNamesAction['payload']): SetSketchDocumentNamesAction => ({
+	type: SET_SKETCH_DOCUMENT_NAMES,
+	payload: sketchDocumentNames,
+})
+
 export const CREATE_THEME_VALUE = 'CREATE_THEME_VALUE'
 export type CreateThemeValueAction = {
     type: typeof CREATE_THEME_VALUE
@@ -162,6 +172,7 @@ export type ThemeActionType =
     | RedoAction
     | SetThemeDataAction
     | SetRecentProjectsAction
+    | SetSketchDocumentNamesAction
     | CreateThemeValueAction
     | UpdateThemeValueAction
     | DeleteThemeValueAction

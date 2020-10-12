@@ -1,11 +1,8 @@
-import { getSelectedDocument } from 'sketch'
-
 const filterNonStrings = (value) => typeof value === 'string'
 
 const filterNonNumbers = (value) => typeof value === 'number'
 
-export const extractSketchDocumentStyles = () => {
-	const document = getSelectedDocument()
+export const extractSketchDocumentStyles = (document) => {
 	const colors = []
 	const fonts = []
 	const fontSizes = []

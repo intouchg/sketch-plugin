@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Flex, Box, Text } from '@i/components'
+import type { ThemeFontSize } from '@i/theme'
 
-const TypeScale = () => {
+const TypeScale = ({
+	fontSizes = [],
+}: {
+	fontSizes: ThemeFontSize[]
+}) => {
 	return (
 		<Text>
 			Type Scale

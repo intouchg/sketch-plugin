@@ -6,6 +6,7 @@ import {
 	REDO,
 	SET_THEME_DATA,
 	SET_RECENT_PROJECTS,
+	SET_SKETCH_DOCUMENT_NAMES,
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
@@ -81,6 +82,11 @@ export const themeReducer = (
 
 			case SET_RECENT_PROJECTS: {
 				nextState.recentProjects = action.payload
+				break
+			}
+
+			case SET_SKETCH_DOCUMENT_NAMES: {
+				nextState.sketchDocumentNames = action.payload
 				break
 			}
 

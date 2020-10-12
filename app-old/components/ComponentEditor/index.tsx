@@ -35,7 +35,8 @@ const ComponentEditor = ({
 	// in the component library. Currently it only renders
 	// components that have styles data in the theme components
 	// file, i.e. src/theme/components.json
-	const { components, values } = useSelector((state) => state.theme)
+	const components = useSelector((state) => state.theme.components)
+	const values = useSelector((state) => state.theme.values)
 	const [ componentSearchString, setComponentSearchString ] = useState('')
 
 	if (!theme) {

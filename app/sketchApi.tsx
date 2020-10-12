@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setThemeData, setRecentProjects } from './store'
+import { setThemeData, setRecentProjects, setSketchDocumentNames } from './store'
 import type { ThemeValue, ThemeGroup, ThemeComponent, themeTypePropertyMap } from '@i/theme'
 import type { AzureGitRepo } from '@i/azure'
 
@@ -20,12 +20,13 @@ interface WebviewListeners {
     cloningAzureGitRepo: () => void
     displayError?: (message: string) => void
     displaySuccess?: (message: string) => void
-    receiveImportedSketchStyles?: (styles: ImportedSketchStyles) => void
     setGitRepos?: (repos: any) => void
     setImportSketchStylesResult?: (result: boolean) => void
+    setSketchImportData?: (styles: ImportedSketchStyles) => void
     setThemeData?: (data: any) => void
     setRecentProjects?: (data: RecentProject[]) => void
     setSaveThemeDataResult?: (result: boolean) => void
+    setSketchDocumentNames?: (sketchDocumentNames: string[]) => void
     showStorybookLoading?: (show: boolean) => void
     storybookLoadingProgress?: (progress: number) => void
 }
@@ -44,9 +45,10 @@ export type WebviewListenerType = keyof WebviewListeners
 // window.postMessage('selectLocalProject')
 interface SketchListeners {
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
-    extractSketchDocumentStyles: () => void
+    extractSketchDocumentStyles: (sketchDocumentIndex: number) => void
     getAzureGitRepos: (credentials: { username: string, accessToken: string }) => void
     getRecentProjects: () => RecentProject[]
+    getSketchDocumentNames: () => string[]
     openStorybook: () => void
     saveThemeData: (data: {
         values: ThemeValue[]
@@ -68,10 +70,13 @@ export const useGlobalSketchListeners = () => {
 	useEffect(() => {
 		window.setThemeData = (themeData) => dispatch(setThemeData(themeData)) && history.push('/main')
 		window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
+		window.setSketchDocumentNames = (sketchDocumentNames) => dispatch(setSketchDocumentNames(sketchDocumentNames))
+		sketchRequest('getSketchDocumentNames')
 
 		return () => {
 			delete window.setThemeData
 			delete window.setRecentProjects
+			delete window.setSketchDocumentNames
 		}
 	}, [ history, dispatch ])
 }

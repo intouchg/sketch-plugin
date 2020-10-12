@@ -12,6 +12,7 @@ export type ThemeState = {
 	deletingValue: { id: string, message?: string }
 	selectedComponent: { id: string }
 	recentProjects: RecentProject[]
+	sketchDocumentNames: string[]
 }
 
 export const initialState: ThemeState = {
@@ -25,4 +26,5 @@ export const initialState: ThemeState = {
 	deletingValue: { id: '', message: '' },
 	selectedComponent: { id: '' },
 	recentProjects: [],
+	sketchDocumentNames: [],
 }

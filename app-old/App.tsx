@@ -11,7 +11,10 @@ import pluginTheme from './theme.json'
 const App = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
-	const { values, groups, components, variants } = useSelector((state) => state.theme)
+	const values = useSelector((state) => state.theme.values)
+	const groups = useSelector((state) => state.theme.groups)
+	const components = useSelector((state) => state.theme.components)
+	const variants = useSelector((state) => state.theme.variants)
 	const theme = useMemo(() => values.length ? themeProcessor({ values, components, variants }) : undefined, [ values, groups, components ])
 	const [ error, setError ] = useState<string | null>(null)
 	const [ success, setSuccess ] = useState<string | null>(null)
