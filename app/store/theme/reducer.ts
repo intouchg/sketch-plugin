@@ -7,6 +7,7 @@ import {
 	SET_THEME_DATA,
 	SET_RECENT_PROJECTS,
 	SET_SKETCH_DOCUMENT_NAMES,
+	SET_IMPORTED_SKETCH_STYLES,
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
@@ -17,7 +18,6 @@ import {
 	SET_DELETING_VALUE,
 	SET_SELECTED_COMPONENT,
 	SAVE_THEME_DATA,
-	IMPORT_SKETCH_DOCUMENT_STYLES,
 } from './actions'
 import { initialState } from './state'
 import type { StyleProperty, ThemeColor, ThemeValue } from '@i/theme'
@@ -87,6 +87,24 @@ export const themeReducer = (
 
 			case SET_SKETCH_DOCUMENT_NAMES: {
 				nextState.sketchDocumentNames = action.payload
+				break
+			}
+
+			case SET_IMPORTED_SKETCH_STYLES: {
+				const { colors, fonts, fontSizes, fontWeights, lineHeights, letterSpacings, borderWidths, shadows, radii } = action.payload
+
+				nextState.importedSketchStyles = {
+					colors: colors.map(([ name, value ]) => createThemeValue([], 'color', { name, value })),
+					fonts: fonts.map((value) => createThemeValue([], 'font', { value })),
+					fontSizes: fontSizes.map((value) => createThemeValue([], 'fontSize', { value })),
+					fontWeights: fontWeights.map((value) => createThemeValue([], 'fontWeight', { value })),
+					lineHeights: lineHeights.map((value) => createThemeValue([], 'lineHeight', { value })),
+					letterSpacings: letterSpacings.map((value) => createThemeValue([], 'letterSpacing', { value })),
+					borderWidths: borderWidths.map((value) => createThemeValue([], 'borderWidth', { value })),
+					shadows: shadows.map((value) => createThemeValue([], 'shadow', { value })),
+					radii: radii.map((value) => createThemeValue([], 'radius', { value })),
+				}
+
 				break
 			}
 
@@ -264,25 +282,6 @@ export const themeReducer = (
 					groups: state.groups,
 					components: state.components,
 				})
-
-				break
-			}
-
-			case IMPORT_SKETCH_DOCUMENT_STYLES: {
-				const styles = action.payload
-				const themeValues: ThemeValue[] = []
-
-				Object.entries(themeTypePropertyMap).forEach(([ themeValueType, themeProperty ]) => {
-					if (styles[themeProperty]) {
-						styles[themeProperty].forEach((value: string | number) => {
-							const data = createThemeValue(themeValues, themeValueType as ThemeValue['type'], { value })
-							themeValues.push(data)
-						})
-					}
-				})
-
-				nextState.values.push(...themeValues)
-				window.setImportSketchStylesResult!(true)
 
 				break
 			}

@@ -2,6 +2,8 @@ const filterNonStrings = (value) => typeof value === 'string'
 
 const filterNonNumbers = (value) => typeof value === 'number'
 
+const convert8DigitHex = (color) => color.charAt(0) === '#' ? color.substr(0, color.length - 2) : color
+
 export const extractSketchDocumentStyles = (document) => {
 	const colors = []
 	const fonts = []
@@ -9,33 +11,15 @@ export const extractSketchDocumentStyles = (document) => {
 	const fontWeights = []
 	const lineHeights = []
 	const letterSpacings = []
+	const shadows = []
+	const borderWidths = []
+	const radii = []
 
-	const updateColors = (color) => {
-		const colorValue = color.charAt(0) === '#' ? color.substr(0, color.length - 2) : color
+	document.swatches.forEach(({ name, color }) => {
+		colors.push([ name, convert8DigitHex(color) ])
+	})
 
-		if (!colors.includes(colorValue)) {
-			colors.push(colorValue)
-		}
-	}
-
-	const extractColorStyles = ({ color, gradient }) => {
-		if (color) {
-			updateColors(color)
-		}
-
-		if (gradient) {
-			gradient.stops.forEach(({ color }) => updateColors(color))
-		}
-	}
-
-	const extractFillAndBorderStyles = ({ fills, borders }) => {
-		fills.forEach(extractColorStyles)
-		borders.forEach(extractColorStyles)
-	}
-
-	const extractTextStyles = ({ textColor, fontFamily, fontSize, fontWeight, lineHeight, kerning }) => {
-		updateColors(textColor)
-
+	document.sharedTextStyles.forEach(({ style: { fontFamily, fontSize, fontWeight, lineHeight, kerning } }) => {
 		if (!fonts.includes(fontFamily)) {
 			fonts.push(fontFamily)
 		}
@@ -55,43 +39,37 @@ export const extractSketchDocumentStyles = (document) => {
 		if (!letterSpacings.includes(kerning)) {
 			letterSpacings.push(kerning)
 		}
-	}
+	})
 
-	const extractStylesFromLayers = ({ name, type, style, background, layers }) => {
-		if (background) {
-			updateColors(background.color)
-		}
-
-		if (style) {
-			extractFillAndBorderStyles(style)
-
-			if (type === 'Text') {
-				extractTextStyles(style)
+	document.sharedLayerStyles.forEach(({ style: { borders: sharedBorderStyles, shadows: sharedShadowStyles } }) => {
+		sharedBorderStyles.forEach(({ enabled, thickness }) => {
+			if (enabled) {
+				borderWidths.push(thickness)
 			}
-		}
+		})
 
-		if (layers) {
-			layers.forEach(extractStylesFromLayers)
-		}
-	}
-
-	document.colors.forEach(({ name, color }) => updateColors(color))
-	document.gradients.forEach(({ name, gradient }) => extractColorStyles({ gradient }))
-	document.pages.forEach(extractStylesFromLayers)
-	document.sharedLayerStyles.forEach(extractStylesFromLayers)
-	document.sharedTextStyles.forEach(extractStylesFromLayers)
+		sharedShadowStyles.forEach(({ enabled, x, y, blur, spread, color }) => {
+			if (enabled) {
+				shadows.push(`${x} ${y} ${blur} ${spread} ${convert8DigitHex(color)}`)
+			}
+		})
+	})
 
 	fontSizes.sort((a, b) => a - b)
 	fontWeights.sort((a, b) => a - b)
 	lineHeights.sort((a, b) => a - b)
 	letterSpacings.sort((a, b) => a - b)
+	borderWidths.sort((a, b) => a - b)
 
 	return {
-		colors: colors.filter(filterNonStrings),
+		colors: colors.filter(([ , v ]) => filterNonStrings(v)),
 		fonts: fonts.filter(filterNonStrings),
 		fontSizes: fontSizes.filter(filterNonNumbers),
 		fontWeights: fontWeights.filter(filterNonNumbers),
 		lineHeights: lineHeights.filter(filterNonNumbers),
 		letterSpacings: letterSpacings.filter(filterNonNumbers),
+		borderWidths: borderWidths.filter(filterNonNumbers).map((v) => `${v}px`),
+		shadows,
+		radii,
 	}
 }

@@ -11,8 +11,6 @@ import { Shadows } from './Shadows'
 import { Borders } from './Borders'
 import { Radii } from './Radii'
 import { sketchRequest } from '../../sketchApi'
-import type { ImportedSketchStyles } from '../../sketchApi'
-import type { ThemeValue } from '@i/theme'
 
 const ResponsiveContainer = styled(Box)`
     flex-grow: 1;
@@ -32,21 +30,6 @@ export type ImportModalRoute = keyof typeof views
 
 export const routes = Object.keys(views) as ImportModalRoute[]
 
-const formatImportStyles = (styles: ImportedSketchStyles) => {
-	const themeValues: ThemeValue[] = []
-
-	Object.entries(themeTypePropertyMap).forEach(([ themeValueType, themeProperty ]) => {
-		if (styles[themeProperty]) {
-			styles[themeProperty].forEach((value: string | number) => {
-				const data = createThemeValue(themeValues, themeValueType as ThemeValue['type'], { value })
-				themeValues.push(data)
-			})
-		}
-	})
-
-	return themeValues
-}
-
 const themeTypeRouteMap: {
 	[key in ImportModalRoute]: typeof themeTypePropertyMap[keyof typeof themeTypePropertyMap][]
 } = {
@@ -64,32 +47,22 @@ const ImportModal = ({
 	closeImportModal: () => void
 }) => {
 	const sketchDocumentNames = useSelector((state) => state.theme.sketchDocumentNames)
+	const importedSketchStyles = useSelector((state) => state.theme.importedSketchStyles)
 	const [ route, setRoute ] = useState<ImportModalRoute>('Colors')
 	const [ selectedSketchDocumentIndex, setSelectedSketchDocumentIndex ] = useState<number>(0)
-	const [ importThemeValues, setImportThemeValues ] = useState<ThemeValue[]>([])
 
 	const ImportView = views[route]
 
 	useEffect(() => {
-		window.setSketchImportData = (styles) => setImportThemeValues(formatImportStyles(styles))
 		sketchRequest('extractSketchDocumentStyles', selectedSketchDocumentIndex)
-		return () => void delete window.setSketchImportData
-	}, [])
+	}, [ sketchDocumentNames, selectedSketchDocumentIndex ])
 
 	const routeThemeValues = {} as any
 
-	importThemeValues.forEach((value) => {
-		const key = themeTypePropertyMap[value.type]
-
-		if (!themeTypeRouteMap[route].includes(key)) {
-			return
+	Object.entries(importedSketchStyles).forEach(([ key, value ]) => {
+		if (themeTypeRouteMap[route].includes(key as any)) {
+			routeThemeValues[key] = value
 		}
-
-		if (!routeThemeValues[key]) {
-			routeThemeValues[key] = []
-		}
-
-		routeThemeValues[key].push(value)
 	})
 
 	return (

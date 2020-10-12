@@ -3,7 +3,7 @@ import { extractSketchDocumentStyles as extract } from '../services'
 export const extractSketchDocumentStyles = async (webContents, showError, document) => {
 	try {
 		const styles = extract(document)
-		webContents.executeJavaScript(`window.setSketchImportData(${JSON.stringify(styles)})`)
+		webContents.executeJavaScript(`window.setImportedSketchStyles(${JSON.stringify(styles)})`)
 	}
 	catch (error) {
 		const message = `Error attempting to import Sketch document styles: ${error}`

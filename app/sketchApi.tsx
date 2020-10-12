@@ -1,11 +1,33 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setThemeData, setRecentProjects, setSketchDocumentNames } from './store'
-import type { ThemeValue, ThemeGroup, ThemeComponent, themeTypePropertyMap } from '@i/theme'
+import { setThemeData, setRecentProjects, setSketchDocumentNames, setImportedSketchStyles } from './store'
+import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLineHeight, ThemeLetterSpacing, ThemeBorderWidth, ThemeShadow, ThemeRadius } from '@i/theme'
 import type { AzureGitRepo } from '@i/azure'
 
-export type ImportedSketchStyles = { [key in typeof themeTypePropertyMap[ThemeValue['type']]]: string[] | number[] }
+export type RawImportedSketchStyles = {
+    colors: [ string, string ][]
+    fonts: string[]
+    fontSizes: number[]
+    fontWeights: number[]
+    lineHeights: number[]
+    letterSpacings: number[]
+    borderWidths: string[]
+    shadows: string[]
+    radii: string[]
+}
+
+export type ParsedImportedSketchStyles = {
+    colors: ThemeColor[]
+    fonts: ThemeFont[]
+    fontSizes: ThemeFontSize[]
+    fontWeights: ThemeFontWeight[]
+    lineHeights: ThemeLineHeight[]
+    letterSpacings: ThemeLetterSpacing[]
+    borderWidths: ThemeBorderWidth[]
+    shadows: ThemeShadow[]
+    radii: ThemeRadius[]
+}
 
 export type RecentProject = { filepath: string }
 
@@ -22,7 +44,7 @@ interface WebviewListeners {
     displaySuccess?: (message: string) => void
     setGitRepos?: (repos: any) => void
     setImportSketchStylesResult?: (result: boolean) => void
-    setSketchImportData?: (styles: ImportedSketchStyles) => void
+    setImportedSketchStyles?: (styles: RawImportedSketchStyles) => void
     setThemeData?: (data: any) => void
     setRecentProjects?: (data: RecentProject[]) => void
     setSaveThemeDataResult?: (result: boolean) => void
@@ -71,12 +93,14 @@ export const useGlobalSketchListeners = () => {
 		window.setThemeData = (themeData) => dispatch(setThemeData(themeData)) && history.push('/main')
 		window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
 		window.setSketchDocumentNames = (sketchDocumentNames) => dispatch(setSketchDocumentNames(sketchDocumentNames))
+		window.setImportedSketchStyles = (styles) => dispatch(setImportedSketchStyles(styles))
 		sketchRequest('getSketchDocumentNames')
 
 		return () => {
 			delete window.setThemeData
 			delete window.setRecentProjects
 			delete window.setSketchDocumentNames
+			delete window.window.setImportedSketchStyles
 		}
 	}, [ history, dispatch ])
 }

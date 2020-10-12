@@ -1,5 +1,5 @@
 import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeVariant, ThemeColor } from '@i/theme'
-import type { RecentProject } from '../../sketchApi'
+import type { RecentProject, ParsedImportedSketchStyles } from '../../sketchApi'
 
 export type ThemeState = {
 	canUndo: boolean
@@ -13,6 +13,7 @@ export type ThemeState = {
 	selectedComponent: { id: string }
 	recentProjects: RecentProject[]
 	sketchDocumentNames: string[]
+	importedSketchStyles: ParsedImportedSketchStyles
 }
 
 export const initialState: ThemeState = {
@@ -27,4 +28,15 @@ export const initialState: ThemeState = {
 	selectedComponent: { id: '' },
 	recentProjects: [],
 	sketchDocumentNames: [],
+	importedSketchStyles: {
+		colors: [],
+		fonts: [],
+		fontSizes: [],
+		fontWeights: [],
+		lineHeights: [],
+		letterSpacings: [],
+		borderWidths: [],
+		shadows: [],
+		radii: [],
+	},
 }
