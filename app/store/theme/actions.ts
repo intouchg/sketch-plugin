@@ -1,6 +1,6 @@
-import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeSnippet } from '@i/theme'
+import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeVariant } from '@i/theme'
 import type { ThemeState } from './state'
-import type { ImportedSketchStyles } from '../../sketchApi'
+import type { RawImportedSketchStyles, RecentProject } from '../../sketchApi'
 
 export const UNDO = 'UNDO'
 export type UndoAction = {
@@ -23,18 +23,48 @@ export const redoAction = (): RedoAction => ({
 })
 
 export const SET_THEME_DATA = 'SET_THEME_DATA'
-export type SetThemeAction = {
+export type SetThemeDataAction = {
     type: typeof SET_THEME_DATA
     payload: {
         values: ThemeValue[]
         groups: ThemeGroup[]
         components: ThemeComponent[]
-        snippets: ThemeSnippet[]
+        variants: ThemeVariant[]
     }
 }
-export const setThemeData = (theme: SetThemeAction['payload']): SetThemeAction => ({
+export const setThemeData = (theme: SetThemeDataAction['payload']): SetThemeDataAction => ({
 	type: SET_THEME_DATA,
 	payload: theme,
+})
+
+export const SET_RECENT_PROJECTS = 'SET_RECENT_PROJECTS'
+export type SetRecentProjectsAction = {
+    type: typeof SET_RECENT_PROJECTS
+    payload: RecentProject[]
+}
+export const setRecentProjects = (recentProjects: SetRecentProjectsAction['payload']): SetRecentProjectsAction => ({
+	type: SET_RECENT_PROJECTS,
+	payload: recentProjects,
+})
+
+export const SET_SKETCH_DOCUMENT_NAMES = 'SET_SKETCH_DOCUMENT_NAMES'
+export type SetSketchDocumentNamesAction = {
+    type: typeof SET_SKETCH_DOCUMENT_NAMES
+    payload: string[]
+}
+export const setSketchDocumentNames = (sketchDocumentNames: SetSketchDocumentNamesAction['payload']): SetSketchDocumentNamesAction => ({
+	type: SET_SKETCH_DOCUMENT_NAMES,
+	payload: sketchDocumentNames,
+})
+
+export const SET_IMPORTED_SKETCH_STYLES = 'SET_IMPORTED_SKETCH_STYLES'
+export type SetImportedSketchStylesAction = {
+    type: typeof SET_IMPORTED_SKETCH_STYLES
+    payload: RawImportedSketchStyles
+}
+export const setImportedSketchStyles = (styles: RawImportedSketchStyles): SetImportedSketchStylesAction => ({
+	type: SET_IMPORTED_SKETCH_STYLES,
+	payload: styles,
 })
 
 export const CREATE_THEME_VALUE = 'CREATE_THEME_VALUE'
@@ -137,20 +167,13 @@ export const saveThemeData = (): SaveThemeDataAction => ({
 	payload: undefined,
 })
 
-export const IMPORT_SKETCH_DOCUMENT_STYLES = 'IMPORT_SKETCH_DOCUMENT_STYLES'
-export type ImportSketchDocumentStylesAction = {
-    type: typeof IMPORT_SKETCH_DOCUMENT_STYLES
-    payload: ImportedSketchStyles
-}
-export const importSketchDocumentStyles = (styles: ImportedSketchStyles): ImportSketchDocumentStylesAction => ({
-	type: IMPORT_SKETCH_DOCUMENT_STYLES,
-	payload: styles,
-})
-
 export type ThemeActionType =
     UndoAction
     | RedoAction
-    | SetThemeAction
+    | SetThemeDataAction
+    | SetRecentProjectsAction
+    | SetSketchDocumentNamesAction
+    | SetImportedSketchStylesAction
     | CreateThemeValueAction
     | UpdateThemeValueAction
     | DeleteThemeValueAction
@@ -161,4 +184,3 @@ export type ThemeActionType =
     | SetDeletingValueAction
     | SetSelectedComponentAction
     | SaveThemeDataAction
-    | ImportSketchDocumentStylesAction

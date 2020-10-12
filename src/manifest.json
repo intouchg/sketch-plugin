@@ -14,6 +14,8 @@
       "handlers": {
         "run": "onRun",
         "actions": {
+          "OpenDocument": "onOpenDocument",
+          "CloseDocument": "onCloseDocument",
           "SelectionChanged.finish": "onSelectionChanged",
           "Shutdown": "onShutdown"
         }
