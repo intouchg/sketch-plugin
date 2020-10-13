@@ -26,7 +26,7 @@ const theme = {
 		Bold: '700',
 	},
 	borders: {},
-	zIndices: [ 0, 1, 10, 100, 1000 ],
+	zIndices: [ '0', '1', '10', '100', '1000' ],
 	radii: {
 		Small: '3px',
 		Medium: '4px',

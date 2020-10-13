@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Stack, Box, Flex } from '@i/components'
 import { InvisibleButton, PrimaryButton } from '../Buttons'
 import { AccentText, SecondaryText } from '../Texts'
@@ -31,6 +31,7 @@ const CheckboxNavLink = ({
 			<Box
 				width="24px"
 				height="24px"
+				backgroundColor="Card"
 				border="1px solid"
 				borderColor={isSelectedForImport ? 'Primary' : 'Accent'}
 				borderRadius="Medium"
@@ -52,6 +53,8 @@ const CheckboxNavLink = ({
 const RightToolbar = ({
 	route,
 	setRoute,
+	selectedImportCategories,
+	setSelectedImportCategories,
 	closeImportModal,
 	sketchDocumentNames,
 	selectedSketchDocumentIndex,
@@ -59,15 +62,14 @@ const RightToolbar = ({
 }: {
 	route: ImportModalRoute
 	setRoute: (route: ImportModalRoute) => void
+	selectedImportCategories: ImportModalRoute[]
+	setSelectedImportCategories: React.Dispatch<React.SetStateAction<ImportModalRoute[]>>
 	closeImportModal: () => void
 	sketchDocumentNames: string[]
 	selectedSketchDocumentIndex: number
 	setSelectedSketchDocumentIndex: (index: number) => void
 }) => {
-	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
-
 	const selectAllImportCategories = () => setSelectedImportCategories([ ...routes ])
-
 	const unselectAllImportCategories = () => setSelectedImportCategories([])
 
 	const toggleSelectedImportCategory = (route: ImportModalRoute) => {

@@ -43,6 +43,7 @@ const ImportModal = ({
 	const importedSketchStyles = useSelector((state) => state.theme.importedSketchStyles)
 	const [ route, setRoute ] = useState<ImportModalRoute>('Colors')
 	const [ selectedSketchDocumentIndex, setSelectedSketchDocumentIndex ] = useState<number>(0)
+	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
 	const [ showLoading, setShowLoading ] = useState(false)
 
 	const ImportView = views[route]
@@ -50,13 +51,21 @@ const ImportModal = ({
 	useEffect(() => setShowLoading(false), [ importedSketchStyles ])
 
 	useEffect(() => {
+		setSelectedImportCategories([])
 		setSelectedSketchDocumentIndex(0)
-		sketchRequest('extractSketchDocumentStyles', 0)
+
+		if (sketchDocumentNames.length) {
+			sketchRequest('extractSketchDocumentStyles', 0)
+		}
 	}, [ sketchDocumentNames ])
 
 	useEffect(() => {
-		setShowLoading(true)
-		sketchRequest('extractSketchDocumentStyles', selectedSketchDocumentIndex)
+		setSelectedImportCategories([])
+
+		if (sketchDocumentNames.length) {
+			setShowLoading(true)
+			sketchRequest('extractSketchDocumentStyles', selectedSketchDocumentIndex)
+		}
 	}, [ selectedSketchDocumentIndex ])
 
 	if (!sketchDocumentNames.length) {
@@ -84,6 +93,7 @@ const ImportModal = ({
 		>
 			<Flex
 				width="calc(100vw - 308px)"
+				minWidth="800px"
 				height="calc(100vh - 100px)"
 				backgroundColor="Card"
 				boxShadow="Medium"
@@ -104,6 +114,8 @@ const ImportModal = ({
 				<RightToolbar
 					route={route}
 					setRoute={setRoute}
+					selectedImportCategories={selectedImportCategories}
+					setSelectedImportCategories={setSelectedImportCategories}
 					closeImportModal={closeImportModal}
 					sketchDocumentNames={sketchDocumentNames}
 					selectedSketchDocumentIndex={selectedSketchDocumentIndex}

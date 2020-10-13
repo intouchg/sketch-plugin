@@ -23,6 +23,10 @@ const convert8DigitHex = (color) => {
 }
 
 export const extractSketchDocumentStyles = (document) => {
+	if (!document) {
+		return
+	}
+
 	const colors = []
 	const fonts = []
 	const fontSizes = []
@@ -90,9 +94,9 @@ export const extractSketchDocumentStyles = (document) => {
 	return {
 		colors: colors.filter(([ , v ]) => filterNonStrings(v)),
 		fonts: fonts.filter(filterNonStrings),
-		fontSizes: fontSizes.filter(filterNonNumbers).map(convertPxToRem),
+		fontSizes: fontSizes.filter(filterNonNumbers).map((v) => convertPxToRem(v)),
 		fontWeights: fontWeights.filter(filterNonNumbers),
-		lineHeights: lineHeights.filter(filterNonNumbers).map(convertPxToRem),
+		lineHeights: lineHeights.filter(filterNonNumbers).map((v) => convertPxToRem(v)),
 		letterSpacings: letterSpacings.filter(filterNonNumbers).map((v) => `${v}px`),
 		borderWidths: borderWidths.filter(filterNonNumbers).map((v) => `${v}px`),
 		shadows,

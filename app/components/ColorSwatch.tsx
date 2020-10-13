@@ -7,6 +7,13 @@ import { AccentText, SecondaryText } from './Texts'
 const TruncatedSecondaryText = styled(SecondaryText)`
 	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
+`
+
+const TruncatedAccentText = styled(AccentText)`
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 `
 
 const ColorSwatch = ({
@@ -43,9 +50,9 @@ const ColorSwatch = ({
 				<TruncatedSecondaryText color={labelColor}>
 					{name}
 				</TruncatedSecondaryText>
-				<AccentText color={labelColor}>
+				<TruncatedAccentText color={labelColor}>
 					{value}
-				</AccentText>
+				</TruncatedAccentText>
 			</Stack>
 		</Box>
 	)
