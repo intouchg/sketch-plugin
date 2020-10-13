@@ -20,12 +20,12 @@ const CheckboxNavLink = ({
 	isSelectedForImport: boolean
 }) => (
 	<Flex
-		padding={2}
+		paddingX={2}
+		marginBottom={1}
 		backgroundColor={isActiveRoute ? 'white' : 'transparent'}
 	>
 		<InvisibleButton
-			marginLeft={3}
-			marginRight={2}
+			margin={2}
 			onClick={() => toggleSelectedImportCategory(route)}
 		>
 			<Box
@@ -36,7 +36,12 @@ const CheckboxNavLink = ({
 				borderRadius="Medium"
 			/>
 		</InvisibleButton>
-		<InvisibleButton onClick={() => setRoute(route)}>
+		<InvisibleButton
+			width="100%"
+			paddingY={2}
+			textAlign="left"
+			onClick={() => setRoute(route)}
+		>
 			<SecondaryText>
 				{route}
 			</SecondaryText>
