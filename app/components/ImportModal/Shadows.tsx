@@ -15,7 +15,9 @@ const Shadow = ({
 
 	return (
 		<Flex
-			width="480px"
+			width="65%"
+			minWidth="420px"
+			maxWidth="550px"
 			alignItems="center"
 			marginBottom={4}
 			flexShrink={0}
@@ -46,11 +48,10 @@ const Shadow = ({
 				borderRadius="Large"
 				textAlign="center"
 			>
-				<Stack>
+				<Stack flexGrow={1}>
 					<Flex
 						alignItems="center"
-						justifyContent="space-between"
-						flexGrow={1}
+						justifyContent="space-around"
 					>
 						<Stack>
 							<SecondaryText>
@@ -85,17 +86,20 @@ const Shadow = ({
 							</AccentText>
 						</Stack>
 					</Flex>
-					<Flex>
+					<Flex
+						justifyContent="center"
+						paddingTop={3}
+					>
 						<Box
 							width="32px"
 							height="32px"
 							backgroundColor={color}
 							borderRadius="Small"
-							marginRight={2}
+							marginRight={3}
 						/>
 						<Stack justifyContent="center">
 							<AccentText textTransform="unset">
-								{color.includes('rgb') ? color.split(',').map((s) => s.trim()).join(',') : color}
+								{color}
 							</AccentText>
 						</Stack>
 					</Flex>
