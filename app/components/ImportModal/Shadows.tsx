@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Stack, Flex, Box } from '@i/components'
+import { Stack, Flex, Box, Text } from '@i/components'
 import { AccentText, SecondaryText } from '../Texts'
 import type { ThemeShadow } from '@i/theme'
 
@@ -24,7 +24,9 @@ const Shadow = ({
 			marginBottom={4}
 			flexShrink={0}
 		>
-			<Stack
+			<Flex
+				alignItems="center"
+				justifyContent="center"
 				width="64px"
 				height="64px"
 				backgroundColor="Card"
@@ -35,8 +37,10 @@ const Shadow = ({
 				marginRight={3}
 				flexShrink={0}
 			>
-				{index}
-			</Stack>
+				<Text>
+					{index}
+				</Text>
+			</Flex>
 			<Flex
 				width="100%"
 				justifyContent="space-between"
