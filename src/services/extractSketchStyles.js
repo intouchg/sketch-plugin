@@ -62,7 +62,7 @@ export const extractSketchDocumentStyles = (document) => {
 
 	document.sharedLayerStyles.forEach(({ style: { borders: sharedBorderStyles, shadows: sharedShadowStyles } }) => {
 		sharedBorderStyles.forEach(({ enabled, thickness }) => {
-			if (enabled && !bordersWidths.includes(thickness)) {
+			if (enabled && !borderWidths.includes(thickness)) {
 				borderWidths.push(thickness)
 			}
 		})
