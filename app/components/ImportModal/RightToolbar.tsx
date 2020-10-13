@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Stack, Box, Flex } from '@i/components'
-import { AccentText, InvisibleButton, CloseIcon, PrimaryButton, SecondaryText } from '../index'
+import { InvisibleButton, PrimaryButton } from '../Buttons'
+import { AccentText, SecondaryText } from '../Texts'
+import { CloseIcon } from '../Icons'
 import { routes } from './index'
 import type { ImportModalRoute } from './index'
 

@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { createUuid } from '@i/utility'
 import { Stack, Link } from '@i/components'
-import { AccentText, topToolbarHeight } from './index'
+import { AccentText } from './Texts'
+import { topToolbarHeight } from './TopToolbar'
 
 const activeLinkClass = 'c' + createUuid()
 

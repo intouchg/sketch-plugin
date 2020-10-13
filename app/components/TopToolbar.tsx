@@ -1,6 +1,9 @@
 import React from 'react'
 import { Flex, Heading, Box } from '@i/components'
-import { InvisibleButton, AccentText, SketchIcon, AzureStatus } from './index'
+import { InvisibleButton } from './Buttons'
+import { AccentText } from './Texts'
+import { SketchIcon } from './Icons'
+import { AzureStatus } from './AzureStatus'
 
 export const topToolbarHeight = '64px'
 

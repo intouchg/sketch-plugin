@@ -1,7 +1,13 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Box, Stack } from '@i/components'
 import { calculateColorBrightness } from '@i/utility'
-import { AccentText, SecondaryText } from './index'
+import { AccentText, SecondaryText } from './Texts'
+
+const TruncatedSecondaryText = styled(SecondaryText)`
+	overflow: hidden;
+	text-overflow: ellipsis;
+`
 
 const ColorSwatch = ({
 	id,
@@ -25,16 +31,18 @@ const ColorSwatch = ({
 			borderColor="Accent"
 			marginX={2}
 			marginBottom={4}
+			flexGrow={1}
 		>
 			<Stack
+				maxWidth="100%"
 				position="absolute"
 				bottom="0"
 				left="0"
 				padding={3}
 			>
-				<SecondaryText color={labelColor}>
+				<TruncatedSecondaryText color={labelColor}>
 					{name}
-				</SecondaryText>
+				</TruncatedSecondaryText>
 				<AccentText color={labelColor}>
 					{value}
 				</AccentText>
