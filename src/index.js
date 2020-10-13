@@ -89,9 +89,9 @@ export const onShutdown = () => {
 // TO DO: If this 1ms setTimeout isn't reliable, try sending message
 // to the app, then when the app receives that message, request the
 // new document names from the plugin
-export const onOpenDocument = (context) => setTimeout(updateSketchDocumentNames, 1)
+export const onOpenDocument = (context) => setTimeout(updateSketchDocumentNames, 500)
 
-export const onCloseDocument = (context) => setTimeout(updateSketchDocumentNames, 1)
+export const onCloseDocument = (context) => setTimeout(updateSketchDocumentNames, 500)
 
 export const onSelectionChanged = (context) => {
 	const action = context.actionContext

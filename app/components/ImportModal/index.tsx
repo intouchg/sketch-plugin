@@ -57,6 +57,9 @@ const ImportModal = ({
 		if (sketchDocumentNames.length) {
 			sketchRequest('extractSketchDocumentStyles', 0)
 		}
+		else {
+			closeImportModal()
+		}
 	}, [ sketchDocumentNames ])
 
 	useEffect(() => {
