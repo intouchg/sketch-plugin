@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Stack, Box, Text } from '@i/components'
+import { Stack, Box, Text, Flex } from '@i/components'
 import { AccentText, InvisibleButton, CloseIcon, PrimaryButton } from '../index'
 import { routes } from './index'
 import type { ImportModalRoute } from './index'
@@ -7,22 +7,22 @@ import type { ImportModalRoute } from './index'
 const CheckboxNavLink = ({
 	route,
 	setRoute,
-	toggleSelectedImport,
+	toggleSelectedImportCategory,
 	isActiveRoute,
-	isSelectedImport,
+	isSelectedForImport,
 }: {
 	route: ImportModalRoute
 	setRoute: (route: ImportModalRoute) => void
-	toggleSelectedImport: (route: ImportModalRoute) => void
+	toggleSelectedImportCategory: (route: ImportModalRoute) => void
 	isActiveRoute: boolean
-	isSelectedImport: boolean
+	isSelectedForImport: boolean
 }) => (
 	<Box backgroundColor={isActiveRoute ? 'white' : 'transparent'}>
-		<InvisibleButton onClick={() => toggleSelectedImport(route)}>
+		<InvisibleButton onClick={() => toggleSelectedImportCategory(route)}>
 			<Box
 				width="30px"
 				height="30px"
-				backgroundColor={isSelectedImport ? 'green' : 'red'}
+				backgroundColor={isSelectedForImport ? 'green' : 'red'}
 			/>
 		</InvisibleButton>
 		<InvisibleButton onClick={() => setRoute(route)}>
@@ -38,22 +38,24 @@ const RightToolbar = ({
 	setRoute,
 	closeImportModal,
 	sketchDocumentNames,
+	selectedSketchDocumentIndex,
 	setSelectedSketchDocumentIndex,
 }: {
 	route: ImportModalRoute
 	setRoute: (route: ImportModalRoute) => void
 	closeImportModal: () => void
 	sketchDocumentNames: string[]
+	selectedSketchDocumentIndex: number
 	setSelectedSketchDocumentIndex: (index: number) => void
 }) => {
-	const [ selectedImports, setSelectedImports ] = useState<ImportModalRoute[]>([])
+	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
 
-	const selectAllImports = () => setSelectedImports([ ...routes ])
+	const selectAllImportCategories = () => setSelectedImportCategories([ ...routes ])
 
-	const unselectAllImports = () => setSelectedImports([])
+	const unselectAllImportCategories = () => setSelectedImportCategories([])
 
-	const toggleSelectedImport = (route: ImportModalRoute) => {
-		setSelectedImports((state) => state.includes(route) ? state.filter((r) => r !== route) : [ ...state, route ])
+	const toggleSelectedImportCategory = (route: ImportModalRoute) => {
+		setSelectedImportCategories((state) => state.includes(route) ? state.filter((r) => r !== route) : [ ...state, route ])
 	}
 
 	const upateSketchDocumentIndex = ({ target }: React.ChangeEvent<HTMLSelectElement>) => setSelectedSketchDocumentIndex(parseInt(target.value, 10))
@@ -82,24 +84,32 @@ const RightToolbar = ({
 						fill="Accent"
 					/>
 				</InvisibleButton>
-				<select onChange={upateSketchDocumentIndex}>
-					{sketchDocumentNames.map((name, index) => (
-						<option
-							key={name}
-							value={index}
-						>
-							{name}
-						</option>
-					))}
-				</select>
+				<Flex
+					marginTop={6}
+					marginBottom={4}
+					justifyContent="center"
+				>
+					<select
+						value={selectedSketchDocumentIndex}
+						onChange={upateSketchDocumentIndex}
+					>
+						{sketchDocumentNames.map((name, index) => (
+							<option
+								key={name}
+								value={index}
+							>
+								{name}
+							</option>
+						))}
+					</select>
+				</Flex>
 				<InvisibleButton
-					paddingTop={4}
-					paddingLeft={3}
+					marginLeft={3}
 					textAlign="left"
-					onClick={selectedImports.length ? unselectAllImports : selectAllImports}
+					onClick={selectedImportCategories.length ? unselectAllImportCategories : selectAllImportCategories}
 				>
 					<AccentText color="Primary">
-						{selectedImports.length ? 'Unselect' : 'Select'} All
+						{selectedImportCategories.length ? 'Unselect' : 'Select'} All
 					</AccentText>
 				</InvisibleButton>
 				{routes.map((r) => (
@@ -107,9 +117,9 @@ const RightToolbar = ({
 						key={r}
 						route={r}
 						setRoute={setRoute}
-						toggleSelectedImport={toggleSelectedImport}
+						toggleSelectedImportCategory={toggleSelectedImportCategory}
 						isActiveRoute={r === route}
-						isSelectedImport={selectedImports.includes(r)}
+						isSelectedForImport={selectedImportCategories.includes(r)}
 					/>
 				))}
 				<PrimaryButton
