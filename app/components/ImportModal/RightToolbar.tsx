@@ -19,12 +19,21 @@ const CheckboxNavLink = ({
 	isActiveRoute: boolean
 	isSelectedForImport: boolean
 }) => (
-	<Box backgroundColor={isActiveRoute ? 'white' : 'transparent'}>
-		<InvisibleButton onClick={() => toggleSelectedImportCategory(route)}>
+	<Flex
+		padding={2}
+		backgroundColor={isActiveRoute ? 'white' : 'transparent'}
+	>
+		<InvisibleButton
+			marginLeft={3}
+			marginRight={2}
+			onClick={() => toggleSelectedImportCategory(route)}
+		>
 			<Box
-				width="30px"
-				height="30px"
-				backgroundColor={isSelectedForImport ? 'green' : 'red'}
+				width="24px"
+				height="24px"
+				border="1px solid"
+				borderColor={isSelectedForImport ? 'Primary' : 'Accent'}
+				borderRadius="Medium"
 			/>
 		</InvisibleButton>
 		<InvisibleButton onClick={() => setRoute(route)}>
@@ -32,7 +41,7 @@ const CheckboxNavLink = ({
 				{route}
 			</SecondaryText>
 		</InvisibleButton>
-	</Box>
+	</Flex>
 )
 
 const RightToolbar = ({
@@ -107,6 +116,7 @@ const RightToolbar = ({
 				</Flex>
 				<InvisibleButton
 					marginLeft={3}
+					marginBottom={2}
 					textAlign="left"
 					onClick={selectedImportCategories.length ? unselectAllImportCategories : selectAllImportCategories}
 				>

@@ -10,11 +10,10 @@ const LowercaseAccentText = styled(AccentText)`
 
 const Shadow = ({
 	id,
-	value,
 	index,
-}: {
-	id: string
-	value: string
+	value,
+	...rest
+}: ThemeShadow & {
 	index: number
 }) => {
 	const [ x, y, blur, spread, color ] = value.split('px').map((s) => s.trim())
@@ -30,7 +29,7 @@ const Shadow = ({
 				height="64px"
 				backgroundColor="Card"
 				border="1px solid"
-				borderColor="Background"
+				borderColor="Accent"
 				borderRadius="Small"
 				boxShadow={value}
 				marginRight={3}
@@ -43,7 +42,7 @@ const Shadow = ({
 				justifyContent="space-between"
 				paddingX={5}
 				paddingY={3}
-				backgroundColor="Accent"
+				backgroundColor="Background"
 				borderRadius="Large"
 				textAlign="center"
 			>
@@ -89,7 +88,7 @@ const Shadow = ({
 					/>
 					<Stack justifyContent="center">
 						<LowercaseAccentText>
-							{color}
+							{color.includes('rgb') ? color.split(',').map((s) => s.trim()).join(',') : color}
 						</LowercaseAccentText>
 					</Stack>
 				</Flex>
@@ -108,12 +107,12 @@ const Shadows = ({
 			alignItems="center"
 			paddingY="146px"
 		>
-			{shadows.map(({ id, value }, index) => (
+			{shadows.map(({ id, ...rest }, index) => (
 				<Shadow
 					key={id}
 					id={id}
-					value={value}
 					index={index}
+					{...rest}
 				/>
 			))}
 		</Stack>

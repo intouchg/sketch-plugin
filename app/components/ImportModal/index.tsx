@@ -9,7 +9,6 @@ import { Fonts } from './Fonts'
 import { TypeScale } from './TypeScale'
 import { Shadows } from './Shadows'
 import { Borders } from './Borders'
-import { Radii } from './Radii'
 import { sketchRequest } from '../../sketchApi'
 
 const ResponsiveContainer = styled(Box)`
@@ -23,7 +22,6 @@ const views = {
 	'Type Scale': TypeScale,
 	Shadows: Shadows,
 	Borders: Borders,
-	Radii: Radii,
 } as const
 
 export type ImportModalRoute = keyof typeof views
@@ -38,7 +36,6 @@ const themeTypeRouteMap: {
 	'Type Scale': [ 'fontSizes' ],
 	Shadows: [ 'shadows' ],
 	Borders: [ 'borders', 'borderStyles', 'borderWidths' ],
-	Radii: [ 'radii' ],
 }
 
 // TO DO: Create loading component
