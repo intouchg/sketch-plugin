@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { createUuid } from '@i/utility'
 import { Stack, Link } from '@i/components'
-import { AccentText } from './index'
+import { AccentText, topToolbarHeight } from './index'
 
 const activeLinkClass = 'c' + createUuid()
 
@@ -86,7 +86,7 @@ const LeftNavbar = ({ url }: { url: string }) => {
 	return (
 		<Stack
 			width="236px"
-			height="100vh"
+			height={`calc(100vh - ${topToolbarHeight})`}
 			borderRight="1px solid Accent"
 			padding={3}
 			backgroundColor="Card"

@@ -2,6 +2,8 @@ import React from 'react'
 import { Flex, Heading, Box } from '@i/components'
 import { InvisibleButton, AccentText, SketchIcon, AzureStatus } from './index'
 
+export const topToolbarHeight = '64px'
+
 const TopToolbar = ({
 	openImportModal,
 }: {
@@ -9,7 +11,7 @@ const TopToolbar = ({
 }) => {
 	return (
 		<Flex
-			height="64px"
+			height={topToolbarHeight}
 			alignItems="center"
 			justifyContent="space-between"
 			backgroundColor="Card"
