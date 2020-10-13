@@ -7,21 +7,14 @@ const Main = () => {
 	const { url, path } = useRouteMatch()
 	const [ showImportModal, setShowImportModal ] = useState(false)
 
-	const toggleImportModal = () => setShowImportModal((show) => !show)
+	const openImportModal = () => setShowImportModal(true)
+
+	const closeImportModal = () => setShowImportModal(false)
 
 	return (
 		<>
-			<TopToolbar />
+			<TopToolbar openImportModal={openImportModal} />
 			<Flex>
-				<Button
-					position="absolute"
-					top="0"
-					right="0"
-					zIndex={4}
-					onClick={toggleImportModal}
-				>
-					Main
-				</Button>
 				<LeftNavbar url={url} />
 				<ThemeEditor path={path} />
 				<ComponentEditor path={path} />
@@ -30,7 +23,7 @@ const Main = () => {
 				</Route>
 			</Flex>
 			{showImportModal && (
-				<ImportModal closeImportModal={toggleImportModal} />
+				<ImportModal closeImportModal={closeImportModal} />
 			)}
 		</>
 	)

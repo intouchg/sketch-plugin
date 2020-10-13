@@ -41,6 +41,8 @@ const themeTypeRouteMap: {
 	Radii: [ 'radii' ],
 }
 
+// TO DO: Create loading component
+
 const ImportModal = ({
 	closeImportModal,
 }: {
@@ -99,7 +101,7 @@ const ImportModal = ({
 				<ResponsiveContainer>
 					{showLoading ? (
 						<>
-							LOADING LOADING LOADING
+							LOADING
 						</>
 					) : (
 						<ImportView {...routeThemeValues} />

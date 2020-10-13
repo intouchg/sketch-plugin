@@ -1,8 +1,12 @@
 import React from 'react'
-import { Flex, Heading } from '@i/components'
-import { AzureStatus } from './index'
+import { Flex, Heading, Box } from '@i/components'
+import { InvisibleButton, AccentText, SketchIcon, AzureStatus } from './index'
 
-const TopToolbar = () => {
+const TopToolbar = ({
+	openImportModal,
+}: {
+	openImportModal: () => void
+}) => {
 	return (
 		<Flex
 			height="64px"
@@ -16,7 +20,25 @@ const TopToolbar = () => {
 			<Heading>
 				IDS Plugin
 			</Heading>
-			<AzureStatus />
+			<Box>
+				<InvisibleButton
+					display="inline-flex"
+					marginRight={4}
+					onClick={openImportModal}
+				>
+					<AccentText
+						color="Text"
+						marginRight={1}
+					>
+						Import
+					</AccentText>
+					<SketchIcon
+						width="16px"
+						height="16px"
+					/>
+				</InvisibleButton>
+				<AzureStatus />
+			</Box>
 		</Flex>
 	)
 }
