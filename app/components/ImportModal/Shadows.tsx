@@ -23,13 +23,14 @@ const Shadow = ({
 		<Flex
 			width="480px"
 			marginBottom={4}
+			flexShrink={0}
 		>
 			<Stack
 				width="64px"
 				height="64px"
 				backgroundColor="Card"
 				border="1px solid"
-				borderColor="Accent"
+				borderColor="Background"
 				borderRadius="Small"
 				boxShadow={value}
 				marginRight={3}
@@ -39,9 +40,12 @@ const Shadow = ({
 			</Stack>
 			<Flex
 				width="100%"
+				justifyContent="space-between"
 				paddingX={5}
 				paddingY={3}
+				backgroundColor="Accent"
 				borderRadius="Large"
+				textAlign="center"
 			>
 				<Stack>
 					<SecondaryText>
@@ -81,8 +85,9 @@ const Shadow = ({
 						height="32px"
 						backgroundColor={color}
 						borderRadius="Small"
+						marginRight={2}
 					/>
-					<Stack>
+					<Stack justifyContent="center">
 						<LowercaseAccentText>
 							{color}
 						</LowercaseAccentText>
@@ -100,9 +105,8 @@ const Shadows = ({
 }) => {
 	return (
 		<Stack
-			height="100%"
 			alignItems="center"
-			justifyContent="center"
+			paddingY="146px"
 		>
 			{shadows.map(({ id, value }, index) => (
 				<Shadow
