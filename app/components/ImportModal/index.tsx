@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
-import { themeTypePropertyMap, createThemeValue } from '@i/theme'
+import { themeTypePropertyMap } from '@i/theme'
 import { Flex, Box } from '@i/components'
 import { RightToolbar } from './RightToolbar'
 import { Colors } from './Colors'
@@ -10,11 +9,6 @@ import { TypeScale } from './TypeScale'
 import { Shadows } from './Shadows'
 import { Borders } from './Borders'
 import { sketchRequest } from '../../sketchApi'
-
-const ResponsiveContainer = styled(Box)`
-    flex-grow: 1;
-    overflow-y: scroll;
-`
 
 const views = {
 	Colors: Colors,
@@ -95,7 +89,10 @@ const ImportModal = ({
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<ResponsiveContainer>
+				<Box
+					flexGrow={1}
+					overflowY="scroll"
+				>
 					{showLoading ? (
 						<>
 							LOADING
@@ -103,7 +100,7 @@ const ImportModal = ({
 					) : (
 						<ImportView {...routeThemeValues} />
 					)}
-				</ResponsiveContainer>
+				</Box>
 				<RightToolbar
 					route={route}
 					setRoute={setRoute}

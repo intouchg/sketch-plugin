@@ -1,12 +1,7 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { Stack, Flex, Box, Text } from '@i/components'
 import { AccentText, SecondaryText } from '../Texts'
 import type { ThemeShadow } from '@i/theme'
-
-const LowercaseAccentText = styled(AccentText)`
-	text-transform: unset;
-`
 
 const Shadow = ({
 	id,
@@ -21,6 +16,7 @@ const Shadow = ({
 	return (
 		<Flex
 			width="480px"
+			alignItems="center"
 			marginBottom={4}
 			flexShrink={0}
 		>
@@ -51,51 +47,59 @@ const Shadow = ({
 				textAlign="center"
 			>
 				<Stack>
-					<SecondaryText>
-						{x}px
-					</SecondaryText>
-					<LowercaseAccentText>
-						x
-					</LowercaseAccentText>
+					<Flex
+						alignItems="center"
+						justifyContent="space-between"
+						flexGrow={1}
+					>
+						<Stack>
+							<SecondaryText>
+								{x}px
+							</SecondaryText>
+							<AccentText textTransform="unset">
+								x
+							</AccentText>
+						</Stack>
+						<Stack>
+							<SecondaryText>
+								{y}px
+							</SecondaryText>
+							<AccentText textTransform="unset">
+								y
+							</AccentText>
+						</Stack>
+						<Stack>
+							<SecondaryText>
+								{blur}px
+							</SecondaryText>
+							<AccentText textTransform="unset">
+								blur
+							</AccentText>
+						</Stack>
+						<Stack>
+							<SecondaryText>
+								{spread}px
+							</SecondaryText>
+							<AccentText textTransform="unset">
+								spread
+							</AccentText>
+						</Stack>
+					</Flex>
+					<Flex>
+						<Box
+							width="32px"
+							height="32px"
+							backgroundColor={color}
+							borderRadius="Small"
+							marginRight={2}
+						/>
+						<Stack justifyContent="center">
+							<AccentText textTransform="unset">
+								{color.includes('rgb') ? color.split(',').map((s) => s.trim()).join(',') : color}
+							</AccentText>
+						</Stack>
+					</Flex>
 				</Stack>
-				<Stack>
-					<SecondaryText>
-						{y}px
-					</SecondaryText>
-					<LowercaseAccentText>
-						y
-					</LowercaseAccentText>
-				</Stack>
-				<Stack>
-					<SecondaryText>
-						{blur}px
-					</SecondaryText>
-					<LowercaseAccentText>
-						blur
-					</LowercaseAccentText>
-				</Stack>
-				<Stack>
-					<SecondaryText>
-						{spread}px
-					</SecondaryText>
-					<LowercaseAccentText>
-						spread
-					</LowercaseAccentText>
-				</Stack>
-				<Flex>
-					<Box
-						width="32px"
-						height="32px"
-						backgroundColor={color}
-						borderRadius="Small"
-						marginRight={2}
-					/>
-					<Stack justifyContent="center">
-						<LowercaseAccentText>
-							{color.includes('rgb') ? color.split(',').map((s) => s.trim()).join(',') : color}
-						</LowercaseAccentText>
-					</Stack>
-				</Flex>
 			</Flex>
 		</Flex>
 	)

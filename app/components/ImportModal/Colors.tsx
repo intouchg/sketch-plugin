@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { Flex, Box, Text } from '@i/components'
 import { ColorSwatch } from '../ColorSwatch'
 import type { ThemeColor } from '@i/theme'
