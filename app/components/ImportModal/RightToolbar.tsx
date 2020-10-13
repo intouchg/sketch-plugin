@@ -1,10 +1,36 @@
 import React from 'react'
-import { Stack, Box, Flex } from '@i/components'
+import { Stack, Box, Flex, Checkbox } from '@i/components'
 import { InvisibleButton, PrimaryButton } from '../Buttons'
 import { AccentText, SecondaryText } from '../Texts'
-import { CloseIcon } from '../Icons'
+import { CloseIcon, CheckmarkIcon } from '../Icons'
 import { routes } from './index'
 import type { ImportModalRoute } from './index'
+
+const ImportCheckbox = ({
+	checked,
+	toggleChecked,
+}: {
+	checked: boolean
+	toggleChecked: () => void
+}) => (
+	<Checkbox
+		checked={checked}
+		onClick={toggleChecked}
+	>
+		<Flex
+			alignItems="center"
+			justifyContent="center"
+			width="24px"
+			height="24px"
+			backgroundColor="Card"
+			border="1px solid"
+			borderColor={checked ? 'Primary' : 'Accent'}
+			borderRadius="Medium"
+		>
+			{checked && (<CheckmarkIcon width="16px" />)}
+		</Flex>
+	</Checkbox>
+)
 
 const CheckboxNavLink = ({
 	route,
@@ -24,19 +50,12 @@ const CheckboxNavLink = ({
 		marginBottom={1}
 		backgroundColor={isActiveRoute ? 'white' : 'transparent'}
 	>
-		<InvisibleButton
-			margin={2}
-			onClick={() => toggleSelectedImportCategory(route)}
-		>
-			<Box
-				width="24px"
-				height="24px"
-				backgroundColor="Card"
-				border="1px solid"
-				borderColor={isSelectedForImport ? 'Primary' : 'Accent'}
-				borderRadius="Medium"
+		<Box margin={2}>
+			<ImportCheckbox
+				checked={isSelectedForImport}
+				toggleChecked={() => toggleSelectedImportCategory(route)}
 			/>
-		</InvisibleButton>
+		</Box>
 		<InvisibleButton
 			width="100%"
 			paddingY={2}
