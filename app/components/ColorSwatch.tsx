@@ -1,7 +1,7 @@
 import React from 'react'
-import { Box, Stack, Text } from '@i/components'
+import { Box, Stack } from '@i/components'
 import { calculateColorBrightness } from '@i/utility'
-import { AccentText } from './index'
+import { AccentText, SecondaryText } from './index'
 
 const ColorSwatch = ({
 	id,
@@ -19,7 +19,7 @@ const ColorSwatch = ({
 			position="relative"
 			width="196px"
 			height="128px"
-			borderRadius="Small"
+			borderRadius="Medium"
 			backgroundColor={value}
 			border="1px solid"
 			borderColor="Accent"
@@ -32,12 +32,9 @@ const ColorSwatch = ({
 				left="0"
 				padding={3}
 			>
-				<Text
-					variant="Secondary"
-					color={labelColor}
-				>
+				<SecondaryText color={labelColor}>
 					{name}
-				</Text>
+				</SecondaryText>
 				<AccentText color={labelColor}>
 					{value}
 				</AccentText>

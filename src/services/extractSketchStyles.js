@@ -50,7 +50,7 @@ export const extractSketchDocumentStyles = (document) => {
 
 		sharedShadowStyles.forEach(({ enabled, x, y, blur, spread, color }) => {
 			if (enabled) {
-				shadows.push(`${x} ${y} ${blur} ${spread} ${convert8DigitHex(color)}`)
+				shadows.push(`${x}px ${y}px ${blur}px ${spread}px ${convert8DigitHex(color)}`)
 			}
 		})
 	})

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Stack, Box, Text, Flex } from '@i/components'
-import { AccentText, InvisibleButton, CloseIcon, PrimaryButton } from '../index'
+import { Stack, Box, Flex } from '@i/components'
+import { AccentText, InvisibleButton, CloseIcon, PrimaryButton, SecondaryText } from '../index'
 import { routes } from './index'
 import type { ImportModalRoute } from './index'
 
@@ -26,9 +26,9 @@ const CheckboxNavLink = ({
 			/>
 		</InvisibleButton>
 		<InvisibleButton onClick={() => setRoute(route)}>
-			<Text variant="Secondary">
+			<SecondaryText>
 				{route}
-			</Text>
+			</SecondaryText>
 		</InvisibleButton>
 	</Box>
 )

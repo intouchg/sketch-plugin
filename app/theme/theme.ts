@@ -28,7 +28,8 @@ const theme = {
 	borders: {},
 	zIndices: [ 0, 1, 10, 100, 1000 ],
 	radii: {
-		Small: '4px',
+		Small: '3px',
+		Medium: '4px',
 		Large: '6px',
 	},
 	shadows: {

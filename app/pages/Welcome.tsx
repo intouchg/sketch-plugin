@@ -23,7 +23,7 @@ const Welcome = () => (
 				>
 					IDS Editor
 				</Heading>
-				<AccentText style={{ textTransform: 'unset' }}>
+				<AccentText textTransform="unset">
 					v&thinsp;{pkg.version}
 				</AccentText>
 			</Stack>

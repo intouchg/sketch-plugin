@@ -1186,9 +1186,9 @@
     "@i/utility" latest
 
 "@i/components@latest":
-  version "0.0.20"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.20.tgz#2f127a14d509a75af7647864d9ad77cda1a8fb90"
-  integrity sha1-LxJ6FNUJp1r3ZHhk2a13zaGo+5A=
+  version "0.0.24"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.24.tgz#6598c7065fe3fc54df14773a498a9b90fff775a0"
+  integrity sha1-ZZjHBl/j/FTfFHc6SYqbkP/3daA=
   dependencies:
     "@babel/runtime" "7.11.2"
     "@i/theme" latest
