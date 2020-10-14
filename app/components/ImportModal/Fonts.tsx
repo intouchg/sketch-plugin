@@ -7,8 +7,8 @@ const Fonts = ({
 	fonts = [],
 	fontWeights = [],
 }: {
-	fonts: ThemeFont[]
-	fontWeights: ThemeFontWeight[]
+	fonts: (ThemeFont & { imported?: boolean })[]
+	fontWeights: (ThemeFontWeight & { imported?: boolean })[]
 }) => {
 	return (
 		<Text>

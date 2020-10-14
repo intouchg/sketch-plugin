@@ -6,8 +6,9 @@ import type { ThemeBorderWidth } from '@i/theme'
 const BorderWidth = ({
 	id,
 	value,
+	imported,
 	...rest
-}: ThemeBorderWidth) => {
+}: ThemeBorderWidth & { imported?: boolean }) => {
 	return (
 		<Flex
 			width="398px"
@@ -34,7 +35,7 @@ const BorderWidth = ({
 const Borders = ({
 	borderWidths = [],
 }: {
-	borderWidths: ThemeBorderWidth[]
+	borderWidths: (ThemeBorderWidth & { imported?: boolean })[]
 }) => {
 	return (
 		<Stack

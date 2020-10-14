@@ -7,6 +7,7 @@ import { stopStorybook } from './services'
 import {
 	selectLocalProject,
 	getRecentProjects,
+	getSystemFonts,
 	openStorybook,
 	saveThemeData,
 	getAzureGitRepos,
@@ -57,6 +58,8 @@ export default () => {
 	})
 
 	webContents.on('getRecentProjects', () => getRecentProjects(webContents, showError))
+
+	webContents.on('getSystemFonts', () => getSystemFonts(webContents, showError))
 
 	webContents.on('getSketchDocumentNames', () => updateSketchDocumentNames(webContents))
 

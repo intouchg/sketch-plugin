@@ -2,14 +2,19 @@ import { spawn } from '@skpm/child_process'
 
 export default class ChildProcess {
 
-	constructor (processString, {
-		onClose,
-		onError,
-		onStdOut,
-		onStdErr,
-	}) {
+	constructor (
+		processString,
+		{
+			onClose,
+			onError,
+			onStdOut,
+			onStdErr,
+		},
+		disableLogging = false,
+	) {
 		this.process = null
 		this.running = false
+		this.disableLogging = disableLogging
 
 		const processStrings = processString.split(' ')
 
@@ -40,19 +45,29 @@ export default class ChildProcess {
 			})
 
 			this.process.stdout.on('data', (data) => {
-				console.log(data.toString('utf-8'))
+				if (!this.disableLogging) {
+					console.log(data.toString('utf-8'))
+				}
+
 				this.onStdOut(data)
 			})
 
 			this.process.stderr.on('data', (data) => {
-				console.log(data.toString('utf-8'))
+				if (!this.disableLogging) {
+					console.log(data.toString('utf-8'))
+				}
+
 				this.onStdErr(data)
 			})
 
 			this.process.on('close', (code) => {
 				this.process = null
 				this.process = false
-				console.info('ChildProcess exited with code ' + code)
+
+				if (!this.disableLogging) {
+					console.info('ChildProcess exited with code ' + code)
+				}
+
 				this.onClose(code)
 			})
 		}

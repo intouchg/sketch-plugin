@@ -8,6 +8,7 @@ import {
 	SET_RECENT_PROJECTS,
 	SET_SKETCH_DOCUMENT_NAMES,
 	SET_IMPORTED_SKETCH_STYLES,
+	SET_SYSTEM_FONTS,
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
@@ -87,6 +88,11 @@ export const themeReducer = (
 
 			case SET_SKETCH_DOCUMENT_NAMES: {
 				nextState.sketchDocumentNames = action.payload
+				break
+			}
+
+			case SET_SYSTEM_FONTS: {
+				nextState.systemFonts = action.payload
 				break
 			}
 

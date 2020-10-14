@@ -1,33 +1,14 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setThemeData, setRecentProjects, setSketchDocumentNames, setImportedSketchStyles } from './store'
-import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLineHeight, ThemeLetterSpacing, ThemeBorderWidth, ThemeShadow, ThemeRadius } from '@i/theme'
+import { setThemeData, setRecentProjects, setSketchDocumentNames, setImportedSketchStyles, setSystemFonts } from '../store'
+import type { ThemeValue, ThemeGroup, ThemeComponent } from '@i/theme'
 import type { AzureGitRepo } from '@i/azure'
+import type { RawImportedSketchStyles } from './styles'
+import type { SPFontData } from './fonts'
 
-export type RawImportedSketchStyles = {
-    colors: [ string, string ][]
-    fonts: string[]
-    fontSizes: number[]
-    fontWeights: number[]
-    lineHeights: number[]
-    letterSpacings: number[]
-    borderWidths: string[]
-    shadows: string[]
-    radii: string[]
-}
-
-export type ParsedImportedSketchStyles = {
-    colors: ThemeColor[]
-    fonts: ThemeFont[]
-    fontSizes: ThemeFontSize[]
-    fontWeights: ThemeFontWeight[]
-    lineHeights: ThemeLineHeight[]
-    letterSpacings: ThemeLetterSpacing[]
-    borderWidths: ThemeBorderWidth[]
-    shadows: ThemeShadow[]
-    radii: ThemeRadius[]
-}
+export * from './fonts'
+export * from './styles'
 
 export type RecentProject = { filepath: string }
 
@@ -49,6 +30,7 @@ interface WebviewListeners {
     setRecentProjects?: (data: RecentProject[]) => void
     setSaveThemeDataResult?: (result: boolean) => void
     setSketchDocumentNames?: (sketchDocumentNames: string[]) => void
+    setSystemFonts?: (fonts: SPFontData) => void
     showStorybookLoading?: (show: boolean) => void
     storybookLoadingProgress?: (progress: number) => void
 }
@@ -71,6 +53,7 @@ interface SketchListeners {
     getAzureGitRepos: (credentials: { username: string, accessToken: string }) => void
     getRecentProjects: () => RecentProject[]
     getSketchDocumentNames: () => string[]
+    getSystemFonts: () => SPFontData
     openStorybook: () => void
     saveThemeData: (data: {
         values: ThemeValue[]
@@ -94,7 +77,14 @@ export const useGlobalSketchListeners = () => {
 		window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
 		window.setSketchDocumentNames = (sketchDocumentNames) => dispatch(setSketchDocumentNames(sketchDocumentNames))
 		window.setImportedSketchStyles = (styles) => dispatch(setImportedSketchStyles(styles))
+
+		window.setSystemFonts = (fonts) => {
+			console.log('setSystemFonts', fonts)
+			dispatch(setSystemFonts(fonts))
+		}
+
 		sketchRequest('getSketchDocumentNames')
+		sketchRequest('getSystemFonts')
 
 		return () => {
 			delete window.setThemeData

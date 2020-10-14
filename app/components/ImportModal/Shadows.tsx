@@ -7,8 +7,10 @@ const Shadow = ({
 	id,
 	index,
 	value,
+	imported,
 	...rest
 }: ThemeShadow & {
+	imported?: boolean
 	index: number
 }) => {
 	const [ x, y, blur, spread, color ] = value.split('px').map((s) => s.trim())
@@ -112,7 +114,7 @@ const Shadow = ({
 const Shadows = ({
 	shadows = [],
 }: {
-	shadows: ThemeShadow[]
+	shadows: (ThemeShadow & { imported?: boolean })[]
 }) => {
 	return (
 		<Stack

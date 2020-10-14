@@ -6,7 +6,7 @@ import type { ThemeFontSize } from '@i/theme'
 const TypeScale = ({
 	fontSizes = [],
 }: {
-	fontSizes: ThemeFontSize[]
+	fontSizes: (ThemeFontSize & { imported?: boolean })[]
 }) => {
 	console.log(fontSizes)
 	return (

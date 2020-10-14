@@ -6,7 +6,7 @@ import type { ThemeColor } from '@i/theme'
 const Colors = ({
 	colors = [],
 }: {
-	colors: ThemeColor[]
+	colors: (ThemeColor & { imported?: boolean })[]
 }) => {
 	return (
 		<Flex

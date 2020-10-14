@@ -9,6 +9,7 @@ import { TypeScale } from './TypeScale'
 import { Shadows } from './Shadows'
 import { Borders } from './Borders'
 import { sketchRequest } from '../../sketchApi'
+import type { ThemeValue } from '@i/theme'
 
 const views = {
 	Colors: Colors,
@@ -41,6 +42,7 @@ const ImportModal = ({
 }) => {
 	const sketchDocumentNames = useSelector((state) => state.theme.sketchDocumentNames)
 	const importedSketchStyles = useSelector((state) => state.theme.importedSketchStyles)
+	const themeValues = useSelector((state) => state.theme.values)
 	const [ route, setRoute ] = useState<ImportModalRoute>('Colors')
 	const [ selectedSketchDocumentIndex, setSelectedSketchDocumentIndex ] = useState<number>(0)
 	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
@@ -75,12 +77,27 @@ const ImportModal = ({
 		return null
 	}
 
+	const themeTypes = themeTypeRouteMap[route]
 	const routeThemeValues = {} as any
 
-	Object.entries(importedSketchStyles).forEach(([ key, value ]) => {
-		if (themeTypeRouteMap[route].includes(key as any)) {
-			routeThemeValues[key] = value
+	themeTypes.forEach((type) => routeThemeValues[type] = [])
+
+	themeValues.forEach((value) => {
+		const themeType = themeTypePropertyMap[value.type]
+
+		if (themeTypes.includes(themeType)) {
+			routeThemeValues[themeType].push(value)
 		}
+	})
+
+	Object.entries(importedSketchStyles).forEach(([ key, values ]) => {
+		const type = key as any
+
+		values.forEach((value: ThemeValue) => {
+			if (themeTypes.includes(type) && !routeThemeValues[type].some((v: ThemeValue) => v.value === value.value)) {
+				routeThemeValues[type].push({ ...value, imported: true })
+			}
+		})
 	})
 
 	return (
