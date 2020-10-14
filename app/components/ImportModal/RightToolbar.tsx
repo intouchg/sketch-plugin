@@ -24,7 +24,7 @@ const ImportCheckbox = ({
 			height="24px"
 			backgroundColor="Card"
 			border="1px solid"
-			borderColor={checked ? 'Primary' : 'Accent'}
+			borderColor="Accent"
 			borderRadius="Medium"
 		>
 			{checked && (<CheckmarkIcon width="16px" />)}
