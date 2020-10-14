@@ -1,8 +1,9 @@
 import fs from '@skpm/fs'
+import path from '@skpm/path'
 
 const METADATA_FILENAME = '.idsmetadata.json'
-const METADATA_STORAGE_FILEPATH = './Contents/Sketch/metadata/'
-const METADATA_FILEPATH = METADATA_STORAGE_FILEPATH + METADATA_FILENAME
+const METADATA_STORAGE_FILEPATH = path.resolve('./Contents/Sketch/metadata/')
+const METADATA_FILEPATH = path.resolve(METADATA_STORAGE_FILEPATH, METADATA_FILENAME)
 const RECENT_PROJECTS_MAX_LENGTH = 5
 
 if (!fs.existsSync(METADATA_STORAGE_FILEPATH)) {
@@ -15,7 +16,7 @@ if (!fs.existsSync(METADATA_FILEPATH)) {
 
 export const readMetadata = () => {
 	try {
-		const filedata = fs.readFileSync(METADATA_FILEPATH).toString('utf-8')
+		const filedata = fs.readFileSync(METADATA_FILEPATH).toString()
 		return JSON.parse(filedata)
 	}
 	catch (error) {

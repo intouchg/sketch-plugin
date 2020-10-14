@@ -20,13 +20,13 @@ export const openStorybook = (webContents, showError) => {
 		const onError = (error) => showError(`Could not start Storybook and Playroom: ${error}`)
 
 		const onStdOut = (data) => {
-			if (data.toString('utf-8').includes('DONE  Compiled successfully')) {
+			if (data.toString().includes('DONE  Compiled successfully')) {
 				webContents.executeJavaScript('window.showStorybookLoading(false)')
 			}
 		}
 
 		const onStdErr = (data) => {
-			const matches = data.toString('utf-8').match(PARSE_STORYBOOK_WEBPACK_PROGRESS_REGEX)
+			const matches = data.toString().match(PARSE_STORYBOOK_WEBPACK_PROGRESS_REGEX)
 
 			if (matches && matches.length) {
 				webContents.executeJavaScript(`window.storybookLoadingProgress(${matches[1]})`)

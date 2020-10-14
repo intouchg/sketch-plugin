@@ -26,7 +26,7 @@ export const selectLocalProject = (webContents, showError, filepath) => {
 		showError(`The folder you selected is not a valid Intouch Design System project. Could not locate a ${configFilename} config file at filepath: ${configFilepath}`)
 	}
 
-	const configData = fs.readFileSync(configFilepath).toString('utf-8')
+	const configData = fs.readFileSync(configFilepath).toString()
 	const config = validateConfig(JSON.parse(configData))
 
 	if (!config) {

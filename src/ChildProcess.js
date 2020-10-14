@@ -46,7 +46,7 @@ export default class ChildProcess {
 
 			this.process.stdout.on('data', (data) => {
 				if (!this.disableLogging) {
-					console.log(data.toString('utf-8'))
+					console.log(data.toString())
 				}
 
 				this.onStdOut(data)
@@ -54,7 +54,7 @@ export default class ChildProcess {
 
 			this.process.stderr.on('data', (data) => {
 				if (!this.disableLogging) {
-					console.log(data.toString('utf-8'))
+					console.log(data.toString())
 				}
 
 				this.onStdErr(data)

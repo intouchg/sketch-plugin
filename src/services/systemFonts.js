@@ -1,30 +1,24 @@
 import ChildProcess from '../ChildProcess'
-import { exec } from '@skpm/child_process'
+import fs from '@skpm/fs'
+import path from '@skpm/path'
 
-const systemFontsProcess = null
+const FONTS_DATA_FILENAME = '.fontsdata.json'
+const FONTS_DATA_STORAGE_FILEPATH = path.resolve('./Contents/Sketch/metadata/')
+const FONTS_FILEPATH = path.resolve(FONTS_DATA_STORAGE_FILEPATH, FONTS_DATA_FILENAME)
 
-export const stopSystemFontsProcess = () => systemFontsProcess && systemFontsProcess.stop()
+if (!fs.existsSync(FONTS_DATA_STORAGE_FILEPATH)) {
+	fs.mkdirSync(FONTS_DATA_STORAGE_FILEPATH, { recursive: true })
+}
+
+if (!fs.existsSync(FONTS_FILEPATH)) {
+	fs.writeFileSync(FONTS_FILEPATH, JSON.stringify({}))
+}
 
 export const getSystemFonts = () => new Promise((resolve, reject) => {
-	// const chunks = []
+	const onClose = () => {
+		const data = fs.readFileSync(FONTS_FILEPATH).toString()
+		resolve(JSON.parse(data))
+	}
 
-	const onStdOut = (data) => console.log(data.toString())
-
-	// const onClose = () => {
-	// 	console.log('length1 = ', chunks.length)
-	// 	setTimeout(() => console.log('length2 = ', chunks.length), 1)
-	// 	const data = chunks.concat().toString('utf-8')
-	// 	resolve(data)
-	// }
-
-	exec('system_profiler -json SPFontsDataType', { shell: true, cwd: process.cwd(), maxBuffer: 1024 * 5000 }, (err, stdout, stderr) => {
-		console.log('error', err)
-		console.log('stdout', stdout)
-		console.log(JSON.parse(stdout.toString()))
-		console.log(JSON.parse(stdout))
-	})
-
-	// systemFontsProcess = new ChildProcess('system_profiler -json SPFontsDataType', { onStdOut }, true)
-
-	// resolve({ SPFontsDataType: [] })
+	const systemFontsProcess = new ChildProcess(`system_profiler -json SPFontsDataType > ${FONTS_FILEPATH}`, { onClose }, true)
 })
