@@ -77,11 +77,7 @@ export const useGlobalSketchListeners = () => {
 		window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
 		window.setSketchDocumentNames = (sketchDocumentNames) => dispatch(setSketchDocumentNames(sketchDocumentNames))
 		window.setImportedSketchStyles = (styles) => dispatch(setImportedSketchStyles(styles))
-
-		window.setSystemFonts = (fonts) => {
-			console.log('setSystemFonts', fonts)
-			dispatch(setSystemFonts(fonts))
-		}
+		window.setSystemFonts = (fonts) => dispatch(setSystemFonts(fonts))
 
 		sketchRequest('getSketchDocumentNames')
 		sketchRequest('getSystemFonts')
@@ -90,7 +86,8 @@ export const useGlobalSketchListeners = () => {
 			delete window.setThemeData
 			delete window.setRecentProjects
 			delete window.setSketchDocumentNames
-			delete window.window.setImportedSketchStyles
+            delete window.setImportedSketchStyles
+            delete window.setSystemFonts
 		}
 	}, [ history, dispatch ])
 }

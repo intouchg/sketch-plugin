@@ -8,7 +8,6 @@ const TypeScale = ({
 }: {
 	fontSizes: (ThemeFontSize & { imported?: boolean })[]
 }) => {
-	console.log(fontSizes)
 	return (
 		<Text>
 			Type Scale
