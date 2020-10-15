@@ -10,7 +10,7 @@
 "@babel/cli@^7.8.3":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/cli/-/cli-7.12.0.tgz#5de7ac9e8916a48725712c9ff1b26e8463c0d7a7"
-  integrity sha512-0EO6EN6brF4g0HaR6qQr2USkCvFjKNgBdmaYNW5NzB1IeHhqQkGhErX3/hvWA7+g/onS41IM/wm+yD+hcSwgVQ==
+  integrity sha1-XeesnokWpIclcSyf8bJuhGPA16c=
   dependencies:
     commander "^4.0.1"
     convert-source-map "^1.1.0"
@@ -41,7 +41,7 @@
 "@babel/compat-data@^7.11.0", "@babel/compat-data@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/compat-data/-/compat-data-7.12.0.tgz#443aea07a5aeba7942cb067de6b8272f2ab36b9e"
-  integrity sha512-jAbCtMANC9ptXxbSVXIqV/3H0bkh7iyyv6JS5lu10av45bcc2QmDNJXkASZCFwbBt75Q0AEq/BB+bNa3x1QgYQ==
+  integrity sha1-RDrqB6WuunlCywZ95rgnLyqza54=
 
 "@babel/core@7.11.6":
   version "7.11.6"
@@ -68,7 +68,7 @@
 "@babel/core@>=7.9.0", "@babel/core@^7.11.6", "@babel/core@^7.4.3", "@babel/core@^7.7.5", "@babel/core@^7.8.3", "@babel/core@^7.9.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/core/-/core-7.12.0.tgz#e42e07a086e978cdd4c61f4078d8230fb817cc86"
-  integrity sha512-iV7Gwg0DePKvdDZZWRTkj4MW+6/AbVWd4ZCg+zk8H1RVt5xBpUZS6vLQWwb3pyLg4BFTaGiQCPoJ4Ibmbne4fA==
+  integrity sha1-5C4HoIbpeM3Uxh9AeNgjD7gXzIY=
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/generator" "^7.12.0"
@@ -90,7 +90,7 @@
 "@babel/generator@^7.11.6", "@babel/generator@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/generator/-/generator-7.12.0.tgz#91a45f1c18ca8d895a35a04da1a4cf7ea3f37f98"
-  integrity sha512-8lnf4QcyiQMf5XQp47BltuMTocsOh6P0z/vueEh8GzhmWWlDbdvOoI5Ziddg0XYhmnx35HyByUW51/9NprF8cA==
+  integrity sha1-kaRfHBjKjYlaNaBNoaTPfqPzf5g=
   dependencies:
     "@babel/types" "^7.12.0"
     jsesc "^2.5.1"
@@ -114,7 +114,7 @@
 "@babel/helper-builder-react-jsx-experimental@^7.10.4", "@babel/helper-builder-react-jsx-experimental@^7.11.5":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/helper-builder-react-jsx-experimental/-/helper-builder-react-jsx-experimental-7.12.0.tgz#e8655888d0d36fd2a15c02decf77923fc18e95cd"
-  integrity sha512-AFzu6ib4i56olCtulkbIifcTay0O5tv8ZVK8hZMzrpu+YjsIDEcesF1DMqqTzV65clu3X61aE7qeHcJsY/gmnA==
+  integrity sha1-6GVYiNDTb9KhXALez3eSP8GOlc0=
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.10.4"
     "@babel/helper-module-imports" "^7.10.4"
@@ -131,7 +131,7 @@
 "@babel/helper-compilation-targets@^7.10.4", "@babel/helper-compilation-targets@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/helper-compilation-targets/-/helper-compilation-targets-7.12.0.tgz#c477d89a1f4d626c8149b9b88802f78d66d0c99a"
-  integrity sha512-NbDFJNjDgxE7IkrHp5gq2+Tr8bEdCLKYN90YDQEjMiTMUAFAcShNkaH8kydcmU0mEQTiQY0Ydy/+1xfS2OCEnw==
+  integrity sha1-xHfYmh9NYmyBSbm4iAL3jWbQyZo=
   dependencies:
     "@babel/compat-data" "^7.12.0"
     "@babel/helper-validator-option" "^7.12.0"
@@ -141,7 +141,7 @@
 "@babel/helper-create-class-features-plugin@^7.10.4", "@babel/helper-create-class-features-plugin@^7.10.5", "@babel/helper-create-class-features-plugin@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.12.0.tgz#f3f2fc77bacc89e59ce6764daeabc1fb23e79a05"
-  integrity sha512-9tD1r9RK928vxvxcoNK8/7uwT7Q2DJZP1dnJmyMAJPwOF0yr8PPwqdpyw33lUpCfrJ765bOs5XNa4KSfUDWFSw==
+  integrity sha1-8/L8d7rMieWc5nZNrqvB+yPnmgU=
   dependencies:
     "@babel/helper-function-name" "^7.10.4"
     "@babel/helper-member-expression-to-functions" "^7.12.0"
@@ -153,7 +153,7 @@
 "@babel/helper-create-regexp-features-plugin@^7.10.4":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/helper-create-regexp-features-plugin/-/helper-create-regexp-features-plugin-7.12.0.tgz#858cef57039f3b3a9012273597288a71e1dff8ca"
-  integrity sha512-YBqH+3wLcom+tko8/JLgRcG8DMqORgmjqNRNI751gTioJSZHWFybO1mRoLtJtWIlYSHY+zT9LqqnbbK1c3KIVQ==
+  integrity sha1-hYzvVwOfOzqQEic1lyiKceHf+Mo=
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.10.4"
     "@babel/helper-regex" "^7.10.4"
@@ -201,7 +201,7 @@
 "@babel/helper-member-expression-to-functions@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/helper-member-expression-to-functions/-/helper-member-expression-to-functions-7.12.0.tgz#48f605fa801764f3e5b2e301e49d35fe1820c4f3"
-  integrity sha512-I0d/bgzgzgLsJMk7UZ0TN2KV3OGjC/t/9Saz8PKb9jrcEAXhgjGysOgp4PDKydIKjUv/gj2St4ae+ov8l+T9Xg==
+  integrity sha1-SPYF+oAXZPPlsuMB5J01/hggxPM=
   dependencies:
     "@babel/types" "^7.12.0"
 
@@ -215,7 +215,7 @@
 "@babel/helper-module-transforms@^7.10.4", "@babel/helper-module-transforms@^7.10.5", "@babel/helper-module-transforms@^7.11.0", "@babel/helper-module-transforms@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/helper-module-transforms/-/helper-module-transforms-7.12.0.tgz#8ac7d9e8716f94549a42e577c5429391950e33f3"
-  integrity sha512-1ZTMoCiLSzTJLbq7mSaTHki4oIrBIf/dUbzdhwTrvtMU3ZNVKwQmGae3gSiqppo7G8HAgnXmc43rfEaD8yYLLQ==
+  integrity sha1-isfZ6HFvlFSaQuV3xUKTkZUOM/M=
   dependencies:
     "@babel/helper-module-imports" "^7.10.4"
     "@babel/helper-replace-supers" "^7.12.0"
@@ -259,7 +259,7 @@
 "@babel/helper-replace-supers@^7.10.4", "@babel/helper-replace-supers@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/helper-replace-supers/-/helper-replace-supers-7.12.0.tgz#98d3f3eb779752e59c7422ab387c9b444323be60"
-  integrity sha512-9kycFdq2c9e7PXZOr2z/ZqTFF9OzFu287iFwYS+CiDVPuoTCfY8hoTsIqNQNetQjlqoRsRyJFrMG1uhGAR4EEw==
+  integrity sha1-mNPz63eXUuWcdCKrOHybREMjvmA=
   dependencies:
     "@babel/helper-member-expression-to-functions" "^7.12.0"
     "@babel/helper-optimise-call-expression" "^7.10.4"
@@ -296,7 +296,7 @@
 "@babel/helper-validator-option@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/helper-validator-option/-/helper-validator-option-7.12.0.tgz#1d1fc48a9b69763da61b892774b0df89aee1c969"
-  integrity sha512-NRfKaAQw/JCMsTFUdJI6cp4MoJGGVBRQTRSiW1nwlGldNqzjB9jqWI0SZqQksC724dJoKqwG+QqfS9ib7SoVsw==
+  integrity sha1-HR/Eiptpdj2mG4kndLDfia7hyWk=
 
 "@babel/helper-wrap-function@^7.10.4":
   version "7.10.4"
@@ -329,7 +329,7 @@
 "@babel/parser@^7.10.4", "@babel/parser@^7.11.5", "@babel/parser@^7.12.0", "@babel/parser@^7.7.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/parser/-/parser-7.12.0.tgz#2ad388f3960045b22f9b7d4bf85e80b15a1c9e3a"
-  integrity sha512-dYmySMYnlus2jwl7JnnajAj11obRStZoW9cG04wh4ZuhozDn11tDUrhHcUZ9iuNHqALAhh60XqNaYXpvuuE/Gg==
+  integrity sha1-KtOI85YARbIvm31L+F6AsVocnjo=
 
 "@babel/plugin-proposal-async-generator-functions@^7.0.0", "@babel/plugin-proposal-async-generator-functions@^7.10.4":
   version "7.10.5"
@@ -376,7 +376,7 @@
 "@babel/plugin-proposal-export-namespace-from@^7.10.4", "@babel/plugin-proposal-export-namespace-from@^7.12.0", "@babel/plugin-proposal-export-namespace-from@^7.8.3":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-proposal-export-namespace-from/-/plugin-proposal-export-namespace-from-7.12.0.tgz#08b0f8100bbae1199a5f5294f38a1b0b8d8402fc"
-  integrity sha512-ao43U2ptSe+mIZAQo2nBV5Wx2Ie3i2XbLt8jCXZpv+bvLY1Twv0lak4YZ1Ps5OwbeLMAl3iOVScgGMOImBae1g==
+  integrity sha1-CLD4EAu64RmaX1KU84obC42EAvw=
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-syntax-export-namespace-from" "^7.8.3"
@@ -392,7 +392,7 @@
 "@babel/plugin-proposal-logical-assignment-operators@^7.11.0", "@babel/plugin-proposal-logical-assignment-operators@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-proposal-logical-assignment-operators/-/plugin-proposal-logical-assignment-operators-7.12.0.tgz#830d8ff4984d800b2824e8eac0005ecb7430328e"
-  integrity sha512-dssjXHzdMQal4q6GCSwDTVPEbyBLdd9+7aSlzAkQbrGEKq5xG8pvhQ7u2ktUrCLRmzQphZnSzILBL5ta4xSRlA==
+  integrity sha1-gw2P9JhNgAsoJOjqwABey3QwMo4=
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-syntax-logical-assignment-operators" "^7.10.4"
@@ -400,7 +400,7 @@
 "@babel/plugin-proposal-nullish-coalescing-operator@^7.10.1", "@babel/plugin-proposal-nullish-coalescing-operator@^7.10.4", "@babel/plugin-proposal-nullish-coalescing-operator@^7.12.0", "@babel/plugin-proposal-nullish-coalescing-operator@^7.8.3":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-proposal-nullish-coalescing-operator/-/plugin-proposal-nullish-coalescing-operator-7.12.0.tgz#d82174a531305df4d7079ce3782269b35b810b82"
-  integrity sha512-JpNWix2VP2ue31r72fKytTE13nPX1fxl1mudfTaTwcDhl3iExz5NZjQBq012b/BQ6URWoc/onI73pZdYlAfihg==
+  integrity sha1-2CF0pTEwXfTXB5zjeCJps1uBC4I=
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-syntax-nullish-coalescing-operator" "^7.8.0"
@@ -408,7 +408,7 @@
 "@babel/plugin-proposal-numeric-separator@^7.10.4", "@babel/plugin-proposal-numeric-separator@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-proposal-numeric-separator/-/plugin-proposal-numeric-separator-7.12.0.tgz#76de244152abaf2e72800ab0aebc9771f6de3e9a"
-  integrity sha512-iON65YmIy/IpEgteYJ4HfO2q30SLdIxiyjNNlsSjSl0tUxLhSH9PljE5r6sczwdW64ZZzznYNcezdcROB+rDDw==
+  integrity sha1-dt4kQVKrry5ygAqwrryXcfbePpo=
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-syntax-numeric-separator" "^7.10.4"
@@ -433,7 +433,7 @@
 "@babel/plugin-proposal-optional-chaining@^7.10.1", "@babel/plugin-proposal-optional-chaining@^7.11.0", "@babel/plugin-proposal-optional-chaining@^7.12.0", "@babel/plugin-proposal-optional-chaining@^7.8.3":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-proposal-optional-chaining/-/plugin-proposal-optional-chaining-7.12.0.tgz#0159b549f165016fc9f284b8607a58a37a3b71fe"
-  integrity sha512-CXu9aw32FH/MksqdKvhpiH8pSvxnXJ33E7I7BGNE9VzNRpWgpNzvPpds/tW9E0pjmX9+D1zAHRyHbtyeTboo2g==
+  integrity sha1-AVm1SfFlAW/J8oS4YHpYo3o7cf4=
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/helper-skip-transparent-expression-wrappers" "^7.11.0"
@@ -714,7 +714,7 @@
 "@babel/plugin-transform-modules-systemjs@^7.10.4", "@babel/plugin-transform-modules-systemjs@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-transform-modules-systemjs/-/plugin-transform-modules-systemjs-7.12.0.tgz#bca842db6980cfc98ae7d0f2c907c9b1df3f874e"
-  integrity sha512-h2fDMnwRwBiNMmTGAWqUo404Z3oLbrPE6hyATecyIbsEsrbM5gjLbfKQLb6hjiouMlGHH+yliYBbc4NPgWKE/g==
+  integrity sha1-vKhC22mAz8mK59DyyQfJsd8/h04=
   dependencies:
     "@babel/helper-hoist-variables" "^7.10.4"
     "@babel/helper-module-transforms" "^7.12.0"
@@ -889,7 +889,7 @@
 "@babel/plugin-transform-typescript@^7.10.4", "@babel/plugin-transform-typescript@^7.12.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.12.0.tgz#bd6422833a56e4268d8d599238f0b3c5e170078a"
-  integrity sha512-gahRNAWgE76hjI3TZPVEfV7vGjOCJi5ACd4eSoAItk/ErC114i2UHnk+1ScS2dOour0p6J6kB99hNFX2vzL2Ww==
+  integrity sha1-vWQigzpW5CaNjVmSOPCzxeFwB4o=
   dependencies:
     "@babel/helper-create-class-features-plugin" "^7.12.0"
     "@babel/helper-plugin-utils" "^7.10.4"
@@ -987,7 +987,7 @@
 "@babel/preset-env@^7.0.0", "@babel/preset-env@^7.8.3", "@babel/preset-env@^7.9.5", "@babel/preset-env@^7.9.6":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/preset-env/-/preset-env-7.12.0.tgz#7d2d0c4f4a14ca0fd7d905a741070ab4745177b7"
-  integrity sha512-jSIHvHSuF+hBUIrvA2/61yIzhH+ceLOXGLTH1nwPvQlso/lNxXsoE/nvrCzY5M77KRzhKegB1CvdhWPZmYDZ5A==
+  integrity sha1-fS0MT0oUyg/X2QWnQQcKtHRRd7c=
   dependencies:
     "@babel/compat-data" "^7.12.0"
     "@babel/helper-compilation-targets" "^7.12.0"
@@ -1100,7 +1100,7 @@
 "@babel/preset-typescript@^7.8.3", "@babel/preset-typescript@^7.9.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/preset-typescript/-/preset-typescript-7.12.0.tgz#3fe6b4958ca6fb0e086dc5574a27d0ced99185e8"
-  integrity sha512-2XVy4sy/zkP4gqmXW0TzSh/QwOniN2Cy3srhsD0TRBlMTOmjaYnWCWA6aWopwpcwfYkEKD6jKLLjYMq15zDNWg==
+  integrity sha1-P+a0lYym+w4IbcVXSifQztmRheg=
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
     "@babel/plugin-transform-typescript" "^7.12.0"
@@ -1108,7 +1108,7 @@
 "@babel/register@^7.10.5", "@babel/register@^7.11.5":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/register/-/register-7.12.0.tgz#fa5fa900bd79380ff508ae963a5766172d3a9e56"
-  integrity sha512-2F2v0qYSAwrGyK9mZ8lIoUluHRzLTgkJ2oRXlLV9GVe/ze/sTFBiOocLRMSJYDB2lLiABlVC+pZHlZ8qihO1Xg==
+  integrity sha1-+l+pAL15OA/1CK6WOldmFy06nlY=
   dependencies:
     find-cache-dir "^2.0.0"
     lodash "^4.17.19"
@@ -1126,14 +1126,14 @@
 "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/runtime/-/runtime-7.12.0.tgz#98bd7666186969c04be893d747cf4a6c6c8fa6b0"
-  integrity sha512-lS4QLXQ2Vbw2ubfQjeQcn+BZgZ5+ROHW9f+DWjEp5Y+NHYmkRGKqHSJ1tuhbUauKu2nhZNTBIvsIQ8dXfY5Gjw==
+  integrity sha1-mL12ZhhpacBL6JPXR89KbGyPprA=
   dependencies:
     regenerator-runtime "^0.13.4"
 
 "@babel/standalone@^7.8.7":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/standalone/-/standalone-7.12.0.tgz#34f63e22737f84f2980c78fe32ab540acfdd04bd"
-  integrity sha512-3KrEiQEZBFOOj+UDJj3dQubRsTbzmOoaoIO2ALtCMJI6Nf2yNZsGFny2jOp0vAMYAo/Bhp6JcqEeo6P/RcIEyg==
+  integrity sha1-NPY+InN/hPKYDHj+MqtUCs/dBL0=
 
 "@babel/template@^7.10.4":
   version "7.10.4"
@@ -1147,7 +1147,7 @@
 "@babel/traverse@^7.10.4", "@babel/traverse@^7.11.5", "@babel/traverse@^7.12.0", "@babel/traverse@^7.4.5", "@babel/traverse@^7.7.0":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/traverse/-/traverse-7.12.0.tgz#ed31953d6e708cdd34443de2fcdb55f72cdfb266"
-  integrity sha512-ZU9e79xpOukCNPkQ1UzR4gJKCruGckr6edd8v8lmKpSk8iakgUIvb+5ZtaKKV9f7O+x5r+xbMDDIbzVpUoiIuw==
+  integrity sha1-7TGVPW5wjN00RD3i/NtV9yzfsmY=
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/generator" "^7.12.0"
@@ -1162,7 +1162,7 @@
 "@babel/types@^7.10.4", "@babel/types@^7.10.5", "@babel/types@^7.11.0", "@babel/types@^7.11.5", "@babel/types@^7.12.0", "@babel/types@^7.4.4", "@babel/types@^7.7.0", "@babel/types@^7.9.5":
   version "7.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/types/-/types-7.12.0.tgz#b6b49f425ee59043fbc89c61b11a13d5eae7b5c6"
-  integrity sha512-ggIyFmT2zMaYRheOfPDQ4gz7QqV3B+t2rjqjbttDJxMcb7/LukvWCmlIl1sWcOxrvwpTDd+z0OytzqsbGeb3/g==
+  integrity sha1-trSfQl7lkEP7yJxhsRoT1erntcY=
   dependencies:
     "@babel/helper-validator-identifier" "^7.10.4"
     lodash "^4.17.19"
@@ -1300,9 +1300,9 @@
     "@i/utility" latest
 
 "@i/components@latest":
-  version "0.0.29"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.29.tgz#cfcc1b1f05d12676961bacd00f42371666cf27b5"
-  integrity sha1-z8wbHwXRJnaWG6zQD0I3FmbPJ7U=
+  version "0.0.31"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.31.tgz#3b281c21ecd5ad3e98675d32fd6e2c6e4055e240"
+  integrity sha1-OygcIezVrT6YZ10y/W4sbkBV4kA=
   dependencies:
     "@babel/runtime" "7.11.2"
     "@i/theme" latest
@@ -5462,7 +5462,7 @@ ejs@^3.1.2:
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.571:
   version "1.3.580"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/electron-to-chromium/-/electron-to-chromium-1.3.580.tgz#eb27873cfa012c43c53c9e9129038b8fd7cb964f"
-  integrity sha512-5flHTbRpptO6h3lQUG4zdSAxryAS3PrZOkLpLS0DL5/y2LBf+l9HJ8X6UBorNs1QRBrMR7u/QvkdK+GlekW1kQ==
+  integrity sha1-6yeHPPoBLEPFPJ6RKQOLj9fLlk8=
 
 element-resize-detector@^1.2.1:
   version "1.2.1"
@@ -5672,9 +5672,9 @@ es6-object-assign@^1.1.0:
   integrity sha1-wsNYJlYkfDnqEHyx5mUrb58kUjw=
 
 es6-shim@^0.35.5:
-  version "0.35.5"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/es6-shim/-/es6-shim-0.35.5.tgz#46f59dc0a84a1c5029e8ff1166ca0a902077a9ab"
-  integrity sha512-E9kK/bjtCQRpN1K28Xh4BlmP8egvZBGJJ+9GtnzOwt7mdqtrjHFuVGr7QJfdjBIKqrlU5duPf3pCBoDrkjVYFg==
+  version "0.35.6"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/es6-shim/-/es6-shim-0.35.6.tgz#d10578301a83af2de58b9eadb7c2c9945f7388a0"
+  integrity sha1-0QV4MBqDry3li56tt8LJlF9ziKA=
 
 es6-symbol@^3.1.1, es6-symbol@~3.1.3:
   version "3.1.3"
@@ -9131,7 +9131,7 @@ node-modules-regexp@^1.0.0:
 node-releases@^1.1.52, node-releases@^1.1.61:
   version "1.1.63"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/node-releases/-/node-releases-1.1.63.tgz#db6dbb388544c31e888216304e8fd170efee3ff5"
-  integrity sha512-ukW3iCfQaoxJkSPN+iK7KznTeqDGVJatAEuXsJERYHa9tn/KaT5lBdIyxQjLEVTzSkyjJEuQ17/vaEjrOauDkg==
+  integrity sha1-2227OIVEwx6IghYwTo/RcO/uP/U=
 
 normalize-package-data@^2.3.2, normalize-package-data@^2.5.0:
   version "2.5.0"
@@ -10746,7 +10746,7 @@ react-dom@16.13.1:
 react-dom@^16.8.3:
   version "16.14.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/react-dom/-/react-dom-16.14.0.tgz#7ad838ec29a777fb3c75c3a190f661cf92ab8b89"
-  integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
+  integrity sha1-etg47Cmnd/s8dcOhkPZhz5Kri4k=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -11004,7 +11004,7 @@ react@16.13.1:
 react@^16.13.1, react@^16.8.3:
   version "16.14.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
-  integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
+  integrity sha1-lNd23dCqo32j7aj8W2sYpMmjEU0=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
