@@ -73,6 +73,9 @@ const ComponentNavigation = ({ url }: { url: string }) => (
 			<StyledLink to={`${url}/components/input`}>
 				Input
 			</StyledLink>
+			<StyledLink to={`${url}/components/label`}>
+				Label
+			</StyledLink>
 			<StyledLink to={`${url}/components/link`}>
 				Link
 			</StyledLink>

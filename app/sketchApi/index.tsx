@@ -86,8 +86,8 @@ export const useGlobalSketchListeners = () => {
 			delete window.setThemeData
 			delete window.setRecentProjects
 			delete window.setSketchDocumentNames
-            delete window.setImportedSketchStyles
-            delete window.setSystemFonts
+			delete window.setImportedSketchStyles
+			delete window.setSystemFonts
 		}
 	}, [ history, dispatch ])
 }

@@ -1,5 +1,5 @@
 import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeVariant, ThemeColor } from '@i/theme'
-import type { RecentProject, ParsedImportedSketchStyles, SPFontData } from '../../sketchApi'
+import type { RecentProject, ParsedImportedSketchStyles, SystemFontsDictionary } from '../../sketchApi'
 
 export type ThemeState = {
 	canUndo: boolean
@@ -14,7 +14,7 @@ export type ThemeState = {
 	recentProjects: RecentProject[]
 	sketchDocumentNames: string[]
 	importedSketchStyles: ParsedImportedSketchStyles
-	systemFonts: SPFontData
+	systemFonts: SystemFontsDictionary
 }
 
 export const initialState: ThemeState = {
@@ -40,5 +40,5 @@ export const initialState: ThemeState = {
 		shadows: [],
 		radii: [],
 	},
-	systemFonts: { SPFontsDataType: [] },
+	systemFonts: {},
 }

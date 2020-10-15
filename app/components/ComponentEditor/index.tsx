@@ -15,6 +15,9 @@ const ComponentEditor = ({ path }: { path: string }) => (
 		<Route path={`${path}/components/input`}>
 			Input
 		</Route>
+		<Route path={`${path}/components/label`}>
+			Label
+		</Route>
 		<Route path={`${path}/components/link`}>
 			Link
 		</Route>

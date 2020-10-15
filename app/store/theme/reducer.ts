@@ -24,6 +24,7 @@ import { initialState } from './state'
 import type { StyleProperty, ThemeColor, ThemeValue } from '@i/theme'
 import type { ThemeActionType } from './actions'
 import type { ThemeState } from './state'
+import type { SystemFontsDictionary } from '../../sketchApi'
 
 enablePatches()
 
@@ -92,7 +93,37 @@ export const themeReducer = (
 			}
 
 			case SET_SYSTEM_FONTS: {
-				nextState.systemFonts = action.payload
+				const systemFonts = action.payload.SPFontsDataType
+				const systemFontsDictionary: SystemFontsDictionary = {}
+
+				systemFonts.slice().sort((a, b) => {
+					const nameA = a._name.toLowerCase()
+					const nameB = b._name.toLowerCase()
+					return nameA < nameB ? -1 : nameA > nameB ? 1 : 0
+				}).forEach((systemFont) => {
+					const { typefaces } = systemFont
+
+					if (!typefaces) {
+						return
+					}
+
+					typefaces.forEach((typeface) => {
+						const fontFamily = typeface.family
+
+						if (systemFontsDictionary[fontFamily]) {
+							systemFontsDictionary[fontFamily].typefaces.push(typeface)
+						}
+						else {
+							systemFontsDictionary[fontFamily] = {
+								name: fontFamily,
+								path: systemFont.path,
+								typefaces: [ typeface ],
+							}
+						}
+					})
+				})
+
+				nextState.systemFonts = systemFontsDictionary
 				break
 			}
 
