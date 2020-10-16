@@ -3,10 +3,10 @@ import type { ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLineHe
 export type RawImportedSketchStyles = {
     colors: [ string, string ][]
     fonts: string[]
-    fontSizes: number[]
-    fontWeights: number[]
-    lineHeights: number[]
-    letterSpacings: number[]
+    fontSizes: string[]
+    fontWeights: string[]
+    lineHeights: string[]
+    letterSpacings: string[]
     borderWidths: string[]
     shadows: string[]
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Stack } from '@i/components'
+import { Stack, Box } from '@i/components'
 import { BorderWidth } from '../ThemeValues'
 import type { ThemeBorderWidth } from '@i/theme'
 
@@ -8,17 +8,28 @@ const Borders = ({
 }: {
 	borderWidths: (ThemeBorderWidth & { imported?: boolean })[]
 }) => {
+	// const sortedBorderWidths = borderWidths.slice().sort((a, b) => {
+	// 	const valueA = a.value.split('px')[0]
+	// })
+
 	return (
 		<Stack
 			alignItems="center"
 			paddingY="146px"
 		>
-			{borderWidths.map(({ id, ...props }) => (
-				<BorderWidth
+			{borderWidths.map(({ id, imported, ...props }) => (
+				<Box
 					key={id}
-					id={id}
-					{...props}
-				/>
+					borderRadius="Large"
+					backgroundColor={imported ? 'Background' : 'transparent'}
+					marginBottom={2}
+				>
+					<BorderWidth
+						key={id}
+						id={id}
+						{...props}
+					/>
+				</Box>
 			))}
 		</Stack>
 	)

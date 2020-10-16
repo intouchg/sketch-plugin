@@ -125,7 +125,7 @@ export const extractSketchDocumentStyles = (document) => {
 		colors: colors.filter(([ , v ]) => filterNonStrings(v)),
 		fonts: fonts.filter(filterNonStrings),
 		fontSizes: fontSizes.filter(filterNonNumbers).map((v) => convertPxToRem(v)),
-		fontWeights: fontWeights.filter(filterNonNumbers),
+		fontWeights: fontWeights.filter(filterNonNumbers).map((v) => v.toString()),
 		lineHeights: lineHeights.filter(filterNonNumbers).map((v) => convertPxToRem(v)),
 		letterSpacings: letterSpacings.filter(filterNonNumbers).map((v) => `${v}px`),
 		borderWidths: borderWidths.filter(filterNonNumbers).map((v) => `${v}px`),

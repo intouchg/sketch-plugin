@@ -5,19 +5,15 @@ import type { ThemeBorderWidth } from '@i/theme'
 const BorderWidth = ({
 	id,
 	value,
-	imported,
 	...rest
-}: ThemeBorderWidth & { imported?: boolean }) => {
+}: ThemeBorderWidth) => {
 	return (
 		<Flex
 			width="398px"
 			alignItems="center"
 			justifyContent="space-around"
-			borderRadius="Large"
-			backgroundColor="Background"
 			paddingX={4}
 			paddingY={3}
-			marginBottom={2}
 		>
 			<Text>
 				{value}
