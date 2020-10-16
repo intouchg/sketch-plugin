@@ -4,7 +4,7 @@ import { InvisibleButton, PrimaryButton } from '../Buttons'
 import { AccentText, SecondaryText } from '../Texts'
 import { CloseIcon } from '../Icons'
 import { Checkbox } from '../Checkbox'
-import { routes } from './index'
+import { routes, routeTitles } from './index'
 import type { ImportModalRoute } from './index'
 
 const CheckboxNavLink = ({
@@ -38,7 +38,7 @@ const CheckboxNavLink = ({
 			onClick={() => setRoute(route)}
 		>
 			<SecondaryText>
-				{route}
+				{routeTitles[route]}
 			</SecondaryText>
 		</InvisibleButton>
 	</Flex>

@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Flex } from '@i/components'
 import { Color } from '../ThemeValues'
 import type { ThemeColor } from '@i/theme'
 
 const Colors = ({
 	colors = [],
+	routeSelectedImportStyles,
+	toggleSelectedImportStyle,
 }: {
 	colors: (ThemeColor & { imported?: boolean })[]
+	routeSelectedImportStyles: ThemeColor[]
+	toggleSelectedImportStyle: (color: ThemeColor) => void
 }) => {
 	return (
 		<Flex

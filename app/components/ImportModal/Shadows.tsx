@@ -5,8 +5,12 @@ import type { ThemeShadow } from '@i/theme'
 
 const Shadows = ({
 	shadows = [],
+	routeSelectedImportStyles,
+	toggleSelectedImportStyle,
 }: {
 	shadows: (ThemeShadow & { imported?: boolean })[]
+	routeSelectedImportStyles: ThemeShadow[]
+	toggleSelectedImportStyle: (shadow: ThemeShadow) => void
 }) => {
 	return (
 		<Stack

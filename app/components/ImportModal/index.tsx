@@ -5,32 +5,31 @@ import { Flex, Box } from '@i/components'
 import { RightToolbar } from './RightToolbar'
 import { Colors } from './Colors'
 import { Fonts } from './Fonts'
-import { TypeScale } from './TypeScale'
+import { FontSizes } from './FontSizes'
 import { Shadows } from './Shadows'
-import { Borders } from './Borders'
+import { BorderWidths } from './BorderWidths'
 import { sketchRequest } from '../../sketchApi'
 import type { ThemeValue } from '@i/theme'
+import type { SPFontTypeface } from '../../sketchApi'
 
 const views = {
-	Colors: Colors,
-	Fonts: Fonts,
-	'Type Scale': TypeScale,
-	Shadows: Shadows,
-	Borders: Borders,
+	color: Colors,
+	font: Fonts,
+	fontSize: FontSizes,
+	shadow: Shadows,
+	borderWidth: BorderWidths,
 } as const
 
 export type ImportModalRoute = keyof typeof views
 
 export const routes = Object.keys(views) as ImportModalRoute[]
 
-const themeTypeRouteMap: {
-	[key in ImportModalRoute]: typeof themeTypePropertyMap[keyof typeof themeTypePropertyMap][]
-} = {
-	Colors: [ 'colors' ],
-	Fonts: [ 'fonts', 'fontWeights' ],
-	'Type Scale': [ 'fontSizes' ],
-	Shadows: [ 'shadows' ],
-	Borders: [ 'borders', 'borderStyles', 'borderWidths' ],
+export const routeTitles: { [key in ImportModalRoute]: string } = {
+	color: 'Colors',
+	font: 'Fonts',
+	fontSize: 'Type Scale',
+	shadow: 'Shadows',
+	borderWidth: 'Borders',
 }
 
 // TO DO: Create loading component
@@ -43,9 +42,10 @@ const ImportModal = ({
 	const sketchDocumentNames = useSelector((state) => state.theme.sketchDocumentNames)
 	const importedSketchStyles = useSelector((state) => state.theme.importedSketchStyles)
 	const themeValues = useSelector((state) => state.theme.values)
-	const [ route, setRoute ] = useState<ImportModalRoute>('Colors')
+	const [ route, setRoute ] = useState<ImportModalRoute>('color')
 	const [ selectedSketchDocumentIndex, setSelectedSketchDocumentIndex ] = useState<number>(0)
 	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
+	const [ selectedImportStyles, setSelectedImportStyles ] = useState<(ThemeValue | SPFontTypeface)[]>([])
 	const [ showLoading, setShowLoading ] = useState(false)
 
 	const ImportView = views[route]
@@ -77,27 +77,30 @@ const ImportModal = ({
 		return null
 	}
 
-	const themeTypes = themeTypeRouteMap[route]
-	const routeThemeValues = {} as any
+	const toggleSelectedImportStyle = (style: ThemeValue | SPFontTypeface) => {
+		const comparisonProp = route === 'font' ? '_name' : 'id'
+		const comparisonValue = (style as any)[comparisonProp]
 
-	themeTypes.forEach((type) => routeThemeValues[type] = [])
-
-	themeValues.forEach((value) => {
-		const themeType = themeTypePropertyMap[value.type]
-
-		if (themeTypes.includes(themeType)) {
-			routeThemeValues[themeType].push(value)
-		}
-	})
-
-	Object.entries(importedSketchStyles).forEach(([ key, values ]) => {
-		const type = key as any
-
-		values.forEach((value: ThemeValue) => {
-			if (themeTypes.includes(type) && !routeThemeValues[type].some((v: ThemeValue) => v.value === value.value)) {
-				routeThemeValues[type].push({ ...value, imported: true })
+		setSelectedImportStyles((state) => {
+			if (state.some((v) => (v as any)[comparisonProp] === comparisonValue)) {
+				return state.filter((v) => (v as any)[comparisonProp] !== comparisonValue)
 			}
+
+			return [ ...state, style ]
 		})
+	}
+
+	const routeThemeProperty = themeTypePropertyMap[route]
+	const routeThemeValues = themeValues.filter((v) => v.type === route)
+	const routeImportedSketchStyles = importedSketchStyles[routeThemeProperty]
+	const importViewProp = { [routeThemeProperty]: routeThemeValues.concat(routeImportedSketchStyles) }
+
+	const routeSelectedImportStyles = selectedImportStyles.filter((v) => {
+		if (route === 'font') {
+			return v.hasOwnProperty('_name')
+		}
+
+		return (v as ThemeValue).type === route
 	})
 
 	return (
@@ -128,7 +131,11 @@ const ImportModal = ({
 							LOADING
 						</>
 					) : (
-						<ImportView {...routeThemeValues} />
+						<ImportView
+							{...importViewProp as any}
+							routeSelectedImportStyles={routeSelectedImportStyles}
+							toggleSelectedImportStyle={toggleSelectedImportStyle}
+						/>
 					)}
 				</Box>
 				<RightToolbar

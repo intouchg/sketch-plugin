@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { Stack } from '@i/components'
 import { sortAlphabetical } from '@i/utility'
 import { FontFamily } from '../ThemeValues'
-import type { ThemeFont, ThemeFontWeight } from '@i/theme'
+import type { ThemeFont } from '@i/theme'
+import type { SPFontTypeface } from '../../sketchApi'
 
 // TO DO: Loading component
 
 const Fonts = ({
 	fonts = [],
-	fontWeights = [],
+	routeSelectedImportStyles,
+	toggleSelectedImportStyle,
 }: {
 	fonts: (ThemeFont & { imported?: boolean })[]
-	fontWeights: (ThemeFontWeight & { imported?: boolean })[]
+	routeSelectedImportStyles: SPFontTypeface[]
+	toggleSelectedImportStyle: (typeface: SPFontTypeface) => void
 }) => {
 	const systemFonts = useSelector((state) => state.theme.systemFonts)
 

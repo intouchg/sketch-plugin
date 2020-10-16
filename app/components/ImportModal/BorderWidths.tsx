@@ -3,10 +3,14 @@ import { Stack, Box } from '@i/components'
 import { BorderWidth } from '../ThemeValues'
 import type { ThemeBorderWidth } from '@i/theme'
 
-const Borders = ({
+const BorderWidths = ({
 	borderWidths = [],
+	routeSelectedImportStyles,
+	toggleSelectedImportStyle,
 }: {
 	borderWidths: (ThemeBorderWidth & { imported?: boolean })[]
+	routeSelectedImportStyles: ThemeBorderWidth[]
+	toggleSelectedImportStyle: (borderWidth: ThemeBorderWidth) => void
 }) => {
 	const sortedBorderWidths = borderWidths.slice().sort((a, b) => {
 		const valueA = parseInt(a.value.split('px')[0], 10)
@@ -37,4 +41,4 @@ const Borders = ({
 	)
 }
 
-export { Borders }
+export { BorderWidths }
