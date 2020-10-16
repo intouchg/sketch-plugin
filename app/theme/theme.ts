@@ -141,6 +141,13 @@ const theme = {
 			lineHeight: '1.5rem',
 			fontWeight: '700',
 		},
+		Tertiary: {
+			color: '#232323',
+			fontFamily: '\'Avenir Next\', sans-serif',
+			fontSize: '1.5rem',
+			lineHeight: '2rem',
+			fontWeight: '700',
+		},
 	},
 	links: {
 		Primary: {

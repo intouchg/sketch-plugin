@@ -1300,9 +1300,9 @@
     "@i/utility" latest
 
 "@i/components@latest":
-  version "0.0.31"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.31.tgz#3b281c21ecd5ad3e98675d32fd6e2c6e4055e240"
-  integrity sha1-OygcIezVrT6YZ10y/W4sbkBV4kA=
+  version "0.0.32"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.32.tgz#792c12cac31b0178cab357f7433bc26993ddfd97"
+  integrity sha1-eSwSysMbAXjKs1f3QzvCaZPd/Zc=
   dependencies:
     "@babel/runtime" "7.11.2"
     "@i/theme" latest
@@ -1334,9 +1334,9 @@
     "@i/utility" latest
 
 "@i/utility@latest":
-  version "0.0.11"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/utility/-/utility-0.0.11.tgz#dccaa53e7c0b9b8c60968bedb29cd8840048fd5a"
-  integrity sha1-3MqlPnwLm4xglovtspzYhABI/Vo=
+  version "0.0.12"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/utility/-/utility-0.0.12.tgz#4ed49f7a895c50f680ade984b4843cee2ca4d0ee"
+  integrity sha1-TtSfeolcUPaAremEtIQ87iyk0O4=
   dependencies:
     "@babel/runtime" "7.11.2"
 

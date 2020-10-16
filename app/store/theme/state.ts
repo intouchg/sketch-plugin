@@ -38,7 +38,6 @@ export const initialState: ThemeState = {
 		letterSpacings: [],
 		borderWidths: [],
 		shadows: [],
-		radii: [],
 	},
 	systemFonts: {},
 }

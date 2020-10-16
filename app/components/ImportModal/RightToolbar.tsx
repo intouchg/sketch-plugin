@@ -1,36 +1,11 @@
 import React from 'react'
-import { Stack, Box, Flex, Checkbox } from '@i/components'
+import { Stack, Box, Flex } from '@i/components'
 import { InvisibleButton, PrimaryButton } from '../Buttons'
 import { AccentText, SecondaryText } from '../Texts'
-import { CloseIcon, CheckmarkIcon } from '../Icons'
+import { CloseIcon } from '../Icons'
+import { Checkbox } from '../Checkbox'
 import { routes } from './index'
 import type { ImportModalRoute } from './index'
-
-const ImportCheckbox = ({
-	checked,
-	toggleChecked,
-}: {
-	checked: boolean
-	toggleChecked: () => void
-}) => (
-	<Checkbox
-		checked={checked}
-		onClick={toggleChecked}
-	>
-		<Flex
-			alignItems="center"
-			justifyContent="center"
-			width="24px"
-			height="24px"
-			backgroundColor="Card"
-			border="1px solid"
-			borderColor="Accent"
-			borderRadius="Medium"
-		>
-			{checked && (<CheckmarkIcon width="16px" />)}
-		</Flex>
-	</Checkbox>
-)
 
 const CheckboxNavLink = ({
 	route,
@@ -51,9 +26,9 @@ const CheckboxNavLink = ({
 		backgroundColor={isActiveRoute ? 'white' : 'transparent'}
 	>
 		<Box margin={2}>
-			<ImportCheckbox
+			<Checkbox
 				checked={isSelectedForImport}
-				toggleChecked={() => toggleSelectedImportCategory(route)}
+				onClick={() => toggleSelectedImportCategory(route)}
 			/>
 		</Box>
 		<InvisibleButton

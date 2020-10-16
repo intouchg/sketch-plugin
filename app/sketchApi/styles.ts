@@ -1,4 +1,4 @@
-import type { ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLineHeight, ThemeLetterSpacing, ThemeBorderWidth, ThemeShadow, ThemeRadius } from '@i/theme'
+import type { ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLineHeight, ThemeLetterSpacing, ThemeBorderWidth, ThemeShadow } from '@i/theme'
 
 export type RawImportedSketchStyles = {
     colors: [ string, string ][]
@@ -9,7 +9,6 @@ export type RawImportedSketchStyles = {
     letterSpacings: number[]
     borderWidths: string[]
     shadows: string[]
-    radii: string[]
 }
 
 export type ParsedImportedSketchStyles = {
@@ -21,5 +20,4 @@ export type ParsedImportedSketchStyles = {
     letterSpacings: ThemeLetterSpacing[]
     borderWidths: ThemeBorderWidth[]
     shadows: ThemeShadow[]
-    radii: ThemeRadius[]
 }

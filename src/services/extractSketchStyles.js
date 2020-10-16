@@ -22,6 +22,38 @@ const convert8DigitHex = (color) => {
 	return `rgba(${r}, ${g}, ${b}, ${parseFloat(alpha.toFixed(2))})`
 }
 
+const sortIntegersAscending = (a, b) => a - b
+
+const sortShadowStyles = (a, b) => {
+	const a1 = Math.abs(a.y)
+	const b1 = Math.abs(b.y)
+	const r1 = a1 < b1 ? -1 : a1 > b1 ? 1 : 0
+
+	if (r1 !== 0) {
+		return r1
+	}
+
+	const a2 = a.spread
+	const b2 = b.spread
+	const r2 = a2 < b2 ? -1 : a2 > b2 ? 1 : 0
+
+	if (r2 !== 0) {
+		return r2
+	}
+
+	const a3 = a.blur
+	const b3 = b.blur
+	const r3 = a3 < b3 ? -1 : a3 > b3 ? 1 : 0
+
+	if (r3 !== 0) {
+		return r3
+	}
+
+	const a4 = Math.abs(a.x)
+	const b4 = Math.abs(b.x)
+	return a4 < b4 ? -1 : a4 > b4 ? 1 : 0
+}
+
 export const extractSketchDocumentStyles = (document) => {
 	if (!document) {
 		return
@@ -34,9 +66,7 @@ export const extractSketchDocumentStyles = (document) => {
 	const lineHeights = []
 	const letterSpacings = []
 	const shadows = []
-	const shadowCache = []
 	const borderWidths = []
-	const radii = []
 
 	document.swatches.forEach(({ name, color }) => {
 		colors.push([ name, convert8DigitHex(color) ])
@@ -73,23 +103,23 @@ export const extractSketchDocumentStyles = (document) => {
 
 		sharedShadowStyles.forEach(({ enabled, x, y, blur, spread, color }) => {
 			if (enabled) {
-				if (shadowCache.some(({ x: x2, y: y2, blur: blur2, spread: spread2, color: color2 }) =>
+				if (shadows.some(({ x: x2, y: y2, blur: blur2, spread: spread2, color: color2 }) =>
 					(x2 === x && y2 === y && blur2 === blur && spread2 === spread && color2 === color),
 				)) {
 					return
 				}
 
-				shadowCache.push({ x, y, blur, spread, color })
-				shadows.push(`${x}px ${y}px ${blur}px ${spread}px ${convert8DigitHex(color)}`)
+				shadows.push({ x, y, blur, spread, color })
 			}
 		})
 	})
 
-	fontSizes.sort((a, b) => a - b)
-	fontWeights.sort((a, b) => a - b)
-	lineHeights.sort((a, b) => a - b)
-	letterSpacings.sort((a, b) => a - b)
-	borderWidths.sort((a, b) => a - b)
+	fontSizes.sort(sortIntegersAscending)
+	fontWeights.sort(sortIntegersAscending)
+	lineHeights.sort(sortIntegersAscending)
+	letterSpacings.sort(sortIntegersAscending)
+	borderWidths.sort(sortIntegersAscending)
+	shadows.sort(sortShadowStyles)
 
 	return {
 		colors: colors.filter(([ , v ]) => filterNonStrings(v)),
@@ -99,7 +129,6 @@ export const extractSketchDocumentStyles = (document) => {
 		lineHeights: lineHeights.filter(filterNonNumbers).map((v) => convertPxToRem(v)),
 		letterSpacings: letterSpacings.filter(filterNonNumbers).map((v) => `${v}px`),
 		borderWidths: borderWidths.filter(filterNonNumbers).map((v) => `${v}px`),
-		shadows,
-		radii,
+		shadows: shadows.map(({ x, y, blur, spread, color }) => `${x}px ${y}px ${blur}px ${spread}px ${convert8DigitHex(color)}`),
 	}
 }

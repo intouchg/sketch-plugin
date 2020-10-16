@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Stack, Flex, Box, Text, Heading, Checkbox, Label } from '@i/components'
-import { CheckmarkIcon } from '../Icons'
+import { Stack, Flex, Box, Text, Heading, Label } from '@i/components'
+import { Checkbox } from '../Checkbox'
+import { sortAlphabetical } from '@i/utility'
 import type { ThemeFont, ThemeFontWeight } from '@i/theme'
 import type { SystemFontsDictionary, SPFontTypeface } from '../../sketchApi'
 
@@ -17,37 +18,32 @@ const SelectableFont = ({
 	checked: boolean
 	toggleChecked: () => void
 } & SPFontTypeface) => (
-	<Label
-		padding={2}
-		paddingRight="12px"
-		borderRadius="Large"
+	<Box
+		paddingRight={2}
+		marginBottom={2}
 	>
-		<Flex>
-			<Checkbox
-				checked={checked}
-				onClick={toggleChecked}
-			>
-				<Flex
-					alignItems="center"
-					justifyContent="center"
-					width="24px"
-					height="24px"
-					backgroundColor="Card"
-					border="1px solid"
-					borderColor="Accent"
-					borderRadius="Medium"
+		<Label
+			display="inline-block"
+			padding={2}
+			paddingRight="12px"
+			borderRadius="Large"
+			backgroundColor="Background"
+		>
+			<Flex alignItems="center">
+				<Checkbox
+					checked={checked}
+					marginRight="12px"
+					onClick={toggleChecked}
+				/>
+				<Text
+					variant="secondary"
+					fontFamily={_name}
 				>
-					{checked && (<CheckmarkIcon width="16px" />)}
-				</Flex>
-			</Checkbox>
-			<Text
-				variant="secondary"
-				fontFamily={_name}
-			>
-				{style}
-			</Text>
-		</Flex>
-	</Label>
+					{style}
+				</Text>
+			</Flex>
+		</Label>
+	</Box>
 )
 
 const FontFamily = ({
@@ -57,10 +53,13 @@ const FontFamily = ({
 }: SystemFontsDictionary[string]) => {
 	return (
 		<Stack marginBottom={5}>
-			<Heading variant="Secondary">
+			<Heading
+				variant="Tertiary"
+				marginBottom={3}
+			>
 				{name}
 			</Heading>
-			<Flex>
+			<Flex flexWrap="wrap">
 				{typefaces.map((typeface) => (
 					<SelectableFont
 						checked
@@ -87,7 +86,7 @@ const Fonts = ({
 		return <>LOADING</>
 	}
 
-	const filteredSystemFonts = fonts.map(({ value }) => systemFonts[value])
+	const filteredSystemFonts = fonts.map(({ value }) => systemFonts[value]).sort((a, b) => sortAlphabetical(a, b, 'name'))
 
 	return (
 		<Stack padding={6}>

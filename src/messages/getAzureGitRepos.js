@@ -1,4 +1,5 @@
 import { AzureUserConnection } from '@i/azure'
+import { sortAlphabetical } from '@i/utility'
 
 const AZURE_INSTANCE_URL = 'https://intazdoweb.intouchsol.com'
 
@@ -21,18 +22,10 @@ export const getAzureGitRepos = async (webContents, showError, { username, acces
 
 		const gitRepos = azureConnection.gitRepos.map(([ orgName, repos ]) => ([
 			orgName,
-			repos.sort(({ name: nameA }, { name: nameB }) => {
-				const a = nameA.toLowerCase()
-				const b = nameB.toLowerCase()
-				return a > b ? 1 : (a < b ? -1 : 0)
-			}),
+			repos.sort((a, b) => sortAlphabetical(a, b, 'name')),
 		]))
 
-		const sortedGitRepos = gitRepos.sort(([ nameA ], [ nameB ]) => {
-			const a = nameA.toLowerCase()
-			const b = nameB.toLowerCase()
-			return a > b ? 1 : (a < b ? -1 : 0)
-		})
+		const sortedGitRepos = gitRepos.sort(([ nameA ], [ nameB ]) => sortAlphabetical(nameA, nameB))
 
 		webContents.executeJavaScript(`window.setGitRepos(${JSON.stringify(sortedGitRepos)})`)
 	}

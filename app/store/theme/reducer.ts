@@ -1,5 +1,6 @@
 import { enablePatches, produce, applyPatches } from 'immer'
-import { createThemeValue, createThemeGroup, themeTypePropertyMap } from '@i/theme'
+import { createThemeValue, createThemeGroup } from '@i/theme'
+import { sortAlphabetical } from '@i/utility'
 import { sketchRequest } from '../../sketchApi'
 import {
 	UNDO,
@@ -21,7 +22,7 @@ import {
 	SAVE_THEME_DATA,
 } from './actions'
 import { initialState } from './state'
-import type { StyleProperty, ThemeColor, ThemeValue } from '@i/theme'
+import type { StyleProperty, ThemeColor } from '@i/theme'
 import type { ThemeActionType } from './actions'
 import type { ThemeState } from './state'
 import type { SystemFontsDictionary } from '../../sketchApi'
@@ -96,11 +97,7 @@ export const themeReducer = (
 				const systemFonts = action.payload.SPFontsDataType
 				const systemFontsDictionary: SystemFontsDictionary = {}
 
-				systemFonts.slice().sort((a, b) => {
-					const nameA = a._name.toLowerCase()
-					const nameB = b._name.toLowerCase()
-					return nameA < nameB ? -1 : nameA > nameB ? 1 : 0
-				}).forEach((systemFont) => {
+				systemFonts.slice().sort((a, b) => sortAlphabetical(a, b, '_name')).forEach((systemFont) => {
 					const { typefaces } = systemFont
 
 					if (!typefaces) {
@@ -128,7 +125,7 @@ export const themeReducer = (
 			}
 
 			case SET_IMPORTED_SKETCH_STYLES: {
-				const { colors, fonts, fontSizes, fontWeights, lineHeights, letterSpacings, borderWidths, shadows, radii } = action.payload
+				const { colors, fonts, fontSizes, fontWeights, lineHeights, letterSpacings, borderWidths, shadows } = action.payload
 
 				nextState.importedSketchStyles = {
 					colors: colors.map(([ name, value ]) => createThemeValue([], 'color', { name, value })),
@@ -139,7 +136,6 @@ export const themeReducer = (
 					letterSpacings: letterSpacings.map((value) => createThemeValue([], 'letterSpacing', { value })),
 					borderWidths: borderWidths.map((value) => createThemeValue([], 'borderWidth', { value })),
 					shadows: shadows.map((value) => createThemeValue([], 'shadow', { value })),
-					radii: radii.map((value) => createThemeValue([], 'radius', { value })),
 				}
 
 				break
