@@ -20,7 +20,9 @@ const Fonts = ({
 		return <>LOADING</>
 	}
 
-	const filteredSystemFonts = fonts.map(({ value }) => systemFonts[value]).sort((a, b) => sortAlphabetical(a, b, 'name'))
+	const filteredSystemFonts = fonts.map(({ value }) => systemFonts[value])
+		.filter((v) => v !== undefined)
+		.sort((a, b) => sortAlphabetical(a, b, 'name'))
 
 	return (
 		<Stack padding={6}>

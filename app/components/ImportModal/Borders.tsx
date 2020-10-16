@@ -8,16 +8,18 @@ const Borders = ({
 }: {
 	borderWidths: (ThemeBorderWidth & { imported?: boolean })[]
 }) => {
-	// const sortedBorderWidths = borderWidths.slice().sort((a, b) => {
-	// 	const valueA = a.value.split('px')[0]
-	// })
+	const sortedBorderWidths = borderWidths.slice().sort((a, b) => {
+		const valueA = parseInt(a.value.split('px')[0], 10)
+		const valueB = parseInt(b.value.split('px')[0], 10)
+		return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
+	})
 
 	return (
 		<Stack
 			alignItems="center"
 			paddingY="146px"
 		>
-			{borderWidths.map(({ id, imported, ...props }) => (
+			{sortedBorderWidths.map(({ id, imported, ...props }) => (
 				<Box
 					key={id}
 					borderRadius="Large"
