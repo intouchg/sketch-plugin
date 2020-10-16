@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Box, Stack } from '@i/components'
 import { calculateColorBrightness } from '@i/utility'
-import { AccentText, SecondaryText } from './Texts'
+import { AccentText, SecondaryText } from '../Texts'
 
 const TruncatedSecondaryText = styled(SecondaryText)`
 	overflow: hidden;
@@ -16,7 +16,7 @@ const TruncatedAccentText = styled(AccentText)`
 	white-space: nowrap;
 `
 
-const ColorSwatch = ({
+const Color = ({
 	id,
 	name,
 	value,
@@ -58,4 +58,4 @@ const ColorSwatch = ({
 	)
 }
 
-export { ColorSwatch }
+export { Color }

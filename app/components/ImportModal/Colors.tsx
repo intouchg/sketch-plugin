@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Flex, Box, Text } from '@i/components'
-import { ColorSwatch } from '../ColorSwatch'
+import { Flex } from '@i/components'
+import { Color } from '../ThemeValues'
 import type { ThemeColor } from '@i/theme'
 
 const Colors = ({
@@ -14,7 +14,7 @@ const Colors = ({
 			padding={6}
 		>
 			{colors.map(({ id, name, value }) => (
-				<ColorSwatch
+				<Color
 					key={id}
 					id={id}
 					name={name}
