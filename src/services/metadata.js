@@ -6,14 +6,6 @@ const METADATA_STORAGE_FILEPATH = path.resolve('./Contents/Sketch/metadata/')
 const METADATA_FILEPATH = path.resolve(METADATA_STORAGE_FILEPATH, METADATA_FILENAME)
 const RECENT_PROJECTS_MAX_LENGTH = 5
 
-if (!fs.existsSync(METADATA_STORAGE_FILEPATH)) {
-	fs.mkdirSync(METADATA_STORAGE_FILEPATH, { recursive: true })
-}
-
-if (!fs.existsSync(METADATA_FILEPATH)) {
-	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify({}))
-}
-
 export const readMetadata = () => {
 	try {
 		const filedata = fs.readFileSync(METADATA_FILEPATH).toString()
@@ -49,3 +41,19 @@ export const writeRecentProjectMetadata = (project) => {
 	writeMetadata((metadata) => ({ ...metadata, recentProjects: newRecentProjects }))
 	return newRecentProjects
 }
+
+export const refreshRecentProjectMetadata = () => {
+	const recentProjects = readRecentProjectMetadata()
+	const existingRecentProjects = recentProjects.filter(({ filepath }) => fs.existsSync(filepath))
+	writeMetadata((metadata) => ({ ...metadata, recentProjects: existingRecentProjects }))
+}
+
+if (!fs.existsSync(METADATA_STORAGE_FILEPATH)) {
+	fs.mkdirSync(METADATA_STORAGE_FILEPATH, { recursive: true })
+}
+
+if (!fs.existsSync(METADATA_FILEPATH)) {
+	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify({}))
+}
+
+refreshRecentProjectMetadata()

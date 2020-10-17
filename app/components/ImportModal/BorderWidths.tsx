@@ -43,7 +43,7 @@ const BorderWidths = ({
 					)}
 					<Box
 						borderRadius="Large"
-						backgroundColor={imported ? 'Background' : 'transparent'}
+						backgroundColor={imported ? 'transparent' : 'Background'}
 						marginY={2}
 					>
 						<BorderWidth {...props} />
