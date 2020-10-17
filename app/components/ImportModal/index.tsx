@@ -91,7 +91,7 @@ const ImportModal = ({
 	}
 
 	const routeThemeValues = themeValues.filter((v) => v.type === route)
-	const routeImportedSketchValues = importedSketchValues[themeTypePropertyMap[route]]
+	const routeImportedSketchValues = (importedSketchValues[themeTypePropertyMap[route]] as ThemeValue[]).map((v: any) => ({ ...v, imported: true }))
 
 	const routeSelectedImportedValues = selectedImportedValues.filter((v) => {
 		if (route === 'font') {

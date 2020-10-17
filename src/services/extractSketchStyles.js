@@ -25,33 +25,9 @@ const convert8DigitHex = (color) => {
 const sortIntegersAscending = (a, b) => a - b
 
 const sortShadowStyles = (a, b) => {
-	const a1 = Math.abs(a.y)
-	const b1 = Math.abs(b.y)
-	const r1 = a1 < b1 ? -1 : a1 > b1 ? 1 : 0
-
-	if (r1 !== 0) {
-		return r1
-	}
-
-	const a2 = a.spread
-	const b2 = b.spread
-	const r2 = a2 < b2 ? -1 : a2 > b2 ? 1 : 0
-
-	if (r2 !== 0) {
-		return r2
-	}
-
-	const a3 = a.blur
-	const b3 = b.blur
-	const r3 = a3 < b3 ? -1 : a3 > b3 ? 1 : 0
-
-	if (r3 !== 0) {
-		return r3
-	}
-
-	const a4 = Math.abs(a.x)
-	const b4 = Math.abs(b.x)
-	return a4 < b4 ? -1 : a4 > b4 ? 1 : 0
+	const valueA = a.blur + a.spread + (0.5 * (Math.abs(a.x) + Math.abs(a.y)))
+	const valueB = b.blur + b.spread + (0.5 * (Math.abs(b.x) + Math.abs(b.y)))
+	return valueA < valueB ? -1 : valueA > valueB ? 1 : 0
 }
 
 export const extractSketchDocumentStyles = (document) => {

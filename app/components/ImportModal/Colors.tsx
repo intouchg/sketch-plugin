@@ -11,16 +11,19 @@ const Colors = ({
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeColor[]
-	importedValues: ThemeColor[]
+	importedValues: (ThemeColor & { imported: boolean })[]
 	selectedImportedValues: ThemeColor[]
 	toggleSelectedImportedValue: (color: ThemeColor) => void
 }) => {
+	const filteredThemeValues = values.filter(({ name }) => !importedValues.some((v) => v.name === name))
+	const sortedColors = importedValues.concat(filteredThemeValues as any).sort((a, b) => sortAlphabetical(a, b, 'name'))
+
 	return (
 		<Flex
 			flexWrap="wrap"
 			padding={6}
 		>
-			{values.map(({ id, name, value }) => (
+			{sortedColors.map(({ id, name, value }) => (
 				<Color
 					key={id}
 					id={id}

@@ -27,8 +27,8 @@ const Shadow = ({
 			<Flex
 				alignItems="center"
 				justifyContent="center"
-				width="64px"
-				height="64px"
+				width="96px"
+				height="96px"
 				backgroundColor="Card"
 				border="1px solid"
 				borderColor="Accent"
