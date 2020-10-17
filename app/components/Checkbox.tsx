@@ -1,5 +1,6 @@
 import React from 'react'
-import { Flex, Checkbox as CoreCheckbox } from '@i/components'
+import styled from 'styled-components'
+import { Box, Flex, Checkbox as CoreCheckbox } from '@i/components'
 import { CheckmarkIcon } from './Icons'
 
 const Checkbox = ({
@@ -30,4 +31,13 @@ const Checkbox = ({
 	</CoreCheckbox>
 )
 
-export { Checkbox }
+const CheckboxPlaceholder = styled(Box)`
+	box-sizing: content-box;
+	width: 24px;
+	height: 24px;
+`
+
+export {
+	Checkbox,
+	CheckboxPlaceholder,
+}

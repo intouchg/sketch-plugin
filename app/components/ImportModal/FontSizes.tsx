@@ -1,8 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Stack, Flex, Box, Text } from '@i/components'
+import { Stack, Flex } from '@i/components'
 import { FontSize } from '../ThemeValues'
 import { SecondaryText } from '../Texts'
+import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
+import { InvisibleButton } from '../Buttons'
 import type { ThemeFontSize } from '@i/theme'
 
 const FontSizes = ({
@@ -14,11 +15,7 @@ const FontSizes = ({
 	importedValues: (ThemeFontSize & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (fontSize: ThemeFontSize) => void
 }) => {
-	console.log(values)
-	console.log(importedValues)
-
 	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
-	console.log(filteredImportedValues)
 	const sortedFontSizes = filteredImportedValues.concat(values as any).sort((a, b) => {
 		const valueA = Number(a.value.split('rem')[0])
 		const valueB = Number(b.value.split('rem')[0])
@@ -35,9 +32,11 @@ const FontSizes = ({
 						key={props.id}
 						flexShrink={0}
 						marginY={1}
+						as={imported ? InvisibleButton : undefined}
+						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Flex
-							width="40px"
+							minWidth="72px"
 							minHeight="36px"
 							marginRight={3}
 							alignItems="center"
@@ -46,7 +45,24 @@ const FontSizes = ({
 							borderRadius="Large"
 							flexShrink={0}
 						>
-							<SecondaryText>
+							{imported ? (
+								<Checkbox
+									checked={Boolean(selected)}
+									paddingY="6px"
+									paddingLeft="6px"
+									paddingRight="10px"
+								/>
+							) : (
+								<CheckboxPlaceholder
+									paddingY="6px"
+									paddingRight="10px"
+									paddingLeft="6px"
+								/>
+							)}
+							<SecondaryText
+								padding="8px"
+								paddingLeft={imported ? '0' : '8px'}
+							>
 								{pixelValue}
 							</SecondaryText>
 						</Flex>

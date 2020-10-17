@@ -95,17 +95,10 @@ const ImportModal = ({
 	const routeImportedSketchValues = (importedSketchValues[themeTypePropertyMap[route]] as any).map((value: ThemeValue | SystemFontFamily) => {
 		const comparisonProp = value.hasOwnProperty('id') ? 'id' : 'name'
 		return {
-			...value, imported: true,
+			...value,
+			imported: true,
 			selected: selectedImportedValues.some((v: any) => v[comparisonProp] === (value as any)[comparisonProp]),
 		}
-	})
-
-	const routeSelectedImportedValues = selectedImportedValues.filter((v) => {
-		if (route === 'font') {
-			return v.hasOwnProperty('_name')
-		}
-
-		return (v as ThemeValue).type === route
 	})
 
 	return (
