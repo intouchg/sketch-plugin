@@ -8,7 +8,7 @@ const Shadow = ({
 	index,
 	value,
 	imported,
-	...rest
+	...props
 }: ThemeShadow & {
 	imported?: boolean
 	index: number

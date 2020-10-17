@@ -1,6 +1,7 @@
 import React from 'react'
-import { Stack } from '@i/components'
+import { Stack, Flex } from '@i/components'
 import { Shadow } from '../ThemeValues'
+import { Checkbox } from '../Checkbox'
 import type { ThemeShadow } from '@i/theme'
 
 const sortShadowStyles = (shadowA: ThemeShadow, shadowB: ThemeShadow) => {
@@ -32,12 +33,12 @@ const Shadows = ({
 			alignItems="center"
 			paddingY="146px"
 		>
-			{sortedShadows.map(({ id, imported, ...rest }, index) => (
+			{sortedShadows.map(({ id, imported, ...props }, index) => (
 				<Shadow
 					key={id}
 					id={id}
 					index={index}
-					{...rest}
+					{...props}
 				/>
 			))}
 		</Stack>

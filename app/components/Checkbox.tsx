@@ -5,7 +5,7 @@ import { CheckmarkIcon } from './Icons'
 const Checkbox = ({
 	checked,
 	onClick,
-	...rest
+	...props
 }: {
     checked: boolean
 	onClick: () => void
@@ -13,7 +13,7 @@ const Checkbox = ({
 	<CoreCheckbox
 		checked={checked}
 		onClick={onClick}
-		{...rest}
+		{...props}
 	>
 		<Flex
 			alignItems="center"

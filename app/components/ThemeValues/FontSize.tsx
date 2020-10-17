@@ -7,7 +7,7 @@ const FontSize = ({
 	index,
 	value,
 	imported,
-	...rest
+	...props
 }: ThemeFontSize & {
 	imported?: boolean
 	index: number

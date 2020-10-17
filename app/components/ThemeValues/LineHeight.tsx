@@ -7,7 +7,7 @@ const LineHeight = ({
 	index,
 	value,
 	imported,
-	...rest
+	...props
 }: ThemeLineHeight & {
 	imported?: boolean
 	index: number
