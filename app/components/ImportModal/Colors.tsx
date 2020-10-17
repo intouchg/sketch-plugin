@@ -1,8 +1,9 @@
 import React from 'react'
-import { Flex, Box, Label } from '@i/components'
+import { Flex, Box } from '@i/components'
 import { Color } from '../ThemeValues'
 import { Checkbox } from '../Checkbox'
 import { OverwriteIcon } from '../Icons'
+import { InvisibleButton } from '../Buttons'
 import { sortAlphabetical } from '@i/utility'
 import type { ThemeColor } from '@i/theme'
 
@@ -30,13 +31,14 @@ const Colors = ({
 			{sortedColors.map(({ imported, selected, willOverwrite, ...props }) => (
 				<Box
 					key={props.id}
-					as={imported ? Label : undefined}
 					position="relative"
 					width="196px"
 					height="128px"
 					flexGrow={1}
 					marginX={2}
 					marginBottom={4}
+					as={imported ? InvisibleButton : undefined}
+					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 				>
 					<Color {...props} />
 					{imported && (
@@ -46,7 +48,6 @@ const Colors = ({
 							right="0"
 							margin={2}
 							checked={Boolean(selected)}
-							onClick={() => toggleSelectedImportedValue(props)}
 						/>
 					)}
 					{imported && willOverwrite && (

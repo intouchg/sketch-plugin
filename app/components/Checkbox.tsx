@@ -8,7 +8,7 @@ const Checkbox = ({
 	...props
 }: {
     checked: boolean
-	onClick: () => void
+	onClick?: () => void
 } & React.ComponentProps<typeof CoreCheckbox>) => (
 	<CoreCheckbox
 		checked={checked}

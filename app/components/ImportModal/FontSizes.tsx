@@ -19,8 +19,6 @@ const FontSizes = ({
 		return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
 	})
 
-	console.log(sortedFontSizes)
-
 	return (
 		<Text>
 			Type Scale

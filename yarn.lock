@@ -68,7 +68,7 @@
 "@babel/core@>=7.9.0", "@babel/core@^7.11.6", "@babel/core@^7.4.3", "@babel/core@^7.7.5", "@babel/core@^7.8.3", "@babel/core@^7.9.0":
   version "7.12.3"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/core/-/core-7.12.3.tgz#1b436884e1e3bff6fb1328dc02b208759de92ad8"
-  integrity sha512-0qXcZYKZp3/6N2jKYVxZv0aNCsxTSVCiK72DTiTYZAu7sjg73W0/aynWjMbiGd87EQL4WyA8reiJVh92AVla9g==
+  integrity sha1-G0NohOHjv/b7EyjcArIIdZ3pKtg=
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/generator" "^7.12.1"
@@ -1146,7 +1146,7 @@
 "@babel/standalone@^7.8.7":
   version "7.12.3"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/standalone/-/standalone-7.12.3.tgz#65f37d670ebb4083e74fd9b5178044ccc64d4f83"
-  integrity sha512-+zZdF3o/CEeSQ+WDZWeqdVVHGc1oQ+EZuYOQnCGyngNXroH+uMhHa00ki6egI/EddI6vHMH3TEdQhXAx98usXg==
+  integrity sha1-ZfN9Zw67QIPnT9m1F4BEzMZNT4M=
 
 "@babel/template@^7.10.4":
   version "7.10.4"
@@ -1313,9 +1313,9 @@
     "@i/utility" latest
 
 "@i/components@latest":
-  version "0.0.32"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.32.tgz#792c12cac31b0178cab357f7433bc26993ddfd97"
-  integrity sha1-eSwSysMbAXjKs1f3QzvCaZPd/Zc=
+  version "0.0.33"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.33.tgz#f13bae4af856cb253944a9780127034a0ffcac09"
+  integrity sha1-8TuuSvhWyyU5RKl4AScDSg/8rAk=
   dependencies:
     "@babel/runtime" "7.11.2"
     "@i/theme" latest
@@ -5558,9 +5558,9 @@ entities@^1.1.1, entities@^1.1.2:
   integrity sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
 
 entities@^2.0.0:
-  version "2.0.3"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/entities/-/entities-2.0.3.tgz#5c487e5742ab93c15abb5da22759b8590ec03b7f"
-  integrity sha512-MyoZ0jgnLvB2X3Lg5HqpFmn1kybDiIfEQmKzTb5apr51Rb+T3KdmMiqa70T+bhGnyv7bQ6WMj2QMHpGMmlrUYQ==
+  version "2.1.0"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/entities/-/entities-2.1.0.tgz#992d3129cf7df6870b96c57858c249a120f8b8b5"
+  integrity sha512-hCx1oky9PFrJ611mf0ifBLBRW8lUUVRlFolb5gWRfIELabBlbp9xZvrqZLZAs+NxFnbfQoeGd8wDkygjg7U85w==
 
 errno@^0.1.1, errno@^0.1.3, errno@~0.1.7:
   version "0.1.7"
@@ -10642,9 +10642,9 @@ raw-loader@^4.0.1:
     schema-utils "^3.0.0"
 
 re-resizable@^6.1.1:
-  version "6.6.1"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/re-resizable/-/re-resizable-6.6.1.tgz#654a0edc1977e5d025c777a97f5555ef4bccea7f"
-  integrity sha1-ZUoO3Bl35dAlx3epf1VV70vM6n8=
+  version "6.7.0"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/re-resizable/-/re-resizable-6.7.0.tgz#63324f0d2c8cd24fedda6bba5d638bd09c63ee6b"
+  integrity sha512-uBrV59SZgxmZunL7MWoSnEKEfQW+GfevJqWqnA0slTe54Xbdfn1SgvUCP/C7Ak3hHkz3dSHN8xwpyapdx2Sgrw==
   dependencies:
     fast-memoize "^2.5.1"
 
