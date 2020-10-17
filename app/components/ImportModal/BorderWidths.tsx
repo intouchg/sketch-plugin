@@ -1,6 +1,7 @@
 import React from 'react'
-import { Stack, Box } from '@i/components'
+import { Stack, Box, Flex, Label } from '@i/components'
 import { BorderWidth } from '../ThemeValues'
+import { Checkbox } from '../Checkbox'
 import type { ThemeBorderWidth } from '@i/theme'
 
 const sortBorderWidths = (a: ThemeBorderWidth, b: ThemeBorderWidth) => {
@@ -16,7 +17,7 @@ const BorderWidths = ({
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeBorderWidth[]
-	importedValues: (ThemeBorderWidth & { imported: boolean })[]
+	importedValues: (ThemeBorderWidth & { imported?: boolean })[]
 	selectedImportedValues: ThemeBorderWidth[]
 	toggleSelectedImportedValue: (borderWidth: ThemeBorderWidth) => void
 }) => {
@@ -28,19 +29,25 @@ const BorderWidths = ({
 			alignItems="center"
 			paddingY="146px"
 		>
-			{sortedBorderWidths.map(({ id, imported, ...props }) => (
-				<Box
-					key={id}
-					borderRadius="Large"
-					backgroundColor={imported ? 'Background' : 'Primary'}
-					marginBottom={2}
+			{sortedBorderWidths.map(({ imported, ...props }) => (
+				<Flex
+					key={props.id}
+					as={Label}
+					alignItems="center"
 				>
-					<BorderWidth
-						key={id}
-						id={id}
-						{...props}
+					<Checkbox
+						checked={selectedImportedValues.some((v) => v.id === props.id)}
+						marginRight={3}
+						onClick={() => toggleSelectedImportedValue(props)}
 					/>
-				</Box>
+					<Box
+						borderRadius="Large"
+						backgroundColor={imported ? 'Background' : 'Primary'}
+						marginY={2}
+					>
+						<BorderWidth {...props} />
+					</Box>
+				</Flex>
 			))}
 		</Stack>
 	)

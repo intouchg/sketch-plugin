@@ -20,7 +20,7 @@ const Shadows = ({
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeShadow[]
-	importedValues: (ThemeShadow & { imported: boolean })[]
+	importedValues: (ThemeShadow & { imported?: boolean })[]
 	selectedImportedValues: ThemeShadow[]
 	toggleSelectedImportedValue: (shadow: ThemeShadow) => void
 }) => {

@@ -10,7 +10,7 @@ const FontSizes = ({
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeFontSize[]
-	importedValues: (ThemeFontSize & { imported: boolean })[]
+	importedValues: (ThemeFontSize & { imported?: boolean })[]
 	selectedImportedValues: ThemeFontSize[]
 	toggleSelectedImportedValue: (fontSize: ThemeFontSize) => void
 }) => {

@@ -15,7 +15,7 @@ const Fonts = ({
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeFont[]
-	importedValues: (ThemeFont & { imported: boolean })[]
+	importedValues: (ThemeFont & { imported?: boolean })[]
 	selectedImportedValues: SPFontTypeface[]
 	toggleSelectedImportedValue: (typeface: SPFontTypeface) => void
 }) => {

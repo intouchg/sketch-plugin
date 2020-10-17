@@ -11,7 +11,7 @@ const Colors = ({
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeColor[]
-	importedValues: (ThemeColor & { imported: boolean })[]
+	importedValues: (ThemeColor & { imported?: boolean })[]
 	selectedImportedValues: ThemeColor[]
 	toggleSelectedImportedValue: (color: ThemeColor) => void
 }) => {

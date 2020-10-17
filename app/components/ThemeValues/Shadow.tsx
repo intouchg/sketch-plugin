@@ -18,7 +18,7 @@ const Shadow = ({
 	return (
 		<Flex
 			width="65%"
-			minWidth="420px"
+			minWidth="440px"
 			maxWidth="550px"
 			alignItems="center"
 			marginBottom={4}
