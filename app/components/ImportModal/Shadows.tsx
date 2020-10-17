@@ -29,7 +29,9 @@ const Shadows = ({
 
 	return (
 		<Stack
-			alignItems="center"
+			width="460px"
+			alignItems="flex-end"
+			margin="0 auto"
 			paddingY="146px"
 		>
 			{sortedShadows.map(({ imported, selected, ...props }, index) => (

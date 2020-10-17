@@ -25,7 +25,9 @@ const BorderWidths = ({
 
 	return (
 		<Stack
-			alignItems="center"
+			width="460px"
+			alignItems="flex-end"
+			margin="0 auto"
 			paddingY="146px"
 		>
 			{sortedBorderWidths.map(({ imported, selected, ...props }) => (
