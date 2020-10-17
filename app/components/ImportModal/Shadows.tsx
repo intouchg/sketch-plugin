@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Flex } from '@i/components'
+import { Stack, Flex, Label } from '@i/components'
 import { Shadow } from '../ThemeValues'
 import { Checkbox } from '../Checkbox'
 import type { ThemeShadow } from '@i/theme'
@@ -33,13 +33,25 @@ const Shadows = ({
 			alignItems="center"
 			paddingY="146px"
 		>
-			{sortedShadows.map(({ id, imported, ...props }, index) => (
-				<Shadow
-					key={id}
-					id={id}
-					index={index}
-					{...props}
-				/>
+			{sortedShadows.map(({ imported, ...props }, index) => (
+				<Flex
+					key={props.id}
+					as={imported ? Label : undefined}
+					alignItems="center"
+					marginBottom={4}
+				>
+					{imported && (
+						<Checkbox
+							checked={selectedImportedValues.some((v) => v.id === props.id)}
+							marginRight={3}
+							onClick={() => toggleSelectedImportedValue(props)}
+						/>
+					)}
+					<Shadow
+						index={index}
+						{...props}
+					/>
+				</Flex>
 			))}
 		</Stack>
 	)

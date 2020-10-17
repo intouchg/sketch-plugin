@@ -30,15 +30,12 @@ const Color = ({
 	return (
 		<Box
 			position="relative"
-			width="196px"
-			height="128px"
+			width="100%"
+			height="100%"
 			borderRadius="Medium"
 			backgroundColor={value}
 			border="1px solid"
 			borderColor="Accent"
-			marginX={2}
-			marginBottom={4}
-			flexGrow={1}
 		>
 			<Stack
 				maxWidth="100%"

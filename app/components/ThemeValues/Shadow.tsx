@@ -21,7 +21,6 @@ const Shadow = ({
 			minWidth="440px"
 			maxWidth="550px"
 			alignItems="center"
-			marginBottom={4}
 			flexShrink={0}
 		>
 			<Flex

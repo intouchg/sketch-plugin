@@ -1,6 +1,7 @@
 import React from 'react'
-import { Flex } from '@i/components'
+import { Flex, Box, Label } from '@i/components'
 import { Color } from '../ThemeValues'
+import { Checkbox } from '../Checkbox'
 import { sortAlphabetical } from '@i/utility'
 import type { ThemeColor } from '@i/theme'
 
@@ -23,13 +24,29 @@ const Colors = ({
 			flexWrap="wrap"
 			padding={6}
 		>
-			{sortedColors.map(({ id, name, value }) => (
-				<Color
-					key={id}
-					id={id}
-					name={name}
-					value={value}
-				/>
+			{sortedColors.map(({ imported, ...props }) => (
+				<Box
+					key={props.id}
+					as={imported ? Label : undefined}
+					position="relative"
+					width="196px"
+					height="128px"
+					flexGrow={1}
+					marginX={2}
+					marginBottom={4}
+				>
+					<Color {...props} />
+					{imported && (
+						<Checkbox
+							position="absolute"
+							top="0"
+							right="0"
+							margin={2}
+							checked={selectedImportedValues.some((v) => v.id === props.id)}
+							onClick={() => toggleSelectedImportedValue(props)}
+						/>
+					)}
+				</Box>
 			))}
 		</Flex>
 	)

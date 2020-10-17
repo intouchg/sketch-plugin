@@ -32,14 +32,16 @@ const BorderWidths = ({
 			{sortedBorderWidths.map(({ imported, ...props }) => (
 				<Flex
 					key={props.id}
-					as={Label}
+					as={imported ? Label : undefined}
 					alignItems="center"
 				>
-					<Checkbox
-						checked={selectedImportedValues.some((v) => v.id === props.id)}
-						marginRight={3}
-						onClick={() => toggleSelectedImportedValue(props)}
-					/>
+					{imported && (
+						<Checkbox
+							checked={selectedImportedValues.some((v) => v.id === props.id)}
+							marginRight={3}
+							onClick={() => toggleSelectedImportedValue(props)}
+						/>
+					)}
 					<Box
 						borderRadius="Large"
 						backgroundColor={imported ? 'Background' : 'Primary'}
