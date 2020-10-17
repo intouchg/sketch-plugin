@@ -11,7 +11,8 @@ const theme = {
 		'Text Light': '#999999',
 		Critical: '#ff4867',
 		Positive: '#1dce4a',
-		Warning: '#ffe31e',
+		Caution: '#ffe31e',
+		'Caution Dark': '#a98d01',
 	},
 	space: [ '0', '4px', '8px', '16px', '24px', '32px', '48px' ],
 	fonts: {

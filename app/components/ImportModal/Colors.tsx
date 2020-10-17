@@ -2,6 +2,7 @@ import React from 'react'
 import { Flex, Box, Label } from '@i/components'
 import { Color } from '../ThemeValues'
 import { Checkbox } from '../Checkbox'
+import { OverwriteIcon } from '../Icons'
 import { sortAlphabetical } from '@i/utility'
 import type { ThemeColor } from '@i/theme'
 
@@ -15,14 +16,18 @@ const Colors = ({
 	toggleSelectedImportedValue: (color: ThemeColor) => void
 }) => {
 	const filteredThemeValues = values.filter(({ name }) => !importedValues.some((v) => v.name === name))
-	const sortedColors = importedValues.concat(filteredThemeValues as any).sort((a, b) => sortAlphabetical(a, b, 'name'))
+
+	const sortedColors = importedValues
+		.map((i) => ({ ...i, willOverwrite: values.some((v) => v.name === i.name) }))
+		.concat(filteredThemeValues as any)
+		.sort((a, b) => sortAlphabetical(a, b, 'name'))
 
 	return (
 		<Flex
 			flexWrap="wrap"
 			padding={6}
 		>
-			{sortedColors.map(({ imported, selected, ...props }) => (
+			{sortedColors.map(({ imported, selected, willOverwrite, ...props }) => (
 				<Box
 					key={props.id}
 					as={imported ? Label : undefined}
@@ -43,6 +48,26 @@ const Colors = ({
 							checked={Boolean(selected)}
 							onClick={() => toggleSelectedImportedValue(props)}
 						/>
+					)}
+					{imported && willOverwrite && (
+						<Flex
+							position="absolute"
+							bottom="0"
+							right="0"
+							alignItems="center"
+							justifyContent="center"
+							width="20px"
+							height="20px"
+							margin={2}
+							backgroundColor="Card"
+							borderRadius="50%"
+						>
+							<OverwriteIcon
+								width="16px"
+								height="16px"
+								fill="Caution Dark"
+							/>
+						</Flex>
 					)}
 				</Box>
 			))}
