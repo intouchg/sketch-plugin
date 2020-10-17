@@ -14,7 +14,7 @@ const Colors = ({
 }: {
 	values: ThemeColor[]
 	importedValues: (ThemeColor & { imported?: boolean, selected?: boolean })[]
-	toggleSelectedImportedValue: (color: ThemeColor) => void
+	toggleSelectedImportedValue: (color: ThemeColor & { willOverwrite?: boolean }) => void
 }) => {
 	const filteredThemeValues = values.filter(({ name }) => !importedValues.some((v) => v.name === name))
 
@@ -38,7 +38,7 @@ const Colors = ({
 					marginX={2}
 					marginBottom={4}
 					as={imported ? InvisibleButton : undefined}
-					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
+					onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwrite }) : undefined}
 				>
 					<Color {...props} />
 					{imported && (

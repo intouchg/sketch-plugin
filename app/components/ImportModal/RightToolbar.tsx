@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Box, Flex } from '@i/components'
+import { Stack, Box, Flex, Text } from '@i/components'
 import { InvisibleButton, PrimaryButton } from '../Buttons'
 import { AccentText, SecondaryText } from '../Texts'
 import { CloseIcon } from '../Icons'
@@ -9,16 +9,20 @@ import type { ImportModalRoute } from './index'
 
 const CheckboxNavLink = ({
 	route,
-	setRoute,
+	setActiveRoute,
 	toggleSelectedImportCategory,
 	isActiveRoute,
 	isSelectedForImport,
+	numberOfSelectedNewImportedValues,
+	numberOfSelectedOverwriteImportedValues,
 }: {
 	route: ImportModalRoute
-	setRoute: (route: ImportModalRoute) => void
+	setActiveRoute: (route: ImportModalRoute) => void
 	toggleSelectedImportCategory: (route: ImportModalRoute) => void
 	isActiveRoute: boolean
 	isSelectedForImport: boolean
+	numberOfSelectedNewImportedValues: number
+	numberOfSelectedOverwriteImportedValues: number
 }) => (
 	<Flex
 		paddingX={2}
@@ -31,37 +35,81 @@ const CheckboxNavLink = ({
 				onClick={() => toggleSelectedImportCategory(route)}
 			/>
 		</Box>
-		<InvisibleButton
+		<Flex
+			as={InvisibleButton}
+			alignItems="center"
+			justifyContent="space-between"
 			width="100%"
 			paddingY={2}
 			textAlign="left"
-			onClick={() => setRoute(route)}
+			onClick={() => setActiveRoute(route)}
 		>
 			<SecondaryText>
 				{routeTitles[route]}
 			</SecondaryText>
-		</InvisibleButton>
+			<Flex marginRight={2}>
+				{numberOfSelectedOverwriteImportedValues > 0 && (
+					<Flex
+						alignItems="center"
+						justifyContent="center"
+						backgroundColor="Caution"
+						borderRadius="Medium"
+					>
+						<Text
+							fontSize={1}
+							lineHeight={1}
+							paddingX={2}
+							paddingY={1}
+							fontWeight="Demibold"
+						>
+							{numberOfSelectedOverwriteImportedValues}
+						</Text>
+					</Flex>
+				)}
+				{numberOfSelectedNewImportedValues > 0 && (
+					<Flex
+						alignItems="center"
+						justifyContent="center"
+						backgroundColor="Positive"
+						borderRadius="Medium"
+						marginLeft={1}
+					>
+						<Text
+							fontSize={1}
+							lineHeight={1}
+							paddingX={2}
+							paddingY={1}
+							fontWeight="Demibold"
+						>
+							{numberOfSelectedNewImportedValues}
+						</Text>
+					</Flex>
+				)}
+			</Flex>
+		</Flex>
 	</Flex>
 )
 
 const RightToolbar = ({
-	route,
-	setRoute,
+	activeRoute,
+	setActiveRoute,
 	selectedImportCategories,
 	setSelectedImportCategories,
 	closeImportModal,
 	sketchDocumentNames,
 	selectedSketchDocumentIndex,
 	setSelectedSketchDocumentIndex,
+	numberOfSelectedImportedValuesBySaveType,
 }: {
-	route: ImportModalRoute
-	setRoute: (route: ImportModalRoute) => void
+	activeRoute: ImportModalRoute
+	setActiveRoute: (route: ImportModalRoute) => void
 	selectedImportCategories: ImportModalRoute[]
 	setSelectedImportCategories: React.Dispatch<React.SetStateAction<ImportModalRoute[]>>
 	closeImportModal: () => void
 	sketchDocumentNames: string[]
 	selectedSketchDocumentIndex: number
 	setSelectedSketchDocumentIndex: (index: number) => void
+	numberOfSelectedImportedValuesBySaveType: { [key in ImportModalRoute]: { new: number, overwrite: number } }
 }) => {
 	const selectAllImportCategories = () => setSelectedImportCategories([ ...routes ])
 	const unselectAllImportCategories = () => setSelectedImportCategories([])
@@ -125,14 +173,16 @@ const RightToolbar = ({
 						{selectedImportCategories.length ? 'Unselect' : 'Select'} All
 					</AccentText>
 				</InvisibleButton>
-				{routes.map((r) => (
+				{routes.map((route) => (
 					<CheckboxNavLink
-						key={r}
-						route={r}
-						setRoute={setRoute}
+						key={route}
+						route={route}
+						setActiveRoute={setActiveRoute}
 						toggleSelectedImportCategory={toggleSelectedImportCategory}
-						isActiveRoute={r === route}
-						isSelectedForImport={selectedImportCategories.includes(r)}
+						isActiveRoute={route === activeRoute}
+						isSelectedForImport={selectedImportCategories.includes(route)}
+						numberOfSelectedNewImportedValues={numberOfSelectedImportedValuesBySaveType[route].new}
+						numberOfSelectedOverwriteImportedValues={numberOfSelectedImportedValuesBySaveType[route].overwrite}
 					/>
 				))}
 				<PrimaryButton

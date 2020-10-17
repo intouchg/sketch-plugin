@@ -32,6 +32,8 @@ export const routeTitles: { [key in ImportModalRoute]: string } = {
 	borderWidth: 'Borders',
 }
 
+type SelectedImportedValue = (ThemeValue | SystemFontFamily) & { willOverwrite?: boolean }
+
 // TO DO: Create loading component
 
 const ImportModal = ({
@@ -42,13 +44,14 @@ const ImportModal = ({
 	const sketchDocumentNames = useSelector((state) => state.theme.sketchDocumentNames)
 	const importedSketchValues = useSelector((state) => state.theme.importedSketchValues)
 	const themeValues = useSelector((state) => state.theme.values)
-	const [ route, setRoute ] = useState<ImportModalRoute>('color')
+	const [ activeRoute, setActiveRoute ] = useState<ImportModalRoute>('color')
 	const [ selectedSketchDocumentIndex, setSelectedSketchDocumentIndex ] = useState<number>(0)
 	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
-	const [ selectedImportedValues, setSelectedImportedValues ] = useState<(ThemeValue | SystemFontFamily)[]>([])
+	const [ selectedImportedValues, setSelectedImportedValues ] = useState<SelectedImportedValue[]>([])
 	const [ showLoading, setShowLoading ] = useState(false)
 
-	const ImportView = views[route]
+	const ImportView = views[activeRoute]
+	const comparisonProp = activeRoute === 'font' ? 'name' : 'id'
 
 	useEffect(() => setShowLoading(false), [ importedSketchValues ])
 
@@ -77,8 +80,7 @@ const ImportModal = ({
 		return null
 	}
 
-	const toggleSelectedImportedValue = (style: ThemeValue | SystemFontFamily) => {
-		const comparisonProp = route === 'font' ? '_name' : 'id'
+	const toggleSelectedImportedValue = (style: SelectedImportedValue) => {
 		const comparisonValue = (style as any)[comparisonProp]
 
 		setSelectedImportedValues((state) => {
@@ -90,15 +92,28 @@ const ImportModal = ({
 		})
 	}
 
-	const routeThemeValues = themeValues.filter((v) => v.type === route)
+	const routeThemeValues = themeValues.filter((v) => v.type === activeRoute)
 
-	const routeImportedSketchValues = (importedSketchValues[themeTypePropertyMap[route]] as any).map((value: ThemeValue | SystemFontFamily) => {
-		const comparisonProp = value.hasOwnProperty('id') ? 'id' : 'name'
-		return {
-			...value,
-			imported: true,
-			selected: selectedImportedValues.some((v: any) => v[comparisonProp] === (value as any)[comparisonProp]),
-		}
+	const routeImportedSketchValues = (importedSketchValues[themeTypePropertyMap[activeRoute]] as any).map((value: ThemeValue | SystemFontFamily) => ({
+		...value,
+		imported: true,
+		selected: selectedImportedValues.some((v: any) => v[comparisonProp] === (value as any)[comparisonProp]),
+	}))
+
+	const numberOfSelectedImportedValuesBySaveType: {
+		[key in ImportModalRoute]: { new: number, overwrite: number }
+	} = {
+		color: { new: 0, overwrite: 0 },
+		font: { new: 0, overwrite: 0 },
+		fontSize: { new: 0, overwrite: 0 },
+		shadow: { new: 0, overwrite: 0 },
+		borderWidth: { new: 0, overwrite: 0 },
+	}
+
+	selectedImportedValues.forEach((v) => {
+		const valueType = v.hasOwnProperty('type') ? (v as ThemeValue).type : 'font'
+		const saveType = v.willOverwrite ? 'overwrite' : 'new';
+		(numberOfSelectedImportedValuesBySaveType as any)[valueType][saveType] += 1
 	})
 
 	return (
@@ -137,14 +152,15 @@ const ImportModal = ({
 					)}
 				</Box>
 				<RightToolbar
-					route={route}
-					setRoute={setRoute}
+					activeRoute={activeRoute}
+					setActiveRoute={setActiveRoute}
 					selectedImportCategories={selectedImportCategories}
 					setSelectedImportCategories={setSelectedImportCategories}
 					closeImportModal={closeImportModal}
 					sketchDocumentNames={sketchDocumentNames}
 					selectedSketchDocumentIndex={selectedSketchDocumentIndex}
 					setSelectedSketchDocumentIndex={setSelectedSketchDocumentIndex}
+					numberOfSelectedImportedValuesBySaveType={numberOfSelectedImportedValuesBySaveType}
 				/>
 			</Flex>
 		</Flex>
