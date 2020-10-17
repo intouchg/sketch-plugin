@@ -23,10 +23,7 @@ const LineHeights = ({
 	})
 
 	return (
-		<Stack
-			alignItems="center"
-			padding={6}
-		>
+		<Stack alignItems="center">
 			{sortedLineHeights.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}

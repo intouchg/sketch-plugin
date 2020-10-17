@@ -142,6 +142,7 @@ const ImportModal = ({
 				<Box
 					flexGrow={1}
 					overflowY="scroll"
+					padding={6}
 				>
 					{showLoading ? (
 						<>

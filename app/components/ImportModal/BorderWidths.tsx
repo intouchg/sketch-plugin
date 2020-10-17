@@ -24,13 +24,11 @@ const BorderWidths = ({
 	const sortedBorderWidths = filteredImportedValues.concat(values as any).sort(sortBorderWidths)
 
 	return (
-		<Stack
-			alignItems="center"
-			paddingY="146px"
-		>
+		<Stack alignItems="center">
 			{sortedBorderWidths.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}
+					width="100%"
 					alignItems="center"
 					as={imported ? InvisibleButton : undefined}
 					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
@@ -44,9 +42,10 @@ const BorderWidths = ({
 						<CheckboxPlaceholder marginRight={3} />
 					)}
 					<Box
+						flexGrow={1}
+						marginY={2}
 						borderRadius="Large"
 						backgroundColor={imported ? 'transparent' : 'Background'}
-						marginY={2}
 					>
 						<BorderWidth {...props} />
 					</Box>

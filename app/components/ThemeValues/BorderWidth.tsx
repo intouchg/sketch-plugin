@@ -8,17 +8,19 @@ const BorderWidth = ({
 }: ThemeBorderWidth) => {
 	return (
 		<Flex
-			width="420px"
 			alignItems="center"
 			justifyContent="space-around"
+			flexGrow={1}
 			padding={4}
+			paddingRight="0"
 		>
-			<Text>
+			<Text minWidth="48px">
 				{value}
 			</Text>
 			<Box
-				width="300px"
+				flexGrow={1}
 				height={value}
+				marginLeft={4}
 				backgroundColor="#232323"
 			/>
 		</Flex>

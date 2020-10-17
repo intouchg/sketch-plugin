@@ -23,7 +23,7 @@ const FontSizes = ({
 	})
 
 	return (
-		<Stack padding={6}>
+		<Stack>
 			{sortedFontSizes.map(({ imported, selected, ...props }) => {
 				const pixelValue = Number(props.value.split('rem')[0]) * 16
 

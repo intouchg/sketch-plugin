@@ -37,7 +37,7 @@ const Fonts = ({
 	const sortedFilteredSystemFonts = filteredSystemFonts.slice().sort((a, b) => sortAlphabetical(a, b, 'name'))
 
 	return (
-		<Stack padding={6}>
+		<Stack>
 			{sortedFilteredSystemFonts.map(({ imported, ...systemFont }) => (
 				<FontFamily
 					key={systemFont.name}

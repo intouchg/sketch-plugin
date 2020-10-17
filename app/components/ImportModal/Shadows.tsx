@@ -28,13 +28,11 @@ const Shadows = ({
 	const sortedShadows = filteredImportedValues.concat(values as any).sort(sortShadowStyles)
 
 	return (
-		<Stack
-			alignItems="center"
-			paddingY="146px"
-		>
+		<Stack alignItems="center">
 			{sortedShadows.map(({ imported, selected, ...props }, index) => (
 				<Flex
 					key={props.id}
+					width="100%"
 					alignItems="center"
 					marginBottom={4}
 					as={imported ? InvisibleButton : undefined}
@@ -43,7 +41,7 @@ const Shadows = ({
 					{imported ? (
 						<Checkbox
 							checked={Boolean(selected)}
-							marginRight={3}
+							marginRight={4}
 						/>
 					) : (
 						<CheckboxPlaceholder marginRight={3} />

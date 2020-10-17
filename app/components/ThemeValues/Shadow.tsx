@@ -14,11 +14,8 @@ const Shadow = ({
 
 	return (
 		<Flex
-			width="65%"
-			minWidth="440px"
-			maxWidth="550px"
 			alignItems="center"
-			flexShrink={0}
+			flexGrow={1}
 		>
 			<Flex
 				alignItems="center"
@@ -30,7 +27,7 @@ const Shadow = ({
 				borderColor="Accent"
 				borderRadius="Small"
 				boxShadow={value}
-				marginRight={3}
+				marginRight={4}
 				flexShrink={0}
 			>
 				<Text>

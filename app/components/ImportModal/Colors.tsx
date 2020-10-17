@@ -24,10 +24,7 @@ const Colors = ({
 		.sort((a, b) => sortAlphabetical(a, b, 'name'))
 
 	return (
-		<Flex
-			flexWrap="wrap"
-			padding={6}
-		>
+		<Flex flexWrap="wrap">
 			{sortedColors.map(({ imported, selected, willOverwrite, ...props }) => (
 				<Box
 					key={props.id}
