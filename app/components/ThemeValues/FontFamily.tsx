@@ -1,7 +1,7 @@
 import React from 'react'
 import { Stack, Flex, Box, Text, Heading, Label } from '@i/components'
 import { Checkbox } from '../Checkbox'
-import type { SystemFontsDictionary, SPFontTypeface } from '../../sketchApi'
+import type { SystemFontFamily, SPFontTypeface } from '../../sketchApi'
 
 const SelectableFont = ({
 	checked,
@@ -44,7 +44,7 @@ const FontFamily = ({
 	name,
 	path,
 	typefaces,
-}: SystemFontsDictionary[string]) => {
+}: SystemFontFamily) => {
 	return (
 		<Stack marginBottom={5}>
 			<Heading

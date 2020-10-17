@@ -6,12 +6,10 @@ import type { ThemeFontSize } from '@i/theme'
 const FontSizes = ({
 	values = [],
 	importedValues = [],
-	selectedImportedValues,
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeFontSize[]
-	importedValues: (ThemeFontSize & { imported?: boolean })[]
-	selectedImportedValues: ThemeFontSize[]
+	importedValues: (ThemeFontSize & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (fontSize: ThemeFontSize) => void
 }) => {
 	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
@@ -20,6 +18,8 @@ const FontSizes = ({
 		const valueB = parseInt(b.value.split('rem')[0], 10)
 		return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
 	})
+
+	console.log(sortedFontSizes)
 
 	return (
 		<Text>

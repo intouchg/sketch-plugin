@@ -38,11 +38,13 @@ export type SPFontData = {
 }
 
 // The theme reducer transforms the raw JSON
-// data from system_profiler into this type
+// data from system_profiler into these types
+export type SystemFontFamily = {
+    name: string
+    path: string
+    typefaces: SPFontTypeface[]
+}
+
 export type SystemFontsDictionary = {
-    [fontFamily: string]: {
-        name: string
-        path: string
-        typefaces: SPFontTypeface[]
-    }
+    [fontFamily: string]: SystemFontFamily
 }

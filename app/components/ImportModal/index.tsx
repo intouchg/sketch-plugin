@@ -10,7 +10,7 @@ import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
 import { sketchRequest } from '../../sketchApi'
 import type { ThemeValue } from '@i/theme'
-import type { SPFontTypeface } from '../../sketchApi'
+import type { SystemFontFamily } from '../../sketchApi'
 
 const views = {
 	color: Colors,
@@ -45,7 +45,7 @@ const ImportModal = ({
 	const [ route, setRoute ] = useState<ImportModalRoute>('color')
 	const [ selectedSketchDocumentIndex, setSelectedSketchDocumentIndex ] = useState<number>(0)
 	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
-	const [ selectedImportedValues, setSelectedImportedValues ] = useState<(ThemeValue | SPFontTypeface)[]>([])
+	const [ selectedImportedValues, setSelectedImportedValues ] = useState<(ThemeValue | SystemFontFamily)[]>([])
 	const [ showLoading, setShowLoading ] = useState(false)
 
 	const ImportView = views[route]
@@ -77,7 +77,7 @@ const ImportModal = ({
 		return null
 	}
 
-	const toggleSelectedImportedValue = (style: ThemeValue | SPFontTypeface) => {
+	const toggleSelectedImportedValue = (style: ThemeValue | SystemFontFamily) => {
 		const comparisonProp = route === 'font' ? '_name' : 'id'
 		const comparisonValue = (style as any)[comparisonProp]
 
@@ -91,7 +91,14 @@ const ImportModal = ({
 	}
 
 	const routeThemeValues = themeValues.filter((v) => v.type === route)
-	const routeImportedSketchValues = (importedSketchValues[themeTypePropertyMap[route]] as ThemeValue[]).map((v: any) => ({ ...v, imported: true }))
+
+	const routeImportedSketchValues = (importedSketchValues[themeTypePropertyMap[route]] as any).map((value: ThemeValue | SystemFontFamily) => {
+		const comparisonProp = value.hasOwnProperty('id') ? 'id' : 'name'
+		return {
+			...value, imported: true,
+			selected: selectedImportedValues.some((v: any) => v[comparisonProp] === (value as any)[comparisonProp]),
+		}
+	})
 
 	const routeSelectedImportedValues = selectedImportedValues.filter((v) => {
 		if (route === 'font') {
@@ -132,7 +139,6 @@ const ImportModal = ({
 						<ImportView
 							values={routeThemeValues as any}
 							importedValues={routeImportedSketchValues as any}
-							selectedImportedValues={routeSelectedImportedValues as any}
 							toggleSelectedImportedValue={toggleSelectedImportedValue}
 						/>
 					)}

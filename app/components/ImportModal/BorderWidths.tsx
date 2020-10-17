@@ -13,12 +13,10 @@ const sortBorderWidths = (a: ThemeBorderWidth, b: ThemeBorderWidth) => {
 const BorderWidths = ({
 	values = [],
 	importedValues = [],
-	selectedImportedValues,
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeBorderWidth[]
-	importedValues: (ThemeBorderWidth & { imported?: boolean })[]
-	selectedImportedValues: ThemeBorderWidth[]
+	importedValues: (ThemeBorderWidth & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (borderWidth: ThemeBorderWidth) => void
 }) => {
 	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
@@ -29,7 +27,7 @@ const BorderWidths = ({
 			alignItems="center"
 			paddingY="146px"
 		>
-			{sortedBorderWidths.map(({ imported, ...props }) => (
+			{sortedBorderWidths.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}
 					as={imported ? Label : undefined}
@@ -37,7 +35,7 @@ const BorderWidths = ({
 				>
 					{imported && (
 						<Checkbox
-							checked={selectedImportedValues.some((v) => v.id === props.id)}
+							checked={Boolean(selected)}
 							marginRight={3}
 							onClick={() => toggleSelectedImportedValue(props)}
 						/>

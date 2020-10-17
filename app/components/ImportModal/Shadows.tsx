@@ -17,12 +17,10 @@ const sortShadowStyles = (shadowA: ThemeShadow, shadowB: ThemeShadow) => {
 const Shadows = ({
 	values = [],
 	importedValues = [],
-	selectedImportedValues,
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeShadow[]
-	importedValues: (ThemeShadow & { imported?: boolean })[]
-	selectedImportedValues: ThemeShadow[]
+	importedValues: (ThemeShadow & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (shadow: ThemeShadow) => void
 }) => {
 	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
@@ -33,7 +31,7 @@ const Shadows = ({
 			alignItems="center"
 			paddingY="146px"
 		>
-			{sortedShadows.map(({ imported, ...props }, index) => (
+			{sortedShadows.map(({ imported, selected, ...props }, index) => (
 				<Flex
 					key={props.id}
 					as={imported ? Label : undefined}
@@ -42,7 +40,7 @@ const Shadows = ({
 				>
 					{imported && (
 						<Checkbox
-							checked={selectedImportedValues.some((v) => v.id === props.id)}
+							checked={Boolean(selected)}
 							marginRight={3}
 							onClick={() => toggleSelectedImportedValue(props)}
 						/>

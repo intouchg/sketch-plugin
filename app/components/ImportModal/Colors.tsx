@@ -8,12 +8,10 @@ import type { ThemeColor } from '@i/theme'
 const Colors = ({
 	values = [],
 	importedValues = [],
-	selectedImportedValues,
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeColor[]
-	importedValues: (ThemeColor & { imported?: boolean })[]
-	selectedImportedValues: ThemeColor[]
+	importedValues: (ThemeColor & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (color: ThemeColor) => void
 }) => {
 	const filteredThemeValues = values.filter(({ name }) => !importedValues.some((v) => v.name === name))
@@ -24,7 +22,7 @@ const Colors = ({
 			flexWrap="wrap"
 			padding={6}
 		>
-			{sortedColors.map(({ imported, ...props }) => (
+			{sortedColors.map(({ imported, selected, ...props }) => (
 				<Box
 					key={props.id}
 					as={imported ? Label : undefined}
@@ -42,7 +40,7 @@ const Colors = ({
 							top="0"
 							right="0"
 							margin={2}
-							checked={selectedImportedValues.some((v) => v.id === props.id)}
+							checked={Boolean(selected)}
 							onClick={() => toggleSelectedImportedValue(props)}
 						/>
 					)}

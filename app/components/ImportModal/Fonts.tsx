@@ -4,20 +4,18 @@ import { Stack } from '@i/components'
 import { sortAlphabetical } from '@i/utility'
 import { FontFamily } from '../ThemeValues'
 import type { ThemeFont } from '@i/theme'
-import type { SPFontTypeface } from '../../sketchApi'
+import type { SystemFontFamily } from '../../sketchApi'
 
 // TO DO: Loading component
 
 const Fonts = ({
 	values = [],
 	importedValues = [],
-	selectedImportedValues,
 	toggleSelectedImportedValue,
 }: {
 	values: ThemeFont[]
-	importedValues: (ThemeFont & { imported?: boolean })[]
-	selectedImportedValues: SPFontTypeface[]
-	toggleSelectedImportedValue: (typeface: SPFontTypeface) => void
+	importedValues: (ThemeFont & { imported?: boolean, selected?: boolean })[]
+	toggleSelectedImportedValue: (typeface: SystemFontFamily) => void
 }) => {
 	const systemFonts = useSelector((state) => state.theme.systemFonts)
 
@@ -25,13 +23,22 @@ const Fonts = ({
 		return <>LOADING</>
 	}
 
-	const filteredSystemFonts = values.map(({ value }) => systemFonts[value])
-		.filter((v) => v !== undefined)
-		.sort((a, b) => sortAlphabetical(a, b, 'name'))
+	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
+	const filteredSystemFonts: (SystemFontFamily & { imported?: boolean })[] = []
+
+	filteredImportedValues.concat(values as any).forEach(({ value, imported }) => {
+		const systemFont = systemFonts[value]
+
+		if (systemFont) {
+			filteredSystemFonts.push({ ...systemFont, imported })
+		}
+	})
+
+	const sortedFilteredSystemFonts = filteredSystemFonts.slice().sort((a, b) => sortAlphabetical(a, b, 'name'))
 
 	return (
 		<Stack padding={6}>
-			{filteredSystemFonts.map((systemFont) => (
+			{sortedFilteredSystemFonts.map(({ imported, ...systemFont }) => (
 				<FontFamily
 					key={systemFont.name}
 					{...systemFont}
