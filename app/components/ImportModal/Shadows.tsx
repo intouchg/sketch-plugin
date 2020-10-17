@@ -7,8 +7,8 @@ import type { ThemeShadow } from '@i/theme'
 
 const sortShadowStyles = (shadowA: ThemeShadow, shadowB: ThemeShadow) => {
 	// Parse shadow value into an array [ x, y, blur, spread, color ]
-	const a = shadowA.value.split('px').map((s) => parseInt(s, 10))
-	const b = shadowB.value.split('px').map((s) => parseInt(s, 10))
+	const a = shadowA.value.split('px').map((s) => Number(s))
+	const b = shadowB.value.split('px').map((s) => Number(s))
 
 	const valueA = a[2] + a[3] + (0.5 * (Math.abs(a[0]) + Math.abs(a[1])))
 	const valueB = b[2] + b[3] + (0.5 * (Math.abs(b[0]) + Math.abs(b[1])))

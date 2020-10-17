@@ -6,8 +6,8 @@ import { InvisibleButton } from '../Buttons'
 import type { ThemeBorderWidth } from '@i/theme'
 
 const sortBorderWidths = (a: ThemeBorderWidth, b: ThemeBorderWidth) => {
-	const valueA = parseInt(a.value.split('px')[0], 10)
-	const valueB = parseInt(b.value.split('px')[0], 10)
+	const valueA = Number(a.value.split('px')[0])
+	const valueB = Number(b.value.split('px')[0])
 	return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
 }
 

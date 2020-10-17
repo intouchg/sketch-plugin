@@ -14,17 +14,21 @@ const FontSizes = ({
 	importedValues: (ThemeFontSize & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (fontSize: ThemeFontSize) => void
 }) => {
+	console.log(values)
+	console.log(importedValues)
+
 	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
+	console.log(filteredImportedValues)
 	const sortedFontSizes = filteredImportedValues.concat(values as any).sort((a, b) => {
-		const valueA = parseInt(a.value.split('rem')[0], 10)
-		const valueB = parseInt(b.value.split('rem')[0], 10)
+		const valueA = Number(a.value.split('rem')[0])
+		const valueB = Number(b.value.split('rem')[0])
 		return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
 	})
 
 	return (
 		<Stack padding={6}>
 			{sortedFontSizes.map(({ imported, selected, ...props }) => {
-				const pixelValue = parseInt(props.value.split('rem')[0], 10) * 16
+				const pixelValue = Number(props.value.split('rem')[0]) * 16
 
 				return (
 					<Flex
