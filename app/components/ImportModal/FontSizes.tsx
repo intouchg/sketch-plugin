@@ -4,13 +4,15 @@ import { Flex, Box, Text } from '@i/components'
 import type { ThemeFontSize } from '@i/theme'
 
 const FontSizes = ({
-	fontSizes = [],
-	routeSelectedImportStyles,
-	toggleSelectedImportStyle,
+	values = [],
+	importedValues = [],
+	selectedImportedValues,
+	toggleSelectedImportedValue,
 }: {
-	fontSizes: (ThemeFontSize & { imported?: boolean })[]
-	routeSelectedImportStyles: ThemeFontSize[]
-	toggleSelectedImportStyle: (fontSize: ThemeFontSize) => void
+	values: ThemeFontSize[]
+	importedValues: ThemeFontSize[]
+	selectedImportedValues: ThemeFontSize[]
+	toggleSelectedImportedValue: (fontSize: ThemeFontSize) => void
 }) => {
 	return (
 		<Text>

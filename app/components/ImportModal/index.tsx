@@ -40,17 +40,17 @@ const ImportModal = ({
 	closeImportModal: () => void
 }) => {
 	const sketchDocumentNames = useSelector((state) => state.theme.sketchDocumentNames)
-	const importedSketchStyles = useSelector((state) => state.theme.importedSketchStyles)
+	const importedSketchValues = useSelector((state) => state.theme.importedSketchValues)
 	const themeValues = useSelector((state) => state.theme.values)
 	const [ route, setRoute ] = useState<ImportModalRoute>('color')
 	const [ selectedSketchDocumentIndex, setSelectedSketchDocumentIndex ] = useState<number>(0)
 	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
-	const [ selectedImportStyles, setSelectedImportStyles ] = useState<(ThemeValue | SPFontTypeface)[]>([])
+	const [ selectedImportedValues, setSelectedImportedValues ] = useState<(ThemeValue | SPFontTypeface)[]>([])
 	const [ showLoading, setShowLoading ] = useState(false)
 
 	const ImportView = views[route]
 
-	useEffect(() => setShowLoading(false), [ importedSketchStyles ])
+	useEffect(() => setShowLoading(false), [ importedSketchValues ])
 
 	useEffect(() => {
 		setSelectedImportCategories([])
@@ -77,11 +77,11 @@ const ImportModal = ({
 		return null
 	}
 
-	const toggleSelectedImportStyle = (style: ThemeValue | SPFontTypeface) => {
+	const toggleSelectedImportedValue = (style: ThemeValue | SPFontTypeface) => {
 		const comparisonProp = route === 'font' ? '_name' : 'id'
 		const comparisonValue = (style as any)[comparisonProp]
 
-		setSelectedImportStyles((state) => {
+		setSelectedImportedValues((state) => {
 			if (state.some((v) => (v as any)[comparisonProp] === comparisonValue)) {
 				return state.filter((v) => (v as any)[comparisonProp] !== comparisonValue)
 			}
@@ -90,12 +90,10 @@ const ImportModal = ({
 		})
 	}
 
-	const routeThemeProperty = themeTypePropertyMap[route]
 	const routeThemeValues = themeValues.filter((v) => v.type === route)
-	const routeImportedSketchStyles = importedSketchStyles[routeThemeProperty]
-	const importViewProp = { [routeThemeProperty]: routeThemeValues.concat(routeImportedSketchStyles) }
+	const routeImportedSketchValues = importedSketchValues[themeTypePropertyMap[route]]
 
-	const routeSelectedImportStyles = selectedImportStyles.filter((v) => {
+	const routeSelectedImportedValues = selectedImportedValues.filter((v) => {
 		if (route === 'font') {
 			return v.hasOwnProperty('_name')
 		}
@@ -132,9 +130,10 @@ const ImportModal = ({
 						</>
 					) : (
 						<ImportView
-							{...importViewProp as any}
-							routeSelectedImportStyles={routeSelectedImportStyles}
-							toggleSelectedImportStyle={toggleSelectedImportStyle}
+							values={routeThemeValues as any}
+							importedValues={routeImportedSketchValues as any}
+							selectedImportedValues={routeSelectedImportedValues as any}
+							toggleSelectedImportedValue={toggleSelectedImportedValue}
 						/>
 					)}
 				</Box>

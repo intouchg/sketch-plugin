@@ -1,6 +1,6 @@
 import type { ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLineHeight, ThemeLetterSpacing, ThemeBorderWidth, ThemeShadow } from '@i/theme'
 
-export type RawImportedSketchStyles = {
+export type RawImportedSketchValues = {
     colors: [ string, string ][]
     fonts: string[]
     fontSizes: string[]
@@ -11,7 +11,7 @@ export type RawImportedSketchStyles = {
     shadows: string[]
 }
 
-export type ParsedImportedSketchStyles = {
+export type ParsedImportedSketchValues = {
     colors: ThemeColor[]
     fonts: ThemeFont[]
     fontSizes: ThemeFontSize[]

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setThemeData, setRecentProjects, setSketchDocumentNames, setImportedSketchStyles, setSystemFonts } from '../store'
+import { setThemeData, setRecentProjects, setSketchDocumentNames, setImportedSketchValues, setSystemFonts } from '../store'
 import type { ThemeValue, ThemeGroup, ThemeComponent } from '@i/theme'
 import type { AzureGitRepo } from '@i/azure'
-import type { RawImportedSketchStyles } from './styles'
+import type { RawImportedSketchValues } from './styles'
 import type { SPFontData } from './fonts'
 
 export * from './fonts'
@@ -25,7 +25,7 @@ interface WebviewListeners {
     displaySuccess?: (message: string) => void
     setGitRepos?: (repos: any) => void
     setImportSketchStylesResult?: (result: boolean) => void
-    setImportedSketchStyles?: (styles: RawImportedSketchStyles) => void
+    setImportedSketchValues?: (styles: RawImportedSketchValues) => void
     setThemeData?: (data: any) => void
     setRecentProjects?: (data: RecentProject[]) => void
     setSaveThemeDataResult?: (result: boolean) => void
@@ -76,7 +76,7 @@ export const useGlobalSketchListeners = () => {
 		window.setThemeData = (themeData) => dispatch(setThemeData(themeData)) && history.push('/main')
 		window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
 		window.setSketchDocumentNames = (sketchDocumentNames) => dispatch(setSketchDocumentNames(sketchDocumentNames))
-		window.setImportedSketchStyles = (styles) => dispatch(setImportedSketchStyles(styles))
+		window.setImportedSketchValues = (styles) => dispatch(setImportedSketchValues(styles))
 		window.setSystemFonts = (fonts) => dispatch(setSystemFonts(fonts))
 
 		sketchRequest('getSketchDocumentNames')
@@ -86,7 +86,7 @@ export const useGlobalSketchListeners = () => {
 			delete window.setThemeData
 			delete window.setRecentProjects
 			delete window.setSketchDocumentNames
-			delete window.setImportedSketchStyles
+			delete window.setImportedSketchValues
 			delete window.setSystemFonts
 		}
 	}, [ history, dispatch ])

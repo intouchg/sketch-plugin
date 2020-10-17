@@ -9,13 +9,15 @@ import type { SPFontTypeface } from '../../sketchApi'
 // TO DO: Loading component
 
 const Fonts = ({
-	fonts = [],
-	routeSelectedImportStyles,
-	toggleSelectedImportStyle,
+	values = [],
+	importedValues = [],
+	selectedImportedValues,
+	toggleSelectedImportedValue,
 }: {
-	fonts: (ThemeFont & { imported?: boolean })[]
-	routeSelectedImportStyles: SPFontTypeface[]
-	toggleSelectedImportStyle: (typeface: SPFontTypeface) => void
+	values: ThemeFont[]
+	importedValues: ThemeFont[]
+	selectedImportedValues: SPFontTypeface[]
+	toggleSelectedImportedValue: (typeface: SPFontTypeface) => void
 }) => {
 	const systemFonts = useSelector((state) => state.theme.systemFonts)
 
@@ -23,7 +25,7 @@ const Fonts = ({
 		return <>LOADING</>
 	}
 
-	const filteredSystemFonts = fonts.map(({ value }) => systemFonts[value])
+	const filteredSystemFonts = values.map(({ value }) => systemFonts[value])
 		.filter((v) => v !== undefined)
 		.sort((a, b) => sortAlphabetical(a, b, 'name'))
 

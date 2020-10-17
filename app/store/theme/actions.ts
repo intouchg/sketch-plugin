@@ -1,6 +1,6 @@
 import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeVariant } from '@i/theme'
 import type { ThemeState } from './state'
-import type { RawImportedSketchStyles, RecentProject, SPFontData } from '../../sketchApi'
+import type { RawImportedSketchValues, RecentProject, SPFontData } from '../../sketchApi'
 
 export const UNDO = 'UNDO'
 export type UndoAction = {
@@ -57,13 +57,13 @@ export const setSketchDocumentNames = (sketchDocumentNames: SetSketchDocumentNam
 	payload: sketchDocumentNames,
 })
 
-export const SET_IMPORTED_SKETCH_STYLES = 'SET_IMPORTED_SKETCH_STYLES'
-export type SetImportedSketchStylesAction = {
-    type: typeof SET_IMPORTED_SKETCH_STYLES
-    payload: RawImportedSketchStyles
+export const SET_IMPORTED_SKETCH_VALUES = 'SET_IMPORTED_SKETCH_VALUES'
+export type SetImportedSketchValuesAction = {
+    type: typeof SET_IMPORTED_SKETCH_VALUES
+    payload: RawImportedSketchValues
 }
-export const setImportedSketchStyles = (styles: RawImportedSketchStyles): SetImportedSketchStylesAction => ({
-	type: SET_IMPORTED_SKETCH_STYLES,
+export const setImportedSketchValues = (styles: RawImportedSketchValues): SetImportedSketchValuesAction => ({
+	type: SET_IMPORTED_SKETCH_VALUES,
 	payload: styles,
 })
 
@@ -183,7 +183,7 @@ export type ThemeActionType =
     | SetThemeDataAction
     | SetRecentProjectsAction
     | SetSketchDocumentNamesAction
-    | SetImportedSketchStylesAction
+    | SetImportedSketchValuesAction
     | SetSystemFontsAction
     | CreateThemeValueAction
     | UpdateThemeValueAction

@@ -5,7 +5,7 @@ export const extractSketchDocumentStyles = async (webContents, showError, docume
 		const styles = extract(document)
 
 		if (styles) {
-			webContents.executeJavaScript(`window.setImportedSketchStyles(${JSON.stringify(styles)})`)
+			webContents.executeJavaScript(`window.setImportedSketchValues(${JSON.stringify(styles)})`)
 		}
 	}
 	catch (error) {

@@ -4,15 +4,17 @@ import { BorderWidth } from '../ThemeValues'
 import type { ThemeBorderWidth } from '@i/theme'
 
 const BorderWidths = ({
-	borderWidths = [],
-	routeSelectedImportStyles,
-	toggleSelectedImportStyle,
+	values = [],
+	importedValues = [],
+	selectedImportedValues,
+	toggleSelectedImportedValue,
 }: {
-	borderWidths: (ThemeBorderWidth & { imported?: boolean })[]
-	routeSelectedImportStyles: ThemeBorderWidth[]
-	toggleSelectedImportStyle: (borderWidth: ThemeBorderWidth) => void
+	values: ThemeBorderWidth[]
+	importedValues: ThemeBorderWidth[]
+	selectedImportedValues: ThemeBorderWidth[]
+	toggleSelectedImportedValue: (borderWidth: ThemeBorderWidth) => void
 }) => {
-	const sortedBorderWidths = borderWidths.slice().sort((a, b) => {
+	const sortedBorderWidths = values.slice().sort((a, b) => {
 		const valueA = parseInt(a.value.split('px')[0], 10)
 		const valueB = parseInt(b.value.split('px')[0], 10)
 		return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
@@ -23,11 +25,11 @@ const BorderWidths = ({
 			alignItems="center"
 			paddingY="146px"
 		>
-			{sortedBorderWidths.map(({ id, imported, ...props }) => (
+			{sortedBorderWidths.map(({ id, ...props }) => (
 				<Box
 					key={id}
 					borderRadius="Large"
-					backgroundColor={imported ? 'Background' : 'transparent'}
+					backgroundColor="Background"
 					marginBottom={2}
 				>
 					<BorderWidth

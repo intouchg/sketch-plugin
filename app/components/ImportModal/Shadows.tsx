@@ -4,20 +4,22 @@ import { Shadow } from '../ThemeValues'
 import type { ThemeShadow } from '@i/theme'
 
 const Shadows = ({
-	shadows = [],
-	routeSelectedImportStyles,
-	toggleSelectedImportStyle,
+	values = [],
+	importedValues = [],
+	selectedImportedValues,
+	toggleSelectedImportedValue,
 }: {
-	shadows: (ThemeShadow & { imported?: boolean })[]
-	routeSelectedImportStyles: ThemeShadow[]
-	toggleSelectedImportStyle: (shadow: ThemeShadow) => void
+	values: ThemeShadow[]
+	importedValues: ThemeShadow[]
+	selectedImportedValues: ThemeShadow[]
+	toggleSelectedImportedValue: (shadow: ThemeShadow) => void
 }) => {
 	return (
 		<Stack
 			alignItems="center"
 			paddingY="146px"
 		>
-			{shadows.map(({ id, ...rest }, index) => (
+			{values.map(({ id, ...rest }, index) => (
 				<Shadow
 					key={id}
 					id={id}

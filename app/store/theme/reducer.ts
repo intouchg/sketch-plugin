@@ -8,7 +8,7 @@ import {
 	SET_THEME_DATA,
 	SET_RECENT_PROJECTS,
 	SET_SKETCH_DOCUMENT_NAMES,
-	SET_IMPORTED_SKETCH_STYLES,
+	SET_IMPORTED_SKETCH_VALUES,
 	SET_SYSTEM_FONTS,
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
@@ -124,10 +124,10 @@ export const themeReducer = (
 				break
 			}
 
-			case SET_IMPORTED_SKETCH_STYLES: {
+			case SET_IMPORTED_SKETCH_VALUES: {
 				const { colors, fonts, fontSizes, fontWeights, lineHeights, letterSpacings, borderWidths, shadows } = action.payload
 
-				nextState.importedSketchStyles = {
+				nextState.importedSketchValues = {
 					colors: colors.map(([ name, value ]) => createThemeValue([], 'color', { name, value })),
 					fonts: fonts.map((value) => createThemeValue([], 'font', { value })),
 					fontSizes: fontSizes.map((value) => createThemeValue([], 'fontSize', { value })),
