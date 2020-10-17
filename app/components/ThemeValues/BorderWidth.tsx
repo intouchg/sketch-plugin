@@ -3,7 +3,6 @@ import { Flex, Box, Text } from '@i/components'
 import type { ThemeBorderWidth } from '@i/theme'
 
 const BorderWidth = ({
-	id,
 	value,
 	...props
 }: ThemeBorderWidth) => {

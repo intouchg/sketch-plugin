@@ -1,21 +1,27 @@
 import React from 'react'
-import { Text } from '@i/components'
+import styled from 'styled-components'
+import { Flex, Text } from '@i/components'
 import type { ThemeFontSize } from '@i/theme'
 
+const NoWrapText = styled(Text)`
+	white-space: nowrap;
+	line-height: unset;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	align-self: center;
+`
+
 const FontSize = ({
-	id,
-	index,
 	value,
-	imported,
 	...props
-}: ThemeFontSize & {
-	imported?: boolean
-	index: number
-}) => {
+}: ThemeFontSize) => {
 	return (
-		<Text>
-			Font size
-		</Text>
+		<NoWrapText
+			fontSize={value}
+			lineHeight={value}
+		>
+			The quick brown fox jumps over the lazy dog
+		</NoWrapText>
 	)
 }
 

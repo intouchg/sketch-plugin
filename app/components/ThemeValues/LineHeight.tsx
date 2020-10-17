@@ -3,15 +3,9 @@ import { Text } from '@i/components'
 import type { ThemeLineHeight } from '@i/theme'
 
 const LineHeight = ({
-	id,
-	index,
 	value,
-	imported,
 	...props
-}: ThemeLineHeight & {
-	imported?: boolean
-	index: number
-}) => {
+}: ThemeLineHeight) => {
 	return (
 		<Text>
 			Line height

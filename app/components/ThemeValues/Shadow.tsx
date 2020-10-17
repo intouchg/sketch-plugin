@@ -4,13 +4,10 @@ import { AccentText, SecondaryText } from '../Texts'
 import type { ThemeShadow } from '@i/theme'
 
 const Shadow = ({
-	id,
 	index,
 	value,
-	imported,
 	...props
 }: ThemeShadow & {
-	imported?: boolean
 	index: number
 }) => {
 	const [ x, y, blur, spread, color ] = value.split('px').map((s) => s.trim())

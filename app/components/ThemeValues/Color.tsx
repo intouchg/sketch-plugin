@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Box, Stack } from '@i/components'
 import { calculateColorBrightness } from '@i/utility'
 import { AccentText, SecondaryText } from '../Texts'
+import type { ThemeColor } from '@i/theme'
 
 const TruncatedSecondaryText = styled(SecondaryText)`
 	overflow: hidden;
@@ -17,14 +18,9 @@ const TruncatedAccentText = styled(AccentText)`
 `
 
 const Color = ({
-	id,
 	name,
 	value,
-}: {
-	id: string
-    name: string
-    value: string
-}) => {
+}: ThemeColor) => {
 	const labelColor = calculateColorBrightness(value) < 130 ? '#ffffff' : '#232323'
 
 	return (
