@@ -6,6 +6,7 @@ import { RightToolbar } from './RightToolbar'
 import { Colors } from './Colors'
 import { Fonts } from './Fonts'
 import { FontSizes } from './FontSizes'
+import { LineHeights } from './LineHeights'
 import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
 import { sketchRequest } from '../../sketchApi'
@@ -16,6 +17,7 @@ const views = {
 	color: Colors,
 	font: Fonts,
 	fontSize: FontSizes,
+	lineHeight: LineHeights,
 	shadow: Shadows,
 	borderWidth: BorderWidths,
 } as const
@@ -28,6 +30,7 @@ export const routeTitles: { [key in ImportModalRoute]: string } = {
 	color: 'Colors',
 	font: 'Fonts',
 	fontSize: 'Type Scale',
+	lineHeight: 'Line Heights',
 	shadow: 'Shadows',
 	borderWidth: 'Borders',
 }
@@ -106,6 +109,7 @@ const ImportModal = ({
 		color: { new: 0, overwrite: 0 },
 		font: { new: 0, overwrite: 0 },
 		fontSize: { new: 0, overwrite: 0 },
+		lineHeight: { new: 0, overwrite: 0 },
 		shadow: { new: 0, overwrite: 0 },
 		borderWidth: { new: 0, overwrite: 0 },
 	}
