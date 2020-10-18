@@ -7,13 +7,9 @@ const Main = () => {
 	const { url, path } = useRouteMatch()
 	const [ showImportModal, setShowImportModal ] = useState(false)
 
-	const openImportModal = () => setShowImportModal(true)
-
-	const closeImportModal = () => setShowImportModal(false)
-
 	return (
 		<>
-			<TopToolbar openImportModal={openImportModal} />
+			<TopToolbar openImportModal={() => setShowImportModal(true)} />
 			<Flex>
 				<LeftNavbar url={url} />
 				<ThemeEditor path={path} />
@@ -23,7 +19,7 @@ const Main = () => {
 				</Route>
 			</Flex>
 			{showImportModal && (
-				<ImportModal closeImportModal={closeImportModal} />
+				<ImportModal closeImportModal={() => setShowImportModal(false)} />
 			)}
 		</>
 	)
