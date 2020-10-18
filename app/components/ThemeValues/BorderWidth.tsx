@@ -12,9 +12,11 @@ const BorderWidth = ({
 			justifyContent="space-around"
 			flexGrow={1}
 			padding={4}
-			paddingRight="0"
 		>
-			<Text minWidth="48px">
+			<Text
+				minWidth="48px"
+				textAlign="left"
+			>
 				{value}
 			</Text>
 			<Box

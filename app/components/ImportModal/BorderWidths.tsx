@@ -29,6 +29,7 @@ const BorderWidths = ({
 				<Flex
 					key={props.id}
 					width="100%"
+					maxWidth="640px"
 					alignItems="center"
 					as={imported ? InvisibleButton : undefined}
 					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}

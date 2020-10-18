@@ -26,7 +26,7 @@ const NewProjectModal = ({
 			height="calc(100vh - 356px)"
 			minHeight="360px"
 			padding={5}
-			backgroundColor="Card"
+			backgroundColor="Background"
 			boxShadow="Medium"
 			borderRadius="Large"
 		>

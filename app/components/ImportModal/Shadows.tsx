@@ -33,6 +33,7 @@ const Shadows = ({
 				<Flex
 					key={props.id}
 					width="100%"
+					maxWidth="640px"
 					alignItems="center"
 					marginBottom={4}
 					as={imported ? InvisibleButton : undefined}
@@ -44,7 +45,7 @@ const Shadows = ({
 							marginRight={4}
 						/>
 					) : (
-						<CheckboxPlaceholder marginRight={3} />
+						<CheckboxPlaceholder marginRight={4} />
 					)}
 					<Shadow
 						index={index}

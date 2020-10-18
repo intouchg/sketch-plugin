@@ -39,6 +39,7 @@ const Color = ({
 				bottom="0"
 				left="0"
 				padding={3}
+				textAlign="left"
 			>
 				<TruncatedSecondaryText color={labelColor}>
 					{name}
