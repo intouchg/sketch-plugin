@@ -44,10 +44,7 @@ const NewProjectModal = ({
 				/>
 			</InvisibleButton>
 			<Stack>
-				<Heading
-					variant="Secondary"
-					marginBottom={4}
-				>
+				<Heading marginBottom={4}>
 					New Project
 				</Heading>
 				<Stack marginBottom={3}>
