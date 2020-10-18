@@ -135,6 +135,7 @@ const ImportModal = ({
 				width="calc(100vw - 308px)"
 				minWidth="800px"
 				height="calc(100vh - 100px)"
+				minHeight="460px"
 				backgroundColor="Card"
 				boxShadow="Medium"
 				borderRadius="Large"
