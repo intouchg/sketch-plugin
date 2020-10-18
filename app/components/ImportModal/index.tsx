@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { themeTypePropertyMap } from '@i/theme'
 import { Flex, Box } from '@i/components'
 import { RightToolbar } from './RightToolbar'
@@ -10,6 +10,7 @@ import { LineHeights } from './LineHeights'
 import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
 import { sketchRequest } from '../../sketchApi'
+import { saveImportedSketchValues } from '../../store'
 import type { ThemeValue } from '@i/theme'
 import type { SystemFontFamily } from '../../sketchApi'
 
@@ -44,6 +45,7 @@ const ImportModal = ({
 }: {
 	closeImportModal: () => void
 }) => {
+	const dispatch = useDispatch()
 	const sketchDocumentNames = useSelector((state) => state.theme.sketchDocumentNames)
 	const importedSketchValues = useSelector((state) => state.theme.importedSketchValues)
 	const themeValues = useSelector((state) => state.theme.values)
@@ -82,6 +84,9 @@ const ImportModal = ({
 	if (!sketchDocumentNames.length) {
 		return null
 	}
+
+	const saveSelectedImportedValues = () => {}
+	// const saveSelectedImportedValues = () => dispatch(saveImportedSketchValues(selectedImportedValues))
 
 	const toggleSelectedImportedValue = (style: SelectedImportedValue) => {
 		const comparisonValue = (style as any)[comparisonProp]
@@ -142,8 +147,8 @@ const ImportModal = ({
 			>
 				<Box
 					flexGrow={1}
-					overflowY="scroll"
 					padding={6}
+					overflowY="scroll"
 				>
 					{showLoading ? (
 						<>
@@ -166,6 +171,7 @@ const ImportModal = ({
 					sketchDocumentNames={sketchDocumentNames}
 					selectedSketchDocumentIndex={selectedSketchDocumentIndex}
 					setSelectedSketchDocumentIndex={setSelectedSketchDocumentIndex}
+					saveSelectedImportedValues={saveSelectedImportedValues}
 					numberOfSelectedImportedValuesBySaveType={numberOfSelectedImportedValuesBySaveType}
 				/>
 			</Flex>

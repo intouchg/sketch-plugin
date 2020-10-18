@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Text } from '@i/components'
+import { Text } from '@i/components'
 import type { ThemeFontSize } from '@i/theme'
 
 const NoWrapText = styled(Text)`

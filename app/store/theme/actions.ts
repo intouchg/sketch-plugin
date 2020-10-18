@@ -62,9 +62,19 @@ export type SetImportedSketchValuesAction = {
     type: typeof SET_IMPORTED_SKETCH_VALUES
     payload: RawImportedSketchValues
 }
-export const setImportedSketchValues = (styles: RawImportedSketchValues): SetImportedSketchValuesAction => ({
+export const setImportedSketchValues = (styles: SetImportedSketchValuesAction['payload']): SetImportedSketchValuesAction => ({
 	type: SET_IMPORTED_SKETCH_VALUES,
 	payload: styles,
+})
+
+export const SAVE_IMPORTED_SKETCH_VALUES = 'SAVE_IMPORTED_SKETCH_VALUES'
+export type SaveImportedSketchValuesAction = {
+    type: typeof SAVE_IMPORTED_SKETCH_VALUES
+    payload: ThemeValue[]
+}
+export const saveImportedSketchValues = (values: SaveImportedSketchValuesAction['payload']): SaveImportedSketchValuesAction => ({
+	type: SAVE_IMPORTED_SKETCH_VALUES,
+	payload: values,
 })
 
 export const SET_SYSTEM_FONTS = 'SET_SYSTEM_FONTS'
@@ -92,7 +102,7 @@ export type UpdateThemeValueAction = {
     type: typeof UPDATE_THEME_VALUE
     payload: ThemeValue
 }
-export const updateThemeValue = (value: ThemeValue): UpdateThemeValueAction => ({
+export const updateThemeValue = (value: UpdateThemeValueAction['payload']): UpdateThemeValueAction => ({
 	type: UPDATE_THEME_VALUE,
 	payload: value,
 })
@@ -122,7 +132,7 @@ export type UpdateThemeGroupAction = {
     type: typeof UPDATE_THEME_GROUP
     payload: ThemeGroup
 }
-export const updateThemeGroup = (group: ThemeGroup): UpdateThemeGroupAction => ({
+export const updateThemeGroup = (group: UpdateThemeGroupAction['payload']): UpdateThemeGroupAction => ({
 	type: UPDATE_THEME_GROUP,
 	payload: group,
 })
@@ -184,6 +194,7 @@ export type ThemeActionType =
     | SetRecentProjectsAction
     | SetSketchDocumentNamesAction
     | SetImportedSketchValuesAction
+    | SaveImportedSketchValuesAction
     | SetSystemFontsAction
     | CreateThemeValueAction
     | UpdateThemeValueAction

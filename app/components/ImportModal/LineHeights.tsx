@@ -27,6 +27,7 @@ const LineHeights = ({
 			{sortedLineHeights.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}
+					maxWidth="640px"
 					alignItems="center"
 					marginBottom={4}
 					as={imported ? InvisibleButton : undefined}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Flex, Box, Text } from '@i/components'
 import type { ThemeBorderWidth } from '@i/theme'
 

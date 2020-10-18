@@ -9,6 +9,7 @@ import {
 	SET_RECENT_PROJECTS,
 	SET_SKETCH_DOCUMENT_NAMES,
 	SET_IMPORTED_SKETCH_VALUES,
+	SAVE_IMPORTED_SKETCH_VALUES,
 	SET_SYSTEM_FONTS,
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
@@ -138,6 +139,12 @@ export const themeReducer = (
 					shadows: shadows.map((value) => createThemeValue([], 'shadow', { value })),
 				}
 
+				break
+			}
+
+			case SAVE_IMPORTED_SKETCH_VALUES: {
+				nextState.values.concat(action.payload)
+				nextState.importedSketchValues = initialState.importedSketchValues
 				break
 			}
 

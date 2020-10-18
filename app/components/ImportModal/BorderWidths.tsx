@@ -31,6 +31,7 @@ const BorderWidths = ({
 					width="100%"
 					maxWidth="640px"
 					alignItems="center"
+					marginBottom={4}
 					as={imported ? InvisibleButton : undefined}
 					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 				>
@@ -44,7 +45,6 @@ const BorderWidths = ({
 					)}
 					<Box
 						flexGrow={1}
-						marginY={2}
 						borderRadius="Large"
 						backgroundColor={imported ? 'transparent' : 'Background'}
 					>

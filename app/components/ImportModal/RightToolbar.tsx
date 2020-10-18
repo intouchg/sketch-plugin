@@ -99,6 +99,7 @@ const RightToolbar = ({
 	sketchDocumentNames,
 	selectedSketchDocumentIndex,
 	setSelectedSketchDocumentIndex,
+	saveSelectedImportedValues,
 	numberOfSelectedImportedValuesBySaveType,
 }: {
 	activeRoute: ImportModalRoute
@@ -109,6 +110,7 @@ const RightToolbar = ({
 	sketchDocumentNames: string[]
 	selectedSketchDocumentIndex: number
 	setSelectedSketchDocumentIndex: (index: number) => void
+	saveSelectedImportedValues: () => void
 	numberOfSelectedImportedValuesBySaveType: { [key in ImportModalRoute]: { new: number, overwrite: number } }
 }) => {
 	const selectAllImportCategories = () => setSelectedImportCategories([ ...routes ])
@@ -190,6 +192,7 @@ const RightToolbar = ({
 					bottom="0"
 					width="calc(100% - 40px)"
 					margin="20px"
+					onClick={saveSelectedImportedValues}
 				>
 					Import
 				</PrimaryButton>
