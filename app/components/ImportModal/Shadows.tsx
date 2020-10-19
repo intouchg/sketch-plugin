@@ -43,6 +43,7 @@ const Shadows = ({
 						<Checkbox
 							checked={Boolean(selected)}
 							marginRight={4}
+							zIndex={1}
 						/>
 					) : (
 						<CheckboxPlaceholder marginRight={4} />

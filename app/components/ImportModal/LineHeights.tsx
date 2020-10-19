@@ -36,7 +36,7 @@ const LineHeights = ({
 					{imported ? (
 						<Checkbox
 							checked={Boolean(selected)}
-							marginRight={3}
+							marginRight={4}
 						/>
 					) : (
 						<CheckboxPlaceholder marginRight={3} />

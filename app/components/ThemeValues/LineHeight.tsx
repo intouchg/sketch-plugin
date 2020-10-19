@@ -14,7 +14,6 @@ const LineHeight = ({
 		>
 			<Flex
 				alignItems="center"
-				justifyContent="center"
 				minWidth="85px"
 				minHeight="88px"
 				marginRight={5}
