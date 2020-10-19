@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setThemeData, setRecentProjects, setSketchDocumentNames, setImportedSketchValues, setSystemFonts } from '../store'
-import type { ThemeValue, ThemeGroup, ThemeComponent } from '@i/theme'
+import type { ThemeValue, ThemeComponent, ThemeVariant } from '@i/theme'
 import type { AzureGitRepo } from '@i/azure'
 import type { RawImportedSketchValues } from './styles'
 import type { SPFontData } from './fonts'
@@ -57,8 +57,8 @@ interface SketchListeners {
     openStorybook: () => void
     saveThemeData: (data: {
         values: ThemeValue[]
-        groups: ThemeGroup[]
         components: ThemeComponent[]
+        variants: ThemeVariant[]
     }) => void
     selectLocalProject: (recentProject?: RecentProject) => void
     startAuthServer: () => void

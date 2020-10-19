@@ -36,7 +36,6 @@ export const selectLocalProject = (webContents, showError, filepath) => {
 
 	const filepaths = {
 		values: config.values,
-		groups: config.groups,
 		components: config.components,
 		variants: config.variants,
 	}

@@ -1,4 +1,4 @@
-import type { ThemeValue, ThemeGroup, ThemeComponent, ThemeVariant } from '@i/theme'
+import type { ThemeValue, ThemeComponent, ThemeVariant } from '@i/theme'
 import type { ThemeState } from './state'
 import type { RawImportedSketchValues, RecentProject, SPFontData } from '../../sketchApi'
 
@@ -27,7 +27,6 @@ export type SetThemeDataAction = {
     type: typeof SET_THEME_DATA
     payload: {
         values: ThemeValue[]
-        groups: ThemeGroup[]
         components: ThemeComponent[]
         variants: ThemeVariant[]
     }
@@ -117,36 +116,6 @@ export const deleteThemeValue = ({ id }: DeleteThemeValueAction['payload']): Del
 	payload: { id },
 })
 
-export const CREATE_THEME_GROUP = 'CREATE_THEME_GROUP'
-export type CreateThemeGroupAction = {
-    type: typeof CREATE_THEME_GROUP
-    payload: Partial<ThemeGroup> & { groupType: ThemeGroup['groupType'] }
-}
-export const createThemeGroup = (value: CreateThemeGroupAction['payload']): CreateThemeGroupAction => ({
-	type: CREATE_THEME_GROUP,
-	payload: value,
-})
-
-export const UPDATE_THEME_GROUP = 'UPDATE_THEME_GROUP'
-export type UpdateThemeGroupAction = {
-    type: typeof UPDATE_THEME_GROUP
-    payload: ThemeGroup
-}
-export const updateThemeGroup = (group: UpdateThemeGroupAction['payload']): UpdateThemeGroupAction => ({
-	type: UPDATE_THEME_GROUP,
-	payload: group,
-})
-
-export const DELETE_THEME_GROUP = 'DELETE_THEME_GROUP'
-export type DeleteThemeGroupAction = {
-    type: typeof DELETE_THEME_GROUP
-    payload: { id: string }
-}
-export const deleteThemeGroup = ({ id }: DeleteThemeGroupAction['payload']): DeleteThemeGroupAction => ({
-	type: DELETE_THEME_GROUP,
-	payload: { id },
-})
-
 export const SET_SELECTED_COLOR = 'SET_SELECTED_COLOR'
 export type SetSelectedColorAction = {
     type: typeof SET_SELECTED_COLOR
@@ -199,9 +168,6 @@ export type ThemeActionType =
     | CreateThemeValueAction
     | UpdateThemeValueAction
     | DeleteThemeValueAction
-    | CreateThemeGroupAction
-    | UpdateThemeGroupAction
-    | DeleteThemeGroupAction
     | SetSelectedColorAction
     | SetDeletingValueAction
     | SetSelectedComponentAction
