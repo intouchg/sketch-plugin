@@ -23,11 +23,13 @@ const Fonts = ({
 		return <>LOADING</>
 	}
 
-	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
+	// TO DO: fix / finish this
+
+	const filteredImportedValues = importedValues.filter(({ family }) => !values.some((v) => v.family === family))
 	const filteredSystemFonts: (SystemFontFamily & { imported?: boolean })[] = []
 
-	filteredImportedValues.concat(values as any).forEach(({ value, imported }) => {
-		const systemFont = systemFonts[value]
+	filteredImportedValues.concat(values as any).forEach(({ family, imported }) => {
+		const systemFont = systemFonts[family]
 
 		if (systemFont) {
 			filteredSystemFonts.push({ ...systemFont, imported })

@@ -118,7 +118,7 @@ export const themeReducer = (
 
 				nextState.importedSketchValues = {
 					colors: colors.map(([ name, value ]) => createThemeValue([], 'color', { name, value })),
-					fonts: fonts.map((value) => createThemeValue([], 'font', { value })),
+					fonts: fonts.map((value) => createThemeValue([], 'font', { name: value, value, family: value })),
 					fontSizes: fontSizes.map((value) => createThemeValue([], 'fontSize', { value })),
 					fontWeights: fontWeights.map((value) => createThemeValue([], 'fontWeight', { value })),
 					lineHeights: lineHeights.map((value) => createThemeValue([], 'lineHeight', { value })),

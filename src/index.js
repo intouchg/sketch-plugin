@@ -1,13 +1,14 @@
 import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
-import { getDocuments, getSelectedDocument } from 'sketch'
+import { getDocuments } from 'sketch'
 // import { toArray } from 'util'
 import { stopStorybook } from './services'
 import {
 	selectLocalProject,
 	getRecentProjects,
 	getSystemFonts,
+	selectNewProjectDirectory,
 	openStorybook,
 	saveThemeData,
 	getAzureGitRepos,
@@ -63,6 +64,8 @@ export default () => {
 
 	webContents.on('getSketchDocumentNames', () => updateSketchDocumentNames(webContents))
 
+	webContents.on('selectNewProjectDirectory', () => selectNewProjectDirectory(webContents, showError))
+
 	webContents.on('openStorybook', () => openStorybook(webContents, showError, themeData))
 
 	webContents.on('saveThemeData', (newThemeData) => saveThemeData(webContents, showError, newThemeData, themeFilepaths))
@@ -89,9 +92,6 @@ export const onShutdown = () => {
 	}
 }
 
-// TO DO: If this 1ms setTimeout isn't reliable, try sending message
-// to the app, then when the app receives that message, request the
-// new document names from the plugin
 export const onOpenDocument = (context) => setTimeout(updateSketchDocumentNames, 500)
 
 export const onCloseDocument = (context) => setTimeout(updateSketchDocumentNames, 500)

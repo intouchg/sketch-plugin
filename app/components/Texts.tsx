@@ -7,3 +7,10 @@ AccentText.displayName = 'AccentText'
 
 export const SecondaryText = styled(Text).attrs({ variant: 'Secondary' })``
 SecondaryText.displayName = 'SecondaryText'
+
+export const TruncatedText = styled(Text)`
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+`
+TruncatedText.displayName = 'TruncatedText'

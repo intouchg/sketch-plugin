@@ -31,6 +31,7 @@ interface WebviewListeners {
     setSaveThemeDataResult?: (result: boolean) => void
     setSketchDocumentNames?: (sketchDocumentNames: string[]) => void
     setSystemFonts?: (fonts: SPFontData) => void
+    setNewProjectDirectory?: (directory: string) => void
     showStorybookLoading?: (show: boolean) => void
     storybookLoadingProgress?: (progress: number) => void
 }
@@ -46,7 +47,7 @@ export type WebviewListenerType = keyof WebviewListeners
 // is expected to have 0 or 1 parameters. The function
 // names can be used as window.postMessage types to
 // call into the Sketch backend:
-// window.postMessage('selectLocalProject')
+// window.postMessage('startAuthServer')
 interface SketchListeners {
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
     extractSketchDocumentStyles: (sketchDocumentIndex: number) => void
@@ -61,6 +62,7 @@ interface SketchListeners {
         variants: ThemeVariant[]
     }) => void
     selectLocalProject: (recentProject?: RecentProject) => void
+    selectNewProjectDirectory: () => void
     startAuthServer: () => void
 }
 
