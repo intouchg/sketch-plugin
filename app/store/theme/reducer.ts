@@ -163,7 +163,7 @@ export const themeReducer = (
 			}
 
 			case DELETE_THEME_VALUE: {
-				const { values, components } = nextState
+				const { values, components, variants } = nextState
 				const { id } = action.payload
 
 				const index = values.findIndex((value) => value.id === id)
@@ -179,6 +179,15 @@ export const themeReducer = (
 					Object.entries(component.styles).forEach(([ styleProperty, value ]) => {
 						if (value === id) {
 							component.styles[styleProperty as StyleProperty] = ''
+						}
+					})
+				})
+
+				// Update any ThemeVariant style which references the deleted ThemeValue
+				variants.forEach((variant) => {
+					Object.entries(variant.styles).forEach(([ styleProperty, value ]) => {
+						if (value === id) {
+							variant.styles[styleProperty as StyleProperty] = ''
 						}
 					})
 				})
