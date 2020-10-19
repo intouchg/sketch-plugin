@@ -14,13 +14,10 @@ import {
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
-	SET_SELECTED_COLOR,
-	SET_DELETING_VALUE,
-	SET_SELECTED_COMPONENT,
 	SAVE_THEME_DATA,
 } from './actions'
 import { initialState } from './state'
-import type { StyleProperty, ThemeColor } from '@i/theme'
+import type { StyleProperty } from '@i/theme'
 import type { ThemeActionType } from './actions'
 import type { ThemeState } from './state'
 import type { SystemFontsDictionary } from '../../sketchApi'
@@ -147,15 +144,11 @@ export const themeReducer = (
 				)
 				nextState.values.push(value)
 
-				if (value.type === 'color') {
-					nextState.selectedColor = value
-				}
-
 				break
 			}
 
 			case UPDATE_THEME_VALUE: {
-				const { values, selectedColor } = nextState
+				const { values } = nextState
 				const { id } = action.payload
 
 				const index = values.findIndex((value) => value.id === id)
@@ -165,10 +158,6 @@ export const themeReducer = (
 				}
 
 				values[index] = action.payload
-
-				if (id === selectedColor.id) {
-					selectedColor.value = action.payload.value as string
-				}
 
 				break
 			}
@@ -194,42 +183,6 @@ export const themeReducer = (
 					})
 				})
 
-				if (nextState.selectedColor.id === id) {
-					nextState.selectedColor = initialState.selectedColor
-				}
-
-				if (nextState.deletingValue.id === id) {
-					nextState.deletingValue = initialState.deletingValue
-				}
-
-				break
-			}
-
-			case SET_SELECTED_COLOR: {
-				const { id, value } = action.payload
-
-				if (id === '') {
-					nextState.selectedColor = initialState.selectedColor
-				}
-				else {
-					const color = state.values.find((color) => color.id === id) as ThemeColor
-
-					nextState.selectedColor = {
-						...color,
-						value,
-					}
-				}
-
-				break
-			}
-
-			case SET_DELETING_VALUE: {
-				nextState.deletingValue = action.payload
-				break
-			}
-
-			case SET_SELECTED_COMPONENT: {
-				nextState.selectedComponent = action.payload
 				break
 			}
 

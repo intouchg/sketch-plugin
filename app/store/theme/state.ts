@@ -1,4 +1,4 @@
-import type { ThemeValue, ThemeComponent, ThemeVariant, ThemeColor } from '@i/theme'
+import type { ThemeValue, ThemeComponent, ThemeVariant } from '@i/theme'
 import type { RecentProject, ParsedImportedSketchValues, SystemFontsDictionary } from '../../sketchApi'
 
 export type ThemeState = {
@@ -7,9 +7,6 @@ export type ThemeState = {
 	values: ThemeValue[]
 	components: ThemeComponent[]
 	variants: ThemeVariant[]
-	selectedColor: ThemeColor
-	deletingValue: { id: string, message?: string }
-	selectedComponent: { id: string }
 	recentProjects: RecentProject[]
 	sketchDocumentNames: string[]
 	importedSketchValues: ParsedImportedSketchValues
@@ -22,9 +19,6 @@ export const initialState: ThemeState = {
 	values: [] as ThemeValue[],
 	components: [] as ThemeComponent[],
 	variants: [] as ThemeVariant[],
-	selectedColor: {} as ThemeColor,
-	deletingValue: { id: '', message: '' },
-	selectedComponent: { id: '' },
 	recentProjects: [],
 	sketchDocumentNames: [],
 	importedSketchValues: {

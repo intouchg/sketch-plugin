@@ -1,5 +1,4 @@
 import type { ThemeValue, ThemeComponent, ThemeVariant } from '@i/theme'
-import type { ThemeState } from './state'
 import type { RawImportedSketchValues, RecentProject, SPFontData } from '../../sketchApi'
 
 export const UNDO = 'UNDO'
@@ -116,36 +115,6 @@ export const deleteThemeValue = ({ id }: DeleteThemeValueAction['payload']): Del
 	payload: { id },
 })
 
-export const SET_SELECTED_COLOR = 'SET_SELECTED_COLOR'
-export type SetSelectedColorAction = {
-    type: typeof SET_SELECTED_COLOR
-    payload: { id: string, value: string }
-}
-export const setSelectedColor = ({ id, value }: SetSelectedColorAction['payload']): SetSelectedColorAction => ({
-	type: SET_SELECTED_COLOR,
-	payload: { id, value },
-})
-
-export const SET_DELETING_VALUE = 'SET_DELETING_VALUE'
-export type SetDeletingValueAction = {
-    type: typeof SET_DELETING_VALUE
-    payload: ThemeState['deletingValue']
-}
-export const setDeletingValue = ({ id, message }: SetDeletingValueAction['payload']): SetDeletingValueAction => ({
-	type: SET_DELETING_VALUE,
-	payload: { id, message },
-})
-
-export const SET_SELECTED_COMPONENT = 'SET_SELECTED_COMPONENT'
-export type SetSelectedComponentAction = {
-    type: typeof SET_SELECTED_COMPONENT
-    payload: ThemeState['selectedComponent']
-}
-export const setSelectedComponent = ({ id }: SetSelectedComponentAction['payload']): SetSelectedComponentAction => ({
-	type: SET_SELECTED_COMPONENT,
-	payload: { id },
-})
-
 export const SAVE_THEME_DATA = 'SAVE_THEME_DATA'
 export type SaveThemeDataAction = {
     type: typeof SAVE_THEME_DATA
@@ -157,7 +126,7 @@ export const saveThemeData = (): SaveThemeDataAction => ({
 })
 
 export type ThemeActionType =
-    UndoAction
+    | UndoAction
     | RedoAction
     | SetThemeDataAction
     | SetRecentProjectsAction
@@ -168,7 +137,4 @@ export type ThemeActionType =
     | CreateThemeValueAction
     | UpdateThemeValueAction
     | DeleteThemeValueAction
-    | SetSelectedColorAction
-    | SetDeletingValueAction
-    | SetSelectedComponentAction
     | SaveThemeDataAction
