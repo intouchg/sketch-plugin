@@ -15,7 +15,7 @@ const Fonts = ({
 }: {
 	values: ThemeFont[]
 	importedValues: (ThemeFont & { imported?: boolean, selected?: boolean })[]
-	toggleSelectedImportedValue: (typeface: SystemFontFamily) => void
+	toggleSelectedImportedValue: (font: ThemeFont) => void
 }) => {
 	const systemFonts = useSelector((state) => state.theme.systemFonts)
 

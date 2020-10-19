@@ -36,7 +36,7 @@ export const routeTitles: { [key in ImportModalRoute]: string } = {
 	borderWidth: 'Borders',
 }
 
-type SelectedImportedValue = (ThemeValue | SystemFontFamily) & { willOverwrite?: boolean }
+type SelectedImportedValue = ThemeValue & { willOverwrite?: boolean }
 
 // TO DO: Create loading component
 
@@ -56,7 +56,6 @@ const ImportModal = ({
 	const [ showLoading, setShowLoading ] = useState(false)
 
 	const ImportView = views[activeRoute]
-	const comparisonProp = activeRoute === 'font' ? 'name' : 'id'
 
 	useEffect(() => setShowLoading(false), [ importedSketchValues ])
 
@@ -85,15 +84,20 @@ const ImportModal = ({
 		return null
 	}
 
-	const saveSelectedImportedValues = () => {}
-	// const saveSelectedImportedValues = () => dispatch(saveImportedSketchValues(selectedImportedValues))
+	const saveSelectedImportedValues = () => {
+		dispatch(saveImportedSketchValues(
+			selectedImportedValues.filter((v) => selectedImportCategories.includes(v.type as any)),
+		))
+
+		closeImportModal()
+	}
 
 	const toggleSelectedImportedValue = (style: SelectedImportedValue) => {
-		const comparisonValue = (style as any)[comparisonProp]
+		const styleId = style.id
 
 		setSelectedImportedValues((state) => {
-			if (state.some((v) => (v as any)[comparisonProp] === comparisonValue)) {
-				return state.filter((v) => (v as any)[comparisonProp] !== comparisonValue)
+			if (state.some((v) => v.id === styleId)) {
+				return state.filter((v) => v.id !== styleId)
 			}
 
 			return [ ...state, style ]
@@ -102,10 +106,10 @@ const ImportModal = ({
 
 	const routeThemeValues = themeValues.filter((v) => v.type === activeRoute)
 
-	const routeImportedSketchValues = (importedSketchValues[themeTypePropertyMap[activeRoute]] as any).map((value: ThemeValue | SystemFontFamily) => ({
+	const routeImportedSketchValues = (importedSketchValues[themeTypePropertyMap[activeRoute]] as any).map((value: ThemeValue) => ({
 		...value,
 		imported: true,
-		selected: selectedImportedValues.some((v: any) => v[comparisonProp] === (value as any)[comparisonProp]),
+		selected: selectedImportedValues.some((v) => v.id === value.id),
 	}))
 
 	const numberOfSelectedImportedValuesBySaveType: {

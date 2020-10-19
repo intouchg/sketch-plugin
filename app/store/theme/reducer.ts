@@ -131,7 +131,7 @@ export const themeReducer = (
 			}
 
 			case SAVE_IMPORTED_SKETCH_VALUES: {
-				nextState.values.concat(action.payload)
+				nextState.values = nextState.values.concat(action.payload)
 				nextState.importedSketchValues = initialState.importedSketchValues
 				break
 			}
