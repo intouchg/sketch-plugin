@@ -137,7 +137,12 @@ const RightToolbar = ({
 	numberOfSelectedImportedValuesBySaveType: { [key in ImportModalRoute]: { new: number, overwrite: number } }
 }) => {
 	let numberOfSelectedValues = 0
-	Object.values(numberOfSelectedImportedValuesBySaveType).forEach((o) => Object.values(o).forEach((v) => numberOfSelectedValues += v))
+
+	Object.entries(numberOfSelectedImportedValuesBySaveType).forEach(([ key, object ]) => {
+		if (selectedImportCategories.includes(key as any)) {
+			Object.values(object).forEach((v) => numberOfSelectedValues += v)
+		}
+	})
 
 	const selectAllImportCategories = () => setSelectedImportCategories([ ...routes ])
 	const unselectAllImportCategories = () => setSelectedImportCategories([])
