@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Stack, Box, Flex, Text } from '@i/components'
 import { InvisibleButton, PrimaryButton } from '../Buttons'
 import { AccentText, SecondaryText } from '../Texts'
@@ -6,6 +7,10 @@ import { CloseIcon } from '../Icons'
 import { Checkbox } from '../Checkbox'
 import { routes, routeTitles } from './index'
 import type { ImportModalRoute } from './index'
+
+const SaturationFlex = styled(Flex)<{ isSelectedForImport: boolean }>`
+	filter: saturate(${(props) => props.isSelectedForImport ? '1' : '0'});
+`
 
 const CheckboxNavLink = ({
 	route,
@@ -42,12 +47,16 @@ const CheckboxNavLink = ({
 			width="100%"
 			paddingY={2}
 			textAlign="left"
+			opacity={isSelectedForImport ? '1' : '0.5'}
 			onClick={() => setActiveRoute(route)}
 		>
 			<SecondaryText>
 				{routeTitles[route]}
 			</SecondaryText>
-			<Flex marginRight={2}>
+			<SaturationFlex
+				isSelectedForImport={isSelectedForImport}
+				marginRight={2}
+			>
 				{numberOfSelectedOverwriteImportedValues > 0 && (
 					<Flex
 						alignItems="center"
@@ -85,10 +94,24 @@ const CheckboxNavLink = ({
 						</Text>
 					</Flex>
 				)}
-			</Flex>
+			</SaturationFlex>
 		</Flex>
 	</Flex>
 )
+
+const ImportButton = styled(PrimaryButton)<{ enabled: boolean }>`
+	position: absolute;
+	bottom: 0;
+	width: calc(100% - 40px);
+	margin: 20px;
+	${(props) => props.enabled ? `
+		pointer-events: unset;
+		opacity: 1;
+	` : `
+		pointer-events: none;
+		opacity: 0.5;
+	`}
+`
 
 const RightToolbar = ({
 	activeRoute,
@@ -113,6 +136,9 @@ const RightToolbar = ({
 	saveSelectedImportedValues: () => void
 	numberOfSelectedImportedValuesBySaveType: { [key in ImportModalRoute]: { new: number, overwrite: number } }
 }) => {
+	let numberOfSelectedValues = 0
+	Object.values(numberOfSelectedImportedValuesBySaveType).forEach((o) => Object.values(o).forEach((v) => numberOfSelectedValues += v))
+
 	const selectAllImportCategories = () => setSelectedImportCategories([ ...routes ])
 	const unselectAllImportCategories = () => setSelectedImportCategories([])
 
@@ -187,15 +213,12 @@ const RightToolbar = ({
 						numberOfSelectedOverwriteImportedValues={numberOfSelectedImportedValuesBySaveType[route].overwrite}
 					/>
 				))}
-				<PrimaryButton
-					position="absolute"
-					bottom="0"
-					width="calc(100% - 40px)"
-					margin="20px"
+				<ImportButton
+					enabled={selectedImportCategories.length > 0 && numberOfSelectedValues > 0}
 					onClick={saveSelectedImportedValues}
 				>
 					Import
-				</PrimaryButton>
+				</ImportButton>
 			</Stack>
 		</Box>
 	)
