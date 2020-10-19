@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 import { Flex, Stack, Heading, Box, Text } from '@i/components'
 import { InvisibleButton, PrimaryButton } from './Buttons'
 import { CloseIcon, FolderIcon } from './Icons'
@@ -7,12 +8,22 @@ import { sketchRequest } from '../sketchApi'
 
 const selectNewProjectDirectory = () => sketchRequest('selectNewProjectDirectory')
 
+const CreateButton = styled(PrimaryButton)<{ enabled: boolean }>`
+	${(props) => props.enabled ? `
+		pointer-events: unset;
+	` : `
+		pointer-events: none;
+		opacity: 0.5;
+	`}
+`
+
 const NewProjectModal = ({
 	closeNewProjectModal,
 }: {
     closeNewProjectModal: () => void
 }) => {
 	const [ directory, setDirectory ] = useState('')
+	const [ template, setTemplate ] = useState()
 
 	useEffect(() => {
 		window.setNewProjectDirectory = (directory) => setDirectory(directory)
@@ -103,9 +114,9 @@ const NewProjectModal = ({
 						/>
 					</Stack>
 					<Flex alignSelf="start">
-						<PrimaryButton>
+						<CreateButton enabled={Boolean(directory && template)}>
 							Create
-						</PrimaryButton>
+						</CreateButton>
 					</Flex>
 				</Stack>
 			</Flex>
