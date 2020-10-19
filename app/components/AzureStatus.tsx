@@ -7,11 +7,11 @@ const AzureStatus = () => {
 	const connected = true
 
 	return (
-		<InvisibleButton>
-			<AccentText
-				color="Text"
-				marginRight={4}
-			>
+		<InvisibleButton
+			paddingY={3}
+			marginRight={4}
+		>
+			<AccentText color="Text">
 				Azure
 				<Box
 					display="inline-block"

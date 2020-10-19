@@ -14,18 +14,19 @@ const Colors = ({
 }: {
 	values: ThemeColor[]
 	importedValues: (ThemeColor & { imported?: boolean, selected?: boolean })[]
-	toggleSelectedImportedValue: (color: ThemeColor & { willOverwrite?: boolean }) => void
+	toggleSelectedImportedValue: (color: ThemeColor & { willOverwriteByName?: boolean }) => void
 }) => {
-	const filteredThemeValues = values.filter(({ name }) => !importedValues.some((v) => v.name === name))
+	const filteredImportedValues = importedValues.filter(({ name, value }) => !values.some((v) => v.name === name && v.value === value))
+	const filteredThemeValues = values.filter(({ name }) => !filteredImportedValues.some((v) => v.name === name))
 
-	const sortedColors = importedValues
-		.map((i) => ({ ...i, willOverwrite: values.some((v) => v.name === i.name) }))
+	const sortedColors = filteredImportedValues
+		.map((i) => ({ ...i, willOverwriteByName: values.some((v) => v.name === i.name) }))
 		.concat(filteredThemeValues as any)
 		.sort((a, b) => sortAlphabetical(a, b, 'name'))
 
 	return (
 		<Flex flexWrap="wrap">
-			{sortedColors.map(({ imported, selected, willOverwrite, ...props }) => (
+			{sortedColors.map(({ imported, selected, willOverwriteByName, ...props }) => (
 				<Box
 					key={props.id}
 					position="relative"
@@ -35,7 +36,7 @@ const Colors = ({
 					marginX={2}
 					marginBottom={4}
 					as={imported ? InvisibleButton : undefined}
-					onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwrite }) : undefined}
+					onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwriteByName }) : undefined}
 				>
 					<Color {...props} />
 					{imported && (
@@ -47,7 +48,7 @@ const Colors = ({
 							checked={Boolean(selected)}
 						/>
 					)}
-					{imported && willOverwrite && (
+					{imported && willOverwriteByName && (
 						<Flex
 							position="absolute"
 							bottom="0"

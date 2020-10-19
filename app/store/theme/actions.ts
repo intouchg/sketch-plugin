@@ -68,7 +68,7 @@ export const setImportedSketchValues = (styles: SetImportedSketchValuesAction['p
 export const SAVE_IMPORTED_SKETCH_VALUES = 'SAVE_IMPORTED_SKETCH_VALUES'
 export type SaveImportedSketchValuesAction = {
     type: typeof SAVE_IMPORTED_SKETCH_VALUES
-    payload: ThemeValue[]
+    payload: (ThemeValue & { willOverwriteByName?: boolean })[]
 }
 export const saveImportedSketchValues = (values: SaveImportedSketchValuesAction['payload']): SaveImportedSketchValuesAction => ({
 	type: SAVE_IMPORTED_SKETCH_VALUES,

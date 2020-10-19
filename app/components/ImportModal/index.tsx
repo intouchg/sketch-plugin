@@ -36,7 +36,7 @@ export const routeTitles: { [key in ImportModalRoute]: string } = {
 	borderWidth: 'Borders',
 }
 
-type SelectedImportedValue = ThemeValue & { willOverwrite?: boolean }
+type SelectedImportedValue = ThemeValue & { willOverwriteByName?: boolean }
 
 // TO DO: Create loading component
 
@@ -125,7 +125,7 @@ const ImportModal = ({
 
 	selectedImportedValues.forEach((v) => {
 		const valueType = v.hasOwnProperty('type') ? (v as ThemeValue).type : 'font'
-		const saveType = v.willOverwrite ? 'overwrite' : 'new';
+		const saveType = v.willOverwriteByName ? 'overwrite' : 'new';
 		(numberOfSelectedImportedValuesBySaveType as any)[valueType][saveType] += 1
 	})
 

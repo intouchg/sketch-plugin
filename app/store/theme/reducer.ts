@@ -17,14 +17,14 @@ import {
 	SAVE_THEME_DATA,
 } from './actions'
 import { initialState } from './state'
-import type { StyleProperty } from '@i/theme'
+import type { ThemeValue, StyleProperty } from '@i/theme'
 import type { ThemeActionType } from './actions'
 import type { ThemeState } from './state'
 import type { SystemFontsDictionary } from '../../sketchApi'
 
 enablePatches()
 
-const findThemeValueError = (id: string) => new Error(`Could not locate ThemeValue with id "${id}"`)
+const findThemeValueByIdError = (id: string) => new Error(`Could not locate ThemeValue with id "${id}"`)
 
 const changeHistory: { [key: number]: any } = {}
 let currentVersion = -1
@@ -131,7 +131,25 @@ export const themeReducer = (
 			}
 
 			case SAVE_IMPORTED_SKETCH_VALUES: {
-				nextState.values = nextState.values.concat(action.payload)
+				const { values } = nextState
+
+				action.payload.forEach((newThemeValue) => {
+					if (!newThemeValue.willOverwriteByName) {
+						delete newThemeValue.willOverwriteByName
+						values.push(newThemeValue)
+						return
+					}
+
+					const { name } = newThemeValue as (ThemeValue & { name: string })
+					const index = values.findIndex((v) => (v as any).name === name)
+
+					if (index === undefined) {
+						throw new Error(`Could not locate ThemeValue with name "${name}"`)
+					}
+
+					values[index].value = newThemeValue.value
+				})
+
 				nextState.importedSketchValues = initialState.importedSketchValues
 				break
 			}
@@ -154,7 +172,7 @@ export const themeReducer = (
 				const index = values.findIndex((value) => value.id === id)
 
 				if (index === undefined) {
-					throw findThemeValueError(id)
+					throw findThemeValueByIdError(id)
 				}
 
 				values[index] = action.payload
@@ -169,7 +187,7 @@ export const themeReducer = (
 				const index = values.findIndex((value) => value.id === id)
 
 				if (index === -1) {
-					throw findThemeValueError(id)
+					throw findThemeValueByIdError(id)
 				}
 
 				values.splice(index, 1)

@@ -29,6 +29,7 @@ const TopToolbar = ({
 				<InvisibleButton
 					display="inline-flex"
 					marginRight={4}
+					paddingY={3}
 					onClick={openImportModal}
 				>
 					<AccentText

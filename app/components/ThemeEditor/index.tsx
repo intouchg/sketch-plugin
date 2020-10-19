@@ -1,10 +1,11 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import { Colors } from './Colors'
 
 const ThemeEditor = ({ path }: { path: string }) => (
 	<Switch>
 		<Route path={`${path}/theme/colors`}>
-			Colors
+			<Colors />
 		</Route>
 		<Route path={`${path}/theme/fonts`}>
 			Fonts
