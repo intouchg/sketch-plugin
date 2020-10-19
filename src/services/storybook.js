@@ -1,6 +1,5 @@
 import fs from '@skpm/fs'
 import path from '@skpm/path'
-import { exec } from '@skpm/child_process'
 import { themeProcessor } from '@i/theme'
 import ChildProcess from '../ChildProcess'
 
@@ -41,11 +40,12 @@ export const openStorybook = (webContents, showError) => {
 		}
 
 		try {
-			exec(`open -a "Google Chrome" ${STORYBOOK_URL}`)
+			// eslint-disable-next-line
+			NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(STORYBOOK_URL))
 		}
 		catch (error) {
 			stopStorybook()
-			showError(`Could not open Storybook in Google Chrome: ${error}`)
+			showError(`Error opening Storybook in browser: ${error}`)
 		}
 	}
 }

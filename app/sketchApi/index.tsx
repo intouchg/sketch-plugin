@@ -55,6 +55,7 @@ interface SketchListeners {
     getRecentProjects: () => RecentProject[]
     getSketchDocumentNames: () => string[]
     getSystemFonts: () => SPFontData
+    openBrowserWindow: (url: string) => void
     openStorybook: () => void
     saveThemeData: (data: {
         values: ThemeValue[]

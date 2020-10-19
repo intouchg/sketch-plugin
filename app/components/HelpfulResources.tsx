@@ -1,6 +1,9 @@
 import React from 'react'
 import { Stack } from '@i/components'
 import { AccentText, TertiaryButton } from '../components'
+import { sketchRequest } from '../sketchApi'
+
+const openBrowserWindow = (url: string) => sketchRequest('openBrowserWindow', url)
 
 const HelpfulResources = () => {
 	return (
@@ -9,13 +12,22 @@ const HelpfulResources = () => {
 				Resources
 			</AccentText>
 			<Stack alignItems="flex-start">
-				<TertiaryButton marginBottom={1}>
+				<TertiaryButton
+					marginBottom={1}
+					onClick={() => openBrowserWindow('https://google.com')}
+				>
 					Getting Started
 				</TertiaryButton>
-				<TertiaryButton marginBottom={1}>
+				<TertiaryButton
+					marginBottom={1}
+					onClick={() => openBrowserWindow('https://google.com')}
+				>
 					Coming Soon
 				</TertiaryButton>
-				<TertiaryButton marginBottom={1}>
+				<TertiaryButton
+					marginBottom={1}
+					onClick={() => openBrowserWindow('https://google.com')}
+				>
 					Support
 				</TertiaryButton>
 			</Stack>

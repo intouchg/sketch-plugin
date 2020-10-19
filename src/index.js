@@ -9,6 +9,7 @@ import {
 	getRecentProjects,
 	getSystemFonts,
 	selectNewProjectDirectory,
+	openBrowserWindow,
 	openStorybook,
 	saveThemeData,
 	getAzureGitRepos,
@@ -65,6 +66,8 @@ export default () => {
 	webContents.on('getSketchDocumentNames', () => updateSketchDocumentNames(webContents))
 
 	webContents.on('selectNewProjectDirectory', () => selectNewProjectDirectory(webContents, showError))
+
+	webContents.on('openBrowserWindow', (url) => openBrowserWindow(showError, url))
 
 	webContents.on('openStorybook', () => openStorybook(webContents, showError, themeData))
 
