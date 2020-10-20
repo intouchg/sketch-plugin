@@ -22,7 +22,7 @@ const LetterSpacings = ({
 	})
 
 	return (
-		<Stack>
+		<Stack marginY="auto">
 			{sortedLetterSpacings.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}

@@ -24,7 +24,11 @@ const BorderWidths = ({
 	const sortedBorderWidths = filteredImportedValues.concat(values as any).sort(sortBorderWidths)
 
 	return (
-		<Stack alignItems="center">
+		<Stack
+			alignItems="center"
+			flexGrow={1}
+			marginY="auto"
+		>
 			{sortedBorderWidths.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}

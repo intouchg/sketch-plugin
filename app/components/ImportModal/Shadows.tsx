@@ -28,7 +28,11 @@ const Shadows = ({
 	const sortedShadows = filteredImportedValues.concat(values as any).sort(sortShadowStyles)
 
 	return (
-		<Stack alignItems="center">
+		<Stack
+			alignItems="center"
+			flexGrow={1}
+			marginY="auto"
+		>
 			{sortedShadows.map(({ imported, selected, ...props }, index) => (
 				<Flex
 					key={props.id}

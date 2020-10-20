@@ -39,7 +39,10 @@ const Fonts = ({
 	const sortedFilteredSystemFonts = filteredSystemFonts.slice().sort((a, b) => sortAlphabetical(a, b, 'name'))
 
 	return (
-		<Stack>
+		<Stack
+			flexGrow={1}
+			marginY="auto"
+		>
 			{sortedFilteredSystemFonts.map(({ imported, ...systemFont }) => (
 				<FontFamily
 					key={systemFont.name}

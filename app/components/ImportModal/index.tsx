@@ -153,7 +153,9 @@ const ImportModal = ({
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<Box
+				<Flex
+					alignItems="center"
+					justifyContent="center"
 					flexGrow={1}
 					padding={6}
 					overflowY="scroll"
@@ -169,7 +171,7 @@ const ImportModal = ({
 							toggleSelectedImportedValue={toggleSelectedImportedValue}
 						/>
 					)}
-				</Box>
+				</Flex>
 				<RightToolbar
 					activeRoute={activeRoute}
 					setActiveRoute={setActiveRoute}

@@ -22,7 +22,11 @@ const FontSizes = ({
 	})
 
 	return (
-		<Stack>
+		<Stack
+			flexGrow={1}
+			marginY="auto"
+			overflow="hidden"
+		>
 			{sortedFontSizes.map(({ imported, selected, ...props }) => {
 				const pixelValue = Number(props.value.split('rem')[0]) * 16
 
