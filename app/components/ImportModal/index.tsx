@@ -9,6 +9,7 @@ import { FontSizes } from './FontSizes'
 import { LineHeights } from './LineHeights'
 import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
+import { LetterSpacings } from './LetterSpacings'
 import { sketchRequest } from '../../sketchApi'
 import { saveImportedSketchValues } from '../../store'
 import type { ThemeValue } from '@i/theme'
@@ -21,6 +22,7 @@ const views = {
 	lineHeight: LineHeights,
 	shadow: Shadows,
 	borderWidth: BorderWidths,
+	letterSpacing: LetterSpacings,
 } as const
 
 export type ImportModalRoute = keyof typeof views
@@ -34,6 +36,7 @@ export const routeTitles: { [key in ImportModalRoute]: string } = {
 	lineHeight: 'Line Heights',
 	shadow: 'Shadows',
 	borderWidth: 'Borders',
+	letterSpacing: 'Letter Spacings',
 }
 
 type SelectedImportedValue = ThemeValue & { willOverwriteByName?: boolean }
@@ -121,6 +124,7 @@ const ImportModal = ({
 		lineHeight: { new: 0, overwrite: 0 },
 		shadow: { new: 0, overwrite: 0 },
 		borderWidth: { new: 0, overwrite: 0 },
+		letterSpacing: { new: 0, overwrite: 0 },
 	}
 
 	selectedImportedValues.forEach((v) => {
