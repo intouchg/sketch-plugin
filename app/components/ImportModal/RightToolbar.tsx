@@ -50,7 +50,7 @@ const CheckboxNavLink = ({
 			opacity={isSelectedForImport ? '1' : '0.5'}
 			onClick={() => setActiveRoute(route)}
 		>
-			<SecondaryText>
+			<SecondaryText fontWeight={isSelectedForImport ? 'Bold' : 'Medium'}>
 				{routeTitles[route]}
 			</SecondaryText>
 			<SaturationFlex
