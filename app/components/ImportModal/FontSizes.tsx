@@ -48,21 +48,12 @@ const FontSizes = ({
 							{imported ? (
 								<Checkbox
 									checked={Boolean(selected)}
-									paddingY="6px"
-									paddingLeft="6px"
-									paddingRight="10px"
+									padding={2}
 								/>
 							) : (
-								<CheckboxPlaceholder
-									paddingY="6px"
-									paddingRight="10px"
-									paddingLeft="6px"
-								/>
+								<CheckboxPlaceholder padding={2} />
 							)}
-							<Text
-								paddingRight="8px"
-								paddingLeft={imported ? '0' : '8px'}
-							>
+							<Text paddingRight={2}>
 								{pixelValue}
 							</Text>
 						</Flex>

@@ -82,6 +82,7 @@ export const useGlobalSketchListeners = () => {
 		window.setImportedSketchValues = (styles) => dispatch(setImportedSketchValues(styles))
 		window.setSystemFonts = (fonts) => dispatch(setSystemFonts(fonts))
 
+		sketchRequest('getRecentProjects')
 		sketchRequest('getSketchDocumentNames')
 		sketchRequest('getSystemFonts')
 

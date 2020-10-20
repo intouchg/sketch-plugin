@@ -12,7 +12,7 @@ const LetterSpacings = ({
 }: {
 	values: ThemeLetterSpacing[]
 	importedValues: (ThemeLetterSpacing & { imported?: boolean, selected?: boolean })[]
-	toggleSelectedImportedValue: (lineHeight: ThemeLetterSpacing) => void
+	toggleSelectedImportedValue: (fontSize: ThemeLetterSpacing) => void
 }) => {
 	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
 	const sortedLetterSpacings = filteredImportedValues.concat(values as any).sort((a, b) => {
@@ -22,22 +22,21 @@ const LetterSpacings = ({
 	})
 
 	return (
-		<Stack alignItems="center">
+		<Stack>
 			{sortedLetterSpacings.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}
-					maxWidth="640px"
+					flexShrink={0}
+					marginY={1}
 					alignItems="center"
-					marginBottom={4}
 					as={imported ? InvisibleButton : undefined}
 					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 				>
 					<Flex
-						minWidth="115px"
-						alignItems="center"
-						paddingX={3}
-						paddingY={2}
+						minWidth="72px"
+						minHeight="36px"
 						marginRight={3}
+						alignItems="center"
 						backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
 						borderRadius="Large"
 						flexShrink={0}
@@ -45,18 +44,18 @@ const LetterSpacings = ({
 						{imported ? (
 							<Checkbox
 								checked={Boolean(selected)}
-								marginRight={3}
+								padding={2}
 							/>
 						) : (
-							<CheckboxPlaceholder marginRight={3} />
+							<CheckboxPlaceholder padding={2} />
 						)}
-						<Text>
+						<Text paddingRight={2}>
 							{props.value.split('px')[0]}
 						</Text>
 					</Flex>
 					<LetterSpacing {...props} />
 				</Flex>
-            ))}
+			))}
 		</Stack>
 	)
 }
