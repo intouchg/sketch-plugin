@@ -30,8 +30,11 @@ const BorderWidths = ({
 					key={props.id}
 					width="100%"
 					maxWidth="640px"
+					padding={3}
 					alignItems="center"
 					marginBottom={4}
+					backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
+					borderRadius="Large"
 					as={imported ? InvisibleButton : undefined}
 					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 				>
@@ -43,13 +46,7 @@ const BorderWidths = ({
 					) : (
 						<CheckboxPlaceholder marginRight={3} />
 					)}
-					<Box
-						flexGrow={1}
-						borderRadius="Large"
-						backgroundColor={imported ? 'transparent' : 'Background'}
-					>
-						<BorderWidth {...props} />
-					</Box>
+					<BorderWidth {...props} />
 				</Flex>
 			))}
 		</Stack>

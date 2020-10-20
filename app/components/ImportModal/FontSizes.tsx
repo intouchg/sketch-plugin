@@ -1,7 +1,6 @@
 import React from 'react'
-import { Stack, Flex } from '@i/components'
+import { Stack, Flex, Text } from '@i/components'
 import { FontSize } from '../ThemeValues'
-import { SecondaryText } from '../Texts'
 import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
 import { InvisibleButton } from '../Buttons'
 import type { ThemeFontSize } from '@i/theme'
@@ -42,7 +41,7 @@ const FontSizes = ({
 							marginRight={3}
 							alignItems="center"
 							justifyContent="center"
-							backgroundColor="Background"
+							backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
 							borderRadius="Large"
 							flexShrink={0}
 						>
@@ -60,12 +59,12 @@ const FontSizes = ({
 									paddingLeft="6px"
 								/>
 							)}
-							<SecondaryText
-								padding="8px"
+							<Text
+								paddingRight="8px"
 								paddingLeft={imported ? '0' : '8px'}
 							>
 								{pixelValue}
-							</SecondaryText>
+							</Text>
 						</Flex>
 						<FontSize {...props} />
 					</Flex>

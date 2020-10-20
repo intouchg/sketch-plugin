@@ -48,10 +48,7 @@ const Shadows = ({
 					) : (
 						<CheckboxPlaceholder marginRight={4} />
 					)}
-					<Shadow
-						index={index}
-						{...props}
-					/>
+					<Shadow {...props} />
 				</Flex>
 			))}
 		</Stack>

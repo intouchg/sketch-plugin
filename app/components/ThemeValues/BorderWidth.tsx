@@ -11,7 +11,6 @@ const BorderWidth = ({
 			alignItems="center"
 			justifyContent="space-around"
 			flexGrow={1}
-			padding={4}
 		>
 			<Text
 				minWidth="48px"

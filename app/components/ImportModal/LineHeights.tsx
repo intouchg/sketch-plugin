@@ -1,7 +1,6 @@
 import React from 'react'
-import { Stack, Flex } from '@i/components'
+import { Stack, Flex, Text } from '@i/components'
 import { LineHeight } from '../ThemeValues'
-import { SecondaryText } from '../Texts'
 import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
 import { InvisibleButton } from '../Buttons'
 import type { ThemeLineHeight } from '@i/theme'
@@ -28,19 +27,33 @@ const LineHeights = ({
 				<Flex
 					key={props.id}
 					maxWidth="640px"
-					alignItems="center"
+					alignItems="stretch"
 					marginBottom={4}
 					as={imported ? InvisibleButton : undefined}
 					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 				>
-					{imported ? (
-						<Checkbox
-							checked={Boolean(selected)}
-							marginRight={4}
-						/>
-					) : (
-						<CheckboxPlaceholder marginRight={3} />
-					)}
+					<Flex
+						minWidth="115px"
+						alignItems="center"
+						paddingX={3}
+						paddingY={2}
+						marginRight={3}
+						backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
+						borderRadius="Large"
+						flexShrink={0}
+					>
+						{imported ? (
+							<Checkbox
+								checked={Boolean(selected)}
+								marginRight={3}
+							/>
+						) : (
+							<CheckboxPlaceholder marginRight={3} />
+						)}
+						<Text>
+							{props.value.split('rem')[0]}
+						</Text>
+					</Flex>
 					<LineHeight {...props} />
 				</Flex>
             ))}

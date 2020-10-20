@@ -1,15 +1,12 @@
 import React from 'react'
-import { Stack, Flex, Box, Text } from '@i/components'
+import { Stack, Flex, Box } from '@i/components'
 import { AccentText, SecondaryText } from '../Texts'
 import type { ThemeShadow } from '@i/theme'
 
 const Shadow = ({
-	index,
 	value,
 	...props
-}: ThemeShadow & {
-	index: number
-}) => {
+}: ThemeShadow) => {
 	const [ x, y, blur, spread, color ] = value.split('px').map((s) => s.trim())
 
 	return (
@@ -29,11 +26,7 @@ const Shadow = ({
 				boxShadow={value}
 				marginRight={4}
 				flexShrink={0}
-			>
-				<Text>
-					{index}
-				</Text>
-			</Flex>
+			/>
 			<Flex
 				width="100%"
 				justifyContent="space-between"
