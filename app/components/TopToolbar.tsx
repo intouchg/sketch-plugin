@@ -4,8 +4,11 @@ import { InvisibleButton } from './Buttons'
 import { AccentText } from './Texts'
 import { SketchIcon } from './Icons'
 import { AzureStatus } from './AzureStatus'
+import { sketchRequest } from '../sketchApi'
 
 export const topToolbarHeight = '64px'
+
+const openDevServer = () => sketchRequest('openDevServer')
 
 const TopToolbar = ({
 	openImportModal,
@@ -42,6 +45,16 @@ const TopToolbar = ({
 						width="16px"
 						height="16px"
 					/>
+				</InvisibleButton>
+				<InvisibleButton
+					display="inline-flex"
+					marginRight={4}
+					paddingY={3}
+					onClick={openDevServer}
+				>
+					<AccentText color="Text">
+						Preview
+					</AccentText>
 				</InvisibleButton>
 				<AzureStatus />
 			</Box>

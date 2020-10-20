@@ -63,5 +63,5 @@ export const selectLocalProject = (webContents, showError, filepath) => {
 		webContents.executeJavaScript(`window.setRecentProjects(${JSON.stringify(recentProjects)})`)
 	}
 
-	return { themeFilepaths, themeData }
+	return { selectedProjectDirectory, themeFilepaths, themeData }
 }

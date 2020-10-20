@@ -56,6 +56,7 @@ interface SketchListeners {
     getSketchDocumentNames: () => string[]
     getSystemFonts: () => SPFontData
     openBrowserWindow: (url: string) => void
+    openDevServer: () => void
     openStorybook: () => void
     saveThemeData: (data: {
         values: ThemeValue[]
@@ -67,9 +68,7 @@ interface SketchListeners {
     startAuthServer: () => void
 }
 
-export type SketchListenerType = keyof SketchListeners
-
-export const sketchRequest = <T extends SketchListenerType>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage(type, payload as any)
+export const sketchRequest = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage(type, payload as any)
 
 export const useGlobalSketchListeners = () => {
 	const history = useHistory()

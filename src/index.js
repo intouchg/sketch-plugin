@@ -3,13 +3,14 @@ import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
 import { getDocuments } from 'sketch'
 // import { toArray } from 'util'
-import { stopStorybook } from './services'
+import { stopDevServer, stopStorybook } from './services'
 import {
 	selectLocalProject,
 	getRecentProjects,
 	getSystemFonts,
 	selectNewProjectDirectory,
 	openBrowserWindow,
+	openDevServer,
 	openStorybook,
 	saveThemeData,
 	getAzureGitRepos,
@@ -47,14 +48,19 @@ export default () => {
 
 	const showError = (message) => webContents.executeJavaScript(`window.displayError(${JSON.stringify(message)})`)
 
+	let selectedProjectDirectory = null
 	let themeFilepaths = {}
 	let themeData = {}
 
-	browserWindow.on('closed', () => stopStorybook())
+	browserWindow.on('closed', () => {
+		stopDevServer()
+		stopStorybook()
+	})
 
 	webContents.on('selectLocalProject', (recentProject) => {
 		const filepath = recentProject ? recentProject.filepath : null
 		const results = selectLocalProject(webContents, showError, filepath)
+		selectedProjectDirectory = results.selectedProjectDirectory
 		themeFilepaths = results.themeFilepaths
 		themeData = results.themeData
 	})
@@ -68,6 +74,8 @@ export default () => {
 	webContents.on('selectNewProjectDirectory', () => selectNewProjectDirectory(webContents, showError))
 
 	webContents.on('openBrowserWindow', (url) => openBrowserWindow(showError, url))
+
+	webContents.on('openDevServer', () => openDevServer(webContents, showError, selectedProjectDirectory))
 
 	webContents.on('openStorybook', () => openStorybook(webContents, showError, themeData))
 
