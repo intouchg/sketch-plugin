@@ -29,7 +29,7 @@ const BorderWidths = ({
 				<Flex
 					key={props.id}
 					width="100%"
-					maxWidth="640px"
+					maxWidth="540px"
 					padding={3}
 					alignItems="center"
 					marginBottom={4}
