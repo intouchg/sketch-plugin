@@ -36,6 +36,15 @@ const UNDOABLE_ACTIONS = [
 	DELETE_THEME_VALUE,
 ]
 
+const SAVEABLE_ACTIONS = [
+	UNDO,
+	REDO,
+	SAVE_IMPORTED_SKETCH_VALUES,
+	CREATE_THEME_VALUE,
+	UPDATE_THEME_VALUE,
+	DELETE_THEME_VALUE,
+]
+
 /* eslint-disable complexity */
 export const themeReducer = (
 	state: ThemeState = initialState,
@@ -161,7 +170,6 @@ export const themeReducer = (
 					action.payload,
 				)
 				nextState.values.push(value)
-
 				break
 			}
 
@@ -176,7 +184,6 @@ export const themeReducer = (
 				}
 
 				values[index] = action.payload
-
 				break
 			}
 
@@ -231,6 +238,14 @@ export const themeReducer = (
 		if (UNDOABLE_ACTIONS.includes(action.type)) {
 			nextState.canUndo = true
 			nextState.canRedo = false
+		}
+
+		if (SAVEABLE_ACTIONS.includes(action.type)) {
+			sketchRequest('saveThemeData', {
+				values: nextState.values,
+				components: nextState.components,
+				variants: nextState.variants,
+			})
 		}
 	}, (patches, inversePatches) => {
 		if (UNDOABLE_ACTIONS.includes(action.type)) {
