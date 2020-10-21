@@ -1,6 +1,6 @@
 import ChildProcess from '../ChildProcess'
 
-const MSAL_SERVER_LIB_FILEPATH = './Contents/Sketch/msal-server/msal-server-cli.cjs.js'
+const ADAL_SERVER_LIB_FILEPATH = './Contents/Sketch/adal-server/cli.js'
 
 let serverProcess = null
 
@@ -11,7 +11,7 @@ export const startAuthServer = (port, webContents, showError) => {
 		// webContents.executeJavaScript('window.doStuff()')
 	}
 
-	const onError = (error) => showError(`Could not start MSALServer auth server: ${error}`)
+	const onError = (error) => showError(`Could not start ADALServer auth server: ${error}`)
 
-	serverProcess = new ChildProcess(`node ${MSAL_SERVER_LIB_FILEPATH} ${port}`, { onClose, onError })
+	serverProcess = new ChildProcess(`node ${ADAL_SERVER_LIB_FILEPATH} ${port}`, { onClose, onError })
 }

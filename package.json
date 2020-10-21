@@ -72,9 +72,9 @@
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "7.11.5",
+    "@i/adal-server": "latest",
     "@i/azure": "latest",
     "@i/components": "latest",
-    "@i/msal-server": "latest",
     "@i/theme": "latest",
     "@i/utility": "latest",
     "@skpm/child_process": "0.4.2",

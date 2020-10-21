@@ -31,17 +31,13 @@ module.exports = function (config, entry) {
     },
   )
 
-  const msalServerModulePath = path.resolve('node_modules/@i/msal-server')
+  const adalServerModulePath = path.resolve('node_modules/@i/adal-server')
 
   config.plugins.push(new PluginCopy({
     patterns: [
       {
-        from: `${msalServerModulePath}/cli.cjs.js`,
-        to: 'msal-server/msal-server-cli.cjs.js',
-      },
-      {
-        from: `${msalServerModulePath}/dist/index.cjs.js`,
-        to: 'msal-server/dist/index.cjs.js',
+        from: `${adalServerModulePath}/lib/`,
+        to: 'adal-server/',
       },
     ],
   }))
