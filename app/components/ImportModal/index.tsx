@@ -95,15 +95,15 @@ const ImportModal = ({
 		closeImportModal()
 	}
 
-	const toggleSelectedImportedValue = (style: SelectedImportedValue) => {
-		const styleId = style.id
+	const toggleSelectedImportedValue = (value: SelectedImportedValue) => {
+		const valueId = value.id
 
 		setSelectedImportedValues((state) => {
-			if (state.some((v) => v.id === styleId)) {
-				return state.filter((v) => v.id !== styleId)
+			if (state.some((v) => v.id === valueId)) {
+				return state.filter((v) => v.id !== valueId)
 			}
 
-			return [ ...state, style ]
+			return [ ...state, value ]
 		})
 	}
 
