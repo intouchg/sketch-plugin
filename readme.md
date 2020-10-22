@@ -30,6 +30,12 @@ This plugin includes the [@i/adal-server](https://intazdoweb.intouchsol.com/Into
 <br>
 
 
+### Fontbook Parser
+
+This plugin includes the [@i/fontbook-parser](https://intazdoweb.intouchsol.com/IntouchDesignSystem/IntouchDesignSystem/_git/fontbook-parser) module in the production bundle using the `copy-webpack-plugin` as part of the `webpack.skpm.config.js`. The ADAL Server is initialized using NodeJS `child_process.spawn` and passing an XML filepath and JSON filepath.
+<br>
+
+
 ## Development Guide
 
 _This plugin was created using `skpm`. For a detailed explanation on how things work, checkout the [skpm Readme](https://github.com/skpm/skpm/blob/master/README.md)._

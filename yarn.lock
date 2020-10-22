@@ -1335,6 +1335,13 @@
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/eslint-config/-/eslint-config-0.0.10.tgz#f45c6a23fd4827fee68a49e1b23ec2876e4f941f"
   integrity sha1-9FxqI/1IJ/7miknhsj7Ch25PlB8=
 
+"@i/fontbook-parser@latest":
+  version "0.0.2"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/fontbook-parser/-/fontbook-parser-0.0.2.tgz#d52b229b45243a38fd461db2dd2ed390b6f52a19"
+  integrity sha1-1Ssim0UkOjj9Rh2y3S7TkLb1Khk=
+  dependencies:
+    xmldom "0.3.0"
+
 "@i/theme@latest":
   version "0.0.22"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/theme/-/theme-0.0.22.tgz#a6f4e5eae667a54dfeff1a04e02f71282302b09a"
@@ -13667,7 +13674,7 @@ ws@^6.2.1:
   dependencies:
     async-limiter "~1.0.0"
 
-"xmldom@>= 0.1.x":
+xmldom@0.3.0, "xmldom@>= 0.1.x":
   version "0.3.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/xmldom/-/xmldom-0.3.0.tgz#e625457f4300b5df9c2e1ecb776147ece47f3e5a"
   integrity sha1-5iVFf0MAtd+cLh7Ld2FH7OR/Plo=

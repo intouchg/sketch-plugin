@@ -33,9 +33,7 @@ export type SPFontsDataType = {
     valid: string
 }
 
-export type SPFontData = {
-    SPFontsDataType: SPFontsDataType[]
-}
+export type SPFontData = SPFontsDataType[]
 
 // The theme reducer transforms the raw JSON
 // data from system_profiler into these types

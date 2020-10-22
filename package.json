@@ -75,6 +75,7 @@
     "@i/adal-server": "latest",
     "@i/azure": "latest",
     "@i/components": "latest",
+    "@i/fontbook-parser": "latest",
     "@i/theme": "latest",
     "@i/utility": "latest",
     "@skpm/child_process": "0.4.2",

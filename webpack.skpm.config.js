@@ -32,12 +32,17 @@ module.exports = function (config, entry) {
   )
 
   const adalServerModulePath = path.resolve('node_modules/@i/adal-server')
+  const fontbookParserModulePath = path.resolve('node_modules/@i/fontbook-parser')
 
   config.plugins.push(new PluginCopy({
     patterns: [
       {
         from: `${adalServerModulePath}/lib/`,
         to: 'adal-server/',
+      },
+      {
+        from: `${fontbookParserModulePath}/lib/`,
+        to: 'fontbook-parser/',
       },
     ],
   }))

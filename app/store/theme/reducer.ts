@@ -92,7 +92,7 @@ export const themeReducer = (
 			}
 
 			case SET_SYSTEM_FONTS: {
-				const systemFonts = action.payload.SPFontsDataType
+				const systemFonts = action.payload
 				const systemFontsDictionary: SystemFontsDictionary = {}
 
 				systemFonts.slice().sort((a, b) => sortAlphabetical(a, b, '_name')).forEach((systemFont) => {
