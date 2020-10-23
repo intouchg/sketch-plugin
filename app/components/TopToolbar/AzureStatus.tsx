@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@i/components'
-import { InvisibleButton } from './Buttons'
-import { AccentText } from './Texts'
+import { InvisibleButton } from '../Buttons'
+import { AccentText } from '../Texts'
 
 const AzureStatus = () => {
 	const connected = true
