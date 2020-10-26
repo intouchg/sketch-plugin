@@ -50,6 +50,6 @@ module.exports = function (config, entry) {
   config.plugins.push(new PluginESLint({
     fix: true,
     files: 'src',
-    configFile: path.resolve('.eslintrc.js'),
+    overrideConfigFile: path.resolve('.eslintrc.js'),
   }))
 }
