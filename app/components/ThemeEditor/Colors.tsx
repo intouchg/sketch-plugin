@@ -10,7 +10,12 @@ const Colors = () => {
 	const colors = useSelector((state) => state.theme.values.filter((v) => v.type === 'color')) as ThemeColor[]
 
 	return (
-		<ColorContainerGrid gridGap={3}>
+		<ColorContainerGrid
+			maxWidth="860px"
+			marginX="auto"
+			gridGap={3}
+			padding={6}
+		>
 			{colors.map((color) => (
 				<Box
 					key={color.id}
