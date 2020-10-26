@@ -1,4 +1,5 @@
 export * from './Buttons'
+export * from './ColorContainerGrid'
 export * from './ComponentEditor'
 export * from './DirectoryInput'
 export * from './HelpfulResources'

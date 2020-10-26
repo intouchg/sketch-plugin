@@ -25,6 +25,10 @@ const Fonts = ({
 
 	// TO DO: fix / finish this
 
+	// 1. We get fontFamily from Sketch
+	// 2. Include every systemFont fontFamily from ThemeValues and Sketch import
+	// 3. Checkmark every typeface in inclued systemFonts based on ThemeValues
+
 	const filteredImportedValues = importedValues.filter(({ family }) => !values.some((v) => v.family === family))
 	const filteredSystemFonts: (SystemFontFamily & { imported?: boolean })[] = []
 

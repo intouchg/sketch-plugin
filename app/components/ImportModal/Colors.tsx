@@ -4,6 +4,7 @@ import { Color } from '../ThemeValues'
 import { Checkbox } from '../Checkbox'
 import { OverwriteIcon } from '../Icons'
 import { InvisibleButton } from '../Buttons'
+import { ColorContainerGrid } from '../ColorContainerGrid'
 import { sortAlphabetical } from '@i/utility'
 import type { ThemeColor } from '@i/theme'
 
@@ -25,20 +26,14 @@ const Colors = ({
 		.sort((a, b) => sortAlphabetical(a, b, 'name'))
 
 	return (
-		<Flex
-			flexWrap="wrap"
-			flexGrow={1}
-			marginY="auto"
-		>
+		<ColorContainerGrid gridGap={3}>
 			{sortedColors.map(({ imported, selected, willOverwriteByName, ...props }) => (
 				<Box
 					key={props.id}
 					position="relative"
-					width="196px"
-					height="128px"
+					height="0"
+					paddingBottom="65.31%"
 					flexGrow={1}
-					marginX={2}
-					marginBottom={4}
 					as={imported ? InvisibleButton : undefined}
 					onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwriteByName }) : undefined}
 				>
@@ -74,7 +69,7 @@ const Colors = ({
 					)}
 				</Box>
 			))}
-		</Flex>
+		</ColorContainerGrid>
 	)
 }
 

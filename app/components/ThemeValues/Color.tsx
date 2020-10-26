@@ -25,7 +25,7 @@ const Color = ({
 
 	return (
 		<Box
-			position="relative"
+			position="absolute"
 			width="100%"
 			height="100%"
 			borderRadius="Medium"
