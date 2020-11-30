@@ -47,7 +47,7 @@ export type WebviewListenerType = keyof WebviewListeners
 // is expected to have 0 or 1 parameters. The function
 // names can be used as window.postMessage types to
 // call into the Sketch backend:
-// window.postMessage('startAuthServer')
+// window.postMessage('openDevServer')
 interface SketchListeners {
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
     extractSketchDocumentStyles: (sketchDocumentIndex: number) => void
@@ -65,7 +65,6 @@ interface SketchListeners {
     }) => void
     selectLocalProject: (recentProject?: RecentProject) => void
     selectNewProjectDirectory: () => void
-    startAuthServer: () => void
 }
 
 export const sketchRequest = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage(type, payload as any)

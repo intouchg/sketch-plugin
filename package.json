@@ -73,7 +73,6 @@
   },
   "dependencies": {
     "@babel/runtime": "7.12.1",
-    "@i/adal-server": "latest",
     "@i/azure": "latest",
     "@i/components": "latest",
     "@i/fontbook-parser": "latest",

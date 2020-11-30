@@ -16,7 +16,6 @@ import {
 	getAzureGitRepos,
 	cloneAzureGitRepo,
 	extractSketchDocumentStyles,
-	startAuthServer,
 } from './messages'
 
 const WEBVIEW_IDENTIFIER = 'intouch-design-system.webview'
@@ -89,8 +88,6 @@ export default () => {
 		const sketchDocuments = (getDocuments() || []).filter((document) => document.path)
 		extractSketchDocumentStyles(webContents, showError, sketchDocuments[sketchDocumentIndex])
 	})
-
-	webContents.on('startAuthServer', () => startAuthServer(webContents, showError))
 
 	browserWindow.loadURL(require('../resources/webview.html'))
 }

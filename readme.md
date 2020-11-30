@@ -24,12 +24,6 @@ The `app/` directory contains the React TypeScript application code which is ren
 <br>
 
 
-### ADAL Server
-
-This plugin includes the [@i/adal-server](https://intazdoweb.intouchsol.com/IntouchDesignSystem/IntouchDesignSystem/_git/adal-server) module in the production bundle using the `copy-webpack-plugin` as part of the `webpack.skpm.config.js`. The ADAL Server is initialized using NodeJS `child_process.spawn` and passing the port number.
-<br>
-
-
 ### Fontbook Parser
 
 This plugin includes the [@i/fontbook-parser](https://intazdoweb.intouchsol.com/IntouchDesignSystem/IntouchDesignSystem/_git/fontbook-parser) module in the production bundle using the `copy-webpack-plugin` as part of the `webpack.skpm.config.js`. The ADAL Server is initialized using NodeJS `child_process.spawn` and passing an XML filepath and JSON filepath.
