@@ -34,7 +34,7 @@ const FontSizes = ({
 					<Flex
 						key={props.id}
 						flexShrink={0}
-						marginY={1}
+						marginY={2}
 						alignItems="stretch"
 						as={imported ? InvisibleButton : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}

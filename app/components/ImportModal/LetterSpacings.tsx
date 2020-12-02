@@ -22,12 +22,15 @@ const LetterSpacings = ({
 	})
 
 	return (
-		<Stack marginY="auto">
+		<Stack
+			maxWidth="100%"
+			marginY="auto"
+		>
 			{sortedLetterSpacings.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}
 					flexShrink={0}
-					marginY={1}
+					marginY={2}
 					alignItems="center"
 					as={imported ? InvisibleButton : undefined}
 					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}

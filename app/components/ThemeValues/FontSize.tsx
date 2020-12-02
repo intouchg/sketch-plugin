@@ -1,15 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Text } from '@i/components'
+import { NoWrapText } from '../NoWrapText'
 import type { ThemeFontSize } from '@i/theme'
-
-const NoWrapText = styled(Text)`
-	white-space: nowrap;
-	line-height: unset;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	align-self: center;
-`
 
 const FontSize = ({
 	value,

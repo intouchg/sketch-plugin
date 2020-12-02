@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@i/components'
+import { NoWrapText } from '../NoWrapText'
 import type { ThemeLetterSpacing } from '@i/theme'
 
 const LetterSpacing = ({
@@ -7,7 +7,7 @@ const LetterSpacing = ({
 	...props
 }: ThemeLetterSpacing) => {
 	return (
-		<Text
+		<NoWrapText
 			width="100%"
 			fontSize="1.5rem"
 			fontWeight="Bold"
@@ -15,7 +15,7 @@ const LetterSpacing = ({
 			textAlign="left"
 		>
 			Lorem ipsum dolor sit amet
-		</Text>
+		</NoWrapText>
 	)
 }
 
