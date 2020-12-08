@@ -184,6 +184,7 @@ const RightToolbar = ({
 				>
 					<select
 						value={selectedSketchDocumentIndex}
+						style={{ fontSize: '1.5rem' }}
 						onChange={upateSketchDocumentIndex}
 					>
 						{sketchDocumentNames.map((name, index) => (
