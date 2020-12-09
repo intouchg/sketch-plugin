@@ -1,3 +1,4 @@
+export * from './azure'
 export * from './devServer'
 export * from './extractSketchStyles'
 export * from './git'

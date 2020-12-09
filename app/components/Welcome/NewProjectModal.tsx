@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Flex, Stack, Heading, Box, Text } from '@i/components'
-import { InvisibleButton, PrimaryButton } from './Buttons'
-import { CloseIcon, FolderIcon } from './Icons'
-import { AccentText, TruncatedText } from './Texts'
-import { sketchRequest } from '../sketchApi'
+import { Flex, Stack, Heading, Box } from '@i/components'
+import { InvisibleButton, PrimaryButton } from '../Buttons'
+import { CloseIcon, FolderIcon } from '../Icons'
+import { AccentText, TruncatedText } from '../Texts'
+import { sketchRequest } from '../../sketchApi'
 
 const selectNewProjectDirectory = () => sketchRequest('selectNewProjectDirectory')
 

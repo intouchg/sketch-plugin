@@ -1,7 +1,8 @@
 import React from 'react'
 import { Stack } from '@i/components'
-import { AccentText, TertiaryButton } from '../components'
-import { sketchRequest } from '../sketchApi'
+import { TertiaryButton } from '../Buttons'
+import { AccentText } from '../Texts'
+import { sketchRequest } from '../../sketchApi'
 
 const openBrowserWindow = (url: string) => sketchRequest('openBrowserWindow', url)
 
