@@ -20,8 +20,8 @@ const BorderWidths = ({
 	importedValues: (ThemeBorderWidth & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (borderWidth: ThemeBorderWidth) => void
 }) => {
-	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
-	const sortedBorderWidths = filteredImportedValues.concat(values as any).sort(sortBorderWidths)
+	const uniqueImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
+	const sortedUniqueBorderWidths = uniqueImportedValues.concat(values as any).sort(sortBorderWidths)
 
 	return (
 		<Stack
@@ -29,7 +29,7 @@ const BorderWidths = ({
 			flexGrow={1}
 			marginY="auto"
 		>
-			{sortedBorderWidths.map(({ imported, selected, ...props }) => (
+			{sortedUniqueBorderWidths.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}
 					width="100%"

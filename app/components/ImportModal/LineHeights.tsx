@@ -5,6 +5,12 @@ import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
 import { InvisibleButton } from '../Buttons'
 import type { ThemeLineHeight } from '@i/theme'
 
+const sortLineHeights = (a: ThemeLineHeight, b: ThemeLineHeight) => {
+	const valueA = Number(a.value.split('rem')[0])
+	const valueB = Number(b.value.split('rem')[0])
+	return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
+}
+
 const LineHeights = ({
 	values = [],
 	importedValues = [],
@@ -14,12 +20,8 @@ const LineHeights = ({
 	importedValues: (ThemeLineHeight & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (lineHeight: ThemeLineHeight) => void
 }) => {
-	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
-	const sortedLineHeights = filteredImportedValues.concat(values as any).sort((a, b) => {
-		const valueA = Number(a.value.split('rem')[0])
-		const valueB = Number(b.value.split('rem')[0])
-		return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
-	})
+	const uniqueImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
+	const sortedUniqueLineHeights = uniqueImportedValues.concat(values as any).sort(sortLineHeights)
 
 	return (
 		<Stack
@@ -27,7 +29,7 @@ const LineHeights = ({
 			flexGrow={1}
 			marginY="auto"
 		>
-			{sortedLineHeights.map(({ imported, selected, ...props }) => (
+			{sortedUniqueLineHeights.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}
 					maxWidth="640px"

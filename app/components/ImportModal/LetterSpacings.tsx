@@ -5,6 +5,12 @@ import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
 import { InvisibleButton } from '../Buttons'
 import type { ThemeLetterSpacing } from '@i/theme'
 
+const sortLetterSpacings = (a: ThemeLetterSpacing, b: ThemeLetterSpacing) => {
+	const valueA = Number(a.value.split('px')[0])
+	const valueB = Number(b.value.split('px')[0])
+	return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
+}
+
 const LetterSpacings = ({
 	values = [],
 	importedValues = [],
@@ -14,19 +20,15 @@ const LetterSpacings = ({
 	importedValues: (ThemeLetterSpacing & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (fontSize: ThemeLetterSpacing) => void
 }) => {
-	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
-	const sortedLetterSpacings = filteredImportedValues.concat(values as any).sort((a, b) => {
-		const valueA = Number(a.value.split('px')[0])
-		const valueB = Number(b.value.split('px')[0])
-		return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
-	})
+	const uniqueImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
+	const sortedUniqueLetterSpacings = uniqueImportedValues.concat(values as any).sort(sortLetterSpacings)
 
 	return (
 		<Stack
 			maxWidth="100%"
 			marginY="auto"
 		>
-			{sortedLetterSpacings.map(({ imported, selected, ...props }) => (
+			{sortedUniqueLetterSpacings.map(({ imported, selected, ...props }) => (
 				<Flex
 					key={props.id}
 					flexShrink={0}

@@ -8,6 +8,8 @@ import { ColorContainerGrid } from '../ColorContainerGrid'
 import { sortAlphabetical } from '@i/utility'
 import type { ThemeColor } from '@i/theme'
 
+const sortColors = (a: ThemeColor, b: ThemeColor) => sortAlphabetical(a, b, 'name')
+
 const Colors = ({
 	values = [],
 	importedValues = [],
@@ -17,17 +19,17 @@ const Colors = ({
 	importedValues: (ThemeColor & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (color: ThemeColor & { willOverwriteByName?: boolean }) => void
 }) => {
-	const filteredImportedValues = importedValues.filter(({ name, value }) => !values.some((v) => v.name === name && v.value === value))
-	const filteredThemeValues = values.filter(({ name }) => !filteredImportedValues.some((v) => v.name === name))
+	const uniqueImportedValues = importedValues.filter(({ name, value }) => !values.some((v) => v.name === name && v.value === value))
+	const uniqueThemeValues = values.filter(({ name }) => !uniqueImportedValues.some((v) => v.name === name))
 
-	const sortedColors = filteredImportedValues
+	const sortedUniqueColors = uniqueImportedValues
 		.map((i) => ({ ...i, willOverwriteByName: values.some((v) => v.name === i.name) }))
-		.concat(filteredThemeValues as any)
-		.sort((a, b) => sortAlphabetical(a, b, 'name'))
+		.concat(uniqueThemeValues as any)
+		.sort(sortColors)
 
 	return (
 		<ColorContainerGrid gridGap={3}>
-			{sortedColors.map(({ imported, selected, willOverwriteByName, ...props }) => (
+			{sortedUniqueColors.map(({ imported, selected, willOverwriteByName, ...props }) => (
 				<Box
 					key={props.id}
 					position="relative"

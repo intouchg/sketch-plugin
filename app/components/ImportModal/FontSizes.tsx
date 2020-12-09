@@ -5,6 +5,12 @@ import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
 import { InvisibleButton } from '../Buttons'
 import type { ThemeFontSize } from '@i/theme'
 
+const sortFontSizes = (a: ThemeFontSize, b: ThemeFontSize) => {
+	const valueA = Number(a.value.split('rem')[0])
+	const valueB = Number(b.value.split('rem')[0])
+	return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
+}
+
 const FontSizes = ({
 	values = [],
 	importedValues = [],
@@ -14,12 +20,8 @@ const FontSizes = ({
 	importedValues: (ThemeFontSize & { imported?: boolean, selected?: boolean })[]
 	toggleSelectedImportedValue: (fontSize: ThemeFontSize) => void
 }) => {
-	const filteredImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
-	const sortedFontSizes = filteredImportedValues.concat(values as any).sort((a, b) => {
-		const valueA = Number(a.value.split('rem')[0])
-		const valueB = Number(b.value.split('rem')[0])
-		return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
-	})
+	const uniqueImportedValues = importedValues.filter(({ value }) => !values.some((v) => v.value === value))
+	const sortedUniqueFontSizes = uniqueImportedValues.concat(values as any).sort(sortFontSizes)
 
 	return (
 		<Stack
@@ -27,7 +29,7 @@ const FontSizes = ({
 			marginY="auto"
 			overflow="hidden"
 		>
-			{sortedFontSizes.map(({ imported, selected, ...props }) => {
+			{sortedUniqueFontSizes.map(({ imported, selected, ...props }) => {
 				const pixelValue = Number(props.value.split('rem')[0]) * 16
 
 				return (

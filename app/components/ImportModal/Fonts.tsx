@@ -8,6 +8,8 @@ import type { SystemFontFamily } from '../../sketchApi'
 
 // TO DO: Loading component
 
+const sortSystemFonts = (a: SystemFontFamily, b: SystemFontFamily) => sortAlphabetical(a, b, 'name')
+
 const Fonts = ({
 	values = [],
 	importedValues = [],
@@ -29,25 +31,25 @@ const Fonts = ({
 	// 2. Include every systemFont fontFamily from ThemeValues and Sketch import
 	// 3. Checkmark every typeface in inclued systemFonts based on ThemeValues
 
-	const filteredImportedValues = importedValues.filter(({ family }) => !values.some((v) => v.family === family))
-	const filteredSystemFonts: (SystemFontFamily & { imported?: boolean })[] = []
+	const uniqueImportedValues = importedValues.filter(({ family }) => !values.some((v) => v.family === family))
+	const uniqueSystemFonts: (SystemFontFamily & { imported?: boolean })[] = []
 
-	filteredImportedValues.concat(values as any).forEach(({ family, imported }) => {
+	uniqueImportedValues.concat(values as any).forEach(({ family, imported }) => {
 		const systemFont = systemFonts[family]
 
 		if (systemFont) {
-			filteredSystemFonts.push({ ...systemFont, imported })
+			uniqueSystemFonts.push({ ...systemFont, imported })
 		}
 	})
 
-	const sortedFilteredSystemFonts = filteredSystemFonts.slice().sort((a, b) => sortAlphabetical(a, b, 'name'))
+	const sortedUniqueSystemFonts = uniqueSystemFonts.slice().sort(sortSystemFonts)
 
 	return (
 		<Stack
 			flexGrow={1}
 			marginY="auto"
 		>
-			{sortedFilteredSystemFonts.map(({ imported, ...systemFont }) => (
+			{sortedUniqueSystemFonts.map(({ imported, ...systemFont }) => (
 				<FontFamily
 					key={systemFont.name}
 					{...systemFont}
