@@ -32,9 +32,10 @@ const Fonts = ({
 	// 3. Checkmark every typeface in inclued systemFonts based on ThemeValues
 
 	const uniqueImportedValues = importedValues.filter(({ family }) => !values.some((v) => v.family === family))
+	const uniqueFontValues = uniqueImportedValues.concat(values as any)
 	const uniqueSystemFonts: (SystemFontFamily & { imported?: boolean })[] = []
 
-	uniqueImportedValues.concat(values as any).forEach(({ family, imported }) => {
+	uniqueFontValues.forEach(({ family, imported }) => {
 		const systemFont = systemFonts[family]
 
 		if (systemFont) {
@@ -44,6 +45,10 @@ const Fonts = ({
 
 	const sortedUniqueSystemFonts = uniqueSystemFonts.slice().sort(sortSystemFonts)
 
+	// For each FontFamily:
+	//  * pass all uniqueFontFamilies for that
+	//  *
+
 	return (
 		<Stack
 			flexGrow={1}
@@ -52,6 +57,7 @@ const Fonts = ({
 			{sortedUniqueSystemFonts.map(({ imported, ...systemFont }) => (
 				<FontFamily
 					key={systemFont.name}
+					values={uniqueFontValues.filter((font) => font.family === systemFont.name)}
 					{...systemFont}
 				/>
 			))}

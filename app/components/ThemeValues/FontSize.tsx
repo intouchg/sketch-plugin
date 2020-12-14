@@ -5,15 +5,13 @@ import type { ThemeFontSize } from '@i/theme'
 const FontSize = ({
 	value,
 	...props
-}: ThemeFontSize) => {
-	return (
-		<NoWrapText
-			fontSize={value}
-			lineHeight={value}
-		>
-			The quick brown fox jumps over the lazy dog
-		</NoWrapText>
-	)
-}
+}: ThemeFontSize) => (
+	<NoWrapText
+		fontSize={value}
+		lineHeight={value}
+	>
+		The quick brown fox jumps over the lazy dog
+	</NoWrapText>
+)
 
 export { FontSize }
