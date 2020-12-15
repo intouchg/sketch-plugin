@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux'
 import { Box } from '@i/components'
 import { Color } from '../ThemeValues'
 import { InvisibleButton } from '../Buttons'
-import { ColorContainerGrid } from '../ColorContainerGrid'
+import { ColorGrid } from '../ColorGrid'
 import type { ThemeColor } from '@i/theme'
 
 const Colors = () => {
 	const colors = useSelector((state) => state.theme.values.filter((v) => v.type === 'color')) as ThemeColor[]
 
 	return (
-		<ColorContainerGrid
+		<ColorGrid
 			maxWidth="860px"
 			marginX="auto"
 			gridGap={3}
@@ -29,7 +29,7 @@ const Colors = () => {
 					<Color {...color} />
 				</Box>
 			))}
-		</ColorContainerGrid>
+		</ColorGrid>
 	)
 }
 

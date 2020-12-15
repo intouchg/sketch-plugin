@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Grid } from '@i/components'
 
-const ColorContainerGrid = styled(Grid)`
+const ColorGrid = styled(Grid)`
 	flex-grow: 1;
 	margin-top: auto;
 	margin-bottom: auto;
@@ -10,4 +10,4 @@ const ColorContainerGrid = styled(Grid)`
 	justify-content: center;
 `
 
-export { ColorContainerGrid }
+export { ColorGrid }

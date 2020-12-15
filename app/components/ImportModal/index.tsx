@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { themeTypePropertyMap } from '@i/theme'
 import { Flex, Box } from '@i/components'
+import { ModalBackground } from '../ModalBackground'
 import { RightToolbar } from './RightToolbar'
 import { Colors } from './Colors'
 import { Fonts } from './Fonts'
@@ -134,16 +135,7 @@ const ImportModal = ({
 	})
 
 	return (
-		<Flex
-			position="fixed"
-			top="0"
-			width="100vw"
-			height="100vh"
-			alignItems="center"
-			justifyContent="center"
-			backgroundColor="rgba(0, 0, 0, 0.3)"
-			zIndex={4}
-		>
+		<ModalBackground>
 			<Flex
 				width="calc(100vw - 308px)"
 				minWidth="800px"
@@ -185,7 +177,7 @@ const ImportModal = ({
 					numberOfSelectedImportedValuesBySaveType={numberOfSelectedImportedValuesBySaveType}
 				/>
 			</Flex>
-		</Flex>
+		</ModalBackground>
 	)
 }
 

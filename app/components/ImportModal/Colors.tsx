@@ -4,7 +4,7 @@ import { Color } from '../ThemeValues'
 import { Checkbox } from '../Checkbox'
 import { OverwriteIcon } from '../Icons'
 import { InvisibleButton } from '../Buttons'
-import { ColorContainerGrid } from '../ColorContainerGrid'
+import { ColorGrid } from '../ColorGrid'
 import { sortAlphabetical } from '@i/utility'
 import type { ThemeColor } from '@i/theme'
 
@@ -28,7 +28,7 @@ const Colors = ({
 		.sort(sortColors)
 
 	return (
-		<ColorContainerGrid gridGap={3}>
+		<ColorGrid gridGap={3}>
 			{sortedUniqueColors.map(({ imported, selected, willOverwriteByName, ...props }) => (
 				<Box
 					key={props.id}
@@ -71,7 +71,7 @@ const Colors = ({
 					)}
 				</Box>
 			))}
-		</ColorContainerGrid>
+		</ColorGrid>
 	)
 }
 

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Flex, Stack, Heading, Box } from '@i/components'
-import { InvisibleButton, PrimaryButton } from '../Buttons'
-import { CloseIcon, FolderIcon } from '../Icons'
-import { AccentText, TruncatedText } from '../Texts'
-import { sketchRequest } from '../../sketchApi'
+import { ModalBackground } from './ModalBackground'
+import { InvisibleButton, PrimaryButton } from './Buttons'
+import { CloseIcon, FolderIcon } from './Icons'
+import { AccentText, TruncatedText } from './Texts'
+import { sketchRequest } from '../sketchApi'
 
 const selectNewProjectDirectory = () => sketchRequest('selectNewProjectDirectory')
 
@@ -31,16 +32,7 @@ const NewProjectModal = ({
 	}, [ directory, setDirectory ])
 
 	return (
-		<Flex
-			position="fixed"
-			top="0"
-			width="100vw"
-			height="100vh"
-			alignItems="center"
-			justifyContent="center"
-			backgroundColor="rgba(0, 0, 0, 0.3)"
-			zIndex={4}
-		>
+		<ModalBackground>
 			<Flex
 				width="560px"
 				height="364px"
@@ -120,7 +112,7 @@ const NewProjectModal = ({
 					</Flex>
 				</Stack>
 			</Flex>
-		</Flex>
+		</ModalBackground>
 	)
 }
 
