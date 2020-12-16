@@ -1,6 +1,5 @@
 import React from 'react'
 import { Icon } from '@i/components'
-import type { ComponentProps } from 'react'
 
 const StyledIcon = ({
 	fill = 'Primary',
@@ -30,6 +29,6 @@ const StyledIcon = ({
 	)
 }
 
-export type IconProps = Omit<ComponentProps<typeof StyledIcon>, 'children' | 'viewBox'>
+export type IconProps = Omit<React.ComponentProps<typeof StyledIcon>, 'children' | 'viewBox'>
 
 export { StyledIcon }

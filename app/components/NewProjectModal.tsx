@@ -5,18 +5,10 @@ import { ModalBackground } from './ModalBackground'
 import { InvisibleButton, PrimaryButton } from './Buttons'
 import { CloseIcon, FolderIcon } from './Icons'
 import { AccentText, TruncatedText } from './Texts'
+import { LimitInteraction } from './LimitInteraction'
 import { sketchRequest } from '../sketchApi'
 
 const selectNewProjectDirectory = () => sketchRequest('selectNewProjectDirectory')
-
-const CreateButton = styled(PrimaryButton)<{ enabled: boolean }>`
-	${(props) => props.enabled ? `
-		pointer-events: unset;
-	` : `
-		pointer-events: none;
-		opacity: 0.5;
-	`}
-`
 
 const NewProjectModal = ({
 	closeNewProjectModal,
@@ -106,9 +98,12 @@ const NewProjectModal = ({
 						/>
 					</Stack>
 					<Flex alignSelf="start">
-						<CreateButton enabled={Boolean(directory && template)}>
+						<LimitInteraction
+							as={PrimaryButton}
+							unlimit={Boolean(directory && template)}
+						>
 							Create
-						</CreateButton>
+						</LimitInteraction>
 					</Flex>
 				</Stack>
 			</Flex>
