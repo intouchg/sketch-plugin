@@ -13,7 +13,7 @@ export type ThemeState = {
 	systemFonts: SystemFontsDictionary
 }
 
-export const initialState: ThemeState = {
+export const initialThemeState: ThemeState = {
 	canUndo: false,
 	canRedo: false,
 	values: [] as ThemeValue[],

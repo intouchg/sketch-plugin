@@ -8,8 +8,12 @@ export const topToolbarHeight = '64px'
 
 const TopToolbar = ({
 	openImportModal,
+	openAzureStatusModal,
+	openAzureLoginModal,
 }: {
 	openImportModal: () => void
+	openAzureStatusModal: () => void
+	openAzureLoginModal: () => void
 }) => {
 	return (
 		<Flex
@@ -27,7 +31,10 @@ const TopToolbar = ({
 			<Box>
 				<ImportButton openImportModal={openImportModal} />
 				<PreviewButton />
-				<AzureStatus />
+				<AzureStatus
+					openAzureStatusModal={openAzureStatusModal}
+					openAzureLoginModal={openAzureLoginModal}
+				/>
 			</Box>
 		</Flex>
 	)

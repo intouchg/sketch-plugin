@@ -16,7 +16,7 @@ import {
 	DELETE_THEME_VALUE,
 	SAVE_THEME_DATA,
 } from './actions'
-import { initialState } from './state'
+import { initialThemeState } from './state'
 import type { ThemeValue, StyleProperty } from '@i/theme'
 import type { ThemeActionType } from './actions'
 import type { ThemeState } from './state'
@@ -47,7 +47,7 @@ const SAVEABLE_ACTIONS = [
 
 /* eslint-disable complexity */
 export const themeReducer = (
-	state: ThemeState = initialState,
+	state: ThemeState = initialThemeState,
 	action: ThemeActionType,
 ): ThemeState => {
 	return produce(state, (nextState) => {
@@ -159,7 +159,7 @@ export const themeReducer = (
 					values[index].value = newThemeValue.value
 				})
 
-				nextState.importedSketchValues = initialState.importedSketchValues
+				nextState.importedSketchValues = initialThemeState.importedSketchValues
 				break
 			}
 

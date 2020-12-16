@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setThemeData, setRecentProjects, setSketchDocumentNames, setImportedSketchValues, setSystemFonts } from '../store'
+import { setThemeData, setRecentProjects, setAzureCredentials, setSketchDocumentNames, setImportedSketchValues, setSystemFonts } from '../store'
 import type { ThemeValue, ThemeComponent, ThemeVariant } from '@i/theme'
 import type { AzureGitRepo } from '@i/azure'
 import type { RawImportedSketchValues } from './styles'
@@ -11,6 +11,8 @@ export * from './fonts'
 export * from './styles'
 
 export type RecentProject = { filepath: string }
+
+export type AzureCredentials = { username: string, accessToken: string }
 
 // These are the functions that exist on the window object
 // so that Sketch can call into the webview frontend. You
@@ -28,6 +30,7 @@ interface WebviewListeners {
     setImportedSketchValues?: (styles: RawImportedSketchValues) => void
     setThemeData?: (data: any) => void
     setRecentProjects?: (data: RecentProject[]) => void
+    setAzureCredentials?: (credentials: AzureCredentials) => void
     setSaveThemeDataResult?: (result: boolean) => void
     setSketchDocumentNames?: (sketchDocumentNames: string[]) => void
     setSystemFonts?: (fonts: SPFontData) => void
@@ -51,7 +54,7 @@ export type WebviewListenerType = keyof WebviewListeners
 interface SketchListeners {
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
     extractSketchDocumentStyles: (sketchDocumentIndex: number) => void
-    getAzureGitRepos: (credentials: { username: string, accessToken: string }) => void
+    getAzureGitRepos: (credentials: AzureCredentials) => void
     getRecentProjects: () => RecentProject[]
     getSketchDocumentNames: () => string[]
     getSystemFonts: () => SPFontData
@@ -65,6 +68,8 @@ interface SketchListeners {
     }) => void
     selectLocalProject: (recentProject?: RecentProject) => void
     selectNewProjectDirectory: () => void
+    getAzureCredentials: () => AzureCredentials
+    saveAzureCredentials: (credentials: AzureCredentials) => void
 }
 
 export const sketchRequest = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage(type, payload as any)
@@ -76,17 +81,20 @@ export const useGlobalSketchListeners = () => {
 	useEffect(() => {
 		window.setThemeData = (themeData) => dispatch(setThemeData(themeData)) && history.push('/main')
 		window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
+		window.setAzureCredentials = (credentials) => dispatch(setAzureCredentials(credentials))
 		window.setSketchDocumentNames = (sketchDocumentNames) => dispatch(setSketchDocumentNames(sketchDocumentNames))
 		window.setImportedSketchValues = (styles) => dispatch(setImportedSketchValues(styles))
 		window.setSystemFonts = (fonts) => dispatch(setSystemFonts(fonts))
 
 		sketchRequest('getRecentProjects')
+		sketchRequest('getAzureCredentials')
 		sketchRequest('getSketchDocumentNames')
 		sketchRequest('getSystemFonts')
 
 		return () => {
 			delete window.setThemeData
 			delete window.setRecentProjects
+			delete window.setAzureCredentials
 			delete window.setSketchDocumentNames
 			delete window.setImportedSketchValues
 			delete window.setSystemFonts

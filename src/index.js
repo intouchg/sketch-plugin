@@ -13,6 +13,7 @@ import {
 	openDevServer,
 	openStorybook,
 	saveThemeData,
+	saveAzureCredentials,
 	getAzureGitRepos,
 	cloneAzureGitRepo,
 	extractSketchDocumentStyles,
@@ -79,6 +80,8 @@ export default () => {
 	webContents.on('openStorybook', () => openStorybook(webContents, showError, themeData))
 
 	webContents.on('saveThemeData', (newThemeData) => saveThemeData(webContents, showError, newThemeData, themeFilepaths))
+
+	webContents.on('saveAzureCredentials', (credentialsData) => saveAzureCredentials(webContents, showError, credentialsData))
 
 	webContents.on('getAzureGitRepos', (credentialsData) => getAzureGitRepos(webContents, showError, credentialsData))
 

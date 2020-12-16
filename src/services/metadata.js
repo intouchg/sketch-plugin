@@ -23,6 +23,22 @@ export const writeMetadata = (mergeFunction) => {
 	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify(newMetadata, null, '\t'))
 }
 
+export const readAzureCredentialsMetadata = () => {
+	const { azureUsername, azureAccessToken } = readMetadata()
+	return {
+		username: azureUsername || '',
+		accessToken: azureAccessToken || '',
+	}
+}
+
+export const writeAzureCredentialsMetadata = ({ username, accessToken }) => {
+	writeMetadata((metadata) => ({
+		...metadata,
+		azureUsername: username || '',
+		azureAccessToken: accessToken || '',
+	}))
+}
+
 export const readRecentProjectMetadata = () => {
 	const { recentProjects } = readMetadata()
 	return recentProjects || []

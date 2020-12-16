@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
 import { Route, Redirect, useRouteMatch } from 'react-router-dom'
-import { Button, Flex } from '@i/components'
-import { TopToolbar, LeftNavbar, ThemeEditor, ComponentEditor, ImportModal } from '../components'
+import { Flex } from '@i/components'
+import { TopToolbar, LeftNavbar, ThemeEditor, ComponentEditor, ImportModal, AzureStatusModal, AzureLoginModal } from '../components'
 
 const Main = () => {
 	const { url, path } = useRouteMatch()
 	const [ showImportModal, setShowImportModal ] = useState(false)
+	const [ showAzureStatusModal, setShowAzureStatusModal ] = useState(false)
+	const [ showAzureLoginModal, setShowAzureLoginModal ] = useState(false)
 
 	return (
 		<>
-			<TopToolbar openImportModal={() => setShowImportModal(true)} />
+			<TopToolbar
+				openImportModal={() => setShowImportModal(true)}
+				openAzureStatusModal={() => setShowAzureStatusModal(true)}
+				openAzureLoginModal={() => setShowAzureLoginModal(true)}
+			/>
 			<Flex>
 				<LeftNavbar url={url} />
 				<ThemeEditor path={path} />
@@ -20,6 +26,12 @@ const Main = () => {
 			</Flex>
 			{showImportModal && (
 				<ImportModal closeImportModal={() => setShowImportModal(false)} />
+			)}
+			{showAzureStatusModal && (
+				<AzureStatusModal closeAzureStatusModal={() => setShowAzureStatusModal(false)} />
+			)}
+			{showAzureLoginModal && (
+				<AzureLoginModal closeAzureLoginModal={() => setShowAzureLoginModal(false)} />
 			)}
 		</>
 	)
