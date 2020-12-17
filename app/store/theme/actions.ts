@@ -115,16 +115,6 @@ export const deleteThemeValue = ({ id }: DeleteThemeValueAction['payload']): Del
 	payload: { id },
 })
 
-export const SAVE_THEME_DATA = 'SAVE_THEME_DATA'
-export type SaveThemeDataAction = {
-    type: typeof SAVE_THEME_DATA
-    payload: undefined
-}
-export const saveThemeData = (): SaveThemeDataAction => ({
-	type: SAVE_THEME_DATA,
-	payload: undefined,
-})
-
 export type ThemeActionType =
     | UndoAction
     | RedoAction
@@ -137,4 +127,3 @@ export type ThemeActionType =
     | CreateThemeValueAction
     | UpdateThemeValueAction
     | DeleteThemeValueAction
-    | SaveThemeDataAction

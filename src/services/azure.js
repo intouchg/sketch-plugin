@@ -5,15 +5,22 @@ const AZURE_INSTANCE_URL = 'https://intazdoweb.intouchsol.com'
 
 let azureConnection = null
 
-export const getAzureGitRepos = async (username, password, webContents, showError) => {
+export const connectToAzure = async (username, accessToken) => {
+	if (!azureConnection) {
+		azureConnection = new AzureUserConnection({
+			instanceUrl: AZURE_INSTANCE_URL,
+			username,
+			accessToken,
+			concurrency: 10,
+		})
+	}
+
+	await azureConnection.getOrganizations()
+}
+
+export const getAzureGitRepos = async (username, accessToken, webContents, showError) => {
 	try {
-		if (!azureConnection) {
-			azureConnection = new AzureUserConnection({
-				instanceUrl: AZURE_INSTANCE_URL,
-				username,
-				password,
-			})
-		}
+		await connectToAzure(username, accessToken)
 
 		if (!azureConnection.lastGitRepoSync) {
 			await azureConnection.getGitRepos()

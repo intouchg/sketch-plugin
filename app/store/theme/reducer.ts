@@ -14,7 +14,6 @@ import {
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
-	SAVE_THEME_DATA,
 } from './actions'
 import { initialThemeState } from './state'
 import type { ThemeValue, StyleProperty } from '@i/theme'
@@ -215,16 +214,6 @@ export const themeReducer = (
 							variant.styles[styleProperty as StyleProperty] = ''
 						}
 					})
-				})
-
-				break
-			}
-
-			case SAVE_THEME_DATA: {
-				sketchRequest('saveThemeData', {
-					values: state.values,
-					components: state.components,
-					variants: state.variants,
 				})
 
 				break

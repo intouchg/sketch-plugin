@@ -49,7 +49,7 @@ const AzureStatusModal = ({
 						>
 							Azure
 						</Heading>
-						<AzureStatusLabel connected={Boolean(accessToken)} />
+						<AzureStatusLabel connected={Boolean(username && accessToken)} />
 					</Flex>
 					<PrimaryButton>
 						Save to Azure

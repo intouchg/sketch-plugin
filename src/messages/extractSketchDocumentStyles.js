@@ -11,7 +11,6 @@ export const extractSketchDocumentStyles = async (webContents, showError, docume
 	catch (error) {
 		const message = `Error attempting to import Sketch document styles: ${error}`
 		console.error(message)
-		webContents.executeJavaScript('window.setSaveThemeDataResult(false)')
 		showError(message)
 	}
 }

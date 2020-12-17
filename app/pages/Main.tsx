@@ -31,7 +31,11 @@ const Main = () => {
 				<AzureStatusModal closeAzureStatusModal={() => setShowAzureStatusModal(false)} />
 			)}
 			{showAzureLoginModal && (
-				<AzureLoginModal closeAzureLoginModal={() => setShowAzureLoginModal(false)} />
+				<AzureLoginModal
+					path={path}
+					closeAzureLoginModal={() => setShowAzureLoginModal(false)}
+					openAzureStatusModal={() => setShowAzureStatusModal(true)}
+				/>
 			)}
 		</>
 	)

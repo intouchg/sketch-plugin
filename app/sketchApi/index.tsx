@@ -25,13 +25,13 @@ interface WebviewListeners {
     cloningAzureGitRepo: () => void
     displayError?: (message: string) => void
     displaySuccess?: (message: string) => void
+    handleAzureLoginResult?: (success: boolean) => void
     setGitRepos?: (repos: any) => void
     setImportSketchStylesResult?: (result: boolean) => void
     setImportedSketchValues?: (styles: RawImportedSketchValues) => void
     setThemeData?: (data: any) => void
     setRecentProjects?: (data: RecentProject[]) => void
     setAzureCredentials?: (credentials: AzureCredentials) => void
-    setSaveThemeDataResult?: (result: boolean) => void
     setSketchDocumentNames?: (sketchDocumentNames: string[]) => void
     setSystemFonts?: (fonts: SPFontData) => void
     setNewProjectDirectory?: (directory: string) => void
@@ -54,10 +54,12 @@ export type WebviewListenerType = keyof WebviewListeners
 interface SketchListeners {
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
     extractSketchDocumentStyles: (sketchDocumentIndex: number) => void
+    getAzureCredentials: () => AzureCredentials
     getAzureGitRepos: (credentials: AzureCredentials) => void
     getRecentProjects: () => RecentProject[]
     getSketchDocumentNames: () => string[]
     getSystemFonts: () => SPFontData
+    loginToAzure: (credentials: AzureCredentials) => void
     openBrowserWindow: (url: string) => void
     openDevServer: () => void
     openStorybook: () => void
@@ -68,11 +70,11 @@ interface SketchListeners {
     }) => void
     selectLocalProject: (recentProject?: RecentProject) => void
     selectNewProjectDirectory: () => void
-    getAzureCredentials: () => AzureCredentials
-    saveAzureCredentials: (credentials: AzureCredentials) => void
 }
 
 export const sketchRequest = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage(type, payload as any)
+
+export const openBrowserWindow = (url: string) => sketchRequest('openBrowserWindow', url)
 
 export const useGlobalSketchListeners = () => {
 	const history = useHistory()

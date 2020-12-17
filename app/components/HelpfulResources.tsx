@@ -2,9 +2,7 @@ import React from 'react'
 import { Stack } from '@i/components'
 import { TertiaryButton } from './Buttons'
 import { AccentText } from './Texts'
-import { sketchRequest } from '../sketchApi'
-
-const openBrowserWindow = (url: string) => sketchRequest('openBrowserWindow', url)
+import { openBrowserWindow } from '../sketchApi'
 
 const HelpfulResources = () => {
 	return (

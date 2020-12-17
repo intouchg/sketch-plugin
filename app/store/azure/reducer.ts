@@ -1,5 +1,4 @@
 import { produce } from 'immer'
-import { sketchRequest } from '../../sketchApi'
 import { SET_CREDENTIALS } from './actions'
 import { initialAzureState } from './state'
 import type { AzureActionType } from './actions'
@@ -13,7 +12,6 @@ export const azureReducer = (
 		switch (action.type) {
 			case SET_CREDENTIALS: {
 				nextState.credentials = action.payload
-				sketchRequest('saveAzureCredentials', action.payload)
 				break
 			}
 

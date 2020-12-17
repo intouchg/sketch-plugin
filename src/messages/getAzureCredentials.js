@@ -1,6 +1,6 @@
 import { readAzureCredentialsMetadata } from '../services'
 
-export const getRecentProjects = (webContents, showError) => {
+export const getAzureCredentials = (webContents, showError) => {
 	try {
 		const credentials = readAzureCredentialsMetadata()
 		webContents.executeJavaScript(`window.setAzureCredentials(${JSON.stringify(credentials)})`)

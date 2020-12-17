@@ -1,19 +1,53 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Flex, Stack, Heading, Input } from '@i/components'
+import { Flex, Stack, Heading, Input, Text } from '@i/components'
 import { ModalBackground } from './ModalBackground'
-import { InvisibleButton, PrimaryButton } from './Buttons'
+import { InvisibleButton, PrimaryButton, TertiaryButton } from './Buttons'
 import { CloseIcon } from './Icons'
 import { AccentText } from './Texts'
 import { LimitInteraction } from './LimitInteraction'
 import { AzureStatusLabel } from './AzureStatusLabel'
+import { sketchRequest, openBrowserWindow } from '../sketchApi'
 
 const AzureLoginModal = ({
+	path,
 	closeAzureLoginModal,
+	openAzureStatusModal,
 }: {
+	path: string
 	closeAzureLoginModal: () => void
+	openAzureStatusModal: () => void
 }) => {
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
+	const [ usernameValue, setUsernameValue ] = useState(username)
+	const [ accessTokenValue, setAccessTokenValue ] = useState(accessToken)
+	const [ error, setError ] = useState('')
+
+	useEffect(() => {
+		window.handleAzureLoginResult = (success) => {
+			if (success) {
+				closeAzureLoginModal()
+
+				if (path === '/main') {
+					openAzureStatusModal()
+				}
+			}
+			else {
+				setError('Authentication failed.')
+			}
+		}
+
+		return () => void delete window.handleAzureLoginResult
+	})
+
+	const loginToAzure = () => {
+		setError('')
+
+		sketchRequest('loginToAzure', {
+			username: usernameValue,
+			accessToken: accessTokenValue,
+		})
+	}
 
 	return (
 		<ModalBackground>
@@ -49,22 +83,47 @@ const AzureLoginModal = ({
 						>
 							Azure
 						</Heading>
-						<AzureStatusLabel connected={Boolean(accessToken)} />
+						<AzureStatusLabel connected={Boolean(username && accessToken)} />
 					</Flex>
 					<Stack marginBottom={3}>
 						<AccentText marginBottom={2}>
 							Email Address
 						</AccentText>
+						<Input
+							type="text"
+							autoCorrect="off"
+							autoCapitalize="none"
+							padding={3}
+							borderRadius="Large"
+							value={usernameValue}
+							onChange={(event) => setUsernameValue(event.target.value)}
+						/>
 					</Stack>
-					<Stack marginBottom={4}>
+					<Stack marginBottom={3}>
 						<AccentText marginBottom={2}>
 							Access Token
 						</AccentText>
+						<Input
+							type="text"
+							autoCorrect="off"
+							autoCapitalize="none"
+							padding={3}
+							borderRadius="Large"
+							value={accessTokenValue}
+							onChange={(event) => setAccessTokenValue(event.target.value)}
+						/>
 					</Stack>
+					<Text marginBottom={4}>
+						Don&apos;t have a token?
+						<TertiaryButton onClick={() => openBrowserWindow('https://google.com')}>
+							Follow the Azure setup user guide.
+						</TertiaryButton>
+					</Text>
 					<Flex alignSelf="start">
 						<LimitInteraction
 							as={PrimaryButton}
-							unlimit={Boolean(username && accessToken)}
+							unlimit={Boolean(usernameValue && accessTokenValue)}
+							onClick={loginToAzure}
 						>
 							Log In
 						</LimitInteraction>

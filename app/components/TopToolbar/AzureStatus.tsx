@@ -11,9 +11,10 @@ const AzureStatus = ({
 	openAzureStatusModal: () => void
 	openAzureLoginModal: () => void
 }) => {
-	const { accessToken } = useSelector((state) => state.azure.credentials)
+	const { username, accessToken } = useSelector((state) => state.azure.credentials)
+	const connected = Boolean(username && accessToken)
 
-	const handleClick = () => accessToken ? openAzureStatusModal() : openAzureLoginModal()
+	const handleClick = () => connected ? openAzureStatusModal() : openAzureLoginModal()
 
 	return (
 		<InvisibleButton
@@ -27,7 +28,7 @@ const AzureStatus = ({
 					display="inline-block"
 					width="8px"
 					height="8px"
-					backgroundColor={accessToken ? 'Positive' : 'Critical'}
+					backgroundColor={connected ? 'Positive' : 'Critical'}
 					borderRadius="50%"
 					marginLeft={1}
 				/>

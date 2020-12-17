@@ -8,12 +8,10 @@ export const saveThemeData = async (webContents, showError, newThemeData, themeF
 		}))
 
 		updateStorybookTempTheme(newThemeData)
-
-		webContents.executeJavaScript('window.saveResult(true)')
-		webContents.executeJavaScript('window.setSaveThemeDataResult(true)')
 	}
 	catch (error) {
-		console.error('Error attempting to write plugin theme changes to the project\'s working directory: ', error)
-		webContents.executeJavaScript('window.setSaveThemeDataResult(false)')
+		const message = 'Error attempting to write plugin theme changes to the project\'s working directory: ' + error
+		console.error(message)
+		showError(message)
 	}
 }
