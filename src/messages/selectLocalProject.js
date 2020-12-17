@@ -58,6 +58,7 @@ export const selectLocalProject = (webContents, showError, filepath) => {
 	// If all necessary config and files exist, call setThemeData in the React app
 	if (!error) {
 		webContents.executeJavaScript(`window.setThemeData(${JSON.stringify(themeData)})`)
+		webContents.executeJavaScript(`window.setLocalProject(${JSON.stringify(selectedProjectDirectory)})`)
 		updateStorybookTempTheme(themeData)
 		const recentProjects = writeRecentProjectMetadata({ filepath: selectedProjectDirectory })
 		webContents.executeJavaScript(`window.setRecentProjects(${JSON.stringify(recentProjects)})`)

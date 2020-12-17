@@ -15,6 +15,7 @@ import {
 	saveThemeData,
 	loginToAzure,
 	getAzureCredentials,
+	forgetAzureCredentials,
 	getAzureGitRepos,
 	cloneAzureGitRepo,
 	extractSketchDocumentStyles,
@@ -85,6 +86,8 @@ export default () => {
 	webContents.on('loginToAzure', (credentialsData) => loginToAzure(webContents, showError, credentialsData))
 
 	webContents.on('getAzureCredentials', () => getAzureCredentials(webContents, showError))
+
+	webContents.on('forgetAzureCredentials', () => forgetAzureCredentials(webContents, showError))
 
 	webContents.on('getAzureGitRepos', (credentialsData) => getAzureGitRepos(webContents, showError, credentialsData))
 

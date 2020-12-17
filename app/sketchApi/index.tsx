@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setThemeData, setRecentProjects, setAzureCredentials, setSketchDocumentNames, setImportedSketchValues, setSystemFonts } from '../store'
+import { setThemeData, setRecentProjects, setAzureCredentials, setSketchDocumentNames, setImportedSketchValues, setSystemFonts, setLocalProject, setBranchName } from '../store'
 import type { ThemeValue, ThemeComponent, ThemeVariant } from '@i/theme'
 import type { AzureGitRepo } from '@i/azure'
 import type { RawImportedSketchValues } from './styles'
@@ -25,9 +25,11 @@ interface WebviewListeners {
     displayError?: (message: string) => void
     displaySuccess?: (message: string) => void
     handleAzureLoginResult?: (success: boolean) => void
+    setBranchName?: (branchName: string) => void
     setGitRepos?: (repos: any) => void
     setImportSketchStylesResult?: (result: boolean) => void
     setImportedSketchValues?: (styles: RawImportedSketchValues) => void
+    setLocalProject?: (filepath: string) => void
     setThemeData?: (data: any) => void
     setRecentProjects?: (data: RecentProject[]) => void
     setAzureCredentials?: (credentials: AzureCredentials) => void
@@ -53,6 +55,7 @@ export type WebviewListenerType = keyof WebviewListeners
 interface SketchListeners {
     cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
     extractSketchDocumentStyles: (sketchDocumentIndex: number) => void
+    forgetAzureCredentials: () => void
     getAzureCredentials: () => AzureCredentials
     getAzureGitRepos: (credentials: AzureCredentials) => void
     getRecentProjects: () => RecentProject[]
@@ -80,7 +83,9 @@ export const useGlobalSketchListeners = () => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		window.setThemeData = (themeData) => dispatch(setThemeData(themeData)) && history.push('/main')
+		window.setThemeData = (themeData) => dispatch(setThemeData(themeData))
+		window.setLocalProject = (filepath) => dispatch(setLocalProject(filepath)) && history.push('/main')
+		window.setBranchName = (branchName) => dispatch(setBranchName(branchName))
 		window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
 		window.setAzureCredentials = (credentials) => dispatch(setAzureCredentials(credentials))
 		window.setSketchDocumentNames = (sketchDocumentNames) => dispatch(setSketchDocumentNames(sketchDocumentNames))
@@ -94,6 +99,8 @@ export const useGlobalSketchListeners = () => {
 
 		return () => {
 			delete window.setThemeData
+			delete window.setLocalProject
+			delete window.setBranchName
 			delete window.setRecentProjects
 			delete window.setAzureCredentials
 			delete window.setSketchDocumentNames

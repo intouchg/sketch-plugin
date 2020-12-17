@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Stack, Heading, Box } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { InvisibleButton, PrimaryButton, SecondaryButton } from './Buttons'
 import { CloseIcon } from './Icons'
 import { AccentText } from './Texts'
 import { AzureStatusLabel } from './AzureStatusLabel'
+import { resetAzureState } from '../store'
 
 const ModalText = styled(AccentText)`
 	letter-spacing: 0;
@@ -18,7 +20,15 @@ const AzureStatusModal = ({
 }: {
 	closeAzureStatusModal: () => void
 }) => {
-	const { username, accessToken } = useSelector((state) => state.azure.credentials)
+	const history = useHistory()
+	const dispatch = useDispatch()
+	const { credentials, localProject, branchName, lastPush } = useSelector((state) => state.azure)
+	const { username, accessToken } = credentials
+
+	const forgetAzureCredentials = () => {
+		dispatch(resetAzureState())
+		history.push('/welcome')
+	}
 
 	return (
 		<ModalBackground>
@@ -66,7 +76,7 @@ const AzureStatusModal = ({
 							color="Primary"
 							marginBottom={2}
 						>
-							executive-meeting-demo
+							{localProject.split('/').pop()}
 						</Heading>
 						<Flex marginBottom={3}>
 							<Flex>
@@ -77,7 +87,7 @@ const AzureStatusModal = ({
 									color="Text"
 									fontWeight="Bold"
 								>
-									ids/cody.persinger
+									{branchName}
 								</ModalText>
 							</Flex>
 							<ModalText>
@@ -112,6 +122,7 @@ const AzureStatusModal = ({
 						as={InvisibleButton}
 						alignSelf="flex-end"
 						marginTop={4}
+						onClick={forgetAzureCredentials}
 					>
 						<ModalText textDecoration="underline">
 							Sign out of Azure

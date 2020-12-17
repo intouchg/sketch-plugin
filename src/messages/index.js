@@ -1,5 +1,6 @@
 export * from './cloneAzureGitRepo'
 export * from './extractSketchDocumentStyles'
+export * from './forgetAzureCredentials'
 export * from './getAzureCredentials'
 export * from './getAzureGitRepos'
 export * from './getRecentProjects'

@@ -4,6 +4,10 @@ export const getAzureCredentials = async (webContents, showError) => {
 	try {
 		const credentials = readAzureCredentialsMetadata()
 
+		if (!credentials.username || !credentials.accessToken) {
+			return
+		}
+
 		try {
 			await connectToAzure(credentials.username, credentials.accessToken)
 			webContents.executeJavaScript(`window.setAzureCredentials(${JSON.stringify(credentials)})`)
