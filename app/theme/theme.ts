@@ -59,10 +59,13 @@ const theme = {
 			activeColor: '#232323',
 			border: '1px solid',
 			borderColor: '#dddddd',
+			borderRadius: '6px',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '0.875rem',
 			lineHeight: '1.25rem',
 			fontWeight: '400',
+			textTransform: 'uppercase',
+			letterSpacing: '1px',
 			padding: '14px 24px',
 		},
 		Tertiary: {

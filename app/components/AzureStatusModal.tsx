@@ -103,11 +103,7 @@ const AzureStatusModal = ({
 							>
 								Save to Azure
 							</Box>
-							<SecondaryButton
-								textTransform="uppercase"
-								borderColor="Accent"
-								borderRadius="Large"
-							>
+							<SecondaryButton>
 								Revert
 							</SecondaryButton>
 						</Flex>
@@ -115,6 +111,7 @@ const AzureStatusModal = ({
 					<Box
 						as={InvisibleButton}
 						alignSelf="flex-end"
+						marginTop={4}
 					>
 						<ModalText textDecoration="underline">
 							Sign out of Azure
