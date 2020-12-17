@@ -113,12 +113,20 @@ const AzureLoginModal = ({
 							onChange={(event) => setAccessTokenValue(event.target.value)}
 						/>
 					</Stack>
-					<Text marginBottom={4}>
-						Don&apos;t have a token?
-						<TertiaryButton onClick={() => openBrowserWindow('https://google.com')}>
+					<Flex
+						alignItems="baseline"
+						marginBottom={4}
+					>
+						<Text>
+							Don&apos;t have a token?&nbsp;
+						</Text>
+						<TertiaryButton
+							fontSize={2}
+							onClick={() => openBrowserWindow('https://google.com')}
+						>
 							Follow the Azure setup user guide.
 						</TertiaryButton>
-					</Text>
+					</Flex>
 					<Flex alignSelf="start">
 						<LimitInteraction
 							as={PrimaryButton}

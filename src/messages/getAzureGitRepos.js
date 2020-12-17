@@ -1,6 +1,13 @@
 import { getAzureGitRepos as get } from '../services'
 
 export const getAzureGitRepos = async (webContents, showError, { username, accessToken }) => {
-	const gitRepos = get(username, accessToken, webContents, showError)
-	webContents.executeJavaScript(`window.setGitRepos(${JSON.stringify(gitRepos)})`)
+	try {
+		const gitRepos = get(username, accessToken, webContents, showError)
+		webContents.executeJavaScript(`window.setGitRepos(${JSON.stringify(gitRepos)})`)
+	}
+	catch (error) {
+		const message = 'Error getting Azure git repos: ' + error
+		console.error(message)
+		showError(message)
+	}
 }

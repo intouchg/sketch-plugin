@@ -40,7 +40,7 @@ export const getAzureGitRepos = async (username, accessToken, webContents, showE
 		/* eslint-disable */
         azureConnection = null
         /* eslint-enable */
-		webContents.executeJavaScript(`window.azureRequestError(${JSON.stringify(error)})`)
+		throw error
 	}
 }
 

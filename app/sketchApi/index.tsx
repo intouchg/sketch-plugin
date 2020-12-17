@@ -20,7 +20,6 @@ export type AzureCredentials = { username: string, accessToken: string }
 // function names as keys:
 // window.setThemeData = (data) => console.log(data)
 interface WebviewListeners {
-    azureRequestError?: (error: { status: number, url: string }) => void
     clonedAzureGitRepo: () => void
     cloningAzureGitRepo: () => void
     displayError?: (message: string) => void

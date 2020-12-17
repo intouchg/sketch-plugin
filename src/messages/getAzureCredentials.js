@@ -1,11 +1,21 @@
-import { readAzureCredentialsMetadata } from '../services'
+import { readAzureCredentialsMetadata, writeAzureCredentialsMetadata, connectToAzure } from '../services'
 
-export const getAzureCredentials = (webContents, showError) => {
+export const getAzureCredentials = async (webContents, showError) => {
 	try {
 		const credentials = readAzureCredentialsMetadata()
-		webContents.executeJavaScript(`window.setAzureCredentials(${JSON.stringify(credentials)})`)
+
+		try {
+			await connectToAzure(credentials.username, credentials.accessToken)
+			webContents.executeJavaScript(`window.setAzureCredentials(${JSON.stringify(credentials)})`)
+		}
+		catch (loginError) {
+			writeAzureCredentialsMetadata({ username: credentials.username, accessToken: '' })
+			console.error('Failed to authenticate with Azure: ', loginError)
+		}
 	}
 	catch (error) {
-		showError('Error retrieving Azure credentials: ' + error)
+		const message = 'Error retrieving Azure credentials metadata: ' + error
+		console.error(message)
+		showError(message)
 	}
 }
