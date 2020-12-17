@@ -1,12 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Flex, Stack, Heading } from '@i/components'
+import { Flex, Stack, Heading, Box } from '@i/components'
 import { ModalBackground } from './ModalBackground'
-import { InvisibleButton, PrimaryButton } from './Buttons'
+import { InvisibleButton, PrimaryButton, SecondaryButton } from './Buttons'
 import { CloseIcon } from './Icons'
 import { AccentText } from './Texts'
 import { AzureStatusLabel } from './AzureStatusLabel'
+
+const ModalText = styled(AccentText)`
+	letter-spacing: 0;
+	text-transform: none;
+`
 
 const AzureStatusModal = ({
 	closeAzureStatusModal,
@@ -19,7 +24,7 @@ const AzureStatusModal = ({
 		<ModalBackground>
 			<Flex
 				width="560px"
-				height="364px"
+				height="317px"
 				padding={5}
 				backgroundColor="Background"
 				boxShadow="Medium"
@@ -51,9 +56,70 @@ const AzureStatusModal = ({
 						</Heading>
 						<AzureStatusLabel connected={Boolean(username && accessToken)} />
 					</Flex>
-					<PrimaryButton>
-						Save to Azure
-					</PrimaryButton>
+					<Box
+						padding={4}
+						backgroundColor="Card"
+						borderRadius="Large"
+					>
+						<Heading
+							variant="Tertiary"
+							color="Primary"
+							marginBottom={2}
+						>
+							executive-meeting-demo
+						</Heading>
+						<Flex marginBottom={3}>
+							<Flex>
+								<ModalText>
+									Branch:&nbsp;
+								</ModalText>
+								<ModalText
+									color="Text"
+									fontWeight="Bold"
+								>
+									ids/cody.persinger
+								</ModalText>
+							</Flex>
+							<ModalText>
+								&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+							</ModalText>
+							<Flex>
+								<ModalText>
+									Last saved:&nbsp;
+								</ModalText>
+								<ModalText
+									color="Text"
+									fontWeight="Bold"
+								>
+									14 minutes ago
+								</ModalText>
+							</Flex>
+						</Flex>
+						<Flex>
+							<Box
+								as={PrimaryButton}
+								flexGrow={1}
+								marginRight={3}
+							>
+								Save to Azure
+							</Box>
+							<SecondaryButton
+								textTransform="uppercase"
+								borderColor="Accent"
+								borderRadius="Large"
+							>
+								Revert
+							</SecondaryButton>
+						</Flex>
+					</Box>
+					<Box
+						as={InvisibleButton}
+						alignSelf="flex-end"
+					>
+						<ModalText textDecoration="underline">
+							Sign out of Azure
+						</ModalText>
+					</Box>
 				</Stack>
 			</Flex>
 		</ModalBackground>

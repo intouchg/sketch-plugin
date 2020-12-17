@@ -55,14 +55,15 @@ const theme = {
 		},
 		Secondary: {
 			color: '#232323',
-			backgroundColor: '#f8f8f8',
+			backgroundColor: 'transparent',
 			activeColor: '#232323',
 			border: '1px solid',
-			borderColor: '#999999',
+			borderColor: '#dddddd',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '0.875rem',
 			lineHeight: '1.25rem',
 			fontWeight: '400',
+			padding: '14px 24px',
 		},
 		Tertiary: {
 			color: '#2c90ce',

@@ -53,7 +53,7 @@ const AzureLoginModal = ({
 		<ModalBackground>
 			<Flex
 				width="560px"
-				height="364px"
+				height="385px"
 				padding={5}
 				backgroundColor="Background"
 				boxShadow="Medium"
