@@ -15,7 +15,8 @@ const Checkbox = ({
 } & React.ComponentProps<typeof CoreCheckbox>) => (
 	<CoreCheckbox
 		checked={checked}
-		onClick={!disabled ? onClick : undefined}
+		disabled={disabled}
+		onClick={onClick}
 		{...props}
 	>
 		<Flex
