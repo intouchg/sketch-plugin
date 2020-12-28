@@ -5,15 +5,17 @@ import { CheckmarkIcon } from './Icons'
 
 const Checkbox = ({
 	checked,
+	disabled,
 	onClick,
 	...props
 }: {
-    checked: boolean
+	checked: boolean
+	disabled?: boolean
 	onClick?: () => void
 } & React.ComponentProps<typeof CoreCheckbox>) => (
 	<CoreCheckbox
 		checked={checked}
-		onClick={onClick}
+		onClick={!disabled ? onClick : undefined}
 		{...props}
 	>
 		<Flex
@@ -21,12 +23,17 @@ const Checkbox = ({
 			justifyContent="center"
 			width="24px"
 			height="24px"
-			backgroundColor="Card"
+			backgroundColor={disabled ? 'Background' : 'Card'}
 			border="1px solid"
 			borderColor="Accent"
 			borderRadius="Medium"
 		>
-			{checked && (<CheckmarkIcon width="16px" />)}
+			{checked && (
+				<CheckmarkIcon
+					fill={disabled ? 'Text Light' : undefined}
+					width="16px"
+				/>
+			)}
 		</Flex>
 	</CoreCheckbox>
 )

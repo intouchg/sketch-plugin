@@ -1,7 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Stack, Heading, Flex } from '@i/components'
+import { Stack, Heading, Flex, Box, Label } from '@i/components'
 import { sortAlphabetical } from '@i/utility'
+import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
+import { InvisibleButton } from '../Buttons'
 import { Font } from '../ThemeValues'
 import type { ThemeFont } from '@i/theme'
 import type { SystemFontFamily } from '../../sketchApi'
@@ -50,12 +52,11 @@ const FontFamily = ({
 	path,
 	typefaces,
 	values,
+	imported,
 }: SystemFontFamily & {
 	values: (ThemeFont & { imported?: boolean, selected?: boolean })[]
+	imported: boolean
 }) => {
-	console.log('typefaces ', typefaces)
-	console.log('values ', values)
-
 	return (
 		<Stack marginBottom={5}>
 			<Heading
@@ -65,11 +66,46 @@ const FontFamily = ({
 				{name}
 			</Heading>
 			<Flex flexWrap="wrap">
-				{typefaces.map((typeface) => (
-					<Flex key={typeface._name}>
-						<Font {...typeface} />
-					</Flex>
-				))}
+				{typefaces.map((typeface) => {
+					const name = typeface._name
+					const matchingValue = values.find((font) => font.typeface === name)
+					const selected = matchingValue && matchingValue.selected
+					const alreadySaved = matchingValue && !matchingValue.imported
+					const interactable = imported && !alreadySaved
+
+					return (
+						<Box
+							key={name}
+							paddingRight={2}
+							marginBottom={2}
+						>
+							<Flex
+								alignItems="center"
+								padding={2}
+								paddingRight="12px"
+								borderRadius="Large"
+								backgroundColor={selected ? 'Positive Light' : interactable ? 'Background' : 'transparent'}
+								as={interactable ? InvisibleButton : undefined}
+								// onClick={interactable ? () => toggleSelectedImportedValue(props) : undefined}
+							>
+								{interactable && (
+									<Checkbox
+										checked={Boolean(selected)}
+										marginRight={2}
+									/>
+								)}
+								{!interactable && imported && (
+									<Checkbox
+										checked
+										disabled
+										marginRight={2}
+									/>
+								)}
+								<Font {...typeface} />
+							</Flex>
+						</Box>
+					)
+				})}
 			</Flex>
 		</Stack>
 	)
@@ -126,13 +162,18 @@ const Fonts = ({
 			flexGrow={1}
 			marginY="auto"
 		>
-			{sortedUniqueSystemFonts.map(({ imported, ...systemFont }) => (
-				<FontFamily
-					key={systemFont.name}
-					values={uniqueFontValues.filter((font) => font.family === systemFont.name)}
-					{...systemFont}
-				/>
-			))}
+			{sortedUniqueSystemFonts.map(({ imported, ...systemFont }) => {
+				const { name } = systemFont
+
+				return (
+					<FontFamily
+						key={systemFont.name}
+						values={uniqueFontValues.filter((font) => font.family === name)}
+						imported={importedValues.some((v) => v.family === name)}
+						{...systemFont}
+					/>
+				)
+			})}
 		</Stack>
 	)
 }

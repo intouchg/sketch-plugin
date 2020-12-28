@@ -29,48 +29,63 @@ const Colors = ({
 
 	return (
 		<ColorGrid gridGap={3}>
-			{sortedUniqueColors.map(({ imported, selected, willOverwriteByName, ...props }) => (
-				<Box
-					key={props.id}
-					position="relative"
-					height="0"
-					paddingBottom="65.31%"
-					flexGrow={1}
-					as={imported ? InvisibleButton : undefined}
-					onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwriteByName }) : undefined}
-				>
-					<Color {...props} />
-					{imported && (
-						<Checkbox
-							position="absolute"
-							top="0"
-							right="0"
-							margin={2}
-							checked={Boolean(selected)}
-						/>
-					)}
-					{imported && willOverwriteByName && (
-						<Flex
-							position="absolute"
-							bottom="0"
-							right="0"
-							alignItems="center"
-							justifyContent="center"
-							width="20px"
-							height="20px"
-							margin={2}
-							backgroundColor="Card"
-							borderRadius="50%"
-						>
-							<OverwriteIcon
-								width="16px"
-								height="16px"
-								fill="Caution Dark"
+			{sortedUniqueColors.map(({ imported, selected, willOverwriteByName, ...props }) => {
+				const { value } = props
+				const alreadySaved = !imported && importedValues.some((v) => v.value === value)
+
+				return (
+					<Box
+						key={props.id}
+						position="relative"
+						height="0"
+						paddingBottom="65.31%"
+						flexGrow={1}
+						as={imported ? InvisibleButton : undefined}
+						onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwriteByName }) : undefined}
+					>
+						<Color {...props} />
+						{imported && (
+							<Checkbox
+								checked={Boolean(selected)}
+								position="absolute"
+								top="0"
+								right="0"
+								margin={2}
 							/>
-						</Flex>
-					)}
-				</Box>
-			))}
+						)}
+						{alreadySaved && (
+							<Checkbox
+								checked
+								disabled
+								position="absolute"
+								top="0"
+								right="0"
+								margin={2}
+							/>
+						)}
+						{imported && willOverwriteByName && (
+							<Flex
+								position="absolute"
+								bottom="0"
+								right="0"
+								alignItems="center"
+								justifyContent="center"
+								width="20px"
+								height="20px"
+								margin={2}
+								backgroundColor="Card"
+								borderRadius="50%"
+							>
+								<OverwriteIcon
+									width="16px"
+									height="16px"
+									fill="Caution Dark"
+								/>
+							</Flex>
+						)}
+					</Box>
+				)
+			})}
 		</ColorGrid>
 	)
 }
