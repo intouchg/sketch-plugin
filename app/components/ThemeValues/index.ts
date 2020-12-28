@@ -1,6 +1,6 @@
 export * from './BorderWidth'
 export * from './Color'
-export * from './FontFamily'
+export * from './Font'
 export * from './FontSize'
 export * from './LetterSpacing'
 export * from './LineHeight'
