@@ -22,6 +22,13 @@ const FontFamily = ({
 	imported: boolean
 	toggleSelectedImportedValue: (font: ThemeFont) => void
 }) => {
+	const toggleTypeface = (value?: ThemeFont & { imported?: boolean, selected?: boolean }) => {
+		if (value) {
+			const { selected: s, imported: i, ...props } = value
+			toggleSelectedImportedValue(props)
+		}
+	}
+
 	return (
 		<Stack marginBottom={5}>
 			<Heading
@@ -51,7 +58,7 @@ const FontFamily = ({
 								borderRadius="Large"
 								backgroundColor={selected ? 'Positive Light' : interactable ? 'Background' : 'transparent'}
 								as={interactable ? InvisibleButton : undefined}
-								onClick={interactable ? () => toggleSelectedImportedValue(matchingValue!) : undefined}
+								onClick={interactable ? () => toggleTypeface(matchingValue) : undefined}
 							>
 								{interactable && (
 									<Checkbox

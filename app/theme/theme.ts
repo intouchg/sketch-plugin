@@ -99,6 +99,8 @@ const theme = {
 		Invisible: {
 			backgroundColor: 'transparent',
 			border: '0',
+			color: 'unset',
+			activeColor: 'unset',
 		},
 	},
 	texts: {
