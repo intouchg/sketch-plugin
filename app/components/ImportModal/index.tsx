@@ -14,7 +14,8 @@ import { LetterSpacings } from './LetterSpacings'
 import { sketchRequest } from '../../sketchApi'
 import { saveImportedSketchValues } from '../../store'
 import type { ThemeValue } from '@i/theme'
-import type { SystemFontFamily } from '../../sketchApi'
+
+// TO DO: Loading component
 
 const views = {
 	color: Colors,
@@ -65,6 +66,7 @@ const ImportModal = ({
 
 	useEffect(() => {
 		setSelectedImportCategories([])
+		setSelectedImportedValues([])
 		setSelectedSketchDocumentIndex(0)
 
 		if (sketchDocumentNames.length) {
@@ -77,6 +79,7 @@ const ImportModal = ({
 
 	useEffect(() => {
 		setSelectedImportCategories([])
+		setSelectedImportedValues([])
 
 		if (sketchDocumentNames.length) {
 			setShowLoading(true)

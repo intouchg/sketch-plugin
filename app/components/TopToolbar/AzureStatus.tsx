@@ -14,13 +14,13 @@ const AzureStatus = ({
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
 
-	const handleClick = () => connected ? openAzureStatusModal() : openAzureLoginModal()
+	const openModal = () => connected ? openAzureStatusModal() : openAzureLoginModal()
 
 	return (
 		<InvisibleButton
 			paddingY={3}
 			marginRight={4}
-			onClick={handleClick}
+			onClick={openModal}
 		>
 			<AccentText color="Text">
 				Azure

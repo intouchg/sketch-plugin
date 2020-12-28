@@ -10,6 +10,7 @@ export type ThemeState = {
 	recentProjects: RecentProject[]
 	sketchDocumentNames: string[]
 	importedSketchValues: ParsedImportedSketchValues
+	importedSketchFontFamilyNames: string[]
 	systemFonts: SystemFontsDictionary
 }
 
@@ -31,5 +32,6 @@ export const initialThemeState: ThemeState = {
 		borderWidths: [],
 		shadows: [],
 	},
+	importedSketchFontFamilyNames: [],
 	systemFonts: {},
 }

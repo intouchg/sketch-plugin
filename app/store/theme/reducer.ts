@@ -118,15 +118,27 @@ export const themeReducer = (
 				})
 
 				nextState.systemFonts = systemFontsDictionary
+
+				// Update importedSketchValues.fonts now that systemFonts have loaded
+				const typefaces = state.importedSketchFontFamilyNames.map((fontFamilyName) => systemFontsDictionary[fontFamilyName]).filter((v) => v !== undefined).map((sf) => sf.typefaces).flat()
+				nextState.importedSketchValues.fonts = typefaces.map(({ _name, family }) => createThemeValue([], 'font', { name: _name, typeface: _name, family, value: `${_name}, sans-serif` }))
+
 				break
 			}
 
 			case SET_IMPORTED_SKETCH_VALUES: {
 				const { colors, fonts, fontSizes, fontWeights, lineHeights, letterSpacings, borderWidths, shadows } = action.payload
+				const { systemFonts } = state
+
+				// These are stored separately because we need systemFonts to update importedSketchValues.fonts
+				nextState.importedSketchFontFamilyNames = fonts
+
+				const typefaces = fonts.map((fontFamilyName) => systemFonts[fontFamilyName]).filter((v) => v !== undefined).map((sf) => sf.typefaces).flat()
 
 				nextState.importedSketchValues = {
 					colors: colors.map(([ name, value ]) => createThemeValue([], 'color', { name, value })),
-					fonts: fonts.map((value) => createThemeValue([], 'font', { name: value, value, family: value })),
+					// Fonts are also updated in SET_SYSTEM_FONTS once systemFonts have loaded
+					fonts: typefaces.map(({ _name, family }) => createThemeValue([], 'font', { name: _name, typeface: _name, family, value: `${_name}, sans-serif` })),
 					fontSizes: fontSizes.map((value) => createThemeValue([], 'fontSize', { value })),
 					fontWeights: fontWeights.map((value) => createThemeValue([], 'fontWeight', { value })),
 					lineHeights: lineHeights.map((value) => createThemeValue([], 'lineHeight', { value })),
