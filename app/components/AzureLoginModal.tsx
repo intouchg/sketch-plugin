@@ -38,7 +38,7 @@ const AzureLoginModal = ({
 		}
 
 		return () => void delete window.handleAzureLoginResult
-	})
+	}, [ path, closeAzureLoginModal, openAzureStatusModal, setError ])
 
 	const loginToAzure = () => {
 		setError('')
@@ -95,6 +95,7 @@ const AzureLoginModal = ({
 							autoCapitalize="none"
 							padding={3}
 							borderRadius="Large"
+							textTransform="lowercase"
 							value={usernameValue}
 							onChange={(event) => setUsernameValue(event.target.value)}
 						/>
@@ -109,6 +110,7 @@ const AzureLoginModal = ({
 							autoCapitalize="none"
 							padding={3}
 							borderRadius="Large"
+							textTransform="lowercase"
 							value={accessTokenValue}
 							onChange={(event) => setAccessTokenValue(event.target.value)}
 						/>
