@@ -28,39 +28,50 @@ const LetterSpacings = ({
 			maxWidth="100%"
 			marginY="auto"
 		>
-			{sortedUniqueLetterSpacings.map(({ imported, selected, ...props }) => (
-				<Flex
-					key={props.id}
-					flexShrink={0}
-					marginY={2}
-					alignItems="center"
-					as={imported ? InvisibleButton : undefined}
-					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
-				>
+			{sortedUniqueLetterSpacings.map(({ imported, selected, ...props }) => {
+				const { value } = props
+				const alreadySaved = !imported && importedValues.some((v) => v.value === value)
+
+				return (
 					<Flex
-						minWidth="72px"
-						minHeight="36px"
-						marginRight={3}
-						alignItems="center"
-						backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
-						borderRadius="Large"
+						key={props.id}
 						flexShrink={0}
+						marginY={2}
+						alignItems="center"
+						as={imported ? InvisibleButton : undefined}
+						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
-						{imported ? (
-							<Checkbox
-								checked={Boolean(selected)}
-								padding={2}
-							/>
-						) : (
-							<CheckboxPlaceholder padding={2} />
-						)}
-						<Text paddingRight={2}>
-							{props.value.split('px')[0]}
-						</Text>
+						<Flex
+							minWidth="72px"
+							minHeight="36px"
+							marginRight={3}
+							alignItems="center"
+							backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
+							borderRadius="Large"
+							flexShrink={0}
+						>
+							{imported ? (
+								<Checkbox
+									checked={Boolean(selected)}
+									padding={2}
+								/>
+							) : alreadySaved ? (
+								<Checkbox
+									checked
+									disabled
+									padding={2}
+								/>
+							) : (
+								<CheckboxPlaceholder padding={2} />
+							)}
+							<Text paddingRight={2}>
+								{value.split('px')[0]}
+							</Text>
+						</Flex>
+						<LetterSpacing {...props} />
 					</Flex>
-					<LetterSpacing {...props} />
-				</Flex>
-			))}
+				)
+			})}
 		</Stack>
 	)
 }

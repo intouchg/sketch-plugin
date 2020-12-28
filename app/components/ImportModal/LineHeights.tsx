@@ -29,40 +29,51 @@ const LineHeights = ({
 			flexGrow={1}
 			marginY="auto"
 		>
-			{sortedUniqueLineHeights.map(({ imported, selected, ...props }) => (
-				<Flex
-					key={props.id}
-					maxWidth="640px"
-					alignItems="stretch"
-					marginBottom={4}
-					as={imported ? InvisibleButton : undefined}
-					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
-				>
+			{sortedUniqueLineHeights.map(({ imported, selected, ...props }) => {
+				const { value } = props
+				const alreadySaved = !imported && importedValues.some((v) => v.value === value)
+
+				return (
 					<Flex
-						minWidth="115px"
-						alignItems="center"
-						paddingX={3}
-						paddingY={2}
-						marginRight={3}
-						backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
-						borderRadius="Large"
-						flexShrink={0}
+						key={props.id}
+						maxWidth="640px"
+						alignItems="stretch"
+						marginBottom={4}
+						as={imported ? InvisibleButton : undefined}
+						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
-						{imported ? (
-							<Checkbox
-								checked={Boolean(selected)}
-								marginRight={3}
-							/>
-						) : (
-							<CheckboxPlaceholder marginRight={3} />
-						)}
-						<Text>
-							{props.value.split('rem')[0]}
-						</Text>
+						<Flex
+							minWidth="115px"
+							alignItems="center"
+							paddingX={3}
+							paddingY={2}
+							marginRight={3}
+							backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
+							borderRadius="Large"
+							flexShrink={0}
+						>
+							{imported ? (
+								<Checkbox
+									checked={Boolean(selected)}
+									marginRight={3}
+								/>
+							) : alreadySaved ? (
+								<Checkbox
+									checked
+									disabled
+									marginRight={3}
+								/>
+							) : (
+								<CheckboxPlaceholder marginRight={3} />
+							)}
+							<Text>
+								{value.split('rem')[0]}
+							</Text>
+						</Flex>
+						<LineHeight {...props} />
 					</Flex>
-					<LineHeight {...props} />
-				</Flex>
-            ))}
+				)
+			})}
 		</Stack>
 	)
 }

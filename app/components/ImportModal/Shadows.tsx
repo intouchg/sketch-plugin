@@ -32,28 +32,40 @@ const Shadows = ({
 			flexGrow={1}
 			marginY="auto"
 		>
-			{sortedUniqueShadows.map(({ imported, selected, ...props }) => (
-				<Flex
-					key={props.id}
-					width="100%"
-					maxWidth="640px"
-					alignItems="center"
-					marginBottom={4}
-					as={imported ? InvisibleButton : undefined}
-					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
-				>
-					{imported ? (
-						<Checkbox
-							checked={Boolean(selected)}
-							marginRight={4}
-							zIndex={1}
-						/>
-					) : (
-						<CheckboxPlaceholder marginRight={4} />
-					)}
-					<Shadow {...props} />
-				</Flex>
-			))}
+			{sortedUniqueShadows.map(({ imported, selected, ...props }) => {
+				const { value } = props
+				const alreadySaved = !imported && importedValues.some((v) => v.value === value)
+
+				return (
+					<Flex
+						key={props.id}
+						width="100%"
+						maxWidth="640px"
+						alignItems="center"
+						marginBottom={4}
+						as={imported ? InvisibleButton : undefined}
+						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
+					>
+						{imported ? (
+							<Checkbox
+								checked={Boolean(selected)}
+								marginRight={4}
+								zIndex={1}
+							/>
+						) : alreadySaved ? (
+							<Checkbox
+								checked
+								disabled
+								marginRight={4}
+								zIndex={1}
+							/>
+						) : (
+							<CheckboxPlaceholder marginRight={4} />
+						)}
+						<Shadow {...props} />
+					</Flex>
+				)
+			})}
 		</Stack>
 	)
 }

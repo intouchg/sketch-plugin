@@ -30,7 +30,9 @@ const FontSizes = ({
 			overflow="hidden"
 		>
 			{sortedUniqueFontSizes.map(({ imported, selected, ...props }) => {
-				const pixelValue = Number(props.value.split('rem')[0]) * 16
+				const { value } = props
+				const pixelValue = Number(value.split('rem')[0]) * 16
+				const alreadySaved = !imported && importedValues.some((v) => v.value === value)
 
 				return (
 					<Flex
@@ -54,6 +56,12 @@ const FontSizes = ({
 							{imported ? (
 								<Checkbox
 									checked={Boolean(selected)}
+									padding={2}
+								/>
+							) : alreadySaved ? (
+								<Checkbox
+									checked
+									disabled
 									padding={2}
 								/>
 							) : (

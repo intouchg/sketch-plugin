@@ -29,30 +29,41 @@ const BorderWidths = ({
 			flexGrow={1}
 			marginY="auto"
 		>
-			{sortedUniqueBorderWidths.map(({ imported, selected, ...props }) => (
-				<Flex
-					key={props.id}
-					width="100%"
-					maxWidth="540px"
-					padding={3}
-					alignItems="center"
-					marginBottom={4}
-					backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
-					borderRadius="Large"
-					as={imported ? InvisibleButton : undefined}
-					onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
-				>
-					{imported ? (
-						<Checkbox
-							checked={Boolean(selected)}
-							marginRight={3}
-						/>
-					) : (
-						<CheckboxPlaceholder marginRight={3} />
-					)}
-					<BorderWidth {...props} />
-				</Flex>
-			))}
+			{sortedUniqueBorderWidths.map(({ imported, selected, ...props }) => {
+				const { value } = props
+				const alreadySaved = !imported && importedValues.some((v) => v.value === value)
+
+				return (
+					<Flex
+						key={props.id}
+						width="100%"
+						maxWidth="540px"
+						padding={3}
+						alignItems="center"
+						marginBottom={4}
+						backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
+						borderRadius="Large"
+						as={imported ? InvisibleButton : undefined}
+						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
+					>
+						{imported ? (
+							<Checkbox
+								checked={Boolean(selected)}
+								marginRight={3}
+							/>
+						) : alreadySaved ? (
+							<Checkbox
+								checked
+								disabled
+								marginRight={3}
+							/>
+						) : (
+							<CheckboxPlaceholder marginRight={3} />
+						)}
+						<BorderWidth {...props} />
+					</Flex>
+				)
+			})}
 		</Stack>
 	)
 }
