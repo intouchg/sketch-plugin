@@ -20,6 +20,7 @@ import {
 	cloneAzureGitRepo,
 	extractSketchDocumentStyles,
 } from './messages'
+import * as api from './messages'
 
 const WEBVIEW_IDENTIFIER = 'intouch-design-system.webview'
 
@@ -50,22 +51,26 @@ export default () => {
 
 	const showError = (message) => webContents.executeJavaScript(`window.displayError(${JSON.stringify(message)})`)
 
-	let selectedProjectDirectory = null
-	let themeFilepaths = {}
-	let themeData = {}
+	const state = {
+		selectedProjectDirectory: null,
+		themeFilepaths: {},
+		themeData: {},
+	}
 
 	browserWindow.on('closed', () => {
 		stopDevServer()
 		stopStorybook()
 	})
 
-	webContents.on('selectLocalProject', (recentProject) => {
-		const filepath = recentProject ? recentProject.filepath : null
-		const results = selectLocalProject(webContents, showError, filepath)
-		selectedProjectDirectory = results.selectedProjectDirectory
-		themeFilepaths = results.themeFilepaths
-		themeData = results.themeData
-	})
+	webContents.on('clientCommand', ({ type, payload }) => api[type](state, payload))
+
+	// webContents.on('selectLocalProject', (recentProject) => {
+	// 	const filepath = recentProject ? recentProject.filepath : null
+	// 	const results = selectLocalProject(webContents, showError, filepath)
+	// 	state.selectedProjectDirectory = results.selectedProjectDirectory
+	// 	state.themeFilepaths = results.themeFilepaths
+	// 	state.themeData = results.themeData
+	// })
 
 	webContents.on('getRecentProjects', () => getRecentProjects(webContents, showError))
 
@@ -77,11 +82,11 @@ export default () => {
 
 	webContents.on('openBrowserWindow', (url) => openBrowserWindow(showError, url))
 
-	webContents.on('openDevServer', () => openDevServer(webContents, showError, selectedProjectDirectory))
+	webContents.on('openDevServer', () => openDevServer(webContents, showError, state.selectedProjectDirectory))
 
-	webContents.on('openStorybook', () => openStorybook(webContents, showError, themeData))
+	webContents.on('openStorybook', () => openStorybook(webContents, showError, state.themeData))
 
-	webContents.on('saveThemeData', (newThemeData) => saveThemeData(webContents, showError, newThemeData, themeFilepaths))
+	webContents.on('saveThemeData', (newThemeData) => saveThemeData(webContents, showError, newThemeData, state.themeFilepaths))
 
 	webContents.on('loginToAzure', (credentialsData) => loginToAzure(webContents, showError, credentialsData))
 
