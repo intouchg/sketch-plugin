@@ -1,7 +1,9 @@
 import { getAzureGitRepos as get } from '../services'
 
-export const getAzureGitRepos = async (webContents, showError, { username, accessToken }) => {
+export const getAzureGitRepos = async (state, payload, webContents, showError) => {
 	try {
+		const { username, accessToken } = payload
+
 		const gitRepos = get(username, accessToken, webContents, showError)
 		webContents.executeJavaScript(`window.setGitRepos(${JSON.stringify(gitRepos)})`)
 	}

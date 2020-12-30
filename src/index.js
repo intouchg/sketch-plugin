@@ -5,17 +5,7 @@ import { getDocuments } from 'sketch'
 // import { toArray } from 'util'
 import { stopDevServer, stopStorybook } from './services'
 import {
-	selectLocalProject,
-	getRecentProjects,
-	getSystemFonts,
-	selectNewProjectDirectory,
-	openBrowserWindow,
-	openDevServer,
 	openStorybook,
-	saveThemeData,
-	loginToAzure,
-	getAzureCredentials,
-	forgetAzureCredentials,
 	getAzureGitRepos,
 	cloneAzureGitRepo,
 	extractSketchDocumentStyles,
@@ -62,41 +52,18 @@ export default () => {
 		stopStorybook()
 	})
 
-	webContents.on('clientCommand', ({ type, payload }) => api[type](state, payload))
+	webContents.on('clientCommand', ({ type, payload }) => {
+		console.log('clientCommand ', type, payload)
 
-	// webContents.on('selectLocalProject', (recentProject) => {
-	// 	const filepath = recentProject ? recentProject.filepath : null
-	// 	const results = selectLocalProject(webContents, showError, filepath)
-	// 	state.selectedProjectDirectory = results.selectedProjectDirectory
-	// 	state.themeFilepaths = results.themeFilepaths
-	// 	state.themeData = results.themeData
-	// })
-
-	webContents.on('getRecentProjects', () => getRecentProjects(webContents, showError))
-
-	webContents.on('getSystemFonts', () => getSystemFonts(webContents, showError))
+		try {
+			api[type](state, payload, webContents, showError)
+		}
+		catch (error) {
+			console.error(error)
+		}
+	})
 
 	webContents.on('getSketchDocumentNames', () => updateSketchDocumentNames(webContents))
-
-	webContents.on('selectNewProjectDirectory', () => selectNewProjectDirectory(webContents, showError))
-
-	webContents.on('openBrowserWindow', (url) => openBrowserWindow(showError, url))
-
-	webContents.on('openDevServer', () => openDevServer(webContents, showError, state.selectedProjectDirectory))
-
-	webContents.on('openStorybook', () => openStorybook(webContents, showError, state.themeData))
-
-	webContents.on('saveThemeData', (newThemeData) => saveThemeData(webContents, showError, newThemeData, state.themeFilepaths))
-
-	webContents.on('loginToAzure', (credentialsData) => loginToAzure(webContents, showError, credentialsData))
-
-	webContents.on('getAzureCredentials', () => getAzureCredentials(webContents, showError))
-
-	webContents.on('forgetAzureCredentials', () => forgetAzureCredentials(webContents, showError))
-
-	webContents.on('getAzureGitRepos', (credentialsData) => getAzureGitRepos(webContents, showError, credentialsData))
-
-	webContents.on('cloneAzureGitRepo', (selectedRepoData) => cloneAzureGitRepo(webContents, showError, selectedRepoData))
 
 	webContents.on('extractSketchDocumentStyles', (sketchDocumentIndex) => {
 		const sketchDocuments = (getDocuments() || []).filter((document) => document.path)

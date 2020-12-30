@@ -1,6 +1,6 @@
 import { readRecentProjectMetadata } from '../services'
 
-export const getRecentProjects = (webContents, showError) => {
+export const getRecentProjects = (state, payload, webContents, showError) => {
 	try {
 		const recentProjects = readRecentProjectMetadata()
 		webContents.executeJavaScript(`window.setRecentProjects(${JSON.stringify(recentProjects)})`)

@@ -1,6 +1,6 @@
 import { readAzureCredentialsMetadata, writeAzureCredentialsMetadata, connectToAzure } from '../services'
 
-export const getAzureCredentials = async (webContents, showError) => {
+export const getAzureCredentials = async (state, payload, webContents, showError) => {
 	try {
 		const credentials = readAzureCredentialsMetadata()
 

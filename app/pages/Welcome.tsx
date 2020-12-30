@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Box, Stack, Flex, Heading } from '@i/components'
 import { AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal } from '../components'
-import { sketchRequest } from '../sketchApi'
+import { sendSketchCommand } from '../sketchApi'
 import pkg from '../../package.json'
 
-const selectLocalProject = () => sketchRequest('selectLocalProject')
+const selectLocalProject = () => sendSketchCommand('selectLocalProject')
 
 const Welcome = () => {
 	const [ showNewProjectModal, setShowNewProjectModal ] = useState(false)

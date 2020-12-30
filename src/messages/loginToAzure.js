@@ -1,11 +1,13 @@
 import { connectToAzure } from '../services'
 import { writeAzureCredentialsMetadata } from '../services'
 
-export const loginToAzure = async (webContents, showError, credentialsData) => {
+export const loginToAzure = async (state, payload, webContents, showError) => {
 	try {
-		await connectToAzure(credentialsData.username, credentialsData.accessToken)
-		writeAzureCredentialsMetadata(credentialsData)
-		webContents.executeJavaScript(`window.setAzureCredentials(${JSON.stringify(credentialsData)})`)
+		const credentials = payload
+
+		await connectToAzure(credentials.username, credentials.accessToken)
+		writeAzureCredentialsMetadata(credentials)
+		webContents.executeJavaScript(`window.setAzureCredentials(${JSON.stringify(credentials)})`)
 		webContents.executeJavaScript(`window.handleAzureLoginResult(true)`)
 	}
 	catch (error) {

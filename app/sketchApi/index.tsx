@@ -76,7 +76,9 @@ interface SketchListeners {
 
 export const sketchRequest = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage(type, payload as any)
 
-export const openBrowserWindow = (url: string) => sketchRequest('openBrowserWindow', url)
+export const sendSketchCommand = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage('clientCommand', { type, payload } as any)
+
+export const openBrowserWindow = (url: string) => sendSketchCommand('openBrowserWindow', url)
 
 export const useGlobalSketchListeners = () => {
 	const history = useHistory()
@@ -92,10 +94,10 @@ export const useGlobalSketchListeners = () => {
 		window.setImportedSketchValues = (styles) => dispatch(setImportedSketchValues(styles))
 		window.setSystemFonts = (fonts) => dispatch(setSystemFonts(fonts))
 
-		sketchRequest('getRecentProjects')
-		sketchRequest('getAzureCredentials')
+		sendSketchCommand('getRecentProjects')
+		sendSketchCommand('getAzureCredentials')
 		sketchRequest('getSketchDocumentNames')
-		sketchRequest('getSystemFonts')
+		sendSketchCommand('getSystemFonts')
 
 		return () => {
 			delete window.setThemeData

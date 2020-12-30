@@ -1,7 +1,7 @@
 import { enablePatches, produce, applyPatches } from 'immer'
 import { createThemeValue } from '@i/theme'
 import { sortAlphabetical } from '@i/utility'
-import { sketchRequest } from '../../sketchApi'
+import { sendSketchCommand } from '../../sketchApi'
 import {
 	UNDO,
 	REDO,
@@ -242,7 +242,7 @@ export const themeReducer = (
 		}
 
 		if (SAVEABLE_ACTIONS.includes(action.type)) {
-			sketchRequest('saveThemeData', {
+			sendSketchCommand('saveThemeData', {
 				values: nextState.values,
 				components: nextState.components,
 				variants: nextState.variants,

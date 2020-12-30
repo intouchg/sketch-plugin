@@ -4,7 +4,8 @@ import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
 import { updateStorybookTempTheme, writeRecentProjectMetadata } from '../services'
 
-export const selectLocalProject = (webContents, showError, filepath) => {
+export const selectLocalProject = (state, payload, webContents, showError) => {
+	const filepath = payload ? payload.filepath : null
 	let selectedProjectDirectory = filepath
 	const themeFilepaths = {}
 	const themeData = {}
@@ -64,5 +65,7 @@ export const selectLocalProject = (webContents, showError, filepath) => {
 		webContents.executeJavaScript(`window.setRecentProjects(${JSON.stringify(recentProjects)})`)
 	}
 
-	return { selectedProjectDirectory, themeFilepaths, themeData }
+	state.selectedProjectDirectory = selectedProjectDirectory
+	state.themeFilepaths = themeFilepaths
+	state.themeData = themeData
 }
