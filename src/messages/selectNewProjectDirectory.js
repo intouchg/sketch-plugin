@@ -3,7 +3,7 @@ import path from '@skpm/path'
 import dialog from '@skpm/dialog'
 import { configFilename } from '@i/theme'
 
-export const selectNewProjectDirectory = (webContents, showError) => {
+export const selectNewProjectDirectory = (state, payload, webContents, showError) => {
 	const selectedProjectDirectory = dialog.showOpenDialogSync({ properties: [ 'openDirectory' ] })[0]
 
 	if (!selectedProjectDirectory) {
