@@ -1,6 +1,6 @@
 import { writeAzureCredentialsMetadata } from '../services'
 
-export const forgetAzureCredentials = async (webContents, showError) => {
+export const forgetAzureCredentials = async (state, payload, webContents, showError) => {
 	try {
 		writeAzureCredentialsMetadata({ username: '', accessToken: '' })
 	}

@@ -6,7 +6,7 @@ import {
 	RESET_AZURE_STATE,
 } from './actions'
 import { initialAzureState } from './state'
-import { sketchRequest } from '../../sketchApi'
+import { sendSketchCommand } from '../../sketchApi'
 import type { AzureActionType } from './actions'
 import type { AzureState } from './state'
 
@@ -35,7 +35,7 @@ export const azureReducer = (
 				nextState.credentials = initialAzureState.credentials
 				nextState.localProject = initialAzureState.localProject
 				nextState.branchName = initialAzureState.branchName
-				sketchRequest('forgetAzureCredentials')
+				sendSketchCommand('forgetAzureCredentials')
 				break
 			}
 

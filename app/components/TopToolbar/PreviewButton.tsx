@@ -2,9 +2,9 @@ import React from 'react'
 import { InvisibleButton } from '../Buttons'
 import { AccentText } from '../Texts'
 import { ReactIcon } from '../Icons'
-import { sketchRequest } from '../../sketchApi'
+import { sendSketchCommand } from '../../sketchApi'
 
-const openDevServer = () => sketchRequest('openDevServer')
+const openDevServer = () => sendSketchCommand('openDevServer')
 
 const PreviewButton = () => (
 	<InvisibleButton

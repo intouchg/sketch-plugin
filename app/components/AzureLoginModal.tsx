@@ -7,7 +7,7 @@ import { CloseIcon } from './Icons'
 import { AccentText } from './Texts'
 import { LimitInteraction } from './LimitInteraction'
 import { AzureStatusLabel } from './AzureStatusLabel'
-import { sketchRequest, openBrowserWindow } from '../sketchApi'
+import { sendSketchCommand, openBrowserWindow } from '../sketchApi'
 
 const AzureLoginModal = ({
 	path,
@@ -43,7 +43,7 @@ const AzureLoginModal = ({
 	const loginToAzure = () => {
 		setError('')
 
-		sketchRequest('loginToAzure', {
+		sendSketchCommand('loginToAzure', {
 			username: usernameValue,
 			accessToken: accessTokenValue,
 		})

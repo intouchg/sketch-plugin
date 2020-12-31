@@ -1,7 +1,12 @@
+import { getDocuments } from 'sketch'
 import { extractSketchDocumentStyles as extract } from '../services'
 
-export const extractSketchDocumentStyles = async (webContents, showError, document) => {
+export const extractSketchDocumentStyles = async (state, payload, webContents, showError) => {
 	try {
+		const sketchDocumentIndex = payload
+
+		const sketchDocuments = (getDocuments() || []).filter((document) => document.path)
+		const document = sketchDocuments[sketchDocumentIndex]
 		const styles = extract(document)
 
 		if (styles) {

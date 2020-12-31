@@ -6,9 +6,9 @@ import { InvisibleButton, PrimaryButton } from './Buttons'
 import { CloseIcon, FolderIcon } from './Icons'
 import { AccentText, TruncatedText } from './Texts'
 import { LimitInteraction } from './LimitInteraction'
-import { sketchRequest } from '../sketchApi'
+import { sendSketchCommand } from '../sketchApi'
 
-const selectNewProjectDirectory = () => sketchRequest('selectNewProjectDirectory')
+const selectNewProjectDirectory = () => sendSketchCommand('selectNewProjectDirectory')
 
 const NewProjectModal = ({
 	closeNewProjectModal,
