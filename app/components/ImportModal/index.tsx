@@ -11,7 +11,7 @@ import { LineHeights } from './LineHeights'
 import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
 import { LetterSpacings } from './LetterSpacings'
-import { sketchRequest } from '../../sketchApi'
+import { sendSketchCommand } from '../../sketchApi'
 import { saveImportedSketchValues } from '../../store'
 import type { ThemeValue } from '@i/theme'
 
@@ -70,7 +70,7 @@ const ImportModal = ({
 		setSelectedSketchDocumentIndex(0)
 
 		if (sketchDocumentNames.length) {
-			sketchRequest('extractSketchDocumentStyles', 0)
+			sendSketchCommand('extractSketchDocumentStyles', 0)
 		}
 		else {
 			closeImportModal()
@@ -83,7 +83,7 @@ const ImportModal = ({
 
 		if (sketchDocumentNames.length) {
 			setShowLoading(true)
-			sketchRequest('extractSketchDocumentStyles', selectedSketchDocumentIndex)
+			sendSketchCommand('extractSketchDocumentStyles', selectedSketchDocumentIndex)
 		}
 	}, [ selectedSketchDocumentIndex ])
 

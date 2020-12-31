@@ -74,8 +74,6 @@ interface SketchListeners {
     selectNewProjectDirectory: () => void
 }
 
-export const sketchRequest = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage(type, payload as any)
-
 export const sendSketchCommand = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage('clientCommand', { type, payload } as any)
 
 export const openBrowserWindow = (url: string) => sendSketchCommand('openBrowserWindow', url)
@@ -96,7 +94,7 @@ export const useGlobalSketchListeners = () => {
 
 		sendSketchCommand('getRecentProjects')
 		sendSketchCommand('getAzureCredentials')
-		sketchRequest('getSketchDocumentNames')
+		sendSketchCommand('getSketchDocumentNames')
 		sendSketchCommand('getSystemFonts')
 
 		return () => {

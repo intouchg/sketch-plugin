@@ -1,18 +1,11 @@
 import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
-import { getDocuments } from 'sketch'
 // import { toArray } from 'util'
 import { stopDevServer, stopStorybook } from './services'
-import {
-	openStorybook,
-	getAzureGitRepos,
-	cloneAzureGitRepo,
-	extractSketchDocumentStyles,
-} from './messages'
 import * as api from './messages'
 
-const WEBVIEW_IDENTIFIER = 'intouch-design-system.webview'
+export const WEBVIEW_IDENTIFIER = 'intouch-design-system.webview'
 
 const WINDOW_OPTIONS = {
 	identifier: WEBVIEW_IDENTIFIER,
@@ -21,16 +14,6 @@ const WINDOW_OPTIONS = {
 	show: false,
 	hidesOnDeactivate: false,
 	remembersWindowFrame: true,
-}
-
-const updateSketchDocumentNames = () => {
-	const sketchDocuments = (getDocuments() || []).filter((document) => document.path)
-	const webview = getWebview(WEBVIEW_IDENTIFIER)
-
-	if (webview) {
-		const documentNames = sketchDocuments.map(({ path }) => path.split('/').pop()).map((s) => decodeURI(s).split('.').slice(0, -1).pop())
-		webview.webContents.executeJavaScript(`window.setSketchDocumentNames(${JSON.stringify(documentNames)})`)
-	}
 }
 
 export default () => {
@@ -63,13 +46,6 @@ export default () => {
 		}
 	})
 
-	webContents.on('getSketchDocumentNames', () => updateSketchDocumentNames(webContents))
-
-	webContents.on('extractSketchDocumentStyles', (sketchDocumentIndex) => {
-		const sketchDocuments = (getDocuments() || []).filter((document) => document.path)
-		extractSketchDocumentStyles(webContents, showError, sketchDocuments[sketchDocumentIndex])
-	})
-
 	browserWindow.loadURL(require('../resources/webview.html'))
 }
 
@@ -81,9 +57,9 @@ export const onShutdown = () => {
 	}
 }
 
-export const onOpenDocument = (context) => setTimeout(updateSketchDocumentNames, 500)
+export const onOpenDocument = (context) => setTimeout(api.getSketchDocumentNames, 500)
 
-export const onCloseDocument = (context) => setTimeout(updateSketchDocumentNames, 500)
+export const onCloseDocument = (context) => setTimeout(api.getSketchDocumentNames, 500)
 
 export const onSelectionChanged = (context) => {
 	const action = context.actionContext
