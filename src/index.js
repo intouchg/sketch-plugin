@@ -36,8 +36,6 @@ export default () => {
 	})
 
 	webContents.on('clientCommand', ({ type, payload }) => {
-		console.log('clientCommand ', type, payload)
-
 		try {
 			api[type](state, payload, webContents, showError)
 		}
