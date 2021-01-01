@@ -10,6 +10,11 @@ import type { SPFontData } from './fonts'
 export * from './fonts'
 export * from './styles'
 
+export type Message = {
+    message: string
+    type: 'info' | 'warn' | 'success' | 'error'
+}
+
 export type RecentProject = { filepath: string }
 
 export type AzureCredentials = { username: string, accessToken: string }
@@ -22,8 +27,7 @@ export type AzureCredentials = { username: string, accessToken: string }
 interface WebviewListeners {
     clonedAzureGitRepo: () => void
     cloningAzureGitRepo: () => void
-    displayError?: (message: string) => void
-    displaySuccess?: (message: string) => void
+    displayMessage?: (messageData: Message) => void
     handleAzureLoginResult?: (success: boolean) => void
     setBranchName?: (branchName: string) => void
     setGitRepos?: (repos: any) => void

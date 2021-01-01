@@ -22,7 +22,7 @@ export default () => {
 	const webContents = browserWindow.webContents
 	webContents.on('nativeLog', (message) => UI.message(message))
 
-	const showError = (message) => webContents.executeJavaScript(`window.displayError(${JSON.stringify(message)})`)
+	const showError = (message) => webContents.executeJavaScript(`window.displayMessage(${JSON.stringify({ type: 'error', message })})`)
 
 	const state = {
 		selectedProjectDirectory: null,

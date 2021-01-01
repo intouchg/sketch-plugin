@@ -23,7 +23,7 @@ export const cloneAzureGitRepo = async (remoteUrl, targetDirectory, webContents,
 
 	const onClose = (code) => {
 		webContents.executeJavaScript('window.clonedAzureGitRepo()')
-		webContents.executeJavaScript(`window.displaySuccess('Downloaded Azure project.')`)
+		webContents.executeJavaScript(`window.displayMessage(${JSON.stringify({ type: 'success', message: 'Downloaded Azure project.' })})`)
 	}
 
 	const onError = (error) => showError(`Could not clone git repo: ${error}`)
