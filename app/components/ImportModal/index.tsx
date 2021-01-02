@@ -78,7 +78,7 @@ const ImportModal = ({
 		else {
 			closeImportModal()
 		}
-	}, [ dispatch, sketchDocumentNames, displayErrorBanner ])
+	}, [ sketchDocumentNames, dispatch, displayErrorBanner ])
 
 	useEffect(() => {
 		setSelectedImportCategories([])
@@ -91,7 +91,7 @@ const ImportModal = ({
 				.then((styles) => dispatch(setImportedSketchValues(styles)))
 				.catch((error) => displayErrorBanner(error))
 		}
-	}, [ dispatch, selectedSketchDocumentIndex, displayErrorBanner ])
+	}, [ selectedSketchDocumentIndex, dispatch, displayErrorBanner ])
 
 	if (!sketchDocumentNames.length) {
 		return null

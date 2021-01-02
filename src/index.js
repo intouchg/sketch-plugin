@@ -45,8 +45,6 @@ export default () => {
 	// Receives commands sent from the React webview front end to the Sketch plugin back end
 	webContents.on('clientCommand', async (data) => {
 		const { commandId, type, payload } = JSON.parse(data)
-		console.log('received command ', type)
-
 		let result = {}
 
 		try {
