@@ -1,4 +1,5 @@
-import type { ThemeValue, ThemeComponent, ThemeVariant } from '@i/theme'
+import type { ThemeValue } from '@i/theme'
+import type { ThemeData } from './state'
 import type { RawImportedSketchValues, RecentProject, SPFontData } from '../../sketchApi'
 
 export const UNDO = 'UNDO'
@@ -24,11 +25,7 @@ export const redoAction = (): RedoAction => ({
 export const SET_THEME_DATA = 'SET_THEME_DATA'
 export type SetThemeDataAction = {
     type: typeof SET_THEME_DATA
-    payload: {
-        values: ThemeValue[]
-        components: ThemeComponent[]
-        variants: ThemeVariant[]
-    }
+    payload: ThemeData
 }
 export const setThemeData = (theme: SetThemeDataAction['payload']): SetThemeDataAction => ({
 	type: SET_THEME_DATA,

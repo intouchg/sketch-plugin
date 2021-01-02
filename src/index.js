@@ -35,14 +35,24 @@ export default () => {
 		stopStorybook()
 	})
 
-	webContents.on('clientCommand', ({ type, payload }) => {
+	// The "clientCommand" event listener listens for commands sent from the webview front end to the Sketch back end
+	webContents.on('clientCommand', async (data) => {
+		const { commandId, type, payload } = JSON.parse(data)
+		let result = {}
+
 		try {
-			api[type](state, payload, webContents, showError)
+			result = await api[type](state, payload)
 		}
 		catch (error) {
-			console.error(error)
+			showError(String(error))
+			result = { error: String(error) }
 		}
+
+		webContents.executeJavaScript(`window.resolveCommand(${JSON.stringify({ commandId, result })})`)
 	})
+
+	// The "resolveCommand" event listener resolves commands send from the Sketch back end to the webview front end
+	webContents.on('resolveCommand', () => {})
 
 	browserWindow.loadURL(require('../resources/webview.html'))
 }
