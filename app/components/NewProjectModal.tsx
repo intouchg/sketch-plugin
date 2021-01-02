@@ -6,7 +6,7 @@ import { InvisibleButton, PrimaryButton } from './Buttons'
 import { CloseIcon, FolderIcon } from './Icons'
 import { AccentText, TruncatedText } from './Texts'
 import { LimitInteraction } from './LimitInteraction'
-import { sendSketchCommand2 } from '../sketchApi'
+import { sendSketchCommand, useDisplayErrorBanner } from '../sketchApi'
 import { setBannerMessage } from '../store'
 
 const NewProjectModal = ({
@@ -17,10 +17,11 @@ const NewProjectModal = ({
 	const dispatch = useDispatch()
 	const [ directory, setDirectory ] = useState('')
 	const [ template, setTemplate ] = useState()
+	const displayErrorBanner = useDisplayErrorBanner()
 
-	const selectNewProjectDirectory = () => sendSketchCommand2('selectNewProjectDirectory', {})
+	const selectNewProjectDirectory = () => sendSketchCommand('selectNewProjectDirectory', {})
 		.then((filepath) => setDirectory(filepath))
-		.catch((error) => dispatch(setBannerMessage({ show: true, type: 'error', message: error })))
+		.catch((error) => displayErrorBanner(error))
 
 	return (
 		<ModalBackground>

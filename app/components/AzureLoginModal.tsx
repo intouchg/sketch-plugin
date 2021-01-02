@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Stack, Heading, Input, Text } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { InvisibleButton, PrimaryButton, TertiaryButton } from './Buttons'
@@ -7,7 +7,8 @@ import { CloseIcon } from './Icons'
 import { AccentText } from './Texts'
 import { LimitInteraction } from './LimitInteraction'
 import { AzureStatusLabel } from './AzureStatusLabel'
-import { sendSketchCommand, openBrowserWindow } from '../sketchApi'
+import { sendSketchCommand, openBrowserWindow, useDisplayErrorBanner } from '../sketchApi'
+import { setAzureCredentials } from '../store'
 
 const AzureLoginModal = ({
 	path,
@@ -18,27 +19,14 @@ const AzureLoginModal = ({
 	closeAzureLoginModal: () => void
 	openAzureStatusModal: () => void
 }) => {
+	const dispatch = useDispatch()
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const [ usernameValue, setUsernameValue ] = useState(username)
 	const [ accessTokenValue, setAccessTokenValue ] = useState(accessToken)
 	const [ error, setError ] = useState('')
+	const displayErrorBanner = useDisplayErrorBanner()
 
-	useEffect(() => {
-		window.handleAzureLoginResult = (success) => {
-			if (success) {
-				closeAzureLoginModal()
-
-				if (path === '/main') {
-					openAzureStatusModal()
-				}
-			}
-			else {
-				setError('Authentication failed.')
-			}
-		}
-
-		return () => void delete window.handleAzureLoginResult
-	}, [ path, closeAzureLoginModal, openAzureStatusModal, setError ])
+	console.log('Login error = ', error)
 
 	const loginToAzure = () => {
 		setError('')
@@ -47,6 +35,15 @@ const AzureLoginModal = ({
 			username: usernameValue,
 			accessToken: accessTokenValue,
 		})
+			.then((credentials) => {
+				dispatch(setAzureCredentials(credentials))
+				closeAzureLoginModal()
+
+				if (path === '/main') {
+					openAzureStatusModal()
+				}
+			})
+			.catch((error) => displayErrorBanner(error.includes('401') ? 'Authentication failed' : error))
 	}
 
 	return (

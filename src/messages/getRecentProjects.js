@@ -1,6 +1,6 @@
 import { readRecentProjectMetadata } from '../services'
 
-export const getRecentProjects = (webContents, showError) => {
+export const getRecentProjects = (state, payload) => {
 	try {
 		const recentProjects = readRecentProjectMetadata()
 		return recentProjects

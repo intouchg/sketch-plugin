@@ -6,25 +6,31 @@ let devServerProcess = null
 
 export const stopDevServer = () => devServerProcess && devServerProcess.stop()
 
-export const openDevServer = (webContents, showError, selectedProjectDirectory) => {
+export const openDevServer = (selectedProjectDirectory) => {
 	if (!devServerProcess) {
-		webContents.executeJavaScript('window.showStorybookLoading(true)')
-
-		const onError = (error) => showError(`Could not start dev server: ${error}`)
-
-		let hasOpenedBrowser = false
-
-		const onStdOut = (data) => {
-			if (!hasOpenedBrowser) {
-				// eslint-disable-next-line
-				NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(DEV_SERVER_URL))
-				hasOpenedBrowser = true
+		try {
+			const onError = (error) => {
+				console.error(error)
+				throw Error('Failed to start dev server: ' + error)
 			}
+
+			let hasOpenedBrowser = false
+
+			const onStdOut = (data) => {
+				if (!hasOpenedBrowser) {
+					// eslint-disable-next-line
+					NSWorkspace.sharedWorkspace().openURL(NSURL.URLWithString(DEV_SERVER_URL))
+					hasOpenedBrowser = true
+				}
+			}
+
+			const onStdErr = (data) => console.log('Dev server stderr: ', data.toString())
+
+			devServerProcess = new ChildProcess(`cd ${selectedProjectDirectory} && npm run dev`, { onError, onStdOut, onStdErr })
 		}
-
-		const onStdErr = (data) => console.log('Dev server stderr: ', data.toString())
-
-		devServerProcess = new ChildProcess(`cd ${selectedProjectDirectory} && npm run dev`, { onError, onStdOut, onStdErr })
+		catch (error) {
+			throw Error('Failed to start dev server process: ' + error)
+		}
 	}
 	else if (devServerProcess) {
 		if (!devServerProcess.running) {
@@ -37,7 +43,7 @@ export const openDevServer = (webContents, showError, selectedProjectDirectory) 
 		}
 		catch (error) {
 			stopDevServer()
-			showError(`Error opening dev server URL in browser: ${error}`)
+			throw Error('Error opening dev server URL in browser: ' + error)
 		}
 	}
 }

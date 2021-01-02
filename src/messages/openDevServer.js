@@ -1,7 +1,13 @@
-import { openDevServer as open } from '../services'
+import { openDevServer as openServer } from '../services'
 
-export const openDevServer = (state, payload, webContents, showError) => {
-	const { selectedProjectDirectory } = state
+export const openDevServer = (state, payload) => {
+	try {
+		const { selectedProjectDirectory } = state
 
-	open(webContents, showError, selectedProjectDirectory)
+		openServer(selectedProjectDirectory)
+		return true
+	}
+	catch (error) {
+		throw Error('Failed to open dev server: ' + error)
+	}
 }

@@ -2,8 +2,6 @@ import type { AzureGitRepo } from '@i/azure'
 import type { ThemeData } from '../store'
 import type { Message, RecentProject, AzureCredentials, RawImportedSketchValues, SPFontData } from './sketchTypes'
 
-export * from './sketchTypes'
-
 // These are the functions that exist on the window object
 // so that Sketch can call into the webview frontend. You
 // can assign callbacks on the window object, using these
@@ -29,12 +27,6 @@ interface WebviewListeners {
     storybookLoadingProgress?: (progress: number) => void
 }
 
-declare global {
-	interface Window extends WebviewListeners {}
-}
-
-export type WebviewListenerType = keyof WebviewListeners
-
 // These are the functions that exist in Sketch so
 // that the webview can call into Sketch. Each function
 // is expected to have 0 or 1 parameters. The function
@@ -58,5 +50,3 @@ interface SketchListeners {
     selectLocalProject: (recentProject?: RecentProject) => void
     selectNewProjectDirectory: () => void
 }
-
-export const sendSketchCommand = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage('clientCommand', { type, payload } as any)

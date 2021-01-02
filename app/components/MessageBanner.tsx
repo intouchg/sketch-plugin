@@ -25,11 +25,11 @@ const backgroundColors = {
 const MessageBanner = () => {
 	const dispatch = useDispatch()
 	const { show, type, message } = useSelector((state) => state.banner)
-	const spring = useSpring({ maxHeight: show ? '100vh' : '0vh' })
+	const spring = useSpring({ maxHeight: show ? '240px' : '0px' })
 
 	const resetBanner = () => {
 		dispatch(setBannerMessage({ show: false, type, message }))
-		setTimeout(() => dispatch(setBannerMessage({ show: false, message: '', type: 'info' })), 400)
+		setTimeout(() => dispatch(setBannerMessage({ show: false, type: 'info', message: '' })), 600)
 	}
 
 	return (
@@ -50,7 +50,7 @@ const MessageBanner = () => {
 					{titleTexts[type]}
 				</Heading>
 				<Text color="Card">
-					{message}
+					{String(message)}
 				</Text>
 				<InvisibleButton
 					position="absolute"

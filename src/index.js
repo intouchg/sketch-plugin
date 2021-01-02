@@ -3,6 +3,7 @@ import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
 // import { toArray } from 'util'
 import { stopDevServer, stopStorybook } from './services'
+import { updateSketchDocumentNames } from './clientApi'
 import * as api from './messages'
 
 export const WEBVIEW_IDENTIFIER = 'intouch-design-system.webview'
@@ -15,6 +16,14 @@ const WINDOW_OPTIONS = {
 	hidesOnDeactivate: false,
 	remembersWindowFrame: true,
 }
+
+// TO DO: Remove these unused message types:
+// cloneAzureGitRepo
+// getAzureGitRepos
+// openStorybook
+
+// TO DO: Remove theme unused services:
+// storybook
 
 export default () => {
 	const browserWindow = new BrowserWindow(WINDOW_OPTIONS)
@@ -33,9 +42,11 @@ export default () => {
 		stopStorybook()
 	})
 
-	// The "clientCommand" event listener listens for commands sent from the webview front end to the Sketch back end
+	// Receives commands sent from the React webview front end to the Sketch plugin back end
 	webContents.on('clientCommand', async (data) => {
 		const { commandId, type, payload } = JSON.parse(data)
+		console.log('received command ', type)
+
 		let result = {}
 
 		try {
@@ -49,9 +60,6 @@ export default () => {
 		webContents.executeJavaScript(`window.resolveCommand(${JSON.stringify({ commandId, result })})`)
 	})
 
-	// The "resolveCommand" event listener resolves commands send from the Sketch back end to the webview front end
-	webContents.on('resolveCommand', () => {})
-
 	browserWindow.loadURL(require('../resources/webview.html'))
 }
 
@@ -63,9 +71,9 @@ export const onShutdown = () => {
 	}
 }
 
-export const onOpenDocument = (context) => setTimeout(api.getSketchDocumentNames, 500)
+export const onOpenDocument = (context) => setTimeout(updateSketchDocumentNames, 500)
 
-export const onCloseDocument = (context) => setTimeout(api.getSketchDocumentNames, 500)
+export const onCloseDocument = (context) => setTimeout(updateSketchDocumentNames, 500)
 
 export const onSelectionChanged = (context) => {
 	const action = context.actionContext

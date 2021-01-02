@@ -11,8 +11,8 @@ import { LineHeights } from './LineHeights'
 import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
 import { LetterSpacings } from './LetterSpacings'
-import { sendSketchCommand } from '../../sketchApi'
-import { saveImportedSketchValues } from '../../store'
+import { sendSketchCommand, useDisplayErrorBanner } from '../../sketchApi'
+import { setImportedSketchValues, saveImportedSketchValues } from '../../store'
 import type { ThemeValue } from '@i/theme'
 
 // TO DO: Loading component
@@ -59,6 +59,7 @@ const ImportModal = ({
 	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
 	const [ selectedImportedValues, setSelectedImportedValues ] = useState<SelectedImportedValue[]>([])
 	const [ showLoading, setShowLoading ] = useState(false)
+	const displayErrorBanner = useDisplayErrorBanner()
 
 	const ImportView = views[activeRoute]
 
@@ -70,12 +71,14 @@ const ImportModal = ({
 		setSelectedSketchDocumentIndex(0)
 
 		if (sketchDocumentNames.length) {
-			sendSketchCommand('extractSketchDocumentStyles', 0)
+			sendSketchCommand('extractSketchDocumentStyles', { sketchDocumentIndex: 0 })
+				.then((styles) => dispatch(setImportedSketchValues(styles)))
+				.catch((error) => displayErrorBanner(error))
 		}
 		else {
 			closeImportModal()
 		}
-	}, [ sketchDocumentNames ])
+	}, [ dispatch, sketchDocumentNames, displayErrorBanner ])
 
 	useEffect(() => {
 		setSelectedImportCategories([])
@@ -83,9 +86,12 @@ const ImportModal = ({
 
 		if (sketchDocumentNames.length) {
 			setShowLoading(true)
-			sendSketchCommand('extractSketchDocumentStyles', selectedSketchDocumentIndex)
+
+			sendSketchCommand('extractSketchDocumentStyles', { sketchDocumentIndex: selectedSketchDocumentIndex })
+				.then((styles) => dispatch(setImportedSketchValues(styles)))
+				.catch((error) => displayErrorBanner(error))
 		}
-	}, [ selectedSketchDocumentIndex ])
+	}, [ dispatch, selectedSketchDocumentIndex, displayErrorBanner ])
 
 	if (!sketchDocumentNames.length) {
 		return null

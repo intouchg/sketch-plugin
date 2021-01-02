@@ -246,7 +246,7 @@ export const themeReducer = (
 				values: nextState.values,
 				components: nextState.components,
 				variants: nextState.variants,
-			})
+			}).catch((error) => console.error(error))
 		}
 	}, (patches, inversePatches) => {
 		if (UNDOABLE_ACTIONS.includes(action.type)) {
