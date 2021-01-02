@@ -1,8 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setThemeData, setRecentProjects, setLocalProject, setBannerMessage } from '../../store'
-import { sendSketchCommand } from '../index'
+import { setThemeData, setRecentProjects, setLocalProject, setBannerMessage } from '../store'
+import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
 export const useSelectLocalProject = (filepath?: string) => {

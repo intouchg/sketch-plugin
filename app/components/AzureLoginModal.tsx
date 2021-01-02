@@ -7,7 +7,8 @@ import { CloseIcon } from './Icons'
 import { AccentText } from './Texts'
 import { LimitInteraction } from './LimitInteraction'
 import { AzureStatusLabel } from './AzureStatusLabel'
-import { sendSketchCommand, openBrowserWindow, useDisplayErrorBanner } from '../sketchApi'
+import { sendSketchCommand, openBrowserWindow } from '../sketchApi'
+import { useDisplayErrorBanner } from '../hooks'
 import { setAzureCredentials } from '../store'
 
 const AzureLoginModal = ({

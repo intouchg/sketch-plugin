@@ -2,7 +2,7 @@ import React from 'react'
 import { InvisibleButton } from '../Buttons'
 import { AccentText } from '../Texts'
 import { ReactIcon } from '../Icons'
-import { useOpenDevServer } from '../../sketchApi'
+import { useOpenDevServer } from '../../hooks'
 
 const PreviewButton = () => {
 	const openDevServer = useOpenDevServer()

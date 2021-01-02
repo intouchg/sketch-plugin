@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setRecentProjects, setAzureCredentials, setSketchDocumentNames, setSystemFonts, setBannerMessage } from '../../store'
-import { sendSketchCommand } from '../index'
+import { setRecentProjects, setAzureCredentials, setSketchDocumentNames, setSystemFonts } from '../store'
+import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
 export const useInitializeSketchData = () => {

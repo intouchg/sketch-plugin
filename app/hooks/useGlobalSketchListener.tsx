@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setSketchDocumentNames } from '../../store'
+import { setSketchDocumentNames } from '../store'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
 export const useGlobalSketchListener = () => {

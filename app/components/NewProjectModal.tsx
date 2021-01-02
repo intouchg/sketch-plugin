@@ -6,8 +6,8 @@ import { InvisibleButton, PrimaryButton } from './Buttons'
 import { CloseIcon, FolderIcon } from './Icons'
 import { AccentText, TruncatedText } from './Texts'
 import { LimitInteraction } from './LimitInteraction'
-import { sendSketchCommand, useDisplayErrorBanner } from '../sketchApi'
-import { setBannerMessage } from '../store'
+import { sendSketchCommand } from '../sketchApi'
+import { useDisplayErrorBanner } from '../hooks'
 
 const NewProjectModal = ({
 	closeNewProjectModal,

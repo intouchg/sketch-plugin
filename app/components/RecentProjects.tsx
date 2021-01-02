@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Stack, Text, Box } from '@i/components'
 import { TertiaryButton } from './Buttons'
 import { AccentText } from './Texts'
-import { useSelectLocalProject } from '../sketchApi'
+import { useSelectLocalProject } from '../hooks'
 
 const TruncatedTextBox = styled(Box)`
 	max-width: 320px;

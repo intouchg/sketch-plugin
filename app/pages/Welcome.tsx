@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Stack, Flex, Heading } from '@i/components'
 import { AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal } from '../components'
-import { useSelectLocalProject } from '../sketchApi'
+import { useSelectLocalProject } from '../hooks'
 import pkg from '../../package.json'
 
 const Welcome = () => {

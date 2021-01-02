@@ -1,5 +1,5 @@
 import React from 'react'
-import { sendSketchCommand } from '../index'
+import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
 export const useOpenDevServer = () => {

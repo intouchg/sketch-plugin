@@ -17,6 +17,8 @@ const WINDOW_OPTIONS = {
 	remembersWindowFrame: true,
 }
 
+// TO DO: Fix git service (should not use webContents.executeJavaScript)
+
 // TO DO: Remove these unused message types:
 // cloneAzureGitRepo
 // getAzureGitRepos

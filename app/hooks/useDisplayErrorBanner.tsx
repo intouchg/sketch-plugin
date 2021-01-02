@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { setBannerMessage } from '../../store'
+import { setBannerMessage } from '../store'
 
 export const useDisplayErrorBanner = () => {
 	const dispatch = useDispatch()

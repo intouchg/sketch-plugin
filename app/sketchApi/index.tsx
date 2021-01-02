@@ -2,7 +2,6 @@ import type { SketchCommands, ClientCommands } from './commands'
 
 export * from './types'
 export * from './commands'
-export * from './hooks'
 
 interface WebviewWindowProperties {
     // window.sketchCommand listens for commands sent from the Sketch back end to the webview front end
