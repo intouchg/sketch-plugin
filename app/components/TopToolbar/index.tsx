@@ -23,7 +23,7 @@ const TopToolbar = ({
 			backgroundColor="Card"
 			paddingX={3}
 			boxShadow="Medium"
-			zIndex={4}
+			zIndex={3}
 		>
 			<Heading>
 				IDS Plugin

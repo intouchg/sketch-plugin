@@ -22,8 +22,6 @@ export default () => {
 	const webContents = browserWindow.webContents
 	webContents.on('nativeLog', (message) => UI.message(message))
 
-	const showError = (message) => webContents.executeJavaScript(`window.displayMessage(${JSON.stringify({ type: 'error', message })})`)
-
 	const state = {
 		selectedProjectDirectory: null,
 		themeFilepaths: {},
@@ -44,7 +42,7 @@ export default () => {
 			result = await api[type](state, payload)
 		}
 		catch (error) {
-			showError(String(error))
+			console.error(error)
 			result = { error: String(error) }
 		}
 

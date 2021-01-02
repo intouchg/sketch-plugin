@@ -169,7 +169,7 @@ const RightToolbar = ({
 					top="0"
 					right="0"
 					padding={2}
-					zIndex={4}
+					zIndex={3}
 					onClick={closeImportModal}
 				>
 					<CloseIcon

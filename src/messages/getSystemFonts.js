@@ -1,11 +1,11 @@
 import { getSystemFonts as getFonts } from '../services'
 
-export const getSystemFonts = async (state, payload, webContents, showError) => {
+export const getSystemFonts = async (state, payload) => {
 	try {
 		const systemFonts = await getFonts()
-		webContents.executeJavaScript(`window.setSystemFonts(${JSON.stringify(systemFonts)})`)
+		return systemFonts
 	}
 	catch (error) {
-		showError('Error retrieving system fonts: ' + error)
+		throw Error('Failed to retrieve system fonts: ' + error)
 	}
 }

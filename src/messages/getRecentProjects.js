@@ -6,6 +6,6 @@ export const getRecentProjects = (webContents, showError) => {
 		return recentProjects
 	}
 	catch (error) {
-		throw Error('Error retrieving recent projects: ' + error)
+		throw Error('Failed to retrieve recent projects: ' + error)
 	}
 }

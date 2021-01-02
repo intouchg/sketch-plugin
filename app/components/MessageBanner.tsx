@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
-import { Flex, Text, Box, Heading } from '@i/components'
+import { Text, Box, Heading } from '@i/components'
 import { InvisibleButton } from './Buttons'
 import { CloseIcon } from './Icons'
-import type { Message } from '../sketchApi'
+import { setBannerMessage } from '../store'
 
 const AnimatedBox = animated(Box)
 
@@ -23,23 +23,14 @@ const backgroundColors = {
 }
 
 const MessageBanner = () => {
-	const [ showMessage, setShowMessage ] = useState(false)
-	const [ { message, type }, setMessage ] = useState<Message>({ message: '', type: 'info' })
-	const spring = useSpring({ maxHeight: showMessage ? '100vh' : '0vh' })
+	const dispatch = useDispatch()
+	const { show, type, message } = useSelector((state) => state.banner)
+	const spring = useSpring({ maxHeight: show ? '100vh' : '0vh' })
 
 	const resetBanner = () => {
-		setShowMessage(false)
-		setTimeout(() => setMessage({ message: '', type: 'info' }), 400)
+		dispatch(setBannerMessage({ show: false, type, message }))
+		setTimeout(() => dispatch(setBannerMessage({ show: false, message: '', type: 'info' })), 400)
 	}
-
-	useEffect(() => {
-		window.displayMessage = (messageData) => {
-			setMessage(messageData)
-			setShowMessage(true)
-		}
-
-		return () => void delete window.displayMessage
-	}, [ setShowMessage, setMessage ])
 
 	return (
 		<AnimatedBox
@@ -48,6 +39,7 @@ const MessageBanner = () => {
 			width="100%"
 			backgroundColor={backgroundColors[type]}
 			overflow="hidden"
+			zIndex={4}
 			style={spring}
 		>
 			<Box padding={4}>

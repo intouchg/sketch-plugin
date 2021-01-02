@@ -22,6 +22,9 @@ export const sendSketchCommand2 = <K extends keyof SketchCommands>(type: K, payl
 	})
 }
 
-window.resolveCommand = ({ commandId, result }) => sketchCommands[commandId][typeof result === 'object' && result.hasOwnProperty('error') ? 'reject' : 'resolve'](result)
+window.resolveCommand = ({ commandId, result }) => {
+	const isError = typeof result === 'object' && result.hasOwnProperty('error')
+	sketchCommands[commandId][isError ? 'reject' : 'resolve'](isError ? result.error : result)
+}
 
 export const openBrowserWindow = async (url: string) => sendSketchCommand2('openBrowserWindow', { url })

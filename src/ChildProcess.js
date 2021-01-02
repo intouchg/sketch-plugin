@@ -41,7 +41,7 @@ export default class ChildProcess {
 				this.process = null
 				this.running = false
 
-				throw new Error('Error spawning new ChildProcess: ' + error)
+				throw Error('Failed to spawn new ChildProcess: ' + error)
 			})
 
 			this.process.stdout.on('data', (data) => {

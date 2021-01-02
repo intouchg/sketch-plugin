@@ -10,7 +10,7 @@ const ModalBackground = styled(Flex)`
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: ${(props) => props.theme.zIndices[4]};
+    z-index: ${(props) => props.theme.zIndices[3]};
 `
 
 export { ModalBackground }

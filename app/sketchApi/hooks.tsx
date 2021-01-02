@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setThemeData, setRecentProjects, setAzureCredentials, setSketchDocumentNames, setImportedSketchValues, setSystemFonts, setLocalProject, setBranchName, setBannerMessage } from '../store'
-import { sendSketchCommand } from './index-old'
 import { sendSketchCommand2 } from './index'
 
-export const useGlobalSketchListeners = () => {
+export const useInitializeSketchData = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
 
@@ -26,41 +25,36 @@ export const useGlobalSketchListeners = () => {
 		}
 
 		sendSketchCommand2('getRecentProjects', {})
-			.then((result) => dispatch(setRecentProjects(result)))
-			.catch((error) => console.error(error))
+			.then((recentProjects) => dispatch(setRecentProjects(recentProjects)))
+			.catch((error) => dispatch(setBannerMessage({ show: true, type: 'error', message: error })))
 
-		window.setThemeData = (themeData) => dispatch(setThemeData(themeData))
-		window.setLocalProject = (filepath) => dispatch(setLocalProject(filepath)) && history.push('/main')
+		sendSketchCommand2('getAzureCredentials', {})
+			.then((credentials) => dispatch(setAzureCredentials(credentials)))
+			.catch((error) => dispatch(setBannerMessage({ show: true, type: 'error', message: error })))
+
+		sendSketchCommand2('getSketchDocumentNames', {})
+			.then((documentNames) => dispatch(setSketchDocumentNames(documentNames)))
+			.catch((error) => dispatch(setBannerMessage({ show: true, type: 'error', message: error })))
+
+		sendSketchCommand2('getSystemFonts', {})
+			.then((fontData) => dispatch(setSystemFonts(fontData)))
+			.catch((error) => dispatch(setBannerMessage({ show: true, type: 'error', message: error })))
+
 		window.setBranchName = (branchName) => dispatch(setBranchName(branchName))
-		// window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
-		window.setAzureCredentials = (credentials) => dispatch(setAzureCredentials(credentials))
-		window.setSketchDocumentNames = (sketchDocumentNames) => dispatch(setSketchDocumentNames(sketchDocumentNames))
 		window.setImportedSketchValues = (styles) => dispatch(setImportedSketchValues(styles))
-		window.setSystemFonts = (fonts) => dispatch(setSystemFonts(fonts))
-
-		// sendSketchCommand('getRecentProjects')
-		sendSketchCommand('getAzureCredentials')
-		sendSketchCommand('getSketchDocumentNames')
-		sendSketchCommand('getSystemFonts')
 
 		return () => {
-			delete window.setThemeData
-			delete window.setLocalProject
 			delete window.setBranchName
-			// delete window.setRecentProjects
-			delete window.setAzureCredentials
-			delete window.setSketchDocumentNames
 			delete window.setImportedSketchValues
-			delete window.setSystemFonts
 		}
 	}, [ history, dispatch ])
 }
 
-export const useSelectLocalProject = () => {
+export const useSelectLocalProject = (filepath?: string) => {
 	const history = useHistory()
 	const dispatch = useDispatch()
 
-	return () => sendSketchCommand2('selectLocalProject', {})
+	return () => sendSketchCommand2('selectLocalProject', filepath ? { filepath } : {})
 		.then(({ themeData, selectedProjectDirectory, recentProjects }) => {
 			dispatch(setThemeData(themeData))
 			dispatch(setLocalProject(selectedProjectDirectory))

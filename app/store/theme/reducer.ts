@@ -164,7 +164,7 @@ export const themeReducer = (
 					const index = values.findIndex((v) => (v as any).name === name)
 
 					if (index === undefined) {
-						throw new Error(`Could not locate ThemeValue with name "${name}"`)
+						throw Error(`Could not locate ThemeValue with name "${name}"`)
 					}
 
 					values[index].value = newThemeValue.value

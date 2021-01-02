@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Flex, Stack, Heading, Box } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { InvisibleButton, PrimaryButton } from './Buttons'
 import { CloseIcon, FolderIcon } from './Icons'
 import { AccentText, TruncatedText } from './Texts'
 import { LimitInteraction } from './LimitInteraction'
-import { sendSketchCommand } from '../sketchApi'
-
-const selectNewProjectDirectory = () => sendSketchCommand('selectNewProjectDirectory')
+import { sendSketchCommand2 } from '../sketchApi'
+import { setBannerMessage } from '../store'
 
 const NewProjectModal = ({
 	closeNewProjectModal,
 }: {
     closeNewProjectModal: () => void
 }) => {
+	const dispatch = useDispatch()
 	const [ directory, setDirectory ] = useState('')
 	const [ template, setTemplate ] = useState()
 
-	useEffect(() => {
-		window.setNewProjectDirectory = (directory) => setDirectory(directory)
-		return () => void delete window.setNewProjectDirectory
-	}, [ directory, setDirectory ])
+	const selectNewProjectDirectory = () => sendSketchCommand2('selectNewProjectDirectory', {})
+		.then((filepath) => setDirectory(filepath))
+		.catch((error) => dispatch(setBannerMessage({ show: true, type: 'error', message: error })))
 
 	return (
 		<ModalBackground>
@@ -38,7 +37,7 @@ const NewProjectModal = ({
 					top="0"
 					right="0"
 					padding={2}
-					zIndex={4}
+					zIndex={3}
 					onClick={closeNewProjectModal}
 				>
 					<CloseIcon
