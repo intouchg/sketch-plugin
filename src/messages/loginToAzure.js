@@ -1,17 +1,19 @@
 import { connectToAzure } from '../services'
 import { writeAzureCredentialsMetadata } from '../services'
 
-export const loginToAzure = async (state, payload, webContents, showError) => {
+export const loginToAzure = async (state, payload) => {
 	try {
 		const credentials = payload
 
 		await connectToAzure(credentials.username, credentials.accessToken)
 		writeAzureCredentialsMetadata(credentials)
-		webContents.executeJavaScript(`window.setAzureCredentials(${JSON.stringify(credentials)})`)
-		webContents.executeJavaScript(`window.handleAzureLoginResult(true)`)
+		return credentials
 	}
 	catch (error) {
-		console.error('Error attempting to login to Azure:', error)
-		webContents.executeJavaScript(`window.handleAzureLoginResult(false)`)
+		if (error.hasOwnProperty('status') && error.status === 401) {
+			throw Error('Failed to login to Azure: 401 Authentication Failed')
+		}
+
+		throw Error('Failed to login to Azure: ' + error)
 	}
 }

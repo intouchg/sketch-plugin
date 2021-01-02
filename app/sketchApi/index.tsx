@@ -1,115 +1,38 @@
-import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { setThemeData, setRecentProjects, setAzureCredentials, setSketchDocumentNames, setImportedSketchValues, setSystemFonts, setLocalProject, setBranchName } from '../store'
-import type { ThemeValue, ThemeComponent, ThemeVariant } from '@i/theme'
-import type { AzureGitRepo } from '@i/azure'
-import type { RawImportedSketchValues } from './styles'
-import type { SPFontData } from './fonts'
+import type { SketchCommands, ClientCommands } from './commands'
 
-export * from './fonts'
-export * from './styles'
+export * from './types'
+export * from './commands'
 
-export type Message = {
-    message: string
-    type: 'info' | 'warn' | 'success' | 'error'
-}
-
-export type RecentProject = { filepath: string }
-
-export type AzureCredentials = { username: string, accessToken: string }
-
-// These are the functions that exist on the window object
-// so that Sketch can call into the webview frontend. You
-// can assign callbacks on the window object, using these
-// function names as keys:
-// window.setThemeData = (data) => console.log(data)
-interface WebviewListeners {
-    clonedAzureGitRepo: () => void
-    cloningAzureGitRepo: () => void
-    displayMessage?: (messageData: Message) => void
-    handleAzureLoginResult?: (success: boolean) => void
-    setBranchName?: (branchName: string) => void
-    setGitRepos?: (repos: any) => void
-    setImportSketchStylesResult?: (result: boolean) => void
-    setImportedSketchValues?: (styles: RawImportedSketchValues) => void
-    setLocalProject?: (filepath: string) => void
-    setThemeData?: (data: any) => void
-    setRecentProjects?: (data: RecentProject[]) => void
-    setAzureCredentials?: (credentials: AzureCredentials) => void
-    setSketchDocumentNames?: (sketchDocumentNames: string[]) => void
-    setSystemFonts?: (fonts: SPFontData) => void
-    setNewProjectDirectory?: (directory: string) => void
-    showStorybookLoading?: (show: boolean) => void
-    storybookLoadingProgress?: (progress: number) => void
+interface WebviewWindowProperties {
+    // window.sketchCommand listens for commands sent from the Sketch back end to the webview front end
+    sketchCommand: <T extends keyof ClientCommands>(command: { commandId: number, type: T, payload: ClientCommands[T] }) => void
+    // window.resolveCommand resolves commands send from the webview front end to the Sketch back end
+    resolveCommand: (response: { commandId: number, result: any }) => void
 }
 
 declare global {
-	interface Window extends WebviewListeners {}
+	interface Window extends WebviewWindowProperties {}
 }
 
-export type WebviewListenerType = keyof WebviewListeners
+type Resolve<T> = (value?: T | PromiseLike<T>) => void
 
-// These are the functions that exist in Sketch so
-// that the webview can call into Sketch. Each function
-// is expected to have 0 or 1 parameters. The function
-// names can be used as window.postMessage types to
-// call into the Sketch backend:
-// window.postMessage('openDevServer')
-interface SketchListeners {
-    cloneAzureGitRepo: (gitRepo: AzureGitRepo) => void
-    extractSketchDocumentStyles: (sketchDocumentIndex: number) => void
-    forgetAzureCredentials: () => void
-    getAzureCredentials: () => AzureCredentials
-    getAzureGitRepos: (credentials: AzureCredentials) => void
-    getRecentProjects: () => RecentProject[]
-    getSketchDocumentNames: () => string[]
-    getSystemFonts: () => SPFontData
-    loginToAzure: (credentials: AzureCredentials) => void
-    openBrowserWindow: (url: string) => void
-    openDevServer: () => void
-    openStorybook: () => void
-    saveThemeData: (data: {
-        values: ThemeValue[]
-        components: ThemeComponent[]
-        variants: ThemeVariant[]
-    }) => void
-    selectLocalProject: (recentProject?: RecentProject) => void
-    selectNewProjectDirectory: () => void
+const sketchCommands: Record<number, { resolve: Resolve<any>, reject: (error: string) => void}> = {}
+let commandId = 0
+
+// Resolves a message sent from the React webview front end to the Sketch plugin back end
+window.resolveCommand = ({ commandId, result }) => {
+	result = result || {}
+	const isError = result.hasOwnProperty('error')
+	sketchCommands[commandId][isError ? 'reject' : 'resolve'](isError ? result.error : result)
 }
 
-export const sendSketchCommand = <T extends keyof SketchListeners>(type: T, payload?: Parameters<SketchListeners[T]>[0]) => window.postMessage('clientCommand', { type, payload } as any)
-
-export const openBrowserWindow = (url: string) => sendSketchCommand('openBrowserWindow', url)
-
-export const useGlobalSketchListeners = () => {
-	const history = useHistory()
-	const dispatch = useDispatch()
-
-	useEffect(() => {
-		window.setThemeData = (themeData) => dispatch(setThemeData(themeData))
-		window.setLocalProject = (filepath) => dispatch(setLocalProject(filepath)) && history.push('/main')
-		window.setBranchName = (branchName) => dispatch(setBranchName(branchName))
-		window.setRecentProjects = (recentProjects) => dispatch(setRecentProjects(recentProjects))
-		window.setAzureCredentials = (credentials) => dispatch(setAzureCredentials(credentials))
-		window.setSketchDocumentNames = (sketchDocumentNames) => dispatch(setSketchDocumentNames(sketchDocumentNames))
-		window.setImportedSketchValues = (styles) => dispatch(setImportedSketchValues(styles))
-		window.setSystemFonts = (fonts) => dispatch(setSystemFonts(fonts))
-
-		sendSketchCommand('getRecentProjects')
-		sendSketchCommand('getAzureCredentials')
-		sendSketchCommand('getSketchDocumentNames')
-		sendSketchCommand('getSystemFonts')
-
-		return () => {
-			delete window.setThemeData
-			delete window.setLocalProject
-			delete window.setBranchName
-			delete window.setRecentProjects
-			delete window.setAzureCredentials
-			delete window.setSketchDocumentNames
-			delete window.setImportedSketchValues
-			delete window.setSystemFonts
-		}
-	}, [ history, dispatch ])
+// Sends a message from the React webview front end to the Sketch plugin back end
+export const sendSketchCommand = <K extends keyof SketchCommands>(type: K, payload: SketchCommands[K]['payload']): Promise<SketchCommands[K]['response']> => {
+	return new Promise((resolve, reject) => {
+		sketchCommands[commandId] = { resolve, reject }
+		window.postMessage('clientCommand', JSON.stringify({ commandId, type, payload }))
+		commandId++
+	})
 }
+
+export const openBrowserWindow = async (url: string) => sendSketchCommand('openBrowserWindow', { url })

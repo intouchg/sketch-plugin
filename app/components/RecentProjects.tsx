@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux'
 import { Stack, Text, Box } from '@i/components'
 import { TertiaryButton } from './Buttons'
 import { AccentText } from './Texts'
-import { sendSketchCommand } from '../sketchApi'
-
-const selectRecentProject = (filepath: string) => sendSketchCommand('selectLocalProject', { filepath })
+import { useSelectLocalProject } from '../hooks'
 
 const TruncatedTextBox = styled(Box)`
 	max-width: 320px;
@@ -22,7 +20,7 @@ const RecentProject = ({
 	name?: string
 	filepath: string
 }) => {
-	const selectProject = () => selectRecentProject(filepath)
+	const selectRecentProject = useSelectLocalProject(filepath)
 
 	return (
 		<Stack
@@ -31,7 +29,7 @@ const RecentProject = ({
 			overflow="hidden"
 			textOverflow="ellipsis"
 			marginBottom={1}
-			onClick={selectProject}
+			onClick={selectRecentProject}
 		>
 			<TruncatedTextBox>
 				{name}

@@ -35,7 +35,11 @@ export const azureReducer = (
 				nextState.credentials = initialAzureState.credentials
 				nextState.localProject = initialAzureState.localProject
 				nextState.branchName = initialAzureState.branchName
-				sendSketchCommand('forgetAzureCredentials')
+
+				sendSketchCommand('forgetAzureCredentials', {})
+					.then(() => {})
+					.catch((error) => console.error(error))
+
 				break
 			}
 

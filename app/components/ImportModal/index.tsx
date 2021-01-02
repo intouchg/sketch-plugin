@@ -12,7 +12,8 @@ import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
 import { LetterSpacings } from './LetterSpacings'
 import { sendSketchCommand } from '../../sketchApi'
-import { saveImportedSketchValues } from '../../store'
+import { useDisplayErrorBanner } from '../../hooks'
+import { setImportedSketchValues, saveImportedSketchValues } from '../../store'
 import type { ThemeValue } from '@i/theme'
 
 // TO DO: Loading component
@@ -59,6 +60,7 @@ const ImportModal = ({
 	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
 	const [ selectedImportedValues, setSelectedImportedValues ] = useState<SelectedImportedValue[]>([])
 	const [ showLoading, setShowLoading ] = useState(false)
+	const displayErrorBanner = useDisplayErrorBanner()
 
 	const ImportView = views[activeRoute]
 
@@ -70,12 +72,14 @@ const ImportModal = ({
 		setSelectedSketchDocumentIndex(0)
 
 		if (sketchDocumentNames.length) {
-			sendSketchCommand('extractSketchDocumentStyles', 0)
+			sendSketchCommand('extractSketchDocumentStyles', { sketchDocumentIndex: 0 })
+				.then((styles) => dispatch(setImportedSketchValues(styles)))
+				.catch((error) => displayErrorBanner(error))
 		}
 		else {
 			closeImportModal()
 		}
-	}, [ sketchDocumentNames ])
+	}, [ sketchDocumentNames, dispatch, displayErrorBanner ])
 
 	useEffect(() => {
 		setSelectedImportCategories([])
@@ -83,9 +87,12 @@ const ImportModal = ({
 
 		if (sketchDocumentNames.length) {
 			setShowLoading(true)
-			sendSketchCommand('extractSketchDocumentStyles', selectedSketchDocumentIndex)
+
+			sendSketchCommand('extractSketchDocumentStyles', { sketchDocumentIndex: selectedSketchDocumentIndex })
+				.then((styles) => dispatch(setImportedSketchValues(styles)))
+				.catch((error) => displayErrorBanner(error))
 		}
-	}, [ selectedSketchDocumentIndex ])
+	}, [ selectedSketchDocumentIndex, dispatch, displayErrorBanner ])
 
 	if (!sketchDocumentNames.length) {
 		return null

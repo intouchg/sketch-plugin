@@ -164,7 +164,7 @@ export const themeReducer = (
 					const index = values.findIndex((v) => (v as any).name === name)
 
 					if (index === undefined) {
-						throw new Error(`Could not locate ThemeValue with name "${name}"`)
+						throw Error(`Could not locate ThemeValue with name "${name}"`)
 					}
 
 					values[index].value = newThemeValue.value
@@ -246,7 +246,7 @@ export const themeReducer = (
 				values: nextState.values,
 				components: nextState.components,
 				variants: nextState.variants,
-			})
+			}).catch((error) => console.error(error))
 		}
 	}, (patches, inversePatches) => {
 		if (UNDOABLE_ACTIONS.includes(action.type)) {

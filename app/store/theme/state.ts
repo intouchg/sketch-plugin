@@ -1,18 +1,23 @@
 import type { ThemeValue, ThemeComponent, ThemeVariant } from '@i/theme'
 import type { RecentProject, ParsedImportedSketchValues, SystemFontsDictionary } from '../../sketchApi'
 
-export type ThemeState = {
-	canUndo: boolean
-	canRedo: boolean
+export type ThemeData = {
 	values: ThemeValue[]
 	components: ThemeComponent[]
 	variants: ThemeVariant[]
-	recentProjects: RecentProject[]
-	sketchDocumentNames: string[]
-	importedSketchValues: ParsedImportedSketchValues
-	importedSketchFontFamilyNames: string[]
-	systemFonts: SystemFontsDictionary
 }
+
+export type ThemeState =
+	& ThemeData
+	& {
+		canUndo: boolean
+		canRedo: boolean
+		recentProjects: RecentProject[]
+		sketchDocumentNames: string[]
+		importedSketchValues: ParsedImportedSketchValues
+		importedSketchFontFamilyNames: string[]
+		systemFonts: SystemFontsDictionary
+	}
 
 export const initialThemeState: ThemeState = {
 	canUndo: false,

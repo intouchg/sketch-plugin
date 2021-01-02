@@ -1,13 +1,14 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { useGlobalSketchListeners } from './sketchApi'
 import { ThemeProvider } from 'styled-components'
 import sketchPluginTheme from './theme/theme'
+import { useGlobalSketchListener, useInitializeSketchData } from './hooks'
 import { Welcome, Main } from './pages'
 import { MessageBanner } from './components'
 
 const App = () => {
-	useGlobalSketchListeners()
+	useGlobalSketchListener()
+	useInitializeSketchData()
 
 	return (
 		<ThemeProvider theme={sketchPluginTheme}>

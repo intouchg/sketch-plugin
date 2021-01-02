@@ -1,12 +1,11 @@
 import { writeAzureCredentialsMetadata } from '../services'
 
-export const forgetAzureCredentials = async (state, payload, webContents, showError) => {
+export const forgetAzureCredentials = async (state, payload) => {
 	try {
 		writeAzureCredentialsMetadata({ username: '', accessToken: '' })
+		return true
 	}
 	catch (error) {
-		const message = 'Error forgetting Azure credentials metadata: ' + error
-		console.error(message)
-		showError(message)
+		throw Error('Error forgetting Azure credentials metadata: ' + error)
 	}
 }

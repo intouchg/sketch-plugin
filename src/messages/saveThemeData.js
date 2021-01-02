@@ -1,5 +1,5 @@
 import fs from '@skpm/fs'
-import { updateStorybookTempTheme } from '../services'
+// import { updateStorybookTempTheme } from '../services'
 
 export const saveThemeData = async (state, payload, webContents, showError) => {
 	try {
@@ -10,11 +10,10 @@ export const saveThemeData = async (state, payload, webContents, showError) => {
 			fs.writeFileSync(themeFilepaths[key], JSON.stringify(value, null, '\t'))
 		}))
 
-		updateStorybookTempTheme(newThemeData)
+		// updateStorybookTempTheme(newThemeData)
+		return true
 	}
 	catch (error) {
-		const message = 'Error attempting to write plugin theme changes to the project\'s working directory: ' + error
-		console.error(message)
-		showError(message)
+		throw Error('Failed to save plugin theme changes to the project directory: ' + error)
 	}
 }

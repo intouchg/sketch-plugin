@@ -4,7 +4,7 @@ import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
 import { updateStorybookTempTheme, writeRecentProjectMetadata } from '../services'
 
-export const selectLocalProject = (state, payload, webContents, showError) => {
+export const selectLocalProject = (state, payload) => {
 	const filepath = payload ? payload.filepath : null
 	let selectedProjectDirectory = filepath
 	const themeFilepaths = {}
@@ -18,21 +18,18 @@ export const selectLocalProject = (state, payload, webContents, showError) => {
 		return
 	}
 
-	let error = false
 	const configFilepath = path.resolve(selectedProjectDirectory, configFilename)
 
 	// Check for .idsconfig.json file
 	if (!fs.existsSync(configFilepath)) {
-		error = true
-		showError(`The folder you selected is not a valid Intouch Design System project. Could not locate a ${configFilename} config file at filepath: ${configFilepath}`)
+		throw Error(`The folder you selected is not a valid Intouch Design System project. Could not locate a ${configFilename} config file at filepath: ${configFilepath}`)
 	}
 
 	const configData = fs.readFileSync(configFilepath).toString()
 	const config = validateConfig(JSON.parse(configData))
 
 	if (!config) {
-		error = true
-		showError(`Invalid format for ${configFilename} config file at filepath: ${configFilepath}`)
+		throw Error(`Invalid format for ${configFilename} config file at filepath: ${configFilepath}`)
 	}
 
 	const filepaths = {
@@ -47,8 +44,7 @@ export const selectLocalProject = (state, payload, webContents, showError) => {
 		const filepath = path.resolve(selectedProjectDirectory, config[key])
 
 		if (!fs.existsSync(filepath)) {
-			error = true
-			showError(`Could not locate theme ${key.toLowerCase()} file at filepath: ${filepath}`)
+			throw Error(`Could not locate theme ${key.toLowerCase()} file at filepath: ${filepath}`)
 		}
 
 		themeFilepaths[lowercaseKey] = filepath
@@ -56,16 +52,17 @@ export const selectLocalProject = (state, payload, webContents, showError) => {
 		themeData[lowercaseKey] = JSON.parse(fileData)
 	})
 
-	// If all necessary config and files exist, call setThemeData in the React app
-	if (!error) {
-		webContents.executeJavaScript(`window.setThemeData(${JSON.stringify(themeData)})`)
-		webContents.executeJavaScript(`window.setLocalProject(${JSON.stringify(selectedProjectDirectory)})`)
-		updateStorybookTempTheme(themeData)
-		const recentProjects = writeRecentProjectMetadata({ filepath: selectedProjectDirectory })
-		webContents.executeJavaScript(`window.setRecentProjects(${JSON.stringify(recentProjects)})`)
-	}
+	const recentProjects = writeRecentProjectMetadata({ filepath: selectedProjectDirectory })
 
-	state.selectedProjectDirectory = selectedProjectDirectory
 	state.themeFilepaths = themeFilepaths
 	state.themeData = themeData
+	state.selectedProjectDirectory = selectedProjectDirectory
+
+	// updateStorybookTempTheme(themeData)
+
+	return {
+		themeData,
+		selectedProjectDirectory,
+		recentProjects,
+	}
 }
