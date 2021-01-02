@@ -1,11 +1,13 @@
-import type { SketchCommand } from './types'
 import type { ThemeData } from '../store'
 import type {
 	RawImportedSketchValues,
 	AzureCredentials,
 	RecentProject,
 	SPFontData,
-} from './sketchTypes'
+} from './types'
+
+export type SketchCommand<P extends object, R> = { payload: P, response: R }
+export type SketchError = { error: string }
 
 export type SketchCommands = {
     extractSketchDocumentStyles: SketchCommand<{ sketchDocumentIndex: number }, RawImportedSketchValues>
