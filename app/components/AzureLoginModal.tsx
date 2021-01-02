@@ -26,8 +26,6 @@ const AzureLoginModal = ({
 	const [ error, setError ] = useState('')
 	const displayErrorBanner = useDisplayErrorBanner()
 
-	console.log('Login error = ', error)
-
 	const loginToAzure = () => {
 		setError('')
 
