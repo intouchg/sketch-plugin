@@ -30,13 +30,13 @@ export const setBranchName = (branchName: SetBranchNameAction['payload']): SetBr
 	payload: branchName,
 })
 
-export const RESET_AZURE_STATE = 'RESET_AZURE_STATE'
-export type ResetAzureStateAction = {
-    type: typeof RESET_AZURE_STATE
+export const FORGET_AZURE_CREDENTIALS = 'FORGET_AZURE_CREDENTIALS'
+export type ForgetAzureCredentialsAction = {
+    type: typeof FORGET_AZURE_CREDENTIALS
     payload: undefined
 }
-export const resetAzureState = (): ResetAzureStateAction => ({
-	type: RESET_AZURE_STATE,
+export const forgetAzureCredentials = (): ForgetAzureCredentialsAction => ({
+	type: FORGET_AZURE_CREDENTIALS,
 	payload: undefined,
 })
 
@@ -44,4 +44,4 @@ export type AzureActionType =
     | SetAzureCredentialsAction
     | SetLocalProjectAction
     | SetBranchNameAction
-    | ResetAzureStateAction
+    | ForgetAzureCredentialsAction

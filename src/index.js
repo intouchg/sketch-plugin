@@ -2,7 +2,7 @@ import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
 // import { toArray } from 'util'
-import { stopDevServer, stopStorybook } from './services'
+import { stopDevServer, stopStorybook, stopGitProcess } from './services'
 import { updateSketchDocumentNames } from './clientApi'
 import * as api from './messages'
 
@@ -42,15 +42,17 @@ export default () => {
 	browserWindow.on('closed', () => {
 		stopDevServer()
 		stopStorybook()
+		stopGitProcess()
 	})
 
 	// Receives commands sent from the React webview front end to the Sketch plugin back end
 	webContents.on('clientCommand', async (data) => {
 		const { commandId, type, payload } = JSON.parse(data)
-		let result = {}
+		let result
 
 		try {
 			result = await api[type](state, payload)
+			result = result === undefined ? {} : result
 		}
 		catch (error) {
 			console.error(error)

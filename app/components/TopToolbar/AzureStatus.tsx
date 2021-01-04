@@ -5,22 +5,18 @@ import { InvisibleButton } from '../Buttons'
 import { AccentText } from '../Texts'
 
 const AzureStatus = ({
-	openAzureStatusModal,
-	openAzureLoginModal,
+	setShowAzureModal,
 }: {
-	openAzureStatusModal: () => void
-	openAzureLoginModal: () => void
+	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
-
-	const openModal = () => connected ? openAzureStatusModal() : openAzureLoginModal()
 
 	return (
 		<InvisibleButton
 			paddingY={3}
 			marginRight={4}
-			onClick={openModal}
+			onClick={() => setShowAzureModal(true)}
 		>
 			<AccentText color="Text">
 				Azure

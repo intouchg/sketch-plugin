@@ -61,7 +61,7 @@ const Welcome = () => {
 				</Box>
 			</Flex>
 			{showNewProjectModal && (
-				<NewProjectModal closeNewProjectModal={() => setShowNewProjectModal(false)} />
+				<NewProjectModal setShowNewProjectModal={setShowNewProjectModal} />
 			)}
 		</>
 	)

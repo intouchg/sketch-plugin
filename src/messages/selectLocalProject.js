@@ -2,9 +2,9 @@ import fs from '@skpm/fs'
 import path from '@skpm/path'
 import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
-import { updateStorybookTempTheme, writeRecentProjectMetadata } from '../services'
+import { updateStorybookTempTheme, writeRecentProjectMetadata, openGitRepo } from '../services'
 
-export const selectLocalProject = (state, payload) => {
+export const selectLocalProject = async (state, payload) => {
 	const filepath = payload ? payload.filepath : null
 	let selectedProjectDirectory = filepath
 	const themeFilepaths = {}
@@ -53,6 +53,7 @@ export const selectLocalProject = (state, payload) => {
 	})
 
 	const recentProjects = writeRecentProjectMetadata({ filepath: selectedProjectDirectory })
+	const branchName = await openGitRepo(selectedProjectDirectory)
 
 	state.themeFilepaths = themeFilepaths
 	state.themeData = themeData
@@ -63,6 +64,7 @@ export const selectLocalProject = (state, payload) => {
 	return {
 		themeData,
 		selectedProjectDirectory,
+		branchName,
 		recentProjects,
 	}
 }

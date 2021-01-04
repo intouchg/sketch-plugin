@@ -22,7 +22,7 @@ const CheckboxNavLink = ({
 	numberOfSelectedOverwriteImportedValues,
 }: {
 	route: ImportModalRoute
-	setActiveRoute: (route: ImportModalRoute) => void
+	setActiveRoute: React.Dispatch<React.SetStateAction<ImportModalRoute>>
 	toggleSelectedImportCategory: (route: ImportModalRoute) => void
 	isActiveRoute: boolean
 	isSelectedForImport: boolean
@@ -118,7 +118,7 @@ const RightToolbar = ({
 	setActiveRoute,
 	selectedImportCategories,
 	setSelectedImportCategories,
-	closeImportModal,
+	setShowImportModal,
 	sketchDocumentNames,
 	selectedSketchDocumentIndex,
 	setSelectedSketchDocumentIndex,
@@ -126,13 +126,13 @@ const RightToolbar = ({
 	numberOfSelectedImportedValuesBySaveType,
 }: {
 	activeRoute: ImportModalRoute
-	setActiveRoute: (route: ImportModalRoute) => void
+	setActiveRoute: React.Dispatch<React.SetStateAction<ImportModalRoute>>
 	selectedImportCategories: ImportModalRoute[]
 	setSelectedImportCategories: React.Dispatch<React.SetStateAction<ImportModalRoute[]>>
-	closeImportModal: () => void
+	setShowImportModal: React.Dispatch<React.SetStateAction<boolean>>
 	sketchDocumentNames: string[]
 	selectedSketchDocumentIndex: number
-	setSelectedSketchDocumentIndex: (index: number) => void
+	setSelectedSketchDocumentIndex: React.Dispatch<React.SetStateAction<number>>
 	saveSelectedImportedValues: () => void
 	numberOfSelectedImportedValuesBySaveType: { [key in ImportModalRoute]: { new: number, overwrite: number } }
 }) => {
@@ -170,7 +170,7 @@ const RightToolbar = ({
 					right="0"
 					padding={2}
 					zIndex={3}
-					onClick={closeImportModal}
+					onClick={() => setShowImportModal(false)}
 				>
 					<CloseIcon
 						width="13px"

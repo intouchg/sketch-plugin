@@ -10,9 +10,9 @@ import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from '../hooks'
 
 const NewProjectModal = ({
-	closeNewProjectModal,
+	setShowNewProjectModal,
 }: {
-    closeNewProjectModal: () => void
+    setShowNewProjectModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
 	const [ directory, setDirectory ] = useState('')
@@ -39,7 +39,7 @@ const NewProjectModal = ({
 					right="0"
 					padding={2}
 					zIndex={3}
-					onClick={closeNewProjectModal}
+					onClick={() => setShowNewProjectModal(false)}
 				>
 					<CloseIcon
 						width="13px"

@@ -7,37 +7,30 @@ import { AzureStatus } from './AzureStatus'
 export const topToolbarHeight = '64px'
 
 const TopToolbar = ({
-	openImportModal,
-	openAzureStatusModal,
-	openAzureLoginModal,
+	setShowImportModal,
+	setShowAzureModal,
 }: {
-	openImportModal: () => void
-	openAzureStatusModal: () => void
-	openAzureLoginModal: () => void
-}) => {
-	return (
-		<Flex
-			height={topToolbarHeight}
-			alignItems="center"
-			justifyContent="space-between"
-			backgroundColor="Card"
-			paddingX={3}
-			boxShadow="Medium"
-			zIndex={3}
-		>
-			<Heading>
-				IDS Plugin
-			</Heading>
-			<Box>
-				<ImportButton openImportModal={openImportModal} />
-				<PreviewButton />
-				<AzureStatus
-					openAzureStatusModal={openAzureStatusModal}
-					openAzureLoginModal={openAzureLoginModal}
-				/>
-			</Box>
-		</Flex>
-	)
-}
+	setShowImportModal: React.Dispatch<React.SetStateAction<boolean>>
+	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
+}) => (
+	<Flex
+		height={topToolbarHeight}
+		alignItems="center"
+		justifyContent="space-between"
+		backgroundColor="Card"
+		paddingX={3}
+		boxShadow="Medium"
+		zIndex={3}
+	>
+		<Heading>
+			IDS Plugin
+		</Heading>
+		<Box>
+			<ImportButton setShowImportModal={setShowImportModal} />
+			<PreviewButton />
+			<AzureStatus setShowAzureModal={setShowAzureModal} />
+		</Box>
+	</Flex>
+)
 
 export { TopToolbar }

@@ -11,7 +11,7 @@ export const useGlobalSketchListener = () => {
 		// Receives commands sent from the Sketch plugin back end to the React webview front end
 		window.sketchCommand = ({ commandId, type, payload }) => {
 			try {
-				let result = {}
+				let result
 
 				switch (type) {
 					case 'setSketchDocumentNames': {
@@ -24,6 +24,8 @@ export const useGlobalSketchListener = () => {
 						break
 					}
 				}
+
+				result = result === undefined ? {} : result
 
 				window.postMessage('resolveCommand', JSON.stringify({ commandId, result }))
 			}

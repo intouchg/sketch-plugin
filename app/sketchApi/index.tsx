@@ -21,8 +21,7 @@ let commandId = 0
 
 // Resolves a message sent from the React webview front end to the Sketch plugin back end
 window.resolveCommand = ({ commandId, result }) => {
-	result = result || {}
-	const isError = result.hasOwnProperty('error')
+	const isError = typeof result === 'object' && result.hasOwnProperty('error')
 	sketchCommands[commandId][isError ? 'reject' : 'resolve'](isError ? result.error : result)
 }
 

@@ -3,7 +3,7 @@ import {
 	SET_AZURE_CREDENTIALS,
 	SET_LOCAL_PROJECT,
 	SET_BRANCH_NAME,
-	RESET_AZURE_STATE,
+	FORGET_AZURE_CREDENTIALS,
 } from './actions'
 import { initialAzureState } from './state'
 import { sendSketchCommand } from '../../sketchApi'
@@ -31,14 +31,10 @@ export const azureReducer = (
 				break
 			}
 
-			case RESET_AZURE_STATE: {
+			case FORGET_AZURE_CREDENTIALS: {
 				nextState.credentials = initialAzureState.credentials
-				nextState.localProject = initialAzureState.localProject
-				nextState.branchName = initialAzureState.branchName
 
-				sendSketchCommand('forgetAzureCredentials', {})
-					.then(() => {})
-					.catch((error) => console.error(error))
+				sendSketchCommand('forgetAzureCredentials', {}).catch((error) => console.error(error))
 
 				break
 			}

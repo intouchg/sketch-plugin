@@ -47,9 +47,9 @@ type SelectedImportedValue = ThemeValue & { willOverwriteByName?: boolean }
 // TO DO: Create loading component
 
 const ImportModal = ({
-	closeImportModal,
+	setShowImportModal,
 }: {
-	closeImportModal: () => void
+	setShowImportModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
 	const sketchDocumentNames = useSelector((state) => state.theme.sketchDocumentNames)
@@ -77,7 +77,7 @@ const ImportModal = ({
 				.catch((error) => displayErrorBanner(error))
 		}
 		else {
-			closeImportModal()
+			setShowImportModal(false)
 		}
 	}, [ sketchDocumentNames, dispatch, displayErrorBanner ])
 
@@ -103,7 +103,7 @@ const ImportModal = ({
 			selectedImportedValues.filter((v) => selectedImportCategories.includes(v.type as any)),
 		))
 
-		closeImportModal()
+		setShowImportModal(false)
 	}
 
 	const toggleSelectedImportedValue = (value: SelectedImportedValue) => {
@@ -179,7 +179,7 @@ const ImportModal = ({
 					setActiveRoute={setActiveRoute}
 					selectedImportCategories={selectedImportCategories}
 					setSelectedImportCategories={setSelectedImportCategories}
-					closeImportModal={closeImportModal}
+					setShowImportModal={setShowImportModal}
 					sketchDocumentNames={sketchDocumentNames}
 					selectedSketchDocumentIndex={selectedSketchDocumentIndex}
 					setSelectedSketchDocumentIndex={setSelectedSketchDocumentIndex}

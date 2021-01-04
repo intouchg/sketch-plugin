@@ -1,6 +1,4 @@
-export * from './AzureLoginModal'
-export * from './AzureStatusLabel'
-export * from './AzureStatusModal'
+export * from './AzureModal'
 export * from './Buttons'
 export * from './ColorGrid'
 export * from './ComponentEditor'

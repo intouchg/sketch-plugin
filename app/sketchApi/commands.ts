@@ -20,7 +20,7 @@ export type SketchCommands = {
     openBrowserWindow: SketchCommand<{ url: string }, true>
     openDevServer: SketchCommand<{}, true>
     saveThemeData: SketchCommand<ThemeData, true>
-    selectLocalProject: SketchCommand<RecentProject | {}, { themeData: ThemeData, selectedProjectDirectory: string, recentProjects: RecentProject[] }>
+    selectLocalProject: SketchCommand<RecentProject | {}, { themeData: ThemeData, selectedProjectDirectory: string, branchName: string, recentProjects: RecentProject[] }>
     selectNewProjectDirectory: SketchCommand<{}, string>
 }
 

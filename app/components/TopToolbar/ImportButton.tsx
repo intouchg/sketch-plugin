@@ -4,15 +4,15 @@ import { AccentText } from '../Texts'
 import { SketchIcon } from '../Icons'
 
 const ImportButton = ({
-	openImportModal,
+	setShowImportModal,
 }: {
-    openImportModal: () => void
+    setShowImportModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => (
 	<InvisibleButton
 		display="inline-flex"
 		marginRight={4}
 		paddingY={3}
-		onClick={openImportModal}
+		onClick={() => setShowImportModal(true)}
 	>
 		<AccentText
 			color="Text"

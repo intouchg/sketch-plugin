@@ -14,6 +14,7 @@ export const selectNewProjectDirectory = (state, payload) => {
 
 	// Check for .idsconfig.json file to avoid overwriting existing IDS project
 	if (fs.existsSync(configFilepath)) {
+		// TO DO: walk up the directory tree to make sure an .idsconfig.json file doesn't exist above this directory
 		throw Error('The folder you selected is already an Intouch Design System project.')
 	}
 

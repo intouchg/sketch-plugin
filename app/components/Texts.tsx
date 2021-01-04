@@ -14,3 +14,9 @@ export const TruncatedText = styled(Text)`
 	white-space: nowrap;
 `
 TruncatedText.displayName = 'TruncatedText'
+
+export const ModalText = styled(AccentText)`
+	letter-spacing: 0;
+	text-transform: none;
+`
+ModalText.displayName = 'ModalText'

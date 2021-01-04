@@ -4,7 +4,7 @@ import { Text } from '@i/components'
 const AzureStatusLabel = ({
 	connected,
 }: {
-    connected: boolean
+	connected: boolean
 }) => (
 	<Text
 		backgroundColor={connected ? 'Positive' : 'Critical'}
