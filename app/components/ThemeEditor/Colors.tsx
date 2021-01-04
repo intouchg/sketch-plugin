@@ -26,7 +26,10 @@ const Colors = () => {
 					as={InvisibleButton}
 					onClick={() => {}}
 				>
-					<Color {...color} />
+					<Color
+						selected={false}
+						{...color}
+					/>
 				</Box>
 			))}
 		</ColorGrid>

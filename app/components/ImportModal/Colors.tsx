@@ -1,10 +1,9 @@
 import React from 'react'
-import { Flex, Box } from '@i/components'
+import { Box } from '@i/components'
 import { Color } from '../ThemeValues'
-import { Checkbox } from '../Checkbox'
-import { OverwriteIcon } from '../Icons'
 import { InvisibleButton } from '../Buttons'
 import { ColorGrid } from '../ColorGrid'
+import { ImportIcon } from './ImportIcon'
 import { sortAlphabetical } from '@i/utility'
 import type { ThemeColor } from '@i/theme'
 
@@ -43,46 +42,22 @@ const Colors = ({
 						as={imported ? InvisibleButton : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwriteByName }) : undefined}
 					>
-						<Color {...props} />
-						{imported && (
-							<Checkbox
-								checked={Boolean(selected)}
-								position="absolute"
-								top="0"
-								right="0"
-								margin={2}
+						<Color
+							selected={selected}
+							{...props}
+						/>
+						<Box
+							position="absolute"
+							top="0"
+							right="0"
+						>
+							<ImportIcon
+								imported={imported}
+								selected={selected}
+								alreadySaved={alreadySaved}
+								willOverwrite={willOverwriteByName}
 							/>
-						)}
-						{alreadySaved && (
-							<Checkbox
-								checked
-								disabled
-								position="absolute"
-								top="0"
-								right="0"
-								margin={2}
-							/>
-						)}
-						{imported && willOverwriteByName && (
-							<Flex
-								position="absolute"
-								bottom="0"
-								right="0"
-								alignItems="center"
-								justifyContent="center"
-								width="20px"
-								height="20px"
-								margin={2}
-								backgroundColor="Card"
-								borderRadius="50%"
-							>
-								<OverwriteIcon
-									width="16px"
-									height="16px"
-									fill="Caution Dark"
-								/>
-							</Flex>
-						)}
+						</Box>
 					</Box>
 				)
 			})}

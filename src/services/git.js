@@ -4,34 +4,92 @@ let gitProcess = null
 let gitDirectory = null
 let branchName = null
 
-export const stopGitProcess = () => {
-	gitDirectory = null
-	branchName = null
+export const stopGitProcess = () => gitProcess && gitProcess.stop()
 
-	if (gitProcess) {
-		gitProcess.stop()
+export const commitChanges = (message) => new Promise((resolve, reject) => {
+	try {
+		const onStdOut = (data) => {}
+		const onStdErr = (data) => reject(data)
+		const onClose = (code) => resolve(true)
+		const onError = (error) => reject(error)
+
+		gitProcess = new ChildProcess(`cd ${gitDirectory} && git add . && git commit -m '${message}'`, { onStdOut, onStdErr, onClose, onError }, true)
+	}
+	catch (error) {
+		throw Error('Failed to create git commit: ' + error)
+	}
+})
+
+// Checks if branchNameA is an ancestor of branchNameB.
+// If true, branchNameB is caught up with branchNameA.
+export const isBranchAncestorOfBranch = (branchNameA, branchNameB) => new Promise((resolve, reject) => {
+	const onStdOut = (data) => {
+		const result = data.toString().replace(/\n*$/, '')
+
+		if (result === '0' || result === '1') {
+			resolve(result === '0')
+		}
+
+		reject(result)
+	}
+
+	const onStdErr = (data) => reject(data)
+	const onClose = (code) => {}
+	const onError = (error) => reject(error)
+
+	gitProcess = new ChildProcess(`cd ${gitDirectory} && git merge-base --is-ancestor ${branchNameA} ${branchNameB}; echo $?`, { onStdOut, onStdErr, onClose, onError }, true)
+})
+
+export const pullChanges = async () => {
+	try {
+		// await commitChanges('')
+		const hasLocalChanges = !(await isBranchAncestorOfBranch(branchName, `origin/${branchName}`))
+		const hasRemoteChanges = !(await isBranchAncestorOfBranch(`origin/${branchName}`, branchName))
+		console.log('hasLocalChanges = ', hasLocalChanges)
+		console.log('hasRemoteChanges = ', hasRemoteChanges)
+		// const onStdOut = (data) => {}
+		// const onStdErr = (data) => reject(data)
+		// const onClose = (code) => resolve(true)
+		// const onError = (error) => reject(error)
+
+		// new ChildProcess(`cd ${gitDirectory} && git add . && git commit -m '${message}'`, { onStdOut, onStdErr, onClose, onError }, true)
+	}
+	catch (error) {
+		throw Error('Failed to pull git changes: ' + error)
 	}
 }
 
-export const openGitRepo = (directory) => new Promise((resolve, reject) => {
-	stopGitProcess()
-
-	const num = 0
-
-	const onStdOut = (data) => (branchName = data.toString())
-
-	const onStdErr = (data) => reject(data)
-
-	const onClose = (code) => {
-		gitDirectory = directory
-		resolve(branchName)
+export const getLastPushTime = async () => new Promise((resolve, reject) => {
+	try {
+		// Do stuff
 	}
+	catch (error) {
+		throw Error('Failed to get last push time for git branch: ' + error)
+	}
+})
 
-	const onError = (error) => reject(error)
+export const openGitRepo = (directory) => new Promise((resolve, reject) => {
+	try {
+		gitDirectory = null
+		branchName = null
 
-	// webContents.executeJavaScript('window.cloningAzureGitRepo()')
+		const onStdOut = (data) => (branchName = data.toString().replace(/\n*$/, ''))
+		const onStdErr = (data) => reject(data)
 
-	gitProcess = new ChildProcess(`cd ${directory} && git branch --show-current`, { onStdOut, onStdErr, onClose, onError }, true)
+		const onClose = (code) => {
+			gitDirectory = directory
+			resolve(branchName)
+		}
+
+		const onError = (error) => reject(error)
+
+		// webContents.executeJavaScript('window.cloningAzureGitRepo()')
+
+		gitProcess = new ChildProcess(`cd ${directory} && git branch --show-current`, { onStdOut, onStdErr, onClose, onError }, true)
+	}
+	catch (error) {
+		throw Error('Failed to open git repo: ' + error)
+	}
 })
 
 // export const cloneGitRepo = () => {
