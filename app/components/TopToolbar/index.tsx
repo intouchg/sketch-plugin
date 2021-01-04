@@ -10,7 +10,7 @@ const TopToolbar = ({
 	setShowImportModal,
 	setShowAzureModal,
 }: {
-	setShowImportModal: React.Dispatch<React.SetStateAction<boolean>>
+	setShowImportModal?: React.Dispatch<React.SetStateAction<boolean>>
 	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => (
 	<Flex
@@ -26,8 +26,12 @@ const TopToolbar = ({
 			IDS Plugin
 		</Heading>
 		<Box>
-			<ImportButton setShowImportModal={setShowImportModal} />
-			<PreviewButton />
+			{setShowImportModal && (
+				<>
+					<ImportButton setShowImportModal={setShowImportModal} />
+					<PreviewButton />
+				</>
+			)}
 			<AzureStatus setShowAzureModal={setShowAzureModal} />
 		</Box>
 	</Flex>

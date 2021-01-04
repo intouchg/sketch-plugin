@@ -25,7 +25,6 @@ const AzureModal = ({
 		<ModalBackground>
 			<Flex
 				width="560px"
-				height={connected ? '317px' : '385px'}
 				padding={5}
 				backgroundColor="Background"
 				boxShadow="Medium"

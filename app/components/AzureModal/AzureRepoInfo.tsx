@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Box, Heading, Flex } from '@i/components'
+import { Box, Heading, Flex, Text } from '@i/components'
 import { PrimaryButton, SecondaryButton } from '../Buttons'
 import { ModalText } from '../Texts'
 
@@ -8,6 +8,21 @@ const AzureRepoInfo = () => {
 	const localProject = useSelector((state) => state.azure.localProject)
 	const branchName = useSelector((state) => state.azure.branchName)
 	const lastPush = useSelector((state) => state.azure.lastPush)
+
+	if (!localProject) {
+		return (
+			<Box
+				paddingX={4}
+				paddingY={6}
+				backgroundColor="Card"
+				borderRadius="Large"
+			>
+				<Text>
+					No project selected.
+				</Text>
+			</Box>
+		)
+	}
 
 	return (
 		<Box

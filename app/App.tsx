@@ -19,7 +19,7 @@ const App = () => {
 					<Main setShowAzureModal={setShowAzureModal} />
 				</Route>
 				<Route path="/">
-					<Welcome />
+					<Welcome setShowAzureModal={setShowAzureModal} />
 				</Route>
 			</Switch>
 			{showAzureModal && (

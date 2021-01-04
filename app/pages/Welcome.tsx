@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 import { Box, Stack, Flex, Heading } from '@i/components'
-import { AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal } from '../components'
+import { TopToolbar, AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal } from '../components'
 import { useSelectLocalProject } from '../hooks'
 import pkg from '../../package.json'
 
-const Welcome = () => {
+const Welcome = ({
+	setShowAzureModal,
+}: {
+	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
+}) => {
 	const selectLocalProject = useSelectLocalProject()
 	const [ showNewProjectModal, setShowNewProjectModal ] = useState(false)
 
 	return (
 		<>
+			<TopToolbar setShowAzureModal={setShowAzureModal} />
 			<Flex
 				height="100vh"
 				alignItems="center"
