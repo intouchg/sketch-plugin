@@ -18,6 +18,8 @@ const TruncatedAccentText = styled(AccentText)`
 	white-space: nowrap;
 `
 
+const getTransformStyle = (active: boolean | undefined) => ({ transform: `scale3d(${active ? '0.9, 0.9, 0.9' : '1, 1, 1'})` })
+
 const Color = ({
 	name,
 	value,
@@ -26,7 +28,7 @@ const Color = ({
 	selected: boolean | undefined
 }) => {
 	const labelColor = calculateColorBrightness(value) < 130 ? '#ffffff' : '#232323'
-	const [ spring, setSpring ] = useSpring({ transform: `scale(${selected ? 0.9 : 1})` }, [ selected ])
+	const [ spring, setSpring ] = useSpring(getTransformStyle(selected), [ selected ])
 
 	return (
 		<animated.div
@@ -36,8 +38,8 @@ const Color = ({
 				height: '100%',
 				...spring,
 			}}
-			onMouseMove={() => setSpring({ transform: 'scale(0.9)' })}
-			onMouseLeave={() => setSpring({ transform: 'scale(1)' })}
+			onMouseMove={() => setSpring(getTransformStyle(true))}
+			onMouseLeave={() => setSpring(getTransformStyle(false))}
 		>
 			<Box
 				position="absolute"
