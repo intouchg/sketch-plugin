@@ -67,6 +67,8 @@ const ImportModal = ({
 	const ImportView = views[activeRoute]
 
 	const updateSelectedSketchDocumentIndex = useCallback((index: number) => {
+		setShowLoading(true)
+
 		sendSketchCommand('extractSketchDocumentStyles', { sketchDocumentIndex: index })
 			.then((styles) => {
 				batch(() => {
@@ -87,7 +89,7 @@ const ImportModal = ({
 		else {
 			setShowImportModal(false)
 		}
-	}, [ sketchDocumentNames, setShowImportModal, updateSelectedSketchDocumentIndex ])
+	}, [ sketchDocumentNames, setShowLoading, setShowImportModal, updateSelectedSketchDocumentIndex ])
 
 	const saveSelectedImportedValues = () => {
 		dispatch(saveImportedSketchValues(
