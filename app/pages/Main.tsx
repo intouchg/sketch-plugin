@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Route, Redirect, useRouteMatch } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { Flex } from '@i/components'
 import { TopToolbar, LeftNavbar, ThemeEditor, ComponentEditor, ImportModal } from '../components'
 
@@ -8,7 +8,6 @@ const Main = ({
 }: {
 	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
-	const { url, path } = useRouteMatch()
 	const [ showImportModal, setShowImportModal ] = useState(false)
 
 	return (
@@ -18,12 +17,27 @@ const Main = ({
 				setShowAzureModal={setShowAzureModal}
 			/>
 			<Flex>
-				<LeftNavbar url={url} />
-				<ThemeEditor path={path} />
-				<ComponentEditor path={path} />
-				<Route path={path}>
-					<Redirect to={`${path}/theme`} />
-				</Route>
+				<LeftNavbar />
+				<Routes>
+					<Route
+						path="/"
+						element={
+							<Navigate to="theme" />
+						}
+					/>
+					<Route
+						path="theme/*"
+						element={
+							<ThemeEditor />
+						}
+					/>
+					<Route
+						path="components/*"
+						element={
+							<ComponentEditor />
+						}
+					/>
+				</Routes>
 			</Flex>
 			{showImportModal && (
 				<ImportModal setShowImportModal={setShowImportModal} />

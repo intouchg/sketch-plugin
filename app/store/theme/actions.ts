@@ -105,11 +105,11 @@ export const updateThemeValue = (value: UpdateThemeValueAction['payload']): Upda
 export const DELETE_THEME_VALUE = 'DELETE_THEME_VALUE'
 export type DeleteThemeValueAction = {
     type: typeof DELETE_THEME_VALUE
-    payload: { id: string }
+    payload: { id: string, type: ThemeValue['type'] }
 }
-export const deleteThemeValue = ({ id }: DeleteThemeValueAction['payload']): DeleteThemeValueAction => ({
+export const deleteThemeValue = (payload: DeleteThemeValueAction['payload']): DeleteThemeValueAction => ({
 	type: DELETE_THEME_VALUE,
-	payload: { id },
+	payload,
 })
 
 export type ThemeActionType =

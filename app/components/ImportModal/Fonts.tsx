@@ -66,7 +66,7 @@ const FontFamily = ({
 										marginRight={2}
 									/>
 								)}
-								{!interactable && imported && (
+								{imported && alreadySaved && (
 									<Checkbox
 										checked
 										disabled

@@ -1,5 +1,5 @@
 import { enablePatches, produce, applyPatches } from 'immer'
-import { createThemeValue } from '@i/theme'
+import { createThemeValue, themeTypePropertyMap } from '@i/theme'
 import { sortAlphabetical } from '@i/utility'
 import { sendSketchCommand } from '../../sketchApi'
 import {
@@ -74,7 +74,17 @@ export const themeReducer = (
 			case SET_THEME_DATA: {
 				const { values, variants } = action.payload
 
-				nextState.values = values
+				// TO DO: Make sure this doesn't confuse you later...
+				// Some ThemeValue['type']s are filtered out here, like zIndex
+
+				values.forEach((value) => {
+					const key = themeTypePropertyMap[value.type]
+
+					if (nextState.values.hasOwnProperty(key)) {
+						nextState.values[key].push(value as any)
+					}
+				})
+
 				nextState.variants = variants
 				break
 			}
@@ -150,23 +160,23 @@ export const themeReducer = (
 			}
 
 			case SAVE_IMPORTED_SKETCH_VALUES: {
-				const { values } = nextState
-
 				action.payload.forEach((newThemeValue) => {
+					const key = themeTypePropertyMap[newThemeValue.type]
+
 					if (!newThemeValue.willOverwriteByName) {
 						delete newThemeValue.willOverwriteByName
-						values.push(newThemeValue)
+						nextState.values[key].push(newThemeValue as any)
 						return
 					}
 
 					const { name } = newThemeValue as (ThemeValue & { name: string })
-					const index = values.findIndex((v) => (v as any).name === name)
+					const index = nextState.values[key].findIndex((v: ThemeValue) => (v as any).name === name)
 
 					if (index === undefined) {
 						throw Error(`Could not locate ThemeValue with name "${name}"`)
 					}
 
-					values[index].value = newThemeValue.value
+					nextState.values[key][index].value = newThemeValue.value
 				})
 
 				nextState.importedSketchValues = initialThemeState.importedSketchValues
@@ -174,43 +184,44 @@ export const themeReducer = (
 			}
 
 			case CREATE_THEME_VALUE: {
+				const key = themeTypePropertyMap[action.payload.type]
 				const value = createThemeValue(
-					nextState.values,
+					nextState.values[key],
 					action.payload.type,
 					action.payload,
 				)
-				nextState.values.push(value)
+				nextState.values[key].push(value as any)
 				break
 			}
 
 			case UPDATE_THEME_VALUE: {
-				const { values } = nextState
-				const { id } = action.payload
+				const { id, type } = action.payload
+				const key = themeTypePropertyMap[type]
 
-				const index = values.findIndex((value) => value.id === id)
+				const index = nextState.values[key].findIndex((value: ThemeValue) => value.id === id)
 
 				if (index === undefined) {
 					throw findThemeValueByIdError(id)
 				}
 
-				values[index] = action.payload
+				nextState.values[key][index] = action.payload
 				break
 			}
 
 			case DELETE_THEME_VALUE: {
-				const { values, variants } = nextState
-				const { id } = action.payload
+				const { id, type } = action.payload
+				const key = themeTypePropertyMap[type]
 
-				const index = values.findIndex((value) => value.id === id)
+				const index = nextState.values[key].findIndex((value: ThemeValue) => value.id === id)
 
 				if (index === -1) {
 					throw findThemeValueByIdError(id)
 				}
 
-				values.splice(index, 1)
+				nextState.values[key].splice(index, 1)
 
 				// Update any ThemeVariant style which references the deleted ThemeValue
-				variants.forEach((variant) => {
+				nextState.variants.forEach((variant) => {
 					Object.entries(variant.styles).forEach(([ styleProperty, value ]) => {
 						if (value === id) {
 							variant.styles[styleProperty as StyleProperty] = ''
@@ -233,7 +244,7 @@ export const themeReducer = (
 
 		if (SAVEABLE_ACTIONS.includes(action.type)) {
 			sendSketchCommand('saveThemeData', {
-				values: nextState.values,
+				values: Object.values(nextState.values).flat(),
 				variants: nextState.variants,
 			}).catch((error) => console.error(error))
 		}

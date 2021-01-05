@@ -1,33 +1,57 @@
 import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
-const ComponentEditor = ({ path }: { path: string }) => (
-	<Switch>
-		<Route path={`${path}/components/button`}>
-			Button
-		</Route>
-		<Route path={`${path}/components/heading`}>
-			Heading
-		</Route>
-		<Route path={`${path}/components/icon`}>
-			Icon
-		</Route>
-		<Route path={`${path}/components/input`}>
-			Input
-		</Route>
-		<Route path={`${path}/components/label`}>
-			Label
-		</Route>
-		<Route path={`${path}/components/link`}>
-			Link
-		</Route>
-		<Route path={`${path}/components/text`}>
-			Text
-		</Route>
-		<Route path={`${path}/components`}>
-			<Redirect to={`${path}/components/button`} />
-		</Route>
-	</Switch>
+const ComponentEditor = () => (
+	<Routes>
+		<Route
+			path="/"
+			element={
+				<Navigate to="button" />
+			}
+		/>
+		<Route
+			path="button"
+			element={
+				<div>Button</div>
+			}
+		/>
+		<Route
+			path="heading"
+			element={
+				<div>Heading</div>
+			}
+		/>
+		<Route
+			path="icon"
+			element={
+				<div>Icon</div>
+			}
+		/>
+		<Route
+			path="input"
+			element={
+				<div>Input</div>
+			}
+		/>
+		<Route
+			path="label"
+			element={
+				<div>Label</div>
+			}
+		/>
+		<Route
+			path="link"
+			element={
+				<div>Link</div>
+			}
+		/>
+		<Route
+			path="text"
+			element={
+				<div>Text</div>
+			}
+		/>
+	</Routes>
 )
 
 export { ComponentEditor }

@@ -121,7 +121,7 @@ const RightToolbar = ({
 	setShowImportModal,
 	sketchDocumentNames,
 	selectedSketchDocumentIndex,
-	setSelectedSketchDocumentIndex,
+	updateSelectedSketchDocumentIndex,
 	saveSelectedImportedValues,
 	numberOfSelectedImportedValuesBySaveType,
 }: {
@@ -132,7 +132,7 @@ const RightToolbar = ({
 	setShowImportModal: React.Dispatch<React.SetStateAction<boolean>>
 	sketchDocumentNames: string[]
 	selectedSketchDocumentIndex: number
-	setSelectedSketchDocumentIndex: React.Dispatch<React.SetStateAction<number>>
+	updateSelectedSketchDocumentIndex: (index: number) => void
 	saveSelectedImportedValues: () => void
 	numberOfSelectedImportedValuesBySaveType: { [key in ImportModalRoute]: { new: number, overwrite: number } }
 }) => {
@@ -151,7 +151,13 @@ const RightToolbar = ({
 		setSelectedImportCategories((state) => state.includes(route) ? state.filter((r) => r !== route) : [ ...state, route ])
 	}
 
-	const upateSketchDocumentIndex = ({ target }: React.ChangeEvent<HTMLSelectElement>) => setSelectedSketchDocumentIndex(parseInt(target.value, 10))
+	const upateSketchDocumentIndex = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		const index = parseInt(event.target.value, 10)
+
+		if (index !== selectedSketchDocumentIndex) {
+			updateSelectedSketchDocumentIndex(index)
+		}
+	}
 
 	return (
 		<Box

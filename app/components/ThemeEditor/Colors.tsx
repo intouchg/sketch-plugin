@@ -4,10 +4,9 @@ import { Box } from '@i/components'
 import { Color } from '../ThemeValues'
 import { InvisibleButton } from '../Buttons'
 import { ColorGrid } from '../ColorGrid'
-import type { ThemeColor } from '@i/theme'
 
 const Colors = () => {
-	const colors = useSelector((state) => state.theme.values.filter((v) => v.type === 'color')) as ThemeColor[]
+	const colors = useSelector((state) => state.theme.values.colors)
 
 	return (
 		<ColorGrid

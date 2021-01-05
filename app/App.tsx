@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import sketchPluginTheme from './theme/theme'
 import { useGlobalSketchListener, useInitializeSketchData } from './hooks'
@@ -14,14 +14,20 @@ const App = () => {
 	return (
 		<ThemeProvider theme={sketchPluginTheme}>
 			<MessageBanner />
-			<Switch>
-				<Route path="/main">
-					<Main setShowAzureModal={setShowAzureModal} />
-				</Route>
-				<Route path="/">
-					<Welcome setShowAzureModal={setShowAzureModal} />
-				</Route>
-			</Switch>
+			<Routes>
+				<Route
+					path="/"
+					element={
+						<Welcome setShowAzureModal={setShowAzureModal} />
+					}
+				/>
+				<Route
+					path="main/*"
+					element={
+						<Main setShowAzureModal={setShowAzureModal} />
+					}
+				/>
+			</Routes>
 			{showAzureModal && (
 				<AzureModal setShowAzureModal={setShowAzureModal} />
 			)}
