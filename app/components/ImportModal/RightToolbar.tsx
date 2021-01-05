@@ -151,14 +151,6 @@ const RightToolbar = ({
 		setSelectedImportCategories((state) => state.includes(route) ? state.filter((r) => r !== route) : [ ...state, route ])
 	}
 
-	const upateSketchDocumentIndex = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		const index = parseInt(event.target.value, 10)
-
-		if (index !== selectedSketchDocumentIndex) {
-			updateSelectedSketchDocumentIndex(index)
-		}
-	}
-
 	return (
 		<Box
 			minWidth="280px"
@@ -191,7 +183,7 @@ const RightToolbar = ({
 					<select
 						value={selectedSketchDocumentIndex}
 						style={{ fontSize: '1.5rem' }}
-						onChange={upateSketchDocumentIndex}
+						onChange={(event) => updateSelectedSketchDocumentIndex(parseInt(event.target.value, 10))}
 					>
 						{sketchDocumentNames.map((name, index) => (
 							<option

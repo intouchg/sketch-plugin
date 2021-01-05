@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
+// eslint-ignore-next-line camelcase
+import { unstable_batchedUpdates } from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { themeTypePropertyMap } from '@i/theme'
 import { Flex, Box } from '@i/components'
@@ -67,24 +69,25 @@ const ImportModal = ({
 	const ImportView = views[activeRoute]
 
 	const updateSelectedSketchDocumentIndex = useCallback((index: number) => {
-		setSelectedImportCategories([])
-		setSelectedImportedValues([])
-		setSelectedSketchDocumentIndex(index)
-
 		sendSketchCommand('extractSketchDocumentStyles', { sketchDocumentIndex: index })
 			.then((styles) => {
-				dispatch(setImportedSketchValues(styles))
-				setShowLoading(false)
+				unstable_batchedUpdates(() => {
+					dispatch(setImportedSketchValues(styles))
+					setSelectedImportCategories([])
+					setSelectedImportedValues([])
+					setSelectedSketchDocumentIndex(index)
+					setShowLoading(false)
+				})
 			})
 			.catch((error) => displayErrorBanner(error))
 	}, [ setSelectedImportCategories, setSelectedImportedValues, setSelectedSketchDocumentIndex, sendSketchCommand, dispatch, setImportedSketchValues, setShowLoading, displayErrorBanner ])
 
 	useEffect(() => {
-		if (!sketchDocumentNames.length) {
-			setShowImportModal(false)
+		if (sketchDocumentNames.length) {
+			updateSelectedSketchDocumentIndex(0)	
 		}
 		else {
-			updateSelectedSketchDocumentIndex(0)
+			setShowImportModal(false)
 		}
 	}, [ sketchDocumentNames, setShowImportModal, updateSelectedSketchDocumentIndex ])
 
