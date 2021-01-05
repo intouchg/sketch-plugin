@@ -72,10 +72,9 @@ export const themeReducer = (
 			}
 
 			case SET_THEME_DATA: {
-				const { values, components, variants } = action.payload
+				const { values, variants } = action.payload
 
 				nextState.values = values
-				nextState.components = components
 				nextState.variants = variants
 				break
 			}
@@ -199,7 +198,7 @@ export const themeReducer = (
 			}
 
 			case DELETE_THEME_VALUE: {
-				const { values, components, variants } = nextState
+				const { values, variants } = nextState
 				const { id } = action.payload
 
 				const index = values.findIndex((value) => value.id === id)
@@ -209,15 +208,6 @@ export const themeReducer = (
 				}
 
 				values.splice(index, 1)
-
-				// Update any ThemeComponent style which references the deleted ThemeValue
-				components.forEach((component) => {
-					Object.entries(component.styles).forEach(([ styleProperty, value ]) => {
-						if (value === id) {
-							component.styles[styleProperty as StyleProperty] = ''
-						}
-					})
-				})
 
 				// Update any ThemeVariant style which references the deleted ThemeValue
 				variants.forEach((variant) => {
@@ -244,7 +234,6 @@ export const themeReducer = (
 		if (SAVEABLE_ACTIONS.includes(action.type)) {
 			sendSketchCommand('saveThemeData', {
 				values: nextState.values,
-				components: nextState.components,
 				variants: nextState.variants,
 			}).catch((error) => console.error(error))
 		}

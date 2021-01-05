@@ -34,7 +34,6 @@ export const selectLocalProject = async (state, payload) => {
 
 	const filepaths = {
 		values: config.values,
-		components: config.components,
 		variants: config.variants,
 	}
 

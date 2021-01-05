@@ -3,7 +3,6 @@ import type { RecentProject, ParsedImportedSketchValues, SystemFontsDictionary }
 
 export type ThemeData = {
 	values: ThemeValue[]
-	components: ThemeComponent[]
 	variants: ThemeVariant[]
 }
 
@@ -23,7 +22,6 @@ export const initialThemeState: ThemeState = {
 	canUndo: false,
 	canRedo: false,
 	values: [] as ThemeValue[],
-	components: [] as ThemeComponent[],
 	variants: [] as ThemeVariant[],
 	recentProjects: [],
 	sketchDocumentNames: [],
