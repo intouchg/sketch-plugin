@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-// eslint-ignore-next-line camelcase
-import { unstable_batchedUpdates } from 'react-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, batch } from 'react-redux'
 import { themeTypePropertyMap } from '@i/theme'
 import { Flex, Box } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
@@ -71,7 +69,7 @@ const ImportModal = ({
 	const updateSelectedSketchDocumentIndex = useCallback((index: number) => {
 		sendSketchCommand('extractSketchDocumentStyles', { sketchDocumentIndex: index })
 			.then((styles) => {
-				unstable_batchedUpdates(() => {
+				batch(() => {
 					dispatch(setImportedSketchValues(styles))
 					setSelectedImportCategories([])
 					setSelectedImportedValues([])
@@ -84,7 +82,7 @@ const ImportModal = ({
 
 	useEffect(() => {
 		if (sketchDocumentNames.length) {
-			updateSelectedSketchDocumentIndex(0)	
+			updateSelectedSketchDocumentIndex(0)
 		}
 		else {
 			setShowImportModal(false)
