@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { setSketchDocumentNames } from '../store'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
-export const useGlobalSketchListener = () => {
+export const useWindowSketchListener = () => {
 	const dispatch = useDispatch()
 	const displayErrorBanner = useDisplayErrorBanner()
 

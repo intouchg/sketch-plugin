@@ -16,6 +16,7 @@ const AzureModal = ({
 	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
+	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const [ showLoginForm, setShowLoginForm ] = useState(false)
 	const connected = Boolean(username && accessToken)
@@ -58,7 +59,10 @@ const AzureModal = ({
 							<Heading marginRight={2}>
 								Azure
 							</Heading>
-							<AzureStatusLabel connected={connected} />
+							<AzureStatusLabel
+								online={online}
+								connected={connected}
+							/>
 						</Flex>
 						{!showLoginForm && (
 							<>

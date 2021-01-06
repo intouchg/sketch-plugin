@@ -8,8 +8,10 @@ import { LimitInteraction } from '../LimitInteraction'
 import { useSelectLocalProject } from '../../hooks'
 
 const AzureRepoInfo = ({
+	online,
 	connected,
 }: {
+	online: boolean
 	connected: boolean
 }) => {
 	const localProject = useSelector((state) => state.azure.localProject)
@@ -79,7 +81,7 @@ const AzureRepoInfo = ({
 				</Flex>
 			</Flex>
 			<LimitInteraction
-				unlimit={connected}
+				unlimit={online && connected}
 				display="flex"
 				width="100%"
 			>

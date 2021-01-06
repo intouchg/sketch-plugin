@@ -22,9 +22,11 @@ const AzureLoginInput = styled(Input).attrs((props) => ({
 `
 
 const AzureLoginForm = ({
+	online,
 	username,
 	setShowLoginForm,
 }: {
+	online: boolean
 	username: string
 	setShowLoginForm: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
@@ -103,7 +105,7 @@ const AzureLoginForm = ({
 				</SecondaryButton>
 				<LimitInteraction
 					as={PrimaryButton}
-					unlimit={Boolean(usernameValue && accessTokenValue)}
+					unlimit={online && Boolean(usernameValue && accessTokenValue)}
 					onClick={loginToAzure}
 				>
 					Log In

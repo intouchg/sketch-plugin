@@ -40,8 +40,19 @@ export const forgetAzureCredentials = (): ForgetAzureCredentialsAction => ({
 	payload: undefined,
 })
 
+export const SET_ONLINE_STATUS = 'SET_ONLINE_STATUS'
+export type SetOnlineStatusAction = {
+    type: typeof SET_ONLINE_STATUS
+    payload: boolean
+}
+export const setOnlineStatus = (online: SetOnlineStatusAction['payload']): SetOnlineStatusAction => ({
+	type: SET_ONLINE_STATUS,
+	payload: online,
+})
+
 export type AzureActionType =
     | SetAzureCredentialsAction
     | SetLocalProjectAction
     | SetBranchNameAction
     | ForgetAzureCredentialsAction
+    | SetOnlineStatusAction

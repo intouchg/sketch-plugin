@@ -1,5 +1,6 @@
 export * from './useDisplayErrorBanner'
-export * from './useGlobalSketchListener'
 export * from './useInitializeSketchData'
 export * from './useOpenDevServer'
 export * from './useSelectLocalProject'
+export * from './useWindowInternetListener'
+export * from './useWindowSketchListener'

@@ -5,6 +5,7 @@ export type AzureState = {
 	localProject: string
 	branchName: string
 	lastPush: Date | null
+	online: boolean
 }
 
 export const initialAzureState: AzureState = {
@@ -15,4 +16,5 @@ export const initialAzureState: AzureState = {
 	localProject: '',
 	branchName: '',
 	lastPush: null,
+	online: false,
 }

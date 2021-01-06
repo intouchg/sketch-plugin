@@ -9,6 +9,7 @@ const AzureStatus = ({
 }: {
 	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
+	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
 
@@ -24,7 +25,7 @@ const AzureStatus = ({
 					display="inline-block"
 					width="8px"
 					height="8px"
-					backgroundColor={connected ? 'Positive' : 'Critical'}
+					backgroundColor={!online ? 'Caution' : connected ? 'Positive' : 'Critical'}
 					borderRadius="50%"
 					marginLeft={1}
 				/>
