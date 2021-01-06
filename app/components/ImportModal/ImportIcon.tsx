@@ -46,7 +46,10 @@ const ImportIcon = ({
 	}
 
 	return (
-		<animated.div style={spring}>
+		<animated.div
+			style={spring}
+			title={willOverwrite ? 'Update Color' : imported ? 'Add Color' : 'Not In Sketch'}
+		>
 			<Box
 				backgroundColor="Card"
 				borderRadius="50%"
@@ -63,7 +66,7 @@ const ImportIcon = ({
 					borderColor="Card"
 					borderRadius="50%"
 					boxShadow="Medium"
-					opacity={selected || !imported ? 1 : 0.55}
+					opacity={selected || !imported ? 1 : willOverwrite ? 0.7 : 0.55}
 				>
 					{imported && !willOverwrite && (
 						<CheckmarkIcon
