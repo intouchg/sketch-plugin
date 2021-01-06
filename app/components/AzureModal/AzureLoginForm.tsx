@@ -33,7 +33,7 @@ const AzureLoginForm = ({
 	const dispatch = useDispatch()
 	const [ usernameValue, setUsernameValue ] = useState(username)
 	const [ accessTokenValue, setAccessTokenValue ] = useState('')
-	const [ error, setError ] = useState('')
+	const [ error, setError ] = useState(online ? 'Please restore internet connectivity before attempting to sign in.' : '')
 
 	const loginToAzure = () => {
 		setError('')
@@ -108,7 +108,7 @@ const AzureLoginForm = ({
 					unlimit={online && Boolean(usernameValue && accessTokenValue)}
 					onClick={loginToAzure}
 				>
-					Log In
+					Sign In
 				</LimitInteraction>
 			</Flex>
 		</>
