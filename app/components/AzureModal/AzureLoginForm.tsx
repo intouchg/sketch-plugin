@@ -44,8 +44,6 @@ const AzureLoginForm = ({
 	useEffect(() => setError(!online ? OFFLINE_ERROR_MESSAGE : ''), [ online ])
 
 	const loginToAzure = () => {
-		setError('')
-
 		sendSketchCommand('loginToAzure', {
 			username: usernameValue,
 			accessToken: accessTokenValue,
