@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import { useDispatch, batch } from 'react-redux'
 import { Flex, Stack, Input, Text } from '@i/components'
 import { PrimaryButton, SecondaryButton, TertiaryButton } from '../Buttons'
@@ -6,6 +7,17 @@ import { AccentText } from '../Texts'
 import { LimitInteraction } from '../LimitInteraction'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
 import { setAzureCredentials } from '../../store'
+
+const AzureLoginInput = styled(Input).attrs((props) => ({
+	autoCorrect: 'off',
+	autoCapitalize: 'off',
+}))<{ error: boolean }>`
+	padding: ${(props) => props.theme.space[3]};
+	border: 1px solid ${(props) => props.error ? props.theme.colors.Critical : 'transparent'};
+	border-radius: ${(props) => props.theme.radii.Large};
+	text-transform: lowercase;
+	transform: scale3d(1, 1, 1);
+`
 
 const AzureLoginForm = ({
 	username,
@@ -39,16 +51,8 @@ const AzureLoginForm = ({
 				<AccentText marginBottom={2}>
 					Email Address
 				</AccentText>
-				<Input
-					type="text"
-					autoCorrect="off"
-					autoCapitalize="none"
-					padding={3}
-					borderRadius="Large"
-					borderWidth="1px"
-					borderStyle="solid"
-					borderColor={error ? 'Critical' : 'transparent'}
-					textTransform="lowercase"
+				<AzureLoginInput
+					error={Boolean(error)}
 					value={usernameValue}
 					onChange={(event) => setUsernameValue(event.target.value)}
 				/>
@@ -57,16 +61,8 @@ const AzureLoginForm = ({
 				<AccentText marginBottom={2}>
 					Access Token
 				</AccentText>
-				<Input
-					type="text"
-					autoCorrect="off"
-					autoCapitalize="none"
-					padding={3}
-					borderRadius="Large"
-					borderWidth="1px"
-					borderStyle="solid"
-					borderColor={error ? 'Critical' : 'transparent'}
-					textTransform="lowercase"
+				<AzureLoginInput
+					error={Boolean(error)}
 					value={accessTokenValue}
 					onChange={(event) => setAccessTokenValue(event.target.value)}
 				/>
