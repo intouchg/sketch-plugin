@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, batch } from 'react-redux'
 import { Flex, Stack, Input, Text } from '@i/components'
@@ -8,18 +8,25 @@ import { LimitInteraction } from '../LimitInteraction'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
 import { setAzureCredentials } from '../../store'
 
-const AzureLoginInput = styled(Input).attrs((props) => ({
+const AzureLoginInput = styled(Input).attrs<
+	typeof Input
+>((props) => ({
 	autoCorrect: 'off',
 	autoCapitalize: 'off',
 	autoComplete: 'off',
 	spellCheck: 'off',
-}))<{ error: boolean }>`
+}))<{
+	error: boolean
+}>`
 	padding: ${(props) => props.theme.space[3]};
 	border: 1px solid ${(props) => props.error ? props.theme.colors.Critical : 'transparent'};
 	border-radius: ${(props) => props.theme.radii.Large};
 	text-transform: lowercase;
 	transform: scale3d(1, 1, 1);
 `
+
+const OFFLINE_ERROR_MESSAGE = 'Please restore internet connectivity before attempting to sign in.'
+const AUTHENTICATION_ERROR_MESSAGE = 'Authentication failed. Please check your username and access token and try again.'
 
 const AzureLoginForm = ({
 	online,
@@ -33,7 +40,8 @@ const AzureLoginForm = ({
 	const dispatch = useDispatch()
 	const [ usernameValue, setUsernameValue ] = useState(username)
 	const [ accessTokenValue, setAccessTokenValue ] = useState('')
-	const [ error, setError ] = useState(!online ? 'Please restore internet connectivity before attempting to sign in.' : '')
+	const [ error, setError ] = useState('')
+	useEffect(() => setError(!online ? OFFLINE_ERROR_MESSAGE : ''), [ online ])
 
 	const loginToAzure = () => {
 		setError('')
@@ -46,7 +54,7 @@ const AzureLoginForm = ({
 				dispatch(setAzureCredentials(credentials))
 				setShowLoginForm(false)
 			}))
-			.catch((error) => setError(error.includes('401') ? 'Authentication failed. Please check your username and access token and try again.' : error))
+			.catch((error) => setError(error.includes('401') ? AUTHENTICATION_ERROR_MESSAGE : error))
 	}
 
 	return (

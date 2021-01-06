@@ -64,38 +64,34 @@ const AzureModal = ({
 								connected={connected}
 							/>
 						</Flex>
-						{!showLoginForm && (
-							<>
-								{connected && (
-									<Flex>
-										<ModalText fontSize={2}>
-											cody.persinger
-										</ModalText>
-										<ModalText fontSize={2}>
-											&nbsp;|&nbsp;
-										</ModalText>
-										<InvisibleButton
-											as={ModalText}
-											fontSize={2}
-											textDecoration="underline"
-											onClick={signOut}
-										>
-											Sign out
-										</InvisibleButton>
-									</Flex>
-								)}
-								{!connected && (
-									<InvisibleButton
-										as={ModalText}
-										color="Primary"
-										fontSize={2}
-										textDecoration="underline"
-										onClick={() => setShowLoginForm(true)}
-									>
-										Sign in
-									</InvisibleButton>
-								)}
-							</>
+						{!showLoginForm && connected && (
+							<Flex>
+								<ModalText fontSize={2}>
+									cody.persinger
+								</ModalText>
+								<ModalText fontSize={2}>
+									&nbsp;|&nbsp;
+								</ModalText>
+								<InvisibleButton
+									as={ModalText}
+									fontSize={2}
+									textDecoration="underline"
+									onClick={signOut}
+								>
+									Sign out
+								</InvisibleButton>
+							</Flex>
+						)}
+						{!showLoginForm && !connected && (
+							<InvisibleButton
+								as={ModalText}
+								color="Primary"
+								fontSize={2}
+								textDecoration="underline"
+								onClick={() => setShowLoginForm(true)}
+							>
+								Sign in
+							</InvisibleButton>
 						)}
 					</Flex>
 					{!showLoginForm && (
