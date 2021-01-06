@@ -99,10 +99,14 @@ const AzureModal = ({
 						)}
 					</Flex>
 					{!showLoginForm && (
-						<AzureRepoInfo connected={connected} />
+						<AzureRepoInfo
+							online={online}
+							connected={connected}
+						/>
 					)}
 					{showLoginForm && (
 						<AzureLoginForm
+							online={online}
 							username={username}
 							setShowLoginForm={setShowLoginForm}
 						/>
