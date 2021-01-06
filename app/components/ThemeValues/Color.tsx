@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSpring, animated } from 'react-spring'
+import { useSpring, animated, config } from 'react-spring'
 import { Box, Stack } from '@i/components'
 import { calculateColorBrightness } from '@i/utility'
 import { AccentText, SecondaryText } from '../Texts'
@@ -18,8 +18,6 @@ const TruncatedAccentText = styled(AccentText)`
 	white-space: nowrap;
 `
 
-const getTransformStyle = (active: boolean | undefined) => ({ transform: `scale3d(${active ? '0.9, 0.9, 0.9' : '1, 1, 1'})` })
-
 const Color = ({
 	name,
 	value,
@@ -28,7 +26,7 @@ const Color = ({
 	selected: boolean | undefined
 }) => {
 	const labelColor = calculateColorBrightness(value) < 130 ? '#ffffff' : '#232323'
-	const [ spring, setSpring ] = useSpring(getTransformStyle(selected), [ selected ])
+	const spring = useSpring({ config: config.wobbly, transform: `scale3d(${selected ? '0.9, 0.9, 0.9' : '1, 1, 1'})` })
 
 	return (
 		<animated.div
@@ -38,8 +36,6 @@ const Color = ({
 				height: '100%',
 				...spring,
 			}}
-			onMouseMove={() => setSpring(getTransformStyle(true))}
-			onMouseLeave={() => setSpring(getTransformStyle(false))}
 		>
 			<Box
 				position="absolute"

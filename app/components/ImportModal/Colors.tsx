@@ -30,10 +30,7 @@ const Colors = ({
 		<ColorGrid gridGap={3}>
 			{sortedUniqueColors.map(({ imported, selected, willOverwriteByName, ...props }) => {
 				const { value } = props
-				// TO DO: probably want to change this next line:
 				const alreadySaved = !imported && importedValues.some((v) => v.value === value && v.name === props.name)
-				// to this:
-				// const alreadySaved = !imported && importedValues.some((v) => v.value === value && v.name === props.name)
 
 				return (
 					<Box
