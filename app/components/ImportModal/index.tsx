@@ -78,12 +78,10 @@ const ImportModal = ({
 		}
 
 		sendSketchCommand('extractSketchDocumentStyles', { sketchDocumentIndex: index })
-			.then((styles) => {
-				batch(() => {
-					dispatch(setImportedSketchValues(styles))
-					setShowLoading(false)
-				})
-			})
+			.then((styles) => batch(() => {
+				dispatch(setImportedSketchValues(styles))
+				setShowLoading(false)
+			}))
 			.catch((error) => displayErrorBanner(error))
 	}, [ setSelectedImportCategories, setSelectedImportedValues, setSelectedSketchDocumentIndex, dispatch, setShowLoading, displayErrorBanner ])
 

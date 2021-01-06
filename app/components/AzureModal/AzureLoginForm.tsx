@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, batch } from 'react-redux'
 import { Flex, Stack, Input, Text } from '@i/components'
-import { PrimaryButton, TertiaryButton } from '../Buttons'
+import { PrimaryButton, SecondaryButton, TertiaryButton } from '../Buttons'
 import { AccentText } from '../Texts'
 import { LimitInteraction } from '../LimitInteraction'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
@@ -9,8 +9,10 @@ import { setAzureCredentials } from '../../store'
 
 const AzureLoginForm = ({
 	username,
+	setShowLoginForm,
 }: {
-    username: string
+	username: string
+	setShowLoginForm: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
 	const [ usernameValue, setUsernameValue ] = useState(username)
@@ -24,7 +26,10 @@ const AzureLoginForm = ({
 			username: usernameValue,
 			accessToken: accessTokenValue,
 		})
-			.then((credentials) => dispatch(setAzureCredentials(credentials)))
+			.then((credentials) => batch(() => {
+				dispatch(setAzureCredentials(credentials))
+				setShowLoginForm(false)
+			}))
 			.catch((error) => setError(error.includes('401') ? 'Authentication failed. Please check your username and access token and try again.' : error))
 	}
 
@@ -80,25 +85,31 @@ const AzureLoginForm = ({
 					Follow the Azure setup user guide.
 				</TertiaryButton>
 			</Flex>
+			{error && (
+				<Flex
+					width="100%"
+					marginBottom={2}
+				>
+					<Text color="Critical">
+						{error}
+					</Text>
+				</Flex>
+			)}
 			<Flex
-				alignSelf="start"
 				alignItems="center"
+				justifyContent="space-between"
 				width="100%"
 			>
+				<SecondaryButton onClick={() => setShowLoginForm(false)}>
+					Back
+				</SecondaryButton>
 				<LimitInteraction
 					as={PrimaryButton}
-					flexShrink={0}
-					marginRight={3}
 					unlimit={Boolean(usernameValue && accessTokenValue)}
 					onClick={loginToAzure}
 				>
 					Log In
 				</LimitInteraction>
-				{error && (
-					<Text color="Critical">
-						{error}
-					</Text>
-				)}
 			</Flex>
 		</>
 	)

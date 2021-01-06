@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Heading, Box } from '@i/components'
+import { Flex, Stack, Heading, Box, Button } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { InvisibleButton } from '../Buttons'
 import { CloseIcon } from '../Icons'
@@ -17,6 +17,7 @@ const AzureModal = ({
 }) => {
 	const dispatch = useDispatch()
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
+	const [ showLoginForm, setShowLoginForm ] = useState(false)
 	const connected = Boolean(username && accessToken)
 
 	const signOut = () => dispatch(forgetAzureCredentials())
@@ -47,32 +48,60 @@ const AzureModal = ({
 					flexGrow={1}
 					overflow="hidden"
 				>
-					<Flex alignItems="baseline">
-						<Heading
-							marginRight={2}
-							marginBottom={4}
-						>
-							Azure
-						</Heading>
-						<AzureStatusLabel connected={connected} />
+					<Flex
+						alignItems="baseline"
+						justifyContent="space-between"
+						width="100%"
+						marginBottom={4}
+					>
+						<Flex>
+							<Heading marginRight={2}>
+								Azure
+							</Heading>
+							<AzureStatusLabel connected={connected} />
+						</Flex>
+						{!showLoginForm && (
+							<>
+								{connected && (
+									<Flex>
+										<ModalText fontSize={2}>
+											cody.persinger
+										</ModalText>
+										<ModalText fontSize={2}>
+											&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+										</ModalText>
+										<InvisibleButton
+											as={ModalText}
+											fontSize={2}
+											textDecoration="underline"
+											onClick={signOut}
+										>
+											Sign out
+										</InvisibleButton>
+									</Flex>
+								)}
+								{!connected && (
+									<InvisibleButton
+										as={ModalText}
+										color="Primary"
+										fontSize={2}
+										textDecoration="underline"
+										onClick={() => setShowLoginForm(true)}
+									>
+										Sign in
+									</InvisibleButton>
+								)}
+							</>
+						)}
 					</Flex>
-					{connected && (
-						<>
-							<AzureRepoInfo />
-							<Box
-								as={InvisibleButton}
-								alignSelf="flex-end"
-								marginTop={4}
-								onClick={signOut}
-							>
-								<ModalText textDecoration="underline">
-									Sign out of Azure
-								</ModalText>
-							</Box>
-						</>
+					{!showLoginForm && (
+						<AzureRepoInfo />
 					)}
-					{!connected && (
-						<AzureLoginForm username={username} />
+					{showLoginForm && (
+						<AzureLoginForm
+							username={username}
+							setShowLoginForm={setShowLoginForm}
+						/>
 					)}
 				</Stack>
 			</Flex>
