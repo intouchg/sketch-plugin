@@ -25,7 +25,7 @@ const AzureLoginForm = ({
 			accessToken: accessTokenValue,
 		})
 			.then((credentials) => dispatch(setAzureCredentials(credentials)))
-			.catch((error) => setError(error.includes('401') ? 'Authentication failed' : error))
+			.catch((error) => setError(error.includes('401') ? 'Authentication failed. Please check your username and access token and try again.' : error))
 	}
 
 	return (
@@ -40,6 +40,9 @@ const AzureLoginForm = ({
 					autoCapitalize="none"
 					padding={3}
 					borderRadius="Large"
+					borderWidth="1px"
+					borderStyle="solid"
+					borderColor={error ? 'Critical' : 'transparent'}
 					textTransform="lowercase"
 					value={usernameValue}
 					onChange={(event) => setUsernameValue(event.target.value)}
@@ -55,6 +58,9 @@ const AzureLoginForm = ({
 					autoCapitalize="none"
 					padding={3}
 					borderRadius="Large"
+					borderWidth="1px"
+					borderStyle="solid"
+					borderColor={error ? 'Critical' : 'transparent'}
 					textTransform="lowercase"
 					value={accessTokenValue}
 					onChange={(event) => setAccessTokenValue(event.target.value)}
@@ -74,14 +80,25 @@ const AzureLoginForm = ({
 					Follow the Azure setup user guide.
 				</TertiaryButton>
 			</Flex>
-			<Flex alignSelf="start">
+			<Flex
+				alignSelf="start"
+				alignItems="center"
+				width="100%"
+			>
 				<LimitInteraction
 					as={PrimaryButton}
+					flexShrink={0}
+					marginRight={3}
 					unlimit={Boolean(usernameValue && accessTokenValue)}
 					onClick={loginToAzure}
 				>
 					Log In
 				</LimitInteraction>
+				{error && (
+					<Text color="Critical">
+						{error}
+					</Text>
+				)}
 			</Flex>
 		</>
 	)
