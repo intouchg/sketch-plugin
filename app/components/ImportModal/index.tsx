@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
 import { themeTypePropertyMap } from '@i/theme'
 import { Flex, Box } from '@i/components'
@@ -51,6 +51,7 @@ const ImportModal = ({
 }: {
 	setShowImportModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
+	const isMounting = useRef(true)
 	const dispatch = useDispatch()
 	const sketchDocumentNames = useSelector((state) => state.theme.sketchDocumentNames)
 	const importedSketchValues = useSelector((state) => state.theme.importedSketchValues)
@@ -63,19 +64,23 @@ const ImportModal = ({
 	const [ selectedImportedValues, setSelectedImportedValues ] = useState<SelectedImportedValue[]>([])
 	const [ showLoading, setShowLoading ] = useState(true)
 	const displayErrorBanner = useDisplayErrorBanner()
-
 	const ImportView = views[activeRoute]
 
 	const updateSelectedSketchDocumentIndex = useCallback((index: number) => {
-		setShowLoading(true)
+		if (isMounting.current) {
+			isMounting.current = false
+		}
+		else {
+			setShowLoading(true)
+			setSelectedImportCategories([])
+			setSelectedImportedValues([])
+			setSelectedSketchDocumentIndex(index)
+		}
 
 		sendSketchCommand('extractSketchDocumentStyles', { sketchDocumentIndex: index })
 			.then((styles) => {
 				batch(() => {
 					dispatch(setImportedSketchValues(styles))
-					setSelectedImportCategories([])
-					setSelectedImportedValues([])
-					setSelectedSketchDocumentIndex(index)
 					setShowLoading(false)
 				})
 			})
@@ -90,6 +95,10 @@ const ImportModal = ({
 			setShowImportModal(false)
 		}
 	}, [ sketchDocumentNames, setShowLoading, setShowImportModal, updateSelectedSketchDocumentIndex ])
+
+	if (!sketchDocumentNames.length) {
+		return null
+	}
 
 	const saveSelectedImportedValues = () => {
 		dispatch(saveImportedSketchValues(
