@@ -1,26 +1,41 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Box, Heading, Flex, Text } from '@i/components'
+import { Stack, Box, Heading, Flex, Text } from '@i/components'
 import { PrimaryButton, SecondaryButton } from '../Buttons'
 import { ModalText } from '../Texts'
+import { CloudIcon } from '../Icons'
+import { LimitInteraction } from '../LimitInteraction'
+import { useSelectLocalProject } from '../../hooks'
 
-const AzureRepoInfo = () => {
+const AzureRepoInfo = ({
+	connected,
+}: {
+	connected: boolean
+}) => {
 	const localProject = useSelector((state) => state.azure.localProject)
 	const branchName = useSelector((state) => state.azure.branchName)
 	const lastPush = useSelector((state) => state.azure.lastPush)
+	const selectLocalProject = useSelectLocalProject()
 
 	if (!localProject) {
 		return (
-			<Box
+			<Stack
+				alignItems="center"
 				paddingX={4}
 				paddingY={6}
 				backgroundColor="Card"
 				borderRadius="Large"
 			>
-				<Text>
+				<Text
+					fontSize={3}
+					marginBottom={3}
+				>
 					No project selected.
 				</Text>
-			</Box>
+				<PrimaryButton onClick={selectLocalProject}>
+					Select a Project
+				</PrimaryButton>
+			</Stack>
 		)
 	}
 
@@ -32,7 +47,6 @@ const AzureRepoInfo = () => {
 		>
 			<Heading
 				variant="Tertiary"
-				color="Primary"
 				marginBottom={2}
 			>
 				{localProject.split('/').pop()}
@@ -64,18 +78,30 @@ const AzureRepoInfo = () => {
 					</ModalText>
 				</Flex>
 			</Flex>
-			<Flex>
-				<Box
+			<LimitInteraction
+				unlimit={connected}
+				display="flex"
+				width="100%"
+			>
+				<Flex
 					as={PrimaryButton}
+					alignItems="center"
+					justifyContent="center"
 					flexGrow={1}
 					marginRight={3}
 				>
 					Save to Azure
-				</Box>
+					<Box marginLeft={1}>
+						<CloudIcon
+							fill="Card"
+							width="24px"
+						/>
+					</Box>
+				</Flex>
 				<SecondaryButton>
 					Revert
 				</SecondaryButton>
-			</Flex>
+			</LimitInteraction>
 		</Box>
 	)
 }

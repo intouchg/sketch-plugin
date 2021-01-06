@@ -1,6 +1,7 @@
 export * from './CheckmarkIcon'
 export * from './CircleRightArrowIcon'
 export * from './CloseIcon'
+export * from './CloudIcon'
 export * from './CogIcon'
 export * from './DotIcon'
 export * from './EllipsesIcon'

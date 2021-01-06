@@ -68,7 +68,7 @@ const AzureModal = ({
 											cody.persinger
 										</ModalText>
 										<ModalText fontSize={2}>
-											&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+											&nbsp;|&nbsp;
 										</ModalText>
 										<InvisibleButton
 											as={ModalText}
@@ -95,7 +95,7 @@ const AzureModal = ({
 						)}
 					</Flex>
 					{!showLoginForm && (
-						<AzureRepoInfo />
+						<AzureRepoInfo connected={connected} />
 					)}
 					{showLoginForm && (
 						<AzureLoginForm

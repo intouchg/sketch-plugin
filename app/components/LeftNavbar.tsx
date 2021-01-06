@@ -22,7 +22,7 @@ const StyledLink = styled(Link).attrs({
 		text-decoration: none;
 
 		&.${activeLinkClass} {
-			background-color: ${theme.colors['Primary Light']};
+			background-color: ${theme.colors['Primary Lighter']};
 		}
 	`}
 `

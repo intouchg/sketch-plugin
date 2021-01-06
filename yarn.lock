@@ -1429,9 +1429,9 @@
     "@i/utility" latest
 
 "@i/components@latest":
-  version "0.0.39"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.39.tgz#07ed81299c43d0121aeebaeb658fd3a9a2a0c6d4"
-  integrity sha1-B+2BKZxD0BIa7rrrZY/TqaKgxtQ=
+  version "0.0.40"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.40.tgz#8beef30f5a373c28dede72f7b898e27a6acdc4e4"
+  integrity sha1-i+7zD1o3PCje3nL3uJjiemrNxOQ=
   dependencies:
     "@babel/runtime" "7.12.1"
     "@i/theme" latest
@@ -2902,9 +2902,9 @@
     "@types/react" "^16"
 
 "@types/react-native@*":
-  version "0.63.43"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-native/-/react-native-0.63.43.tgz#0278dd540f8479b35ae5d6ef373dd9b3be4cffb1"
-  integrity sha1-AnjdVA+EebNa5dbvNz3Zs75M/7E=
+  version "0.63.44"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-native/-/react-native-0.63.44.tgz#cd8df1bb6b2764b47afc1e643d20fb503dbfc52d"
+  integrity sha1-zY3xu2snZLR6/B5kPSD7UD2/xS0=
   dependencies:
     "@types/react" "*"
 
@@ -2928,9 +2928,9 @@
     "@types/react-router" "*"
 
 "@types/react-router@*":
-  version "5.1.9"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-router/-/react-router-5.1.9.tgz#92a5558f22243d45f90e7699812c342bd98ba41e"
-  integrity sha1-kqVVjyIkPUX5DnaZgSw0K9mLpB4=
+  version "5.1.10"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-router/-/react-router-5.1.10.tgz#7de7ad3df20a8adb2b97943f1871ca4d2705c42c"
+  integrity sha512-yu11Hu16CfGvvBWc7wluRlxbwfuSlY0snEntbbOTvfgMvyO6uLaEpAbnVOntr+9TNIpR++OOlPkmDcJPxOXRaQ==
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
@@ -4375,7 +4375,7 @@ browserslist@4.10.0:
 browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.14.5, browserslist@^4.16.0:
   version "4.16.1"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/browserslist/-/browserslist-4.16.1.tgz#bf757a2da376b3447b800a16f0f1c96358138766"
-  integrity sha512-UXhDrwqsNcpTYJBTZsbGATDxZbiVDsx6UjpmRUmtnP10pr8wAYr5LgFoEFw9ixriQH2mv/NX2SfGzE/o8GndLA==
+  integrity sha1-v3V6LaN2s0R7gAoW8PHJY1gTh2Y=
   dependencies:
     caniuse-lite "^1.0.30001173"
     colorette "^1.2.1"
@@ -4642,7 +4642,7 @@ chardet@^0.7.0:
 "chokidar@>=2.0.0 <4.0.0", chokidar@^3.3.0, chokidar@^3.4.0, chokidar@^3.4.1:
   version "3.5.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/chokidar/-/chokidar-3.5.0.tgz#458a4816a415e9d3b3caa4faec2b96a6935a9e65"
-  integrity sha512-JgQM9JS92ZbFR4P90EvmzNpSGhpPBGBSj10PILeDyYFwp4h2/D9OM03wsJ4zW1fEp4ka2DGrnUeD7FuvQ2aZ2Q==
+  integrity sha1-RYpIFqQV6dOzyqT67CuWppNanmU=
   dependencies:
     anymatch "~3.1.1"
     braces "~3.0.2"
@@ -7046,7 +7046,7 @@ fsevents@^1.2.7:
 fsevents@~2.3.1:
   version "2.3.1"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/fsevents/-/fsevents-2.3.1.tgz#b209ab14c61012636c8863507edf7fb68cc54e9f"
-  integrity sha512-YR47Eg4hChJGAB1O3yEAOkGO+rlzutoICGqGo9EZ4lKWokzZRSyIW1QmTzqjtw8MJdj9srP869CuWw/hyzSiBw==
+  integrity sha1-sgmrFMYQEmNsiGNQft9/tozFTp8=
 
 function-bind@^1.1.1:
   version "1.1.1"
@@ -7276,9 +7276,9 @@ globby@8.0.2:
     slash "^1.0.0"
 
 globby@^11.0.1:
-  version "11.0.1"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/globby/-/globby-11.0.1.tgz#9a2bf107a068f3ffeabc49ad702c79ede8cfd357"
-  integrity sha1-mivxB6Bo8//qvEmtcCx57ejP01c=
+  version "11.0.2"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/globby/-/globby-11.0.2.tgz#1af538b766a3b540ebfb58a32b2e2d5897321d83"
+  integrity sha1-GvU4t2ajtUDr+1ijKy4tWJcyHYM=
   dependencies:
     array-union "^2.1.0"
     dir-glob "^3.0.1"
@@ -13330,12 +13330,12 @@ tslib@^1.10.0, tslib@^1.11.1, tslib@^1.8.1, tslib@^1.9.0:
 tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3:
   version "2.1.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
-  integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
+  integrity sha1-2mCGDxwuyqVwOrfTm8Bba/mIuXo=
 
 tsutils@^3.17.1:
-  version "3.18.0"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tsutils/-/tsutils-3.18.0.tgz#38add50a28ec97e988cb43c5b32e55d1ff4a222a"
-  integrity sha1-OK3VCijsl+mIy0PFsy5V0f9KIio=
+  version "3.19.0"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tsutils/-/tsutils-3.19.0.tgz#9387cb5fcb71579aa0909c509604f8a7fbe1cff1"
+  integrity sha512-A7BaLUPvcQ1cxVu72YfD+UMI3SQPTDv/w4ol6TOwLyI0hwfG9EC+cYlhdflJTmtYTgZ3KqdPSe/otxU4K3kArg==
   dependencies:
     tslib "^1.8.1"
 

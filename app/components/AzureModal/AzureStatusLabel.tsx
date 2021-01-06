@@ -8,8 +8,8 @@ const AzureStatusLabel = ({
 }) => (
 	<Text
 		backgroundColor={connected ? 'Positive' : 'Critical'}
-		color="Card"
-		fontWeight="Bold"
+		color={connected ? 'Positive Dark' : 'Critical Dark'}
+		fontWeight="Demibold"
 		fontSize={1}
 		paddingX="4px"
 		paddingY="2px"
