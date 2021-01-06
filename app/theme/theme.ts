@@ -17,8 +17,8 @@ const theme = {
 		Positive: '#6ce11d',
 		'Positive Dark': '#315d13',
 		'Positive Light': '#def8cc',
-		Caution: '#ffe31e',
-		'Caution Dark': '#a98d01',
+		Caution: '#ffdf00',
+		'Caution Dark': '#6b5900',
 	},
 	space: [ '0', '4px', '8px', '16px', '24px', '32px', '48px' ],
 	fonts: {
