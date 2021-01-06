@@ -11,6 +11,8 @@ import { setAzureCredentials } from '../../store'
 const AzureLoginInput = styled(Input).attrs((props) => ({
 	autoCorrect: 'off',
 	autoCapitalize: 'off',
+	autoComplete: 'off',
+	spellCheck: 'off',
 }))<{ error: boolean }>`
 	padding: ${(props) => props.theme.space[3]};
 	border: 1px solid ${(props) => props.error ? props.theme.colors.Critical : 'transparent'};
