@@ -33,7 +33,7 @@ const AzureLoginForm = ({
 	const dispatch = useDispatch()
 	const [ usernameValue, setUsernameValue ] = useState(username)
 	const [ accessTokenValue, setAccessTokenValue ] = useState('')
-	const [ error, setError ] = useState(online ? 'Please restore internet connectivity before attempting to sign in.' : '')
+	const [ error, setError ] = useState(!online ? 'Please restore internet connectivity before attempting to sign in.' : '')
 
 	const loginToAzure = () => {
 		setError('')
@@ -87,8 +87,9 @@ const AzureLoginForm = ({
 			</Flex>
 			{error && (
 				<Flex
+					justifyContent="center"
 					width="100%"
-					marginBottom={2}
+					marginBottom={4}
 				>
 					<Text color="Critical">
 						{error}
