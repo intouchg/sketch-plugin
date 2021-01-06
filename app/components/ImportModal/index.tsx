@@ -85,7 +85,7 @@ const ImportModal = ({
 				})
 			})
 			.catch((error) => displayErrorBanner(error))
-	}, [ setSelectedImportCategories, setSelectedImportedValues, setSelectedSketchDocumentIndex, sendSketchCommand, dispatch, setImportedSketchValues, setShowLoading, displayErrorBanner ])
+	}, [ setSelectedImportCategories, setSelectedImportedValues, setSelectedSketchDocumentIndex, dispatch, setShowLoading, displayErrorBanner ])
 
 	useEffect(() => {
 		if (sketchDocumentNames.length) {
