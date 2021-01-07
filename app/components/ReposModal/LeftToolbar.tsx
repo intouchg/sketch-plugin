@@ -6,8 +6,8 @@ const LeftToolbar = () => {
 		<Box
 			minWidth="280px"
 			backgroundColor="Background"
-			borderTopRightRadius="Large"
-			borderBottomRightRadius="Large"
+			borderTopLeftRadius="Large"
+			borderBottomLeftRadius="Large"
 		>
 			<Stack
 				position="relative"

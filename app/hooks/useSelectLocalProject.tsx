@@ -10,7 +10,7 @@ export const useSelectLocalProject = (filepath?: string) => {
 	const dispatch = useDispatch()
 	const displayErrorBanner = useDisplayErrorBanner()
 
-	return () => sendSketchCommand('selectLocalProject', filepath ? { filepath } : {})
+	return () => sendSketchCommand('selectLocalProject', { filepath })
 		.then(({ themeData, selectedProjectDirectory, branchName, recentProjects }) => {
 			if (!selectedProjectDirectory) {
 				return
