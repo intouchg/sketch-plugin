@@ -32,10 +32,12 @@ const AzureLoginForm = ({
 	online,
 	username,
 	setShowLoginForm,
+	hideBackButton,
 }: {
 	online: boolean
 	username: string
 	setShowLoginForm: React.Dispatch<React.SetStateAction<boolean>>
+	hideBackButton?: boolean
 }) => {
 	const dispatch = useDispatch()
 	const [ usernameValue, setUsernameValue ] = useState(username)
@@ -105,12 +107,14 @@ const AzureLoginForm = ({
 			)}
 			<Flex
 				alignItems="center"
-				justifyContent="space-between"
+				justifyContent={hideBackButton ? 'flex-end' : 'space-between'}
 				width="100%"
 			>
-				<SecondaryButton onClick={() => setShowLoginForm(false)}>
-					Back
-				</SecondaryButton>
+				{!hideBackButton && (
+					<SecondaryButton onClick={() => setShowLoginForm(false)}>
+						Back
+					</SecondaryButton>
+				)}
 				<LimitInteraction
 					as={PrimaryButton}
 					unlimit={online && Boolean(usernameValue && accessTokenValue)}

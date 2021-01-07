@@ -5,7 +5,7 @@ import { ModalBackground } from '../ModalBackground'
 import { InvisibleButton } from '../Buttons'
 import { ModalText } from '../Texts'
 import { AzureLoginForm } from '../AzureLoginForm'
-import { AzureStatusLabel } from './AzureStatusLabel'
+import { AzureStatusLabel } from '../AzureStatusLabel'
 import { AzureRepoInfo } from './AzureRepoInfo'
 import { forgetAzureCredentials } from '../../store'
 import { CloseModalButton } from '../CloseModalButton'
@@ -33,10 +33,7 @@ const AzureModal = ({
 				borderRadius="Large"
 			>
 				<CloseModalButton onClick={() => setShowAzureModal(false)} />
-				<Stack
-					flexGrow={1}
-					overflow="hidden"
-				>
+				<Stack flexGrow={1}>
 					<Flex
 						alignItems="baseline"
 						justifyContent="space-between"

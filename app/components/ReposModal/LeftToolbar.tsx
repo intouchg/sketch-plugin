@@ -2,8 +2,8 @@ import React from 'react'
 import { Box, Stack } from '@i/components'
 
 const LeftToolbar = () => {
-    return (
-        <Box
+	return (
+		<Box
 			minWidth="280px"
 			backgroundColor="Background"
 			borderTopRightRadius="Large"
@@ -13,10 +13,10 @@ const LeftToolbar = () => {
 				position="relative"
 				height="100%"
 			>
-                Left Toolbar
-            </Stack>
-        </Box>
-    )
+				Left Toolbar
+			</Stack>
+		</Box>
+	)
 }
 
 export { LeftToolbar }
