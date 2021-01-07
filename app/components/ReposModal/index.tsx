@@ -7,7 +7,6 @@ import { ReposList } from './ReposList'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { CloseModalButton } from '../CloseModalButton'
-import { AzureStatusLabel } from '../AzureStatusLabel'
 
 // TO DO: Loading component
 
@@ -54,15 +53,6 @@ const ReposModal = ({
 						</Flex>
 					</>
 				)}
-				<Flex marginBottom={4}>
-					<Heading marginRight={2}>
-						Azure Projects
-					</Heading>
-					<AzureStatusLabel
-						online={online}
-						connected={connected}
-					/>
-				</Flex>
 			</Flex>
 		</ModalBackground>
 	)

@@ -95,6 +95,7 @@ const AzureModal = ({
 						<AzureLoginForm
 							online={online}
 							username={username}
+							accessToken={accessToken}
 							setShowLoginForm={setShowLoginForm}
 							setAzureModalState={setAzureModalState}
 							redirectToReposModal={redirectToReposModal}

@@ -32,6 +32,7 @@ const AUTHENTICATION_ERROR_MESSAGE = 'Authentication failed. Please check your u
 const AzureLoginForm = ({
 	online,
 	username,
+	accessToken,
 	setShowLoginForm,
 	setAzureModalState,
 	redirectToReposModal,
@@ -39,6 +40,7 @@ const AzureLoginForm = ({
 }: {
 	online: boolean
 	username: string
+	accessToken: string
 	setShowLoginForm: React.Dispatch<React.SetStateAction<boolean>>
 	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
 	redirectToReposModal: boolean
@@ -47,8 +49,20 @@ const AzureLoginForm = ({
 	const dispatch = useDispatch()
 	const [ usernameValue, setUsernameValue ] = useState(username)
 	const [ accessTokenValue, setAccessTokenValue ] = useState('')
+	const [ connected, setConnected ] = useState(username && accessToken)
 	const [ error, setError ] = useState('')
 	useEffect(() => setError(!online ? OFFLINE_ERROR_MESSAGE : ''), [ online ])
+	useEffect(() => setConnected(username && accessToken), [ username, accessToken ])
+
+	if (connected) {
+		if (redirectToReposModal) {
+			setAzureModalState(null)
+			setShowReposModal(true)
+		}
+		else {
+			setShowLoginForm(false)
+		}
+	}
 
 	const loginToAzure = () => {
 		sendSketchCommand('loginToAzure', {
