@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring'
@@ -7,6 +7,7 @@ import { InvisibleButton, TertiaryButton } from '../Buttons'
 import { EllipsesIcon } from '../Icons'
 import { topToolbarHeight } from './index'
 import { initialAzureState, setThemeData, setLocalProject, setBranchName } from '../../store'
+import { useOutsideClickListener } from '../../hooks'
 
 const MoreMenu = ({
 	showProjectOptions,
@@ -15,8 +16,11 @@ const MoreMenu = ({
 }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const menuButtonElement = useRef<HTMLDivElement>(null)
 	const [ showMenu, setShowMenu ] = useState(false)
 	const spring = useSpring({ maxHeight: showMenu ? '340px' : '0px' })
+	const hideMenu = useCallback(() => setShowMenu(false), [ setShowMenu ])
+	useOutsideClickListener(menuButtonElement, hideMenu)
 
 	const closeProject = () => {
 		navigate('/')
@@ -26,7 +30,10 @@ const MoreMenu = ({
 	}
 
 	return (
-		<>
+		<div
+			ref={menuButtonElement}
+			style={{ display: 'inline-block' }}
+		>
 			<InvisibleButton
 				paddingX={2}
 				paddingY={3}
@@ -43,13 +50,17 @@ const MoreMenu = ({
                     position: 'fixed',
                     top: topToolbarHeight,
                     right: 0,
-                    overflow: 'hidden',
+					overflow: 'hidden',
+					transform: 'scale3d(1, 1, 1)',
                     ...spring,
-                }}
+				}}
 			>
 				<Box
 					padding={3}
 					backgroundColor="Card"
+					borderWidth="1px"
+					borderStyle="solid"
+					borderColor="Accent"
 					borderRadius="Medium"
 					boxShadow="Medium"
 				>
@@ -60,7 +71,7 @@ const MoreMenu = ({
 					)}
 				</Box>
 			</animated.div>
-		</>
+		</div>
 	)
 }
 

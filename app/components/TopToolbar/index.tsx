@@ -24,13 +24,13 @@ const TopToolbar = ({
 			height={topToolbarHeight}
 			alignItems="center"
 			justifyContent="space-between"
-			backgroundColor="Card"
+			backgroundColor={setShowImportModal ? 'Card' : 'none'}
 			paddingX={3}
-			boxShadow="Medium"
+			boxShadow={setShowImportModal ? 'Medium' : 'none'}
 			zIndex={3}
 		>
 			<Heading>
-				{localProject ? localProject.split('/').pop() : 'IDS Plugin'}
+				{localProject ? localProject.split('/').pop() : ''}
 			</Heading>
 			<Box>
 				{setShowImportModal && (

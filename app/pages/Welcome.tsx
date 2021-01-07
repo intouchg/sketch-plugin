@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box, Stack, Flex, Heading } from '@i/components'
-import { TopToolbar, AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal } from '../components'
+import { TopToolbar, AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal, topToolbarHeight } from '../components'
 import { useSelectLocalProject } from '../hooks'
 import pkg from '../../package.json'
 
@@ -16,7 +16,7 @@ const Welcome = ({
 		<>
 			<TopToolbar setShowAzureModal={setShowAzureModal} />
 			<Flex
-				height="100vh"
+				height={`calc(100vh - ${topToolbarHeight})`}
 				alignItems="center"
 				justifyContent="center"
 			>
@@ -32,7 +32,7 @@ const Welcome = ({
 							variant="Secondary"
 							marginBottom={1}
 						>
-							IDS Editor
+							IDS Plugin
 						</Heading>
 						<AccentText textTransform="unset">
 							v&thinsp;{pkg.version}
