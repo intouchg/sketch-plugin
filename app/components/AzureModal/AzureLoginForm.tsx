@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, batch } from 'react-redux'
 import { Flex, Stack, Input, Text } from '@i/components'
-import { PrimaryButton, SecondaryButton, TertiaryButton } from './Buttons'
-import { AccentText } from './Texts'
-import { LimitInteraction } from './LimitInteraction'
-import { sendSketchCommand, openBrowserWindow } from '../sketchApi'
-import { setAzureCredentials } from '../store'
+import { PrimaryButton, SecondaryButton, TertiaryButton } from '../Buttons'
+import { AccentText } from '../Texts'
+import { LimitInteraction } from '../LimitInteraction'
+import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
+import { setAzureCredentials } from '../../store'
+import type { AzureModalState } from '../../App'
 
 const AzureLoginInput = styled(Input).attrs<
 	typeof Input
@@ -32,12 +33,16 @@ const AzureLoginForm = ({
 	online,
 	username,
 	setShowLoginForm,
-	hideBackButton,
+	setAzureModalState,
+	redirectToReposModal,
+	setShowReposModal,
 }: {
 	online: boolean
 	username: string
 	setShowLoginForm: React.Dispatch<React.SetStateAction<boolean>>
-	hideBackButton?: boolean
+	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
+	redirectToReposModal: boolean
+	setShowReposModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
 	const [ usernameValue, setUsernameValue ] = useState(username)
@@ -52,7 +57,14 @@ const AzureLoginForm = ({
 		})
 			.then((credentials) => batch(() => {
 				dispatch(setAzureCredentials(credentials))
-				setShowLoginForm(false)
+
+				if (redirectToReposModal) {
+					setAzureModalState(null)
+					setShowReposModal(true)
+				}
+				else {
+					setShowLoginForm(false)
+				}
 			}))
 			.catch((error) => setError(error.includes('401') ? AUTHENTICATION_ERROR_MESSAGE : error))
 	}
@@ -107,14 +119,12 @@ const AzureLoginForm = ({
 			)}
 			<Flex
 				alignItems="center"
-				justifyContent={hideBackButton ? 'flex-end' : 'space-between'}
+				justifyContent="space-between"
 				width="100%"
 			>
-				{!hideBackButton && (
-					<SecondaryButton onClick={() => setShowLoginForm(false)}>
-						Back
-					</SecondaryButton>
-				)}
+				<SecondaryButton onClick={() => redirectToReposModal ? setAzureModalState(null) : setShowLoginForm(false)}>
+					Back
+				</SecondaryButton>
 				<LimitInteraction
 					as={PrimaryButton}
 					unlimit={online && Boolean(usernameValue && accessTokenValue)}

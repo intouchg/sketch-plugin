@@ -6,12 +6,15 @@ import { useWindowSketchListener, useWindowInternetListener, useInitializeSketch
 import { Welcome, Main } from './pages'
 import { MessageBanner, AzureModal, SettingsModal } from './components'
 
+export type AzureModalState = 'standard' | 'redirectToRepos' | null
+
 const App = () => {
 	useWindowSketchListener()
 	useWindowInternetListener()
 	useInitializeSketchData()
-	const [ showAzureModal, setShowAzureModal ] = useState(false)
 	const [ showSettingsModal, setShowSettingsModal ] = useState(false)
+	const [ showReposModal, setShowReposModal ] = useState(false)
+	const [ azureModalState, setAzureModalState ] = useState<AzureModalState>(null)
 
 	return (
 		<ThemeProvider theme={sketchPluginTheme}>
@@ -21,7 +24,9 @@ const App = () => {
 					path="/"
 					element={
 						<Welcome
-							setShowAzureModal={setShowAzureModal}
+							showReposModal={showReposModal}
+							setShowReposModal={setShowReposModal}
+							setAzureModalState={setAzureModalState}
 							setShowSettingsModal={setShowSettingsModal}
 						/>
 					}
@@ -30,14 +35,18 @@ const App = () => {
 					path="main/*"
 					element={
 						<Main
-							setShowAzureModal={setShowAzureModal}
+							setAzureModalState={setAzureModalState}
 							setShowSettingsModal={setShowSettingsModal}
 						/>
 					}
 				/>
 			</Routes>
-			{showAzureModal && (
-				<AzureModal setShowAzureModal={setShowAzureModal} />
+			{azureModalState && (
+				<AzureModal
+					azureModalState={azureModalState}
+					setAzureModalState={setAzureModalState}
+					setShowReposModal={setShowReposModal}
+				/>
 			)}
 			{showSettingsModal && (
 				<SettingsModal setShowSettingsModal={setShowSettingsModal} />

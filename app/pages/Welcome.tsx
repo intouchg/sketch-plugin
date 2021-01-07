@@ -1,24 +1,31 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Box, Stack, Flex, Heading } from '@i/components'
 import { TopToolbar, AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal, ReposModal, topToolbarHeight } from '../components'
 import { useSelectLocalProject } from '../hooks'
 import pkg from '../../package.json'
+import type { AzureModalState } from '../App'
 
 const Welcome = ({
-	setShowAzureModal,
+	showReposModal,
+	setShowReposModal,
+	setAzureModalState,
 	setShowSettingsModal,
 }: {
-	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
+	showReposModal: boolean
+	setShowReposModal: React.Dispatch<React.SetStateAction<boolean>>
+	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
 	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const selectLocalProject = useSelectLocalProject()
-	const [ showReposModal, setShowReposModal ] = useState(false)
+	const { username, accessToken } = useSelector((state) => state.azure.credentials)
+	const connected = Boolean(username && accessToken)
 	const [ showNewProjectModal, setShowNewProjectModal ] = useState(false)
 
 	return (
 		<>
 			<TopToolbar
-				setShowAzureModal={setShowAzureModal}
+				setAzureModalState={setAzureModalState}
 				setShowSettingsModal={setShowSettingsModal}
 			/>
 			<Flex
@@ -55,7 +62,7 @@ const Welcome = ({
 								</WelcomeButton>
 								<WelcomeButton
 									marginX="1.125em"
-									onClick={() => setShowReposModal(true)}
+									onClick={() => connected ? setShowReposModal(true) : setAzureModalState('redirectToRepos')}
 								>
 									Download
 								</WelcomeButton>

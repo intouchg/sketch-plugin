@@ -3,12 +3,13 @@ import { useSelector } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Flex } from '@i/components'
 import { TopToolbar, LeftNavbar, ThemeEditor, ComponentEditor, ImportModal } from '../components'
+import type { AzureModalState } from '../App'
 
 const Main = ({
-	setShowAzureModal,
+	setAzureModalState,
 	setShowSettingsModal,
 }: {
-	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
+	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
 	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const [ showImportModal, setShowImportModal ] = useState(false)
@@ -25,7 +26,7 @@ const Main = ({
 			<TopToolbar
 				showProjectOptions
 				setShowImportModal={setShowImportModal}
-				setShowAzureModal={setShowAzureModal}
+				setAzureModalState={setAzureModalState}
 				setShowSettingsModal={setShowSettingsModal}
 			/>
 			<Flex>

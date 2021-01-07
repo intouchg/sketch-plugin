@@ -5,18 +5,19 @@ import { ImportButton } from './ImportButton'
 import { PreviewButton } from './PreviewButton'
 import { AzureStatus } from './AzureStatus'
 import { MoreMenu } from './MoreMenu'
+import type { AzureModalState } from '../../App'
 
 export const topToolbarHeight = '64px'
 
 const TopToolbar = ({
 	showProjectOptions,
 	setShowImportModal,
-	setShowAzureModal,
+	setAzureModalState,
 	setShowSettingsModal,
 }: {
 	showProjectOptions?: boolean
 	setShowImportModal?: React.Dispatch<React.SetStateAction<boolean>>
-	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
+	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
 	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const localProject = useSelector((state) => state.azure.localProject)
@@ -41,7 +42,7 @@ const TopToolbar = ({
 						<PreviewButton />
 					</>
 				)}
-				<AzureStatus setShowAzureModal={setShowAzureModal} />
+				<AzureStatus setAzureModalState={setAzureModalState} />
 				<MoreMenu
 					showProjectOptions={showProjectOptions}
 					setShowSettingsModal={setShowSettingsModal}

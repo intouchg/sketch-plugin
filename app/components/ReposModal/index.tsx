@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Stack, Heading, Text } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
-import { AzureLoginForm } from '../AzureLoginForm'
 import { LeftToolbar } from './LeftToolbar'
 import { ReposList } from './ReposList'
 import { sendSketchCommand } from '../../sketchApi'
@@ -21,7 +20,6 @@ const ReposModal = ({
 	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
-	const [ showLoginForm, setShowLoginForm ] = useState(!connected)
 	const [ showLoading, setShowLoading ] = useState(false)
 
 	return (
@@ -56,40 +54,15 @@ const ReposModal = ({
 						</Flex>
 					</>
 				)}
-				{showLoginForm && (
-					<Stack
-						alignItems="center"
-						justifyContent="center"
-						alignSelf="center"
-						marginX="auto"
-					>
-						<Text marginBottom={6}>
-							Sign in to Azure to view downloadable projects.
-						</Text>
-						<Stack
-							width="560px"
-							padding={5}
-							borderRadius="Large"
-							backgroundColor="Background"
-						>
-							<Flex marginBottom={4}>
-								<Heading marginRight={2}>
-									Azure
-								</Heading>
-								<AzureStatusLabel
-									online={online}
-									connected={connected}
-								/>
-							</Flex>
-							<AzureLoginForm
-								hideBackButton
-								online={online}
-								username={username}
-								setShowLoginForm={setShowLoginForm}
-							/>
-						</Stack>
-					</Stack>
-				)}
+				<Flex marginBottom={4}>
+					<Heading marginRight={2}>
+						Azure Projects
+					</Heading>
+					<AzureStatusLabel
+						online={online}
+						connected={connected}
+					/>
+				</Flex>
 			</Flex>
 		</ModalBackground>
 	)

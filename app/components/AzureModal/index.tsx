@@ -4,22 +4,28 @@ import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { InvisibleButton } from '../Buttons'
 import { ModalText } from '../Texts'
-import { AzureLoginForm } from '../AzureLoginForm'
+import { AzureLoginForm } from './AzureLoginForm'
 import { AzureStatusLabel } from '../AzureStatusLabel'
 import { AzureRepoInfo } from './AzureRepoInfo'
 import { forgetAzureCredentials } from '../../store'
 import { CloseModalButton } from '../CloseModalButton'
+import type { AzureModalState } from '../../App'
 
 const AzureModal = ({
-	setShowAzureModal,
+	azureModalState,
+	setAzureModalState,
+	setShowReposModal,
 }: {
-	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
+	azureModalState: AzureModalState
+	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
+	setShowReposModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
 	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
-	const [ showLoginForm, setShowLoginForm ] = useState(false)
+	const redirectToReposModal = azureModalState === 'redirectToRepos'
+	const [ showLoginForm, setShowLoginForm ] = useState(redirectToReposModal)
 
 	const signOut = () => dispatch(forgetAzureCredentials())
 
@@ -32,7 +38,7 @@ const AzureModal = ({
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<CloseModalButton onClick={() => setShowAzureModal(false)} />
+				<CloseModalButton onClick={() => setAzureModalState(null)} />
 				<Stack flexGrow={1}>
 					<Flex
 						alignItems="baseline"
@@ -90,6 +96,9 @@ const AzureModal = ({
 							online={online}
 							username={username}
 							setShowLoginForm={setShowLoginForm}
+							setAzureModalState={setAzureModalState}
+							redirectToReposModal={redirectToReposModal}
+							setShowReposModal={setShowReposModal}
 						/>
 					)}
 				</Stack>

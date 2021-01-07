@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Stack } from '@i/components'
+import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { CloseModalButton } from './CloseModalButton'
 
@@ -22,7 +22,9 @@ const SettingsModal = ({
 					flexGrow={1}
 					overflow="hidden"
 				>
-					Settings
+					<Heading marginRight={2}>
+						Settings
+					</Heading>
 				</Stack>
 			</Flex>
 		</ModalBackground>

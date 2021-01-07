@@ -1,4 +1,3 @@
-export * from './AzureLoginForm'
 export * from './AzureStatusLabel'
 export * from './AzureModal'
 export * from './Buttons'
