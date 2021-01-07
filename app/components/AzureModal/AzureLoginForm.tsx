@@ -86,6 +86,7 @@ const AzureLoginForm = ({
 				</Text>
 				<TertiaryButton
 					fontSize={2}
+					textDecoration="underline"
 					onClick={() => openBrowserWindow('https://google.com')}
 				>
 					Follow the Azure setup user guide.

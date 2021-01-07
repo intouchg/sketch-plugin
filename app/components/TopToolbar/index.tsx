@@ -4,13 +4,16 @@ import { Flex, Heading, Box } from '@i/components'
 import { ImportButton } from './ImportButton'
 import { PreviewButton } from './PreviewButton'
 import { AzureStatus } from './AzureStatus'
+import { MoreMenu } from './MoreMenu'
 
 export const topToolbarHeight = '64px'
 
 const TopToolbar = ({
+	showProjectOptions,
 	setShowImportModal,
 	setShowAzureModal,
 }: {
+	showProjectOptions?: boolean
 	setShowImportModal?: React.Dispatch<React.SetStateAction<boolean>>
 	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
@@ -37,6 +40,7 @@ const TopToolbar = ({
 					</>
 				)}
 				<AzureStatus setShowAzureModal={setShowAzureModal} />
+				<MoreMenu showProjectOptions={showProjectOptions} />
 			</Box>
 		</Flex>
 	)

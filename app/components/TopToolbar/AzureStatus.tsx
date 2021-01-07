@@ -16,7 +16,7 @@ const AzureStatus = ({
 	return (
 		<InvisibleButton
 			paddingY={3}
-			marginRight={4}
+			marginRight={3}
 			onClick={() => setShowAzureModal(true)}
 		>
 			<AccentText color="Text">

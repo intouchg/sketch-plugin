@@ -13,6 +13,7 @@ const Main = ({
 	return (
 		<>
 			<TopToolbar
+				showProjectOptions
 				setShowImportModal={setShowImportModal}
 				setShowAzureModal={setShowAzureModal}
 			/>
