@@ -12,10 +12,12 @@ const TopToolbar = ({
 	showProjectOptions,
 	setShowImportModal,
 	setShowAzureModal,
+	setShowSettingsModal,
 }: {
 	showProjectOptions?: boolean
 	setShowImportModal?: React.Dispatch<React.SetStateAction<boolean>>
 	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
+	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const localProject = useSelector((state) => state.azure.localProject)
 
@@ -40,7 +42,10 @@ const TopToolbar = ({
 					</>
 				)}
 				<AzureStatus setShowAzureModal={setShowAzureModal} />
-				<MoreMenu showProjectOptions={showProjectOptions} />
+				<MoreMenu
+					showProjectOptions={showProjectOptions}
+					setShowSettingsModal={setShowSettingsModal}
+				/>
 			</Box>
 		</Flex>
 	)

@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring'
-import { Box } from '@i/components'
+import { Stack } from '@i/components'
 import { InvisibleButton, TertiaryButton } from '../Buttons'
 import { EllipsesIcon } from '../Icons'
 import { topToolbarHeight } from './index'
@@ -11,8 +11,10 @@ import { useOutsideClickListener } from '../../hooks'
 
 const MoreMenu = ({
 	showProjectOptions,
+	setShowSettingsModal,
 }: {
 	showProjectOptions?: boolean
+	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -55,7 +57,8 @@ const MoreMenu = ({
                     ...spring,
 				}}
 			>
-				<Box
+				<Stack
+					alignItems="flex-start"
 					padding={3}
 					backgroundColor="Card"
 					borderWidth="1px"
@@ -64,12 +67,21 @@ const MoreMenu = ({
 					borderRadius="Medium"
 					boxShadow="Medium"
 				>
+					<TertiaryButton
+						padding={2}
+						onClick={() => setShowSettingsModal(true)}
+					>
+						Settings
+					</TertiaryButton>
 					{showProjectOptions && (
-						<TertiaryButton onClick={closeProject}>
+						<TertiaryButton
+							padding={2}
+							onClick={closeProject}
+						>
 							Close Project
 						</TertiaryButton>
 					)}
-				</Box>
+				</Stack>
 			</animated.div>
 		</div>
 	)

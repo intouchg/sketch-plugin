@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Heading, Box, Button } from '@i/components'
+import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { InvisibleButton } from '../Buttons'
 import { CloseIcon } from '../Icons'

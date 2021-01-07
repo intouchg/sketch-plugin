@@ -6,15 +6,20 @@ import pkg from '../../package.json'
 
 const Welcome = ({
 	setShowAzureModal,
+	setShowSettingsModal,
 }: {
 	setShowAzureModal: React.Dispatch<React.SetStateAction<boolean>>
+	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const selectLocalProject = useSelectLocalProject()
 	const [ showNewProjectModal, setShowNewProjectModal ] = useState(false)
 
 	return (
 		<>
-			<TopToolbar setShowAzureModal={setShowAzureModal} />
+			<TopToolbar
+				setShowAzureModal={setShowAzureModal}
+				setShowSettingsModal={setShowSettingsModal}
+			/>
 			<Flex
 				height={`calc(100vh - ${topToolbarHeight})`}
 				alignItems="center"
