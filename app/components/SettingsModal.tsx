@@ -1,8 +1,7 @@
 import React from 'react'
 import { Flex, Stack } from '@i/components'
 import { ModalBackground } from './ModalBackground'
-import { InvisibleButton } from './Buttons'
-import { CloseIcon } from './Icons'
+import { CloseModalButton } from './CloseModalButton'
 
 const SettingsModal = ({
 	setShowSettingsModal,
@@ -18,19 +17,7 @@ const SettingsModal = ({
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<InvisibleButton
-					position="absolute"
-					top="0"
-					right="0"
-					padding={2}
-					zIndex={3}
-					onClick={() => setShowSettingsModal(false)}
-				>
-					<CloseIcon
-						width="13px"
-						fill="Accent"
-					/>
-				</InvisibleButton>
+				<CloseModalButton onClick={() => setShowSettingsModal(false)} />
 				<Stack
 					flexGrow={1}
 					overflow="hidden"

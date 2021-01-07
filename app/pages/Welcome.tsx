@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box, Stack, Flex, Heading } from '@i/components'
-import { TopToolbar, AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal, topToolbarHeight } from '../components'
+import { TopToolbar, AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal, ReposModal, topToolbarHeight } from '../components'
 import { useSelectLocalProject } from '../hooks'
 import pkg from '../../package.json'
 
@@ -12,6 +12,7 @@ const Welcome = ({
 	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const selectLocalProject = useSelectLocalProject()
+	const [ showReposModal, setShowReposModal ] = useState(false)
 	const [ showNewProjectModal, setShowNewProjectModal ] = useState(false)
 
 	return (
@@ -52,7 +53,10 @@ const Welcome = ({
 								>
 									Open
 								</WelcomeButton>
-								<WelcomeButton marginX="1.125em">
+								<WelcomeButton
+									marginX="1.125em"
+									onClick={() => setShowReposModal(true)}
+								>
 									Download
 								</WelcomeButton>
 							</Flex>
@@ -70,6 +74,9 @@ const Welcome = ({
 					</Flex>
 				</Box>
 			</Flex>
+			{showReposModal && (
+				<ReposModal setShowReposModal={setShowReposModal} />
+			)}
 			{showNewProjectModal && (
 				<NewProjectModal setShowNewProjectModal={setShowNewProjectModal} />
 			)}

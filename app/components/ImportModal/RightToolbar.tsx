@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Stack, Box, Flex, Text } from '@i/components'
 import { InvisibleButton, PrimaryButton } from '../Buttons'
 import { AccentText, SecondaryText } from '../Texts'
-import { CloseIcon } from '../Icons'
+import { CloseModalButton } from '../CloseModalButton'
 import { Checkbox } from '../Checkbox'
 import { routes, routeTitles } from './index'
 import type { ImportModalRoute } from './index'
@@ -162,19 +162,7 @@ const RightToolbar = ({
 				position="relative"
 				height="100%"
 			>
-				<InvisibleButton
-					position="absolute"
-					top="0"
-					right="0"
-					padding={2}
-					zIndex={3}
-					onClick={() => setShowImportModal(false)}
-				>
-					<CloseIcon
-						width="13px"
-						fill="Accent"
-					/>
-				</InvisibleButton>
+				<CloseModalButton onClick={() => setShowImportModal(false)} />
 				<Flex
 					marginTop={6}
 					marginBottom={4}

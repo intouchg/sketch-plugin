@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, batch } from 'react-redux'
 import { Flex, Stack, Input, Text } from '@i/components'
-import { PrimaryButton, SecondaryButton, TertiaryButton } from '../Buttons'
-import { AccentText } from '../Texts'
-import { LimitInteraction } from '../LimitInteraction'
-import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
-import { setAzureCredentials } from '../../store'
+import { PrimaryButton, SecondaryButton, TertiaryButton } from './Buttons'
+import { AccentText } from './Texts'
+import { LimitInteraction } from './LimitInteraction'
+import { sendSketchCommand, openBrowserWindow } from '../sketchApi'
+import { setAzureCredentials } from '../store'
 
 const AzureLoginInput = styled(Input).attrs<
 	typeof Input
@@ -56,7 +56,7 @@ const AzureLoginForm = ({
 	}
 
 	return (
-		<>
+		<Stack>
 			<Stack marginBottom={3}>
 				<AccentText marginBottom={2}>
 					Email Address
@@ -119,7 +119,7 @@ const AzureLoginForm = ({
 					Sign In
 				</LimitInteraction>
 			</Flex>
-		</>
+		</Stack>
 	)
 }
 

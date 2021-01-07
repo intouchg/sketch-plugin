@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux'
 import { Flex, Stack, Heading, Box } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { InvisibleButton, PrimaryButton } from './Buttons'
-import { CloseIcon, FolderIcon } from './Icons'
+import { FolderIcon } from './Icons'
 import { AccentText, TruncatedText } from './Texts'
+import { CloseModalButton } from './CloseModalButton'
 import { LimitInteraction } from './LimitInteraction'
 import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from '../hooks'
@@ -33,19 +34,7 @@ const NewProjectModal = ({
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<InvisibleButton
-					position="absolute"
-					top="0"
-					right="0"
-					padding={2}
-					zIndex={3}
-					onClick={() => setShowNewProjectModal(false)}
-				>
-					<CloseIcon
-						width="13px"
-						fill="Accent"
-					/>
-				</InvisibleButton>
+				<CloseModalButton onClick={() => setShowNewProjectModal(false)} />
 				<Stack
 					flexGrow={1}
 					overflow="hidden"

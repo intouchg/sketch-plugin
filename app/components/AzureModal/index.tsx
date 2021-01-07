@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { InvisibleButton } from '../Buttons'
-import { CloseIcon } from '../Icons'
 import { ModalText } from '../Texts'
+import { AzureLoginForm } from '../AzureLoginForm'
 import { AzureStatusLabel } from './AzureStatusLabel'
 import { AzureRepoInfo } from './AzureRepoInfo'
-import { AzureLoginForm } from './AzureLoginForm'
 import { forgetAzureCredentials } from '../../store'
+import { CloseModalButton } from '../CloseModalButton'
 
 const AzureModal = ({
 	setShowAzureModal,
@@ -18,8 +18,8 @@ const AzureModal = ({
 	const dispatch = useDispatch()
 	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
-	const [ showLoginForm, setShowLoginForm ] = useState(false)
 	const connected = Boolean(username && accessToken)
+	const [ showLoginForm, setShowLoginForm ] = useState(false)
 
 	const signOut = () => dispatch(forgetAzureCredentials())
 
@@ -32,19 +32,7 @@ const AzureModal = ({
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<InvisibleButton
-					position="absolute"
-					top="0"
-					right="0"
-					padding={2}
-					zIndex={3}
-					onClick={() => setShowAzureModal(false)}
-				>
-					<CloseIcon
-						width="13px"
-						fill="Accent"
-					/>
-				</InvisibleButton>
+				<CloseModalButton onClick={() => setShowAzureModal(false)} />
 				<Stack
 					flexGrow={1}
 					overflow="hidden"
