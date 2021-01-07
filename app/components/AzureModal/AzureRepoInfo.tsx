@@ -17,6 +17,7 @@ const AzureRepoInfo = ({
 	const localProject = useSelector((state) => state.azure.localProject)
 	const branchName = useSelector((state) => state.azure.branchName)
 	const lastPush = useSelector((state) => state.azure.lastPush)
+	const canUndo = useSelector((state) => state.theme.canUndo)
 	const selectLocalProject = useSelectLocalProject()
 
 	if (!localProject) {
@@ -81,7 +82,7 @@ const AzureRepoInfo = ({
 				</Flex>
 			</Flex>
 			<LimitInteraction
-				unlimit={online && connected}
+				unlimit={online && connected && canUndo}
 				display="flex"
 				width="100%"
 			>

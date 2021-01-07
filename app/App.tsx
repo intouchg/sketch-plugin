@@ -35,6 +35,7 @@ const App = () => {
 					path="main/*"
 					element={
 						<Main
+							azureModalState={azureModalState}
 							setAzureModalState={setAzureModalState}
 							setShowSettingsModal={setShowSettingsModal}
 						/>

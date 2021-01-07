@@ -29,19 +29,18 @@ const changeHistory: { [key: number]: any } = {}
 let currentVersion = -1
 const maxNumberOfVersions = 100
 
+// All UNDOABLE_ACTIONS must also be SAVEABLE_ACTIONS
 const UNDOABLE_ACTIONS = [
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
+	SAVE_IMPORTED_SKETCH_VALUES,
 ]
 
 const SAVEABLE_ACTIONS = [
 	UNDO,
 	REDO,
-	SAVE_IMPORTED_SKETCH_VALUES,
-	CREATE_THEME_VALUE,
-	UPDATE_THEME_VALUE,
-	DELETE_THEME_VALUE,
+	...UNDOABLE_ACTIONS,
 ]
 
 /* eslint-disable complexity */
