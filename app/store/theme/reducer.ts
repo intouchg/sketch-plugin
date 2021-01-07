@@ -77,6 +77,8 @@ export const themeReducer = (
 				// TO DO: Make sure this doesn't confuse you later...
 				// Some ThemeValue['type']s are filtered out here, like zIndex
 
+				nextState.values = initialThemeState.values
+
 				values.forEach((value) => {
 					const key = themeTypePropertyMap[value.type]
 
