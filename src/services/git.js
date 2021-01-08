@@ -92,7 +92,7 @@ export const pushChanges = () => new Promise((resolve, reject) => {
 				resolve(true)
 			}
 			else {
-				reject('Failed to push changes, exited with code ' + code)
+				reject(Error('Failed to push changes, exited with code ' + code))
 			}
 		}
 
@@ -115,7 +115,7 @@ export const pullChanges = () => new Promise((resolve, reject) => {
 				resolve(true)
 			}
 			else {
-				reject('Failed to pull changes, exited with code ' + code)
+				reject(Error('Failed to pull changes, exited with code ' + code))
 			}
 		}
 
