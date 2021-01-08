@@ -3,16 +3,16 @@ import { hasCommittedRemoteChanges, hasUncommittedLocalChanges, commitChanges, p
 export const saveChangesToAzure = async (state, payload) => {
 	try {
 		if (await hasUncommittedLocalChanges()) {
-            await commitChanges('IDS pre-push automated save')
-        }
+			await commitChanges('IDS pre-push automated save')
+		}
 
-        if (await hasCommittedRemoteChanges()) {
-            await pullChanges()
-        }
+		if (await hasCommittedRemoteChanges()) {
+			await pullChanges()
+		}
 
-        await pushChanges()
+		await pushChanges()
 
-        return true
+		return true
 	}
 	catch (error) {
 		throw Error('Failed to save changes to Azure: ' + error)
