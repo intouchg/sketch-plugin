@@ -84,12 +84,12 @@ export const commitChanges = (message) => new Promise((resolve, reject) => {
 
 export const pullChanges = async () => {
 	try {
-		console.log(test)
+		if ()
 		// await commitChanges('')
-		const hasCommittedLocalChanges = hasCommittedLocalChanges()
-		const hasCommittedRemoteChanges = hasCommittedRemoveChanges(branchName)
-		console.log('hasCommittedLocalChanges = ', hasCommittedLocalChanges)
-		console.log('hasCommittedRemoteChanges = ', hasCommittedRemoteChanges)
+		const hasLocalChanges = hasCommittedLocalChanges()
+		const hasRemoteChanges = hasCommittedRemoteChanges()
+		console.log('hasCommittedLocalChanges = ', hasLocalChanges)
+		console.log('hasCommittedRemoteChanges = ', hasRemoteChanges)
 		// const onStdOut = (data) => {}
 		// const onStdErr = (data) => reject(data)
 		// const onClose = (code) => resolve(true)
