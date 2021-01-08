@@ -6,8 +6,7 @@ import { PrimaryButton, SecondaryButton, TertiaryButton } from '../Buttons'
 import { AccentText } from '../Texts'
 import { LimitInteraction } from '../LimitInteraction'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
-import { setAzureCredentials } from '../../store'
-import type { AzureModalState } from '../../App'
+import { setAzureCredentials, setAzureModalState, setShowReposModal } from '../../store'
 
 const AzureLoginInput = styled(Input).attrs<
 	typeof Input
@@ -34,17 +33,13 @@ const AzureLoginForm = ({
 	username,
 	accessToken,
 	setShowLoginForm,
-	setAzureModalState,
 	redirectToReposModal,
-	setShowReposModal,
 }: {
 	online: boolean
 	username: string
 	accessToken: string
 	setShowLoginForm: React.Dispatch<React.SetStateAction<boolean>>
-	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
 	redirectToReposModal: boolean
-	setShowReposModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
 	const [ usernameValue, setUsernameValue ] = useState(username)
@@ -56,8 +51,8 @@ const AzureLoginForm = ({
 
 	if (connected) {
 		if (redirectToReposModal) {
-			setAzureModalState(null)
-			setShowReposModal(true)
+			dispatch(setAzureModalState(null))
+			dispatch(setShowReposModal(true))
 		}
 		else {
 			setShowLoginForm(false)
@@ -73,8 +68,8 @@ const AzureLoginForm = ({
 				dispatch(setAzureCredentials(credentials))
 
 				if (redirectToReposModal) {
-					setAzureModalState(null)
-					setShowReposModal(true)
+					dispatch(setAzureModalState(null))
+					dispatch(setShowReposModal(true))
 				}
 				else {
 					setShowLoginForm(false)
@@ -136,7 +131,7 @@ const AzureLoginForm = ({
 				justifyContent="space-between"
 				width="100%"
 			>
-				<SecondaryButton onClick={() => redirectToReposModal ? setAzureModalState(null) : setShowLoginForm(false)}>
+				<SecondaryButton onClick={() => redirectToReposModal ? dispatch(setAzureModalState(null)) : setShowLoginForm(false)}>
 					Back
 				</SecondaryButton>
 				<LimitInteraction

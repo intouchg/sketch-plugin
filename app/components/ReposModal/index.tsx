@@ -6,15 +6,12 @@ import { LeftToolbar } from './LeftToolbar'
 import { ReposList } from './ReposList'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
+import { setShowReposModal } from '../../store'
 import { CloseModalButton } from '../CloseModalButton'
 
 // TO DO: Loading component
 
-const ReposModal = ({
-	setShowReposModal,
-}: {
-	setShowReposModal: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+const ReposModal = () => {
 	const dispatch = useDispatch()
 	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
@@ -32,7 +29,7 @@ const ReposModal = ({
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<CloseModalButton onClick={() => setShowReposModal(false)} />
+				<CloseModalButton onClick={() => dispatch(setShowReposModal(false))} />
 				{connected && (
 					<>
 						<LeftToolbar />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import sketchPluginTheme from './theme/theme'
@@ -6,15 +7,12 @@ import { useWindowSketchListener, useWindowInternetListener, useInitializeSketch
 import { Welcome, Main } from './pages'
 import { MessageBanner, AzureModal, SettingsModal } from './components'
 
-export type AzureModalState = 'standard' | 'redirectToRepos' | null
-
 const App = () => {
 	useWindowSketchListener()
 	useWindowInternetListener()
 	useInitializeSketchData()
-	const [ showSettingsModal, setShowSettingsModal ] = useState(false)
-	const [ showReposModal, setShowReposModal ] = useState(false)
-	const [ azureModalState, setAzureModalState ] = useState<AzureModalState>(null)
+	const azureModalState = useSelector((state) => state.azure.azureModalState)
+	const showSettingsModal = useSelector((state) => state.settings.showSettingsModal)
 
 	return (
 		<ThemeProvider theme={sketchPluginTheme}>
@@ -23,34 +21,21 @@ const App = () => {
 				<Route
 					path="/"
 					element={
-						<Welcome
-							showReposModal={showReposModal}
-							setShowReposModal={setShowReposModal}
-							setAzureModalState={setAzureModalState}
-							setShowSettingsModal={setShowSettingsModal}
-						/>
+						<Welcome />
 					}
 				/>
 				<Route
 					path="main/*"
 					element={
-						<Main
-							azureModalState={azureModalState}
-							setAzureModalState={setAzureModalState}
-							setShowSettingsModal={setShowSettingsModal}
-						/>
+						<Main />
 					}
 				/>
 			</Routes>
 			{azureModalState && (
-				<AzureModal
-					azureModalState={azureModalState}
-					setAzureModalState={setAzureModalState}
-					setShowReposModal={setShowReposModal}
-				/>
+				<AzureModal />
 			)}
 			{showSettingsModal && (
-				<SettingsModal setShowSettingsModal={setShowSettingsModal} />
+				<SettingsModal />
 			)}
 		</ThemeProvider>
 	)

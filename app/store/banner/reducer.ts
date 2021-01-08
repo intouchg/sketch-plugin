@@ -1,6 +1,6 @@
 import { produce } from 'immer'
 import {
-	SET_BANNER_MESSAGE,
+	SET_BANNER_STATE,
 } from './actions'
 import { initialBannerState } from './state'
 import type { BannerActionType } from './actions'
@@ -12,7 +12,7 @@ export const bannerReducer = (
 ): BannerState => {
 	return produce(state, (nextState) => {
 		switch (action.type) {
-			case SET_BANNER_MESSAGE: {
+			case SET_BANNER_STATE: {
 				const { show, type, message } = action.payload
 				nextState.show = show
 				nextState.type = type

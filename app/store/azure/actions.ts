@@ -1,4 +1,5 @@
 import type { AzureCredentials } from '../../sketchApi'
+import type { AzureModalState } from './state'
 
 export const RESET_PROJECT_STATE = 'RESET_PROJECT_STATE'
 export type ResetProjectStateAction = {
@@ -8,6 +9,26 @@ export type ResetProjectStateAction = {
 export const resetProjectState = (): ResetProjectStateAction => ({
 	type: RESET_PROJECT_STATE,
 	payload: undefined,
+})
+
+export const SET_AZURE_MODAL_STATE = 'SET_AZURE_MODAL_STATE'
+export type SetAzureModalStateAction = {
+    type: typeof SET_AZURE_MODAL_STATE
+    payload: AzureModalState
+}
+export const setAzureModalState = (azureModalState: SetAzureModalStateAction['payload']): SetAzureModalStateAction => ({
+	type: SET_AZURE_MODAL_STATE,
+	payload: azureModalState,
+})
+
+export const SET_SHOW_REPOS_MODAL = 'SET_SHOW_REPOS_MODAL'
+export type SetShowReposModalAction = {
+    type: typeof SET_SHOW_REPOS_MODAL
+    payload: boolean
+}
+export const setShowReposModal = (show: SetShowReposModalAction['payload']): SetShowReposModalAction => ({
+	type: SET_SHOW_REPOS_MODAL,
+	payload: show,
 })
 
 export const SET_AZURE_CREDENTIALS = 'SET_CREDENTIALS'
@@ -61,9 +82,11 @@ export const setOnlineStatus = (online: SetOnlineStatusAction['payload']): SetOn
 })
 
 export type AzureActionType =
+    | ResetProjectStateAction
+    | SetAzureModalStateAction
+    | SetShowReposModalAction
     | SetAzureCredentialsAction
     | SetLocalProjectAction
     | SetBranchNameAction
-    | ResetProjectStateAction
     | ForgetAzureCredentialsAction
     | SetOnlineStatusAction

@@ -1,22 +1,14 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Box, Stack, Flex, Heading } from '@i/components'
 import { TopToolbar, AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal, ReposModal, topToolbarHeight } from '../components'
 import { useSelectLocalProject } from '../hooks'
+import { setShowReposModal, setAzureModalState } from '../store'
 import pkg from '../../package.json'
-import type { AzureModalState } from '../App'
 
-const Welcome = ({
-	showReposModal,
-	setShowReposModal,
-	setAzureModalState,
-	setShowSettingsModal,
-}: {
-	showReposModal: boolean
-	setShowReposModal: React.Dispatch<React.SetStateAction<boolean>>
-	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
-	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+const Welcome = () => {
+	const dispatch = useDispatch()
+	const showReposModal = useSelector((state) => state.azure.showReposModal)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
 	const [ showLoadingUpdates, setShowLoadingUpdates ] = useState(false)
@@ -25,10 +17,7 @@ const Welcome = ({
 
 	return (
 		<>
-			<TopToolbar
-				setAzureModalState={setAzureModalState}
-				setShowSettingsModal={setShowSettingsModal}
-			/>
+			<TopToolbar />
 			<Flex
 				height={`calc(100vh - ${topToolbarHeight})`}
 				alignItems="center"
@@ -63,7 +52,7 @@ const Welcome = ({
 								</WelcomeButton>
 								<WelcomeButton
 									marginX="1.125em"
-									onClick={() => connected ? setShowReposModal(true) : setAzureModalState('redirectToRepos')}
+									onClick={() => dispatch(connected ? setShowReposModal(true) : setAzureModalState('redirectToRepos'))}
 								>
 									Download
 								</WelcomeButton>
@@ -83,7 +72,7 @@ const Welcome = ({
 				</Box>
 			</Flex>
 			{showReposModal && (
-				<ReposModal setShowReposModal={setShowReposModal} />
+				<ReposModal />
 			)}
 			{showNewProjectModal && (
 				<NewProjectModal setShowNewProjectModal={setShowNewProjectModal} />

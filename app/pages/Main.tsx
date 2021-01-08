@@ -4,19 +4,11 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { Flex } from '@i/components'
 import { TopToolbar, LeftNavbar, ThemeEditor, ComponentEditor, ImportModal } from '../components'
 import { useWindowUndoListener } from '../hooks'
-import type { AzureModalState } from '../App'
 
-const Main = ({
-	azureModalState,
-	setAzureModalState,
-	setShowSettingsModal,
-}: {
-	azureModalState: AzureModalState
-	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
-	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+const Main = () => {
 	const [ showImportModal, setShowImportModal ] = useState(false)
 	const localProject = useSelector((state) => state.azure.localProject)
+	const azureModalState = useSelector((state) => state.azure.azureModalState)
 	useWindowUndoListener(!showImportModal && !azureModalState)
 
 	if (!localProject) {
@@ -30,8 +22,6 @@ const Main = ({
 			<TopToolbar
 				showProjectOptions
 				setShowImportModal={setShowImportModal}
-				setAzureModalState={setAzureModalState}
-				setShowSettingsModal={setShowSettingsModal}
 			/>
 			<Flex>
 				<LeftNavbar />

@@ -6,16 +6,14 @@ import { Stack } from '@i/components'
 import { InvisibleButton, TertiaryButton } from '../Buttons'
 import { EllipsesIcon } from '../Icons'
 import { topToolbarHeight } from './index'
-import { resetThemeState, resetProjectState } from '../../store'
+import { resetThemeState, resetProjectState, setShowSettingsModal } from '../../store'
 import { useOutsideClickListener, useDisplayErrorBanner } from '../../hooks'
 import { sendSketchCommand } from '../../sketchApi'
 
 const MoreMenu = ({
 	showProjectOptions,
-	setShowSettingsModal,
 }: {
 	showProjectOptions?: boolean
-	setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -74,7 +72,7 @@ const MoreMenu = ({
 				>
 					<TertiaryButton
 						padding={2}
-						onClick={() => setShowSettingsModal(true)}
+						onClick={() => dispatch(setShowSettingsModal(true))}
 					>
 						Settings
 					</TertiaryButton>

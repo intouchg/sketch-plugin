@@ -1,13 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { CloseModalButton } from './CloseModalButton'
+import { setShowSettingsModal } from '../store'
 
-const SettingsModal = ({
-	setShowSettingsModal,
-}: {
-    setShowSettingsModal: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+const SettingsModal = () => {
+	const dispatch = useDispatch()
+
 	return (
 		<ModalBackground>
 			<Flex
@@ -17,7 +17,7 @@ const SettingsModal = ({
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<CloseModalButton onClick={() => setShowSettingsModal(false)} />
+				<CloseModalButton onClick={() => dispatch(setShowSettingsModal(false))} />
 				<Stack
 					flexGrow={1}
 					overflow="hidden"

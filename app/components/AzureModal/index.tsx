@@ -7,20 +7,12 @@ import { ModalText } from '../Texts'
 import { AzureLoginForm } from './AzureLoginForm'
 import { AzureStatusLabel } from '../AzureStatusLabel'
 import { AzureRepoInfo } from './AzureRepoInfo'
-import { forgetAzureCredentials } from '../../store'
+import { forgetAzureCredentials, setAzureModalState } from '../../store'
 import { CloseModalButton } from '../CloseModalButton'
-import type { AzureModalState } from '../../App'
 
-const AzureModal = ({
-	azureModalState,
-	setAzureModalState,
-	setShowReposModal,
-}: {
-	azureModalState: AzureModalState
-	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
-	setShowReposModal: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+const AzureModal = () => {
 	const dispatch = useDispatch()
+	const azureModalState = useSelector((state) => state.azure.azureModalState)
 	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
@@ -38,7 +30,7 @@ const AzureModal = ({
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<CloseModalButton onClick={() => setAzureModalState(null)} />
+				<CloseModalButton onClick={() => dispatch(setAzureModalState(null))} />
 				<Stack flexGrow={1}>
 					<Flex
 						alignItems="baseline"
@@ -97,9 +89,7 @@ const AzureModal = ({
 							username={username}
 							accessToken={accessToken}
 							setShowLoginForm={setShowLoginForm}
-							setAzureModalState={setAzureModalState}
 							redirectToReposModal={redirectToReposModal}
-							setShowReposModal={setShowReposModal}
 						/>
 					)}
 				</Stack>

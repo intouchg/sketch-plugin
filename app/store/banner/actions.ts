@@ -1,14 +1,14 @@
 import type { BannerState } from './state'
 
-export const SET_BANNER_MESSAGE = 'SET_BANNER_MESSAGE'
-export type SetBannerMessageAction = {
-    type: typeof SET_BANNER_MESSAGE
+export const SET_BANNER_STATE = 'SET_BANNER_STATE'
+export type SetBannerStateAction = {
+    type: typeof SET_BANNER_STATE
     payload: BannerState
 }
-export const setBannerMessage = (bannerState: SetBannerMessageAction['payload']): SetBannerMessageAction => ({
-	type: SET_BANNER_MESSAGE,
+export const setBannerState = (bannerState: SetBannerStateAction['payload']): SetBannerStateAction => ({
+	type: SET_BANNER_STATE,
 	payload: bannerState,
 })
 
 export type BannerActionType =
-    | SetBannerMessageAction
+    | SetBannerStateAction

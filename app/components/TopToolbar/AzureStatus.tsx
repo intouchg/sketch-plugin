@@ -1,15 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Box } from '@i/components'
 import { InvisibleButton } from '../Buttons'
 import { AccentText } from '../Texts'
-import type { AzureModalState } from '../../App'
+import { setAzureModalState } from '../../store'
 
-const AzureStatus = ({
-	setAzureModalState,
-}: {
-	setAzureModalState: React.Dispatch<React.SetStateAction<AzureModalState>>
-}) => {
+const AzureStatus = () => {
+	const dispatch = useDispatch()
 	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
@@ -18,7 +15,7 @@ const AzureStatus = ({
 		<InvisibleButton
 			paddingY={3}
 			marginRight={3}
-			onClick={() => setAzureModalState('standard')}
+			onClick={() => dispatch(setAzureModalState('standard'))}
 		>
 			<AccentText color="Text">
 				Azure

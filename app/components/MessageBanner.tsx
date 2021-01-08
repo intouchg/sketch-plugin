@@ -4,7 +4,7 @@ import { useSpring, animated } from 'react-spring'
 import { Text, Box, Heading } from '@i/components'
 import { InvisibleButton } from './Buttons'
 import { CloseIcon } from './Icons'
-import { setBannerMessage } from '../store'
+import { setBannerState } from '../store'
 
 const AnimatedBox = animated(Box)
 
@@ -28,8 +28,8 @@ const MessageBanner = () => {
 	const spring = useSpring({ maxHeight: show ? '240px' : '0px' })
 
 	const resetBanner = () => {
-		dispatch(setBannerMessage({ show: false, type, message }))
-		setTimeout(() => dispatch(setBannerMessage({ show: false, type: 'info', message: '' })), 600)
+		dispatch(setBannerState({ show: false, type, message }))
+		setTimeout(() => dispatch(setBannerState({ show: false, type: 'info', message: '' })), 600)
 	}
 
 	return (
