@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { undoAction, redoAction } from '../store'
+import { undo, redo } from '../store'
 
 export const useWindowUndoListener = (allowUndo: boolean) => {
 	const dispatch = useDispatch()
@@ -13,10 +13,10 @@ export const useWindowUndoListener = (allowUndo: boolean) => {
 				event.preventDefault()
 
 				if (event.shiftKey) {
-					dispatch(redoAction())
+					dispatch(redo())
 				}
 				else {
-					dispatch(undoAction())
+					dispatch(undo())
 				}
 			}
 		}

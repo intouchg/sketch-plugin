@@ -6,6 +6,20 @@ let branchName = null
 
 export const stopGitProcess = () => gitProcess && gitProcess.stop()
 
+export const resetChanges = () => new Promise((resolve, reject) => {
+	try {
+		const onStdOut = (data) => {}
+		const onStdErr = (data) => reject(data)
+		const onClose = (code) => resolve(true)
+		const onError = (error) => reject(error)
+
+		gitProcess = new ChildProcess(`cd ${gitDirectory} && git reset --hard`, { onStdOut, onStdErr, onClose, onError }, true)
+	}
+	catch (error) {
+		throw Error('Failed to reset git changes: ' + error)
+	}
+})
+
 export const commitChanges = (message) => new Promise((resolve, reject) => {
 	try {
 		const onStdOut = (data) => {}

@@ -17,6 +17,12 @@ const WINDOW_OPTIONS = {
 	remembersWindowFrame: true,
 }
 
+export const initialState = {
+	selectedProjectDirectory: null,
+	themeFilepaths: {},
+	themeData: {},
+}
+
 // TO DO: Fix git service (should not use webContents.executeJavaScript)
 
 // TO DO: Remove these unused message types:
@@ -33,13 +39,10 @@ export default () => {
 	const webContents = browserWindow.webContents
 	webContents.on('nativeLog', (message) => UI.message(message))
 
-	const state = {
-		selectedProjectDirectory: null,
-		themeFilepaths: {},
-		themeData: {},
-	}
+	let state = initialState
 
 	browserWindow.on('closed', () => {
+		state = initialState
 		stopDevServer()
 		stopStorybook()
 		stopGitProcess()

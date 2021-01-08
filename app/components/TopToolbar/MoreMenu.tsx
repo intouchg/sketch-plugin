@@ -1,13 +1,14 @@
 import React, { useState, useRef, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, batch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring'
 import { Stack } from '@i/components'
 import { InvisibleButton, TertiaryButton } from '../Buttons'
 import { EllipsesIcon } from '../Icons'
 import { topToolbarHeight } from './index'
-import { initialAzureState, setThemeData, setLocalProject, setBranchName } from '../../store'
-import { useOutsideClickListener } from '../../hooks'
+import { resetThemeState, resetProjectState } from '../../store'
+import { useOutsideClickListener, useDisplayErrorBanner } from '../../hooks'
+import { sendSketchCommand } from '../../sketchApi'
 
 const MoreMenu = ({
 	showProjectOptions,
@@ -22,13 +23,17 @@ const MoreMenu = ({
 	const [ showMenu, setShowMenu ] = useState(false)
 	const spring = useSpring({ maxHeight: showMenu ? '340px' : '0px' })
 	const hideMenu = useCallback(() => setShowMenu(false), [ setShowMenu ])
+	const displayErrorBanner = useDisplayErrorBanner()
 	useOutsideClickListener(menuButtonElement, hideMenu)
 
 	const closeProject = () => {
-		navigate('/')
-		dispatch(setThemeData({ values: [], variants: [] }))
-		dispatch(setLocalProject(initialAzureState.localProject))
-		dispatch(setBranchName(initialAzureState.branchName))
+		sendSketchCommand('closeLocalProject', {})
+			.then(() => batch(() => {
+				navigate('/')
+				dispatch(resetThemeState())
+				dispatch(resetProjectState())
+			}))
+			.catch((error) => displayErrorBanner(error))
 	}
 
 	return (

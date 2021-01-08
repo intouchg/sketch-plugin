@@ -5,7 +5,7 @@ import { configFilename, validateConfig } from '@i/theme'
 import { updateStorybookTempTheme, writeRecentProjectMetadata, openGitRepo, pullChanges } from '../services'
 
 export const selectLocalProject = async (state, payload) => {
-	const filepath = payload ? payload.filepath : null
+	const { filepath } = payload
 	let selectedProjectDirectory = filepath
 	const themeFilepaths = {}
 	const themeData = {}

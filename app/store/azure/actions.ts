@@ -1,5 +1,15 @@
 import type { AzureCredentials } from '../../sketchApi'
 
+export const RESET_PROJECT_STATE = 'RESET_PROJECT_STATE'
+export type ResetProjectStateAction = {
+    type: typeof RESET_PROJECT_STATE
+    payload: undefined
+}
+export const resetProjectState = (): ResetProjectStateAction => ({
+	type: RESET_PROJECT_STATE,
+	payload: undefined,
+})
+
 export const SET_AZURE_CREDENTIALS = 'SET_CREDENTIALS'
 export type SetAzureCredentialsAction = {
     type: typeof SET_AZURE_CREDENTIALS
@@ -54,5 +64,6 @@ export type AzureActionType =
     | SetAzureCredentialsAction
     | SetLocalProjectAction
     | SetBranchNameAction
+    | ResetProjectStateAction
     | ForgetAzureCredentialsAction
     | SetOnlineStatusAction

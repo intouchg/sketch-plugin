@@ -7,7 +7,7 @@ export type UndoAction = {
     type: typeof UNDO
     payload: undefined
 }
-export const undoAction = (): UndoAction => ({
+export const undo = (): UndoAction => ({
 	type: UNDO,
 	payload: undefined,
 })
@@ -17,8 +17,18 @@ export type RedoAction = {
     type: typeof REDO
     payload: undefined
 }
-export const redoAction = (): RedoAction => ({
+export const redo = (): RedoAction => ({
 	type: REDO,
+	payload: undefined,
+})
+
+export const RESET_THEME_STATE = 'RESET_THEME_STATE'
+export type ResetThemeStateAction = {
+    type: typeof RESET_THEME_STATE
+    payload: undefined
+}
+export const resetThemeState = (): ResetThemeStateAction => ({
+	type: RESET_THEME_STATE,
 	payload: undefined,
 })
 
@@ -115,6 +125,7 @@ export const deleteThemeValue = (payload: DeleteThemeValueAction['payload']): De
 export type ThemeActionType =
     | UndoAction
     | RedoAction
+    | ResetThemeStateAction
     | SetThemeDataAction
     | SetRecentProjectsAction
     | SetSketchDocumentNamesAction

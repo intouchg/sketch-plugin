@@ -7,6 +7,11 @@ export type ThemeData = {
 }
 
 export type ThemeState = {
+	canUndo: boolean
+	canRedo: boolean
+	recentProjects: RecentProject[]
+	sketchDocumentNames: string[]
+	systemFonts: SystemFontsDictionary
 	values: {
 		breakpoints: ThemeBreakpoint[]
 		space: ThemeSpace[]
@@ -25,18 +30,16 @@ export type ThemeState = {
 		zIndices: ThemeZIndex[]
 	}
 	variants: ThemeVariant[]
-	canUndo: boolean
-	canRedo: boolean
-	recentProjects: RecentProject[]
-	sketchDocumentNames: string[]
 	importedSketchValues: ParsedImportedSketchValues
 	importedSketchFontFamilyNames: string[]
-	systemFonts: SystemFontsDictionary
 }
 
 export const initialThemeState: ThemeState = {
 	canUndo: false,
 	canRedo: false,
+	recentProjects: [],
+	sketchDocumentNames: [],
+	systemFonts: {},
 	values: {
 		breakpoints: [],
 		space: [],
@@ -55,8 +58,6 @@ export const initialThemeState: ThemeState = {
 		zIndices: [],
 	},
 	variants: [] as ThemeVariant[],
-	recentProjects: [],
-	sketchDocumentNames: [],
 	importedSketchValues: {
 		colors: [],
 		fonts: [],
@@ -68,5 +69,4 @@ export const initialThemeState: ThemeState = {
 		shadows: [],
 	},
 	importedSketchFontFamilyNames: [],
-	systemFonts: {},
 }

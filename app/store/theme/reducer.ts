@@ -6,14 +6,15 @@ import {
 	UNDO,
 	REDO,
 	SET_THEME_DATA,
-	SET_RECENT_PROJECTS,
-	SET_SKETCH_DOCUMENT_NAMES,
 	SET_IMPORTED_SKETCH_VALUES,
 	SAVE_IMPORTED_SKETCH_VALUES,
-	SET_SYSTEM_FONTS,
+	RESET_THEME_STATE,
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
+	SET_RECENT_PROJECTS,
+	SET_SKETCH_DOCUMENT_NAMES,
+	SET_SYSTEM_FONTS,
 } from './actions'
 import { initialThemeState } from './state'
 import type { ThemeValue, StyleProperty } from '@i/theme'
@@ -25,9 +26,16 @@ enablePatches()
 
 const findThemeValueByIdError = (id: string) => new Error(`Could not locate ThemeValue with id "${id}"`)
 
-const changeHistory: { [key: number]: any } = {}
+const changeHistory: { [key: string]: any } = {}
 let currentVersion = -1
 const maxNumberOfVersions = 100
+
+const resetChangeHistory = (nextState: ThemeState) => {
+	Object.keys(changeHistory).forEach((key) => void delete changeHistory[key])
+	currentVersion = -1
+	nextState.canUndo = false
+	nextState.canRedo = false
+}
 
 // All UNDOABLE_ACTIONS must also be SAVEABLE_ACTIONS
 const UNDOABLE_ACTIONS = [
@@ -56,6 +64,11 @@ export const themeReducer = (
 					(nextState: ThemeState) => {
 						nextState.canUndo = changeHistory.hasOwnProperty(currentVersion)
 						nextState.canRedo = true
+
+						sendSketchCommand('saveThemeData', {
+							values: Object.values(nextState.values).flat(),
+							variants: nextState.variants,
+						}).catch((error) => console.error(error))
 					},
 				) as any
 			}
@@ -66,17 +79,25 @@ export const themeReducer = (
 					(nextState: ThemeState) => {
 						nextState.canUndo = true
 						nextState.canRedo = changeHistory.hasOwnProperty(currentVersion + 1)
+
+						sendSketchCommand('saveThemeData', {
+							values: Object.values(nextState.values).flat(),
+							variants: nextState.variants,
+						}).catch((error) => console.error(error))
 					},
 				) as any
 			}
 
 			case SET_THEME_DATA: {
+				resetChangeHistory(nextState)
 				const { values, variants } = action.payload
 
 				// TO DO: Make sure this doesn't confuse you later...
 				// Some ThemeValue['type']s are filtered out here, like zIndex
 
-				nextState.values = initialThemeState.values
+				Object.keys(nextState.values).forEach((key: keyof typeof nextState['values']) => {
+					nextState.values[key] = []
+				})
 
 				values.forEach((value) => {
 					const key = themeTypePropertyMap[value.type]
@@ -90,49 +111,12 @@ export const themeReducer = (
 				break
 			}
 
-			case SET_RECENT_PROJECTS: {
-				nextState.recentProjects = action.payload
-				break
-			}
-
-			case SET_SKETCH_DOCUMENT_NAMES: {
-				nextState.sketchDocumentNames = action.payload
-				break
-			}
-
-			case SET_SYSTEM_FONTS: {
-				const systemFonts = action.payload
-				const systemFontsDictionary: SystemFontsDictionary = {}
-
-				systemFonts.slice().sort((a, b) => sortAlphabetical(a, b, '_name')).forEach((systemFont) => {
-					const { typefaces } = systemFont
-
-					if (!typefaces) {
-						return
-					}
-
-					typefaces.forEach((typeface) => {
-						const fontFamily = typeface.family
-
-						if (systemFontsDictionary[fontFamily]) {
-							systemFontsDictionary[fontFamily].typefaces.push(typeface)
-						}
-						else {
-							systemFontsDictionary[fontFamily] = {
-								name: fontFamily,
-								path: systemFont.path,
-								typefaces: [ typeface ],
-							}
-						}
-					})
-				})
-
-				nextState.systemFonts = systemFontsDictionary
-
-				// Update importedSketchValues.fonts now that systemFonts have loaded
-				const typefaces = state.importedSketchFontFamilyNames.map((fontFamilyName) => systemFontsDictionary[fontFamilyName]).filter((v) => v !== undefined).map((sf) => sf.typefaces).flat()
-				nextState.importedSketchValues.fonts = typefaces.map(({ _name, family }) => createThemeValue([], 'font', { name: _name, typeface: _name, family, value: `${_name}, sans-serif` }))
-
+			case RESET_THEME_STATE: {
+				resetChangeHistory(nextState)
+				nextState.values = initialThemeState.values
+				nextState.variants = initialThemeState.variants
+				nextState.importedSketchValues = initialThemeState.importedSketchValues
+				nextState.importedSketchFontFamilyNames = initialThemeState.importedSketchFontFamilyNames
 				break
 			}
 
@@ -229,6 +213,52 @@ export const themeReducer = (
 						}
 					})
 				})
+
+				break
+			}
+
+			case SET_RECENT_PROJECTS: {
+				nextState.recentProjects = action.payload
+				break
+			}
+
+			case SET_SKETCH_DOCUMENT_NAMES: {
+				nextState.sketchDocumentNames = action.payload
+				break
+			}
+
+			case SET_SYSTEM_FONTS: {
+				const systemFonts = action.payload
+				const systemFontsDictionary: SystemFontsDictionary = {}
+
+				systemFonts.slice().sort((a, b) => sortAlphabetical(a, b, '_name')).forEach((systemFont) => {
+					const { typefaces } = systemFont
+
+					if (!typefaces) {
+						return
+					}
+
+					typefaces.forEach((typeface) => {
+						const fontFamily = typeface.family
+
+						if (systemFontsDictionary[fontFamily]) {
+							systemFontsDictionary[fontFamily].typefaces.push(typeface)
+						}
+						else {
+							systemFontsDictionary[fontFamily] = {
+								name: fontFamily,
+								path: systemFont.path,
+								typefaces: [ typeface ],
+							}
+						}
+					})
+				})
+
+				nextState.systemFonts = systemFontsDictionary
+
+				// Update importedSketchValues.fonts now that systemFonts have loaded
+				const typefaces = state.importedSketchFontFamilyNames.map((fontFamilyName) => systemFontsDictionary[fontFamilyName]).filter((v) => v !== undefined).map((sf) => sf.typefaces).flat()
+				nextState.importedSketchValues.fonts = typefaces.map(({ _name, family }) => createThemeValue([], 'font', { name: _name, typeface: _name, family, value: `${_name}, sans-serif` }))
 
 				break
 			}

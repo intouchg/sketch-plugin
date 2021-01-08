@@ -10,6 +10,7 @@ export type SketchCommand<P extends object, R> = { payload: P, response: R }
 export type SketchError = { error: string }
 
 export type SketchCommands = {
+    closeLocalProject: SketchCommand<{}, true>
     extractSketchDocumentStyles: SketchCommand<{ sketchDocumentIndex: number }, RawImportedSketchValues>
     forgetAzureCredentials: SketchCommand<{}, true>
     getAzureCredentials: SketchCommand<{}, AzureCredentials>
@@ -19,6 +20,7 @@ export type SketchCommands = {
     loginToAzure: SketchCommand<AzureCredentials, AzureCredentials>
     openBrowserWindow: SketchCommand<{ url: string }, true>
     openDevServer: SketchCommand<{}, true>
+    resetGitChanges: SketchCommand<{}, ThemeData>
     saveThemeData: SketchCommand<ThemeData, true>
     selectLocalProject: SketchCommand<RecentProject | {}, { themeData: ThemeData, selectedProjectDirectory: string, branchName: string, recentProjects: RecentProject[] }>
     selectNewProjectDirectory: SketchCommand<{}, string>

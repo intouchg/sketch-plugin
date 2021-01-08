@@ -1,11 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Stack, Box, Heading, Flex, Text } from '@i/components'
 import { PrimaryButton, SecondaryButton } from '../Buttons'
 import { ModalText } from '../Texts'
 import { CloudIcon } from '../Icons'
 import { LimitInteraction } from '../LimitInteraction'
-import { useSelectLocalProject } from '../../hooks'
+import { useSelectLocalProject, useDisplayErrorBanner } from '../../hooks'
+import { sendSketchCommand } from '../../sketchApi'
+import { setThemeData } from '../../store'
 
 const AzureRepoInfo = ({
 	online,
@@ -14,11 +16,19 @@ const AzureRepoInfo = ({
 	online: boolean
 	connected: boolean
 }) => {
+	const dispatch = useDispatch()
 	const localProject = useSelector((state) => state.azure.localProject)
 	const branchName = useSelector((state) => state.azure.branchName)
 	const lastPush = useSelector((state) => state.azure.lastPush)
 	const canUndo = useSelector((state) => state.theme.canUndo)
 	const selectLocalProject = useSelectLocalProject()
+	const displayErrorBanner = useDisplayErrorBanner()
+
+	const revertChanges = () => {
+		sendSketchCommand('resetGitChanges', {})
+			.then((themeData) => dispatch(setThemeData(themeData)))
+			.catch((error) => displayErrorBanner(error))
+	}
 
 	if (!localProject) {
 		return (
@@ -101,7 +111,7 @@ const AzureRepoInfo = ({
 						/>
 					</Box>
 				</Flex>
-				<SecondaryButton>
+				<SecondaryButton onClick={revertChanges}>
 					Revert
 				</SecondaryButton>
 			</LimitInteraction>
