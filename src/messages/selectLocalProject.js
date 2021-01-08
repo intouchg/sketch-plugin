@@ -2,7 +2,7 @@ import fs from '@skpm/fs'
 import path from '@skpm/path'
 import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
-import { updateStorybookTempTheme, writeRecentProjectMetadata, openGitRepo, pullChanges } from '../services'
+import { updateStorybookTempTheme, writeRecentProjectMetadata, openGitRepo, hasCommittedRemoteChanges, hasUncommittedLocalChanges, commitChanges, hasCommittedLocalChanges, pullChanges } from '../services'
 
 export const selectLocalProject = async (state, payload) => {
 	const { filepath } = payload
@@ -54,11 +54,22 @@ export const selectLocalProject = async (state, payload) => {
 	const recentProjects = writeRecentProjectMetadata({ filepath: selectedProjectDirectory })
 	const branchName = await openGitRepo(selectedProjectDirectory)
 
+	try {
+		if (await hasCommittedRemoteChanges()) {
+			if (await hasUncommittedLocalChanges()) {
+				await commitChanges('IDS pre-pull automated save')
+			}
+
+			await pullChanges()
+		}
+	}
+	catch (error) {
+		throw Error('Failed to pull remote changes: ' + error)
+	}
+
 	state.themeFilepaths = themeFilepaths
 	state.themeData = themeData
 	state.selectedProjectDirectory = selectedProjectDirectory
-
-	await pullChanges()
 
 	// updateStorybookTempTheme(themeData)
 

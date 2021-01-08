@@ -89,8 +89,11 @@ export const themeReducer = (
 			}
 
 			case SET_THEME_DATA: {
-				resetChangeHistory(nextState)
-				const { values, variants } = action.payload
+				const { values, variants, skipResetChangeHistory } = action.payload
+
+				if (!skipResetChangeHistory) {
+					resetChangeHistory(nextState)
+				}
 
 				// TO DO: Make sure this doesn't confuse you later...
 				// Some ThemeValue['type']s are filtered out here, like zIndex

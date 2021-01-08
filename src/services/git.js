@@ -82,25 +82,33 @@ export const commitChanges = (message) => new Promise((resolve, reject) => {
 	}
 })
 
-export const pullChanges = async () => {
+export const pushChanges = () => new Promise((resolve, reject) => {
 	try {
-		if ()
-		// await commitChanges('')
-		const hasLocalChanges = hasCommittedLocalChanges()
-		const hasRemoteChanges = hasCommittedRemoteChanges()
-		console.log('hasCommittedLocalChanges = ', hasLocalChanges)
-		console.log('hasCommittedRemoteChanges = ', hasRemoteChanges)
-		// const onStdOut = (data) => {}
-		// const onStdErr = (data) => reject(data)
-		// const onClose = (code) => resolve(true)
-		// const onError = (error) => reject(error)
+		const onStdOut = (data) => {}
+		const onStdErr = (data) => reject(data)
+		const onClose = (code) => resolve(true)
+		const onError = (error) => reject(error)
 
-		// new ChildProcess(`cd ${gitDirectory} && git add . && git commit -m '${message}'`, { onStdOut, onStdErr, onClose, onError }, true)
+		gitProcess = new ChildProcess(`cd ${gitDirectory} && git push origin ${branchName}`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
-		throw Error('Failed to pull git changes: ' + error)
+		throw Error('Failed to push git branch: ' + error)
 	}
-}
+})
+
+export const pullChanges = () => new Promise((resolve, reject) => {
+	try {
+		const onStdOut = (data) => {}
+		const onStdErr = (data) => reject(data)
+		const onClose = (code) => resolve(true)
+		const onError = (error) => reject(error)
+
+		gitProcess = new ChildProcess(`cd ${gitDirectory} && git pull origin ${branchName}`, { onStdOut, onStdErr, onClose, onError }, true)
+	}
+	catch (error) {
+		throw Error('Failed to pull git branch: ' + error)
+	}
+})
 
 export const getLastPushTime = async () => new Promise((resolve, reject) => {
 	try {

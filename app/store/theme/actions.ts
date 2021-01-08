@@ -35,11 +35,11 @@ export const resetThemeState = (): ResetThemeStateAction => ({
 export const SET_THEME_DATA = 'SET_THEME_DATA'
 export type SetThemeDataAction = {
     type: typeof SET_THEME_DATA
-    payload: ThemeData
+    payload: ThemeData & { skipResetChangeHistory?: boolean }
 }
-export const setThemeData = (theme: SetThemeDataAction['payload']): SetThemeDataAction => ({
+export const setThemeData = (payload: SetThemeDataAction['payload']): SetThemeDataAction => ({
 	type: SET_THEME_DATA,
-	payload: theme,
+	payload: payload,
 })
 
 export const SET_RECENT_PROJECTS = 'SET_RECENT_PROJECTS'

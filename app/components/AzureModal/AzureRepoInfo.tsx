@@ -26,7 +26,7 @@ const AzureRepoInfo = ({
 
 	const revertChanges = () => {
 		sendSketchCommand('resetLocalChanges', {})
-			.then((themeData) => dispatch(setThemeData(themeData)))
+			.then((themeData) => dispatch(setThemeData({ ...themeData, skipResetChangeHistory: true })))
 			.catch((error) => displayErrorBanner(error))
 	}
 
