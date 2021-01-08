@@ -25,7 +25,7 @@ const AzureRepoInfo = ({
 	const displayErrorBanner = useDisplayErrorBanner()
 
 	const revertChanges = () => {
-		sendSketchCommand('resetGitChanges', {})
+		sendSketchCommand('resetLocalChanges', {})
 			.then((themeData) => dispatch(setThemeData(themeData)))
 			.catch((error) => displayErrorBanner(error))
 	}

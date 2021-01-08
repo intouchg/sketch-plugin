@@ -6,7 +6,55 @@ let branchName = null
 
 export const stopGitProcess = () => gitProcess && gitProcess.stop()
 
-export const resetChanges = () => new Promise((resolve, reject) => {
+// Checks if branchNameA is an ancestor of branchNameB.
+// If true, branchNameB is caught up with branchNameA.
+export const isBranchAncestorOfBranch = (branchNameA, branchNameB) => new Promise((resolve, reject) => {
+	const onStdOut = (data) => {
+		const result = data.toString().replace(/\n*$/, '')
+
+		if (result === '0' || result === '1') {
+			resolve(result === '0')
+		}
+
+		reject(result)
+	}
+
+	const onStdErr = (data) => reject(data)
+	const onClose = (code) => {}
+	const onError = (error) => reject(error)
+
+	gitProcess = new ChildProcess(`cd ${gitDirectory} && git merge-base --is-ancestor ${branchNameA} ${branchNameB}; echo $?`, { onStdOut, onStdErr, onClose, onError }, true)
+})
+
+export const hasCommittedRemoteChanges = async () => !(await isBranchAncestorOfBranch(`origin/${branchName}`, branchName))
+
+export const hasCommittedLocalChanges = async () => !(await isBranchAncestorOfBranch(branchName, `origin/${branchName}`))
+
+export const hasUncommittedLocalChanges = () => new Promise((resolve, reject) => {
+	try {
+		const onStdOut = (data) => {
+			const result = data.toString().replace(/\n*$/, '')
+
+			if (result.trimLeft() === '0') {
+				resolve(false)
+			}
+			else {
+				resolve(true)
+			}
+		}
+
+		const onStdErr = (data) => reject(data)
+		const onClose = (code) => {}
+		const onError = (error) => reject(error)
+
+		gitProcess = new ChildProcess(`cd ${gitDirectory} && git status --porcelain | wc -l`, { onStdOut, onStdErr, onClose, onError }, true)
+	}
+	catch (error) {
+		throw Error('Failed to check git changes: ' + error)
+	}
+})
+
+export const resetLocalChanges = () => new Promise((resolve, reject) => {
 	try {
 		const onStdOut = (data) => {}
 		const onStdErr = (data) => reject(data)
@@ -34,33 +82,14 @@ export const commitChanges = (message) => new Promise((resolve, reject) => {
 	}
 })
 
-// Checks if branchNameA is an ancestor of branchNameB.
-// If true, branchNameB is caught up with branchNameA.
-export const isBranchAncestorOfBranch = (branchNameA, branchNameB) => new Promise((resolve, reject) => {
-	const onStdOut = (data) => {
-		const result = data.toString().replace(/\n*$/, '')
-
-		if (result === '0' || result === '1') {
-			resolve(result === '0')
-		}
-
-		reject(result)
-	}
-
-	const onStdErr = (data) => reject(data)
-	const onClose = (code) => {}
-	const onError = (error) => reject(error)
-
-	gitProcess = new ChildProcess(`cd ${gitDirectory} && git merge-base --is-ancestor ${branchNameA} ${branchNameB}; echo $?`, { onStdOut, onStdErr, onClose, onError }, true)
-})
-
 export const pullChanges = async () => {
 	try {
+		console.log(test)
 		// await commitChanges('')
-		const hasLocalChanges = !(await isBranchAncestorOfBranch(branchName, `origin/${branchName}`))
-		const hasRemoteChanges = !(await isBranchAncestorOfBranch(`origin/${branchName}`, branchName))
-		console.log('hasLocalChanges = ', hasLocalChanges)
-		console.log('hasRemoteChanges = ', hasRemoteChanges)
+		const hasCommittedLocalChanges = hasCommittedLocalChanges()
+		const hasCommittedRemoteChanges = hasCommittedRemoveChanges(branchName)
+		console.log('hasCommittedLocalChanges = ', hasCommittedLocalChanges)
+		console.log('hasCommittedRemoteChanges = ', hasCommittedRemoteChanges)
 		// const onStdOut = (data) => {}
 		// const onStdErr = (data) => reject(data)
 		// const onClose = (code) => resolve(true)
@@ -105,6 +134,11 @@ export const openGitRepo = (directory) => new Promise((resolve, reject) => {
 		throw Error('Failed to open git repo: ' + error)
 	}
 })
+
+export const closeGitRepo = () => {
+	gitDirectory = null
+	branchName = null
+}
 
 // export const cloneGitRepo = () => {
 // 	stopGitProcess()

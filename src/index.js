@@ -2,7 +2,7 @@ import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
 // import { toArray } from 'util'
-import { stopDevServer, stopStorybook, stopGitProcess } from './services'
+import { stopGitProcess, stopStorybook } from './services'
 import { updateSketchDocumentNames } from './clientApi'
 import * as api from './messages'
 
@@ -41,11 +41,11 @@ export default () => {
 
 	let state = initialState
 
-	browserWindow.on('closed', () => {
+	browserWindow.on('closed', async () => {
 		state = initialState
-		stopDevServer()
-		stopStorybook()
 		stopGitProcess()
+		stopStorybook()
+		await api.closeLocalProject()
 	})
 
 	// Receives commands sent from the React webview front end to the Sketch plugin back end
