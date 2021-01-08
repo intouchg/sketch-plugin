@@ -10,6 +10,7 @@ export type SketchCommand<P extends object, R> = { payload: P, response: R }
 export type SketchError = { error: string }
 
 export type SketchCommands = {
+    checkForRemoteUpdates: SketchCommand<{}, true>
     closeLocalProject: SketchCommand<{}, true>
     extractSketchDocumentStyles: SketchCommand<{ sketchDocumentIndex: number }, RawImportedSketchValues>
     forgetAzureCredentials: SketchCommand<{}, true>
@@ -22,6 +23,7 @@ export type SketchCommands = {
     openDevServer: SketchCommand<{}, true>
     resetLocalChanges: SketchCommand<{}, ThemeData>
     saveThemeData: SketchCommand<ThemeData, true>
+    saveChangesToAzure: SketchCommand<{}, true>
     selectLocalProject: SketchCommand<RecentProject | {}, { themeData: ThemeData, selectedProjectDirectory: string, branchName: string, recentProjects: RecentProject[] }>
     selectNewProjectDirectory: SketchCommand<{}, string>
 }

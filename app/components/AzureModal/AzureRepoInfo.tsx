@@ -5,7 +5,7 @@ import { PrimaryButton, SecondaryButton } from '../Buttons'
 import { ModalText } from '../Texts'
 import { CloudIcon } from '../Icons'
 import { LimitInteraction } from '../LimitInteraction'
-import { useSelectLocalProject, useDisplayErrorBanner } from '../../hooks'
+import { useDisplayErrorBanner } from '../../hooks'
 import { sendSketchCommand } from '../../sketchApi'
 import { setThemeData } from '../../store'
 
@@ -21,7 +21,6 @@ const AzureRepoInfo = ({
 	const branchName = useSelector((state) => state.azure.branchName)
 	const lastPush = useSelector((state) => state.azure.lastPush)
 	const canUndo = useSelector((state) => state.theme.canUndo)
-	const selectLocalProject = useSelectLocalProject()
 	const displayErrorBanner = useDisplayErrorBanner()
 
 	const revertChanges = () => {
@@ -39,15 +38,9 @@ const AzureRepoInfo = ({
 				backgroundColor="Card"
 				borderRadius="Large"
 			>
-				<Text
-					fontSize={3}
-					marginBottom={3}
-				>
+				<Text fontSize={3}>
 					No project selected.
 				</Text>
-				<PrimaryButton onClick={selectLocalProject}>
-					Select a Project
-				</PrimaryButton>
 			</Stack>
 		)
 	}
