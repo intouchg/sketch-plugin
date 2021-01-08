@@ -29,6 +29,12 @@ const AzureRepoInfo = ({
 			.catch((error) => displayErrorBanner(error))
 	}
 
+	const saveChanges = () => {
+		sendSketchCommand('saveChangesToAzure', {})
+			.then((themeData) => console.log('SAVED!'))
+			.catch((error) => displayErrorBanner(error))
+	}
+
 	if (!localProject) {
 		return (
 			<Stack
@@ -95,6 +101,7 @@ const AzureRepoInfo = ({
 					justifyContent="center"
 					flexGrow={1}
 					marginRight={3}
+					onClick={saveChanges}
 				>
 					Save to Azure
 					<Box marginLeft={1}>
