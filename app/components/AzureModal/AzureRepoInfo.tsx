@@ -20,12 +20,8 @@ const AzureRepoInfo = ({
 	const localProject = useSelector((state) => state.azure.localProject)
 	const branchName = useSelector((state) => state.azure.branchName)
 	const lastPush = useSelector((state) => state.azure.lastPush)
-	const canUndo = useSelector((state) => state.theme.canUndo)
+	const hasLocalChanges = useSelector((state) => state.azure.hasLocalChanges)
 	const displayErrorBanner = useDisplayErrorBanner()
-
-	const revertChanges = () => sendSketchCommand('resetLocalChanges', {})
-		.then((themeData) => dispatch(setThemeData({ ...themeData, skipResetChangeHistory: true })))
-		.catch((error) => displayErrorBanner(error))
 
 	const saveChanges = async () => {
 		try {
@@ -48,6 +44,19 @@ const AzureRepoInfo = ({
 			displayErrorBanner(error)
 		}
 	}
+
+	const revertChanges = () => sendSketchCommand('resetLocalChanges', {})
+		.then((themeData) => dispatch(setThemeData({ ...themeData, skipResetChangeHistory: true })))
+		.catch((error) => displayErrorBanner(error))
+
+	const promptToRevert = () => dispatch(setBannerState({
+		show: true,
+		type: 'warn',
+		message: 'Are you sure you want to revert all unsaved changes?',
+		confirmText: 'Revert',
+		cancelText: 'Cancel',
+		onConfirm: revertChanges,
+	}))
 
 	if (!localProject) {
 		return (
@@ -105,7 +114,7 @@ const AzureRepoInfo = ({
 				</Flex>
 			</Flex>
 			<LimitInteraction
-				unlimit={online && connected && canUndo}
+				unlimit={online && connected && hasLocalChanges}
 				display="flex"
 				width="100%"
 			>
@@ -125,7 +134,7 @@ const AzureRepoInfo = ({
 						/>
 					</Box>
 				</Flex>
-				<SecondaryButton onClick={revertChanges}>
+				<SecondaryButton onClick={promptToRevert}>
 					Revert
 				</SecondaryButton>
 			</LimitInteraction>
