@@ -2902,9 +2902,9 @@
     "@types/react" "^16"
 
 "@types/react-native@*":
-  version "0.63.44"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-native/-/react-native-0.63.44.tgz#cd8df1bb6b2764b47afc1e643d20fb503dbfc52d"
-  integrity sha1-zY3xu2snZLR6/B5kPSD7UD2/xS0=
+  version "0.63.45"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-native/-/react-native-0.63.45.tgz#944a471d1e40e22eb8eae4369db7facf697c545e"
+  integrity sha1-lEpHHR5A4i646uQ2nbf6z2l8VF4=
   dependencies:
     "@types/react" "*"
 
@@ -2928,9 +2928,9 @@
     "@types/react-router" "*"
 
 "@types/react-router@*":
-  version "5.1.10"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-router/-/react-router-5.1.10.tgz#7de7ad3df20a8adb2b97943f1871ca4d2705c42c"
-  integrity sha512-yu11Hu16CfGvvBWc7wluRlxbwfuSlY0snEntbbOTvfgMvyO6uLaEpAbnVOntr+9TNIpR++OOlPkmDcJPxOXRaQ==
+  version "5.1.11"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-router/-/react-router-5.1.11.tgz#b01ce4cb21bf7d6b32edc862fc1e2c0088044b5b"
+  integrity sha1-sBzkyyG/fWsy7chi/B4sAIgES1s=
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
@@ -4482,12 +4482,12 @@ cache-base@^1.0.1:
     unset-value "^1.0.0"
 
 call-bind@^1.0.0:
-  version "1.0.0"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/call-bind/-/call-bind-1.0.0.tgz#24127054bb3f9bdcb4b1fb82418186072f77b8ce"
-  integrity sha1-JBJwVLs/m9y0sfuCQYGGBy93uM4=
+  version "1.0.1"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/call-bind/-/call-bind-1.0.1.tgz#29aca9151f8ddcfd5b9b786898f005f425e88567"
+  integrity sha1-KaypFR+N3P1bm3homPAF9CXohWc=
   dependencies:
     function-bind "^1.1.1"
-    get-intrinsic "^1.0.0"
+    get-intrinsic "^1.0.2"
 
 call-me-maybe@^1.0.1:
   version "1.0.1"
@@ -5479,9 +5479,9 @@ csstype@^2.5.5, csstype@^2.5.7:
   integrity sha1-AEgipAUDRbVa1NzAC+HZzy9Clt4=
 
 csstype@^3.0.2:
-  version "3.0.5"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/csstype/-/csstype-3.0.5.tgz#7fdec6a28a67ae18647c51668a9ff95bb2fa7bb8"
-  integrity sha1-f97GoopnrhhkfFFmip/5W7L6e7g=
+  version "3.0.6"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/csstype/-/csstype-3.0.6.tgz#865d0b5833d7d8d40f4e5b8a6d76aea3de4725ef"
+  integrity sha1-hl0LWDPX2NQPTluKbXauo95HJe8=
 
 current-git-branch@^1.1.0:
   version "1.1.0"
@@ -5870,9 +5870,9 @@ dotenv@^8.0.0:
   integrity sha1-l+YZJZradQ7qPk6j4mvO6lQksWo=
 
 downshift@^6.0.6:
-  version "6.0.10"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/downshift/-/downshift-6.0.10.tgz#c0fdc353b286c0b5f8d93af80a2bce57d90854d5"
-  integrity sha1-wP3DU7KGwLX42Tr4CivOV9kIVNU=
+  version "6.0.12"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/downshift/-/downshift-6.0.12.tgz#fadf3633e7cb22ec11d80900756821c4e6a1cf35"
+  integrity sha1-+t82M+fLIuwR2AkAdWghxOahzzU=
   dependencies:
     "@babel/runtime" "^7.12.5"
     compute-scroll-into-view "^1.0.16"
@@ -5907,9 +5907,9 @@ ejs@^3.1.2:
     jake "^10.6.1"
 
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.634:
-  version "1.3.634"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/electron-to-chromium/-/electron-to-chromium-1.3.634.tgz#82ea400f520f739c4f6ff00c1f7524827a917d25"
-  integrity sha1-gupAD1IPc5xPb/AMH3UkgnqRfSU=
+  version "1.3.635"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/electron-to-chromium/-/electron-to-chromium-1.3.635.tgz#8d1591eeca6b257d380061a2c04f0b3cc6c9e33b"
+  integrity sha1-jRWR7sprJX04AGGiwE8LPMbJ4zs=
 
 element-resize-detector@^1.2.1:
   version "1.2.1"
@@ -7107,7 +7107,7 @@ get-caller-file@^2.0.1:
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
   integrity sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==
 
-get-intrinsic@^1.0.0, get-intrinsic@^1.0.1, get-intrinsic@^1.0.2:
+get-intrinsic@^1.0.1, get-intrinsic@^1.0.2:
   version "1.0.2"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/get-intrinsic/-/get-intrinsic-1.0.2.tgz#6820da226e50b24894e08859469dc68361545d49"
   integrity sha1-aCDaIm5QskiU4IhZRp3Gg2FUXUk=
@@ -9786,9 +9786,9 @@ onetime@^5.1.0:
     mimic-fn "^2.1.0"
 
 open@^7.0.0, open@^7.0.2, open@^7.0.3:
-  version "7.3.0"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/open/-/open-7.3.0.tgz#45461fdee46444f3645b6e14eb3ca94b82e1be69"
-  integrity sha1-RUYf3uRkRPNkW24U6zypS4Lhvmk=
+  version "7.3.1"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/open/-/open-7.3.1.tgz#111119cb919ca1acd988f49685c4fdd0f4755356"
+  integrity sha1-EREZy5GcoazZiPSWhcT90PR1U1Y=
   dependencies:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
@@ -13015,9 +13015,9 @@ tapable@^1.0.0, tapable@^1.1.3:
   integrity sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
 
 tar@^6.0.2:
-  version "6.0.5"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tar/-/tar-6.0.5.tgz#bde815086e10b39f1dcd298e89d596e1535e200f"
-  integrity sha1-vegVCG4Qs58dzSmOidWW4VNeIA8=
+  version "6.1.0"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tar/-/tar-6.1.0.tgz#d1724e9bcc04b977b18d5c573b333a2207229a83"
+  integrity sha1-0XJOm8wEuXexjVxXOzM6IgcimoM=
   dependencies:
     chownr "^2.0.0"
     fs-minipass "^2.0.0"
@@ -13333,9 +13333,9 @@ tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3:
   integrity sha1-2mCGDxwuyqVwOrfTm8Bba/mIuXo=
 
 tsutils@^3.17.1:
-  version "3.19.0"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tsutils/-/tsutils-3.19.0.tgz#9387cb5fcb71579aa0909c509604f8a7fbe1cff1"
-  integrity sha512-A7BaLUPvcQ1cxVu72YfD+UMI3SQPTDv/w4ol6TOwLyI0hwfG9EC+cYlhdflJTmtYTgZ3KqdPSe/otxU4K3kArg==
+  version "3.19.1"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tsutils/-/tsutils-3.19.1.tgz#d8566e0c51c82f32f9c25a4d367cd62409a547a9"
+  integrity sha1-2FZuDFHILzL5wlpNNnzWJAmlR6k=
   dependencies:
     tslib "^1.8.1"
 
@@ -14023,9 +14023,9 @@ webpack@4.44.1:
     webpack-sources "^1.4.1"
 
 webpack@^4.29.6, webpack@^4.41.5, webpack@^4.43.0, webpack@^4.44.2:
-  version "4.44.2"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/webpack/-/webpack-4.44.2.tgz#6bfe2b0af055c8b2d1e90ed2cd9363f841266b72"
-  integrity sha1-a/4rCvBVyLLR6Q7SzZNj+EEma3I=
+  version "4.45.0"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/webpack/-/webpack-4.45.0.tgz#bcdc1ddb43959adb47f8974e60d944027267c1be"
+  integrity sha1-vNwd20OVmttH+JdOYNlEAnJnwb4=
   dependencies:
     "@webassemblyjs/ast" "1.9.0"
     "@webassemblyjs/helper-module-context" "1.9.0"
