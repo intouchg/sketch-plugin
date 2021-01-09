@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
@@ -18,6 +18,7 @@ const AzureModal = () => {
 	const connected = Boolean(username && accessToken)
 	const redirectToReposModal = azureModalState === 'redirectToRepos'
 	const [ showLoginForm, setShowLoginForm ] = useState(redirectToReposModal)
+	useEffect(() => setShowLoginForm(redirectToReposModal), [ redirectToReposModal ])
 
 	if (!azureModalState) {
 		return null
