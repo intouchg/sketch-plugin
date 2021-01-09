@@ -62,7 +62,7 @@ export default class ChildProcess {
 
 			this.process.on('close', (code) => {
 				this.process = null
-				this.process = false
+				this.running = false
 
 				if (!this.disableLogging) {
 					console.info('ChildProcess exited with code ' + code)
