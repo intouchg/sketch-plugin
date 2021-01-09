@@ -1,11 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, batch } from 'react-redux'
-import { setThemeData, setRecentProjects, setLocalProject, setBranchName } from '../store'
+import { setThemeData, setRecentProjects, setLocalProject, setBranchName, setLoadingState } from '../store'
 import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
-export const useSelectLocalProject = (setShowLoading: (show: boolean) => void, filepath?: string) => {
+export const useSelectLocalProject = (filepath?: string) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const displayErrorBanner = useDisplayErrorBanner()
@@ -20,10 +20,13 @@ export const useSelectLocalProject = (setShowLoading: (show: boolean) => void, f
 			dispatch(setLocalProject(selectedProjectDirectory))
 			dispatch(setBranchName(branchName))
 			dispatch(setRecentProjects(recentProjects))
-			setShowLoading(true)
+			dispatch(setLoadingState({ show: true, message: 'Downloading updates ...' }))
 
 			sendSketchCommand('checkForRemoteUpdates', {})
-				.then(() => navigate('main'))
+				.then(() => batch(() => {
+					dispatch(setLoadingState({ show: false, message: '' }))
+					navigate('main')
+				}))
 				.catch((error) => displayErrorBanner(error))
 		}))
 		.catch((error) => displayErrorBanner(error))

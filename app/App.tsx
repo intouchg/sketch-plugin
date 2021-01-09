@@ -1,22 +1,18 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import sketchPluginTheme from './theme/theme'
 import { useWindowSketchListener, useWindowInternetListener, useInitializeSketchData } from './hooks'
 import { Welcome, Main } from './pages'
-import { MessageBanner, AzureModal, SettingsModal } from './components'
+import { AzureModal, SettingsModal, LoadingScreen, MessageBanner } from './components'
 
 const App = () => {
 	useWindowSketchListener()
 	useWindowInternetListener()
 	useInitializeSketchData()
-	const azureModalState = useSelector((state) => state.azure.azureModalState)
-	const showSettingsModal = useSelector((state) => state.settings.showSettingsModal)
 
 	return (
 		<ThemeProvider theme={sketchPluginTheme}>
-			<MessageBanner />
 			<Routes>
 				<Route
 					path="/"
@@ -31,12 +27,10 @@ const App = () => {
 					}
 				/>
 			</Routes>
-			{azureModalState && (
-				<AzureModal />
-			)}
-			{showSettingsModal && (
-				<SettingsModal />
-			)}
+			<AzureModal />
+			<SettingsModal />
+			<LoadingScreen />
+			<MessageBanner />
 		</ThemeProvider>
 	)
 }

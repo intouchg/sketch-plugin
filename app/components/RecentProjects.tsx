@@ -16,13 +16,11 @@ const TruncatedTextBox = styled(Box)`
 const RecentProject = ({
 	name,
 	filepath,
-	setShowLoadingUpdates,
 }: {
 	name?: string
 	filepath: string
-	setShowLoadingUpdates: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
-	const selectRecentProject = useSelectLocalProject(setShowLoadingUpdates, filepath)
+	const selectRecentProject = useSelectLocalProject(filepath)
 
 	return (
 		<Stack
@@ -46,11 +44,7 @@ const RecentProject = ({
 	)
 }
 
-const RecentProjects = ({
-	setShowLoadingUpdates,
-}: {
-	setShowLoadingUpdates: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+const RecentProjects = () => {
 	const recentProjects = useSelector((state) => state.theme.recentProjects)
 
 	const formattedRecentProjects = recentProjects.map(({ filepath }) => ({
@@ -68,7 +62,6 @@ const RecentProjects = ({
 					<RecentProject
 						key={props.filepath}
 						{...props}
-						setShowLoadingUpdates={setShowLoadingUpdates}
 					/>
 				))}
 			</Stack>

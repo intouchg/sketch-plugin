@@ -11,9 +11,8 @@ const Welcome = () => {
 	const showReposModal = useSelector((state) => state.azure.showReposModal)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
-	const [ showLoadingUpdates, setShowLoadingUpdates ] = useState(false)
 	const [ showNewProjectModal, setShowNewProjectModal ] = useState(false)
-	const selectLocalProject = useSelectLocalProject(setShowLoadingUpdates)
+	const selectLocalProject = useSelectLocalProject()
 
 	return (
 		<>
@@ -57,7 +56,7 @@ const Welcome = () => {
 									Download
 								</WelcomeButton>
 							</Flex>
-							<RecentProjects setShowLoadingUpdates={setShowLoadingUpdates} />
+							<RecentProjects />
 						</Stack>
 						<Stack>
 							<WelcomeButton
@@ -76,19 +75,6 @@ const Welcome = () => {
 			)}
 			{showNewProjectModal && (
 				<NewProjectModal setShowNewProjectModal={setShowNewProjectModal} />
-			)}
-			{showLoadingUpdates && (
-				<Box
-					position="fixed"
-					top="0"
-					left="0"
-					bottom="0"
-					right="0"
-					backgroundColor="Primary"
-					zIndex={5}
-				>
-					Pulling updates...
-				</Box>
 			)}
 		</>
 	)

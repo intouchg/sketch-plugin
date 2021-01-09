@@ -19,6 +19,10 @@ const AzureModal = () => {
 	const redirectToReposModal = azureModalState === 'redirectToRepos'
 	const [ showLoginForm, setShowLoginForm ] = useState(redirectToReposModal)
 
+	if (!azureModalState) {
+		return null
+	}
+
 	const signOut = () => dispatch(forgetAzureCredentials())
 
 	return (

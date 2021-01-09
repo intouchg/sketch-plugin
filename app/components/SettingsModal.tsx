@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { CloseModalButton } from './CloseModalButton'
@@ -7,6 +7,11 @@ import { setShowSettingsModal } from '../store'
 
 const SettingsModal = () => {
 	const dispatch = useDispatch()
+	const showSettingsModal = useSelector((state) => state.settings.showSettingsModal)
+
+	if (!showSettingsModal) {
+		return null
+	}
 
 	return (
 		<ModalBackground>
