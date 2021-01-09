@@ -1,6 +1,7 @@
 // export * from './cloneAzureGitRepo'
 export * from './checkForRemoteUpdates'
 export * from './closeLocalProject'
+export * from './downloadRemoteUpdates'
 export * from './extractSketchDocumentStyles'
 export * from './forgetAzureCredentials'
 export * from './getAzureCredentials'

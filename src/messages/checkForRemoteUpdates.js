@@ -3,16 +3,12 @@ import { hasCommittedRemoteChanges, hasUncommittedLocalChanges, commitChanges, p
 export const checkForRemoteUpdates = async (state, payload) => {
 	try {
 		if (await hasCommittedRemoteChanges()) {
-			if (await hasUncommittedLocalChanges()) {
-				await commitChanges('IDS pre-pull automated save')
-			}
-
-			await pullChanges()
+			return true
 		}
 
-		return true
+		return false
 	}
 	catch (error) {
-		throw Error('Failed to pull remote changes: ' + error)
+		throw Error('Failed to check for remote updates: ' + error)
 	}
 }
