@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, batch } from 'react-redux'
 import { Stack, Box, Heading, Flex, Text } from '@i/components'
 import { PrimaryButton, SecondaryButton } from '../Buttons'
 import { ModalText } from '../Texts'
@@ -7,7 +7,7 @@ import { CloudIcon } from '../Icons'
 import { LimitInteraction } from '../LimitInteraction'
 import { useDisplayErrorBanner } from '../../hooks'
 import { sendSketchCommand } from '../../sketchApi'
-import { setThemeData } from '../../store'
+import { setThemeData, setLoadingState, setBannerState } from '../../store'
 
 const AzureRepoInfo = ({
 	online,
@@ -23,16 +23,30 @@ const AzureRepoInfo = ({
 	const canUndo = useSelector((state) => state.theme.canUndo)
 	const displayErrorBanner = useDisplayErrorBanner()
 
-	const revertChanges = () => {
-		sendSketchCommand('resetLocalChanges', {})
-			.then((themeData) => dispatch(setThemeData({ ...themeData, skipResetChangeHistory: true })))
-			.catch((error) => displayErrorBanner(error))
-	}
+	const revertChanges = () => sendSketchCommand('resetLocalChanges', {})
+		.then((themeData) => dispatch(setThemeData({ ...themeData, skipResetChangeHistory: true })))
+		.catch((error) => displayErrorBanner(error))
 
-	const saveChanges = () => {
-		sendSketchCommand('saveChangesToAzure', {})
-			.then((themeData) => console.log('SAVED!'))
-			.catch((error) => displayErrorBanner(error))
+	const saveChanges = async () => {
+		try {
+			const hasRemoteUpdates = await sendSketchCommand('checkForRemoteUpdates', {})
+
+			if (hasRemoteUpdates) {
+				dispatch(setLoadingState({ show: true, message: 'Downloading updates ...' }))
+				await sendSketchCommand('downloadRemoteUpdates', {})
+			}
+
+			dispatch(setLoadingState({ show: true, message: 'Saving changes ...' }))
+			await sendSketchCommand('saveChangesToAzure', {})
+
+			batch(() => {
+				dispatch(setLoadingState({ show: false, message: '' }))
+				dispatch(setBannerState({ show: true, type: 'success', message: hasRemoteUpdates ? 'Downloaded updates and saved changes to Azure.' : 'Saved changes to Azure.' }))
+			})
+		}
+		catch (error) {
+			displayErrorBanner(error)
+		}
 	}
 
 	if (!localProject) {

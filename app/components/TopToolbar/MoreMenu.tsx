@@ -24,15 +24,13 @@ const MoreMenu = ({
 	const displayErrorBanner = useDisplayErrorBanner()
 	useOutsideClickListener(menuButtonElement, hideMenu)
 
-	const closeProject = () => {
-		sendSketchCommand('closeLocalProject', {})
-			.then(() => batch(() => {
-				navigate('/')
-				dispatch(resetThemeState())
-				dispatch(resetProjectState())
-			}))
-			.catch((error) => displayErrorBanner(error))
-	}
+	const closeProject = () => sendSketchCommand('closeLocalProject', {})
+		.then(() => batch(() => {
+			navigate('/')
+			dispatch(resetThemeState())
+			dispatch(resetProjectState())
+		}))
+		.catch((error) => displayErrorBanner(error))
 
 	return (
 		<div

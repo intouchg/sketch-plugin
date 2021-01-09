@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, batch } from 'react-redux'
-import { setThemeData, setRecentProjects, setLocalProject, setBranchName, setLoadingState } from '../store'
+import { setThemeData, setRecentProjects, setLocalProject, setBranchName, setLoadingState, setBannerState } from '../store'
 import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
@@ -25,20 +25,25 @@ export const useSelectLocalProject = (filepath?: string) => {
 				dispatch(setRecentProjects(recentProjects))
 			})
 
-			const hasUpdates = await sendSketchCommand('checkForRemoteUpdates', {})
+			const hasRemoteUpdates = await sendSketchCommand('checkForRemoteUpdates', {})
 
-			if (hasUpdates) {
+			if (hasRemoteUpdates) {
 				dispatch(setLoadingState({ show: true, message: 'Downloading updates ...' }))
 				await sendSketchCommand('downloadRemoteUpdates', {})
 			}
 
 			batch(() => {
 				dispatch(setLoadingState({ show: false, message: '' }))
+
+				if (hasRemoteUpdates) {
+					dispatch(setBannerState({ show: true, type: 'success', message: 'Downloaded updates from Azure.' }))
+				}
+
 				navigate('main')
 			})
 		}
 		catch (error) {
 			displayErrorBanner(error)
 		}
-	})
+	}
 }

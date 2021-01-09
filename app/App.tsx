@@ -13,6 +13,7 @@ const App = () => {
 
 	return (
 		<ThemeProvider theme={sketchPluginTheme}>
+			<MessageBanner />
 			<Routes>
 				<Route
 					path="/"
@@ -30,7 +31,6 @@ const App = () => {
 			<AzureModal />
 			<SettingsModal />
 			<LoadingScreen />
-			<MessageBanner />
 		</ThemeProvider>
 	)
 }

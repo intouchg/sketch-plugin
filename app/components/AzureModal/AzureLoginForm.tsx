@@ -60,10 +60,7 @@ const AzureLoginForm = ({
 	}
 
 	const loginToAzure = () => {
-		sendSketchCommand('loginToAzure', {
-			username: usernameValue,
-			accessToken: accessTokenValue,
-		})
+		sendSketchCommand('loginToAzure', { username: usernameValue, accessToken: accessTokenValue })
 			.then((credentials) => batch(() => {
 				dispatch(setAzureCredentials(credentials))
 

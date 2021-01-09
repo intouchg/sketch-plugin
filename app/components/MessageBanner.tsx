@@ -17,15 +17,23 @@ const titleTexts = {
 
 const backgroundColors = {
 	info: 'Primary',
-	warn: 'Caution Dark',
+	warn: 'Caution',
 	success: 'Positive',
 	error: 'Critical',
+}
+
+const textColors = {
+	info: 'Card',
+	warn: 'Caution Dark',
+	success: 'Positive Dark',
+	error: 'Critical Dark',
 }
 
 const MessageBanner = () => {
 	const dispatch = useDispatch()
 	const { show, type, message } = useSelector((state) => state.banner)
-	const spring = useSpring({ maxHeight: show ? '240px' : '0px' })
+	const spring = useSpring({ maxHeight: show ? '120px' : '0px' })
+	const textColor = textColors[type]
 
 	const resetBanner = () => {
 		dispatch(setBannerState({ show: false, type, message }))
@@ -38,18 +46,18 @@ const MessageBanner = () => {
 			left={0}
 			width="100%"
 			backgroundColor={backgroundColors[type]}
-			overflow="hidden"
+			overflow="scroll"
 			zIndex={4}
 			style={spring}
 		>
 			<Box padding={4}>
 				<Heading
 					marginBottom={1}
-					color="Card"
+					color={textColor}
 				>
 					{titleTexts[type]}
 				</Heading>
-				<Text color="Card">
+				<Text color={textColor}>
 					{String(message)}
 				</Text>
 				<InvisibleButton
@@ -60,7 +68,7 @@ const MessageBanner = () => {
 					onClick={resetBanner}
 				>
 					<CloseIcon
-						fill="Card"
+						fill={textColor}
 						width="13px"
 					/>
 				</InvisibleButton>
