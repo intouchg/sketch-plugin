@@ -8,8 +8,7 @@ import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { setShowReposModal } from '../../store'
 import { CloseModalButton } from '../CloseModalButton'
-
-// TO DO: Loading component
+import { Loading } from '../Loading'
 
 const ReposModal = () => {
 	const dispatch = useDispatch()
@@ -41,9 +40,7 @@ const ReposModal = () => {
 							overflowY="scroll"
 						>
 							{showLoading ? (
-								<>
-									LOADING
-								</>
+								<Loading />
 							) : (
 								<ReposList />
 							)}

@@ -14,9 +14,8 @@ import { LetterSpacings } from './LetterSpacings'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { setImportedSketchValues, saveImportedSketchValues } from '../../store'
+import { Loading } from '../Loading'
 import type { ThemeValue } from '@i/theme'
-
-// TO DO: Loading component
 
 const views = {
 	color: Colors,
@@ -43,8 +42,6 @@ export const routeTitles: { [key in ImportModalRoute]: string } = {
 }
 
 type SelectedImportedValue = ThemeValue & { willOverwriteByName?: boolean }
-
-// TO DO: Create loading component
 
 const ImportModal = ({
 	setShowImportModal,
@@ -161,9 +158,7 @@ const ImportModal = ({
 					overflowY="scroll"
 				>
 					{showLoading ? (
-						<>
-							LOADING
-						</>
+						<Loading />
 					) : (
 						<ImportView
 							values={routeThemeValues as any}

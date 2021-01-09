@@ -5,10 +5,9 @@ import { sortAlphabetical } from '@i/utility'
 import { Checkbox } from '../Checkbox'
 import { InvisibleButton } from '../Buttons'
 import { Font } from '../ThemeValues'
+import { Loading } from '../Loading'
 import type { ThemeFont } from '@i/theme'
 import type { SystemFontFamily } from '../../sketchApi'
-
-// TO DO: Loading component
 
 const FontFamily = ({
 	name,
@@ -97,7 +96,9 @@ const Fonts = ({
 	const systemFonts = useSelector((state) => state.theme.systemFonts)
 
 	if (!Object.keys(systemFonts).length) {
-		return <>LOADING</>
+		return (
+			<Loading />
+		)
 	}
 
 	const uniqueImportedValues = importedValues.filter(({ typeface }) => !values.some((v) => v.typeface === typeface))
