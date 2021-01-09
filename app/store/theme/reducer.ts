@@ -1,7 +1,6 @@
 import { enablePatches, produce, applyPatches } from 'immer'
 import { createThemeValue, themeTypePropertyMap } from '@i/theme'
 import { sortAlphabetical } from '@i/utility'
-import { sendSketchCommand } from '../../sketchApi'
 import {
 	UNDO,
 	REDO,
@@ -45,7 +44,7 @@ const UNDOABLE_ACTIONS = [
 	SAVE_IMPORTED_SKETCH_VALUES,
 ]
 
-const SAVEABLE_ACTIONS = [
+export const SAVEABLE_ACTIONS = [
 	UNDO,
 	REDO,
 	...UNDOABLE_ACTIONS,
@@ -64,11 +63,6 @@ export const themeReducer = (
 					(nextState: ThemeState) => {
 						nextState.canUndo = changeHistory.hasOwnProperty(currentVersion)
 						nextState.canRedo = true
-
-						sendSketchCommand('saveThemeData', {
-							values: Object.values(nextState.values).flat(),
-							variants: nextState.variants,
-						}).catch((error) => console.error(error))
 					},
 				) as any
 			}
@@ -79,11 +73,6 @@ export const themeReducer = (
 					(nextState: ThemeState) => {
 						nextState.canUndo = true
 						nextState.canRedo = changeHistory.hasOwnProperty(currentVersion + 1)
-
-						sendSketchCommand('saveThemeData', {
-							values: Object.values(nextState.values).flat(),
-							variants: nextState.variants,
-						}).catch((error) => console.error(error))
 					},
 				) as any
 			}
@@ -274,13 +263,6 @@ export const themeReducer = (
 		if (UNDOABLE_ACTIONS.includes(action.type)) {
 			nextState.canUndo = true
 			nextState.canRedo = false
-		}
-
-		if (SAVEABLE_ACTIONS.includes(action.type)) {
-			sendSketchCommand('saveThemeData', {
-				values: Object.values(nextState.values).flat(),
-				variants: nextState.variants,
-			}).catch((error) => console.error(error))
 		}
 	}, (patches, inversePatches) => {
 		if (UNDOABLE_ACTIONS.includes(action.type)) {

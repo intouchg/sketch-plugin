@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from 'redux'
+import { combineReducers, createStore, applyMiddleware } from 'redux'
+import { sideEffects } from './sideEffects'
 import { themeReducer } from './theme'
 import { azureReducer } from './azure'
 import { bannerReducer } from './banner'
@@ -19,6 +20,6 @@ const rootReducer = combineReducers({
 	settings: settingsReducer,
 })
 
-export const store = createStore(rootReducer)
+export const store = createStore(rootReducer, applyMiddleware(sideEffects))
 
 export type RootState = ReturnType<typeof rootReducer>

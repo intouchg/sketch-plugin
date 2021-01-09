@@ -11,7 +11,6 @@ import {
 	SET_ONLINE_STATUS,
 } from './actions'
 import { initialAzureState } from './state'
-import { sendSketchCommand } from '../../sketchApi'
 import type { AzureActionType } from './actions'
 import type { AzureState } from './state'
 
@@ -44,7 +43,6 @@ export const azureReducer = (
 
 			case FORGET_AZURE_CREDENTIALS: {
 				nextState.credentials = initialAzureState.credentials
-				sendSketchCommand('forgetAzureCredentials', {}).catch((error) => console.error(error))
 				break
 			}
 
