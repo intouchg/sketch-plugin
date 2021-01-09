@@ -2,7 +2,7 @@ import BrowserWindow from 'sketch-module-web-view'
 import { getWebview } from 'sketch-module-web-view/remote'
 import UI from 'sketch/ui'
 // import { toArray } from 'util'
-import { stopGitProcess, stopStorybook } from './services'
+import { stopStorybook } from './services'
 import { updateSketchDocumentNames } from './clientApi'
 import * as api from './messages'
 
@@ -43,7 +43,6 @@ export default () => {
 
 	browserWindow.on('closed', async () => {
 		state = initialState
-		stopGitProcess()
 		stopStorybook()
 		await api.closeLocalProject()
 	})

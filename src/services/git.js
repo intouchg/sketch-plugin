@@ -1,10 +1,7 @@
 import ChildProcess from '../ChildProcess'
 
-let gitProcess = null
 let gitDirectory = null
 let branchName = null
-
-export const stopGitProcess = () => gitProcess && gitProcess.stop()
 
 // Checks if branchNameA is an ancestor of branchNameB.
 // If true, branchNameB is caught up with branchNameA.
@@ -23,7 +20,7 @@ export const isBranchAncestorOfBranch = (branchNameA, branchNameB) => new Promis
 	const onClose = (code) => {}
 	const onError = (error) => reject(error)
 
-	gitProcess = new ChildProcess(`cd ${gitDirectory} && git merge-base --is-ancestor ${branchNameA} ${branchNameB}; echo $?`, { onStdOut, onStdErr, onClose, onError }, true)
+	const process = new ChildProcess(`cd ${gitDirectory} && git merge-base --is-ancestor ${branchNameA} ${branchNameB}; echo $?`, { onStdOut, onStdErr, onClose, onError }, true)
 })
 
 export const hasCommittedRemoteChanges = async () => !(await isBranchAncestorOfBranch(`origin/${branchName}`, branchName))
@@ -47,7 +44,7 @@ export const hasUncommittedLocalChanges = () => new Promise((resolve, reject) =>
 		const onClose = (code) => {}
 		const onError = (error) => reject(error)
 
-		gitProcess = new ChildProcess(`cd ${gitDirectory} && git status --porcelain | wc -l`, { onStdOut, onStdErr, onClose, onError }, true)
+		const process = new ChildProcess(`cd ${gitDirectory} && git status --porcelain | wc -l`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to check git changes: ' + error)
@@ -61,7 +58,7 @@ export const resetLocalChanges = () => new Promise((resolve, reject) => {
 		const onClose = (code) => resolve(true)
 		const onError = (error) => reject(error)
 
-		gitProcess = new ChildProcess(`cd ${gitDirectory} && git reset --hard origin/${branchName}`, { onStdOut, onStdErr, onClose, onError }, true)
+		const process = new ChildProcess(`cd ${gitDirectory} && git reset --hard origin/${branchName}`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to reset git changes: ' + error)
@@ -75,7 +72,7 @@ export const commitChanges = (message) => new Promise((resolve, reject) => {
 		const onClose = (code) => resolve(true)
 		const onError = (error) => reject(error)
 
-		gitProcess = new ChildProcess(`cd ${gitDirectory} && git add . && git commit -m '${message}'`, { onStdOut, onStdErr, onClose, onError }, true)
+		const process = new ChildProcess(`cd ${gitDirectory} && git add . && git commit -m '${message}'`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to create git commit: ' + error)
@@ -98,7 +95,7 @@ export const pushChanges = () => new Promise((resolve, reject) => {
 
 		const onError = (error) => reject(error)
 
-		gitProcess = new ChildProcess(`cd ${gitDirectory} && git push origin ${branchName} --no-rebase`, { onStdOut, onStdErr, onClose, onError }, true)
+		const process = new ChildProcess(`cd ${gitDirectory} && git push origin ${branchName} --no-rebase`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to push git branch: ' + error)
@@ -121,7 +118,7 @@ export const pullChanges = () => new Promise((resolve, reject) => {
 
 		const onError = (error) => reject(error)
 
-		gitProcess = new ChildProcess(`cd ${gitDirectory} && git pull origin ${branchName} --no-rebase`, { onStdOut, onStdErr, onClose, onError }, true)
+		const process = new ChildProcess(`cd ${gitDirectory} && git pull origin ${branchName} --no-rebase`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to pull git branch: ' + error)
@@ -154,7 +151,7 @@ export const openGitRepo = (directory) => new Promise((resolve, reject) => {
 
 		// webContents.executeJavaScript('window.cloningAzureGitRepo()')
 
-		gitProcess = new ChildProcess(`cd ${directory} && git branch --show-current`, { onStdOut, onStdErr, onClose, onError }, true)
+		const process = new ChildProcess(`cd ${directory} && git branch --show-current`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to open git repo: ' + error)
@@ -187,6 +184,6 @@ export const closeGitRepo = () => {
 
 // 	// webContents.executeJavaScript('window.cloningAzureGitRepo()')
 
-// 	gitProcess = new ChildProcess(`cd ${targetDirectory} && git clone ${remoteUrl} && yarn install --ignore-scripts`, { onClose, onError })
+// 	const process = new ChildProcess(`cd ${targetDirectory} && git clone ${remoteUrl} && yarn install --ignore-scripts`, { onClose, onError })
 
 // }
