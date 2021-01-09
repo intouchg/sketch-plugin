@@ -39,16 +39,15 @@ export const selectLocalProject = async (state, payload) => {
 
 	// Load each theme file referenced in the config file (except the "output" file) and populate themeData
 	Object.keys(filepaths).forEach((key) => {
-		const lowercaseKey = key.toLowerCase()
 		const filepath = path.resolve(selectedProjectDirectory, config[key])
 
 		if (!fs.existsSync(filepath)) {
-			throw Error(`Could not locate theme ${key.toLowerCase()} file at filepath: ${filepath}`)
+			throw Error(`Could not locate theme "${key}" file at filepath: ${filepath}`)
 		}
 
-		themeFilepaths[lowercaseKey] = filepath
+		themeFilepaths[key] = filepath
 		const fileData = fs.readFileSync(filepath)
-		themeData[lowercaseKey] = JSON.parse(fileData)
+		themeData[key] = JSON.parse(fileData)
 	})
 
 	const recentProjects = writeRecentProjectMetadata({ filepath: selectedProjectDirectory })

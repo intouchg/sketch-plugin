@@ -7,7 +7,7 @@ import { CloudIcon } from '../Icons'
 import { LimitInteraction } from '../LimitInteraction'
 import { useDisplayErrorBanner } from '../../hooks'
 import { sendSketchCommand } from '../../sketchApi'
-import { setThemeData, setLoadingState, setBannerState } from '../../store'
+import { setThemeData, setLoadingState, setBannerState, setHasLocalChanges } from '../../store'
 
 const AzureRepoInfo = ({
 	online,
@@ -46,7 +46,10 @@ const AzureRepoInfo = ({
 	}
 
 	const revertChanges = () => sendSketchCommand('resetLocalChanges', {})
-		.then((themeData) => dispatch(setThemeData({ ...themeData, skipResetChangeHistory: true })))
+		.then((themeData) => {
+			dispatch(setHasLocalChanges(false))
+			dispatch(setThemeData({ ...themeData, skipResetChangeHistory: true }))
+		})
 		.catch((error) => displayErrorBanner(error))
 
 	const promptToRevert = () => dispatch(setBannerState({

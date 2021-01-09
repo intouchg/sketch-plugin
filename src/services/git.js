@@ -61,7 +61,7 @@ export const resetLocalChanges = () => new Promise((resolve, reject) => {
 		const onClose = (code) => resolve(true)
 		const onError = (error) => reject(error)
 
-		gitProcess = new ChildProcess(`cd ${gitDirectory} && git reset --hard`, { onStdOut, onStdErr, onClose, onError }, true)
+		gitProcess = new ChildProcess(`cd ${gitDirectory} && git reset --hard origin/${branchName}`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to reset git changes: ' + error)
