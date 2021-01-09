@@ -8,6 +8,7 @@ export type AzureState = {
 	credentials: AzureCredentials
 	localProject: string
 	branchName: string
+	hasLocalChanges: boolean
 	lastPush: Date | null
 	online: boolean
 }
@@ -21,6 +22,7 @@ export const initialAzureState: AzureState = {
 	},
 	localProject: '',
 	branchName: '',
+	hasLocalChanges: false,
 	lastPush: null,
 	online: false,
 }

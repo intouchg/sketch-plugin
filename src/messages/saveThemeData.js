@@ -1,5 +1,6 @@
 import fs from '@skpm/fs'
 // import { updateStorybookTempTheme } from '../services'
+import { hasCommittedLocalChanges, hasUncommittedLocalChanges } from '../services'
 
 export const saveThemeData = async (state, payload, webContents, showError) => {
 	try {
@@ -10,8 +11,14 @@ export const saveThemeData = async (state, payload, webContents, showError) => {
 			fs.writeFileSync(themeFilepaths[key], JSON.stringify(value, null, '\t'))
 		}))
 
+		const hasLocalChanges = (await Promise.all([
+			hasCommittedLocalChanges(),
+			hasUncommittedLocalChanges(),
+		])).includes(true)
+
 		// updateStorybookTempTheme(newThemeData)
-		return true
+
+		return hasLocalChanges
 	}
 	catch (error) {
 		throw Error('Failed to save plugin theme changes to the project directory: ' + error)

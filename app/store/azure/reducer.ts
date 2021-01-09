@@ -7,6 +7,7 @@ import {
 	FORGET_AZURE_CREDENTIALS,
 	SET_LOCAL_PROJECT,
 	SET_BRANCH_NAME,
+	SET_HAS_LOCAL_CHANGES,
 	SET_ONLINE_STATUS,
 } from './actions'
 import { initialAzureState } from './state'
@@ -54,6 +55,11 @@ export const azureReducer = (
 
 			case SET_BRANCH_NAME: {
 				nextState.branchName = action.payload
+				break
+			}
+
+			case SET_HAS_LOCAL_CHANGES: {
+				nextState.hasLocalChanges = action.payload
 				break
 			}
 

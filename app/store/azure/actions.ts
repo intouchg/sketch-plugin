@@ -41,6 +41,16 @@ export const setAzureCredentials = (credentials: SetAzureCredentialsAction['payl
 	payload: credentials,
 })
 
+export const FORGET_AZURE_CREDENTIALS = 'FORGET_AZURE_CREDENTIALS'
+export type ForgetAzureCredentialsAction = {
+    type: typeof FORGET_AZURE_CREDENTIALS
+    payload: undefined
+}
+export const forgetAzureCredentials = (): ForgetAzureCredentialsAction => ({
+	type: FORGET_AZURE_CREDENTIALS,
+	payload: undefined,
+})
+
 export const SET_LOCAL_PROJECT = 'SET_LOCAL_PROJECT'
 export type SetLocalProjectAction = {
     type: typeof SET_LOCAL_PROJECT
@@ -61,14 +71,14 @@ export const setBranchName = (branchName: SetBranchNameAction['payload']): SetBr
 	payload: branchName,
 })
 
-export const FORGET_AZURE_CREDENTIALS = 'FORGET_AZURE_CREDENTIALS'
-export type ForgetAzureCredentialsAction = {
-    type: typeof FORGET_AZURE_CREDENTIALS
-    payload: undefined
+export const SET_HAS_LOCAL_CHANGES = 'SET_HAS_LOCAL_CHANGES'
+export type SetHasLocalChangesAction = {
+    type: typeof SET_HAS_LOCAL_CHANGES
+    payload: boolean
 }
-export const forgetAzureCredentials = (): ForgetAzureCredentialsAction => ({
-	type: FORGET_AZURE_CREDENTIALS,
-	payload: undefined,
+export const setHasLocalChanges = (hasLocalChanges: SetHasLocalChangesAction['payload']): SetHasLocalChangesAction => ({
+	type: SET_HAS_LOCAL_CHANGES,
+	payload: hasLocalChanges,
 })
 
 export const SET_ONLINE_STATUS = 'SET_ONLINE_STATUS'
@@ -86,7 +96,8 @@ export type AzureActionType =
     | SetAzureModalStateAction
     | SetShowReposModalAction
     | SetAzureCredentialsAction
+    | ForgetAzureCredentialsAction
     | SetLocalProjectAction
     | SetBranchNameAction
-    | ForgetAzureCredentialsAction
+    | SetHasLocalChangesAction
     | SetOnlineStatusAction

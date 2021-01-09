@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, batch } from 'react-redux'
-import { setThemeData, setRecentProjects, setLocalProject, setBranchName, setLoadingState, setBannerState } from '../store'
+import { setThemeData, setRecentProjects, setLocalProject, setBranchName, setHasLocalChanges, setLoadingState, setBannerState } from '../store'
 import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
@@ -12,7 +12,7 @@ export const useSelectLocalProject = (filepath?: string) => {
 
 	return async () => {
 		try {
-			const { themeData, selectedProjectDirectory, branchName, recentProjects } = await sendSketchCommand('selectLocalProject', { filepath })
+			const { themeData, selectedProjectDirectory, branchName, hasLocalChanges, recentProjects } = await sendSketchCommand('selectLocalProject', { filepath })
 
 			if (!selectedProjectDirectory) {
 				return
@@ -22,6 +22,7 @@ export const useSelectLocalProject = (filepath?: string) => {
 				dispatch(setThemeData(themeData))
 				dispatch(setLocalProject(selectedProjectDirectory))
 				dispatch(setBranchName(branchName))
+				dispatch(setHasLocalChanges(hasLocalChanges))
 				dispatch(setRecentProjects(recentProjects))
 			})
 

@@ -1,8 +1,9 @@
 import type { ThemeData } from '../store'
 import type {
-	RawImportedSketchValues,
-	AzureCredentials,
+	ProjectData,
 	RecentProject,
+	AzureCredentials,
+	RawImportedSketchValues,
 	SPFontData,
 } from './types'
 
@@ -25,7 +26,7 @@ export type SketchCommands = {
     resetLocalChanges: SketchCommand<{}, ThemeData>
     saveThemeData: SketchCommand<ThemeData, true>
     saveChangesToAzure: SketchCommand<{}, true>
-    selectLocalProject: SketchCommand<RecentProject | {}, { themeData: ThemeData, selectedProjectDirectory: string, branchName: string, recentProjects: RecentProject[] }>
+    selectLocalProject: SketchCommand<RecentProject | {}, ProjectData>
     selectNewProjectDirectory: SketchCommand<{}, string>
 }
 
