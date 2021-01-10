@@ -96,7 +96,7 @@ export const pushChanges = () => new Promise((resolve, reject) => {
 
 		const onError = (error) => reject(error)
 
-		const process = new ChildProcess(`cd ${gitDirectory} && git push origin ${branchName} --no-rebase`, { onStdOut, onStdErr, onClose, onError }, true)
+		const process = new ChildProcess(`cd ${gitDirectory} && git push origin ${branchName}`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to push git branch: ' + error)
@@ -105,10 +105,17 @@ export const pushChanges = () => new Promise((resolve, reject) => {
 
 export const pullChanges = () => new Promise((resolve, reject) => {
 	try {
-		const onStdOut = (data) => {}
-		const onStdErr = (data) => {}
+		const onStdOut = (data) => {
+			console.log('stdOut ', data.toString())
+		}
+
+		const onStdErr = (data) => {
+			console.log('stdErr ', data.toString())
+		}
 
 		const onClose = (code) => {
+			console.log('close ', code)
+
 			if (code === 0) {
 				resolve(true)
 			}
@@ -117,11 +124,15 @@ export const pullChanges = () => new Promise((resolve, reject) => {
 			}
 		}
 
-		const onError = (error) => reject(error)
+		const onError = (error) => {
+			console.log('error ', error)
+			reject(error)
+		}
 
-		const process = new ChildProcess(`cd ${gitDirectory} && git pull origin ${branchName} --no-rebase`, { onStdOut, onStdErr, onClose, onError }, true)
+		const process = new ChildProcess(`cd ${gitDirectory} && git pull origin ${branchName} --no-rebase --commit --no-edit`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
+		console.log('caugth ', error)
 		throw Error('Failed to pull git branch: ' + error)
 	}
 })

@@ -1,4 +1,4 @@
-import { readAzureCredentialsMetadata, writeAzureCredentialsMetadata, connectToAzure } from '../services'
+import { readAzureCredentialsMetadata, writeAzureCredentialsMetadata, connectToAzure, getAzureGitRepos } from '../services'
 
 export const getAzureCredentials = async (state, payload) => {
 	let credentials
@@ -16,6 +16,7 @@ export const getAzureCredentials = async (state, payload) => {
 
 	try {
 		await connectToAzure(credentials.username, credentials.accessToken)
+		getAzureGitRepos()
 		return credentials
 	}
 	catch (loginError) {

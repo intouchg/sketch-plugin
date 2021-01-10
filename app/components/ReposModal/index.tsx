@@ -10,12 +10,19 @@ import { setShowReposModal } from '../../store'
 import { CloseModalButton } from '../CloseModalButton'
 import { Loading } from '../Loading'
 
+const OFFLINE_ERROR_MESSAGE = 'Please restore internet connectivity to browse Azure projects.'
+
 const ReposModal = () => {
 	const dispatch = useDispatch()
+	const showReposModal = useSelector((state) => state.azure.showReposModal)
 	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
 	const [ showLoading, setShowLoading ] = useState(false)
+
+	if (!showReposModal) {
+		return null
+	}
 
 	return (
 		<ModalBackground>

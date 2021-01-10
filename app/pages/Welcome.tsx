@@ -8,7 +8,6 @@ import pkg from '../../package.json'
 
 const Welcome = () => {
 	const dispatch = useDispatch()
-	const showReposModal = useSelector((state) => state.azure.showReposModal)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
 	const connected = Boolean(username && accessToken)
 	const [ showNewProjectModal, setShowNewProjectModal ] = useState(false)
@@ -70,9 +69,7 @@ const Welcome = () => {
 					</Flex>
 				</Box>
 			</Flex>
-			{showReposModal && (
-				<ReposModal />
-			)}
+			<ReposModal />
 			{showNewProjectModal && (
 				<NewProjectModal setShowNewProjectModal={setShowNewProjectModal} />
 			)}

@@ -16,10 +16,8 @@ export const connectToAzure = async (username, accessToken) => {
 	await azureConnection.getOrganizations()
 }
 
-export const getAzureGitRepos = async (username, accessToken, webContents, showError) => {
+export const getAzureGitRepos = async () => {
 	try {
-		await connectToAzure(username, accessToken)
-
 		if (!azureConnection.lastGitRepoSync) {
 			await azureConnection.getGitRepos()
 		}
@@ -34,11 +32,7 @@ export const getAzureGitRepos = async (username, accessToken, webContents, showE
 		return sortedGitRepos
 	}
 	catch (error) {
-		console.error(error)
-		/* eslint-disable */
-        azureConnection = null
-        /* eslint-enable */
-		throw error
+		throw Error('Failed to get Azure git repos: ' + error)
 	}
 }
 
