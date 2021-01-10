@@ -1,5 +1,15 @@
 import { spawn } from '@skpm/child_process'
 
+/**
+ * This doesn't always work perfectly... Sometimes stdout is not called.
+ * Finding these bugs can be tricky as they are very inconsistent, so be careful...
+ *
+ * It seems like an issue with NodeJS, not with SKPM polyfills.
+ * Possibly related to these issues:
+ * 		https://github.com/skpm/child_process/issues/15
+ * 		https://github.com/nodejs/node/issues/19218
+ **/
+
 export default class ChildProcess {
 
 	constructor (
