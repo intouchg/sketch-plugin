@@ -1,4 +1,5 @@
 import ChildProcess from '../ChildProcess'
+import { spawnSync } from '../spawn'
 
 let gitDirectory = null
 let branchName = null
@@ -139,19 +140,11 @@ export const openGitRepo = (directory) => new Promise((resolve, reject) => {
 		gitDirectory = null
 		branchName = null
 
-		const onStdOut = (data) => (branchName = data.toString().replace(/\n*$/, ''))
-		const onStdErr = (data) => reject(data)
+		const data = spawnSync(`cd ${directory} && git branch --show-current`)
+		branchName = data.toString().replace(/\n*$/, '')
+		gitDirectory = directory
 
-		const onClose = (code) => {
-			gitDirectory = directory
-			resolve(branchName)
-		}
-
-		const onError = (error) => reject(error)
-
-		// webContents.executeJavaScript('window.cloningAzureGitRepo()')
-
-		const process = new ChildProcess(`cd ${directory} && git branch --show-current`, { onStdOut, onStdErr, onClose, onError }, true)
+		resolve(branchName)
 	}
 	catch (error) {
 		throw Error('Failed to open git repo: ' + error)
