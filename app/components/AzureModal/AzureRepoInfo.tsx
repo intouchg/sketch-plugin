@@ -8,6 +8,7 @@ import { LimitInteraction } from '../LimitInteraction'
 import { useDisplayErrorBanner } from '../../hooks'
 import { sendSketchCommand } from '../../sketchApi'
 import { setThemeData, setLoadingState, setBannerState, setHasLocalChanges, setHasRemoteChanges, setLastPushTime } from '../../store'
+import { timeSince } from '@i/utility'
 
 const AzureRepoInfo = ({
 	online,
@@ -137,7 +138,7 @@ const AzureRepoInfo = ({
 						color="Text"
 						fontWeight="Bold"
 					>
-						{lastPushTime ? lastPushTime.toLocaleString() : 'Never'}
+						{lastPushTime ? `${timeSince(lastPushTime)} ago` : 'Never'}
 					</ModalText>
 				</Flex>
 			</Flex>
