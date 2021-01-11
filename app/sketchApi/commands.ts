@@ -12,9 +12,9 @@ export type SketchCommand<P extends object, R> = { payload: P, response: R }
 export type SketchError = { error: string }
 
 export type SketchCommands = {
-    checkForRemoteUpdates: SketchCommand<{}, boolean>
+    checkHasRemoteChanges: SketchCommand<{}, boolean>
     closeLocalProject: SketchCommand<{}, true>
-    downloadRemoteUpdates: SketchCommand<{}, true>
+    downloadRemoteChanges: SketchCommand<{}, boolean>
     extractSketchDocumentStyles: SketchCommand<{ sketchDocumentIndex: number }, RawImportedSketchValues>
     forgetAzureCredentials: SketchCommand<{}, true>
     getAzureCredentials: SketchCommand<{}, AzureCredentials>

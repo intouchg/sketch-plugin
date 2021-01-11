@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, batch } from 'react-redux'
-import { setThemeData, setRecentProjects, setLocalProject, setBranchName, setHasLocalChanges, setLoadingState, setBannerState } from '../store'
+import { setThemeData, setRecentProjects, setLocalProject, setBranchName, setHasLocalChanges, setLoadingState, setBannerState, setHasRemoteChanges, setCheckingHasRemoteChanges } from '../store'
 import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
@@ -12,7 +12,13 @@ export const useSelectLocalProject = (filepath?: string) => {
 
 	return async () => {
 		try {
-			const { themeData, selectedProjectDirectory, branchName, hasLocalChanges, recentProjects } = await sendSketchCommand('selectLocalProject', { filepath })
+			const {
+				themeData,
+				selectedProjectDirectory,
+				branchName,
+				hasLocalChanges,
+				recentProjects,
+			} = await sendSketchCommand('selectLocalProject', { filepath })
 
 			if (!selectedProjectDirectory) {
 				return
@@ -24,23 +30,17 @@ export const useSelectLocalProject = (filepath?: string) => {
 				dispatch(setBranchName(branchName))
 				dispatch(setHasLocalChanges(hasLocalChanges))
 				dispatch(setRecentProjects(recentProjects))
+				dispatch(setCheckingHasRemoteChanges(true))
+				navigate('main')
 			})
 
-			const hasRemoteUpdates = await sendSketchCommand('checkForRemoteUpdates', {})
-
-			if (hasRemoteUpdates) {
-				dispatch(setLoadingState({ show: true, message: 'Downloading updates ...' }))
-				await sendSketchCommand('downloadRemoteUpdates', {})
-			}
+			const checkingTimeout = setTimeout(() => dispatch(setCheckingHasRemoteChanges(false)), 60000)
+			const hasRemoteChanges = await sendSketchCommand('checkHasRemoteChanges', {})
 
 			batch(() => {
-				dispatch(setLoadingState({ show: false, message: '' }))
-
-				if (hasRemoteUpdates) {
-					dispatch(setBannerState({ show: true, type: 'success', message: 'Downloaded updates from Azure.' }))
-				}
-
-				navigate('main')
+				clearTimeout(checkingTimeout)
+				dispatch(setCheckingHasRemoteChanges(false))
+				dispatch(setHasRemoteChanges(hasRemoteChanges))
 			})
 		}
 		catch (error) {

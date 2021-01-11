@@ -21,26 +21,52 @@ const AzureRepoInfo = ({
 	const branchName = useSelector((state) => state.azure.branchName)
 	const lastPush = useSelector((state) => state.azure.lastPush)
 	const hasLocalChanges = useSelector((state) => state.azure.hasLocalChanges)
+	const hasRemoteChanges = useSelector((state) => state.azure.hasRemoteChanges)
 	const displayErrorBanner = useDisplayErrorBanner()
+
+	const downloadUpdates = async () => {
+		try {
+			const didReceiveUpdates = await sendSketchCommand('downloadRemoteChanges', {})
+
+			if (didReceiveUpdates) {
+				dispatch(setBannerState({ show: true, type: 'success', message: 'Downloaded updates from Azure.' }))
+			}
+			else {
+				dispatch(setBannerState({ show: true, type: 'info', message: 'Your project is already up to date.' }))
+			}
+		}
+		catch (error) {
+			displayErrorBanner(error)
+		}
+	}
 
 	const saveChanges = async () => {
 		try {
-			const hasRemoteUpdates = await sendSketchCommand('checkForRemoteUpdates', {})
-
-			if (hasRemoteUpdates) {
-				dispatch(setLoadingState({ show: true, message: 'Downloading updates ...' }))
-				await sendSketchCommand('downloadRemoteUpdates', {})
+			if (hasRemoteChanges) {
+				return dispatch(setBannerState({ show: true, type: 'info', message: 'You must download updates before saving.' }))
 			}
 
 			dispatch(setLoadingState({ show: true, message: 'Saving changes ...' }))
 			await sendSketchCommand('saveChangesToAzure', {})
 
-			batch(() => {
-				dispatch(setLoadingState({ show: false, message: '' }))
-				dispatch(setBannerState({ show: true, type: 'success', message: hasRemoteUpdates ? 'Downloaded updates and saved changes to Azure.' : 'Saved changes to Azure.' }))
-			})
+			// dispatch(setLoadingState({ show: true, message: 'Checking for updates ...' }))
+			// const hasRemoteChanges = await sendSketchCommand('checkHasRemoteChanges', {})
+
+			// if (hasRemoteChanges) {
+			// 	dispatch(setLoadingState({ show: true, message: 'Downloading updates ...' }))
+			// 	await sendSketchCommand('downloadRemoteChanges', {})
+			// }
+
+			// dispatch(setLoadingState({ show: true, message: 'Saving changes ...' }))
+			// await sendSketchCommand('saveChangesToAzure', {})
+
+			// batch(() => {
+			// 	dispatch(setLoadingState({ show: false, message: '' }))
+			// 	dispatch(setBannerState({ show: true, type: 'success', message: hasRemoteChanges ? 'Downloaded updates and saved changes to Azure.' : 'Saved changes to Azure.' }))
+			// })
 		}
 		catch (error) {
+			console.log('error = ', error)
 			displayErrorBanner(error)
 		}
 	}
@@ -116,17 +142,13 @@ const AzureRepoInfo = ({
 					</ModalText>
 				</Flex>
 			</Flex>
-			<LimitInteraction
-				unlimit={online && connected && hasLocalChanges}
-				display="flex"
-				width="100%"
-			>
-				<Flex
+			<Flex>
+				<LimitInteraction
 					as={PrimaryButton}
+					unlimit={online && connected && hasLocalChanges}
+					display="flex"
 					alignItems="center"
 					justifyContent="center"
-					flexGrow={1}
-					marginRight={3}
 					onClick={saveChanges}
 				>
 					Save to Azure
@@ -136,11 +158,14 @@ const AzureRepoInfo = ({
 							width="24px"
 						/>
 					</Box>
-				</Flex>
+				</LimitInteraction>
+				<PrimaryButton onClick={downloadUpdates}>
+					Update
+				</PrimaryButton>
 				<SecondaryButton onClick={promptToRevert}>
 					Revert
 				</SecondaryButton>
-			</LimitInteraction>
+			</Flex>
 		</Box>
 	)
 }

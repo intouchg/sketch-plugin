@@ -8,6 +8,8 @@ import {
 	SET_LOCAL_PROJECT,
 	SET_BRANCH_NAME,
 	SET_HAS_LOCAL_CHANGES,
+	SET_HAS_REMOTE_CHANGES,
+	SET_CHECKING_HAS_REMOTE_CHANGES,
 	SET_ONLINE_STATUS,
 } from './actions'
 import { initialAzureState } from './state'
@@ -58,6 +60,16 @@ export const azureReducer = (
 
 			case SET_HAS_LOCAL_CHANGES: {
 				nextState.hasLocalChanges = action.payload
+				break
+			}
+
+			case SET_HAS_REMOTE_CHANGES: {
+				nextState.hasRemoteChanges = action.payload
+				break
+			}
+
+			case SET_CHECKING_HAS_REMOTE_CHANGES: {
+				nextState.checkingHasRemoteChanges = action.payload
 				break
 			}
 

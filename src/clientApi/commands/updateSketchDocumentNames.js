@@ -1,10 +1,10 @@
 import { getSketchDocumentNames } from '../../messages'
 import { sendClientCommand } from '../index'
 
-export const updateSketchDocumentNames = () => {
+export const updateSketchDocumentNames = async () => {
 	try {
 		const sketchDocumentNames = getSketchDocumentNames()
-		sendClientCommand('setSketchDocumentNames', sketchDocumentNames).catch((error) => console.error(error))
+		await sendClientCommand('setSketchDocumentNames', sketchDocumentNames)
 	}
 	catch (error) {
 		console.error('Failed to update Sketch document names: ' + error)

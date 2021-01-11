@@ -81,6 +81,26 @@ export const setHasLocalChanges = (hasLocalChanges: SetHasLocalChangesAction['pa
 	payload: hasLocalChanges,
 })
 
+export const SET_HAS_REMOTE_CHANGES = 'SET_HAS_REMOTE_CHANGES'
+export type SetHasRemoteChangesAction = {
+    type: typeof SET_HAS_REMOTE_CHANGES
+    payload: boolean
+}
+export const setHasRemoteChanges = (hasRemoteChanges: SetHasRemoteChangesAction['payload']): SetHasRemoteChangesAction => ({
+	type: SET_HAS_REMOTE_CHANGES,
+	payload: hasRemoteChanges,
+})
+
+export const SET_CHECKING_HAS_REMOTE_CHANGES = 'SET_CHECKING_HAS_REMOTE_CHANGES'
+export type SetCheckingHasRemoteChangesAction = {
+    type: typeof SET_CHECKING_HAS_REMOTE_CHANGES
+    payload: boolean
+}
+export const setCheckingHasRemoteChanges = (isChecking: SetCheckingHasRemoteChangesAction['payload']): SetCheckingHasRemoteChangesAction => ({
+	type: SET_CHECKING_HAS_REMOTE_CHANGES,
+	payload: isChecking,
+})
+
 export const SET_ONLINE_STATUS = 'SET_ONLINE_STATUS'
 export type SetOnlineStatusAction = {
     type: typeof SET_ONLINE_STATUS
@@ -100,4 +120,6 @@ export type AzureActionType =
     | SetLocalProjectAction
     | SetBranchNameAction
     | SetHasLocalChangesAction
+    | SetHasRemoteChangesAction
+    | SetCheckingHasRemoteChangesAction
     | SetOnlineStatusAction

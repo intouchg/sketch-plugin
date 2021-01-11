@@ -17,13 +17,20 @@ const resolveCommand = (data) => {
 
 const initializeClientApi = () => {
 	webview = getWebview(WEBVIEW_IDENTIFIER)
-	webview.webContents.on('resolveCommand', resolveCommand)
+
+	if (webview && webview.webContents) {
+		webview.webContents.on('resolveCommand', resolveCommand)
+	}
 }
 
 // Sends a message from the Sketch plugin back end to the React webview front end
 export const sendClientCommand = (type, payload) => {
 	if (!webview) {
 		initializeClientApi()
+	}
+
+	if (!webview || !webview.webContents) {
+		return Promise.resolve()
 	}
 
 	return new Promise((resolve, reject) => {

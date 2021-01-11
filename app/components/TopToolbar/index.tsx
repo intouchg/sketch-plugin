@@ -5,6 +5,7 @@ import { ImportButton } from './ImportButton'
 import { PreviewButton } from './PreviewButton'
 import { AzureStatus } from './AzureStatus'
 import { MoreMenu } from './MoreMenu'
+import { UpdatesStatus } from './UpdatesStatus'
 
 export const topToolbarHeight = '64px'
 
@@ -27,9 +28,12 @@ const TopToolbar = ({
 			boxShadow={setShowImportModal ? 'Medium' : 'none'}
 			zIndex={3}
 		>
-			<Heading>
-				{localProject ? localProject.split('/').pop() : ''}
-			</Heading>
+			<Flex alignItems="center">
+				<UpdatesStatus />
+				<Heading>
+					{localProject ? localProject.split('/').pop() : ''}
+				</Heading>
+			</Flex>
 			<Box>
 				{setShowImportModal && (
 					<>

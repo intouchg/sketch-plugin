@@ -4,29 +4,67 @@ import { spawnSync } from '../spawn'
 let gitDirectory = null
 let branchName = null
 
-// Checks if branchNameA is an ancestor of branchNameB.
-// If true, branchNameB is caught up with branchNameA.
-export const isBranchAncestorOfBranch = (branchNameA, branchNameB) => new Promise((resolve, reject) => {
-	const onStdOut = (data) => {
-		const result = data.toString().replace(/\n*$/, '')
+export const getTimestampByCommitId = (commitId) => new Promise((resolve, reject) => {
+	try {
+		const onStdOut = (data) => resolve(data.toString().replace(/\n*$/, ''))
+		const onStdErr = (data) => reject(data)
+		const onClose = (code) => {}
+		const onError = (error) => reject(error)
 
-		if (result === '0' || result === '1') {
-			resolve(result === '0')
-		}
-
-		reject(result)
+		// https://git-scm.com/docs/git-show
+		const process = new ChildProcess(`cd ${gitDirectory} && git show --no-patch --no-notes --pretty='%cd' ${commitId}`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
-
-	const onStdErr = (data) => reject(data)
-	const onClose = (code) => {}
-	const onError = (error) => reject(error)
-
-	const process = new ChildProcess(`cd ${gitDirectory} && git merge-base --is-ancestor ${branchNameA} ${branchNameB}; echo $?`, { onStdOut, onStdErr, onClose, onError }, true)
+	catch (error) {
+		throw Error('Failed to get timestamp by commit id: ' + error)
+	}
 })
 
-export const hasCommittedRemoteChanges = async () => !(await isBranchAncestorOfBranch(`origin/${branchName}`, branchName))
+export const getLocalLastPushedCommitId = () => new Promise((resolve, reject) => {
+	try {
+		const onStdOut = (data) => resolve(data.toString().replace(/\n*$/, ''))
+		const onStdErr = (data) => reject(data)
+		const onClose = (code) => {}
+		const onError = (error) => reject(error)
 
-export const hasCommittedLocalChanges = async () => !(await isBranchAncestorOfBranch(branchName, `origin/${branchName}`))
+		// https://git-scm.com/docs/git-rev-parse
+		const process = new ChildProcess(`cd ${gitDirectory} && git rev-parse origin/${branchName}`, { onStdOut, onStdErr, onClose, onError }, true)
+	}
+	catch (error) {
+		throw Error('Failed to get local last pushed commit id: ' + error)
+	}
+})
+
+export const getLocalCurrentCommitId = () => new Promise((resolve, reject) => {
+	try {
+		const onStdOut = (data) => resolve(data.toString().replace(/\n*$/, ''))
+		const onStdErr = (data) => reject(data)
+		const onClose = (code) => {}
+		const onError = (error) => reject(error)
+
+		// https://git-scm.com/docs/git-rev-parse
+		const process = new ChildProcess(`cd ${gitDirectory} && git rev-parse ${branchName}`, { onStdOut, onStdErr, onClose, onError }, true)
+	}
+	catch (error) {
+		throw Error('Failed to get local current commit id: ' + error)
+	}
+})
+
+export const getRemoteCurrentCommitId = () => new Promise((resolve, reject) => {
+	try {
+		const data = spawnSync(`cd ${gitDirectory} && git ls-remote origin -h refs/heads/${branchName}`)
+		const result = data.toString().replace(/\n*$/, '')
+
+		if (!result.includes(`\trefs/heads/${branchName}`)) {
+			throw Error('Received unexpected result from ls-remote: ' + result)
+		}
+
+		const commitId = result.split('\t')[0]
+		resolve(commitId)
+	}
+	catch (error) {
+		throw Error('Failed to get remote current commit id: ' + error)
+	}
+})
 
 export const hasUncommittedLocalChanges = () => new Promise((resolve, reject) => {
 	try {
@@ -45,12 +83,32 @@ export const hasUncommittedLocalChanges = () => new Promise((resolve, reject) =>
 		const onClose = (code) => {}
 		const onError = (error) => reject(error)
 
+		// https://git-scm.com/docs/git-status
 		const process = new ChildProcess(`cd ${gitDirectory} && git status --porcelain | wc -l`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to check git changes: ' + error)
 	}
 })
+
+export const hasLocalChanges = async () => {
+	const values = await Promise.all([
+		hasUncommittedLocalChanges(),
+		getLocalCurrentCommitId(),
+		getLocalLastPushedCommitId(),
+	])
+
+	return values[0] || values[1] !== values[2]
+}
+
+export const hasRemoteChanges = async () => {
+	const ids = await Promise.all([
+		getRemoteCurrentCommitId(),
+		getLocalLastPushedCommitId(),
+	])
+
+	return ids[0] !== ids[1]
+}
 
 export const resetLocalChanges = () => new Promise((resolve, reject) => {
 	try {
@@ -59,6 +117,7 @@ export const resetLocalChanges = () => new Promise((resolve, reject) => {
 		const onClose = (code) => resolve(true)
 		const onError = (error) => reject(error)
 
+		// https://git-scm.com/docs/git-reset
 		const process = new ChildProcess(`cd ${gitDirectory} && git reset --hard origin/${branchName}`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {

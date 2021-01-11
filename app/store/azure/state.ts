@@ -9,6 +9,8 @@ export type AzureState = {
 	localProject: string
 	branchName: string
 	hasLocalChanges: boolean
+	hasRemoteChanges: boolean
+	checkingHasRemoteChanges: boolean
 	lastPush: Date | null
 	online: boolean
 }
@@ -23,6 +25,8 @@ export const initialAzureState: AzureState = {
 	localProject: '',
 	branchName: '',
 	hasLocalChanges: false,
+	hasRemoteChanges: false,
+	checkingHasRemoteChanges: false,
 	lastPush: null,
 	online: false,
 }
