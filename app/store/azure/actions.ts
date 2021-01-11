@@ -104,7 +104,7 @@ export const setCheckingHasRemoteChanges = (isChecking: SetCheckingHasRemoteChan
 export const SET_LAST_PUSH_TIME = 'SET_LAST_PUSH_TIME'
 export type SetLastPushTimeAction = {
     type: typeof SET_LAST_PUSH_TIME
-    payload: Date
+    payload: Date | null
 }
 export const setLastPushTime = (lastPushTime: SetLastPushTimeAction['payload']): SetLastPushTimeAction => ({
 	type: SET_LAST_PUSH_TIME,

@@ -4,7 +4,7 @@ import { spawnSync } from '../spawn'
 let gitDirectory = null
 let branchName = null
 
-export const getTimestampByCommitId = (commitId) => new Promise((resolve, reject) => {
+export const getTimestampOfCommit = (commitId) => new Promise((resolve, reject) => {
 	try {
 		const onStdOut = (data) => resolve(data.toString().replace(/\n*$/, ''))
 		const onStdErr = (data) => reject(data)
@@ -33,6 +33,31 @@ export const getLocalLastPushedCommitId = () => new Promise((resolve, reject) =>
 		throw Error('Failed to get local last pushed commit id: ' + error)
 	}
 })
+
+export const getTimestampOfLastPush = async () => {
+	try {
+		const lastPushCommitId = await getLocalLastPushedCommitId()
+		const lastPushHash = lastPushCommitId.substr(0, 7)
+		const data = spawnSync(`cd ${gitDirectory} && git reflog show origin/${branchName} --pretty='%h %gd %gs' --date=iso`)
+		const reflog = data.toString()
+		const lastPushEntry = reflog.split('\n').find((str) => str.includes(lastPushHash) && str.includes('update by push'))
+		let timestamp = null
+
+		if (lastPushEntry) {
+			const match = lastPushEntry.match(/@\{([\d-: ]*)\}/)
+
+			if (match && match[1]) {
+				const isoTimestamp = match[1]
+				timestamp = isoTimestamp.substr(0, 4) + '/' + isoTimestamp.substr(5, 2) + '/' + isoTimestamp.substr(8)
+			}
+		}
+
+		return timestamp
+	}
+	catch (error) {
+		throw Error('Failed to get timestamp of last push: ' + error)
+	}
+}
 
 export const getLocalCurrentCommitId = () => new Promise((resolve, reject) => {
 	try {

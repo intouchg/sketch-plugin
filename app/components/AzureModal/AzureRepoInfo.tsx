@@ -61,7 +61,7 @@ const AzureRepoInfo = ({
 
 			batch(() => {
 				dispatch(setHasLocalChanges(false))
-				dispatch(setLastPushTime(new Date(lastPushTimeString)))
+				dispatch(setLastPushTime(lastPushTimeString ? new Date(lastPushTimeString) : null))
 				dispatch(setLoadingState({ show: false }))
 				dispatch(setBannerState({ show: true, type: 'success', message: 'Saved changes to Azure.' }))
 			})

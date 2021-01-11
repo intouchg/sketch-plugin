@@ -31,7 +31,7 @@ export const useSelectLocalProject = (filepath?: string) => {
 				dispatch(setBranchName(branchName))
 				dispatch(setHasLocalChanges(hasLocalChanges))
 				dispatch(setRecentProjects(recentProjects))
-				dispatch(setLastPushTime(new Date(lastPushTime)))
+				dispatch(setLastPushTime(lastPushTime ? new Date(lastPushTime) : null))
 				dispatch(setCheckingHasRemoteChanges(true))
 				navigate('main')
 			})
