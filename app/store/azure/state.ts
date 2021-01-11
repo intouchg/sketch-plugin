@@ -11,7 +11,7 @@ export type AzureState = {
 	hasLocalChanges: boolean
 	hasRemoteChanges: boolean
 	checkingHasRemoteChanges: boolean
-	lastPush: Date | null
+	lastPushTime: Date | null
 	online: boolean
 }
 
@@ -27,6 +27,6 @@ export const initialAzureState: AzureState = {
 	hasLocalChanges: false,
 	hasRemoteChanges: false,
 	checkingHasRemoteChanges: false,
-	lastPush: null,
+	lastPushTime: null,
 	online: false,
 }

@@ -7,7 +7,7 @@ import { CloudIcon } from '../Icons'
 import { LimitInteraction } from '../LimitInteraction'
 import { useDisplayErrorBanner } from '../../hooks'
 import { sendSketchCommand } from '../../sketchApi'
-import { setThemeData, setLoadingState, setBannerState, setHasLocalChanges, setHasRemoteChanges } from '../../store'
+import { setThemeData, setLoadingState, setBannerState, setHasLocalChanges, setHasRemoteChanges, setLastPushTime } from '../../store'
 
 const AzureRepoInfo = ({
 	online,
@@ -19,7 +19,7 @@ const AzureRepoInfo = ({
 	const dispatch = useDispatch()
 	const localProject = useSelector((state) => state.azure.localProject)
 	const branchName = useSelector((state) => state.azure.branchName)
-	const lastPush = useSelector((state) => state.azure.lastPush)
+	const lastPushTime = useSelector((state) => state.azure.lastPushTime)
 	const hasLocalChanges = useSelector((state) => state.azure.hasLocalChanges)
 	const hasRemoteChanges = useSelector((state) => state.azure.hasRemoteChanges)
 	const displayErrorBanner = useDisplayErrorBanner()
@@ -27,11 +27,12 @@ const AzureRepoInfo = ({
 	const downloadUpdates = async () => {
 		try {
 			dispatch(setLoadingState({ show: true, message: 'Downloading updates ...' }))
-			const didReceiveChanges = await sendSketchCommand('downloadRemoteChanges', {})
+			const { themeData, didReceiveChanges } = await sendSketchCommand('downloadRemoteChanges', {})
 
 			batch(() => {
 				dispatch(setLoadingState({ show: false }))
 				dispatch(setHasRemoteChanges(false))
+				dispatch(setThemeData(themeData))
 
 				if (didReceiveChanges) {
 					dispatch(setBannerState({ show: true, type: 'success', message: 'Downloaded updates from Azure.' }))
@@ -42,6 +43,7 @@ const AzureRepoInfo = ({
 			})
 		}
 		catch (error) {
+			console.log('update error = ', error)
 			displayErrorBanner(error)
 		}
 	}
@@ -53,15 +55,15 @@ const AzureRepoInfo = ({
 			}
 
 			dispatch(setLoadingState({ show: true, message: 'Saving changes ...' }))
-			await sendSketchCommand('saveChangesToAzure', {})
+			const lastPushTimeString = await sendSketchCommand('saveChangesToAzure', {})
 
 			batch(() => {
+				dispatch(setLastPushTime(new Date(lastPushTimeString)))
 				dispatch(setLoadingState({ show: false }))
 				dispatch(setBannerState({ show: true, type: 'success', message: 'Saved changes to Azure.' }))
 			})
 		}
 		catch (error) {
-			console.log('error = ', error)
 			displayErrorBanner(error)
 		}
 	}
@@ -133,7 +135,7 @@ const AzureRepoInfo = ({
 						color="Text"
 						fontWeight="Bold"
 					>
-						14 minutes ago
+						{lastPushTime ? lastPushTime.toLocaleString() : 'Never'}
 					</ModalText>
 				</Flex>
 			</Flex>

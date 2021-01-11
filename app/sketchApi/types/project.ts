@@ -6,5 +6,6 @@ export type ProjectData = {
     selectedProjectDirectory: string
     branchName: string
     hasLocalChanges: boolean
+    lastPushTime: string
     recentProjects: RecentProject[]
 }

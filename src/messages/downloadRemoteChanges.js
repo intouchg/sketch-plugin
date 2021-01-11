@@ -1,13 +1,20 @@
-import { hasUncommittedLocalChanges, commitChanges, pullChanges } from '../services'
+import { commitChanges, pullChanges } from '../services'
 
 export const downloadRemoteChanges = async (state, payload) => {
 	try {
-		if (await hasUncommittedLocalChanges()) {
-			await commitChanges('IDS pre-pull automated save')
-		}
+		await commitChanges('IDS pre-pull automated commit')
+
+		Object.keys(state.themeFilepaths).forEach((key) => {
+			const fileData = fs.readFileSync(state.themeFilepaths[key])
+			state.themeData[key] = JSON.parse(fileData)
+		})
 
 		const didReceiveChanges = await pullChanges()
-		return didReceiveChanges
+
+		return {
+			themeData: state.themeData,
+			didReceiveChanges,
+		}
 	}
 	catch (error) {
 		throw Error('Failed to download remote updates: ' + error)

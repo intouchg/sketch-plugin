@@ -10,6 +10,7 @@ import {
 	SET_HAS_LOCAL_CHANGES,
 	SET_HAS_REMOTE_CHANGES,
 	SET_CHECKING_HAS_REMOTE_CHANGES,
+	SET_LAST_PUSH_TIME,
 	SET_ONLINE_STATUS,
 } from './actions'
 import { initialAzureState } from './state'
@@ -70,6 +71,11 @@ export const azureReducer = (
 
 			case SET_CHECKING_HAS_REMOTE_CHANGES: {
 				nextState.checkingHasRemoteChanges = action.payload
+				break
+			}
+
+			case SET_LAST_PUSH_TIME: {
+				nextState.lastPushTime = action.payload
 				break
 			}
 

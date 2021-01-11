@@ -14,7 +14,7 @@ export type SketchError = { error: string }
 export type SketchCommands = {
     checkHasRemoteChanges: SketchCommand<{}, boolean>
     closeLocalProject: SketchCommand<{}, true>
-    downloadRemoteChanges: SketchCommand<{}, boolean>
+    downloadRemoteChanges: SketchCommand<{}, { didReceiveChanges: boolean, themeData: ThemeData }>
     extractSketchDocumentStyles: SketchCommand<{ sketchDocumentIndex: number }, RawImportedSketchValues>
     forgetAzureCredentials: SketchCommand<{}, true>
     getAzureCredentials: SketchCommand<{}, AzureCredentials>
@@ -27,7 +27,7 @@ export type SketchCommands = {
     openDevServer: SketchCommand<{}, true>
     resetLocalChanges: SketchCommand<{}, ThemeData>
     saveThemeData: SketchCommand<ThemeData, true>
-    saveChangesToAzure: SketchCommand<{}, true>
+    saveChangesToAzure: SketchCommand<{}, string>
     selectLocalProject: SketchCommand<RecentProject | {}, ProjectData>
     selectNewProjectDirectory: SketchCommand<{}, string>
 }
