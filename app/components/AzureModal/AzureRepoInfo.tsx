@@ -32,6 +32,7 @@ const AzureRepoInfo = ({
 			batch(() => {
 				dispatch(setLoadingState({ show: false }))
 				dispatch(setHasRemoteChanges(false))
+				console.log('update theme data = ', themeData)
 				dispatch(setThemeData(themeData))
 
 				if (didReceiveChanges) {
@@ -58,6 +59,7 @@ const AzureRepoInfo = ({
 			const lastPushTimeString = await sendSketchCommand('saveChangesToAzure', {})
 
 			batch(() => {
+				dispatch(setHasLocalChanges(false))
 				dispatch(setLastPushTime(new Date(lastPushTimeString)))
 				dispatch(setLoadingState({ show: false }))
 				dispatch(setBannerState({ show: true, type: 'success', message: 'Saved changes to Azure.' }))

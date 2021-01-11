@@ -6,7 +6,7 @@ import { PrimaryButton, SecondaryButton, TertiaryButton } from '../Buttons'
 import { AccentText } from '../Texts'
 import { LimitInteraction } from '../LimitInteraction'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
-import { setAzureCredentials, setAzureModalState, setShowReposModal } from '../../store'
+import { setAzureCredentials, setAzureModalState, setLoadingState, setShowReposModal } from '../../store'
 
 const AzureLoginInput = styled(Input).attrs<
 	typeof Input
@@ -60,8 +60,11 @@ const AzureLoginForm = ({
 	}
 
 	const loginToAzure = () => {
+		dispatch(setLoadingState({ show: true }))
+
 		sendSketchCommand('loginToAzure', { username: usernameValue, accessToken: accessTokenValue })
 			.then((credentials) => batch(() => {
+				dispatch(setLoadingState({ show: false }))
 				dispatch(setAzureCredentials(credentials))
 
 				if (redirectToReposModal) {

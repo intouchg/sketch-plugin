@@ -1,3 +1,4 @@
+import fs from '@skpm/fs'
 import { commitChanges, pullChanges } from '../services'
 
 export const downloadRemoteChanges = async (state, payload) => {

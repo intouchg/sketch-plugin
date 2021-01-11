@@ -19,8 +19,8 @@ const LoadingScreen = () => {
 			bottom="0"
 			left="0"
 			right="0"
-			backgroundColor="Card"
-			zIndex={5}
+			backgroundColor="rgba(255, 255, 255, 0.7)"
+			zIndex={4}
 		>
 			<Text marginBottom={4}>
 				{message}

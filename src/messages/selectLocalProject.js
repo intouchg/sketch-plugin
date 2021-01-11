@@ -2,7 +2,7 @@ import fs from '@skpm/fs'
 import path from '@skpm/path'
 import dialog from '@skpm/dialog'
 import { configFilename, validateConfig } from '@i/theme'
-import { updateStorybookTempTheme, writeRecentProjectMetadata, openGitRepo, hasCommittedLocalChanges, hasUncommittedLocalChanges, hasLocalChanges } from '../services'
+import { updateStorybookTempTheme, writeRecentProjectMetadata, openGitRepo, getTimestampByCommitId, getLocalLastPushedCommitId, hasLocalChanges } from '../services'
 
 export const selectLocalProject = async (state, payload) => {
 	const { filepath } = payload
@@ -53,6 +53,7 @@ export const selectLocalProject = async (state, payload) => {
 	const recentProjects = writeRecentProjectMetadata({ filepath: selectedProjectDirectory })
 	const branchName = await openGitRepo(selectedProjectDirectory)
 	const localChanges = await hasLocalChanges()
+	const lastPushTime = await getTimestampByCommitId(await getLocalLastPushedCommitId())
 
 	state.themeFilepaths = themeFilepaths
 	state.themeData = themeData
@@ -65,6 +66,7 @@ export const selectLocalProject = async (state, payload) => {
 		selectedProjectDirectory,
 		branchName,
 		hasLocalChanges: localChanges,
+		lastPushTime,
 		recentProjects,
 	}
 }

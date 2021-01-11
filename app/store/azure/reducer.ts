@@ -26,6 +26,9 @@ export const azureReducer = (
 			case RESET_PROJECT_STATE: {
 				nextState.localProject = initialAzureState.localProject
 				nextState.branchName = initialAzureState.branchName
+				nextState.hasLocalChanges = initialAzureState.hasLocalChanges
+				nextState.hasRemoteChanges = initialAzureState.hasRemoteChanges
+				nextState.lastPushTime = initialAzureState.lastPushTime
 				break
 			}
 

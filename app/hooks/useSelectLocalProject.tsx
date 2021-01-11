@@ -37,13 +37,16 @@ export const useSelectLocalProject = (filepath?: string) => {
 			})
 
 			const checkingTimeout = setTimeout(() => dispatch(setCheckingHasRemoteChanges(false)), 60000)
-			const hasRemoteChanges = await sendSketchCommand('checkHasRemoteChanges', {})
 
-			batch(() => {
-				clearTimeout(checkingTimeout)
-				dispatch(setCheckingHasRemoteChanges(false))
-				dispatch(setHasRemoteChanges(hasRemoteChanges))
-			})
+			sendSketchCommand('checkHasRemoteChanges', {})
+				.then((hasRemoteChanges) => {
+					batch(() => {
+						clearTimeout(checkingTimeout)
+						dispatch(setCheckingHasRemoteChanges(false))
+						dispatch(setHasRemoteChanges(hasRemoteChanges))
+					})
+				})
+				.catch((error) => displayErrorBanner(error))
 		}
 		catch (error) {
 			displayErrorBanner(error)
