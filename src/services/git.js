@@ -164,31 +164,10 @@ export const pushChanges = () => new Promise((resolve, reject) => {
 
 export const pullChanges = () => new Promise((resolve, reject) => {
 	try {
-		const onStdOut = (data) => {
-			console.log('stdOut ', data.toString())
-		}
-
-		const onStdErr = (data) => {
-			console.log('stdErr ', data.toString())
-		}
-
-		const onClose = (code) => {
-			console.log('close ', code)
-
-			if (code === 0) {
-				resolve(true)
-			}
-			else {
-				reject(Error('Failed to pull changes, exited with code ' + code))
-			}
-		}
-
-		const onError = (error) => {
-			console.log('error ', error)
-			reject(error)
-		}
-
-		const process = new ChildProcess(`cd ${gitDirectory} && git pull origin ${branchName} --no-rebase --commit --no-edit`, { onStdOut, onStdErr, onClose, onError }, true)
+		const data = spawnSync(`cd ${gitDirectory} && git pull origin ${branchName} --no-rebase --commit --no-edit`)
+		const result = data.toString()
+		const didReceiveChanges = result.includes('Fast-forward') || result.includes('Merge')
+		resolve(didReceiveChanges)
 	}
 	catch (error) {
 		console.log('caugth ', error)

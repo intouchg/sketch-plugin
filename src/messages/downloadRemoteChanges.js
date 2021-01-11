@@ -6,8 +6,8 @@ export const downloadRemoteChanges = async (state, payload) => {
 			await commitChanges('IDS pre-pull automated save')
 		}
 
-		const didReceiveUpdates = await pullChanges()
-		return didReceiveUpdates
+		const didReceiveChanges = await pullChanges()
+		return didReceiveChanges
 	}
 	catch (error) {
 		throw Error('Failed to download remote updates: ' + error)
