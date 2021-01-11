@@ -19,7 +19,7 @@ const LoadingScreen = () => {
 			bottom="0"
 			left="0"
 			right="0"
-			backgroundColor="rgba(255, 255, 255, 0.7)"
+			backgroundColor="Card"
 			zIndex={4}
 		>
 			<Text marginBottom={4}>
