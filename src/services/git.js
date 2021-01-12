@@ -79,7 +79,7 @@ export const getRemoteCurrentCommitId = () => new Promise((resolve, reject) => {
 		const output = stdout.toString()
 
 		if (!output.includes(`\trefs/heads/${branchName}`)) {
-			throw Error('Received unexpected result from ls-remote: ' + result)
+			throw Error('Received unexpected result from ls-remote: ' + output)
 		}
 
 		const commitId = output.split('\t')[0]

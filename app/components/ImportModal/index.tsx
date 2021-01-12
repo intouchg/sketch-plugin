@@ -80,7 +80,7 @@ const ImportModal = ({
 				setShowLoading(false)
 			}))
 			.catch((error) => displayErrorBanner(error))
-	}, [ setSelectedImportCategories, setSelectedImportedValues, setSelectedSketchDocumentIndex, dispatch, setShowLoading, displayErrorBanner ])
+	}, [ dispatch, displayErrorBanner ])
 
 	useEffect(() => {
 		if (sketchDocumentNames.length) {
@@ -89,7 +89,7 @@ const ImportModal = ({
 		else {
 			setShowImportModal(false)
 		}
-	}, [ sketchDocumentNames, setShowLoading, setShowImportModal, updateSelectedSketchDocumentIndex ])
+	}, [ sketchDocumentNames, setShowImportModal, updateSelectedSketchDocumentIndex ])
 
 	if (!sketchDocumentNames.length) {
 		return null

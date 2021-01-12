@@ -1,7 +1,12 @@
 import React from 'react'
 import { Box, Stack } from '@i/components'
+import type { AzureGitRepo } from '@i/azure'
 
-const LeftToolbar = () => {
+const LeftToolbar = ({
+	repos,
+}: {
+	repos: AzureGitRepo[]
+}) => {
 	return (
 		<Box
 			minWidth="280px"

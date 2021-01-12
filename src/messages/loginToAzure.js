@@ -1,5 +1,4 @@
-import { connectToAzure } from '../services'
-import { writeAzureCredentialsMetadata } from '../services'
+import { connectToAzure, writeAzureCredentialsMetadata } from '../services'
 
 export const loginToAzure = async (state, payload) => {
 	try {
