@@ -18,6 +18,10 @@ export const connectToAzure = async (username, accessToken) => {
 
 export const getAzureGitRepos = async () => {
 	try {
+		if (!azureConnection) {
+			throw Error('Attempted to getAzureGitRepos before azureConnection was initialized.')
+		}
+
 		if (!azureConnection.lastGitRepoSync) {
 			await azureConnection.getGitRepos()
 		}

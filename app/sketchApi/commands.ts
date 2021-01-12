@@ -5,8 +5,8 @@ import type {
 	AzureCredentials,
 	RawImportedSketchValues,
 	SPFontData,
+	AzureGitRepos,
 } from './types'
-import type { AzureGitRepo } from '@i/azure'
 
 export type SketchCommand<P extends object, R> = { payload: P, response: R }
 export type SketchError = { error: string }
@@ -18,7 +18,7 @@ export type SketchCommands = {
     extractSketchDocumentStyles: SketchCommand<{ sketchDocumentIndex: number }, RawImportedSketchValues>
     forgetAzureCredentials: SketchCommand<{}, true>
     getAzureCredentials: SketchCommand<{}, AzureCredentials>
-    getAzureGitRepos: SketchCommand<{}, AzureGitRepo[]>
+    getAzureGitRepos: SketchCommand<{}, AzureGitRepos>
     getRecentProjects: SketchCommand<{}, RecentProject[]>
     getSketchDocumentNames: SketchCommand<{}, string[]>
     getSystemFonts: SketchCommand<{}, SPFontData>

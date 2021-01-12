@@ -9,7 +9,7 @@ import { useDisplayErrorBanner } from '../../hooks'
 import { setShowReposModal } from '../../store'
 import { CloseModalButton } from '../CloseModalButton'
 import { Loading } from '../Loading'
-import type { AzureGitRepo } from '@i/azure'
+import type { AzureGitRepos } from '../../sketchApi'
 
 const OFFLINE_ERROR_MESSAGE = 'Please restore internet connectivity to browse Azure projects.'
 
@@ -17,11 +17,15 @@ const ReposModal = () => {
 	const dispatch = useDispatch()
 	const showReposModal = useSelector((state) => state.azure.showReposModal)
 	const online = useSelector((state) => state.azure.online)
-	const [ repos, setRepos ] = useState<AzureGitRepo[]>([])
+	const [ repos, setRepos ] = useState<AzureGitRepos>({})
 	const [ showLoading, setShowLoading ] = useState(true)
 	const displayErrorBanner = useDisplayErrorBanner()
 
 	useEffect(() => {
+		if (!showReposModal) {
+			return
+		}
+
 		let isMounted = true
 
 		sendSketchCommand('getAzureGitRepos', {})
@@ -34,7 +38,7 @@ const ReposModal = () => {
 			.catch((error) => displayErrorBanner(error))
 
 		return () => void (isMounted = false)
-	}, [ displayErrorBanner ])
+	}, [ showReposModal, displayErrorBanner ])
 
 	if (!showReposModal) {
 		return null

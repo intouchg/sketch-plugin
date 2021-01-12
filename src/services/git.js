@@ -214,10 +214,11 @@ export const openGitRepo = (directory) => new Promise((resolve, reject) => {
 	try {
 		gitDirectory = null
 		branchName = null
+		const escapedDirectory = directory.replace(/ /g, '\\ ')
 
-		const { stdout } = spawnSync(`cd ${directory} && git branch --show-current`)
+		const { stdout } = spawnSync(`cd ${escapedDirectory} && git branch --show-current`)
 		branchName = stdout.toString().replace(/\n*$/, '')
-		gitDirectory = directory
+		gitDirectory = escapedDirectory
 
 		resolve(branchName)
 	}

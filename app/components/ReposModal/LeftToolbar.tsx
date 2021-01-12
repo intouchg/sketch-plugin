@@ -1,11 +1,11 @@
 import React from 'react'
 import { Box, Stack } from '@i/components'
-import type { AzureGitRepo } from '@i/azure'
+import type { AzureGitRepos } from '../../sketchApi'
 
 const LeftToolbar = ({
 	repos,
 }: {
-	repos: AzureGitRepo[]
+	repos: AzureGitRepos
 }) => {
 	return (
 		<Box
@@ -18,7 +18,9 @@ const LeftToolbar = ({
 				position="relative"
 				height="100%"
 			>
-				Left Toolbar
+				{/* {repos.map((repo) => (
+
+				))} */}
 			</Stack>
 		</Box>
 	)
