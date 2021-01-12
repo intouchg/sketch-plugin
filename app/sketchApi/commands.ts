@@ -27,7 +27,7 @@ export type SketchCommands = {
     openDevServer: SketchCommand<{}, true>
     resetLocalChanges: SketchCommand<{}, ThemeData>
     saveThemeData: SketchCommand<ThemeData, true>
-    saveChangesToAzure: SketchCommand<{}, string>
+    saveChangesToAzure: SketchCommand<{}, { didSaveChanges: boolean, needsToUpdate: boolean, lastPushTime: string }>
     selectLocalProject: SketchCommand<RecentProject | {}, ProjectData>
     selectNewProjectDirectory: SketchCommand<{}, string>
 }

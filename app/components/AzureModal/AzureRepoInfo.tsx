@@ -33,7 +33,6 @@ const AzureRepoInfo = ({
 			batch(() => {
 				dispatch(setLoadingState({ show: false }))
 				dispatch(setHasRemoteChanges(false))
-				console.log('update theme data = ', themeData)
 				dispatch(setThemeData(themeData))
 
 				if (didReceiveChanges) {
@@ -57,14 +56,29 @@ const AzureRepoInfo = ({
 			}
 
 			dispatch(setLoadingState({ show: true, message: 'Saving changes ...' }))
-			const lastPushTimeString = await sendSketchCommand('saveChangesToAzure', {})
 
-			batch(() => {
-				dispatch(setHasLocalChanges(false))
-				dispatch(setLastPushTime(lastPushTimeString ? new Date(lastPushTimeString) : null))
-				dispatch(setLoadingState({ show: false }))
-				dispatch(setBannerState({ show: true, type: 'success', message: 'Saved changes to Azure.' }))
-			})
+			const {
+				didSaveChanges,
+				needsToUpdate,
+				lastPushTime: lastPushTimeString,
+			} = await sendSketchCommand('saveChangesToAzure', {})
+
+			if (!didSaveChanges && needsToUpdate) {
+				return batch(() => {
+					dispatch(setLoadingState({ show: false }))
+					dispatch(setHasRemoteChanges(true))
+					dispatch(setBannerState({ show: true, type: 'info', message: 'You must download updates before saving.' }))
+				})
+			}
+
+			if (didSaveChanges) {
+				batch(() => {
+					dispatch(setHasLocalChanges(false))
+					dispatch(setLastPushTime(lastPushTimeString ? new Date(lastPushTimeString) : null))
+					dispatch(setLoadingState({ show: false }))
+					dispatch(setBannerState({ show: true, type: 'success', message: 'Saved changes to Azure.' }))
+				})
+			}
 		}
 		catch (error) {
 			displayErrorBanner(error)
@@ -162,7 +176,7 @@ const AzureRepoInfo = ({
 				</LimitInteraction>
 				<LimitInteraction
 					as={PrimaryButton}
-					unlimit={hasRemoteChanges}
+					unlimit={online && connected && hasRemoteChanges}
 					marginRight={3}
 					onClick={downloadUpdates}
 				>

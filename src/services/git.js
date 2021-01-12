@@ -38,9 +38,8 @@ export const getTimestampOfLastPush = async () => {
 	try {
 		const lastPushCommitId = await getLocalLastPushedCommitId()
 		const lastPushHash = lastPushCommitId.substr(0, 7)
-		const process = spawnSync(`cd ${gitDirectory} && git reflog show origin/${branchName} --pretty='%h %gd %gs' --date=iso`)
-		const reflog = process.stdout.toString()
-		const lastPushEntry = reflog.split('\n').find((str) => str.includes(lastPushHash) && str.includes('update by push'))
+		const { stdout } = spawnSync(`cd ${gitDirectory} && git reflog show origin/${branchName} --pretty='%h %gd %gs' --date=iso`)
+		const lastPushEntry = stdout.toString().split('\n').find((str) => str.includes(lastPushHash) && str.includes('update by push'))
 		let timestamp = null
 
 		if (lastPushEntry) {
@@ -76,14 +75,14 @@ export const getLocalCurrentCommitId = () => new Promise((resolve, reject) => {
 
 export const getRemoteCurrentCommitId = () => new Promise((resolve, reject) => {
 	try {
-		const process = spawnSync(`cd ${gitDirectory} && git ls-remote origin -h refs/heads/${branchName}`)
-		const result = process.stdout.toString().replace(/\n*$/, '')
+		const { stdout } = spawnSync(`cd ${gitDirectory} && git ls-remote origin -h refs/heads/${branchName}`)
+		const output = stdout.toString()
 
-		if (!result.includes(`\trefs/heads/${branchName}`)) {
+		if (!output.includes(`\trefs/heads/${branchName}`)) {
 			throw Error('Received unexpected result from ls-remote: ' + result)
 		}
 
-		const commitId = result.split('\t')[0]
+		const commitId = output.split('\t')[0]
 		resolve(commitId)
 	}
 	catch (error) {
@@ -166,15 +165,16 @@ export const commitChanges = (message) => new Promise((resolve, reject) => {
 
 export const pushChanges = () => new Promise((resolve, reject) => {
 	try {
-		const process = spawnSync(`cd ${gitDirectory} && git push origin ${branchName}`)
-		console.log(process)
+		const { status, stderr } = spawnSync(`cd ${gitDirectory} && git push origin ${branchName}`)
 
-		if (process.status === 0) {
-			resolve(true)
+		if (status === 0) {
+			resolve({ didSaveChanges: true, needsToUpdate: false })
+		}
+		else if (stderr.toString().includes('Updates were rejected because the remote contains work')) {
+			resolve({ didSaveChanges: false, needsToUpdate: true })
 		}
 		else {
-			console.log(process.stderr)
-			resolve(false)
+			throw Error(stderr)
 		}
 	}
 	catch (error) {
@@ -184,22 +184,19 @@ export const pushChanges = () => new Promise((resolve, reject) => {
 
 export const pullChanges = () => new Promise((resolve, reject) => {
 	try {
-		const process = spawnSync(`cd ${gitDirectory} && git pull origin ${branchName} --no-rebase --commit --no-edit`)
-		console.log(process)
+		const { status, stdout, stderr } = spawnSync(`cd ${gitDirectory} && git pull origin ${branchName} --no-rebase --commit --no-edit`)
+		const output = stdout.toString()
 
-		if (process.status === 0) {
-			const result = process.stdout.toString()
-			console.log('didReceiveChanges? ', process)
-			const didReceiveChanges = result.includes('Fast-forward') || result.includes('Merge')
+		if (status === 0) {
+			const didReceiveChanges = output.includes('Fast-forward') || output.includes('Merge')
 			resolve(didReceiveChanges)
 		}
 		else {
-			console.log(process.stderr)
+			console.log('pullChanges stderr = ', stderr)
 			resolve(false)
 		}
 	}
 	catch (error) {
-		console.log('caugth ', error)
 		throw Error('Failed to pull git branch: ' + error)
 	}
 })
@@ -218,8 +215,8 @@ export const openGitRepo = (directory) => new Promise((resolve, reject) => {
 		gitDirectory = null
 		branchName = null
 
-		const process = spawnSync(`cd ${directory} && git branch --show-current`)
-		branchName = process.stdout.toString().replace(/\n*$/, '')
+		const { stdout } = spawnSync(`cd ${directory} && git branch --show-current`)
+		branchName = stdout.toString().replace(/\n*$/, '')
 		gitDirectory = directory
 
 		resolve(branchName)

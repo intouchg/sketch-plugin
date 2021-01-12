@@ -7,6 +7,6 @@ import { spawnSync as ss } from '@skpm/child_process'
 
 export const spawnSync = (command) => {
 	const commandStrings = command.split(' ')
-	const process = ss(commandStrings.shift(), commandStrings, { shell: true })
-	return process
+	const { status, stdout, stderr } = ss(commandStrings.shift(), commandStrings, { shell: true })
+	return { status, stdout, stderr }
 }
