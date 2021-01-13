@@ -1,6 +1,6 @@
 import type { ThemeValue } from '@i/theme'
 import type { ThemeData } from './state'
-import type { RawImportedSketchValues, RecentProject, SPFontData } from '../../sketchApi'
+import type { RawImportedSketchValues, DirectoryFilepath, SPFontData } from '../../sketchApi'
 
 export const UNDO = 'UNDO'
 export type UndoAction = {
@@ -45,7 +45,7 @@ export const setThemeData = (payload: SetThemeDataAction['payload']): SetThemeDa
 export const SET_RECENT_PROJECTS = 'SET_RECENT_PROJECTS'
 export type SetRecentProjectsAction = {
     type: typeof SET_RECENT_PROJECTS
-    payload: RecentProject[]
+    payload: DirectoryFilepath[]
 }
 export const setRecentProjects = (recentProjects: SetRecentProjectsAction['payload']): SetRecentProjectsAction => ({
 	type: SET_RECENT_PROJECTS,

@@ -7,6 +7,7 @@ import { FolderIcon } from './Icons'
 import { AccentText, TruncatedText } from './Texts'
 import { CloseModalButton } from './CloseModalButton'
 import { LimitInteraction } from './LimitInteraction'
+import { DirectoryInput } from './DirectoryInput'
 import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from '../hooks'
 
@@ -20,7 +21,7 @@ const NewProjectModal = ({
 	const [ template, setTemplate ] = useState()
 	const displayErrorBanner = useDisplayErrorBanner()
 
-	const selectNewProjectDirectory = () => sendSketchCommand('selectNewProjectDirectory', {})
+	const selectDirectory = () => sendSketchCommand('selectDirectory', {})
 		.then((filepath) => setDirectory(filepath))
 		.catch((error) => displayErrorBanner(error))
 
@@ -35,10 +36,7 @@ const NewProjectModal = ({
 				borderRadius="Large"
 			>
 				<CloseModalButton onClick={() => setShowNewProjectModal(false)} />
-				<Stack
-					flexGrow={1}
-					overflow="hidden"
-				>
+				<Stack flexGrow={1}>
 					<Heading marginBottom={4}>
 						New Project
 					</Heading>
@@ -46,35 +44,10 @@ const NewProjectModal = ({
 						<AccentText marginBottom={2}>
 							Folder
 						</AccentText>
-						<InvisibleButton
-							position="relative"
-							onClick={selectNewProjectDirectory}
-						>
-							<Flex
-								alignItems="center"
-								height="48px"
-								paddingX={3}
-								backgroundColor="Card"
-								borderRadius="Large"
-							>
-								<TruncatedText maxWidth="90%">
-									{directory}
-								</TruncatedText>
-							</Flex>
-							<Box
-								position="absolute"
-								top="0"
-								right="0"
-								margin="14px"
-								marginTop="13px"
-							>
-								<FolderIcon
-									fill="Accent"
-									width="20px"
-									height="21px"
-								/>
-							</Box>
-						</InvisibleButton>
+						<DirectoryInput
+							value={directory}
+							onClick={selectDirectory}
+						/>
 					</Stack>
 					<Stack marginBottom={4}>
 						<AccentText marginBottom={2}>

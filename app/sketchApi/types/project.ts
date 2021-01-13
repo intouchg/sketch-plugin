@@ -1,5 +1,5 @@
 import type { ThemeData } from '../../store'
-import type { RecentProject } from './metadata'
+import type { DirectoryFilepath } from './metadata'
 
 export type ProjectData = {
     themeData: ThemeData
@@ -7,5 +7,5 @@ export type ProjectData = {
     branchName: string
     hasLocalChanges: boolean
     lastPushTime: string
-    recentProjects: RecentProject[]
+    recentProjects: DirectoryFilepath[]
 }

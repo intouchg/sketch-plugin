@@ -4,12 +4,14 @@ import { Flex, Text, Stack } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { LeftToolbar } from './LeftToolbar'
 import { ReposList } from './ReposList'
+import { BottomToolbar } from './BottomToolbar'
+import { CloseModalButton } from '../CloseModalButton'
+import { Loading } from '../Loading'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { setShowReposModal } from '../../store'
-import { CloseModalButton } from '../CloseModalButton'
-import { Loading } from '../Loading'
 import type { AzureGitRepos } from '../../sketchApi'
+import type { AzureGitRepo } from '@i/azure'
 
 const OFFLINE_ERROR_MESSAGE = 'Please restore internet connectivity to browse Azure projects.'
 
@@ -19,7 +21,13 @@ const ReposModal = () => {
 	const online = useSelector((state) => state.azure.online)
 	const [ repos, setRepos ] = useState<AzureGitRepos>({})
 	const [ showLoading, setShowLoading ] = useState(true)
+	const [ filterText, setFilterText ] = useState('')
+	const [ selectedOrganization, setSelectedOrganization ] = useState('')
+	const [ selectedRepoId, setSelectedRepoId ] = useState<string>('')
 	const displayErrorBanner = useDisplayErrorBanner()
+
+	const selectedRepos = selectedOrganization ? { [selectedOrganization]: repos[selectedOrganization] } : repos
+	const selectedRepo = Object.values(repos).flat().find((repo) => repo.id === selectedRepoId)
 
 	useEffect(() => {
 		if (!showReposModal) {
@@ -80,16 +88,19 @@ const ReposModal = () => {
 				)}
 				{online && !showLoading && (
 					<>
-						<LeftToolbar repos={repos} />
-						<Flex
-							alignItems="center"
-							justifyContent="center"
-							flexGrow={1}
-							padding={6}
-							overflowY="scroll"
-						>
-							<ReposList repos={repos} />
-						</Flex>
+						<LeftToolbar
+							repos={repos}
+							selectedOrganization={selectedOrganization}
+							setSelectedOrganization={setSelectedOrganization}
+						/>
+						<Stack flexGrow={1}>
+							<ReposList
+								repos={selectedRepos}
+								selectedRepoId={selectedRepoId}
+								setSelectedRepoId={setSelectedRepoId}
+							/>
+							<BottomToolbar selectedRepo={selectedRepo} />
+						</Stack>
 					</>
 				)}
 			</Flex>

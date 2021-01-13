@@ -1,3 +1,3 @@
-export type RecentProject = {
+export type DirectoryFilepath = {
     filepath: string
 }

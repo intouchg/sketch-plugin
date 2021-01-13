@@ -1,5 +1,5 @@
 import type { ThemeBorder, ThemeBorderStyle, ThemeBorderWidth, ThemeBreakpoint, ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLetterSpacing, ThemeLineHeight, ThemeRadius, ThemeShadow, ThemeSize, ThemeSpace, ThemeValue, ThemeVariant, ThemeZIndex } from '@i/theme'
-import type { RecentProject, ParsedImportedSketchValues, SystemFontsDictionary } from '../../sketchApi'
+import type { DirectoryFilepath, ParsedImportedSketchValues, SystemFontsDictionary } from '../../sketchApi'
 
 export type ThemeData = {
 	values: ThemeValue[]
@@ -9,7 +9,7 @@ export type ThemeData = {
 export type ThemeState = {
 	canUndo: boolean
 	canRedo: boolean
-	recentProjects: RecentProject[]
+	recentProjects: DirectoryFilepath[]
 	sketchDocumentNames: string[]
 	systemFonts: SystemFontsDictionary
 	values: {

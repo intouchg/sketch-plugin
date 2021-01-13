@@ -1,13 +1,46 @@
 import React from 'react'
-import { Input } from '@i/components'
+import { Flex, Box } from '@i/components'
+import { InvisibleButton } from './Buttons'
+import { TruncatedText } from './Texts'
+import { FolderIcon } from './Icons'
 
-const DirectoryInput = () => (
-	<Input
-		value="https://github.com/codynova/tarot"
-		paddingX="1em"
-		paddingY="0.875em"
-		borderRadius="Large"
-	/>
+const DirectoryInput = ({
+	value,
+	onClick,
+}: {
+    value: string
+    onClick: () => void
+}) => (
+	<InvisibleButton
+		position="relative"
+		width="100%"
+		onClick={onClick}
+	>
+		<Flex
+			alignItems="center"
+			height="48px"
+			paddingX={3}
+			backgroundColor="Card"
+			borderRadius="Large"
+		>
+			<TruncatedText maxWidth="90%">
+				{value}
+			</TruncatedText>
+		</Flex>
+		<Box
+			position="absolute"
+			top="0"
+			right="0"
+			margin="14px"
+			marginTop="13px"
+		>
+			<FolderIcon
+				fill="Accent"
+				width="20px"
+				height="21px"
+			/>
+		</Box>
+	</InvisibleButton>
 )
 
 export { DirectoryInput }

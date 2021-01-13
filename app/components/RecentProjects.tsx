@@ -13,7 +13,7 @@ const TruncatedTextBox = styled(Box)`
 	white-space: nowrap;
 `
 
-const RecentProject = ({
+const DirectoryFilepath = ({
 	name,
 	filepath,
 }: {
@@ -59,7 +59,7 @@ const RecentProjects = () => {
 			</AccentText>
 			<Stack alignItems="flex-start">
 				{formattedRecentProjects.map((props) => (
-					<RecentProject
+					<DirectoryFilepath
 						key={props.filepath}
 						{...props}
 					/>

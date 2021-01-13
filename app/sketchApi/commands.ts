@@ -1,7 +1,7 @@
 import type { ThemeData } from '../store'
 import type {
 	ProjectData,
-	RecentProject,
+	DirectoryFilepath,
 	AzureCredentials,
 	RawImportedSketchValues,
 	SPFontData,
@@ -13,13 +13,14 @@ export type SketchError = { error: string }
 
 export type SketchCommands = {
     checkHasRemoteChanges: SketchCommand<{}, boolean>
+    cloneAzureGitRepo: SketchCommand<DirectoryFilepath, string>
     closeLocalProject: SketchCommand<{}, true>
     downloadRemoteChanges: SketchCommand<{}, { didReceiveChanges: boolean, themeData: ThemeData }>
     extractSketchDocumentStyles: SketchCommand<{ sketchDocumentIndex: number }, RawImportedSketchValues>
     forgetAzureCredentials: SketchCommand<{}, true>
     getAzureCredentials: SketchCommand<{}, AzureCredentials>
     getAzureGitRepos: SketchCommand<{}, AzureGitRepos>
-    getRecentProjects: SketchCommand<{}, RecentProject[]>
+    getRecentProjects: SketchCommand<{}, DirectoryFilepath[]>
     getSketchDocumentNames: SketchCommand<{}, string[]>
     getSystemFonts: SketchCommand<{}, SPFontData>
     loginToAzure: SketchCommand<AzureCredentials, AzureCredentials>
@@ -28,8 +29,8 @@ export type SketchCommands = {
     resetLocalChanges: SketchCommand<{}, ThemeData>
     saveThemeData: SketchCommand<ThemeData, true>
     saveChangesToAzure: SketchCommand<{}, { didSaveChanges: boolean, needsToUpdate: boolean, lastPushTime: string }>
-    selectLocalProject: SketchCommand<RecentProject | {}, ProjectData>
-    selectNewProjectDirectory: SketchCommand<{}, string>
+    selectLocalProject: SketchCommand<DirectoryFilepath | {}, ProjectData>
+    selectDirectory: SketchCommand<{}, string>
 }
 
 export type ClientCommands = {

@@ -23,10 +23,7 @@ const SettingsModal = () => {
 				borderRadius="Large"
 			>
 				<CloseModalButton onClick={() => dispatch(setShowSettingsModal(false))} />
-				<Stack
-					flexGrow={1}
-					overflow="hidden"
-				>
+				<Stack flexGrow={1}>
 					<Heading marginRight={2}>
 						Settings
 					</Heading>

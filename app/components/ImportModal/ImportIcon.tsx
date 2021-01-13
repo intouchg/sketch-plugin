@@ -28,6 +28,7 @@ const ImportIcon = ({
 				width="26px"
 				height="26px"
 				margin={1}
+				title="Not In Sketch"
 			>
 				<Box position="absolute">
 					<SketchIcon
@@ -48,7 +49,7 @@ const ImportIcon = ({
 	return (
 		<animated.div
 			style={spring}
-			title={willOverwrite ? 'Update Color' : imported ? 'Add Color' : 'Not In Sketch'}
+			title={willOverwrite ? 'Update Color' : 'Add Color'}
 		>
 			<Box
 				backgroundColor="Card"
