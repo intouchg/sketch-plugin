@@ -111,7 +111,7 @@ const ReposModal = () => {
 									width="100%"
 									padding={3}
 									borderRadius="Large"
-									placeholder="Filter..."
+									placeholder="Search..."
 									value={filterText}
 									onChange={(event) => setFilterText(event.target.value)}
 								/>

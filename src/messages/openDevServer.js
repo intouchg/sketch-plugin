@@ -3,8 +3,8 @@ import { openDevServer as openServer } from '../services'
 export const openDevServer = (state, payload) => {
 	try {
 		const { selectedProjectDirectory } = state
-
-		openServer(selectedProjectDirectory)
+		const directory = selectedProjectDirectory.replace(/ /g, '\\ ')
+		openServer(directory)
 		return true
 	}
 	catch (error) {
