@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { batch, useDispatch, useSelector } from 'react-redux'
-import { Flex, Text, Stack } from '@i/components'
+import { Flex, Text, Stack, Box, Input } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { LeftToolbar } from './LeftToolbar'
 import { ReposList } from './ReposList'
@@ -11,7 +11,6 @@ import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { setShowReposModal } from '../../store'
 import type { AzureGitRepos } from '../../sketchApi'
-import type { AzureGitRepo } from '@i/azure'
 
 const OFFLINE_ERROR_MESSAGE = 'Please restore internet connectivity to browse Azure projects.'
 
@@ -26,7 +25,14 @@ const ReposModal = () => {
 	const [ selectedRepoId, setSelectedRepoId ] = useState<string>('')
 	const displayErrorBanner = useDisplayErrorBanner()
 
-	const selectedRepos = selectedOrganization ? { [selectedOrganization]: repos[selectedOrganization] } : repos
+	const organizationRepos = selectedOrganization ? { [selectedOrganization]: repos[selectedOrganization] } : repos
+
+	const filteredOrganizationRepos: AzureGitRepos = {}
+
+	Object.entries(organizationRepos).forEach(([ organizationName, repos ]) => {
+		filteredOrganizationRepos[organizationName] = repos.filter((repo) => repo.name.includes(filterText))
+	})
+
 	const selectedRepo = Object.values(repos).flat().find((repo) => repo.id === selectedRepoId)
 
 	useEffect(() => {
@@ -95,8 +101,23 @@ const ReposModal = () => {
 							setSelectedOrganization={setSelectedOrganization}
 						/>
 						<Stack flexGrow={1}>
+							<Box
+								padding={3}
+								backgroundColor="Background"
+								boxShadow="Medium"
+								zIndex={1}
+							>
+								<Input
+									width="100%"
+									padding={3}
+									borderRadius="Large"
+									placeholder="Filter..."
+									value={filterText}
+									onChange={(event) => setFilterText(event.target.value)}
+								/>
+							</Box>
 							<ReposList
-								repos={selectedRepos}
+								repos={filteredOrganizationRepos}
 								selectedRepoId={selectedRepoId}
 								setSelectedRepoId={setSelectedRepoId}
 							/>

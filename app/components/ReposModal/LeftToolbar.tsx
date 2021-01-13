@@ -37,7 +37,7 @@ const LeftToolbar = ({
 			borderTopLeftRadius="Large"
 			borderBottomLeftRadius="Large"
 			overflow="scroll"
-			zIndex={1}
+			zIndex={2}
 		>
 			<AccentText marginBottom={1}>
 				Organization

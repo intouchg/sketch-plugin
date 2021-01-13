@@ -64,7 +64,7 @@ const BottomToolbar = ({
 				unlimit={selectedRepo && directory}
 				onClick={cloneProject}
 			>
-				Submit
+				Download
 			</LimitInteraction>
 		</Stack>
 	)
