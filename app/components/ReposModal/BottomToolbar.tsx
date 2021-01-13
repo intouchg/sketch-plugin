@@ -28,34 +28,37 @@ const BottomToolbar = ({
 		.catch((error) => displayErrorBanner(error))
 
 	return (
-		<LimitInteraction
-			as={Stack}
-			unlimit={Boolean(selectedRepo)}
+		<Stack
 			flexShrink={0}
 			width="100%"
 			borderTop="1px solid Accent"
 			padding={3}
-			backgroundColor="Card"
+			backgroundColor="Background"
 			borderBottomRightRadius="Large"
+			boxShadow="0 -2px 6px -2px rgba(0, 0, 0, 0.15)"
 		>
-			<Stack>
-				<AccentText marginBottom={1}>
-					Save Location
-				</AccentText>
-				<DirectoryInput
-					value={directory}
-					onClick={selectDirectory}
-				/>
-			</Stack>
-			<Stack>
-				<AccentText marginBottom={1}>
-					Branch Name
-				</AccentText>
-				<Input
-					value={branchName}
-					onChange={(event) => setBranchName(event.target.value)}
-				/>
-			</Stack>
+			<LimitInteraction unlimit={Boolean(selectedRepo)}>
+				<Stack marginBottom={3}>
+					<AccentText marginBottom={2}>
+						Save Location
+					</AccentText>
+					<DirectoryInput
+						value={directory}
+						onClick={selectDirectory}
+					/>
+				</Stack>
+				<Stack marginBottom={3}>
+					<AccentText marginBottom={2}>
+						Branch Name
+					</AccentText>
+					<Input
+						padding={3}
+						borderRadius="Large"
+						value={branchName}
+						onChange={(event) => setBranchName(event.target.value)}
+					/>
+				</Stack>
+			</LimitInteraction>
 			<LimitInteraction
 				as={PrimaryButton}
 				unlimit={selectedRepo && directory}
@@ -63,7 +66,7 @@ const BottomToolbar = ({
 			>
 				Submit
 			</LimitInteraction>
-		</LimitInteraction>
+		</Stack>
 	)
 }
 

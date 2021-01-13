@@ -62,6 +62,7 @@ const ReposModal = () => {
 				backgroundColor="Card"
 				boxShadow="Medium"
 				borderRadius="Large"
+				overflow="hidden"
 			>
 				<CloseModalButton onClick={() => dispatch(setShowReposModal(false))} />
 				{!online && (

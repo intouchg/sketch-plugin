@@ -30,7 +30,7 @@ const RepoButton = ({
 	const active = selectedRepoId === repo.id
 	const spring = useSpring({
 		transform: `translateX(${active ? '20px' : '0px'})`,
-		borderLeft: active ? '1px solid #2c90ce' : '1px solid #ffffff',
+		borderLeft: active ? '10px solid #2c90ce' : '10px solid #ffffff',
 	})
 
 	return (
