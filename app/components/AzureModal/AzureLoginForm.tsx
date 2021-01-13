@@ -60,7 +60,7 @@ const AzureLoginForm = ({
 	}
 
 	const loginToAzure = () => {
-		dispatch(setLoadingState({ show: true }))
+		dispatch(setLoadingState({ show: true, message: 'Authenticating ...' }))
 
 		sendSketchCommand('loginToAzure', { username: usernameValue, accessToken: accessTokenValue })
 			.then((credentials) => batch(() => {

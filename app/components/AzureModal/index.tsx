@@ -55,7 +55,7 @@ const AzureModal = () => {
 						{!showLoginForm && connected && (
 							<Flex>
 								<ModalText fontSize={2}>
-									cody.persinger
+									{username.split('@')[0]}
 								</ModalText>
 								<ModalText fontSize={2}>
 									&nbsp;|&nbsp;
