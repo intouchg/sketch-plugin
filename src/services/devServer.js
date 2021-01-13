@@ -9,11 +9,6 @@ export const stopDevServer = () => devServerProcess && devServerProcess.stop()
 export const openDevServer = (selectedProjectDirectory) => {
 	if (!devServerProcess) {
 		try {
-			const onError = (error) => {
-				console.error(error)
-				throw Error('Failed to start dev server: ' + error)
-			}
-
 			let hasOpenedBrowser = false
 
 			const onStdOut = (data) => {
@@ -25,6 +20,11 @@ export const openDevServer = (selectedProjectDirectory) => {
 			}
 
 			const onStdErr = (data) => console.log('Dev server stderr: ', data.toString())
+
+			const onError = (error) => {
+				console.error('Failed to start dev server: ' + error)
+				throw Error('Failed to start dev server: ' + error)
+			}
 
 			devServerProcess = new ChildProcess(`cd ${selectedProjectDirectory} && npm run dev`, { onError, onStdOut, onStdErr })
 		}

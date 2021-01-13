@@ -185,9 +185,9 @@ export const pushChanges = () => new Promise((resolve, reject) => {
 export const pullChanges = () => new Promise((resolve, reject) => {
 	try {
 		const { status, stdout, stderr } = spawnSync(`cd ${gitDirectory} && git pull origin ${branchName} --no-rebase --commit --no-edit`)
-		const output = stdout.toString()
 
 		if (status === 0) {
+			const output = stdout.toString()
 			const didReceiveChanges = output.includes('Fast-forward') || output.includes('Merge')
 			resolve(didReceiveChanges)
 		}
