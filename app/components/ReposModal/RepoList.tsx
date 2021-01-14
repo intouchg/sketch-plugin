@@ -19,7 +19,7 @@ const Repo = styled.div`
 	`}
 `
 
-const ReposList = ({
+const RepoList = ({
 	repos,
 	setSelectedRepo,
 }: {
@@ -60,4 +60,4 @@ const ReposList = ({
 	)
 }
 
-export { ReposList }
+export { RepoList }

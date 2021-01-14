@@ -4,7 +4,7 @@ import { batch, useDispatch, useSelector } from 'react-redux'
 import { Flex, Text, Stack, Input } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { LeftToolbar } from './LeftToolbar'
-import { ReposList } from './ReposList'
+import { RepoList } from './RepoList'
 import { DownloadRepo } from './DownloadRepo'
 import { CloseModalButton } from '../CloseModalButton'
 import { Loading } from '../Loading'
@@ -41,23 +41,6 @@ const ReposModal = () => {
 	const [ selectedOrganization, setSelectedOrganization ] = useState('')
 	const displayErrorBanner = useDisplayErrorBanner()
 
-	const selectedRepoData = selectedOrganization ? [ repos.find((repoData) => repoData[0] === selectedOrganization)! ] : repos
-	let filteredRepoData: AzureUserConnection['gitRepos'] = selectedRepoData
-
-	if (filterText !== '') {
-		const lowercaseFilterText = filterText.toLowerCase()
-		filteredRepoData = []
-		const dataLength = selectedRepoData.length
-
-		for (let i = 0; i < dataLength; i++) {
-			const filteredRepos = selectedRepoData[i][1].filter((repo) => repo.name.toLowerCase().includes(lowercaseFilterText))
-
-			if (filteredRepos.length) {
-				filteredRepoData.push([ selectedRepoData[i][0], filteredRepos ])
-			}
-		}
-	}
-
 	useEffect(() => {
 		if (!showReposModal) {
 			return
@@ -81,6 +64,30 @@ const ReposModal = () => {
 		return null
 	}
 
+	const closeModal = () => {
+		setFilterText('')
+		setSelectedOrganization('')
+		setSelectedRepo(null)
+		dispatch(setShowReposModal(false))
+	}
+
+	const selectedRepoData = selectedOrganization ? [ repos.find((repoData) => repoData[0] === selectedOrganization)! ] : repos
+	let filteredRepoData: AzureUserConnection['gitRepos'] = selectedRepoData
+
+	if (filterText !== '') {
+		const lowercaseFilterText = filterText.toLowerCase()
+		filteredRepoData = []
+		const dataLength = selectedRepoData.length
+
+		for (let i = 0; i < dataLength; i++) {
+			const filteredRepos = selectedRepoData[i][1].filter((repo) => repo.name.toLowerCase().includes(lowercaseFilterText))
+
+			if (filteredRepos.length) {
+				filteredRepoData.push([ selectedRepoData[i][0], filteredRepos ])
+			}
+		}
+	}
+
 	return (
 		<ModalBackground>
 			<Flex
@@ -93,7 +100,7 @@ const ReposModal = () => {
 				borderRadius="Large"
 				overflow="hidden"
 			>
-				<CloseModalButton onClick={() => dispatch(setShowReposModal(false))} />
+				<CloseModalButton onClick={closeModal} />
 				{!online && (
 					<Text
 						display="flex"
@@ -137,7 +144,7 @@ const ReposModal = () => {
 									onChange={(event) => setFilterText(event.target.value)}
 								/>
 							</Flex>
-							<ReposList
+							<RepoList
 								repos={filteredRepoData}
 								setSelectedRepo={setSelectedRepo}
 							/>
