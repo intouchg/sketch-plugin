@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Stack, Link } from '@i/components'
 import { InvisibleButton } from '../Buttons'
 import { AccentText } from '../Texts'
-import type { AzureGitRepos } from '../../sketchApi'
+import type { AzureUserConnection } from '@i/azure'
 
 const OrganizationButton = styled(Link).attrs({ as: InvisibleButton })`
 	${({ theme }) => `
@@ -24,7 +24,7 @@ const LeftToolbar = ({
 	selectedOrganization,
 	setSelectedOrganization,
 }: {
-	repos: AzureGitRepos
+	repos: AzureUserConnection['gitRepos']
 	selectedOrganization: string
 	setSelectedOrganization: React.Dispatch<React.SetStateAction<string>>
 }) => {
@@ -34,10 +34,8 @@ const LeftToolbar = ({
 			borderRight="1px solid Accent"
 			padding={3}
 			backgroundColor="Card"
-			borderTopLeftRadius="Large"
-			borderBottomLeftRadius="Large"
 			overflow="scroll"
-			zIndex={2}
+			zIndex={1}
 		>
 			<AccentText marginBottom={1}>
 				Organization
@@ -48,7 +46,7 @@ const LeftToolbar = ({
 			>
 				All
 			</OrganizationButton>
-			{Object.keys(repos).map((organizationName) => (
+			{repos.map(([ organizationName ]) => (
 				<OrganizationButton
 					key={organizationName}
 					backgroundColor={selectedOrganization === organizationName ? 'Primary Lighter' : 'transparent'}

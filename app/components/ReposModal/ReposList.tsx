@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSpring, animated, config } from 'react-spring'
 import { Stack } from '@i/components'
 import { AccentText } from '../Texts'
-import type { AzureGitRepos } from '../../sketchApi'
-import type { AzureGitRepo } from '@i/azure'
+import type { AzureUserConnection, AzureGitRepo } from '@i/azure'
 
-const RepoBox = styled(animated.div)`
+const Repo = styled.div`
 	${({ theme }) => `
 		padding: ${theme.space[4]} ${theme.space[4]};
 		margin-bottom: ${theme.space[2]};
+		font-family: ${theme.fonts.Avenir};
+		font-weight: ${theme.fontWeights.Demibold};
 		color: ${theme.colors.Text};
 		background-color: ${theme.colors.Card};
 		border: 0;
@@ -19,62 +19,40 @@ const RepoBox = styled(animated.div)`
 	`}
 `
 
-const RepoButton = ({
-	selectedRepoId,
-	setSelectedRepoId,
-	...repo
-}: AzureGitRepo & {
-	selectedRepoId: string
-	setSelectedRepoId: React.Dispatch<React.SetStateAction<string>>
-}) => {
-	const active = selectedRepoId === repo.id
-	const spring = useSpring({
-		transform: `translateX(${active ? '20px' : '0px'})`,
-		borderLeft: active ? '10px solid #2c90ce' : '10px solid #ffffff',
-	})
-
-	return (
-		<RepoBox
-			style={spring}
-			onClick={() => active ? setSelectedRepoId('') : setSelectedRepoId(repo.id)}
-		>
-			{repo.name}
-		</RepoBox>
-	)
-}
-
 const ReposList = ({
 	repos,
-	selectedRepoId,
-	setSelectedRepoId,
+	setSelectedRepo,
 }: {
-	repos: AzureGitRepos
-	selectedRepoId: string
-	setSelectedRepoId: React.Dispatch<React.SetStateAction<string>>
+	repos: AzureUserConnection['gitRepos']
+	setSelectedRepo: React.Dispatch<React.SetStateAction<AzureGitRepo | null>>
 }) => {
 	return (
 		<Stack
 			flexGrow={1}
-			padding={6}
+			alignItems="center"
+			paddingX={6}
+			paddingBottom={6}
 			backgroundColor="Background"
 			overflow="scroll"
-			borderTopRightRadius="Large"
 		>
-			{Object.entries(repos).map(([ organizationName, gitRepos ]) => (
+			{repos.map(([ organizationName, gitRepos ]) => (
 				<Stack
 					key={organizationName}
+					width="100%"
+					maxWidth="560px"
 					flexShrink={0}
+					marginTop={4}
 				>
 					<AccentText marginBottom={2}>
 						{organizationName}
 					</AccentText>
 					{gitRepos.map((repo) => (
-						<RepoButton
+						<Repo
 							key={repo.id}
-							selectedRepoId={selectedRepoId}
-							setSelectedRepoId={setSelectedRepoId}
-							{...repo}
-						/>
+							onClick={() => setSelectedRepo(repo)}
+						>
+							{repo.name}
+						</Repo>
 					))}
 				</Stack>
 			))}

@@ -42,7 +42,7 @@ const NewProjectModal = ({
 					</Heading>
 					<Stack marginBottom={3}>
 						<AccentText marginBottom={2}>
-							Folder
+							Folder *
 						</AccentText>
 						<DirectoryInput
 							value={directory}
@@ -51,7 +51,7 @@ const NewProjectModal = ({
 					</Stack>
 					<Stack marginBottom={4}>
 						<AccentText marginBottom={2}>
-							Template
+							Template *
 						</AccentText>
 						<Box
 							height="75px"

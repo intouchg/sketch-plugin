@@ -26,12 +26,12 @@ export const getAzureGitRepos = async () => {
 			await azureConnection.getGitRepos()
 		}
 
-		const sortedGitRepos = {}
+		const gitRepos = azureConnection.gitRepos.map((repoData) => ([
+			repoData[0],
+			repoData[1].sort((a, b) => sortAlphabetical(a, b, 'name')),
+		]))
 
-		Object.keys(azureConnection.gitRepos).sort(sortAlphabetical).forEach((organizationName) => {
-			sortedGitRepos[organizationName] = azureConnection.gitRepos[organizationName].sort((a, b) => sortAlphabetical(a, b, 'name'))
-		})
-
+		const sortedGitRepos = gitRepos.sort((a, b) => sortAlphabetical(a[0], b[0]))
 		return sortedGitRepos
 	}
 	catch (error) {

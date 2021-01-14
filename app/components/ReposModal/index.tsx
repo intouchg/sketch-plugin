@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { batch, useDispatch, useSelector } from 'react-redux'
-import { Flex, Text, Stack, Box, Input } from '@i/components'
+import { Flex, Text, Stack, Input } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { LeftToolbar } from './LeftToolbar'
 import { ReposList } from './ReposList'
-import { BottomToolbar } from './BottomToolbar'
+import { DownloadRepo } from './DownloadRepo'
 import { CloseModalButton } from '../CloseModalButton'
 import { Loading } from '../Loading'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { setShowReposModal } from '../../store'
-import type { AzureGitRepos } from '../../sketchApi'
+import type { AzureUserConnection, AzureGitRepo } from '@i/azure'
 
 const OFFLINE_ERROR_MESSAGE = 'Please restore internet connectivity to browse Azure projects.'
 
@@ -18,22 +18,29 @@ const ReposModal = () => {
 	const dispatch = useDispatch()
 	const showReposModal = useSelector((state) => state.azure.showReposModal)
 	const online = useSelector((state) => state.azure.online)
-	const [ repos, setRepos ] = useState<AzureGitRepos>({})
+	const [ repos, setRepos ] = useState<AzureUserConnection['gitRepos']>([])
 	const [ showLoading, setShowLoading ] = useState(true)
 	const [ filterText, setFilterText ] = useState('')
+	const [ selectedRepo, setSelectedRepo ] = useState<AzureGitRepo | null>(null)
 	const [ selectedOrganization, setSelectedOrganization ] = useState('')
-	const [ selectedRepoId, setSelectedRepoId ] = useState<string>('')
 	const displayErrorBanner = useDisplayErrorBanner()
 
-	const organizationRepos = selectedOrganization ? { [selectedOrganization]: repos[selectedOrganization] } : repos
+	const selectedRepoData = selectedOrganization ? [ repos.find((repoData) => repoData[0] === selectedOrganization)! ] : repos
+	let filteredRepoData: AzureUserConnection['gitRepos'] = selectedRepoData
 
-	const filteredOrganizationRepos: AzureGitRepos = {}
+	if (filterText !== '') {
+		const lowercaseFilterText = filterText.toLowerCase()
+		filteredRepoData = []
+		const dataLength = selectedRepoData.length
 
-	Object.entries(organizationRepos).forEach(([ organizationName, repos ]) => {
-		filteredOrganizationRepos[organizationName] = repos.filter((repo) => repo.name.includes(filterText))
-	})
+		for (let i = 0; i < dataLength; i++) {
+			const filteredRepos = selectedRepoData[i][1].filter((repo) => repo.name.toLowerCase().includes(lowercaseFilterText))
 
-	const selectedRepo = Object.values(repos).flat().find((repo) => repo.id === selectedRepoId)
+			if (filteredRepos.length) {
+				filteredRepoData.push([ selectedRepoData[i][0], filteredRepos ])
+			}
+		}
+	}
 
 	useEffect(() => {
 		if (!showReposModal) {
@@ -43,9 +50,9 @@ const ReposModal = () => {
 		let isMounted = true
 
 		sendSketchCommand('getAzureGitRepos', {})
-			.then((azureRepos) => batch(() => {
+			.then((reposData) => batch(() => {
 				if (isMounted) {
-					setRepos(azureRepos)
+					setRepos(reposData)
 					setShowLoading(false)
 				}
 			}))
@@ -93,7 +100,7 @@ const ReposModal = () => {
 						<Loading />
 					</Stack>
 				)}
-				{online && !showLoading && (
+				{online && !showLoading && !selectedRepo && (
 					<>
 						<LeftToolbar
 							repos={repos}
@@ -101,29 +108,37 @@ const ReposModal = () => {
 							setSelectedOrganization={setSelectedOrganization}
 						/>
 						<Stack flexGrow={1}>
-							<Box
-								padding={3}
+							<Flex
+								flexShrink={0}
+								justifyContent="center"
+								paddingX={6}
+								paddingY={3}
 								backgroundColor="Background"
-								boxShadow="Medium"
-								zIndex={1}
 							>
 								<Input
 									width="100%"
+									maxWidth="560px"
 									padding={3}
 									borderRadius="Large"
 									placeholder="Search..."
 									value={filterText}
 									onChange={(event) => setFilterText(event.target.value)}
 								/>
-							</Box>
+							</Flex>
 							<ReposList
-								repos={filteredOrganizationRepos}
-								selectedRepoId={selectedRepoId}
-								setSelectedRepoId={setSelectedRepoId}
+								repos={filteredRepoData}
+								setSelectedRepo={setSelectedRepo}
 							/>
-							<BottomToolbar selectedRepo={selectedRepo} />
 						</Stack>
 					</>
+				)}
+				{online && !showLoading && selectedRepo && (
+					<DownloadRepo
+						repo={selectedRepo}
+						setSelectedRepo={setSelectedRepo}
+						setSelectedOrganization={setSelectedOrganization}
+						setFilterText={setFilterText}
+					/>
 				)}
 			</Flex>
 		</ModalBackground>
