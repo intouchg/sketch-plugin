@@ -8,38 +8,33 @@ import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import type { AzureGitRepo } from '@i/azure'
 
+const MISSING_SAVE_LOCATION_ERROR = 'You must select a save location before downloading a project.'
+
 const DownloadRepo = ({
 	repo,
-	setSelectedRepo,
-	setSelectedOrganization,
-	setFilterText,
+	resetSelectedRepo,
 }: {
 	repo: AzureGitRepo
-	setSelectedRepo: React.Dispatch<React.SetStateAction<AzureGitRepo | null>>
-	setSelectedOrganization: React.Dispatch<React.SetStateAction<string>>
-	setFilterText: React.Dispatch<React.SetStateAction<string>>
+	resetSelectedRepo: () => void
 }) => {
 	const [ directory, setDirectory ] = useState('')
 	const [ branchName, setBranchName ] = useState('')
 	const [ error, setError ] = useState('')
 	const displayErrorBanner = useDisplayErrorBanner()
 
-	const resetSelectedRepo = () => {
-		setFilterText('')
-		setSelectedOrganization('')
-		setSelectedRepo(null)
-	}
-
 	const selectDirectory = () => sendSketchCommand('selectDirectory', {})
 		.then((filepath) => batch(() => {
-			setError('')
+			if (error === MISSING_SAVE_LOCATION_ERROR) {
+				setError('')
+			}
+
 			setDirectory(filepath)
 		}))
 		.catch((error) => displayErrorBanner(error))
 
 	const cloneProject = () => {
 		if (!directory) {
-			return setError('You must select a save location before downloading a project.')
+			return setError(MISSING_SAVE_LOCATION_ERROR)
 		}
 
 		sendSketchCommand('cloneAzureGitRepo', { filepath: directory })
@@ -70,9 +65,20 @@ const DownloadRepo = ({
 						Save Location *
 					</AccentText>
 					<DirectoryInput
+						borderWidth="1px"
+						borderStyle="solid"
+						borderColor={error ? 'Critical' : 'transparent'}
 						value={directory}
 						onClick={selectDirectory}
 					/>
+					{error && (
+						<Text
+							paddingY={2}
+							color="Critical"
+						>
+							{error}
+						</Text>
+					)}
 				</Stack>
 				<Stack marginBottom={4}>
 					<AccentText marginBottom={2}>

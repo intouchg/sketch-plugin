@@ -64,10 +64,14 @@ const ReposModal = () => {
 		return null
 	}
 
-	const closeModal = () => {
+	const resetSelectedRepo = () => {
 		setFilterText('')
 		setSelectedOrganization('')
 		setSelectedRepo(null)
+	}
+
+	const closeModal = () => {
+		resetSelectedRepo()
 		dispatch(setShowReposModal(false))
 	}
 
@@ -154,9 +158,7 @@ const ReposModal = () => {
 				{online && !showLoading && selectedRepo && (
 					<DownloadRepo
 						repo={selectedRepo}
-						setSelectedRepo={setSelectedRepo}
-						setSelectedOrganization={setSelectedOrganization}
-						setFilterText={setFilterText}
+						resetSelectedRepo={resetSelectedRepo}
 					/>
 				)}
 			</Flex>

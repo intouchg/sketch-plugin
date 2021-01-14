@@ -7,10 +7,11 @@ import { FolderIcon } from './Icons'
 const DirectoryInput = ({
 	value,
 	onClick,
+	...props
 }: {
     value: string
     onClick: () => void
-}) => (
+} & React.ComponentProps<typeof Flex>) => (
 	<InvisibleButton
 		position="relative"
 		width="100%"
@@ -22,6 +23,7 @@ const DirectoryInput = ({
 			paddingX={3}
 			backgroundColor="Card"
 			borderRadius="Large"
+			{...props}
 		>
 			<TruncatedText maxWidth="90%">
 				{value}

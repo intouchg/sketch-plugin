@@ -4,7 +4,6 @@ import { useDispatch, batch } from 'react-redux'
 import { Flex, Stack, Input, Text } from '@i/components'
 import { PrimaryButton, SecondaryButton, TertiaryButton } from '../Buttons'
 import { AccentText } from '../Texts'
-import { LimitInteraction } from '../LimitInteraction'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
 import { setAzureCredentials, setAzureModalState, setLoadingState, setShowReposModal } from '../../store'
 
@@ -60,6 +59,10 @@ const AzureLoginForm = ({
 	}
 
 	const loginToAzure = () => {
+		if (!usernameValue || !accessTokenValue) {
+			return setError(AUTHENTICATION_ERROR_MESSAGE)
+		}
+
 		dispatch(setLoadingState({ show: true, message: 'Authenticating ...' }))
 
 		sendSketchCommand('loginToAzure', { username: usernameValue, accessToken: accessTokenValue })
@@ -75,7 +78,10 @@ const AzureLoginForm = ({
 					setShowLoginForm(false)
 				}
 			}))
-			.catch((error) => setError(error.includes('401') ? AUTHENTICATION_ERROR_MESSAGE : error))
+			.catch((error) => batch(() => {
+				dispatch(setLoadingState({ show: false }))
+				setError(error.includes('401') ? AUTHENTICATION_ERROR_MESSAGE : error)
+			}))
 	}
 
 	return (
@@ -134,13 +140,9 @@ const AzureLoginForm = ({
 				<SecondaryButton onClick={() => redirectToReposModal ? dispatch(setAzureModalState(null)) : setShowLoginForm(false)}>
 					Back
 				</SecondaryButton>
-				<LimitInteraction
-					as={PrimaryButton}
-					unlimit={online && Boolean(usernameValue && accessTokenValue)}
-					onClick={loginToAzure}
-				>
+				<PrimaryButton onClick={loginToAzure}>
 					Sign In
-				</LimitInteraction>
+				</PrimaryButton>
 			</Flex>
 		</Stack>
 	)

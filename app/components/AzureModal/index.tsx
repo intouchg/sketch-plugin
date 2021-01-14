@@ -26,6 +26,11 @@ const AzureModal = () => {
 
 	const signOut = () => dispatch(forgetAzureCredentials())
 
+	const closeModal = () => {
+		dispatch(setAzureModalState(null))
+		setShowLoginForm(false)
+	}
+
 	return (
 		<ModalBackground>
 			<Flex
@@ -35,7 +40,7 @@ const AzureModal = () => {
 				boxShadow="Medium"
 				borderRadius="Large"
 			>
-				<CloseModalButton onClick={() => dispatch(setAzureModalState(null))} />
+				<CloseModalButton onClick={closeModal} />
 				<Stack flexGrow={1}>
 					<Flex
 						alignItems="baseline"
