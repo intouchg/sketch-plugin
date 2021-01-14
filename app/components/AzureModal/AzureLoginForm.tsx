@@ -14,7 +14,7 @@ const AzureLoginInput = styled(Input).attrs<
 	autoCorrect: 'off',
 	autoCapitalize: 'off',
 	autoComplete: 'off',
-	spellCheck: 'off',
+	spellCheck: 'false',
 }))<{
 	error: boolean
 }>`

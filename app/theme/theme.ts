@@ -182,7 +182,6 @@ const theme = {
 			color: '#232323',
 			fontFamily: '\'Avenir Next\', sans-serif',
 			fontSize: '0.875rem',
-			lineHeight: '1rem',
 		},
 	},
 } as const

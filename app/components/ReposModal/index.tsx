@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 import { batch, useDispatch, useSelector } from 'react-redux'
 import { Flex, Text, Stack, Input } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
@@ -11,6 +12,21 @@ import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { setShowReposModal } from '../../store'
 import type { AzureUserConnection, AzureGitRepo } from '@i/azure'
+
+const FilterInput = styled(Input).attrs<
+	typeof Input
+>((props) => ({
+	autoCorrect: 'off',
+	autoCapitalize: 'off',
+	autoComplete: 'off',
+	spellCheck: 'false',
+}))`
+	width: 100%;
+	max-width: 560px;
+	padding: ${(props) => props.theme.space[3]};
+	border-radius: ${(props) => props.theme.radii.Large};
+	transform: scale3d(1, 1, 1);
+`
 
 const OFFLINE_ERROR_MESSAGE = 'Please restore internet connectivity to browse Azure projects.'
 
@@ -115,11 +131,7 @@ const ReposModal = () => {
 								paddingY={3}
 								backgroundColor="Background"
 							>
-								<Input
-									width="100%"
-									maxWidth="560px"
-									padding={3}
-									borderRadius="Large"
+								<FilterInput
 									placeholder="Search..."
 									value={filterText}
 									onChange={(event) => setFilterText(event.target.value)}
