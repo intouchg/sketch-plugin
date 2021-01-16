@@ -87,6 +87,7 @@ const theme = {
 		},
 		Welcome: {
 			display: 'flex',
+			alignItems: 'center',
 			justifyContent: 'center',
 			width: '172px',
 			height: '104px',
