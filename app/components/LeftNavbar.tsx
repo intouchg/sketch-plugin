@@ -92,7 +92,6 @@ const LeftNavbar = () => {
 			width="236px"
 			height={`calc(100vh - ${topToolbarHeight})`}
 			minHeight="480px"
-			borderRight="1px solid Accent"
 			padding={3}
 			backgroundColor="Card"
 		>
