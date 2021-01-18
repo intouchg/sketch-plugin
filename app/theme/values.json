@@ -1,0 +1,302 @@
+[
+	{
+		"id": "a84a64e2-23d2-4e1c-b4fc-9b4f4994d6a8",
+		"value": "30em",
+		"type": "breakpoint"
+	},
+	{
+		"id": "603a104a-372d-4a54-92f4-826f8cb33535",
+		"value": "43em",
+		"type": "breakpoint"
+	},
+	{
+		"id": "ffb4b921-ffff-4e99-83da-ff801ee205e5",
+		"value": "62em",
+		"type": "breakpoint"
+	},
+	{
+		"id": "2495a145-5782-4120-8cbd-1859ee5b86d5",
+		"value": "82em",
+		"type": "breakpoint"
+	},
+	{
+		"id": "ab6688a5-4c32-4d70-91eb-81a95417b55d",
+		"value": "#dddddd",
+		"name": "Accent",
+		"type": "color"
+	},
+	{
+		"id": "8e7f6f45-596c-401a-bb62-6a65367abba3",
+		"value": "#f8f8f8",
+		"name": "Background",
+		"type": "color"
+	},
+	{
+		"id": "9f80015f-d74c-4c09-b8ab-a4e58ed23ff9",
+		"value": "#ffffff",
+		"name": "Card",
+		"type": "color"
+	},
+	{
+		"id": "2f0d402a-7b7d-4335-927b-d8c6b4d79873",
+		"value": "#ffdf00",
+		"name": "Caution",
+		"type": "color"
+	},
+	{
+		"id": "188d26c3-e489-497a-a3c1-affe56eb4c85",
+		"value": "#6b5900",
+		"name": "Caution Dark",
+		"type": "color"
+	},
+	{
+		"id": "37925adf-554e-4843-9c0e-9fd70862fd1f",
+		"value": "#fffac3",
+		"name": "Caution Light",
+		"type": "color"
+	},
+	{
+		"id": "bdd16725-b155-46e2-9e65-1bfa9055ae37",
+		"value": "#ff4565",
+		"name": "Critical",
+		"type": "color"
+	},
+	{
+		"id": "8e038460-29fd-4a55-8ce8-3894e6af4034",
+		"value": "#41000b",
+		"name": "Critical Dark",
+		"type": "color"
+	},
+	{
+		"id": "faac2e26-b13f-4249-af02-1c4b286b3c26",
+		"value": "#ffdfe4",
+		"name": "Critical Light",
+		"type": "color"
+	},
+	{
+		"id": "aa54d803-f8b1-466f-aa3a-497c3ee0d722",
+		"value": "#6ce11d",
+		"name": "Positive",
+		"type": "color"
+	},
+	{
+		"id": "5405364f-b726-4c38-a072-0e4af67d13a4",
+		"value": "#315d13",
+		"name": "Positive Dark",
+		"type": "color"
+	},
+	{
+		"id": "2253249a-80fc-496c-a094-daf3b99e1d9f",
+		"value": "#def8cc",
+		"name": "Positive Light",
+		"type": "color"
+	},
+	{
+		"id": "da13e063-6133-4528-b8e4-9245dfa839fe",
+		"value": "#2c90ce",
+		"name": "Primary",
+		"type": "color"
+	},
+	{
+		"id": "f2754d1b-eec7-4d80-9f03-df2b6eccbec9",
+		"value": "#1274b1",
+		"name": "Primary Dark",
+		"type": "color"
+	},
+	{
+		"id": "be60c489-0fad-4715-9c3e-3788e14d083b",
+		"value": "#009fff",
+		"name": "Primary Light",
+		"type": "color"
+	},
+	{
+		"id": "813b628b-af13-48c4-83ca-e2f3bc4d308f",
+		"value": "#eaf4fa",
+		"name": "Primary Lighter",
+		"type": "color"
+	},
+	{
+		"id": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
+		"value": "#232323",
+		"name": "Text",
+		"type": "color"
+	},
+	{
+		"id": "d58a3fc9-a430-41eb-a4a6-ed135bac0eef",
+		"value": "#6b6b6b",
+		"name": "Text Light",
+		"type": "color"
+	},
+	{
+		"id": "71f42d7c-c91b-42a7-9079-f72c304522e9",
+		"value": "0",
+		"type": "space"
+	},
+	{
+		"id": "4d0f6558-877e-46d3-a9a4-5b50f8210926",
+		"value": "4px",
+		"type": "space"
+	},
+	{
+		"id": "d177961a-555f-4d90-be34-f10aab41732d",
+		"value": "8px",
+		"type": "space"
+	},
+	{
+		"id": "0310d5cd-79e0-40c5-82d3-a638d68fc4f9",
+		"value": "16px",
+		"type": "space"
+	},
+	{
+		"id": "03fc9958-f028-498a-9c2f-398e8a9b1651",
+		"value": "24px",
+		"type": "space"
+	},
+	{
+		"id": "9331f754-4b24-48f9-b196-14d5788d180f",
+		"value": "32px",
+		"type": "space"
+	},
+	{
+		"id": "0e2f7af8-c37c-4e90-8b52-eed259c0a447",
+		"value": "48px",
+		"type": "space"
+	},
+	{
+		"id": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+		"value": "Avenir Next",
+		"family": "Avenir Next",
+		"typeface": "Avenir Next",
+		"name": "Avenir Next",
+		"type": "font"
+	},
+	{
+		"id": "9d01c334-1d74-4b13-aebf-86cdb6baecc2",
+		"value": "0",
+		"type": "fontSize"
+	},
+	{
+		"id": "fa87044c-eaa2-477f-adf9-6d487bafe1be",
+		"value": "0.75rem",
+		"type": "fontSize"
+	},
+	{
+		"id": "67f7ad4d-5801-4f59-b1a9-56b29ac6a250",
+		"value": "0.875rem",
+		"type": "fontSize"
+	},
+	{
+		"id": "cbdfeaf6-9e19-4839-b29f-e2342dcae69b",
+		"value": "1rem",
+		"type": "fontSize"
+	},
+	{
+		"id": "5b2baeff-a810-4491-907b-bdfe95cd2d46",
+		"value": "2rem",
+		"type": "fontSize"
+	},
+	{
+		"id": "ff400338-b936-4b28-b2d7-088d5ffb45c8",
+		"value": "0",
+		"type": "lineHeight"
+	},
+	{
+		"id": "f623ca79-475d-473c-b5e6-995b83779975",
+		"value": "0.75rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "6a22c80f-b779-4131-a4a2-6ce215e27a8a",
+		"value": "0.875rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "2c4a9dea-d245-404e-8ab2-5e197218eb44",
+		"value": "1rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "3830d6ad-71c9-4db0-9b46-4680759f7e3b",
+		"value": "2rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "a10e0b81-72c7-4188-bed4-16afca9e7712",
+		"value": "300",
+		"name": "Regular",
+		"type": "fontWeight"
+	},
+	{
+		"id": "75ebbc5b-5d21-4c48-822b-61e0d74e4a72",
+		"value": "400",
+		"name": "Medium",
+		"type": "fontWeight"
+	},
+	{
+		"id": "a3560ac3-2d01-443d-aa2f-97dd27e02196",
+		"value": "500",
+		"name": "Demibold",
+		"type": "fontWeight"
+	},
+	{
+		"id": "ac9544cb-b739-4734-9d67-dd45a35c4112",
+		"value": "700",
+		"name": "Bold",
+		"type": "fontWeight"
+	},
+	{
+		"id": "25a594f2-f0eb-4ff6-917d-6434fab0f101",
+		"value": "1px",
+		"name": "Thin",
+		"type": "borderWidth"
+	},
+	{
+		"id": "24311702-e2b2-4bf0-8337-fed9ab44391c",
+		"value": "0",
+		"type": "zIndex"
+	},
+	{
+		"id": "48884070-5adb-47fe-aa2c-5c479129c782",
+		"value": "1",
+		"type": "zIndex"
+	},
+	{
+		"id": "3cd980c7-6f5d-4a94-a39d-20f1ef289d23",
+		"value": "10",
+		"type": "zIndex"
+	},
+	{
+		"id": "26d050f2-b9d7-41d8-a2fc-1bff5ab3857e",
+		"value": "100",
+		"type": "zIndex"
+	},
+	{
+		"id": "07fce574-f67e-437b-a2a5-de85bb840489",
+		"value": "1000",
+		"type": "zIndex"
+	},
+	{
+		"id": "a48f3af8-d67b-4237-8636-ec6d6c5efd6c",
+		"value": "3px",
+		"name": "Small",
+		"type": "radius"
+	},
+	{
+		"id": "6d07adc4-fca1-40ae-8282-253945440469",
+		"value": "4px",
+		"name": "Medium",
+		"type": "radius"
+	},
+	{
+		"id": "861e9edb-de7f-441b-9659-62a55cd9a799",
+		"value": "6px",
+		"name": "Large",
+		"type": "radius"
+	},
+	{
+		"id": "d631c5b7-bc14-4f00-b225-87d836fe0af4",
+		"value": "0 2px 6px -2px rgba(0, 0, 0, 0.15)",
+		"name": "Medium",
+		"type": "shadow"
+	}
+]
