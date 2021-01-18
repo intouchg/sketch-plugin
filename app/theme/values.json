@@ -201,18 +201,18 @@
 		"type": "lineHeight"
 	},
 	{
-		"id": "f623ca79-475d-473c-b5e6-995b83779975",
-		"value": "0.75rem",
-		"type": "lineHeight"
-	},
-	{
-		"id": "6a22c80f-b779-4131-a4a2-6ce215e27a8a",
-		"value": "0.875rem",
-		"type": "lineHeight"
-	},
-	{
 		"id": "2c4a9dea-d245-404e-8ab2-5e197218eb44",
 		"value": "1rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "369aacea-e505-4cb3-914a-34228e0cfad9",
+		"value": "1.25rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "79e12a3d-ae5e-41d4-af2a-fc81ce705b9b",
+		"value": "1.5rem",
 		"type": "lineHeight"
 	},
 	{

@@ -25,7 +25,8 @@ const Checkbox = ({
 			width="24px"
 			height="24px"
 			backgroundColor={disabled ? 'Background' : 'Card'}
-			border="1px solid"
+			borderWidth="1px"
+			borderStyle="solid"
 			borderColor="Accent"
 			borderRadius="Medium"
 		>

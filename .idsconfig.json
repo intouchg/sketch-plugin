@@ -1,0 +1,5 @@
+{
+    "values": "app/theme/values.json",
+    "variants": "app/theme/variants.json",
+    "output": "app/theme/theme.ts"
+}

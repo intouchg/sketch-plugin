@@ -47,6 +47,7 @@
     "@babel/preset-react": "7.12.10",
     "@babel/preset-typescript": "7.12.7",
     "@i/eslint-config": "latest",
+    "@i/webpack-theme-plugin": "latest",
     "@skpm/builder": "0.7.11",
     "@skpm/extract-loader": "2.0.3",
     "@skpm/promise": "0.1.0",

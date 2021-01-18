@@ -1,0 +1,224 @@
+[
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "button",
+		"name": "Primary",
+		"styles": {
+			"color": "9f80015f-d74c-4c09-b8ab-a4e58ed23ff9",
+			"backgroundColor": "da13e063-6133-4528-b8e4-9245dfa839fe",
+			"activeColor": "9f80015f-d74c-4c09-b8ab-a4e58ed23ff9",
+			"border": "1px solid",
+			"borderColor": "da13e063-6133-4528-b8e4-9245dfa839fe",
+			"borderRadius": "861e9edb-de7f-441b-9659-62a55cd9a799",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "67f7ad4d-5801-4f59-b1a9-56b29ac6a250",
+			"lineHeight": "369aacea-e505-4cb3-914a-34228e0cfad9",
+			"fontWeight": "600",
+			"textTransform": "uppercase",
+			"letterSpacing": "1px",
+			"paddingX": "03fc9958-f028-498a-9c2f-398e8a9b1651",
+			"paddingY": "14px"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "button",
+		"name": "Secondary",
+		"styles": {
+			"color": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
+			"backgroundColor": "transparent",
+			"activeColor": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
+			"border": "1px solid",
+			"borderColor": "ab6688a5-4c32-4d70-91eb-81a95417b55d",
+			"borderRadius": "861e9edb-de7f-441b-9659-62a55cd9a799",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "67f7ad4d-5801-4f59-b1a9-56b29ac6a250",
+			"lineHeight": "369aacea-e505-4cb3-914a-34228e0cfad9",
+			"fontWeight": "75ebbc5b-5d21-4c48-822b-61e0d74e4a72",
+			"textTransform": "uppercase",
+			"letterSpacing": "1px",
+			"paddingX": "03fc9958-f028-498a-9c2f-398e8a9b1651",
+			"paddingY": "14px"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "button",
+		"name": "Tertiary",
+		"styles": {
+			"color": "da13e063-6133-4528-b8e4-9245dfa839fe",
+			"backgroundColor": "transparent",
+			"activeColor": "da13e063-6133-4528-b8e4-9245dfa839fe",
+			"border": "0",
+			"borderColor": "",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "cbdfeaf6-9e19-4839-b29f-e2342dcae69b",
+			"lineHeight": "369aacea-e505-4cb3-914a-34228e0cfad9",
+			"fontWeight": "a3560ac3-2d01-443d-aa2f-97dd27e02196"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "button",
+		"name": "Welcome",
+		"styles": {
+			"display": "flex",
+			"alignItems": "center",
+			"justifyContent": "center",
+			"width": "172px",
+			"height": "104px",
+			"color": "da13e063-6133-4528-b8e4-9245dfa839fe",
+			"backgroundColor": "9f80015f-d74c-4c09-b8ab-a4e58ed23ff9",
+			"activeColor": "da13e063-6133-4528-b8e4-9245dfa839fe",
+			"border": "0",
+			"borderColor": "",
+			"borderRadius": "6d07adc4-fca1-40ae-8282-253945440469",
+			"boxShadow": "d631c5b7-bc14-4f00-b225-87d836fe0af4",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "cbdfeaf6-9e19-4839-b29f-e2342dcae69b",
+			"lineHeight": "369aacea-e505-4cb3-914a-34228e0cfad9",
+			"fontWeight": "a3560ac3-2d01-443d-aa2f-97dd27e02196"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "button",
+		"name": "Invisible",
+		"styles": {
+			"backgroundColor": "transparent",
+			"border": "0",
+			"color": "unset",
+			"activeColor": "unset"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "text",
+		"name": "Primary",
+		"styles": {
+			"color": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "67f7ad4d-5801-4f59-b1a9-56b29ac6a250",
+			"lineHeight": "2c4a9dea-d245-404e-8ab2-5e197218eb44"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "text",
+		"name": "Secondary",
+		"styles": {
+			"color": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "cbdfeaf6-9e19-4839-b29f-e2342dcae69b",
+			"lineHeight": "369aacea-e505-4cb3-914a-34228e0cfad9",
+			"fontWeight": "ac9544cb-b739-4734-9d67-dd45a35c4112"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "text",
+		"name": "Accent",
+		"styles": {
+			"color": "d58a3fc9-a430-41eb-a4a6-ed135bac0eef",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "fa87044c-eaa2-477f-adf9-6d487bafe1be",
+			"lineHeight": "2c4a9dea-d245-404e-8ab2-5e197218eb44",
+			"fontWeight": "75ebbc5b-5d21-4c48-822b-61e0d74e4a72",
+			"textTransform": "uppercase",
+			"letterSpacing": "1px"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "text",
+		"name": "Accent Small",
+		"styles": {
+			"color": "d58a3fc9-a430-41eb-a4a6-ed135bac0eef",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "fa87044c-eaa2-477f-adf9-6d487bafe1be",
+			"lineHeight": "2c4a9dea-d245-404e-8ab2-5e197218eb44",
+			"fontWeight": "a10e0b81-72c7-4188-bed4-16afca9e7712"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "heading",
+		"name": "Primary",
+		"styles": {
+			"color": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "cbdfeaf6-9e19-4839-b29f-e2342dcae69b",
+			"lineHeight": "369aacea-e505-4cb3-914a-34228e0cfad9",
+			"fontWeight": "ac9544cb-b739-4734-9d67-dd45a35c4112"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "heading",
+		"name": "Secondary",
+		"styles": {
+			"color": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "5b2baeff-a810-4491-907b-bdfe95cd2d46",
+			"lineHeight": "79e12a3d-ae5e-41d4-af2a-fc81ce705b9b",
+			"fontWeight": "ac9544cb-b739-4734-9d67-dd45a35c4112"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "heading",
+		"name": "Tertiary",
+		"styles": {
+			"color": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "1.5rem",
+			"lineHeight": "3830d6ad-71c9-4db0-9b46-4680759f7e3b",
+			"fontWeight": "ac9544cb-b739-4734-9d67-dd45a35c4112"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "link",
+		"name": "Primary",
+		"styles": {
+			"color": "da13e063-6133-4528-b8e4-9245dfa839fe",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "cbdfeaf6-9e19-4839-b29f-e2342dcae69b",
+			"lineHeight": "369aacea-e505-4cb3-914a-34228e0cfad9",
+			"fontWeight": "a3560ac3-2d01-443d-aa2f-97dd27e02196"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "icon",
+		"name": "Primary",
+		"styles": {
+			"fill": "da13e063-6133-4528-b8e4-9245dfa839fe"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"variantType": "input",
+		"name": "Primary",
+		"styles": {
+			"color": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "67f7ad4d-5801-4f59-b1a9-56b29ac6a250"
+		}
+	}
+]

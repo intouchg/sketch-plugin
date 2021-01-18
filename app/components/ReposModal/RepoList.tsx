@@ -8,7 +8,7 @@ const Repo = styled.div`
 	${({ theme }) => `
 		padding: ${theme.space[4]} ${theme.space[4]};
 		margin-bottom: ${theme.space[2]};
-		font-family: ${theme.fonts.Avenir};
+		font-family: ${theme.fonts['Avenir Next']};
 		font-weight: ${theme.fontWeights.Demibold};
 		color: ${theme.colors.Text};
 		background-color: ${theme.colors.Card};

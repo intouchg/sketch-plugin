@@ -43,7 +43,8 @@ const Color = ({
 				height="100%"
 				borderRadius="Medium"
 				backgroundColor={value}
-				border="1px solid"
+				borderWidth="1px"
+				borderStyle="solid"
 				borderColor="Accent"
 			>
 				<Stack
