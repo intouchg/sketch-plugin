@@ -4,7 +4,7 @@ import { commitChanges, pullChanges } from '../services'
 export const downloadRemoteChanges = async (state, payload) => {
 	try {
 		await commitChanges('IDS pre-pull automated commit')
-		const didReceiveChanges = await pullChanges()
+		const pullResults = await pullChanges()
 
 		Object.keys(state.themeFilepaths).forEach((key) => {
 			const fileData = fs.readFileSync(state.themeFilepaths[key])
@@ -13,7 +13,7 @@ export const downloadRemoteChanges = async (state, payload) => {
 
 		return {
 			themeData: state.themeData,
-			didReceiveChanges,
+			...pullResults,
 		}
 	}
 	catch (error) {

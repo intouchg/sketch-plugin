@@ -28,14 +28,17 @@ const AzureRepoInfo = ({
 	const downloadUpdates = async () => {
 		try {
 			dispatch(setLoadingState({ show: true, message: 'Downloading updates ...' }))
-			const { themeData, didReceiveChanges } = await sendSketchCommand('downloadRemoteChanges', {})
+			const { themeData, didReceiveChanges, hasMergeConflict } = await sendSketchCommand('downloadRemoteChanges', {})
 
 			batch(() => {
 				dispatch(setLoadingState({ show: false }))
 				dispatch(setHasRemoteChanges(false))
 				dispatch(setThemeData(themeData))
 
-				if (didReceiveChanges) {
+				if (hasMergeConflict) {
+					dispatch(setBannerState({ show: true, type: 'warn', message: 'Failed to download updates. A merge conflict occurred. Please contact a developer for support.' }))
+				}
+				else if (didReceiveChanges) {
 					dispatch(setBannerState({ show: true, type: 'success', message: 'Downloaded updates from Azure.' }))
 				}
 				else {
@@ -45,6 +48,7 @@ const AzureRepoInfo = ({
 		}
 		catch (error) {
 			console.log('update error = ', error)
+			dispatch(setLoadingState({ show: false }))
 			displayErrorBanner(error)
 		}
 	}
@@ -81,6 +85,7 @@ const AzureRepoInfo = ({
 			}
 		}
 		catch (error) {
+			dispatch(setLoadingState({ show: false }))
 			displayErrorBanner(error)
 		}
 	}

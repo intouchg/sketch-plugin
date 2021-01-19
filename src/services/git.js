@@ -134,6 +134,22 @@ export const hasRemoteChanges = async () => {
 	return ids[0] !== ids[1]
 }
 
+export const resetMergeConflict = () => new Promise((resolve, reject) => {
+	try {
+		const { status, stderr } = spawnSync(`cd ${gitDirectory} && git reset --hard`)
+
+		if (status === 0) {
+			resolve(true)
+		}
+		else {
+			throw Error(stderr)
+		}
+	}
+	catch (error) {
+		throw Error('Failed to reset merge conflict: ' + error)
+	}
+})
+
 export const resetLocalChanges = () => new Promise((resolve, reject) => {
 	try {
 		const onStdOut = (data) => {}
@@ -170,7 +186,10 @@ export const pushChanges = () => new Promise((resolve, reject) => {
 		if (status === 0) {
 			resolve({ didSaveChanges: true, needsToUpdate: false })
 		}
-		else if (stderr.toString().includes('Updates were rejected because the remote contains work')) {
+		else if (
+			stderr.toString().includes('Updates were rejected because the remote contains work')
+			|| stderr.toString().includes('Updates were rejected because the tip of your current branch is behind')
+		) {
 			resolve({ didSaveChanges: false, needsToUpdate: true })
 		}
 		else {
@@ -189,11 +208,19 @@ export const pullChanges = () => new Promise((resolve, reject) => {
 		if (status === 0) {
 			const output = stdout.toString()
 			const didReceiveChanges = output.includes('Fast-forward') || output.includes('Merge')
-			resolve(didReceiveChanges)
+			resolve({ didReceiveChanges, hasMergeConflict: false })
+		}
+		else if (stdout.toString().includes('Automatic merge failed; fix conflicts')) {
+			resetMergeConflict()
+				.then(() => {
+					resolve({ didReceiveChanges: true, hasMergeConflict: true })
+				})
+				.catch((error) => {
+					throw Error(error)
+				})
 		}
 		else {
-			console.log('pullChanges stderr = ', stderr)
-			resolve(false)
+			throw Error(stderr)
 		}
 	}
 	catch (error) {

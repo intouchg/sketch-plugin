@@ -15,7 +15,7 @@ export type SketchCommands = {
     checkHasRemoteChanges: SketchCommand<{}, boolean>
     cloneAzureGitRepo: SketchCommand<DirectoryFilepath, string>
     closeLocalProject: SketchCommand<{}, true>
-    downloadRemoteChanges: SketchCommand<{}, { didReceiveChanges: boolean, themeData: ThemeData }>
+    downloadRemoteChanges: SketchCommand<{}, { didReceiveChanges: boolean, hasMergeConflict: boolean, themeData: ThemeData }>
     extractSketchDocumentStyles: SketchCommand<{ sketchDocumentIndex: number }, RawImportedSketchValues>
     forgetAzureCredentials: SketchCommand<{}, true>
     getAzureCredentials: SketchCommand<{}, AzureCredentials>
