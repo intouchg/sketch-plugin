@@ -7,7 +7,10 @@ interface WebviewWindowProperties {
     // window.sketchCommand listens for commands sent from the Sketch back end to the webview front end
     sketchCommand: <T extends keyof ClientCommands>(command: { commandId: number, type: T, payload: ClientCommands[T] }) => void
     // window.resolveCommand resolves commands send from the webview front end to the Sketch back end
-    resolveCommand: (response: { commandId: number, result: any }) => void
+	resolveCommand: (response: { commandId: number, result: any }) => void
+
+	// window.updateCloneProgress is created in the DownloadRepo component to track git clone progress
+	updateCloneProgress?: (progress: number) => void
 }
 
 declare global {

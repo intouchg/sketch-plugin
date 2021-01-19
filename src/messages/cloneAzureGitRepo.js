@@ -1,13 +1,11 @@
-// import dialog from '@skpm/dialog'
-// import { cloneAzureGitRepo as clone } from '../services'
+import { cloneGitRepo } from '../services'
 
-// export const cloneAzureGitRepo = async (state, payload, webContents, showError) => {
-// 	const { remoteUrl } = payload
-
-// 	let selectedCloneDirectory = null
-// 	selectedCloneDirectory = dialog.showOpenDialogSync({ properties: [ 'openDirectory' ] })[0]
-
-// 	if (selectedCloneDirectory) {
-// 		await clone(remoteUrl, selectedCloneDirectory, webContents, showError)
-// 	}
-// }
+export const cloneAzureGitRepo = async (state, payload) => {
+    try {
+        const { filepath, remoteUrl, branchName } = payload
+        return await cloneGitRepo(remoteUrl, filepath, branchName)
+	}
+	catch (error) {
+		throw Error('Failed to clone Azure git repo: ' + error)
+	}
+}

@@ -1,5 +1,4 @@
 import { SAVEABLE_ACTIONS } from './theme'
-import { FORGET_AZURE_CREDENTIALS } from './azure'
 import { sendSketchCommand } from '../sketchApi'
 import { setHasLocalChanges } from './index'
 import type { Middleware } from 'redux'
@@ -9,17 +8,6 @@ export const sideEffects: Middleware<{}, RootState> = (storeApi) => (next) => as
 	try {
 		const result = next(action)
 		const nextState = storeApi.getState()
-
-		switch (action.type) {
-			case FORGET_AZURE_CREDENTIALS: {
-				sendSketchCommand('forgetAzureCredentials', {}).catch((error) => console.error(error))
-				break
-			}
-
-			default: {
-				break
-			}
-		}
 
 		if (SAVEABLE_ACTIONS.includes(action.type)) {
 			const hasLocalChanges = await sendSketchCommand('saveThemeData', {

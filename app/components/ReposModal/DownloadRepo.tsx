@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { batch } from 'react-redux'
+import { useSpring, animated } from 'react-spring'
 import { Stack, Heading, Input, Flex, Text } from '@i/components'
 import { PrimaryButton, SecondaryButton } from '../Buttons'
 import { AccentText } from '../Texts'
@@ -19,8 +20,15 @@ const DownloadRepo = ({
 }) => {
 	const [ directory, setDirectory ] = useState('')
 	const [ branchName, setBranchName ] = useState('')
+	const [ showCloning, setShowCloning ] = useState(false)
 	const [ error, setError ] = useState('')
 	const displayErrorBanner = useDisplayErrorBanner()
+	const [ spring, setSpring ] = useSpring({ x: 0 }, [])
+
+	useEffect(() => {
+		window.updateCloneProgress = (progress) => setSpring({ x: progress / 100 })
+		return () => void delete window.updateCloneProgress
+	}, [ setSpring ])
 
 	const selectDirectory = () => sendSketchCommand('selectDirectory', {})
 		.then((filepath) => batch(() => {
@@ -37,10 +45,12 @@ const DownloadRepo = ({
 			return setError(MISSING_SAVE_LOCATION_ERROR)
 		}
 
-		sendSketchCommand('cloneAzureGitRepo', { filepath: directory })
-			.then(() => {
+		setShowCloning(true)
+		sendSketchCommand('cloneAzureGitRepo', { filepath: directory, remoteUrl: repo.remoteUrl, branchName })
+			.then(() => batch(() => {
+				setShowCloning(false)
 				console.log('clone success')
-			})
+			}))
 			.catch((error) => displayErrorBanner(error))
 	}
 
@@ -100,6 +110,41 @@ const DownloadRepo = ({
 					</PrimaryButton>
 				</Flex>
 			</Stack>
+			{showCloning && (
+				<Stack
+					alignItems="center"
+					justifyContent="center"
+					position="fixed"
+					top="0"
+					bottom="0"
+					left="0"
+					right="0"
+					backgroundColor="Card"
+					zIndex={4}
+				>
+					<Text marginBottom={4}>
+						Downloading project ...
+					</Text>
+					<animated.svg
+						style={{ margin: '0 12px', width: 64, height: 64 }}
+						viewBox="0 0 51 51"
+						strokeWidth="6.5"
+						fill="transparent"
+						stroke="rgb(88, 140, 244)"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						strokeDasharray={156}
+						strokeDashoffset={spring.x.to((v) => (1 - v) * 156)}
+					>
+						<circle
+							transform="translate(25.500000, 25.500000) rotate(-90.000000) translate(-25.500000, -25.500000)"
+							cx="25.5"
+							cy="25.5"
+							r="18.5"
+						/>
+					</animated.svg>
+				</Stack>
+			)}
 		</Flex>
 	)
 }

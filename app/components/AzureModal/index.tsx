@@ -4,11 +4,13 @@ import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { InvisibleButton } from '../Buttons'
 import { ModalText } from '../Texts'
+import { CloseModalButton } from '../CloseModalButton'
 import { AzureLoginForm } from './AzureLoginForm'
 import { AzureStatusLabel } from '../AzureStatusLabel'
 import { AzureRepoInfo } from './AzureRepoInfo'
 import { forgetAzureCredentials, setAzureModalState } from '../../store'
-import { CloseModalButton } from '../CloseModalButton'
+import { sendSketchCommand } from '../../sketchApi'
+import { useDisplayErrorBanner } from '../../hooks'
 
 const AzureModal = () => {
 	const dispatch = useDispatch()
@@ -18,13 +20,17 @@ const AzureModal = () => {
 	const connected = Boolean(username && accessToken)
 	const redirectToReposModal = azureModalState === 'redirectToRepos'
 	const [ showLoginForm, setShowLoginForm ] = useState(redirectToReposModal)
+	const displayErrorBanner = useDisplayErrorBanner()
+
 	useEffect(() => setShowLoginForm(redirectToReposModal), [ redirectToReposModal ])
 
 	if (!azureModalState) {
 		return null
 	}
 
-	const signOut = () => dispatch(forgetAzureCredentials())
+	const signOut = () => sendSketchCommand('forgetAzureCredentials', {})
+		.then(() => dispatch(forgetAzureCredentials()))
+		.catch((error) => displayErrorBanner(error))
 
 	const closeModal = () => {
 		dispatch(setAzureModalState(null))

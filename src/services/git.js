@@ -259,27 +259,33 @@ export const closeGitRepo = () => {
 	branchName = null
 }
 
-// export const cloneGitRepo = () => {
-// 	stopGitProcess()
+// const FETCHING_PACKAGES_REGEX = /Fetching packages\.\.\.\n\[-*\]\W\d*\/\d*$/g
+// const LINKING_PACKAGES_REGEX = /Linking packages\.\.\.\n\[-*\]\W\d*\/\d*$/g
+// const PACKAGE_COMPLETION_RATIO_REGEX = /(\d*\/\d*)$/g
 
-// 	const onStdOut = (data) => {
-// 		console.log('clone std out')
-// 		console.log(data)
-// 	}
+export const cloneGitRepo = (filepath, remoteUrl, branchName) => new Promise((resolve, reject) => {
+	try {
+		const escapedDirectory = `"${filepath}"`
 
-// 	const onStdErr = (data) => {
-// 		console.log('clone std err')
-// 		console.log(data)
-// 	}
+		// TO DO: parse clone progress from stderr
 
-// 	const onClose = (code) => {
-// 		resolve('Clone Success!')
-// 	}
+		const onStdOut = (data) => {
+			console.log('stdout = ', data)
+		}
 
-// 	const onError = (error) => showError(`Could not clone git repo: ${error}`)
+		const onStdErr = (data) => {
+			console.log('stderr = ', data)
+		}
 
-// 	// webContents.executeJavaScript('window.cloningAzureGitRepo()')
+		const onClose = (code) => resolve(true)
 
-// 	const process = new ChildProcess(`cd ${targetDirectory} && git clone ${remoteUrl} && yarn install --ignore-scripts`, { onClose, onError })
+		const onError = (error) => {
+			throw Error(error)
+		}
 
-// }
+		const process = new ChildProcess(`cd ${escapedDirectory} && git clone ${remoteUrl}${branchName ? ` --branch ${branchName}` : ''}`, { onStdOut, onStdErr, onClose, onError }, true)
+	}
+	catch (error) {
+		throw Error('Failed to clone git repo: ' + error)
+	}
+})
