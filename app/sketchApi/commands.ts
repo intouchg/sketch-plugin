@@ -23,6 +23,7 @@ export type SketchCommands = {
     getRecentProjects: SketchCommand<{}, DirectoryFilepath[]>
     getSketchDocumentNames: SketchCommand<{}, string[]>
     getSystemFonts: SketchCommand<{}, SPFontData>
+    installDependencies: SketchCommand<DirectoryFilepath, true>
     loginToAzure: SketchCommand<AzureCredentials, AzureCredentials>
     openBrowserWindow: SketchCommand<{ url: string }, true>
     openDevServer: SketchCommand<{}, true>

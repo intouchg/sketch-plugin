@@ -9,7 +9,7 @@ interface WebviewWindowProperties {
     // window.resolveCommand resolves commands send from the webview front end to the Sketch back end
 	resolveCommand: (response: { commandId: number, result: any }) => void
 
-	// window.updateCloneProgress is created in the DownloadRepo component to track git clone progress
+	// window.updateCloneProgress is created in the DownloadRepo component to track git clone and npm install progress
 	updateCloneProgress?: (progress: number) => void
 }
 

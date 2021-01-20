@@ -47,7 +47,6 @@ const AzureRepoInfo = ({
 			})
 		}
 		catch (error) {
-			console.log('update error = ', error)
 			dispatch(setLoadingState({ show: false }))
 			displayErrorBanner(error)
 		}

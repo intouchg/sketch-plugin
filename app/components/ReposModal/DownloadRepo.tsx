@@ -5,6 +5,8 @@ import { Stack, Heading, Input, Flex, Text } from '@i/components'
 import { PrimaryButton, SecondaryButton } from '../Buttons'
 import { AccentText } from '../Texts'
 import { DirectoryInput } from '../DirectoryInput'
+import { CloneProgress } from './CloneProgress'
+import { CloneSuccess } from './CloneSuccess'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import type { AzureGitRepo } from '@i/azure'
@@ -20,13 +22,15 @@ const DownloadRepo = ({
 }) => {
 	const [ directory, setDirectory ] = useState('')
 	const [ branchName, setBranchName ] = useState('')
-	const [ showCloning, setShowCloning ] = useState(false)
+	const [ showProgress, setShowProgress ] = useState(false)
+	const [ showSuccess, setShowSuccess ] = useState(false)
+	const [ progressMessage, setProgressMessage ] = useState('Downloading project ...')
 	const [ error, setError ] = useState('')
 	const displayErrorBanner = useDisplayErrorBanner()
-	const [ spring, setSpring ] = useSpring({ x: 0 }, [])
+	const [ { progress }, setSpring ] = useSpring({ progress: 0 }, [])
 
 	useEffect(() => {
-		window.updateCloneProgress = (progress) => setSpring({ x: progress / 100 })
+		window.updateCloneProgress = (progress) => setSpring({ progress: progress / 100 })
 		return () => void delete window.updateCloneProgress
 	}, [ setSpring ])
 
@@ -45,14 +49,39 @@ const DownloadRepo = ({
 			return setError(MISSING_SAVE_LOCATION_ERROR)
 		}
 
-		setShowCloning(true)
+		setShowProgress(true)
 
 		sendSketchCommand('cloneAzureGitRepo', { filepath: directory, remoteUrl: repo.remoteUrl, branchName })
 			.then(() => batch(() => {
-				setShowCloning(false)
-				console.log('clone success')
+				setProgressMessage('Installing ...')
+				setSpring({ progress: 0, immediate: true })
+
+				sendSketchCommand('installDependencies', { filepath: directory + '/' + repo.name })
+					.then(() => batch(() => {
+						setShowProgress(false)
+						setShowSuccess(true)
+					}))
+					.catch((error) => displayErrorBanner('Please contact a developer for support. Error installing dependencies: ' + error))
 			}))
-			.catch((error) => displayErrorBanner(error))
+			.catch((error) => displayErrorBanner('Please contact a developer for support. Error downloading project: ' + error))
+	}
+
+	if (showProgress) {
+		return (
+			<CloneProgress
+				progress={progress}
+				message={progressMessage}
+			/>
+		)
+	}
+
+	if (showSuccess) {
+		return (
+			<CloneSuccess
+				repo={repo}
+				directory={directory + '/' + repo.name}
+			/>
+		)
 	}
 
 	return (
@@ -111,48 +140,6 @@ const DownloadRepo = ({
 					</PrimaryButton>
 				</Flex>
 			</Stack>
-			{showCloning && (
-				<Stack
-					alignItems="center"
-					justifyContent="center"
-					position="fixed"
-					top="0"
-					bottom="0"
-					left="0"
-					right="0"
-					backgroundColor="Card"
-					zIndex={4}
-				>
-					<Text marginBottom={4}>
-						Downloading project ...
-					</Text>
-					<svg
-						style={{ margin: '0 12px', width: 120, height: 120 }}
-						viewBox="0 0 51 51"
-						strokeWidth="6.5"
-						fill="transparent"
-						strokeLinecap="butt"
-						strokeLinejoin="round"
-						strokeDasharray={138}
-					>
-						<circle
-							stroke="#f8f8f8"
-							transform="translate(25.500000, 25.500000) rotate(-90.000000) translate(-25.500000, -25.500000)"
-							cx="25.5"
-							cy="25.5"
-							r="22"
-						/>
-						<animated.circle
-							strokeDashoffset={spring.x.to((v) => (1 - v) * 138)}
-							stroke="#2c90ce"
-							transform="translate(25.500000, 25.500000) rotate(-90.000000) translate(-25.500000, -25.500000)"
-							cx="25.5"
-							cy="25.5"
-							r="22"
-						/>
-					</svg>
-				</Stack>
-			)}
 		</Flex>
 	)
 }

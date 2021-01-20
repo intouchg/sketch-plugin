@@ -15,7 +15,7 @@ export const getTimestampOfCommit = (commitId) => new Promise((resolve, reject) 
 		const process = new ChildProcess(`cd ${gitDirectory} && git show --no-patch --no-notes --pretty='%cd' ${commitId}`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
-		throw Error('Failed to get timestamp by commit id: ' + error)
+		throw Error('Failed to get timestamp by commit: ' + error)
 	}
 })
 
@@ -258,10 +258,6 @@ export const closeGitRepo = () => {
 	gitDirectory = null
 	branchName = null
 }
-
-// const FETCHING_PACKAGES_REGEX = /Fetching packages\.\.\.\n\[-*\]\W\d*\/\d*$/g
-// const LINKING_PACKAGES_REGEX = /Linking packages\.\.\.\n\[-*\]\W\d*\/\d*$/g
-// const PACKAGE_COMPLETION_RATIO_REGEX = /(\d*\/\d*)$/g
 
 export const cloneGitRepo = (webContents, filepath, remoteUrl, branchName) => new Promise((resolve, reject) => {
 	try {
