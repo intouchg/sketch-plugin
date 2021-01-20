@@ -104,15 +104,19 @@ const ImportModal = ({
 	}
 
 	const toggleSelectedImportedValue = (value: SelectedImportedValue) => {
-		const valueId = value.id
+		const id = value.id
+		const type = value.type as ImportModalRoute
 
-		setSelectedImportedValues((state) => {
-			if (state.some((v) => v.id === valueId)) {
-				return state.filter((v) => v.id !== valueId)
+		if (selectedImportedValues.some((v) => v.id === id)) {
+			setSelectedImportedValues((state) => state.filter((v) => v.id !== id))
+		}
+		else {
+			setSelectedImportedValues((state) => [ ...state, value ])
+
+			if (!selectedImportCategories.includes(type)) {
+				setSelectedImportCategories((state) => [ ...state, type ])
 			}
-
-			return [ ...state, value ]
-		})
+		}
 	}
 
 	const routeImportedSketchValues = (importedSketchValues[routeThemeValueType] as any).map((value: ThemeValue) => ({
