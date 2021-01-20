@@ -125,22 +125,19 @@ const ImportModal = ({
 		selected: selectedImportedValues.some((v) => v.id === value.id),
 	}))
 
-	const numberOfSelectedImportedValuesBySaveType: {
-		[key in ImportModalRoute]: { new: number, overwrite: number }
-	} = {
-		color: { new: 0, overwrite: 0 },
-		font: { new: 0, overwrite: 0 },
-		fontSize: { new: 0, overwrite: 0 },
-		lineHeight: { new: 0, overwrite: 0 },
-		shadow: { new: 0, overwrite: 0 },
-		borderWidth: { new: 0, overwrite: 0 },
-		letterSpacing: { new: 0, overwrite: 0 },
+	const numberOfNewValuesByType: { [key in ImportModalRoute]: number } = {
+		color: 0,
+		font: 0,
+		fontSize: 0,
+		lineHeight: 0,
+		shadow: 0,
+		borderWidth: 0,
+		letterSpacing: 0,
 	}
 
-	selectedImportedValues.forEach((v) => {
-		const valueType = v.hasOwnProperty('type') ? (v as ThemeValue).type : 'font'
-		const saveType = v.willOverwriteByName ? 'overwrite' : 'new';
-		(numberOfSelectedImportedValuesBySaveType as any)[valueType][saveType] += 1
+	selectedImportedValues.forEach((value) => {
+		const type = (value.hasOwnProperty('type') ? (value as ThemeValue).type : 'font') as ImportModalRoute
+		numberOfNewValuesByType[type] += 1
 	})
 
 	return (
@@ -181,7 +178,7 @@ const ImportModal = ({
 					selectedSketchDocumentIndex={selectedSketchDocumentIndex}
 					updateSelectedSketchDocumentIndex={updateSelectedSketchDocumentIndex}
 					saveSelectedImportedValues={saveSelectedImportedValues}
-					numberOfSelectedImportedValuesBySaveType={numberOfSelectedImportedValuesBySaveType}
+					numberOfNewValuesByType={numberOfNewValuesByType}
 				/>
 			</Flex>
 		</ModalBackground>

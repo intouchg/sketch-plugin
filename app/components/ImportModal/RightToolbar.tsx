@@ -18,16 +18,14 @@ const CheckboxNavLink = ({
 	toggleSelectedImportCategory,
 	isActiveRoute,
 	isSelectedForImport,
-	numberOfSelectedNewImportedValues,
-	numberOfSelectedOverwriteImportedValues,
+	numberOfSelectedNewValues,
 }: {
 	route: ImportModalRoute
 	setActiveRoute: React.Dispatch<React.SetStateAction<ImportModalRoute>>
 	toggleSelectedImportCategory: (route: ImportModalRoute) => void
 	isActiveRoute: boolean
 	isSelectedForImport: boolean
-	numberOfSelectedNewImportedValues: number
-	numberOfSelectedOverwriteImportedValues: number
+	numberOfSelectedNewValues: number
 }) => (
 	<Flex
 		paddingX={2}
@@ -57,25 +55,7 @@ const CheckboxNavLink = ({
 				isSelectedForImport={isSelectedForImport}
 				marginRight={2}
 			>
-				{numberOfSelectedOverwriteImportedValues > 0 && (
-					<Flex
-						alignItems="center"
-						justifyContent="center"
-						backgroundColor="Caution"
-						borderRadius="Medium"
-					>
-						<Text
-							fontSize={1}
-							lineHeight={1}
-							paddingX={2}
-							paddingY={1}
-							fontWeight="Demibold"
-						>
-							{numberOfSelectedOverwriteImportedValues}
-						</Text>
-					</Flex>
-				)}
-				{numberOfSelectedNewImportedValues > 0 && (
+				{isSelectedForImport && numberOfSelectedNewValues > 0 && (
 					<Flex
 						alignItems="center"
 						justifyContent="center"
@@ -90,7 +70,7 @@ const CheckboxNavLink = ({
 							paddingY={1}
 							fontWeight="Demibold"
 						>
-							{numberOfSelectedNewImportedValues}
+							{numberOfSelectedNewValues}
 						</Text>
 					</Flex>
 				)}
@@ -123,7 +103,7 @@ const RightToolbar = ({
 	selectedSketchDocumentIndex,
 	updateSelectedSketchDocumentIndex,
 	saveSelectedImportedValues,
-	numberOfSelectedImportedValuesBySaveType,
+	numberOfNewValuesByType,
 }: {
 	activeRoute: ImportModalRoute
 	setActiveRoute: React.Dispatch<React.SetStateAction<ImportModalRoute>>
@@ -134,11 +114,11 @@ const RightToolbar = ({
 	selectedSketchDocumentIndex: number
 	updateSelectedSketchDocumentIndex: (index: number) => void
 	saveSelectedImportedValues: () => void
-	numberOfSelectedImportedValuesBySaveType: { [key in ImportModalRoute]: { new: number, overwrite: number } }
+	numberOfNewValuesByType: { [key in ImportModalRoute]: number }
 }) => {
 	let numberOfSelectedValues = 0
 
-	Object.entries(numberOfSelectedImportedValuesBySaveType).forEach(([ key, object ]) => {
+	Object.entries(numberOfNewValuesByType).forEach(([ key, object ]) => {
 		if (selectedImportCategories.includes(key as any)) {
 			Object.values(object).forEach((v) => numberOfSelectedValues += v)
 		}
@@ -201,8 +181,7 @@ const RightToolbar = ({
 						toggleSelectedImportCategory={toggleSelectedImportCategory}
 						isActiveRoute={route === activeRoute}
 						isSelectedForImport={selectedImportCategories.includes(route)}
-						numberOfSelectedNewImportedValues={numberOfSelectedImportedValuesBySaveType[route].new}
-						numberOfSelectedOverwriteImportedValues={numberOfSelectedImportedValuesBySaveType[route].overwrite}
+						numberOfSelectedNewValues={numberOfNewValuesByType[route]}
 					/>
 				))}
 				<ImportButton
