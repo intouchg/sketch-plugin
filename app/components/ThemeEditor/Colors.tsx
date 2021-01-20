@@ -11,6 +11,7 @@ const Colors = () => {
 
 	return (
 		<Box
+			display="flex"
 			width="100%"
 			height={`calc(100vh - ${topToolbarHeight})`}
 			overflow="scroll"
