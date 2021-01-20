@@ -143,11 +143,14 @@ const RightToolbar = ({
 				height="100%"
 			>
 				<CloseModalButton onClick={() => setShowImportModal(false)} />
-				<Flex
+				<Stack
+					paddingX={3}
 					marginTop={6}
 					marginBottom={4}
-					justifyContent="center"
 				>
+					<AccentText marginBottom={2}>
+						Sketch Document
+					</AccentText>
 					<select
 						value={selectedSketchDocumentIndex}
 						style={{ fontSize: '1.5rem' }}
@@ -162,7 +165,7 @@ const RightToolbar = ({
 							</option>
 						))}
 					</select>
-				</Flex>
+				</Stack>
 				<InvisibleButton
 					marginLeft={3}
 					marginBottom={2}
