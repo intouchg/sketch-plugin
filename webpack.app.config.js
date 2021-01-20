@@ -9,7 +9,7 @@ module.exports = build({
             file: 'index.tsx',
             usePolyfills: false,
             plugins: [
-                new IntouchThemePlugin(),
+                // new IntouchThemePlugin(),
             ],
         },
     },

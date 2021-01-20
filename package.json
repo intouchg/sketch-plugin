@@ -18,6 +18,7 @@
     "build-app-prod": "npm run build-app -- --mode=production",
     "dev-app": "npm run build-app -- --watch",
     "build-plugin": "skpm-build",
+    "build-prod": "npm run build-app-prod && npm run build-plugin",
     "dev-plugin": "npm run build-plugin -- --watch",
     "start": "run-p dev-app dev-plugin",
     "skpm-link": "skpm-link",
