@@ -36,7 +36,7 @@ const AzureRepoInfo = ({
 				dispatch(setThemeData(themeData))
 
 				if (hasMergeConflict) {
-					dispatch(setBannerState({ show: true, type: 'warn', message: 'Failed to download updates. A merge conflict occurred. Please contact a developer for support.' }))
+					dispatch(setBannerState({ show: true, type: 'warn', message: 'Failed to download updates. A merge conflict occurred. Please contact a developer for support or revert your changes.' }))
 				}
 				else if (didReceiveChanges) {
 					dispatch(setBannerState({ show: true, type: 'success', message: 'Downloaded updates from Azure.' }))

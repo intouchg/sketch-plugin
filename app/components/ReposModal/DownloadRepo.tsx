@@ -46,6 +46,7 @@ const DownloadRepo = ({
 		}
 
 		setShowCloning(true)
+
 		sendSketchCommand('cloneAzureGitRepo', { filepath: directory, remoteUrl: repo.remoteUrl, branchName })
 			.then(() => batch(() => {
 				setShowCloning(false)
@@ -125,24 +126,31 @@ const DownloadRepo = ({
 					<Text marginBottom={4}>
 						Downloading project ...
 					</Text>
-					<animated.svg
-						style={{ margin: '0 12px', width: 64, height: 64 }}
+					<svg
+						style={{ margin: '0 12px', width: 120, height: 120 }}
 						viewBox="0 0 51 51"
 						strokeWidth="6.5"
 						fill="transparent"
-						stroke="rgb(88, 140, 244)"
-						strokeLinecap="round"
+						strokeLinecap="butt"
 						strokeLinejoin="round"
-						strokeDasharray={156}
-						strokeDashoffset={spring.x.to((v) => (1 - v) * 156)}
+						strokeDasharray={138}
 					>
 						<circle
+							stroke="#f8f8f8"
 							transform="translate(25.500000, 25.500000) rotate(-90.000000) translate(-25.500000, -25.500000)"
 							cx="25.5"
 							cy="25.5"
-							r="18.5"
+							r="22"
 						/>
-					</animated.svg>
+						<animated.circle
+							strokeDashoffset={spring.x.to((v) => (1 - v) * 138)}
+							stroke="#2c90ce"
+							transform="translate(25.500000, 25.500000) rotate(-90.000000) translate(-25.500000, -25.500000)"
+							cx="25.5"
+							cy="25.5"
+							r="22"
+						/>
+					</svg>
 				</Stack>
 			)}
 		</Flex>

@@ -13,7 +13,7 @@ import { BorderWidths } from './BorderWidths'
 import { LetterSpacings } from './LetterSpacings'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
-import { setImportedSketchValues, saveImportedSketchValues } from '../../store'
+import { setImportedSketchValues, saveImportedSketchValues, setBannerState } from '../../store'
 import { Loading } from '../Loading'
 import type { ThemeValue } from '@i/theme'
 
@@ -88,8 +88,9 @@ const ImportModal = ({
 		}
 		else {
 			setShowImportModal(false)
+			dispatch(setBannerState({ show: true, type: 'info', message: 'You must have a Sketch document open to import styles.' }))
 		}
-	}, [ sketchDocumentNames, setShowImportModal, updateSelectedSketchDocumentIndex ])
+	}, [ sketchDocumentNames, setShowImportModal, updateSelectedSketchDocumentIndex, dispatch ])
 
 	if (!sketchDocumentNames.length) {
 		return null

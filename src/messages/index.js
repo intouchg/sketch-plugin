@@ -1,5 +1,5 @@
-// export * from './cloneAzureGitRepo'
 export * from './checkHasRemoteChanges'
+export * from './cloneAzureGitRepo'
 export * from './closeLocalProject'
 export * from './downloadRemoteChanges'
 export * from './extractSketchDocumentStyles'

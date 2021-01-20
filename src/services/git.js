@@ -263,27 +263,35 @@ export const closeGitRepo = () => {
 // const LINKING_PACKAGES_REGEX = /Linking packages\.\.\.\n\[-*\]\W\d*\/\d*$/g
 // const PACKAGE_COMPLETION_RATIO_REGEX = /(\d*\/\d*)$/g
 
-export const cloneGitRepo = (filepath, remoteUrl, branchName) => new Promise((resolve, reject) => {
+export const cloneGitRepo = (webContents, filepath, remoteUrl, branchName) => new Promise((resolve, reject) => {
 	try {
 		const escapedDirectory = `"${filepath}"`
 
-		// TO DO: parse clone progress from stderr
-
-		const onStdOut = (data) => {
-			console.log('stdout = ', data)
-		}
+		const onStdOut = (data) => {}
 
 		const onStdErr = (data) => {
-			console.log('stderr = ', data)
+			const progressMatch = data.toString().match(/Receiving objects:.*\d%/g)
+
+			if (progressMatch) {
+				const progress = progressMatch[progressMatch.length - 1].split('Receiving objects: ')[1]
+				webContents.executeJavaScript(`window.updateCloneProgress(${parseInt(progress, 10)})`)
+			}
 		}
 
-		const onClose = (code) => resolve(true)
+		const onClose = (code) => {
+			if (code === 0) {
+				resolve(true)
+			}
+			else {
+				throw Error('Git clone exited with code ' + code)
+			}
+		}
 
 		const onError = (error) => {
 			throw Error(error)
 		}
 
-		const process = new ChildProcess(`cd ${escapedDirectory} && git clone ${remoteUrl}${branchName ? ` --branch ${branchName}` : ''}`, { onStdOut, onStdErr, onClose, onError }, true)
+		const process = new ChildProcess(`cd ${escapedDirectory} && git clone ${remoteUrl} --progress${branchName ? ` --branch ${branchName}` : ''}`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
 	catch (error) {
 		throw Error('Failed to clone git repo: ' + error)

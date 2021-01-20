@@ -35,5 +35,4 @@ export type SketchCommands = {
 
 export type ClientCommands = {
     setSketchDocumentNames: string[]
-    setCloneProgress: number
 }
