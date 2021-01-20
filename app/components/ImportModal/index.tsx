@@ -88,7 +88,7 @@ const ImportModal = ({
 		}
 		else {
 			setShowImportModal(false)
-			dispatch(setBannerState({ show: true, type: 'info', message: 'You must have a Sketch document open to import styles.' }))
+			dispatch(setBannerState({ show: true, type: 'info', message: 'You must open a Sketch document to import styles.' }))
 		}
 	}, [ sketchDocumentNames, setShowImportModal, updateSelectedSketchDocumentIndex, dispatch ])
 

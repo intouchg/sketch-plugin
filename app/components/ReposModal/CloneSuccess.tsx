@@ -5,16 +5,16 @@ import { useSelectLocalProject } from '../../hooks'
 import type { AzureGitRepo } from '@i/azure'
 
 const CloneSuccess = ({
-    repo,
-    directory,
+	repo,
+	directory,
 }: {
     repo: AzureGitRepo
     directory: string
 }) => {
-    const selectLocalProject = useSelectLocalProject(directory)
+	const selectLocalProject = useSelectLocalProject(directory)
 
-    return (
-        <Flex
+	return (
+		<Flex
 			alignItems="center"
 			justifyContent="center"
 			width="100%"
@@ -26,22 +26,22 @@ const CloneSuccess = ({
 				width="100%"
 				maxWidth="560px"
 			>
-				<Heading marginBottom={4}>
+				<Heading marginBottom={5}>
 					{repo.name}
 				</Heading>
-				<Stack marginBottom={4}>
-                    <Text>
-                        The project was downloaded successfully.
-                    </Text>
+				<Stack marginBottom={6}>
+					<Text>
+						The project was downloaded successfully. Open it to get started.
+					</Text>
 				</Stack>
-				<Flex justifyContent="space-between">
+				<Flex justifyContent="flex-end">
 					<PrimaryButton onClick={selectLocalProject}>
 						Open Project
 					</PrimaryButton>
 				</Flex>
 			</Stack>
 		</Flex>
-    )
+	)
 }
 
 export { CloneSuccess }
