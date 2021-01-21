@@ -114,9 +114,12 @@ const DownloadRepo = ({
 					<AccentText marginBottom={2}>
 						Project Name
 					</AccentText>
-					<Heading>
+					<Heading marginBottom={2}>
 						{repo.name}
 					</Heading>
+					<Text>
+						A new folder with this name will be created at the save location.
+					</Text>
 				</Stack>
 				<Stack marginBottom={3}>
 					<AccentText marginBottom={2}>
@@ -144,6 +147,7 @@ const DownloadRepo = ({
 					</AccentText>
 					<BranchNameInput
 						value={branchName}
+						placeholder="Only change this if instructed by a developer"
 						onChange={(event) => setBranchName(event.target.value)}
 					/>
 				</Stack>
