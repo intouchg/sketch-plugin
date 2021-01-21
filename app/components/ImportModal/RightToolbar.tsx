@@ -69,6 +69,7 @@ const CheckboxNavLink = ({
 							lineHeight={1}
 							paddingX={2}
 							paddingY={1}
+							color="Positive Dark"
 							fontWeight="Demibold"
 						>
 							{numberOfSelectedNewValues}
