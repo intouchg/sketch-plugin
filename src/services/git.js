@@ -1,5 +1,6 @@
 import ChildProcess from '../ChildProcess'
 import { spawnSync, escapeStringForShell } from '../spawn'
+import { randomPhrase } from '@i/random-phrase'
 
 let gitDirectory = null
 let branchName = null
@@ -259,7 +260,7 @@ export const closeGitRepo = () => {
 	branchName = null
 }
 
-export const cloneGitRepo = (webContents, filepath, remoteUrl, branchName) => new Promise((resolve, reject) => {
+export const cloneGitRepo = (filepath, remoteUrl, branchName, progressCallback) => new Promise((resolve, reject) => {
 	try {
 		const escapedDirectory = escapeStringForShell(filepath)
 
@@ -268,9 +269,9 @@ export const cloneGitRepo = (webContents, filepath, remoteUrl, branchName) => ne
 		const onStdErr = (data) => {
 			const progressMatch = data.toString().match(/Receiving objects:.*\d%/g)
 
-			if (progressMatch) {
+			if (progressMatch && progressCallback) {
 				const progress = progressMatch[progressMatch.length - 1].split('Receiving objects: ')[1]
-				webContents.executeJavaScript(`window.updateCloneProgress(${parseInt(progress, 10)})`)
+				progressCallback(parseInt(progress, 10))
 			}
 		}
 
@@ -291,5 +292,23 @@ export const cloneGitRepo = (webContents, filepath, remoteUrl, branchName) => ne
 	}
 	catch (error) {
 		throw Error('Failed to clone git repo: ' + error)
+	}
+})
+
+export const createNewRandomBranchName = (filepath) => new Promise((resolve, reject) => {
+	try {
+		const escapedDirectory = escapeStringForShell(filepath)
+		const newBranchName = randomPhrase({ template: 'ids/[adjective]-[word]-[noun]' })
+		const { status, stderr } = spawnSync(`cd ${escapedDirectory} && git checkout -b ${newBranchName} && git push origin ${newBranchName} -u`)
+
+		if (status === 0) {
+			resolve(true)
+		}
+		else {
+			throw Error(stderr)
+		}
+	}
+	catch (error) {
+		throw Error('Failed to create new random branch name: ' + error)
 	}
 })

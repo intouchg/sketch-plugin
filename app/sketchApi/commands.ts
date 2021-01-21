@@ -13,7 +13,7 @@ export type SketchError = { error: string }
 
 export type SketchCommands = {
     checkHasRemoteChanges: SketchCommand<{}, boolean>
-    cloneAzureGitRepo: SketchCommand<DirectoryFilepath & { remoteUrl: string, branchName: string }, string>
+    cloneAzureGitRepo: SketchCommand<DirectoryFilepath & { remoteUrl: string, repoName: string, branchName: string }, string>
     closeLocalProject: SketchCommand<{}, true>
     downloadRemoteChanges: SketchCommand<{}, { didReceiveChanges: boolean, hasMergeConflict: boolean, themeData: ThemeData }>
     extractSketchDocumentStyles: SketchCommand<{ sketchDocumentIndex: number }, RawImportedSketchValues>

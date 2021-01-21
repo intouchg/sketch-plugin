@@ -64,7 +64,7 @@ const DownloadRepo = ({
 
 		setShowProgress(true)
 
-		sendSketchCommand('cloneAzureGitRepo', { filepath: directory, remoteUrl: repo.remoteUrl, branchName })
+		sendSketchCommand('cloneAzureGitRepo', { filepath: directory, remoteUrl: repo.remoteUrl, repoName: repo.name, branchName })
 			.then(() => batch(() => {
 				setProgressMessage('Installing ...')
 				setSpring({ progress: 0, immediate: true })
