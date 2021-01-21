@@ -17,7 +17,7 @@ const CloseModalButton = ({
 	>
 		<CloseIcon
 			width="13px"
-			fill="Accent"
+			fill="Text Light"
 		/>
 	</InvisibleButton>
 )
