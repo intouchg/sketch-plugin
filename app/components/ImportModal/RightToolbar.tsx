@@ -6,6 +6,7 @@ import { AccentText, SecondaryText } from '../Texts'
 import { CloseModalButton } from '../CloseModalButton'
 import { Checkbox } from '../Checkbox'
 import { routes, routeTitles } from './index'
+import { useDisplayErrorBanner } from '../../hooks'
 import type { ImportModalRoute } from './index'
 
 const SaturationFlex = styled(Flex)<{ isSelectedForImport: boolean }>`
@@ -79,20 +80,6 @@ const CheckboxNavLink = ({
 	</Flex>
 )
 
-const ImportButton = styled(PrimaryButton)<{ enabled: boolean }>`
-	position: absolute;
-	bottom: 0;
-	width: calc(100% - 40px);
-	margin: 20px;
-	${(props) => props.enabled ? `
-		pointer-events: unset;
-		opacity: 1;
-	` : `
-		pointer-events: none;
-		opacity: 0.5;
-	`}
-`
-
 const RightToolbar = ({
 	activeRoute,
 	setActiveRoute,
@@ -116,11 +103,13 @@ const RightToolbar = ({
 	saveSelectedImportedValues: () => void
 	numberOfNewValuesByType: { [key in ImportModalRoute]: number }
 }) => {
+	const displayErrorBanner = useDisplayErrorBanner()
+
 	let numberOfSelectedValues = 0
 
-	Object.entries(numberOfNewValuesByType).forEach(([ key, object ]) => {
+	Object.entries(numberOfNewValuesByType).forEach(([ key, numberSelected ]) => {
 		if (selectedImportCategories.includes(key as any)) {
-			Object.values(object).forEach((v) => numberOfSelectedValues += v)
+			numberOfSelectedValues += numberSelected
 		}
 	})
 
@@ -129,6 +118,15 @@ const RightToolbar = ({
 
 	const toggleSelectedImportCategory = (route: ImportModalRoute) => {
 		setSelectedImportCategories((state) => state.includes(route) ? state.filter((r) => r !== route) : [ ...state, route ])
+	}
+
+	const importValues = () => {
+		if (selectedImportCategories.length > 0 && numberOfSelectedValues > 0) {
+			saveSelectedImportedValues()
+		}
+		else {
+			displayErrorBanner('You must select values to import.')
+		}
 	}
 
 	return (
@@ -187,12 +185,15 @@ const RightToolbar = ({
 						numberOfSelectedNewValues={numberOfNewValuesByType[route]}
 					/>
 				))}
-				<ImportButton
-					enabled={selectedImportCategories.length > 0 && numberOfSelectedValues > 0}
-					onClick={saveSelectedImportedValues}
+				<PrimaryButton
+					position="absolute"
+					bottom="0"
+					width="calc(100% - 40px)"
+					margin="20px"
+					onClick={importValues}
 				>
 					Import
-				</ImportButton>
+				</PrimaryButton>
 			</Stack>
 		</Box>
 	)

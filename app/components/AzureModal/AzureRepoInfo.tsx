@@ -99,7 +99,7 @@ const AzureRepoInfo = ({
 	const promptToRevert = () => dispatch(setBannerState({
 		show: true,
 		type: 'warn',
-		message: 'Are you sure you want to revert all unsaved changes?',
+		message: 'Are you sure you want to revert? You will lose all unsaved changes. This cannot be undone.',
 		confirmText: 'Revert',
 		cancelText: 'Cancel',
 		onConfirm: revertChanges,
