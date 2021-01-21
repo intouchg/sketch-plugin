@@ -8,7 +8,7 @@ import { setBannerState, initialBannerState } from '../store'
 
 const AnimatedBox = animated(Box)
 
-const titleTexts = {
+const defaultTitleTexts = {
 	info: 'Info',
 	warn: 'Warning',
 	success: 'Success',
@@ -32,7 +32,7 @@ const textColors = {
 const MessageBanner = () => {
 	const dispatch = useDispatch()
 	const bannerState = useSelector((state) => state.banner)
-	const { show, type, message, confirmText, cancelText, onConfirm, onCancel } = bannerState
+	const { show, type, title, message, confirmText, cancelText, onConfirm, onCancel } = bannerState
 	const isPrompt = confirmText || cancelText || onConfirm || onCancel
 	const spring = useSpring({ maxHeight: !show ? '0px' : isPrompt ? '200px' : '120px' })
 	const textColor = textColors[type]
@@ -74,7 +74,7 @@ const MessageBanner = () => {
 					marginBottom={2}
 					color={textColor}
 				>
-					{titleTexts[type]}
+					{title || defaultTitleTexts[type]}
 				</Heading>
 				<Text
 					color={textColor}

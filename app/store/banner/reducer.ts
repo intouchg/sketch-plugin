@@ -13,9 +13,10 @@ export const bannerReducer = (
 	return produce(state, (nextState) => {
 		switch (action.type) {
 			case SET_BANNER_STATE: {
-				const { show, type, message, confirmText, cancelText, onConfirm, onCancel } = action.payload
+				const { show, type, title, message, confirmText, cancelText, onConfirm, onCancel } = action.payload
 				nextState.show = show
 				nextState.type = type
+				nextState.title = title
 				nextState.message = message
 				nextState.confirmText = confirmText
 				nextState.cancelText = cancelText

@@ -1,6 +1,7 @@
 import type { Message } from '../../sketchApi'
 
 export type BannerPrompt = {
+	title?: string
 	confirmText?: string
 	cancelText?: string
 	onConfirm?: () => void
@@ -15,6 +16,7 @@ export type BannerState =
 export const initialBannerState: BannerState = {
 	show: false,
 	type: 'info',
+	title: '',
 	message: '',
 	confirmText: undefined,
 	cancelText: undefined,
