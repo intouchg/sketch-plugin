@@ -1,9 +1,10 @@
 import { openDevServer as openServer } from '../services'
+import { escapeStringForShell } from '../spawn'
 
 export const openDevServer = (state, payload) => {
 	try {
 		const { selectedProjectDirectory } = state
-		const escapedDirectory = `"${selectedProjectDirectory}"`
+		const escapedDirectory = escapeStringForShell(selectedProjectDirectory)
 		openServer(escapedDirectory)
 		return true
 	}

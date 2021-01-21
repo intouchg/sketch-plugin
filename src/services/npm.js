@@ -1,8 +1,9 @@
 import ChildProcess from '../ChildProcess'
+import { escapeStringForShell } from '../spawn'
 
 export const npmInstall = (webContents, filepath) => new Promise((resolve, reject) => {
 	try {
-		const escapedDirectory = `"${filepath}"`
+		const escapedDirectory = escapeStringForShell(filepath)
 
 		const onStdOut = (data) => {
 			const progressMatch = data.toString().match(/\[\d\/\d\]/g)

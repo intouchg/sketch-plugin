@@ -1,5 +1,5 @@
 import ChildProcess from '../ChildProcess'
-import { spawnSync } from '../spawn'
+import { spawnSync, escapeStringForShell } from '../spawn'
 
 let gitDirectory = null
 let branchName = null
@@ -241,7 +241,7 @@ export const openGitRepo = (directory) => new Promise((resolve, reject) => {
 	try {
 		gitDirectory = null
 		branchName = null
-		const escapedDirectory = `"${directory}"`
+		const escapedDirectory = escapeStringForShell(directory)
 
 		const { stdout } = spawnSync(`cd ${escapedDirectory} && git branch --show-current`)
 		branchName = stdout.toString().replace(/\n*$/, '')
@@ -261,7 +261,7 @@ export const closeGitRepo = () => {
 
 export const cloneGitRepo = (webContents, filepath, remoteUrl, branchName) => new Promise((resolve, reject) => {
 	try {
-		const escapedDirectory = `"${filepath}"`
+		const escapedDirectory = escapeStringForShell(filepath)
 
 		const onStdOut = (data) => {}
 

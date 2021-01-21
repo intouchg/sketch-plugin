@@ -10,3 +10,5 @@ export const spawnSync = (command) => {
 	const { status, stdout, stderr } = ss(commandStrings.shift(), commandStrings, { shell: true })
 	return { status, stdout, stderr }
 }
+
+export const escapeStringForShell = (string) => `"${string.replace(/"/g, '\\"')}"`
