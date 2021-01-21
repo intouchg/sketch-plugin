@@ -1,3 +1,4 @@
+import fs from '@skpm/fs'
 import ChildProcess from '../ChildProcess'
 import { spawnSync, escapeStringForShell } from '../spawn'
 import { randomPhrase } from '@i/random-phrase'
@@ -34,6 +35,18 @@ export const getLocalLastPushedCommitId = () => new Promise((resolve, reject) =>
 		throw Error('Failed to get local last pushed commit id: ' + error)
 	}
 })
+
+export const rewriteLocalLastPushedCommitId = (newCommitId) => {
+	try {
+		const unquotedDirectory = gitDirectory.substr(1, gitDirectory.length - 2)
+		const filepath = `${unquotedDirectory}/.git/refs/remotes/origin/${branchName}`
+		fs.writeFileSync(filepath, newCommitId)
+		return true
+	}
+	catch (error) {
+		throw Error('Failed to rewrite local last pushed commit id: ' + error)
+	}
+}
 
 export const getTimestampOfLastPush = async () => {
 	try {
@@ -212,13 +225,7 @@ export const pullChanges = () => new Promise((resolve, reject) => {
 			resolve({ didReceiveChanges, hasMergeConflict: false })
 		}
 		else if (stdout.toString().includes('Automatic merge failed; fix conflicts')) {
-			resetMergeConflict()
-				.then(() => {
-					resolve({ didReceiveChanges: true, hasMergeConflict: true })
-				})
-				.catch((error) => {
-					throw Error(error)
-				})
+			resolve({ didReceiveChanges: true, hasMergeConflict: true })
 		}
 		else {
 			throw Error(stderr)

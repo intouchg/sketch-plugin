@@ -32,13 +32,15 @@ const AzureRepoInfo = ({
 
 			batch(() => {
 				dispatch(setLoadingState({ show: false }))
-				dispatch(setHasRemoteChanges(false))
 				dispatch(setThemeData(themeData))
 
 				if (hasMergeConflict) {
-					dispatch(setBannerState({ show: true, type: 'warn', title: 'Merge conflict', message: 'Failed to download updates. A merge conflict occurred. Please contact a developer for support or revert your changes.' }))
+					return dispatch(setBannerState({ show: true, type: 'warn', title: 'Merge conflict', message: 'Failed to download updates. A merge conflict occurred. Please contact a developer for support or revert your changes.' }))
 				}
-				else if (didReceiveChanges) {
+
+				dispatch(setHasRemoteChanges(false))
+
+				if (didReceiveChanges) {
 					dispatch(setBannerState({ show: true, type: 'success', title: 'Update success', message: 'Downloaded updates from Azure.' }))
 				}
 				else {
