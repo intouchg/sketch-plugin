@@ -127,7 +127,7 @@ const RightToolbar = ({
 			saveSelectedImportedValues()
 		}
 		else {
-			dispatch(setBannerState({ show: true, type: 'error', title: 'No Selected Values', message: 'You must select values to import.' }))
+			dispatch(setBannerState({ show: true, type: 'error', title: 'No values selected', message: 'Select values to import.' }))
 		}
 	}
 

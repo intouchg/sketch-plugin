@@ -15,7 +15,7 @@ const ImportButton = ({
 
 	const openImportModal = () => {
 		if (!sketchDocumentNames.length) {
-			dispatch(setBannerState({ show: true, type: 'info', title: 'No Sketch Document', message: 'You must open a Sketch document to import styles.' }))
+			dispatch(setBannerState({ show: true, type: 'info', title: 'No Sketch document found', message: 'Open a Sketch document to import styles.' }))
 		}
 		else {
 			setShowImportModal(true)
