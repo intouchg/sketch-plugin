@@ -22,7 +22,7 @@ export const getAzureGitRepos = async () => {
 			throw Error('Attempted to getAzureGitRepos before azureConnection was initialized.')
 		}
 
-		if (!azureConnection.lastGitRepoSync) {
+		if (!azureConnection.lastGitRepoSync && !azureConnection.isFetching) {
 			await azureConnection.getGitRepos()
 		}
 
