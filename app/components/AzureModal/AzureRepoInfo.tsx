@@ -36,13 +36,13 @@ const AzureRepoInfo = ({
 				dispatch(setThemeData(themeData))
 
 				if (hasMergeConflict) {
-					dispatch(setBannerState({ show: true, type: 'warn', message: 'Failed to download updates. A merge conflict occurred. Please contact a developer for support or revert your changes.' }))
+					dispatch(setBannerState({ show: true, type: 'warn', title: 'Merge Conflict', message: 'Failed to download updates. A merge conflict occurred. Please contact a developer for support or revert your changes.' }))
 				}
 				else if (didReceiveChanges) {
-					dispatch(setBannerState({ show: true, type: 'success', message: 'Downloaded updates from Azure.' }))
+					dispatch(setBannerState({ show: true, type: 'success', title: 'Update Success', message: 'Downloaded updates from Azure.' }))
 				}
 				else {
-					dispatch(setBannerState({ show: true, type: 'info', message: 'Your project is already up to date.' }))
+					dispatch(setBannerState({ show: true, type: 'info', title: 'No Updates Available', message: 'Your project is already up to date.' }))
 				}
 			})
 		}
@@ -55,7 +55,7 @@ const AzureRepoInfo = ({
 	const saveChanges = async () => {
 		try {
 			if (hasRemoteChanges) {
-				return dispatch(setBannerState({ show: true, type: 'info', message: 'You must download updates before saving.' }))
+				return dispatch(setBannerState({ show: true, type: 'info', title: 'Updates Available', message: 'You must download updates before saving.' }))
 			}
 
 			dispatch(setLoadingState({ show: true, message: 'Saving changes ...' }))
@@ -70,7 +70,7 @@ const AzureRepoInfo = ({
 				return batch(() => {
 					dispatch(setLoadingState({ show: false }))
 					dispatch(setHasRemoteChanges(true))
-					dispatch(setBannerState({ show: true, type: 'info', message: 'You must download updates before saving.' }))
+					dispatch(setBannerState({ show: true, type: 'info', title: 'Updates Available', message: 'You must download updates before saving.' }))
 				})
 			}
 
@@ -79,7 +79,7 @@ const AzureRepoInfo = ({
 					dispatch(setHasLocalChanges(false))
 					dispatch(setLastPushTime(lastPushTimeString ? new Date(lastPushTimeString) : null))
 					dispatch(setLoadingState({ show: false }))
-					dispatch(setBannerState({ show: true, type: 'success', message: 'Saved changes to Azure.' }))
+					dispatch(setBannerState({ show: true, type: 'success', title: 'Save Success', message: 'Saved changes to Azure.' }))
 				})
 			}
 		}
@@ -99,6 +99,7 @@ const AzureRepoInfo = ({
 	const promptToRevert = () => dispatch(setBannerState({
 		show: true,
 		type: 'warn',
+		title: 'Confirm Revert',
 		message: 'Are you sure you want to revert? You will lose all unsaved changes. This cannot be undone.',
 		confirmText: 'Revert',
 		cancelText: 'Cancel',

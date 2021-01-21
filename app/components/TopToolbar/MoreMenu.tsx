@@ -8,7 +8,7 @@ import { EllipsesIcon } from '../Icons'
 import { topToolbarHeight } from './index'
 import { resetThemeState, resetProjectState, setShowSettingsModal } from '../../store'
 import { useOutsideClickListener, useDisplayErrorBanner } from '../../hooks'
-import { sendSketchCommand } from '../../sketchApi'
+import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
 
 const MoreMenu = ({
 	showProjectOptions,
@@ -75,12 +75,20 @@ const MoreMenu = ({
 						Settings
 					</TertiaryButton>
 					{showProjectOptions && (
-						<TertiaryButton
-							padding={2}
-							onClick={closeProject}
-						>
-							Close Project
-						</TertiaryButton>
+						<>
+							<TertiaryButton
+								padding={2}
+								onClick={() => openBrowserWindow('https://google.com')}
+							>
+								Support
+							</TertiaryButton>
+							<TertiaryButton
+								padding={2}
+								onClick={closeProject}
+							>
+								Close Project
+							</TertiaryButton>
+						</>
 					)}
 				</Stack>
 			</animated.div>

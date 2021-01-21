@@ -97,9 +97,14 @@ const DownloadRepo = ({
 				width="100%"
 				maxWidth="560px"
 			>
-				<Heading marginBottom={4}>
-					{repo.name}
-				</Heading>
+				<Stack marginBottom={5}>
+					<AccentText marginBottom={2}>
+						Project Name
+					</AccentText>
+					<Heading>
+						{repo.name}
+					</Heading>
+				</Stack>
 				<Stack marginBottom={3}>
 					<AccentText marginBottom={2}>
 						Save Location *

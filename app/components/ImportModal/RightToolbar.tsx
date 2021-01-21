@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 import { Stack, Box, Flex, Text } from '@i/components'
 import { InvisibleButton, PrimaryButton } from '../Buttons'
 import { AccentText, SecondaryText } from '../Texts'
 import { CloseModalButton } from '../CloseModalButton'
 import { Checkbox } from '../Checkbox'
 import { routes, routeTitles } from './index'
-import { useDisplayErrorBanner } from '../../hooks'
+import { setBannerState } from '../../store'
 import type { ImportModalRoute } from './index'
 
 const SaturationFlex = styled(Flex)<{ isSelectedForImport: boolean }>`
@@ -104,7 +105,7 @@ const RightToolbar = ({
 	saveSelectedImportedValues: () => void
 	numberOfNewValuesByType: { [key in ImportModalRoute]: number }
 }) => {
-	const displayErrorBanner = useDisplayErrorBanner()
+	const dispatch = useDispatch()
 
 	let numberOfSelectedValues = 0
 
@@ -126,7 +127,7 @@ const RightToolbar = ({
 			saveSelectedImportedValues()
 		}
 		else {
-			displayErrorBanner('You must select values to import.')
+			dispatch(setBannerState({ show: true, type: 'error', title: 'No Selected Values', message: 'You must select values to import.' }))
 		}
 	}
 
