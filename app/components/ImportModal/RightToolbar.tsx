@@ -10,8 +10,8 @@ import { routes, routeTitles } from './index'
 import { setBannerState } from '../../store'
 import type { ImportModalRoute } from './index'
 
-const SaturationFlex = styled(Flex)<{ isSelectedForImport: boolean }>`
-	filter: saturate(${(props) => props.isSelectedForImport ? '1' : '0'});
+const SaturationFlex = styled(Flex)<{ desaturate: boolean }>`
+	filter: saturate(${(props) => props.desaturate ? '0' : '1'});
 `
 
 const CheckboxNavLink = ({
@@ -47,17 +47,16 @@ const CheckboxNavLink = ({
 			width="100%"
 			paddingY={2}
 			textAlign="left"
-			opacity={isSelectedForImport ? '1' : '0.5'}
 			onClick={() => setActiveRoute(route)}
 		>
 			<SecondaryText fontWeight={isSelectedForImport ? 'Bold' : 'Medium'}>
 				{routeTitles[route]}
 			</SecondaryText>
 			<SaturationFlex
-				isSelectedForImport={isSelectedForImport}
+				desaturate={!isSelectedForImport || numberOfSelectedNewValues === 0}
 				marginRight={2}
 			>
-				{isSelectedForImport && numberOfSelectedNewValues > 0 && (
+				{(isSelectedForImport || numberOfSelectedNewValues > 0) && (
 					<Flex
 						alignItems="center"
 						justifyContent="center"
