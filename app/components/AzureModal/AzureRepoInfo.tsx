@@ -167,6 +167,7 @@ const AzureRepoInfo = ({
 					display="flex"
 					alignItems="center"
 					justifyContent="center"
+					flexGrow={1}
 					marginRight={3}
 					onClick={saveChanges}
 				>
@@ -181,17 +182,19 @@ const AzureRepoInfo = ({
 				<LimitInteraction
 					as={PrimaryButton}
 					unlimit={online && connected && hasRemoteChanges}
-					marginRight={3}
 					onClick={downloadUpdates}
 				>
-					Update
+					Download Updates
 				</LimitInteraction>
+			</Flex>
+			<Flex alignItems="flex-end">
 				<LimitInteraction
 					as={SecondaryButton}
 					unlimit={online && connected && hasLocalChanges}
+					marginTop={3}
 					onClick={promptToRevert}
 				>
-					Revert
+					Revert to Last Save
 				</LimitInteraction>
 			</Flex>
 		</Box>
