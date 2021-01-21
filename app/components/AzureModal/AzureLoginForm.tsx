@@ -17,9 +17,7 @@ const AzureLoginInput = styled(Input).attrs<
 }))<{
 	error: boolean
 }>`
-	padding: ${(props) => props.theme.space[3]};
 	border: 1px solid ${(props) => props.error ? props.theme.colors.Critical : 'transparent'};
-	border-radius: ${(props) => props.theme.radii.Large};
 	text-transform: lowercase;
 	transform: scale3d(1, 1, 1);
 `

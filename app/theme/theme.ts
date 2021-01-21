@@ -220,6 +220,8 @@ const theme = {
 			color: '#232323',
 			fontFamily: 'Avenir Next',
 			fontSize: '0.875rem',
+			borderRadius: '6px',
+			padding: '16px',
 		},
 	},
 } as const

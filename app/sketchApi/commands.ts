@@ -20,6 +20,7 @@ export type SketchCommands = {
     forgetAzureCredentials: SketchCommand<{}, true>
     getAzureCredentials: SketchCommand<{}, AzureCredentials>
     getAzureGitRepos: SketchCommand<{}, AzureUserConnection['gitRepos']>
+    getDefaultSaveDirectory: SketchCommand<{}, string>
     getRecentProjects: SketchCommand<{}, DirectoryFilepath[]>
     getSketchDocumentNames: SketchCommand<{}, string[]>
     getSystemFonts: SketchCommand<{}, SPFontData>

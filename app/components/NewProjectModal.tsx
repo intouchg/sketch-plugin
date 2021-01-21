@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useDispatch, batch } from 'react-redux'
-import { Flex, Stack, Heading, Box, Text } from '@i/components'
+import styled from 'styled-components'
+import { useDispatch, useSelector, batch } from 'react-redux'
+import { Flex, Stack, Heading, Box, Text, Input } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { PrimaryButton } from './Buttons'
 import { AccentText } from './Texts'
@@ -9,6 +10,22 @@ import { DirectoryInput } from './DirectoryInput'
 import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from '../hooks'
 
+const ProjectNameInput = styled(Input).attrs<
+	typeof Input
+>((props) => ({
+	autoCorrect: 'off',
+	autoCapitalize: 'off',
+	autoComplete: 'off',
+	spellCheck: 'false',
+}))<{
+	error: boolean
+}>`
+	border: 1px solid ${(props) => props.error ? props.theme.colors.Critical : 'transparent'};
+	transform: scale3d(1, 1, 1);
+`
+
+const MISSING_PROJECT_NAME_ERROR = 'You must input a project name before creating a new project.'
+const PROJECT_NAME_COLON_ERROR = 'Project name may not contain a colon ":" character.'
 const MISSING_SAVE_LOCATION_ERROR = 'You must select a save location before creating a new project.'
 const MISSING_PROJECT_TEMPLATE_ERROR = 'You must select a project template before creating a new project.'
 
@@ -18,18 +35,39 @@ const NewProjectModal = ({
     setShowNewProjectModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
 	const dispatch = useDispatch()
-	const [ directory, setDirectory ] = useState('')
+	const defaultSaveDirectory = useSelector((state) => state.settings.defaultSaveDirectory)
+	const [ projectName, setProjectName ] = useState('')
+	const [ directory, setDirectory ] = useState(defaultSaveDirectory || '')
 	const [ template, setTemplate ] = useState()
 	const [ error, setError ] = useState('')
 	const displayErrorBanner = useDisplayErrorBanner()
 
+	const updateProjectName = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (error === MISSING_PROJECT_NAME_ERROR) {
+			setError('')
+		}
+
+		const { value } = event.target
+
+		if (value.includes(':')) {
+			setError(PROJECT_NAME_COLON_ERROR)
+		}
+		else if (error === PROJECT_NAME_COLON_ERROR) {
+			setError('')
+		}
+
+		setProjectName(event.target.value)
+	}
+
 	const selectDirectory = () => sendSketchCommand('selectDirectory', {})
 		.then((filepath) => batch(() => {
-			if (error === MISSING_SAVE_LOCATION_ERROR) {
-				setError('')
-			}
+			if (filepath) {
+				if (error === MISSING_SAVE_LOCATION_ERROR) {
+					setError('')
+				}
 
-			setDirectory(filepath)
+				setDirectory(filepath)
+			}
 		}))
 		.catch((error) => displayErrorBanner(error))
 
@@ -40,6 +78,10 @@ const NewProjectModal = ({
 	}
 
 	const createProject = () => {
+		if (!projectName) {
+			return setError(MISSING_PROJECT_NAME_ERROR)
+		}
+
 		if (!directory) {
 			return setError(MISSING_SAVE_LOCATION_ERROR)
 		}
@@ -63,6 +105,24 @@ const NewProjectModal = ({
 					<Heading marginBottom={4}>
 						New Project
 					</Heading>
+					<Stack marginBottom={3}>
+						<AccentText marginBottom={2}>
+							Project Name *
+						</AccentText>
+						<ProjectNameInput
+							error={error === MISSING_PROJECT_NAME_ERROR || error === PROJECT_NAME_COLON_ERROR}
+							value={projectName}
+							onChange={updateProjectName}
+						/>
+						{(error === MISSING_PROJECT_NAME_ERROR || error === PROJECT_NAME_COLON_ERROR) && (
+							<Text
+								paddingY={2}
+								color="Critical"
+							>
+								{error}
+							</Text>
+						)}
+					</Stack>
 					<Stack marginBottom={3}>
 						<AccentText marginBottom={2}>
 							Save Location *

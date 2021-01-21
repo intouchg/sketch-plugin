@@ -23,8 +23,6 @@ const FilterInput = styled(Input).attrs<
 }))`
 	width: 100%;
 	max-width: 560px;
-	padding: ${(props) => props.theme.space[3]};
-	border-radius: ${(props) => props.theme.radii.Large};
 	transform: scale3d(1, 1, 1);
 `
 

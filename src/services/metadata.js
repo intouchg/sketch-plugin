@@ -1,10 +1,19 @@
 import fs from '@skpm/fs'
 import path from '@skpm/path'
 
-const METADATA_FILENAME = '.idsmetadata.json'
+export const METADATA_FILENAME = '.idsmetadata.json'
 const METADATA_STORAGE_FILEPATH = path.resolve('./Contents/Sketch/metadata/')
 const METADATA_FILEPATH = path.resolve(METADATA_STORAGE_FILEPATH, METADATA_FILENAME)
 const RECENT_PROJECTS_MAX_LENGTH = 5
+
+const INITIAL_NEW_METADATA = {
+	azureUsername: '',
+	azureAccessToken: '',
+	// This is the default location that new and downloaded projects
+	// will be saved, if the user does not change the save location.
+	defaultSaveDirectory: path.resolve('~/Projects/'),
+	recentProjects: [],
+}
 
 export const readMetadata = () => {
 	try {
@@ -69,7 +78,7 @@ if (!fs.existsSync(METADATA_STORAGE_FILEPATH)) {
 }
 
 if (!fs.existsSync(METADATA_FILEPATH)) {
-	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify({}))
+	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify(INITIAL_NEW_METADATA))
 }
 
 refreshRecentProjectMetadata()

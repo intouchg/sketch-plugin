@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setRecentProjects, setAzureCredentials, setSketchDocumentNames, setSystemFonts } from '../store'
+import { setRecentProjects, setAzureCredentials, setSketchDocumentNames, setSystemFonts, setDefaultSaveDirectory } from '../store'
 import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from './useDisplayErrorBanner'
 
@@ -23,6 +23,10 @@ export const useInitializeSketchData = () => {
 
 		sendSketchCommand('getSystemFonts', {})
 			.then((fontData) => dispatch(setSystemFonts(fontData)))
+			.catch((error) => displayErrorBanner(error))
+
+		sendSketchCommand('getDefaultSaveDirectory', {})
+			.then((saveDirectory) => dispatch(setDefaultSaveDirectory(saveDirectory)))
 			.catch((error) => displayErrorBanner(error))
 	}, [ dispatch, displayErrorBanner ])
 }

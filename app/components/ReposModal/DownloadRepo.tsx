@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { batch } from 'react-redux'
+import { useSelector, batch } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
 import { Stack, Heading, Input, Flex, Text } from '@i/components'
 import { PrimaryButton, SecondaryButton } from '../Buttons'
@@ -20,7 +20,8 @@ const DownloadRepo = ({
 	repo: AzureGitRepo
 	resetSelectedRepo: () => void
 }) => {
-	const [ directory, setDirectory ] = useState('')
+	const defaultSaveDirectory = useSelector((state) => state.settings.defaultSaveDirectory)
+	const [ directory, setDirectory ] = useState(defaultSaveDirectory || '')
 	const [ branchName, setBranchName ] = useState('')
 	const [ showProgress, setShowProgress ] = useState(false)
 	const [ showSuccess, setShowSuccess ] = useState(false)
@@ -130,8 +131,6 @@ const DownloadRepo = ({
 						Branch Name
 					</AccentText>
 					<Input
-						padding={3}
-						borderRadius="Large"
 						value={branchName}
 						onChange={(event) => setBranchName(event.target.value)}
 					/>
