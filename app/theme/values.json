@@ -300,6 +300,11 @@
 		"type": "shadow"
 	},
 	{
+		"id": "f7aaceb1-d59c-4284-812a-3c3ac78d3ce5",
+		"value": "0",
+		"type": "letterSpacing"
+	},
+	{
 		"id": "4516d24e-092c-4cab-8788-653e010bb760",
 		"value": "1px",
 		"type": "letterSpacing"

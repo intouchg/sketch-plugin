@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Text, Box, Button } from '@i/components'
+import { Box, Button } from '@i/components'
 import { Loading } from '../Loading'
 
 const UpdatesStatus = () => {
@@ -21,7 +21,16 @@ const UpdatesStatus = () => {
 
 	if (hasRemoteChanges) {
 		return (
-			<Button />
+			<Button
+				fontSize={1}
+				lineHeight={1}
+				paddingY={1}
+				paddingX={3}
+				textTransform="none"
+				letterSpacing={0}
+			>
+				Download latest
+			</Button>
 		)
 	}
 

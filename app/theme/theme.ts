@@ -59,6 +59,7 @@ const theme = {
 		'2rem',
 	],
 	letterSpacings: [
+		'0',
 		'1px',
 	],
 	borders: {},
