@@ -1,11 +1,9 @@
 import React from 'react'
-import { useDispatch, useSelector, batch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Stack, Box, Heading, Flex, Text, Button } from '@i/components'
 import { CloudIcon } from '../Icons'
 import { LimitInteraction } from '../LimitInteraction'
-import { useDisplayErrorBanner } from '../../hooks'
-import { sendSketchCommand } from '../../sketchApi'
-import { setThemeData, setLoadingState, setBannerState, setHasLocalChanges, setHasRemoteChanges, setLastPushTime } from '../../store'
+import { useDownloadUpdates, useSaveChanges, useRevertChanges } from '../../hooks'
 import { timeSince } from '@i/utility'
 
 const AzureRepoInfo = ({
@@ -15,96 +13,14 @@ const AzureRepoInfo = ({
 	online: boolean
 	connected: boolean
 }) => {
-	const dispatch = useDispatch()
 	const localProject = useSelector((state) => state.azure.localProject)
 	const branchName = useSelector((state) => state.azure.branchName)
 	const lastPushTime = useSelector((state) => state.azure.lastPushTime)
 	const hasLocalChanges = useSelector((state) => state.azure.hasLocalChanges)
 	const hasRemoteChanges = useSelector((state) => state.azure.hasRemoteChanges)
-	const displayErrorBanner = useDisplayErrorBanner()
-
-	const downloadUpdates = async () => {
-		try {
-			dispatch(setLoadingState({ show: true, message: 'Downloading updates ...' }))
-			const { themeData, didReceiveChanges, hasMergeConflict } = await sendSketchCommand('downloadRemoteChanges', {})
-
-			batch(() => {
-				dispatch(setLoadingState({ show: false }))
-				dispatch(setThemeData(themeData))
-
-				if (hasMergeConflict) {
-					return dispatch(setBannerState({ show: true, type: 'warn', title: 'Merge conflict', message: 'Failed to download updates. A merge conflict occurred. Please contact a developer for support or revert your changes.' }))
-				}
-
-				dispatch(setHasRemoteChanges(false))
-
-				if (didReceiveChanges) {
-					dispatch(setBannerState({ show: true, type: 'success', title: 'Update success', message: 'Downloaded updates from Azure.' }))
-				}
-				else {
-					dispatch(setBannerState({ show: true, type: 'info', title: 'No updates available', message: 'Your project is already up to date.' }))
-				}
-			})
-		}
-		catch (error) {
-			dispatch(setLoadingState({ show: false }))
-			displayErrorBanner(error)
-		}
-	}
-
-	const saveChanges = async () => {
-		try {
-			if (hasRemoteChanges) {
-				return dispatch(setBannerState({ show: true, type: 'info', title: 'Updates available', message: 'You must download updates before saving.' }))
-			}
-
-			dispatch(setLoadingState({ show: true, message: 'Saving changes ...' }))
-
-			const {
-				didSaveChanges,
-				needsToUpdate,
-				lastPushTime: lastPushTimeString,
-			} = await sendSketchCommand('saveChangesToAzure', {})
-
-			if (!didSaveChanges && needsToUpdate) {
-				return batch(() => {
-					dispatch(setLoadingState({ show: false }))
-					dispatch(setHasRemoteChanges(true))
-					dispatch(setBannerState({ show: true, type: 'info', title: 'Updates available', message: 'You must download updates before saving.' }))
-				})
-			}
-
-			if (didSaveChanges) {
-				batch(() => {
-					dispatch(setHasLocalChanges(false))
-					dispatch(setLastPushTime(lastPushTimeString ? new Date(lastPushTimeString) : null))
-					dispatch(setLoadingState({ show: false }))
-					dispatch(setBannerState({ show: true, type: 'success', title: 'Save success', message: 'Saved changes to Azure.' }))
-				})
-			}
-		}
-		catch (error) {
-			dispatch(setLoadingState({ show: false }))
-			displayErrorBanner(error)
-		}
-	}
-
-	const revertChanges = () => sendSketchCommand('resetLocalChanges', {})
-		.then((themeData) => {
-			dispatch(setHasLocalChanges(false))
-			dispatch(setThemeData({ ...themeData, skipResetChangeHistory: true }))
-		})
-		.catch((error) => displayErrorBanner(error))
-
-	const promptToRevert = () => dispatch(setBannerState({
-		show: true,
-		type: 'warn',
-		title: 'Are you sure you want to revert?',
-		message: 'You will lose all unsaved changes. This cannot be undone.',
-		confirmText: 'Revert',
-		cancelText: 'Cancel',
-		onConfirm: revertChanges,
-	}))
+	const downloadUpdates = useDownloadUpdates()
+	const saveChanges = useSaveChanges()
+	const promptToRevert = useRevertChanges()
 
 	if (!localProject) {
 		return (

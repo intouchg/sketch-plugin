@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux'
 import { Box, Button } from '@i/components'
 import { Loading } from '../Loading'
 import { CloudDownIcon } from '../Icons'
+import { useDownloadUpdates } from '../../hooks'
 
 const UpdatesStatus = () => {
 	const hasRemoteChanges = useSelector((state) => state.azure.hasRemoteChanges)
 	const checkingHasRemoteChanges = useSelector((state) => state.azure.checkingHasRemoteChanges)
+	const downloadUpdates = useDownloadUpdates()
 
 	if (checkingHasRemoteChanges) {
 		return (
@@ -32,6 +34,7 @@ const UpdatesStatus = () => {
 				paddingX={3}
 				textTransform="none"
 				letterSpacing={0}
+				onClick={downloadUpdates}
 			>
 				Download latest
 				<Box marginLeft={1}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, batch } from 'react-redux'
 import { setThemeData, setRecentProjects, setLocalProject, setBranchName, setHasLocalChanges, setLoadingState, setBannerState, setHasRemoteChanges, setCheckingHasRemoteChanges, setLastPushTime } from '../store'
@@ -10,7 +10,7 @@ export const useSelectLocalProject = (filepath?: string) => {
 	const dispatch = useDispatch()
 	const displayErrorBanner = useDisplayErrorBanner()
 
-	return async () => {
+	const selectLocalProject = useCallback(async () => {
 		try {
 			const {
 				themeData,
@@ -51,5 +51,7 @@ export const useSelectLocalProject = (filepath?: string) => {
 		catch (error) {
 			displayErrorBanner(error)
 		}
-	}
+	}, [ filepath, dispatch, navigate, displayErrorBanner ])
+
+	return selectLocalProject
 }
