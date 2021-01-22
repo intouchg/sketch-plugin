@@ -1,6 +1,5 @@
 import React from 'react'
-import { Stack, Flex, Box } from '@i/components'
-import { AccentText, SecondaryText } from '../Texts'
+import { Stack, Flex, Box, Text } from '@i/components'
 import type { ThemeShadow } from '@i/theme'
 
 const Shadow = ({
@@ -43,36 +42,48 @@ const Shadow = ({
 						justifyContent="space-around"
 					>
 						<Stack>
-							<SecondaryText>
+							<Text variant="Secondary">
 								{x}px
-							</SecondaryText>
-							<AccentText textTransform="unset">
+							</Text>
+							<Text
+								variant="Accent"
+								textTransform="unset"
+							>
 								x
-							</AccentText>
+							</Text>
 						</Stack>
 						<Stack>
-							<SecondaryText>
+							<Text variant="Secondary">
 								{y}px
-							</SecondaryText>
-							<AccentText textTransform="unset">
+							</Text>
+							<Text
+								variant="Accent"
+								textTransform="unset"
+							>
 								y
-							</AccentText>
+							</Text>
 						</Stack>
 						<Stack>
-							<SecondaryText>
+							<Text variant="Secondary">
 								{blur}px
-							</SecondaryText>
-							<AccentText textTransform="unset">
+							</Text>
+							<Text
+								variant="Accent"
+								textTransform="unset"
+							>
 								blur
-							</AccentText>
+							</Text>
 						</Stack>
 						<Stack>
-							<SecondaryText>
+							<Text variant="Secondary">
 								{spread}px
-							</SecondaryText>
-							<AccentText textTransform="unset">
+							</Text>
+							<Text
+								variant="Accent"
+								textTransform="unset"
+							>
 								spread
-							</AccentText>
+							</Text>
 						</Stack>
 					</Flex>
 					<Flex
@@ -87,9 +98,12 @@ const Shadow = ({
 							marginRight={3}
 						/>
 						<Stack justifyContent="center">
-							<AccentText textTransform="unset">
+							<Text
+								variant="Accent"
+								textTransform="unset"
+							>
 								{color}
-							</AccentText>
+							</Text>
 						</Stack>
 					</Flex>
 				</Stack>

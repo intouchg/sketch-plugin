@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useSelector, batch } from 'react-redux'
 import { useSpring } from 'react-spring'
 import { Stack, Heading, Input, Flex, Text, Button } from '@i/components'
-import { AccentText } from '../Texts'
 import { DirectoryInput } from '../DirectoryInput'
 import { CloneProgress } from './CloneProgress'
 import { CloneSuccess } from './CloneSuccess'
@@ -110,9 +109,12 @@ const DownloadRepo = ({
 				maxWidth="560px"
 			>
 				<Stack marginBottom={5}>
-					<AccentText marginBottom={2}>
+					<Text
+						variant="Accent"
+						marginBottom={2}
+					>
 						Project Name
-					</AccentText>
+					</Text>
 					<Heading marginBottom={2}>
 						{repo.name}
 					</Heading>
@@ -121,9 +123,12 @@ const DownloadRepo = ({
 					</Text>
 				</Stack>
 				<Stack marginBottom={3}>
-					<AccentText marginBottom={2}>
+					<Text
+						variant="Accent"
+						marginBottom={2}
+					>
 						Save Location *
-					</AccentText>
+					</Text>
 					<DirectoryInput
 						borderWidth="1px"
 						borderStyle="solid"
@@ -141,9 +146,12 @@ const DownloadRepo = ({
 					)}
 				</Stack>
 				<Stack marginBottom={4}>
-					<AccentText marginBottom={2}>
+					<Text
+						variant="Accent"
+						marginBottom={2}
+					>
 						Branch Name
-					</AccentText>
+					</Text>
 					<BranchNameInput
 						value={branchName}
 						placeholder="Only change this if instructed by a developer"

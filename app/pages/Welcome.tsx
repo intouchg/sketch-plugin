@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, Stack, Flex, Heading, Button } from '@i/components'
-import { TopToolbar, AccentText, RecentProjects, HelpfulResources, NewProjectModal, ReposModal, topToolbarHeight } from '../components'
+import { Box, Stack, Flex, Heading, Button, Text } from '@i/components'
+import { TopToolbar, RecentProjects, HelpfulResources, NewProjectModal, ReposModal, topToolbarHeight } from '../components'
 import { useSelectLocalProject } from '../hooks'
 import { setShowReposModal, setAzureModalState } from '../store'
 import pkg from '../../package.json'
@@ -35,9 +35,12 @@ const Welcome = () => {
 						>
 							IDS Plugin
 						</Heading>
-						<AccentText textTransform="unset">
+						<Text
+							variant="Accent"
+							textTransform="unset"
+						>
 							v&thinsp;{pkg.version}
-						</AccentText>
+						</Text>
 					</Stack>
 					<Flex justifyContent="center">
 						<Stack>

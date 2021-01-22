@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useDispatch, useSelector, batch } from 'react-redux'
 import { Flex, Stack, Heading, Box, Text, Input, Button } from '@i/components'
 import { ModalBackground } from './ModalBackground'
-import { AccentText } from './Texts'
 import { CloseModalButton } from './CloseModalButton'
 import { DirectoryInput } from './DirectoryInput'
 import { sendSketchCommand } from '../sketchApi'
@@ -105,9 +104,12 @@ const NewProjectModal = ({
 						New Project
 					</Heading>
 					<Stack marginBottom={3}>
-						<AccentText marginBottom={2}>
+						<Text
+							variant="Accent"
+							marginBottom={2}
+						>
 							Project Name *
-						</AccentText>
+						</Text>
 						<ProjectNameInput
 							error={error === MISSING_PROJECT_NAME_ERROR || error === PROJECT_NAME_COLON_ERROR}
 							value={projectName}
@@ -123,9 +125,12 @@ const NewProjectModal = ({
 						)}
 					</Stack>
 					<Stack marginBottom={3}>
-						<AccentText marginBottom={2}>
+						<Text
+							variant="Accent"
+							marginBottom={2}
+						>
 							Save Location *
-						</AccentText>
+						</Text>
 						<DirectoryInput
 							borderWidth="1px"
 							borderStyle="solid"
@@ -143,9 +148,12 @@ const NewProjectModal = ({
 						)}
 					</Stack>
 					<Stack marginBottom={4}>
-						<AccentText marginBottom={2}>
+						<Text
+							variant="Accent"
+							marginBottom={2}
+						>
 							Project Template *
-						</AccentText>
+						</Text>
 						<Box
 							height="75px"
 							backgroundColor="Card"

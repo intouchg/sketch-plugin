@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, batch } from 'react-redux'
 import { Flex, Stack, Input, Text, Button } from '@i/components'
-import { AccentText } from '../Texts'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
 import { setAzureCredentials, setAzureModalState, setLoadingState, setShowReposModal } from '../../store'
 
@@ -84,9 +83,12 @@ const AzureLoginForm = ({
 	return (
 		<Stack>
 			<Stack marginBottom={3}>
-				<AccentText marginBottom={2}>
+				<Text
+					variant="Accent"
+					marginBottom={2}
+				>
 					Email Address
-				</AccentText>
+				</Text>
 				<AzureLoginInput
 					error={Boolean(error)}
 					value={usernameValue}
@@ -94,9 +96,12 @@ const AzureLoginForm = ({
 				/>
 			</Stack>
 			<Stack marginBottom={3}>
-				<AccentText marginBottom={2}>
+				<Text
+					variant="Accent"
+					marginBottom={2}
+				>
 					Access Token
-				</AccentText>
+				</Text>
 				<AzureLoginInput
 					error={Boolean(error)}
 					value={accessTokenValue}

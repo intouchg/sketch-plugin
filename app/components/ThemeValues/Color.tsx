@@ -1,18 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSpring, animated, config } from 'react-spring'
-import { Box, Stack } from '@i/components'
+import { Box, Stack, Text } from '@i/components'
 import { calculateColorBrightness } from '@i/utility'
-import { AccentText, SecondaryText } from '../Texts'
 import type { ThemeColor } from '@i/theme'
 
-const TruncatedSecondaryText = styled(SecondaryText)`
+const TruncatedSecondaryText = styled(Text).attrs({ variant: 'Secondary' })`
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 `
 
-const TruncatedAccentText = styled(AccentText)`
+const TruncatedAccentText = styled(Text).attrs({ variant: 'Accent' })`
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;

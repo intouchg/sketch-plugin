@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Stack, Link } from '@i/components'
+import { Stack, Link, Text } from '@i/components'
 import { InvisibleButton } from '../InvisibleButton'
-import { AccentText } from '../Texts'
 import type { AzureUserConnection } from '@i/azure'
 
 const OrganizationButton = styled(Link).attrs({ as: InvisibleButton })`
@@ -37,9 +36,12 @@ const LeftToolbar = ({
 			overflow="scroll"
 			zIndex={1}
 		>
-			<AccentText marginBottom={1}>
+			<Text
+				variant="Accent"
+				marginBottom={1}
+			>
 				Organization
-			</AccentText>
+			</Text>
 			<OrganizationButton
 				backgroundColor={selectedOrganization === '' ? 'Primary Lighter' : 'transparent'}
 				onClick={() => setSelectedOrganization('')}

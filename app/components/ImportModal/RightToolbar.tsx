@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { Stack, Box, Flex, Text, Button } from '@i/components'
-import { AccentText, SecondaryText } from '../Texts'
 import { CloseModalButton } from '../CloseModalButton'
 import { Checkbox } from '../Checkbox'
 import { routes, routeTitles } from './index'
@@ -49,9 +48,12 @@ const CheckboxNavLink = ({
 			textAlign="left"
 			onClick={() => setActiveRoute(route)}
 		>
-			<SecondaryText fontWeight={isSelectedForImport ? 'Bold' : 'Medium'}>
+			<Text
+				variant="Secondary"
+				fontWeight={isSelectedForImport ? 'Bold' : 'Medium'}
+			>
 				{routeTitles[route]}
-			</SecondaryText>
+			</Text>
 			<SaturationFlex
 				desaturate={!isSelectedForImport || numberOfSelectedNewValues === 0}
 				marginRight={2}
@@ -147,9 +149,12 @@ const RightToolbar = ({
 					marginTop={6}
 					marginBottom={4}
 				>
-					<AccentText marginBottom={2}>
+					<Text
+						variant="Accent"
+						marginBottom={2}
+					>
 						Sketch Document
-					</AccentText>
+					</Text>
 					<select
 						value={selectedSketchDocumentIndex}
 						style={{ fontSize: '1.5rem' }}
@@ -172,9 +177,12 @@ const RightToolbar = ({
 					textAlign="left"
 					onClick={selectedImportCategories.length ? unselectAllImportCategories : selectAllImportCategories}
 				>
-					<AccentText color="Primary">
+					<Text
+						variant="Accent"
+						color="Primary"
+					>
 						{selectedImportCategories.length ? 'Unselect' : 'Select'} All
-					</AccentText>
+					</Text>
 				</Button>
 				{routes.map((route) => (
 					<CheckboxNavLink

@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { createUuid } from '@i/utility'
-import { Stack, Link } from '@i/components'
-import { AccentText } from './Texts'
+import { Stack, Link, Text } from '@i/components'
 import { topToolbarHeight } from './TopToolbar'
 
 const activeLinkClass = 'c' + createUuid()
@@ -29,9 +28,12 @@ const StyledLink = styled(Link).attrs({
 
 const ThemeNavigation = () => (
 	<Stack paddingBottom={3}>
-		<AccentText marginBottom={1}>
+		<Text
+			variant="Accent"
+			marginBottom={1}
+		>
 			Theme
-		</AccentText>
+		</Text>
 		<Stack>
 			<StyledLink to="theme/colors">
 				Colors
@@ -57,9 +59,12 @@ const ThemeNavigation = () => (
 
 const ComponentNavigation = () => (
 	<Stack paddingBottom={3}>
-		<AccentText marginBottom={1}>
+		<Text
+			variant="Accent"
+			marginBottom={1}
+		>
 			Components
-		</AccentText>
+		</Text>
 		<Stack>
 			<StyledLink to="components/button">
 				Button

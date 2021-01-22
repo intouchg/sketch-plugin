@@ -1,7 +1,7 @@
 [
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "2c22b4de-f44e-4db3-9411-b164a2f846c4",
 		"variantType": "button",
 		"name": "Primary",
 		"styles": {
@@ -23,7 +23,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "64722b2c-814d-46ce-9fab-a72fbb338bf6",
 		"variantType": "button",
 		"name": "Secondary",
 		"styles": {
@@ -45,7 +45,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "0953f9f1-36f1-4f94-a2be-879f49ca16f9",
 		"variantType": "button",
 		"name": "Tertiary",
 		"styles": {
@@ -62,7 +62,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "315588fd-bae4-499d-98fb-e44fd770a114",
 		"variantType": "button",
 		"name": "Welcome",
 		"styles": {
@@ -86,7 +86,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "a5d2a237-f34a-4d2c-a213-808a415d60b8",
 		"variantType": "button",
 		"name": "Invisible",
 		"styles": {
@@ -98,7 +98,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "fdce0a91-ac64-47c1-ad97-d564bf57f78b",
 		"variantType": "text",
 		"name": "Primary",
 		"styles": {
@@ -110,7 +110,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "22723eb6-80ba-466a-9f81-b427ed8ee465",
 		"variantType": "text",
 		"name": "Secondary",
 		"styles": {
@@ -123,7 +123,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "8d3d79e4-6f24-4d1e-94ed-150da63b682c",
 		"variantType": "text",
 		"name": "Accent",
 		"styles": {
@@ -138,7 +138,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "a488ea36-6ddb-4f72-a3d6-79aaafddb0c7",
 		"variantType": "text",
 		"name": "Accent Small",
 		"styles": {
@@ -151,7 +151,20 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "918e6ae6-04b6-4acb-bcc4-924decfeb13c",
+		"variantType": "text",
+		"name": "Modal Accent",
+		"styles": {
+			"color": "d58a3fc9-a430-41eb-a4a6-ed135bac0eef",
+			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
+			"fontSize": "fa87044c-eaa2-477f-adf9-6d487bafe1be",
+			"lineHeight": "2c4a9dea-d245-404e-8ab2-5e197218eb44",
+			"fontWeight": "75ebbc5b-5d21-4c48-822b-61e0d74e4a72"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "5976003d-7906-4450-80b9-d0342a2e9326",
 		"variantType": "heading",
 		"name": "Primary",
 		"styles": {
@@ -164,7 +177,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "6d80f3ea-0648-40aa-9dc3-8202517feb80",
 		"variantType": "heading",
 		"name": "Secondary",
 		"styles": {
@@ -177,7 +190,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "720c7d45-daf5-4a2c-b24f-0232cb2e9909",
 		"variantType": "heading",
 		"name": "Tertiary",
 		"styles": {
@@ -190,7 +203,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "169b79e2-c902-4abe-949b-1099a7dfbe70",
 		"variantType": "link",
 		"name": "Primary",
 		"styles": {
@@ -203,7 +216,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "79da2a58-0539-43e1-9933-2279fe0c9c0e",
 		"variantType": "icon",
 		"name": "Primary",
 		"styles": {
@@ -212,7 +225,7 @@
 	},
 	{
 		"type": "variant",
-		"id": "15262438-0b66-4b66-b600-aaf55635781a",
+		"id": "a042d510-d048-4bb0-8f55-bd9c25e6cc0b",
 		"variantType": "input",
 		"name": "Primary",
 		"styles": {

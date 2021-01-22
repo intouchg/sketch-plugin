@@ -1,14 +1,16 @@
 import React from 'react'
-import { Stack, Button } from '@i/components'
-import { AccentText } from './Texts'
+import { Stack, Button, Text } from '@i/components'
 import { openBrowserWindow } from '../sketchApi'
 
 const HelpfulResources = () => {
 	return (
 		<Stack paddingX={1}>
-			<AccentText marginBottom={2}>
+			<Text
+				variant="Accent"
+				marginBottom={2}
+			>
 				Resources
-			</AccentText>
+			</Text>
 			<Stack alignItems="flex-start">
 				<Button
 					variant="Tertiary"

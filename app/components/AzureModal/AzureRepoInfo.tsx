@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
 import { Stack, Box, Heading, Flex, Text, Button } from '@i/components'
-import { ModalText } from '../Texts'
 import { CloudIcon } from '../Icons'
 import { LimitInteraction } from '../LimitInteraction'
 import { useDisplayErrorBanner } from '../../hooks'
@@ -137,29 +136,31 @@ const AzureRepoInfo = ({
 			</Heading>
 			<Flex marginBottom={3}>
 				<Flex>
-					<ModalText>
+					<Text variant="Modal Accent">
 						Branch:&nbsp;
-					</ModalText>
-					<ModalText
+					</Text>
+					<Text
+						variant="Modal Accent"
 						color="Text"
 						fontWeight="Bold"
 					>
 						{branchName}
-					</ModalText>
+					</Text>
 				</Flex>
-				<ModalText>
+				<Text variant="Modal Accent">
 					&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-				</ModalText>
+				</Text>
 				<Flex>
-					<ModalText>
+					<Text variant="Modal Accent">
 						Last saved:&nbsp;
-					</ModalText>
-					<ModalText
+					</Text>
+					<Text
+						variant="Modal Accent"
 						color="Text"
 						fontWeight="Bold"
 					>
 						{lastPushTime ? `${timeSince(lastPushTime)} ago` : 'Never'}
-					</ModalText>
+					</Text>
 				</Flex>
 			</Flex>
 			<Flex>

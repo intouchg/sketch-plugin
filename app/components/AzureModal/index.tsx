@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Heading, Button } from '@i/components'
+import { Flex, Stack, Heading, Button, Text } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
-import { ModalText } from '../Texts'
 import { CloseModalButton } from '../CloseModalButton'
 import { AzureLoginForm } from './AzureLoginForm'
 import { AzureStatusLabel } from '../AzureStatusLabel'
@@ -64,33 +63,45 @@ const AzureModal = () => {
 						</Flex>
 						{!showLoginForm && connected && (
 							<Flex>
-								<ModalText fontSize={2}>
+								<Text
+									variant="Modal Accent"
+									fontSize={2}
+								>
 									{username.split('@')[0]}
-								</ModalText>
-								<ModalText fontSize={2}>
+								</Text>
+								<Text
+									variant="Modal Accent"
+									fontSize={2}
+								>
 									&nbsp;|&nbsp;
-								</ModalText>
+								</Text>
 								<Button
 									variant="Invisible"
-									as={ModalText}
-									fontSize={2}
-									textDecoration="underline"
 									onClick={signOut}
 								>
-									Sign out
+									<Text
+										variant="Modal Accent"
+										fontSize={2}
+										textDecoration="underline"
+									>
+										Sign out
+									</Text>
 								</Button>
 							</Flex>
 						)}
 						{!showLoginForm && !connected && (
 							<Button
 								variant="Invisible"
-								as={ModalText}
-								color="Primary"
-								fontSize={2}
-								textDecoration="underline"
 								onClick={() => setShowLoginForm(true)}
 							>
-								Sign in
+								<Text
+									variant="Modal Accent"
+									color="Primary"
+									fontSize={2}
+									textDecoration="underline"
+								>
+									Sign in
+								</Text>
 							</Button>
 						)}
 					</Flex>

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button } from '@i/components'
-import { AccentText } from '../Texts'
+import { Button, Text } from '@i/components'
 import { ReactIcon } from '../Icons'
 import { useOpenDevServer } from '../../hooks'
 
@@ -15,12 +14,13 @@ const PreviewButton = () => {
 			paddingY={3}
 			onClick={openDevServer}
 		>
-			<AccentText
+			<Text
+				variant="Accent"
 				color="Text"
 				marginRight={1}
 			>
 				Preview
-			</AccentText>
+			</Text>
 			<ReactIcon
 				width="14px"
 				height="13px"

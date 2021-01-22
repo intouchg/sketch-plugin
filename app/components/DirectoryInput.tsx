@@ -1,7 +1,13 @@
 import React from 'react'
-import { Flex, Box, Button } from '@i/components'
-import { TruncatedText } from './Texts'
+import styled from 'styled-components'
+import { Flex, Box, Button, Text } from '@i/components'
 import { FolderIcon } from './Icons'
+
+const TruncatedText = styled(Text)`
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+`
 
 const DirectoryInput = ({
 	value,

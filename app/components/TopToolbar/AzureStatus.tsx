@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, Button } from '@i/components'
-import { AccentText } from '../Texts'
+import { Box, Button, Text } from '@i/components'
 import { setAzureModalState } from '../../store'
 
 const AzureStatus = () => {
@@ -17,7 +16,10 @@ const AzureStatus = () => {
 			marginRight={3}
 			onClick={() => dispatch(setAzureModalState('standard'))}
 		>
-			<AccentText color="Text">
+			<Text
+				variant="Accent"
+				color="Text"
+			>
 				Azure
 				<Box
 					display="inline-block"
@@ -27,7 +29,7 @@ const AzureStatus = () => {
 					borderRadius="50%"
 					marginLeft={1}
 				/>
-			</AccentText>
+			</Text>
 		</Button>
 	)
 }

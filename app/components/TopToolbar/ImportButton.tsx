@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button } from '@i/components'
-import { AccentText } from '../Texts'
+import { Button, Text } from '@i/components'
 import { SketchIcon } from '../Icons'
 import { setBannerState } from '../../store'
 
@@ -30,12 +29,13 @@ const ImportButton = ({
 			paddingY={3}
 			onClick={openImportModal}
 		>
-			<AccentText
+			<Text
+				variant="Accent"
 				color="Text"
 				marginRight={1}
 			>
 				Import
-			</AccentText>
+			</Text>
 			<SketchIcon
 				width="16px"
 				height="16px"

@@ -8,12 +8,12 @@ module.exports = build({
         'app-bundle': {
             file: 'index.tsx',
             usePolyfills: false,
-            plugins: [
-                // new IntouchThemePlugin(),
-            ],
         },
     },
     tsConfigPath: 'tsconfig.json',
     babelConfigPath: 'babel.config.js',
     eslintConfigPath: '.eslintrc.js',
+    plugins: [
+        new IntouchThemePlugin(),
+    ],
 })

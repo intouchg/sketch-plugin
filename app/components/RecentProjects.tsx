@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Stack, Text, Box, Button } from '@i/components'
-import { AccentText } from './Texts'
 import { useSelectLocalProject } from '../hooks'
 
 const OverflowButton = styled(Button).attrs({ variant: 'Tertiary' })`
@@ -55,9 +54,12 @@ const RecentProjects = () => {
 
 	return (
 		<Stack paddingX={1}>
-			<AccentText marginBottom={2}>
+			<Text
+				variant="Accent"
+				marginBottom={2}
+			>
 				Recent
-			</AccentText>
+			</Text>
 			<Stack alignItems="flex-start">
 				{formattedRecentProjects.map((props) => (
 					<DirectoryFilepath

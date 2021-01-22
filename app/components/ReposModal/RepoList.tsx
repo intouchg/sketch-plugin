@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Stack } from '@i/components'
-import { AccentText } from '../Texts'
+import { Stack, Text } from '@i/components'
 import type { AzureUserConnection, AzureGitRepo } from '@i/azure'
 
 const Repo = styled.div`
@@ -43,9 +42,12 @@ const RepoList = ({
 					flexShrink={0}
 					marginTop={4}
 				>
-					<AccentText marginBottom={2}>
+					<Text
+						variant="Accent"
+						marginBottom={2}
+					>
 						{organizationName}
-					</AccentText>
+					</Text>
 					{gitRepos.map((repo) => (
 						<Repo
 							key={repo.id}

@@ -58,7 +58,9 @@ const theme = {
 		'1.5rem',
 		'2rem',
 	],
-	letterSpacings: [],
+	letterSpacings: [
+		'1px',
+	],
 	borders: {},
 	borderStyles: {},
 	borderWidths: {
@@ -175,6 +177,13 @@ const theme = {
 			fontSize: '0.75rem',
 			lineHeight: '1rem',
 			fontWeight: '300',
+		},
+		'Modal Accent': {
+			color: '#6b6b6b',
+			fontFamily: 'Avenir Next',
+			fontSize: '0.75rem',
+			lineHeight: '1rem',
+			fontWeight: '400',
 		},
 	},
 	headings: {
