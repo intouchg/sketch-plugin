@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
 import { themeTypePropertyMap } from '@i/theme'
-import { Flex, Box } from '@i/components'
+import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
+import { CloseModalButton } from '../CloseModalButton'
 import { RightToolbar } from './RightToolbar'
 import { Colors } from './Colors'
 import { Fonts } from './Fonts'
@@ -142,7 +143,7 @@ const ImportModal = ({
 
 	return (
 		<ModalBackground>
-			<Flex
+			<Stack
 				width="calc(100vw - 308px)"
 				minWidth="800px"
 				height="calc(100vh - 100px)"
@@ -152,35 +153,55 @@ const ImportModal = ({
 				borderRadius="Large"
 			>
 				<Flex
+					width="100%"
+					height="48px"
 					alignItems="center"
-					justifyContent="center"
-					flexGrow={1}
-					padding={6}
-					overflowY="scroll"
+					justifyContent="space-between"
+					flexShrink={0}
+					paddingX={3}
+					boxShadow="Accent"
 				>
-					{showLoading ? (
-						<Loading />
-					) : (
-						<ImportView
-							values={routeThemeValues as any}
-							importedValues={routeImportedSketchValues as any}
-							toggleSelectedImportedValue={toggleSelectedImportedValue}
-						/>
-					)}
+					<Heading>
+						Import from Sketch
+					</Heading>
+					<CloseModalButton
+						position="relative"
+						width="16px"
+						padding={0}
+						onClick={() => setShowImportModal(false)}
+					/>
 				</Flex>
-				<RightToolbar
-					activeRoute={activeRoute}
-					setActiveRoute={setActiveRoute}
-					selectedImportCategories={selectedImportCategories}
-					setSelectedImportCategories={setSelectedImportCategories}
-					setShowImportModal={setShowImportModal}
-					sketchDocumentNames={sketchDocumentNames}
-					selectedSketchDocumentIndex={selectedSketchDocumentIndex}
-					updateSelectedSketchDocumentIndex={updateSelectedSketchDocumentIndex}
-					saveSelectedImportedValues={saveSelectedImportedValues}
-					numberOfNewValuesByType={numberOfNewValuesByType}
-				/>
-			</Flex>
+				<Flex>
+					<Flex
+						alignItems="center"
+						justifyContent="center"
+						flexGrow={1}
+						padding={6}
+						overflowY="scroll"
+					>
+						{showLoading ? (
+							<Loading />
+						) : (
+							<ImportView
+								values={routeThemeValues as any}
+								importedValues={routeImportedSketchValues as any}
+								toggleSelectedImportedValue={toggleSelectedImportedValue}
+							/>
+						)}
+					</Flex>
+					<RightToolbar
+						activeRoute={activeRoute}
+						setActiveRoute={setActiveRoute}
+						selectedImportCategories={selectedImportCategories}
+						setSelectedImportCategories={setSelectedImportCategories}
+						sketchDocumentNames={sketchDocumentNames}
+						selectedSketchDocumentIndex={selectedSketchDocumentIndex}
+						updateSelectedSketchDocumentIndex={updateSelectedSketchDocumentIndex}
+						saveSelectedImportedValues={saveSelectedImportedValues}
+						numberOfNewValuesByType={numberOfNewValuesByType}
+					/>
+				</Flex>
+			</Stack>
 		</ModalBackground>
 	)
 }

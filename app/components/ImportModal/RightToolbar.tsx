@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { Stack, Box, Flex, Text, Button, InvisibleButton } from '@i/components'
-import { CloseModalButton } from '../CloseModalButton'
 import { Checkbox } from '../Checkbox'
 import { routes, routeTitles } from './index'
 import { setBannerState } from '../../store'
@@ -87,7 +86,6 @@ const RightToolbar = ({
 	setActiveRoute,
 	selectedImportCategories,
 	setSelectedImportCategories,
-	setShowImportModal,
 	sketchDocumentNames,
 	selectedSketchDocumentIndex,
 	updateSelectedSketchDocumentIndex,
@@ -98,7 +96,6 @@ const RightToolbar = ({
 	setActiveRoute: React.Dispatch<React.SetStateAction<ImportModalRoute>>
 	selectedImportCategories: ImportModalRoute[]
 	setSelectedImportCategories: React.Dispatch<React.SetStateAction<ImportModalRoute[]>>
-	setShowImportModal: React.Dispatch<React.SetStateAction<boolean>>
 	sketchDocumentNames: string[]
 	selectedSketchDocumentIndex: number
 	updateSelectedSketchDocumentIndex: (index: number) => void
@@ -142,7 +139,6 @@ const RightToolbar = ({
 				position="relative"
 				height="100%"
 			>
-				<CloseModalButton onClick={() => setShowImportModal(false)} />
 				<Stack
 					paddingX={3}
 					marginTop={6}

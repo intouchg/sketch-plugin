@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { batch, useDispatch, useSelector } from 'react-redux'
-import { Flex, Text, Stack, Input } from '@i/components'
+import { Flex, Text, Stack, Input, Heading } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { LeftToolbar } from './LeftToolbar'
 import { RepoList } from './RepoList'
@@ -92,7 +92,7 @@ const ReposModal = () => {
 
 	return (
 		<ModalBackground>
-			<Flex
+			<Stack
 				width="calc(100vw - 308px)"
 				minWidth="800px"
 				height="calc(100vh - 100px)"
@@ -100,66 +100,88 @@ const ReposModal = () => {
 				backgroundColor="Card"
 				boxShadow="Medium"
 				borderRadius="Large"
-				overflow="hidden"
 			>
-				<CloseModalButton onClick={closeModal} />
-				{!online && (
-					<Text
-						display="flex"
-						alignItems="center"
-						justifyContent="center"
-						flexGrow={1}
-					>
-						{OFFLINE_ERROR_MESSAGE}
-					</Text>
-				)}
-				{online && showLoading && (
-					<Stack
-						alignItems="center"
-						justifyContent="center"
-						flexGrow={1}
-					>
-						<Text marginBottom={4}>
-							Loading projects ...
-						</Text>
-						<Loading />
-					</Stack>
-				)}
-				{online && !showLoading && !selectedRepo && (
-					<>
-						<LeftToolbar
-							repos={repos}
-							selectedOrganization={selectedOrganization}
-							setSelectedOrganization={setSelectedOrganization}
-						/>
-						<Stack flexGrow={1}>
-							<Flex
-								flexShrink={0}
-								justifyContent="center"
-								paddingX={6}
-								paddingY={3}
-								backgroundColor="Background"
-							>
-								<FilterInput
-									placeholder="Search..."
-									value={filterText}
-									onChange={(event) => setFilterText(event.target.value)}
-								/>
-							</Flex>
-							<RepoList
-								repos={filteredRepoData}
-								setSelectedRepo={setSelectedRepo}
-							/>
-						</Stack>
-					</>
-				)}
-				{online && !showLoading && selectedRepo && (
-					<DownloadRepo
-						repo={selectedRepo}
-						resetSelectedRepo={resetSelectedRepo}
+				<Flex
+					width="100%"
+					height="48px"
+					alignItems="center"
+					justifyContent="space-between"
+					flexShrink={0}
+					paddingX={3}
+					boxShadow="Accent"
+				>
+					<Heading>
+						Download project
+					</Heading>
+					<CloseModalButton
+						position="relative"
+						width="16px"
+						padding={0}
+						onClick={closeModal}
 					/>
-				)}
-			</Flex>
+				</Flex>
+				<Flex
+					flexGrow={1}
+					overflow="hidden"
+				>
+					{!online && (
+						<Text
+							display="flex"
+							alignItems="center"
+							justifyContent="center"
+							flexGrow={1}
+						>
+							{OFFLINE_ERROR_MESSAGE}
+						</Text>
+					)}
+					{online && showLoading && (
+						<Stack
+							alignItems="center"
+							justifyContent="center"
+							flexGrow={1}
+						>
+							<Text marginBottom={4}>
+								Loading projects ...
+							</Text>
+							<Loading />
+						</Stack>
+					)}
+					{online && !showLoading && !selectedRepo && (
+						<>
+							<LeftToolbar
+								repos={repos}
+								selectedOrganization={selectedOrganization}
+								setSelectedOrganization={setSelectedOrganization}
+							/>
+							<Stack flexGrow={1}>
+								<Flex
+									flexShrink={0}
+									justifyContent="center"
+									paddingX={6}
+									paddingY={3}
+									backgroundColor="Background"
+								>
+									<FilterInput
+										placeholder="Search..."
+										value={filterText}
+										onChange={(event) => setFilterText(event.target.value)}
+									/>
+								</Flex>
+								<RepoList
+									repos={filteredRepoData}
+									setSelectedRepo={setSelectedRepo}
+								/>
+							</Stack>
+						</>
+					)}
+					{online && !showLoading && selectedRepo && (
+						<DownloadRepo
+							repo={selectedRepo}
+							resetSelectedRepo={resetSelectedRepo}
+						/>
+					)}
+				</Flex>
+			</Stack>
 		</ModalBackground>
 	)
 }

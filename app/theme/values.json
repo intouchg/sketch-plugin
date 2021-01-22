@@ -300,6 +300,12 @@
 		"type": "shadow"
 	},
 	{
+		"id": "796b0daa-ad51-478b-ad3f-1c5673b90d39",
+		"value": "inset 0 -1px 0 0 #dddddd",
+		"name": "Accent",
+		"type": "shadow"
+	},
+	{
 		"id": "f7aaceb1-d59c-4284-812a-3c3ac78d3ce5",
 		"value": "0",
 		"type": "letterSpacing"
