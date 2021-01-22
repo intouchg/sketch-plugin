@@ -14,7 +14,6 @@ const CloneProgress = ({
 		alignItems="center"
 		justifyContent="center"
 		width="100%"
-		borderTop="1px solid Accent"
 		padding={3}
 		backgroundColor="Background"
 	>

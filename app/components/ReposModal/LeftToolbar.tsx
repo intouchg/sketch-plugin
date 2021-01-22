@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Stack, Link, Text, InvisibleButton } from '@i/components'
+import { Stack, Link, Text } from '@i/components'
 import type { AzureUserConnection } from '@i/azure'
 
-const OrganizationButton = styled(Link).attrs({ as: InvisibleButton })`
+const OrganizationButton = styled(Link)`
 	${({ theme }) => `
 		flex-shrink: 0;
 		padding: ${theme.space[2]};
@@ -29,7 +29,6 @@ const LeftToolbar = ({
 	return (
 		<Stack
 			width="236px"
-			borderRight="1px solid Accent"
 			padding={3}
 			backgroundColor="Card"
 			overflow="scroll"
