@@ -49,6 +49,7 @@ const CheckboxNavLink = ({
 			<Text
 				variant="Secondary"
 				fontWeight="Medium"
+				color={isActiveRoute ? 'Primary' : 'Text'}
 			>
 				{routeTitles[route]}
 			</Text>

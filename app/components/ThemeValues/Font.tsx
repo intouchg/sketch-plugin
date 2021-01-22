@@ -8,6 +8,7 @@ const Font = ({
 }: SPFontTypeface) => (
 	<Text
 		variant="secondary"
+		color="Text"
 		fontFamily={_name}
 	>
 		{style}
