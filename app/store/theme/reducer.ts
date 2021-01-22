@@ -124,7 +124,7 @@ export const themeReducer = (
 				nextState.importedSketchValues = {
 					colors: colors.map(([ name, value ]) => createThemeValue([], 'color', { name, value })),
 					// Fonts are also updated in SET_SYSTEM_FONTS once systemFonts have loaded
-					fonts: typefaces.map(({ _name, family }) => createThemeValue([], 'font', { name: _name, typeface: _name, family, value: `${_name}, sans-serif` })),
+					fonts: typefaces.map(({ _name, family }) => createThemeValue([], 'font', { name: _name, typeface: _name, family, value: _name })),
 					fontSizes: fontSizes.map((value) => createThemeValue([], 'fontSize', { value })),
 					fontWeights: fontWeights.map((value) => createThemeValue([], 'fontWeight', { value })),
 					lineHeights: lineHeights.map((value) => createThemeValue([], 'lineHeight', { value })),
@@ -250,7 +250,7 @@ export const themeReducer = (
 
 				// Update importedSketchValues.fonts now that systemFonts have loaded
 				const typefaces = state.importedSketchFontFamilyNames.map((fontFamilyName) => systemFontsDictionary[fontFamilyName]).filter((v) => v !== undefined).map((sf) => sf.typefaces).flat()
-				nextState.importedSketchValues.fonts = typefaces.map(({ _name, family }) => createThemeValue([], 'font', { name: _name, typeface: _name, family, value: `${_name}, sans-serif` }))
+				nextState.importedSketchValues.fonts = typefaces.map(({ _name, family }) => createThemeValue([], 'font', { name: _name, typeface: _name, family, value: _name }))
 
 				break
 			}
