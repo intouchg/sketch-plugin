@@ -94,7 +94,7 @@ const theme = {
 			textTransform: 'uppercase',
 			letterSpacing: '1px',
 			paddingX: '24px',
-			paddingY: '14px',
+			paddingY: '16px',
 		},
 		Secondary: {
 			color: '#232323',
@@ -110,7 +110,7 @@ const theme = {
 			textTransform: 'uppercase',
 			letterSpacing: '1px',
 			paddingX: '24px',
-			paddingY: '14px',
+			paddingY: '16px',
 		},
 		Tertiary: {
 			color: '#2c90ce',
