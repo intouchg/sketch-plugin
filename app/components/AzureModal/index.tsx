@@ -12,6 +12,7 @@ import { useDisplayErrorBanner } from '../../hooks'
 
 const AzureModal = () => {
 	const dispatch = useDispatch()
+	const localProject = useSelector((state) => state.azure.localProject)
 	const azureModalState = useSelector((state) => state.azure.azureModalState)
 	const online = useSelector((state) => state.azure.online)
 	const { username, accessToken } = useSelector((state) => state.azure.credentials)
@@ -38,7 +39,7 @@ const AzureModal = () => {
 	return (
 		<ModalBackground>
 			<Flex
-				width="740px"
+				width={!localProject || showLoginForm ? '560px' : '740px'}
 				padding={5}
 				backgroundColor="Background"
 				boxShadow="Medium"
