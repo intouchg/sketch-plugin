@@ -151,6 +151,7 @@ const ImportModal = ({
 				backgroundColor="Card"
 				boxShadow="Medium"
 				borderRadius="Large"
+				overflow="hidden"
 			>
 				<Flex
 					width="100%"
@@ -159,7 +160,7 @@ const ImportModal = ({
 					justifyContent="space-between"
 					flexShrink={0}
 					paddingX={3}
-					boxShadow="Accent"
+					boxShadow="Inset X Accent"
 				>
 					<Heading>
 						Import from Sketch

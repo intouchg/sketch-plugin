@@ -74,7 +74,8 @@ const theme = {
 	},
 	shadows: {
 		Medium: '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
-		Accent: 'inset 0 -1px 0 0 #dddddd',
+		'Inset X Accent': 'inset 0 -1px 0 0 #dddddd',
+		'Inset Y Accent': 'inset -1px 0 0 0 #dddddd',
 	},
 	zIndices: [
 		'0',

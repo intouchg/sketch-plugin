@@ -132,8 +132,6 @@ const RightToolbar = ({
 		<Box
 			minWidth="280px"
 			backgroundColor="Background"
-			borderTopRightRadius="Large"
-			borderBottomRightRadius="Large"
 		>
 			<Stack
 				position="relative"

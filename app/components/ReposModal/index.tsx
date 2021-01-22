@@ -100,6 +100,7 @@ const ReposModal = () => {
 				backgroundColor="Card"
 				boxShadow="Medium"
 				borderRadius="Large"
+				overflow="hidden"
 			>
 				<Flex
 					width="100%"
@@ -108,7 +109,7 @@ const ReposModal = () => {
 					justifyContent="space-between"
 					flexShrink={0}
 					paddingX={3}
-					boxShadow="Accent"
+					boxShadow="Inset X Accent"
 				>
 					<Heading>
 						Download project
@@ -120,10 +121,7 @@ const ReposModal = () => {
 						onClick={closeModal}
 					/>
 				</Flex>
-				<Flex
-					flexGrow={1}
-					overflow="hidden"
-				>
+				<Flex flexGrow={1}>
 					{!online && (
 						<Text
 							display="flex"
