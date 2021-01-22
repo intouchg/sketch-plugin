@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box } from '@i/components'
-import { InvisibleButton } from '../Buttons'
+import { Box, Button } from '@i/components'
 import { AccentText } from '../Texts'
 import { setAzureModalState } from '../../store'
 
@@ -12,7 +11,8 @@ const AzureStatus = () => {
 	const connected = Boolean(username && accessToken)
 
 	return (
-		<InvisibleButton
+		<Button
+			variant="Invisible"
 			paddingY={3}
 			marginRight={3}
 			onClick={() => dispatch(setAzureModalState('standard'))}
@@ -28,7 +28,7 @@ const AzureStatus = () => {
 					marginLeft={1}
 				/>
 			</AccentText>
-		</InvisibleButton>
+		</Button>
 	)
 }
 

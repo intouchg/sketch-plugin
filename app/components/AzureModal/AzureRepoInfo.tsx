@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
-import { Stack, Box, Heading, Flex, Text } from '@i/components'
-import { PrimaryButton, SecondaryButton } from '../Buttons'
+import { Stack, Box, Heading, Flex, Text, Button } from '@i/components'
 import { ModalText } from '../Texts'
 import { CloudIcon } from '../Icons'
 import { LimitInteraction } from '../LimitInteraction'
@@ -165,7 +164,7 @@ const AzureRepoInfo = ({
 			</Flex>
 			<Flex>
 				<LimitInteraction
-					as={PrimaryButton}
+					as={Button}
 					unlimit={online && connected && hasLocalChanges}
 					display="flex"
 					alignItems="center"
@@ -183,7 +182,7 @@ const AzureRepoInfo = ({
 					</Box>
 				</LimitInteraction>
 				<LimitInteraction
-					as={PrimaryButton}
+					as={Button}
 					unlimit={online && connected && hasRemoteChanges}
 					onClick={downloadUpdates}
 				>
@@ -192,12 +191,15 @@ const AzureRepoInfo = ({
 			</Flex>
 			<Flex alignItems="flex-end">
 				<LimitInteraction
-					as={SecondaryButton}
 					unlimit={online && connected && hasLocalChanges}
 					marginTop={3}
-					onClick={promptToRevert}
 				>
-					Revert to Last Save
+					<Button
+						variant="Secondary"
+						onClick={promptToRevert}
+					>
+						Revert to Last Save
+					</Button>
 				</LimitInteraction>
 			</Flex>
 		</Box>

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Flex, Stack, Heading, Text } from '@i/components'
-import { PrimaryButton } from '../Buttons'
+import { Flex, Stack, Heading, Text, Button } from '@i/components'
 import { useSelectLocalProject } from '../../hooks'
 import type { AzureGitRepo } from '@i/azure'
 
@@ -35,9 +34,9 @@ const CloneSuccess = ({
 					</Text>
 				</Stack>
 				<Flex justifyContent="flex-end">
-					<PrimaryButton onClick={selectLocalProject}>
+					<Button onClick={selectLocalProject}>
 						Open Project
-					</PrimaryButton>
+					</Button>
 				</Flex>
 			</Stack>
 		</Flex>

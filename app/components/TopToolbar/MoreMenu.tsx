@@ -2,8 +2,7 @@ import React, { useState, useRef, useCallback } from 'react'
 import { useDispatch, batch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring'
-import { Stack } from '@i/components'
-import { InvisibleButton, TertiaryButton } from '../Buttons'
+import { Stack, Button } from '@i/components'
 import { EllipsesIcon } from '../Icons'
 import { topToolbarHeight } from './index'
 import { resetThemeState, resetProjectState, setShowSettingsModal } from '../../store'
@@ -37,7 +36,8 @@ const MoreMenu = ({
 			ref={menuButtonElement}
 			style={{ display: 'inline-block' }}
 		>
-			<InvisibleButton
+			<Button
+				variant="Invisible"
 				paddingX={2}
 				paddingY={3}
 				onClick={() => setShowMenu((state) => !state)}
@@ -47,7 +47,7 @@ const MoreMenu = ({
 					width="16px"
 					height="8px"
 				/>
-			</InvisibleButton>
+			</Button>
 			<animated.div
 				style={{
                     position: 'fixed',
@@ -68,26 +68,29 @@ const MoreMenu = ({
 					borderRadius="Medium"
 					boxShadow="Medium"
 				>
-					<TertiaryButton
+					<Button
+						variant="Tertiary"
 						padding={2}
 						onClick={() => dispatch(setShowSettingsModal(true))}
 					>
 						Settings
-					</TertiaryButton>
+					</Button>
 					{showProjectOptions && (
 						<>
-							<TertiaryButton
+							<Button
+								variant="Tertiary"
 								padding={2}
 								onClick={() => openBrowserWindow('https://google.com')}
 							>
 								Support
-							</TertiaryButton>
-							<TertiaryButton
+							</Button>
+							<Button
+								variant="Tertiary"
 								padding={2}
 								onClick={closeProject}
 							>
 								Close Project
-							</TertiaryButton>
+							</Button>
 						</>
 					)}
 				</Stack>

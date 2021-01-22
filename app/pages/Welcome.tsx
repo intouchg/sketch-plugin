@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, Stack, Flex, Heading } from '@i/components'
-import { TopToolbar, AccentText, WelcomeButton, RecentProjects, HelpfulResources, NewProjectModal, ReposModal, topToolbarHeight } from '../components'
+import { Box, Stack, Flex, Heading, Button } from '@i/components'
+import { TopToolbar, AccentText, RecentProjects, HelpfulResources, NewProjectModal, ReposModal, topToolbarHeight } from '../components'
 import { useSelectLocalProject } from '../hooks'
 import { setShowReposModal, setAzureModalState } from '../store'
 import pkg from '../../package.json'
@@ -42,28 +42,31 @@ const Welcome = () => {
 					<Flex justifyContent="center">
 						<Stack>
 							<Flex>
-								<WelcomeButton
+								<Button
+									variant="Welcome"
 									marginBottom={4}
 									onClick={selectLocalProject}
 								>
 									Open
-								</WelcomeButton>
-								<WelcomeButton
+								</Button>
+								<Button
+									variant="Welcome"
 									marginX="1.125em"
 									onClick={() => dispatch(connected ? setShowReposModal(true) : setAzureModalState('redirectToRepos'))}
 								>
 									Download
-								</WelcomeButton>
+								</Button>
 							</Flex>
 							<RecentProjects />
 						</Stack>
 						<Stack>
-							<WelcomeButton
+							<Button
+								variant="Welcome"
 								marginBottom={4}
 								onClick={() => setShowNewProjectModal(true)}
 							>
 								New
-							</WelcomeButton>
+							</Button>
 							<HelpfulResources />
 						</Stack>
 					</Flex>

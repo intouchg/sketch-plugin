@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Stack, Link } from '@i/components'
-import { InvisibleButton } from '../Buttons'
+import { InvisibleButton } from '../InvisibleButton'
 import { AccentText } from '../Texts'
 import type { AzureUserConnection } from '@i/azure'
 

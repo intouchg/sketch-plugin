@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@i/components'
 import { Color } from '../ThemeValues'
-import { InvisibleButton } from '../Buttons'
+import { InvisibleButton } from '../InvisibleButton'
 import { ColorGrid } from '../ColorGrid'
 import { ImportIcon } from './ImportIcon'
 import { sortAlphabetical } from '@i/utility'

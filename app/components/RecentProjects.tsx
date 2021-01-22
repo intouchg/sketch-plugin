@@ -1,10 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Stack, Text, Box } from '@i/components'
-import { TertiaryButton } from './Buttons'
+import { Stack, Text, Box, Button } from '@i/components'
 import { AccentText } from './Texts'
 import { useSelectLocalProject } from '../hooks'
+
+const OverflowButton = styled(Button).attrs({ variant: 'Tertiary' })`
+	display: flex;
+	flex-direction: column;
+	max-width: 320px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-bottom: ${({ theme }) => theme.space[1]};
+`
 
 const TruncatedTextBox = styled(Box)`
 	max-width: 320px;
@@ -23,14 +31,7 @@ const DirectoryFilepath = ({
 	const selectRecentProject = useSelectLocalProject(filepath)
 
 	return (
-		<Stack
-			as={TertiaryButton}
-			maxWidth="320px"
-			overflow="hidden"
-			textOverflow="ellipsis"
-			marginBottom={1}
-			onClick={selectRecentProject}
-		>
+		<OverflowButton onClick={selectRecentProject}>
 			<TruncatedTextBox>
 				{name}
 			</TruncatedTextBox>
@@ -40,7 +41,7 @@ const DirectoryFilepath = ({
 			>
 				{filepath}
 			</Text>
-		</Stack>
+		</OverflowButton>
 	)
 }
 

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, batch } from 'react-redux'
-import { Flex, Stack, Input, Text } from '@i/components'
-import { PrimaryButton, SecondaryButton, TertiaryButton } from '../Buttons'
+import { Flex, Stack, Input, Text, Button } from '@i/components'
 import { AccentText } from '../Texts'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
 import { setAzureCredentials, setAzureModalState, setLoadingState, setShowReposModal } from '../../store'
@@ -111,13 +110,14 @@ const AzureLoginForm = ({
 				<Text>
 					Don&apos;t have a token?&nbsp;
 				</Text>
-				<TertiaryButton
+				<Button
+					variant="Tertiary"
 					fontSize={2}
 					textDecoration="underline"
 					onClick={() => openBrowserWindow('https://google.com')}
 				>
 					Follow the Azure setup user guide.
-				</TertiaryButton>
+				</Button>
 			</Flex>
 			{error && (
 				<Flex
@@ -135,12 +135,15 @@ const AzureLoginForm = ({
 				justifyContent="space-between"
 				width="100%"
 			>
-				<SecondaryButton onClick={() => redirectToReposModal ? dispatch(setAzureModalState(null)) : setShowLoginForm(false)}>
+				<Button
+					variant="Secondary"
+					onClick={() => redirectToReposModal ? dispatch(setAzureModalState(null)) : setShowLoginForm(false)}
+				>
 					Back
-				</SecondaryButton>
-				<PrimaryButton onClick={loginToAzure}>
+				</Button>
+				<Button onClick={loginToAzure}>
 					Sign In
-				</PrimaryButton>
+				</Button>
 			</Flex>
 		</Stack>
 	)

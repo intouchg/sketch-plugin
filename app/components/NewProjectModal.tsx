@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector, batch } from 'react-redux'
-import { Flex, Stack, Heading, Box, Text, Input } from '@i/components'
+import { Flex, Stack, Heading, Box, Text, Input, Button } from '@i/components'
 import { ModalBackground } from './ModalBackground'
-import { PrimaryButton } from './Buttons'
 import { AccentText } from './Texts'
 import { CloseModalButton } from './CloseModalButton'
 import { DirectoryInput } from './DirectoryInput'
@@ -165,9 +164,9 @@ const NewProjectModal = ({
 						)}
 					</Stack>
 					<Flex alignSelf="start">
-						<PrimaryButton onClick={createProject}>
+						<Button onClick={createProject}>
 							Create
-						</PrimaryButton>
+						</Button>
 					</Flex>
 				</Stack>
 			</Flex>

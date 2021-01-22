@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useSelector, batch } from 'react-redux'
-import { useSpring, animated } from 'react-spring'
-import { Stack, Heading, Input, Flex, Text } from '@i/components'
-import { PrimaryButton, SecondaryButton } from '../Buttons'
+import { useSpring } from 'react-spring'
+import { Stack, Heading, Input, Flex, Text, Button } from '@i/components'
 import { AccentText } from '../Texts'
 import { DirectoryInput } from '../DirectoryInput'
 import { CloneProgress } from './CloneProgress'
@@ -152,12 +151,15 @@ const DownloadRepo = ({
 					/>
 				</Stack>
 				<Flex justifyContent="space-between">
-					<SecondaryButton onClick={resetSelectedRepo}>
+					<Button
+						variant="Secondary"
+						onClick={resetSelectedRepo}
+					>
 						Back
-					</SecondaryButton>
-					<PrimaryButton onClick={cloneProject}>
+					</Button>
+					<Button onClick={cloneProject}>
 						Download
-					</PrimaryButton>
+					</Button>
 				</Flex>
 			</Stack>
 		</Flex>

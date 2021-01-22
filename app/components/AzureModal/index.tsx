@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Heading } from '@i/components'
+import { Flex, Stack, Heading, Button } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
-import { InvisibleButton } from '../Buttons'
 import { ModalText } from '../Texts'
 import { CloseModalButton } from '../CloseModalButton'
 import { AzureLoginForm } from './AzureLoginForm'
@@ -71,18 +70,20 @@ const AzureModal = () => {
 								<ModalText fontSize={2}>
 									&nbsp;|&nbsp;
 								</ModalText>
-								<InvisibleButton
+								<Button
+									variant="Invisible"
 									as={ModalText}
 									fontSize={2}
 									textDecoration="underline"
 									onClick={signOut}
 								>
 									Sign out
-								</InvisibleButton>
+								</Button>
 							</Flex>
 						)}
 						{!showLoginForm && !connected && (
-							<InvisibleButton
+							<Button
+								variant="Invisible"
 								as={ModalText}
 								color="Primary"
 								fontSize={2}
@@ -90,7 +91,7 @@ const AzureModal = () => {
 								onClick={() => setShowLoginForm(true)}
 							>
 								Sign in
-							</InvisibleButton>
+							</Button>
 						)}
 					</Flex>
 					{!showLoginForm && (

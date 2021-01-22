@@ -29,10 +29,10 @@ const TopToolbar = ({
 			zIndex={3}
 		>
 			<Flex alignItems="center">
-				<UpdatesStatus />
-				<Heading>
+				<Heading marginRight={3}>
 					{localProject ? localProject.split('/').pop() : ''}
 				</Heading>
+				<UpdatesStatus />
 			</Flex>
 			<Box>
 				{setShowImportModal && (

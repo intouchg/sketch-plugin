@@ -1,6 +1,5 @@
 import React from 'react'
-import { Stack } from '@i/components'
-import { TertiaryButton } from './Buttons'
+import { Stack, Button } from '@i/components'
 import { AccentText } from './Texts'
 import { openBrowserWindow } from '../sketchApi'
 
@@ -11,24 +10,27 @@ const HelpfulResources = () => {
 				Resources
 			</AccentText>
 			<Stack alignItems="flex-start">
-				<TertiaryButton
+				<Button
+					variant="Tertiary"
 					marginBottom={1}
 					onClick={() => openBrowserWindow('https://google.com')}
 				>
 					Getting Started
-				</TertiaryButton>
-				<TertiaryButton
+				</Button>
+				<Button
+					variant="Tertiary"
 					marginBottom={1}
 					onClick={() => openBrowserWindow('https://google.com')}
 				>
 					Coming Soon
-				</TertiaryButton>
-				<TertiaryButton
+				</Button>
+				<Button
+					variant="Tertiary"
 					marginBottom={1}
 					onClick={() => openBrowserWindow('https://google.com')}
 				>
 					Support
-				</TertiaryButton>
+				</Button>
 			</Stack>
 		</Stack>
 	)

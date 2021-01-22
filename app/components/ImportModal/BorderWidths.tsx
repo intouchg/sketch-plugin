@@ -1,8 +1,9 @@
 import React from 'react'
-import { Stack, Box, Flex } from '@i/components'
+import styled from 'styled-components'
+import { Stack, Flex } from '@i/components'
+import { InvisibleButton } from '../InvisibleButton'
 import { BorderWidth } from '../ThemeValues'
 import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
-import { InvisibleButton } from '../Buttons'
 import type { ThemeBorderWidth } from '@i/theme'
 
 const sortBorderWidths = (a: ThemeBorderWidth, b: ThemeBorderWidth) => {

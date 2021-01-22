@@ -1,5 +1,5 @@
 import React from 'react'
-import { InvisibleButton } from '../Buttons'
+import { Button } from '@i/components'
 import { AccentText } from '../Texts'
 import { ReactIcon } from '../Icons'
 import { useOpenDevServer } from '../../hooks'
@@ -8,7 +8,8 @@ const PreviewButton = () => {
 	const openDevServer = useOpenDevServer()
 
 	return (
-		<InvisibleButton
+		<Button
+			variant="Invisible"
 			display="inline-flex"
 			marginRight={4}
 			paddingY={3}
@@ -24,7 +25,7 @@ const PreviewButton = () => {
 				width="14px"
 				height="13px"
 			/>
-		</InvisibleButton>
+		</Button>
 	)
 }
 

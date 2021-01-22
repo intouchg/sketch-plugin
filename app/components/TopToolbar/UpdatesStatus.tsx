@@ -9,7 +9,7 @@ const UpdatesStatus = () => {
 
 	if (checkingHasRemoteChanges) {
 		return (
-			<Box marginRight={3}>
+			<Box>
 				<Loading
 					width="20px"
 					height="20px"
@@ -29,7 +29,6 @@ const UpdatesStatus = () => {
 				borderColor="Primary Light"
 				borderRadius="50%"
 				textAlign="center"
-				marginRight={3}
 			>
 				<Text
 					color="Primary Light"

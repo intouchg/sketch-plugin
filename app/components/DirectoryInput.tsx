@@ -1,6 +1,5 @@
 import React from 'react'
-import { Flex, Box } from '@i/components'
-import { InvisibleButton } from './Buttons'
+import { Flex, Box, Button } from '@i/components'
 import { TruncatedText } from './Texts'
 import { FolderIcon } from './Icons'
 
@@ -12,7 +11,8 @@ const DirectoryInput = ({
     value: string
     onClick: () => void
 } & React.ComponentProps<typeof Flex>) => (
-	<InvisibleButton
+	<Button
+		variant="Invisible"
 		position="relative"
 		width="100%"
 		onClick={onClick}
@@ -42,7 +42,7 @@ const DirectoryInput = ({
 				height="21px"
 			/>
 		</Box>
-	</InvisibleButton>
+	</Button>
 )
 
 export { DirectoryInput }

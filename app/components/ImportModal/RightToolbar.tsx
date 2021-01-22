@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { Stack, Box, Flex, Text } from '@i/components'
-import { InvisibleButton, PrimaryButton } from '../Buttons'
+import { Stack, Box, Flex, Text, Button } from '@i/components'
 import { AccentText, SecondaryText } from '../Texts'
 import { CloseModalButton } from '../CloseModalButton'
 import { Checkbox } from '../Checkbox'
@@ -40,8 +39,9 @@ const CheckboxNavLink = ({
 				onClick={() => toggleSelectedImportCategory(route)}
 			/>
 		</Box>
-		<Flex
-			as={InvisibleButton}
+		<Button
+			variant="Invisible"
+			display="flex"
 			alignItems="center"
 			justifyContent="space-between"
 			width="100%"
@@ -77,7 +77,7 @@ const CheckboxNavLink = ({
 					</Flex>
 				)}
 			</SaturationFlex>
-		</Flex>
+		</Button>
 	</Flex>
 )
 
@@ -165,7 +165,8 @@ const RightToolbar = ({
 						))}
 					</select>
 				</Stack>
-				<InvisibleButton
+				<Button
+					variant="Invisible"
 					marginLeft={3}
 					marginBottom={2}
 					textAlign="left"
@@ -174,7 +175,7 @@ const RightToolbar = ({
 					<AccentText color="Primary">
 						{selectedImportCategories.length ? 'Unselect' : 'Select'} All
 					</AccentText>
-				</InvisibleButton>
+				</Button>
 				{routes.map((route) => (
 					<CheckboxNavLink
 						key={route}
@@ -186,7 +187,7 @@ const RightToolbar = ({
 						numberOfSelectedNewValues={numberOfNewValuesByType[route]}
 					/>
 				))}
-				<PrimaryButton
+				<Button
 					position="absolute"
 					bottom="0"
 					width="calc(100% - 40px)"
@@ -194,7 +195,7 @@ const RightToolbar = ({
 					onClick={importValues}
 				>
 					Import
-				</PrimaryButton>
+				</Button>
 			</Stack>
 		</Box>
 	)
