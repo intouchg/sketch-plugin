@@ -108,16 +108,16 @@ const ReposModal = () => {
 					alignItems="center"
 					justifyContent="space-between"
 					flexShrink={0}
-					paddingX={3}
 					boxShadow="Inset X Accent"
 				>
-					<Heading>
+					<Heading paddingX={3}>
 						Download project
 					</Heading>
 					<CloseModalButton
 						position="relative"
 						width="16px"
-						padding={0}
+						padding={2}
+						marginRight={2}
 						onClick={closeModal}
 					/>
 				</Flex>

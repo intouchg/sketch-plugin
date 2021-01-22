@@ -48,7 +48,7 @@ const CheckboxNavLink = ({
 		>
 			<Text
 				variant="Secondary"
-				fontWeight={isSelectedForImport ? 'Medium' : 'Regular'}
+				fontWeight="Medium"
 			>
 				{routeTitles[route]}
 			</Text>
