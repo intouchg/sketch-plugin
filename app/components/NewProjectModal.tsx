@@ -22,10 +22,10 @@ const ProjectNameInput = styled(Input).attrs<
 	transform: scale3d(1, 1, 1);
 `
 
-const MISSING_PROJECT_NAME_ERROR = 'Input a project name before creating a new project.'
+const MISSING_PROJECT_NAME_ERROR = 'Input a project name to create a new project.'
 const PROJECT_NAME_COLON_ERROR = 'Project name may not contain a colon ":" character.'
-const MISSING_SAVE_LOCATION_ERROR = 'Select a save location before creating a new project.'
-const MISSING_PROJECT_TEMPLATE_ERROR = 'Select a project template before creating a new project.'
+const MISSING_SAVE_LOCATION_ERROR = 'Select a save location to create a new project.'
+const MISSING_PROJECT_TEMPLATE_ERROR = 'Select a project template to create a new project.'
 
 const NewProjectModal = ({
 	setShowNewProjectModal,

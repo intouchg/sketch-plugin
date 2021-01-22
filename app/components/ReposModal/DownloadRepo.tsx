@@ -21,7 +21,7 @@ const BranchNameInput = styled(Input).attrs<
 	transform: scale3d(1, 1, 1);
 `
 
-const MISSING_SAVE_LOCATION_ERROR = 'Select a save location before downloading a project.'
+const MISSING_SAVE_LOCATION_ERROR = 'Select a save location to download the project.'
 
 const DownloadRepo = ({
 	repo,

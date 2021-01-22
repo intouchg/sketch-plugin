@@ -20,7 +20,7 @@ const AzureLoginInput = styled(Input).attrs<
 	transform: scale3d(1, 1, 1);
 `
 
-const OFFLINE_ERROR_MESSAGE = 'Please restore internet connectivity before attempting to sign in.'
+const OFFLINE_ERROR_MESSAGE = 'Restore internet connectivity to sign in.'
 const AUTHENTICATION_ERROR_MESSAGE = 'Authentication failed. Please check your username and access token and try again.'
 
 const AzureLoginForm = ({
