@@ -147,7 +147,7 @@ const RightToolbar = ({
 						variant="Accent"
 						marginBottom={2}
 					>
-						Sketch Document
+						Document
 					</Text>
 					<select
 						value={selectedSketchDocumentIndex}
