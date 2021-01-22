@@ -39,67 +39,67 @@
 	},
 	{
 		"id": "2f0d402a-7b7d-4335-927b-d8c6b4d79873",
-		"value": "#ffdf00",
+		"value": "#ffe000",
 		"name": "Caution",
 		"type": "color"
 	},
 	{
 		"id": "188d26c3-e489-497a-a3c1-affe56eb4c85",
-		"value": "#6b5900",
+		"value": "#6e5900",
 		"name": "Caution Dark",
 		"type": "color"
 	},
 	{
 		"id": "37925adf-554e-4843-9c0e-9fd70862fd1f",
-		"value": "#fffac3",
+		"value": "#fffabc",
 		"name": "Caution Light",
 		"type": "color"
 	},
 	{
 		"id": "bdd16725-b155-46e2-9e65-1bfa9055ae37",
-		"value": "#ff4565",
+		"value": "#ff2660",
 		"name": "Critical",
 		"type": "color"
 	},
 	{
 		"id": "8e038460-29fd-4a55-8ce8-3894e6af4034",
-		"value": "#41000b",
+		"value": "#480009",
 		"name": "Critical Dark",
 		"type": "color"
 	},
 	{
 		"id": "faac2e26-b13f-4249-af02-1c4b286b3c26",
-		"value": "#ffdfe4",
+		"value": "#ffdee4",
 		"name": "Critical Light",
 		"type": "color"
 	},
 	{
 		"id": "aa54d803-f8b1-466f-aa3a-497c3ee0d722",
-		"value": "#6ce11d",
+		"value": "#1be500",
 		"name": "Positive",
 		"type": "color"
 	},
 	{
 		"id": "5405364f-b726-4c38-a072-0e4af67d13a4",
-		"value": "#315d13",
+		"value": "#1d5f00",
 		"name": "Positive Dark",
 		"type": "color"
 	},
 	{
 		"id": "2253249a-80fc-496c-a094-daf3b99e1d9f",
-		"value": "#def8cc",
+		"value": "#d7fac7",
 		"name": "Positive Light",
 		"type": "color"
 	},
 	{
 		"id": "da13e063-6133-4528-b8e4-9245dfa839fe",
-		"value": "#2c90ce",
+		"value": "#0091d4",
 		"name": "Primary",
 		"type": "color"
 	},
 	{
 		"id": "f2754d1b-eec7-4d80-9f03-df2b6eccbec9",
-		"value": "#1274b1",
+		"value": "#0074b6",
 		"name": "Primary Dark",
 		"type": "color"
 	},

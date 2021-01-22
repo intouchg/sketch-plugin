@@ -38,7 +38,7 @@ const AzureModal = () => {
 	return (
 		<ModalBackground>
 			<Flex
-				width="560px"
+				width="740px"
 				padding={5}
 				backgroundColor="Background"
 				boxShadow="Medium"

@@ -50,7 +50,7 @@ const CloneProgress = ({
 				/>
 				<animated.circle
 					strokeDashoffset={progress.to((p) => (1 - p) * 138)}
-					stroke="#2c90ce"
+					stroke="#0091d4"
 					transform="translate(25.500000, 25.500000) rotate(-90.000000) translate(-25.500000, -25.500000)"
 					cx="25.5"
 					cy="25.5"
