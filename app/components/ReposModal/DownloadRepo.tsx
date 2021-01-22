@@ -72,9 +72,21 @@ const DownloadRepo = ({
 						setShowProgress(false)
 						setShowSuccess(true)
 					}))
-					.catch((error) => displayErrorBanner('Please contact a developer for support. Error installing dependencies: ' + error))
+					.catch((error) => {
+						setShowProgress(false)
+						displayErrorBanner('Failed to install dependencies. Please contact a developer for support. Error: ' + error)
+					})
 			}))
-			.catch((error) => displayErrorBanner('Please contact a developer for support. Error downloading project: ' + error))
+			.catch((error) => {
+				setShowProgress(false)
+
+				if (error.includes('already exists and is not an empty directory')) {
+					displayErrorBanner('A project with that name already exists in the save location.')
+				}
+				else {
+					displayErrorBanner('Failed to download project. Please contact a developer for support. Error: ' + error)
+				}
+			})
 	}
 
 	if (showProgress) {

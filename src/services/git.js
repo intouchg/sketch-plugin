@@ -236,15 +236,6 @@ export const pullChanges = () => new Promise((resolve, reject) => {
 	}
 })
 
-export const getLastPushTime = async () => new Promise((resolve, reject) => {
-	try {
-		// Do stuff
-	}
-	catch (error) {
-		throw Error('Failed to get last push time for git branch: ' + error)
-	}
-})
-
 export const openGitRepo = (directory) => new Promise((resolve, reject) => {
 	try {
 		gitDirectory = null
@@ -274,7 +265,13 @@ export const cloneGitRepo = (filepath, remoteUrl, branchName, progressCallback) 
 		const onStdOut = (data) => {}
 
 		const onStdErr = (data) => {
-			const progressMatch = data.toString().match(/Receiving objects:.*\d%/g)
+			const output = data.toString()
+
+			if (output.includes('already exists and is not an empty directory')) {
+				reject(output)
+			}
+
+			const progressMatch = output.match(/Receiving objects:.*\d%/g)
 
 			if (progressMatch && progressCallback) {
 				const progress = progressMatch[progressMatch.length - 1].split('Receiving objects: ')[1]
@@ -286,14 +283,9 @@ export const cloneGitRepo = (filepath, remoteUrl, branchName, progressCallback) 
 			if (code === 0) {
 				resolve(true)
 			}
-			else {
-				throw Error('Git clone exited with code ' + code)
-			}
 		}
 
-		const onError = (error) => {
-			throw Error(error)
-		}
+		const onError = (error) => reject(error)
 
 		const process = new ChildProcess(`cd ${escapedDirectory} && git clone ${remoteUrl} --progress${branchName ? ` --branch ${branchName}` : ''}`, { onStdOut, onStdErr, onClose, onError }, true)
 	}
