@@ -1,8 +1,7 @@
 import React from 'react'
-import { Stack, Flex, Text } from '@i/components'
+import { Stack, Flex, Text, InvisibleButton } from '@i/components'
 import { LetterSpacing } from '../ThemeValues'
 import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
-import { InvisibleButton } from '../InvisibleButton'
 import type { ThemeLetterSpacing } from '@i/theme'
 
 const sortLetterSpacings = (a: ThemeLetterSpacing, b: ThemeLetterSpacing) => {

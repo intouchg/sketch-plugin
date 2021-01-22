@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { Stack, Box, Flex, Text, Button } from '@i/components'
+import { Stack, Box, Flex, Text, Button, InvisibleButton } from '@i/components'
 import { CloseModalButton } from '../CloseModalButton'
 import { Checkbox } from '../Checkbox'
 import { routes, routeTitles } from './index'
@@ -38,8 +38,7 @@ const CheckboxNavLink = ({
 				onClick={() => toggleSelectedImportCategory(route)}
 			/>
 		</Box>
-		<Button
-			variant="Invisible"
+		<InvisibleButton
 			display="flex"
 			alignItems="center"
 			justifyContent="space-between"
@@ -79,7 +78,7 @@ const CheckboxNavLink = ({
 					</Flex>
 				)}
 			</SaturationFlex>
-		</Button>
+		</InvisibleButton>
 	</Flex>
 )
 
@@ -170,8 +169,7 @@ const RightToolbar = ({
 						))}
 					</select>
 				</Stack>
-				<Button
-					variant="Invisible"
+				<InvisibleButton
 					marginLeft={3}
 					marginBottom={2}
 					textAlign="left"
@@ -183,7 +181,7 @@ const RightToolbar = ({
 					>
 						{selectedImportCategories.length ? 'Unselect' : 'Select'} All
 					</Text>
-				</Button>
+				</InvisibleButton>
 				{routes.map((route) => (
 					<CheckboxNavLink
 						key={route}

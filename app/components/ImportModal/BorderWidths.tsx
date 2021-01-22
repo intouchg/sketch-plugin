@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Stack, Flex } from '@i/components'
-import { InvisibleButton } from '../InvisibleButton'
+import { Stack, Flex, InvisibleButton } from '@i/components'
 import { BorderWidth } from '../ThemeValues'
 import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
 import type { ThemeBorderWidth } from '@i/theme'

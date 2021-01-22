@@ -1,8 +1,7 @@
 import React from 'react'
-import { Stack, Flex } from '@i/components'
+import { Stack, Flex, InvisibleButton } from '@i/components'
 import { Shadow } from '../ThemeValues'
 import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
-import { InvisibleButton } from '../InvisibleButton'
 import type { ThemeShadow } from '@i/theme'
 
 const sortShadows = (a: ThemeShadow, b: ThemeShadow) => {

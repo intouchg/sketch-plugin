@@ -141,12 +141,6 @@ const theme = {
 			lineHeight: '1.25rem',
 			fontWeight: '500',
 		},
-		Invisible: {
-			backgroundColor: 'transparent',
-			border: '0',
-			color: 'unset',
-			activeColor: 'unset',
-		},
 	},
 	texts: {
 		Primary: {

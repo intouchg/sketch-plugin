@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Stack, Link, Text } from '@i/components'
-import { InvisibleButton } from '../InvisibleButton'
+import { Stack, Link, Text, InvisibleButton } from '@i/components'
 import type { AzureUserConnection } from '@i/azure'
 
 const OrganizationButton = styled(Link).attrs({ as: InvisibleButton })`

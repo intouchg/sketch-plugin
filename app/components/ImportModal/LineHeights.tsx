@@ -1,8 +1,7 @@
 import React from 'react'
-import { Stack, Flex, Text } from '@i/components'
+import { Stack, Flex, Text, InvisibleButton } from '@i/components'
 import { LineHeight } from '../ThemeValues'
 import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
-import { InvisibleButton } from '../InvisibleButton'
 import type { ThemeLineHeight } from '@i/theme'
 
 const sortLineHeights = (a: ThemeLineHeight, b: ThemeLineHeight) => {

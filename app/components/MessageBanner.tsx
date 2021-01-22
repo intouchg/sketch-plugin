@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
-import { Text, Box, Stack, Flex, Heading, Button } from '@i/components'
+import { Text, Box, Stack, Flex, Heading, Button, InvisibleButton } from '@i/components'
 import { CloseIcon } from './Icons'
 import { setBannerState, initialBannerState } from '../store'
 
@@ -107,8 +107,7 @@ const MessageBanner = () => {
 					</Flex>
 				)}
 			</Stack>
-			<Button
-				variant="Invisible"
+			<InvisibleButton
 				position="absolute"
 				top={0}
 				right={0}
@@ -119,7 +118,7 @@ const MessageBanner = () => {
 					fill={textColor}
 					width="13px"
 				/>
-			</Button>
+			</InvisibleButton>
 		</AnimatedBox>
 	)
 }

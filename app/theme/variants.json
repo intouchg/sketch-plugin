@@ -86,18 +86,6 @@
 	},
 	{
 		"type": "variant",
-		"id": "a5d2a237-f34a-4d2c-a213-808a415d60b8",
-		"variantType": "button",
-		"name": "Invisible",
-		"styles": {
-			"backgroundColor": "transparent",
-			"border": "0",
-			"color": "unset",
-			"activeColor": "unset"
-		}
-	},
-	{
-		"type": "variant",
 		"id": "fdce0a91-ac64-47c1-ad97-d564bf57f78b",
 		"variantType": "text",
 		"name": "Primary",

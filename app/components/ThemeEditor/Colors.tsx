@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Box, Button } from '@i/components'
+import { Box, InvisibleButton } from '@i/components'
 import { Color } from '../ThemeValues'
 import { ColorGrid } from '../ColorGrid'
 import { topToolbarHeight } from '../TopToolbar'
@@ -22,9 +22,8 @@ const Colors = () => {
 				padding={6}
 			>
 				{colors.map((color) => (
-					<Button
+					<InvisibleButton
 						key={color.id}
-						variant="Invisible"
 						position="relative"
 						height="0"
 						paddingBottom="65.31%"
@@ -35,7 +34,7 @@ const Colors = () => {
 							selected={false}
 							{...color}
 						/>
-					</Button>
+					</InvisibleButton>
 				))}
 			</ColorGrid>
 		</Box>

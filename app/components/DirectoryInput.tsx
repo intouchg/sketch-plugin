@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Box, Button, Text } from '@i/components'
+import { Flex, Box, InvisibleButton, Text } from '@i/components'
 import { FolderIcon } from './Icons'
 
 const TruncatedText = styled(Text)`
@@ -17,8 +17,7 @@ const DirectoryInput = ({
     value: string
     onClick: () => void
 } & React.ComponentProps<typeof Flex>) => (
-	<Button
-		variant="Invisible"
+	<InvisibleButton
 		position="relative"
 		width="100%"
 		onClick={onClick}
@@ -48,7 +47,7 @@ const DirectoryInput = ({
 				height="21px"
 			/>
 		</Box>
-	</Button>
+	</InvisibleButton>
 )
 
 export { DirectoryInput }
