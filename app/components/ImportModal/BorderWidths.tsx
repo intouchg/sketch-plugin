@@ -1,8 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Stack, Flex, InvisibleButton } from '@i/components'
+import { Stack, Flex, InvisibleButton, Box } from '@i/components'
 import { BorderWidth } from '../ThemeValues'
-import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
+import { ImportIcon } from './ImportIcon'
 import type { ThemeBorderWidth } from '@i/theme'
 
 const sortBorderWidths = (a: ThemeBorderWidth, b: ThemeBorderWidth) => {
@@ -41,25 +40,18 @@ const BorderWidths = ({
 						padding={3}
 						alignItems="center"
 						marginBottom={4}
-						backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
+						backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
 						borderRadius="Large"
 						as={imported ? InvisibleButton : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
-						{imported ? (
-							<Checkbox
-								checked={Boolean(selected)}
-								marginRight={3}
+						<Box marginRight={2}>
+							<ImportIcon
+								imported={imported}
+								selected={selected}
+								alreadySaved={alreadySaved}
 							/>
-						) : alreadySaved ? (
-							<Checkbox
-								checked
-								disabled
-								marginRight={3}
-							/>
-						) : (
-							<CheckboxPlaceholder marginRight={3} />
-						)}
+						</Box>
 						<BorderWidth {...props} />
 					</Flex>
 				)

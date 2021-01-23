@@ -1,7 +1,7 @@
 import React from 'react'
-import { Stack, Flex, Text, InvisibleButton } from '@i/components'
+import { Stack, Flex, Text, InvisibleButton, Box } from '@i/components'
 import { FontSize } from '../ThemeValues'
-import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
+import { ImportIcon } from './ImportIcon'
 import type { ThemeFontSize } from '@i/theme'
 
 const sortFontSizes = (a: ThemeFontSize, b: ThemeFontSize) => {
@@ -45,27 +45,21 @@ const FontSizes = ({
 						<Flex
 							minWidth="72px"
 							minHeight="36px"
+							padding={2}
 							marginRight={3}
 							alignItems="center"
 							justifyContent="center"
-							backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
+							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
 							borderRadius="Large"
 							flexShrink={0}
 						>
-							{imported ? (
-								<Checkbox
-									checked={Boolean(selected)}
-									padding={2}
+							<Box marginRight={2}>
+								<ImportIcon
+									imported={imported}
+									selected={selected}
+									alreadySaved={alreadySaved}
 								/>
-							) : alreadySaved ? (
-								<Checkbox
-									checked
-									disabled
-									padding={2}
-								/>
-							) : (
-								<CheckboxPlaceholder padding={2} />
-							)}
+							</Box>
 							<Text paddingRight={2}>
 								{pixelValue}
 							</Text>

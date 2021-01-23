@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSpring, animated, config } from 'react-spring'
 import { Box, Flex } from '@i/components'
-import { CheckmarkIcon, OverwriteIcon, NotInSketchIcon } from '../Icons'
+import { CheckmarkIcon, NotInSketchIcon } from '../Icons'
 
 const ImportIcon = ({
 	imported,
@@ -14,22 +14,34 @@ const ImportIcon = ({
 }) => {
 	const spring = useSpring({ config: config.wobbly, transform: `scale3d(${selected ? '1.25, 1.25, 1.25' : '0.9, 0.9, 0.9'})` })
 
-	// alreadySaved means the same value exists in the state.theme.values and the importedSketchValues
+	// alreadySaved means the same value exists in the state.theme.values
+	// and the importedSketchValues, so we just return a placeholder box
 	if (alreadySaved) {
-		return null
+		return (
+			<Box
+				width="36px"
+				height="36px"
+			/>
+		)
 	}
 
 	if (!imported) {
 		return (
-			<Box
+			<Flex
 				position="relative"
-				width="24px"
-				height="24px"
-				margin={1}
+				alignItems="center"
+				justifyContent="center"
+				width="36px"
+				height="36px"
 				title="Not In Sketch"
 			>
-				<NotInSketchIcon />
-			</Box>
+				<Box
+					width="24px"
+					height="24px"
+				>
+					<NotInSketchIcon />
+				</Box>
+			</Flex>
 		)
 	}
 
@@ -45,13 +57,12 @@ const ImportIcon = ({
 					height="28px"
 					alignItems="center"
 					justifyContent="center"
-					backgroundColor="Primary"
+					backgroundColor={selected ? 'Primary' : 'Card'}
 					borderWidth="2px"
 					borderStyle="solid"
 					borderColor="Card"
 					borderRadius="50%"
 					boxShadow="Medium"
-					opacity={selected ? 1 : 0.55}
 				>
 					<CheckmarkIcon
 						fill="Card"

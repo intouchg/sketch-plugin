@@ -1,7 +1,7 @@
 import React from 'react'
-import { Stack, Flex, Text, InvisibleButton } from '@i/components'
+import { Stack, Flex, Text, InvisibleButton, Box } from '@i/components'
 import { LineHeight } from '../ThemeValues'
-import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
+import { ImportIcon } from './ImportIcon'
 import type { ThemeLineHeight } from '@i/theme'
 
 const sortLineHeights = (a: ThemeLineHeight, b: ThemeLineHeight) => {
@@ -47,24 +47,17 @@ const LineHeights = ({
 							paddingX={3}
 							paddingY={2}
 							marginRight={3}
-							backgroundColor={selected ? 'Positive Light' : imported ? 'Background' : 'transparent'}
+							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
 							borderRadius="Large"
 							flexShrink={0}
 						>
-							{imported ? (
-								<Checkbox
-									checked={Boolean(selected)}
-									marginRight={3}
+							<Box marginRight={2}>
+								<ImportIcon
+									imported={imported}
+									selected={selected}
+									alreadySaved={alreadySaved}
 								/>
-							) : alreadySaved ? (
-								<Checkbox
-									checked
-									disabled
-									marginRight={3}
-								/>
-							) : (
-								<CheckboxPlaceholder marginRight={3} />
-							)}
+							</Box>
 							<Text>
 								{value.split('rem')[0]}
 							</Text>

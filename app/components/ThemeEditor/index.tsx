@@ -21,20 +21,32 @@ const ThemeEditor = () => (
 			element={<div>Fonts</div>}
 		/>
 		<Route
-			path="typescale"
-			element={<div>Type Scale</div>}
+			path="fontSizes"
+			element={<div>Font Sizes</div>}
 		/>
 		<Route
-			path="elevation"
-			element={<div>Elevation</div>}
+			path="lineHeights"
+			element={<div>Line Heights</div>}
+		/>
+		<Route
+			path="letterSpacings"
+			element={<div>Letter Spacings</div>}
+		/>
+		<Route
+			path="shadows"
+			element={<div>Shadows</div>}
+		/>
+		<Route
+			path="borderWidths"
+			element={<div>Border Widths</div>}
+		/>
+		<Route
+			path="radii"
+			element={<div>Radii</div>}
 		/>
 		<Route
 			path="spacing"
 			element={<div>Spacing</div>}
-		/>
-		<Route
-			path="borders"
-			element={<div>Borders</div>}
 		/>
 	</Routes>
 )

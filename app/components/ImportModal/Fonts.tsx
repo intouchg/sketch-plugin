@@ -2,9 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Stack, Heading, Flex, Box, InvisibleButton } from '@i/components'
 import { sortAlphabetical } from '@i/utility'
-import { Checkbox } from '../Checkbox'
 import { Font } from '../ThemeValues'
 import { Loading } from '../Loading'
+import { ImportIcon } from './ImportIcon'
 import type { ThemeFont } from '@i/theme'
 import type { SystemFontFamily } from '../../sketchApi'
 
@@ -28,13 +28,23 @@ const FontFamily = ({
 	}
 
 	return (
-		<Stack marginBottom={5}>
-			<Heading
-				variant="Tertiary"
-				marginBottom={3}
-			>
-				{name}
-			</Heading>
+		<Stack marginBottom={6}>
+			<Flex marginBottom={3}>
+				<Heading
+					variant="Tertiary"
+					paddingTop={1}
+					marginRight={2}
+				>
+					{name}
+				</Heading>
+				{!imported && (
+					<ImportIcon
+						imported={false}
+						selected={false}
+						alreadySaved={false}
+					/>
+				)}
+			</Flex>
 			<Flex flexWrap="wrap">
 				{typefaces.map((typeface) => {
 					const name = typeface._name
@@ -44,7 +54,7 @@ const FontFamily = ({
 					const interactable = imported && !alreadySaved
 
 					return (
-						<Box
+						<Flex
 							key={name}
 							paddingRight={2}
 							marginBottom={2}
@@ -54,26 +64,22 @@ const FontFamily = ({
 								padding={2}
 								paddingRight="12px"
 								borderRadius="Large"
-								backgroundColor={selected ? 'Positive Light' : interactable ? 'Background' : 'transparent'}
+								backgroundColor={selected ? 'Primary Lighter' : interactable ? 'Background' : 'transparent'}
 								as={interactable ? InvisibleButton : undefined}
 								onClick={interactable ? () => toggleTypeface(matchingValue) : undefined}
 							>
 								{interactable && (
-									<Checkbox
-										checked={Boolean(selected)}
-										marginRight={2}
-									/>
-								)}
-								{imported && alreadySaved && (
-									<Checkbox
-										checked
-										disabled
-										marginRight={2}
-									/>
+									<Box marginRight={2}>
+										<ImportIcon
+											imported
+											selected={Boolean(selected)}
+											alreadySaved={alreadySaved}
+										/>
+									</Box>
 								)}
 								<Font {...typeface} />
 							</Flex>
-						</Box>
+						</Flex>
 					)
 				})}
 			</Flex>

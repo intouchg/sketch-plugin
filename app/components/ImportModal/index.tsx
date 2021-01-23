@@ -35,11 +35,11 @@ export const routes = Object.keys(views) as ImportModalRoute[]
 export const routeTitles: { [key in ImportModalRoute]: string } = {
 	color: 'Colors',
 	font: 'Fonts',
-	fontSize: 'Type Scale',
+	fontSize: 'Font Sizes',
 	lineHeight: 'Line Heights',
-	shadow: 'Shadows',
-	borderWidth: 'Borders',
 	letterSpacing: 'Letter Spacings',
+	shadow: 'Shadows',
+	borderWidth: 'Border Widths',
 }
 
 export type ImportedValueProps = { imported: boolean, selected: boolean }

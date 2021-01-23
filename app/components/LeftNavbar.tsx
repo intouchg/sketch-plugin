@@ -35,23 +35,32 @@ const ThemeNavigation = () => (
 			Theme
 		</Text>
 		<Stack>
-			<StyledLink to="theme/colors">
+			<StyledLink to="theme/colors/">
 				Colors
 			</StyledLink>
-			<StyledLink to="theme/fonts">
+			<StyledLink to="theme/fonts/">
 				Fonts
 			</StyledLink>
-			<StyledLink to="theme/typescale">
-				Type Scale
+			<StyledLink to="theme/fontSizes/">
+				Font Sizes
 			</StyledLink>
-			<StyledLink to="theme/elevation">
-				Elevation
+			<StyledLink to="theme/lineHeights/">
+				Line Heights
 			</StyledLink>
-			<StyledLink to="theme/spacing">
+			<StyledLink to="theme/letterSpacings/">
+				Letter Spacings
+			</StyledLink>
+			<StyledLink to="theme/shadows/">
+				Shadows
+			</StyledLink>
+			<StyledLink to="theme/borderWidths/">
+				Border Widths
+			</StyledLink>
+			<StyledLink to="theme/radii/">
+				Radii
+			</StyledLink>
+			<StyledLink to="theme/spacing/">
 				Spacing
-			</StyledLink>
-			<StyledLink to="theme/borders">
-				Borders
 			</StyledLink>
 		</Stack>
 	</Stack>
@@ -66,25 +75,25 @@ const ComponentNavigation = () => (
 			Components
 		</Text>
 		<Stack>
-			<StyledLink to="components/button">
+			<StyledLink to="components/button/">
 				Button
 			</StyledLink>
-			<StyledLink to="components/heading">
+			<StyledLink to="components/heading/">
 				Heading
 			</StyledLink>
-			<StyledLink to="components/icon">
+			<StyledLink to="components/icon/">
 				Icon
 			</StyledLink>
-			<StyledLink to="components/input">
+			<StyledLink to="components/input/">
 				Input
 			</StyledLink>
-			<StyledLink to="components/label">
+			<StyledLink to="components/label/">
 				Label
 			</StyledLink>
-			<StyledLink to="components/link">
+			<StyledLink to="components/link/">
 				Link
 			</StyledLink>
-			<StyledLink to="components/text">
+			<StyledLink to="components/text/">
 				Text
 			</StyledLink>
 		</Stack>

@@ -1,7 +1,7 @@
 import React from 'react'
-import { Stack, Flex, InvisibleButton } from '@i/components'
+import { Stack, Flex, InvisibleButton, Box } from '@i/components'
 import { Shadow } from '../ThemeValues'
-import { Checkbox, CheckboxPlaceholder } from '../Checkbox'
+import { ImportIcon } from './ImportIcon'
 import type { ThemeShadow } from '@i/theme'
 
 const sortShadows = (a: ThemeShadow, b: ThemeShadow) => {
@@ -45,22 +45,19 @@ const Shadows = ({
 						as={imported ? InvisibleButton : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
-						{imported ? (
-							<Checkbox
-								checked={Boolean(selected)}
-								marginRight={4}
-								zIndex={1}
+						<Box
+							paddingX={2}
+							paddingY={5}
+							marginRight={4}
+							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
+							borderRadius="Large"
+						>
+							<ImportIcon
+								imported={imported}
+								selected={selected}
+								alreadySaved={alreadySaved}
 							/>
-						) : alreadySaved ? (
-							<Checkbox
-								checked
-								disabled
-								marginRight={4}
-								zIndex={1}
-							/>
-						) : (
-							<CheckboxPlaceholder marginRight={4} />
-						)}
+						</Box>
 						<Shadow {...props} />
 					</Flex>
 				)
