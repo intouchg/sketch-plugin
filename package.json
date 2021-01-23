@@ -88,6 +88,7 @@
     "@skpm/child_process": "0.4.2",
     "@skpm/dialog": "0.4.1",
     "@skpm/fs": "0.2.6",
+    "@skpm/os": "0.1.1",
     "@skpm/path": "0.1.4",
     "@storybook/addon-a11y": "6.0.27",
     "@storybook/addon-knobs": "6.0.27",

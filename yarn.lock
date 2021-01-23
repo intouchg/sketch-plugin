@@ -1598,6 +1598,11 @@
     loader-utils "^1.2.3"
     schema-utils "^0.4.5"
 
+"@skpm/os@0.1.1":
+  version "0.1.1"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@skpm/os/-/os-0.1.1.tgz#22098835ed05b706bff1e55df1930a7eecdd29ef"
+  integrity sha1-IgmINe0Ftwa/8eVd8ZMKfuzdKe8=
+
 "@skpm/path@0.1.4":
   version "0.1.4"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@skpm/path/-/path-0.1.4.tgz#6d97c900cce15769239b14f97124eec3d7920e67"

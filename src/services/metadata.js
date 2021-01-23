@@ -1,4 +1,5 @@
 import fs from '@skpm/fs'
+import os from '@skpm/os'
 import path from '@skpm/path'
 
 export const METADATA_FILENAME = '.idsmetadata.json'
@@ -11,7 +12,7 @@ const INITIAL_NEW_METADATA = {
 	azureAccessToken: '',
 	// This is the default location that new and downloaded projects
 	// will be saved, if the user does not change the save location.
-	defaultSaveDirectory: path.resolve('~/Projects/'),
+	defaultSaveDirectory: path.resolve(os.homedir(), 'Projects'),
 	recentProjects: [],
 }
 
