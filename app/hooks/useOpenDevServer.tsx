@@ -14,8 +14,14 @@ export const useOpenDevServer = () => {
 		sendSketchCommand('openDevServer', {})
 			.then(() => dispatch(setLoadingState({ show: false })))
 			.catch((error) => batch(() => {
-				dispatch(setLoadingState({ show: true }))
-				displayErrorBanner(error)
+				dispatch(setLoadingState({ show: false }))
+
+				if (error.includes('missing dependencies')) {
+					displayErrorBanner('Failed to start preview. Dependencies are missing. Please contact a developer for support.', 'Missing dependencies')
+				}
+				else {
+					displayErrorBanner(error)
+				}
 			}))
 	}
 }

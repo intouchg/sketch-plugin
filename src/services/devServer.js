@@ -18,13 +18,18 @@ const startDevServer = (directory) => new Promise((resolve, reject) => {
 	}
 
 	try {
-		let hasResolved = false
+		const onStdErr = (data) => {
+			const output = data.toString()
+
+			if (output.includes('missing script') || output.includes('command not found')) {
+				reject('missing dependencies')
+			}
+		}
 
 		const onStdOut = (data) => {
 			const output = data.toString()
 
-			if (!hasResolved && (output.includes('started server') || output.includes('compiled successfully'))) {
-				hasResolved = true
+			if (output.includes('started server') || output.includes('compiled successfully')) {
 				resolve(true)
 			}
 		}
@@ -33,7 +38,7 @@ const startDevServer = (directory) => new Promise((resolve, reject) => {
 			throw Error('Dev server process error: ' + error)
 		}
 
-		devServerProcess = new ChildProcess(`cd ${directory} && npm run dev`, { onError, onStdOut })
+		devServerProcess = new ChildProcess(`cd ${directory} && npm run dev`, { onError, onStdErr, onStdOut })
 	}
 	catch (error) {
 		stopDevServer()
