@@ -86,7 +86,6 @@ const Swatch = ({
 					imported={imported}
 					selected={selected}
 					alreadySaved={alreadySaved}
-					willOverwrite={willOverwriteByName}
 				/>
 			</Box>
 		</Box>
@@ -115,7 +114,7 @@ const Colors = ({
 				<>
 					<Text
 						variant="Accent"
-						marginBottom={2}
+						marginBottom={3}
 					>
 						Changed
 					</Text>
@@ -137,7 +136,7 @@ const Colors = ({
 				<>
 					<Text
 						variant="Accent"
-						marginBottom={2}
+						marginBottom={3}
 					>
 						New
 					</Text>
@@ -159,7 +158,7 @@ const Colors = ({
 				<>
 					<Text
 						variant="Accent"
-						marginBottom={2}
+						marginBottom={3}
 					>
 						Project
 					</Text>

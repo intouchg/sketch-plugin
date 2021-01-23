@@ -4,7 +4,7 @@ import { Grid } from '@i/components'
 
 const ColorGrid = styled(Grid)`
 	width: 100%;
-	grid-template-columns: repeat(auto-fill, 156px);
+	grid-template-columns: repeat(auto-fill, minmax(max(min(156px, 23%), 136px), 1fr));
 	justify-content: center;
 `
 
