@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSpring, animated, config } from 'react-spring'
 import { Box, Flex } from '@i/components'
-import { CheckmarkIcon, OverwriteIcon, SketchIcon, CloseIcon } from '../Icons'
+import { CheckmarkIcon, OverwriteIcon, NotInSketchIcon } from '../Icons'
 
 const ImportIcon = ({
 	imported,
@@ -25,23 +25,12 @@ const ImportIcon = ({
 		return (
 			<Box
 				position="relative"
-				width="26px"
-				height="26px"
+				width="24px"
+				height="24px"
 				margin={1}
 				title="Not In Sketch"
 			>
-				<Box position="absolute">
-					<SketchIcon
-						width="26px"
-						height="26px"
-					/>
-				</Box>
-				<Box position="absolute">
-					<CloseIcon
-						fill="Critical"
-						width="26px"
-					/>
-				</Box>
+				<NotInSketchIcon />
 			</Box>
 		)
 	}
@@ -75,7 +64,7 @@ const ImportIcon = ({
 							width="16px"
 							style={{
 								stroke: 'white',
-								strokeWidth: '0.5',
+								strokeWidth: '0.25',
 							}}
 						/>
 					)}

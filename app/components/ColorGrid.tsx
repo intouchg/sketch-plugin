@@ -6,7 +6,7 @@ const ColorGrid = styled(Grid)`
 	flex-grow: 1;
 	margin-top: auto;
 	margin-bottom: auto;
-	grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+	grid-template-columns: repeat(auto-fill, 156px);
 	justify-content: center;
 `
 

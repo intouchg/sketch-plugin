@@ -26,7 +26,7 @@ const Colors = () => {
 						key={color.id}
 						position="relative"
 						height="0"
-						paddingBottom="65.31%"
+						paddingBottom="100%"
 						flexGrow={1}
 						onClick={() => {}}
 					>

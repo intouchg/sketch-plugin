@@ -26,7 +26,7 @@ const Colors = ({
 		.sort(sortColors)
 
 	return (
-		<ColorGrid gridGap={3}>
+		<ColorGrid gridGap={2}>
 			{sortedUniqueColors.map(({ imported, selected, willOverwriteByName, ...props }) => {
 				const { value } = props
 				const alreadySaved = !imported && importedValues.some((v) => v.value === value && v.name === props.name)
@@ -36,7 +36,7 @@ const Colors = ({
 						key={props.id}
 						position="relative"
 						height="0"
-						paddingBottom="65.31%"
+						paddingBottom="100%"
 						flexGrow={1}
 						as={imported ? InvisibleButton : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwriteByName }) : undefined}
