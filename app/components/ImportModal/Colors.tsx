@@ -63,34 +63,32 @@ const Swatch = ({
 	alreadySaved?: boolean
 	toggleSelectedImportedValue: (color: ThemeColor & { willOverwriteByName?: boolean }) => void
 	willOverwriteByName?: boolean
-}) => {
-	return (
+}) => (
+	<Box
+		position="relative"
+		height="0"
+		paddingBottom="100%"
+		flexGrow={1}
+		as={imported ? InvisibleButton : undefined}
+		onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwriteByName }) : undefined}
+	>
+		<Color
+			selected={selected}
+			{...props}
+		/>
 		<Box
-			position="relative"
-			height="0"
-			paddingBottom="100%"
-			flexGrow={1}
-			as={imported ? InvisibleButton : undefined}
-			onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwriteByName }) : undefined}
+			position="absolute"
+			top="0"
+			right="0"
 		>
-			<Color
+			<ImportIcon
+				imported={imported}
 				selected={selected}
-				{...props}
+				alreadySaved={alreadySaved}
 			/>
-			<Box
-				position="absolute"
-				top="0"
-				right="0"
-			>
-				<ImportIcon
-					imported={imported}
-					selected={selected}
-					alreadySaved={alreadySaved}
-				/>
-			</Box>
 		</Box>
-	)
-}
+	</Box>
+)
 
 const Colors = ({
 	values = [],
@@ -125,7 +123,7 @@ const Colors = ({
 						{uniqueImportedChangedColors.map((props) => (
 							<Swatch
 								key={props.id}
-								toggleSelectedImportedValue={() => toggleSelectedImportedValue(props)}
+								toggleSelectedImportedValue={toggleSelectedImportedValue}
 								{...props}
 							/>
 						))}
@@ -147,7 +145,7 @@ const Colors = ({
 						{uniqueImportedColors.map((props) => (
 							<Swatch
 								key={props.id}
-								toggleSelectedImportedValue={() => toggleSelectedImportedValue(props)}
+								toggleSelectedImportedValue={toggleSelectedImportedValue}
 								{...props}
 							/>
 						))}
@@ -174,7 +172,7 @@ const Colors = ({
 								<Swatch
 									key={props.id}
 									alreadySaved={alreadySaved}
-									toggleSelectedImportedValue={() => toggleSelectedImportedValue(props)}
+									toggleSelectedImportedValue={toggleSelectedImportedValue}
 									{...props}
 								/>
 							)
