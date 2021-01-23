@@ -124,8 +124,11 @@ const RightToolbar = ({
 		if (selectedImportCategories.length > 0 && numberOfSelectedValues > 0) {
 			saveSelectedImportedValues()
 		}
+		else if (!selectedImportCategories.length && numberOfSelectedValues > 0) {
+			dispatch(setBannerState({ show: true, type: 'error', title: 'No category selected', message: 'Select categories to import.' }))
+		}
 		else {
-			dispatch(setBannerState({ show: true, type: 'error', title: 'No values selected', message: 'Select values to import.' }))
+			dispatch(setBannerState({ show: true, type: 'error', title: 'No value selected', message: 'Select values to import.' }))
 		}
 	}
 
