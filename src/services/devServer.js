@@ -22,7 +22,7 @@ const startDevServer = (directory) => new Promise((resolve, reject) => {
 			const output = data.toString()
 
 			if (output.includes('missing script') || output.includes('command not found')) {
-				reject('missing dependencies')
+				reject(Error('missing dependencies'))
 			}
 		}
 
