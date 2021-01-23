@@ -5,6 +5,7 @@ import { Flex, Stack, Heading } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
 import { CloseModalButton } from '../CloseModalButton'
 import { RightToolbar } from './RightToolbar'
+import { Loading } from '../Loading'
 import { Colors } from './Colors'
 import { Fonts } from './Fonts'
 import { FontSizes } from './FontSizes'
@@ -12,10 +13,10 @@ import { LineHeights } from './LineHeights'
 import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
 import { LetterSpacings } from './LetterSpacings'
+import { ImportSummary } from './ImportSummary'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { setImportedSketchValues, saveImportedSketchValues } from '../../store'
-import { Loading } from '../Loading'
 import type { ThemeValue } from '@i/theme'
 
 const views = {
@@ -62,6 +63,7 @@ const ImportModal = ({
 	const [ selectedImportCategories, setSelectedImportCategories ] = useState<ImportModalRoute[]>([])
 	const [ selectedImportedValues, setSelectedImportedValues ] = useState<SelectedImportedValue[]>([])
 	const [ showLoading, setShowLoading ] = useState(true)
+	const [ showSummary, setShowSummary ] = useState(false)
 	const displayErrorBanner = useDisplayErrorBanner()
 	const ImportView = views[activeRoute]
 
@@ -102,7 +104,7 @@ const ImportModal = ({
 			selectedImportedValues.filter((v) => selectedImportCategories.includes(v.type as any)),
 		))
 
-		setShowImportModal(false)
+		setShowSummary(true)
 	}
 
 	const toggleSelectedImportedValue = (value: SelectedImportedValue) => {
@@ -148,7 +150,7 @@ const ImportModal = ({
 				width="calc(100vw - 308px)"
 				minWidth="800px"
 				height="calc(100vh - 100px)"
-				minHeight="560px"
+				minHeight="600px"
 				backgroundColor="Card"
 				boxShadow="Medium"
 				borderRadius="Large"
@@ -174,34 +176,45 @@ const ImportModal = ({
 					/>
 				</Flex>
 				<Flex flexGrow={1}>
-					<Flex
-						alignItems="center"
-						justifyContent="center"
-						flexGrow={1}
-						padding={6}
-						overflowY="scroll"
-					>
-						{showLoading ? (
-							<Loading />
-						) : (
-							<ImportView
-								values={routeThemeValues as any}
-								importedValues={routeImportedSketchValues as any}
-								toggleSelectedImportedValue={toggleSelectedImportedValue}
+					{!showSummary && (
+						<>
+							<Flex
+								alignItems="center"
+								justifyContent="center"
+								flexGrow={1}
+								padding={6}
+								overflowY="scroll"
+							>
+								{showLoading && (
+									<Loading />
+								)}
+								{!showLoading && (
+									<ImportView
+										values={routeThemeValues as any}
+										importedValues={routeImportedSketchValues as any}
+										toggleSelectedImportedValue={toggleSelectedImportedValue}
+									/>
+								)}
+							</Flex>
+							<RightToolbar
+								activeRoute={activeRoute}
+								setActiveRoute={setActiveRoute}
+								selectedImportCategories={selectedImportCategories}
+								setSelectedImportCategories={setSelectedImportCategories}
+								sketchDocumentNames={sketchDocumentNames}
+								selectedSketchDocumentIndex={selectedSketchDocumentIndex}
+								updateSelectedSketchDocumentIndex={updateSelectedSketchDocumentIndex}
+								saveSelectedImportedValues={saveSelectedImportedValues}
+								numberOfNewValuesByType={numberOfNewValuesByType}
 							/>
-						)}
-					</Flex>
-					<RightToolbar
-						activeRoute={activeRoute}
-						setActiveRoute={setActiveRoute}
-						selectedImportCategories={selectedImportCategories}
-						setSelectedImportCategories={setSelectedImportCategories}
-						sketchDocumentNames={sketchDocumentNames}
-						selectedSketchDocumentIndex={selectedSketchDocumentIndex}
-						updateSelectedSketchDocumentIndex={updateSelectedSketchDocumentIndex}
-						saveSelectedImportedValues={saveSelectedImportedValues}
-						numberOfNewValuesByType={numberOfNewValuesByType}
-					/>
+						</>
+					)}
+					{showSummary && (
+						<ImportSummary
+							numberOfNewValuesByType={numberOfNewValuesByType}
+							setShowImportModal={setShowImportModal}
+						/>
+					)}
 				</Flex>
 			</Stack>
 		</ModalBackground>
