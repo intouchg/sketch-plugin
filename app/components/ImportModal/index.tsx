@@ -42,6 +42,7 @@ export const routeTitles: { [key in ImportModalRoute]: string } = {
 	letterSpacing: 'Letter Spacings',
 }
 
+export type ImportedValueProps = { imported: boolean, selected: boolean }
 type SelectedImportedValue = ThemeValue & { willOverwriteByName?: boolean }
 
 const ImportModal = ({

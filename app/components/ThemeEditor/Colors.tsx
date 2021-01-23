@@ -16,8 +16,9 @@ const Colors = () => {
 			overflow="scroll"
 		>
 			<ColorGrid
+				flexGrow={1}
 				maxWidth="860px"
-				marginX="auto"
+				margin="auto"
 				gridGap={3}
 				padding={6}
 			>

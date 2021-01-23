@@ -7,12 +7,10 @@ const ImportIcon = ({
 	imported,
 	selected,
 	alreadySaved,
-	willOverwrite,
 }: {
 	imported: boolean | undefined
 	selected: boolean | undefined
-	alreadySaved: boolean
-	willOverwrite?: boolean
+	alreadySaved?: boolean
 }) => {
 	const spring = useSpring({ config: config.wobbly, transform: `scale3d(${selected ? '1.25, 1.25, 1.25' : '0.9, 0.9, 0.9'})` })
 
@@ -36,10 +34,7 @@ const ImportIcon = ({
 	}
 
 	return (
-		<animated.div
-			style={spring}
-			title={willOverwrite ? 'Update Color' : 'Add Color'}
-		>
+		<animated.div style={spring}>
 			<Box
 				backgroundColor="Card"
 				borderRadius="50%"
@@ -50,34 +45,22 @@ const ImportIcon = ({
 					height="28px"
 					alignItems="center"
 					justifyContent="center"
-					backgroundColor={willOverwrite ? 'Caution' : imported ? 'Primary' : 'Critical'}
+					backgroundColor="Primary"
 					borderWidth="2px"
 					borderStyle="solid"
 					borderColor="Card"
 					borderRadius="50%"
 					boxShadow="Medium"
-					opacity={selected || !imported ? 1 : willOverwrite ? 0.7 : 0.55}
+					opacity={selected ? 1 : 0.55}
 				>
-					{imported && !willOverwrite && (
-						<CheckmarkIcon
-							fill="Card"
-							width="16px"
-							style={{
-								stroke: 'white',
-								strokeWidth: '0.25',
-							}}
-						/>
-					)}
-					{imported && willOverwrite && (
-						<OverwriteIcon
-							fill="Card"
-							width="16px"
-							style={{
-								stroke: 'white',
-								strokeWidth: '0.5',
-							}}
-						/>
-					)}
+					<CheckmarkIcon
+						fill="Card"
+						width="16px"
+						style={{
+							stroke: 'white',
+							strokeWidth: '0.25',
+						}}
+					/>
 				</Flex>
 			</Box>
 		</animated.div>
