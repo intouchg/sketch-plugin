@@ -45,15 +45,13 @@ const DownloadRepo = ({
 		return () => void delete window.updateCloneProgress
 	}, [ setSpring ])
 
-	const selectDirectory = () => sendSketchCommand('selectDirectory', {})
-		.then((filepath) => batch(() => {
-			if (error === MISSING_SAVE_LOCATION_ERROR) {
-				setError('')
-			}
+	const selectDirectory = (filepath: string) => batch(() => {
+		if (error === MISSING_SAVE_LOCATION_ERROR) {
+			setError('')
+		}
 
-			setDirectory(filepath)
-		}))
-		.catch((error) => displayErrorBanner(error))
+		setDirectory(filepath)
+	})
 
 	const cloneProject = () => {
 		if (!directory) {
@@ -141,11 +139,9 @@ const DownloadRepo = ({
 						Save Location *
 					</Text>
 					<DirectoryInput
-						borderWidth="1px"
-						borderStyle="solid"
-						borderColor={error ? 'Critical' : 'transparent'}
+						error={Boolean(error)}
 						value={directory}
-						onClick={selectDirectory}
+						onChange={selectDirectory}
 					/>
 					{error && (
 						<Text

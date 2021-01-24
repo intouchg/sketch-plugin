@@ -5,6 +5,7 @@ import type {
 	AzureCredentials,
 	RawImportedSketchValues,
 	SPFontData,
+	Settings,
 } from './types'
 import type { AzureUserConnection } from '@i/azure'
 
@@ -20,7 +21,7 @@ export type SketchCommands = {
     forgetAzureCredentials: SketchCommand<{}, true>
     getAzureCredentials: SketchCommand<{}, AzureCredentials>
     getAzureGitRepos: SketchCommand<{}, AzureUserConnection['gitRepos']>
-    getDefaultSaveDirectory: SketchCommand<{}, string>
+    getLocalSettings: SketchCommand<{}, Settings>
     getRecentProjects: SketchCommand<{}, DirectoryFilepath[]>
     getSketchDocumentNames: SketchCommand<{}, string[]>
     getSystemFonts: SketchCommand<{}, SPFontData>
@@ -33,6 +34,7 @@ export type SketchCommands = {
     saveChangesToAzure: SketchCommand<{}, { didSaveChanges: boolean, needsToUpdate: boolean, lastPushTime: string }>
     selectLocalProject: SketchCommand<DirectoryFilepath | {}, ProjectData>
     selectDirectory: SketchCommand<{}, string>
+    updateLocalSettings: SketchCommand<Partial<Settings>, true>
 }
 
 export type ClientCommands = {

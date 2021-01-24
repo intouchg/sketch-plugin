@@ -15,8 +15,8 @@ const OverflowButton = styled(Button).attrs({ variant: 'Tertiary' })`
 
 const TruncatedTextBox = styled(Box)`
 	max-width: 320px;
-	text-overflow: ellipsis;
 	overflow: hidden;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 `
 

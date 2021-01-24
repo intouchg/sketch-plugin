@@ -27,7 +27,10 @@ const StyledLink = styled(Link).attrs({
 `
 
 const ThemeNavigation = () => (
-	<Stack paddingBottom={3}>
+	<Stack
+		flexShrink={0}
+		paddingBottom={3}
+	>
 		<Text
 			variant="Accent"
 			marginBottom={1}
@@ -67,7 +70,10 @@ const ThemeNavigation = () => (
 )
 
 const ComponentNavigation = () => (
-	<Stack paddingBottom={3}>
+	<Stack
+		flexShrink={0}
+		paddingBottom={3}
+	>
 		<Text
 			variant="Accent"
 			marginBottom={1}
@@ -105,9 +111,9 @@ const LeftNavbar = () => {
 		<Stack
 			width="236px"
 			height={`calc(100vh - ${topToolbarHeight})`}
-			minHeight="480px"
 			padding={3}
 			backgroundColor="Card"
+			overflow="scroll"
 		>
 			<ThemeNavigation />
 			<ComponentNavigation />

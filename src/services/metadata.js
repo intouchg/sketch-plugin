@@ -10,10 +10,13 @@ const RECENT_PROJECTS_MAX_LENGTH = 5
 const INITIAL_NEW_METADATA = {
 	azureUsername: '',
 	azureAccessToken: '',
-	// This is the default location that new and downloaded projects
-	// will be saved, if the user does not change the save location.
-	defaultSaveDirectory: path.resolve(os.homedir(), 'Projects'),
 	recentProjects: [],
+	settings: {
+		// This is the default location that new and downloaded projects
+		// will be saved, if the user does not change the save location.
+		defaultSaveDirectory: path.resolve(os.homedir(), 'Projects'),
+		skipImportSummary: false,
+	},
 }
 
 export const readMetadata = () => {

@@ -38,7 +38,6 @@ const NewProjectModal = ({
 	const [ directory, setDirectory ] = useState(defaultSaveDirectory || '')
 	const [ template, setTemplate ] = useState()
 	const [ error, setError ] = useState('')
-	const displayErrorBanner = useDisplayErrorBanner()
 
 	const updateProjectName = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (error === MISSING_PROJECT_NAME_ERROR) {
@@ -57,17 +56,15 @@ const NewProjectModal = ({
 		setProjectName(event.target.value)
 	}
 
-	const selectDirectory = () => sendSketchCommand('selectDirectory', {})
-		.then((filepath) => batch(() => {
-			if (filepath) {
-				if (error === MISSING_SAVE_LOCATION_ERROR) {
-					setError('')
-				}
-
-				setDirectory(filepath)
+	const selectDirectory = (filepath: string) => batch(() => {
+		if (filepath) {
+			if (error === MISSING_SAVE_LOCATION_ERROR) {
+				setError('')
 			}
-		}))
-		.catch((error) => displayErrorBanner(error))
+
+			setDirectory(filepath)
+		}
+	})
 
 	const selectTemplate = () => {
 		if (error === MISSING_PROJECT_TEMPLATE_ERROR) {
@@ -132,11 +129,9 @@ const NewProjectModal = ({
 							Save Location *
 						</Text>
 						<DirectoryInput
-							borderWidth="1px"
-							borderStyle="solid"
-							borderColor={error === MISSING_SAVE_LOCATION_ERROR ? 'Critical' : 'transparent'}
+							error={error === MISSING_SAVE_LOCATION_ERROR}
 							value={directory}
-							onClick={selectDirectory}
+							onChange={selectDirectory}
 						/>
 						{error === MISSING_SAVE_LOCATION_ERROR && (
 							<Text
