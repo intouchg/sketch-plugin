@@ -26,7 +26,7 @@ const FilterInput = styled(Input).attrs<
 	transform: scale3d(1, 1, 1);
 `
 
-const OFFLINE_ERROR_MESSAGE = 'Please restore internet connectivity to browse Azure projects.'
+const OFFLINE_ERROR_MESSAGE = 'Restore internet connectivity to browse Azure projects.'
 
 const ReposModal = () => {
 	const dispatch = useDispatch()
@@ -40,7 +40,7 @@ const ReposModal = () => {
 	const displayErrorBanner = useDisplayErrorBanner()
 
 	useEffect(() => {
-		if (!showReposModal) {
+		if (!showReposModal || !online) {
 			return
 		}
 

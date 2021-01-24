@@ -13,7 +13,7 @@ export const useInitializeSketchData = () => {
 			.then((recentProjects) => dispatch(setRecentProjects(recentProjects)))
 			.catch((error) => displayErrorBanner(error))
 
-		sendSketchCommand('getAzureCredentials', {})
+		sendSketchCommand('getAzureCredentials', { online: window.navigator.onLine })
 			.then((credentials) => dispatch(setAzureCredentials(credentials)))
 			.catch((error) => displayErrorBanner(error))
 

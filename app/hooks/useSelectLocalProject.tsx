@@ -36,6 +36,10 @@ export const useSelectLocalProject = (filepath?: string) => {
 				navigate('main')
 			})
 
+			if (!window.navigator.onLine) {
+				return dispatch(setCheckingHasRemoteChanges(false))
+			}
+
 			const checkingTimeout = setTimeout(() => dispatch(setCheckingHasRemoteChanges(false)), 60000)
 
 			sendSketchCommand('checkHasRemoteChanges', {})

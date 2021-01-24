@@ -6,7 +6,7 @@ export const getAzureCredentials = async (state, payload) => {
 	try {
 		credentials = readAzureCredentialsMetadata()
 
-		if (!credentials.username || !credentials.accessToken) {
+		if (!payload.online || !credentials.username || !credentials.accessToken) {
 			return credentials
 		}
 	}

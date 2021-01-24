@@ -90,11 +90,7 @@ const AzureRepoInfo = ({
 						{lastPushTime ? `${timeSince(lastPushTime)} ago` : 'Never'}&nbsp;&nbsp;
 					</Text>
 					{hasLocalChanges && (
-						<LimitInteraction
-							as={InvisibleButton}
-							unlimit={online && connected}
-							onClick={promptToRevert}
-						>
+						<InvisibleButton onClick={promptToRevert}>
 							<Text
 								variant="Modal Accent"
 								fontSize={3}
@@ -102,7 +98,7 @@ const AzureRepoInfo = ({
 							>
 								Revert
 							</Text>
-						</LimitInteraction>
+						</InvisibleButton>
 					)}
 				</Flex>
 			</Stack>
