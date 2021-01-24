@@ -56,6 +56,7 @@ const ImportModal = ({
 	const sketchDocumentNames = useSelector((state) => state.theme.sketchDocumentNames)
 	const importedSketchValues = useSelector((state) => state.theme.importedSketchValues)
 	const themeValues = useSelector((state) => state.theme.values)
+	const skipImportSummary = useSelector((state) => state.settings.skipImportSummary)
 	const [ activeRoute, setActiveRoute ] = useState<ImportModalRoute>('color')
 	const routeThemeValueType = themeTypePropertyMap[activeRoute]
 	const routeThemeValues = themeValues[routeThemeValueType]
@@ -104,7 +105,12 @@ const ImportModal = ({
 			selectedImportedValues.filter((v) => selectedImportCategories.includes(v.type as any)),
 		))
 
-		setShowSummary(true)
+		if (skipImportSummary) {
+			setShowImportModal(false)
+		}
+		else {
+			setShowSummary(true)
+		}
 	}
 
 	const toggleSelectedImportedValue = (value: SelectedImportedValue) => {
