@@ -56,7 +56,7 @@ const ReposModal = () => {
 			.catch((error) => displayErrorBanner(error))
 
 		return () => void (isMounted = false)
-	}, [ showReposModal, displayErrorBanner ])
+	}, [ showReposModal, online, displayErrorBanner ])
 
 	if (!showReposModal) {
 		return null

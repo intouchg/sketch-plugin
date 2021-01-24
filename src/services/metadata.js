@@ -77,12 +77,25 @@ export const refreshRecentProjectMetadata = () => {
 	writeMetadata((metadata) => ({ ...metadata, recentProjects: existingRecentProjects }))
 }
 
-if (!fs.existsSync(METADATA_STORAGE_FILEPATH)) {
-	fs.mkdirSync(METADATA_STORAGE_FILEPATH, { recursive: true })
+const validateMetadata = () => {
+	if (!fs.existsSync(METADATA_STORAGE_FILEPATH)) {
+		fs.mkdirSync(METADATA_STORAGE_FILEPATH, { recursive: true })
+	}
+
+	if (!fs.existsSync(METADATA_FILEPATH)) {
+		fs.writeFileSync(METADATA_FILEPATH, JSON.stringify(INITIAL_NEW_METADATA))
+	}
+
+	writeMetadata((metadata) => ({
+		...INITIAL_NEW_METADATA,
+		...metadata,
+		settings: {
+			...INITIAL_NEW_METADATA.settings,
+			...metadata.settings,
+		},
+	}))
+
+	refreshRecentProjectMetadata()
 }
 
-if (!fs.existsSync(METADATA_FILEPATH)) {
-	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify(INITIAL_NEW_METADATA))
-}
-
-refreshRecentProjectMetadata()
+validateMetadata()
