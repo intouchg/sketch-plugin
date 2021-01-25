@@ -218,6 +218,7 @@ const ImportModal = ({
 					{showSummary && (
 						<ImportSummary
 							numberOfNewValuesByType={numberOfNewValuesByType}
+							selectedImportCategories={selectedImportCategories}
 							setShowImportModal={setShowImportModal}
 						/>
 					)}

@@ -5,9 +5,11 @@ import type { ImportModalRoute } from './index'
 
 const ImportSummary = ({
 	numberOfNewValuesByType,
+	selectedImportCategories,
 	setShowImportModal,
 }: {
-    numberOfNewValuesByType: { [key in ImportModalRoute]: number }
+	numberOfNewValuesByType: { [key in ImportModalRoute]: number }
+	selectedImportCategories: ImportModalRoute[]
     setShowImportModal: React.Dispatch<React.SetStateAction<boolean>>
 }) => (
 	<Flex
@@ -34,7 +36,7 @@ const ImportSummary = ({
 			>
 				<Flex>
 					<Stack marginRight={3}>
-						{Object.entries(numberOfNewValuesByType).map(([ key, number ]) => (
+						{Object.entries(numberOfNewValuesByType).map(([ key, number ]: [ keyof typeof routeTitles, number ]) => (
 							<Flex
 								key={key}
 								minWidth="24px"
@@ -51,7 +53,7 @@ const ImportSummary = ({
 									fontWeight="Demibold"
 									color="Primary"
 								>
-									{number}
+									{selectedImportCategories.includes(key) ? number : 0}
 								</Text>
 							</Flex>
 						))}
