@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Flex, InvisibleButton, Box } from '@i/components'
+import { Stack, Flex, Button, Box } from '@i/components'
 import { BorderWidth } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeBorderWidth } from '@i/theme'
@@ -34,6 +34,7 @@ const BorderWidths = ({
 
 				return (
 					<Flex
+						invisible
 						key={props.id}
 						width="100%"
 						maxWidth="540px"
@@ -42,7 +43,7 @@ const BorderWidths = ({
 						marginBottom={4}
 						backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
 						borderRadius="Large"
-						as={imported ? InvisibleButton : undefined}
+						as={imported ? Button : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Box marginRight={2}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Flex, InvisibleButton, Box } from '@i/components'
+import { Stack, Flex, Button, Box } from '@i/components'
 import { Shadow } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeShadow } from '@i/theme'
@@ -37,12 +37,13 @@ const Shadows = ({
 
 				return (
 					<Flex
+						invisible
 						key={props.id}
 						width="100%"
 						maxWidth="640px"
 						alignItems="center"
 						marginBottom={4}
-						as={imported ? InvisibleButton : undefined}
+						as={imported ? Button : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Box

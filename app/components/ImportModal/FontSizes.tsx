@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Flex, Text, InvisibleButton, Box } from '@i/components'
+import { Stack, Flex, Text, Button, Box } from '@i/components'
 import { FontSize } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeFontSize } from '@i/theme'
@@ -35,11 +35,12 @@ const FontSizes = ({
 
 				return (
 					<Flex
+						invisible
 						key={props.id}
 						flexShrink={0}
 						marginY={2}
 						alignItems="stretch"
-						as={imported ? InvisibleButton : undefined}
+						as={imported ? Button : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Flex

@@ -1,17 +1,18 @@
 import React from 'react'
-import { InvisibleButton } from '@i/components'
+import { Button } from '@i/components'
 import { CloseIcon } from './Icons'
 
 const CloseModalButton = ({
 	onClick,
 	...props
-}: React.ComponentProps<typeof InvisibleButton> & {
+}: React.ComponentProps<typeof Button> & {
     onClick: () => void
 }) => {
 	const { width, ...rest } = props
 
 	return (
-		<InvisibleButton
+		<Button
+			invisible
 			position="absolute"
 			top="0"
 			right="0"
@@ -26,7 +27,7 @@ const CloseModalButton = ({
 				width={width ? width : '13px'}
 				fill="Text Light"
 			/>
-		</InvisibleButton>
+		</Button>
 	)
 }
 

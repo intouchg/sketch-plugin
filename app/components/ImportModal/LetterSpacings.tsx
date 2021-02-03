@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Flex, Text, InvisibleButton, Box } from '@i/components'
+import { Stack, Flex, Text, Button, Box } from '@i/components'
 import { LetterSpacing } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeLetterSpacing } from '@i/theme'
@@ -33,11 +33,12 @@ const LetterSpacings = ({
 
 				return (
 					<Flex
+						invisible
 						key={props.id}
 						flexShrink={0}
 						marginY={3}
 						alignItems="center"
-						as={imported ? InvisibleButton : undefined}
+						as={imported ? Button : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Flex

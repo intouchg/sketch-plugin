@@ -18,7 +18,11 @@ const ProjectNameInput = styled(Input).attrs<
 }))<{
 	error: boolean
 }>`
-	border: 1px solid ${(props) => props.error ? props.theme.colors.Critical : 'transparent'};
+	${(props) => `
+		border-color: ${props.theme.colors.Critical};
+		border-style: ${props.error ? 'solid' : 'none'};
+	`}
+
 	transform: scale3d(1, 1, 1);
 `
 

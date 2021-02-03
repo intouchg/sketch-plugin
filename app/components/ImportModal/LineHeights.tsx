@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Flex, Text, InvisibleButton, Box } from '@i/components'
+import { Stack, Flex, Text, Button, Box } from '@i/components'
 import { LineHeight } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeLineHeight } from '@i/theme'
@@ -34,11 +34,12 @@ const LineHeights = ({
 
 				return (
 					<Flex
+						invisible
 						key={props.id}
 						maxWidth="640px"
 						alignItems="stretch"
 						marginBottom={4}
-						as={imported ? InvisibleButton : undefined}
+						as={imported ? Button : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Flex

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Heading, Text, InvisibleButton } from '@i/components'
+import { Flex, Stack, Heading, Text, Button } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { CloseModalButton } from './CloseModalButton'
 import { DirectoryInput } from './DirectoryInput'
@@ -68,19 +68,16 @@ const SettingsModal = () => {
 								onChange={updateDefaultSaveDirectory}
 							/>
 						</Stack>
-						<InvisibleButton
-							display="flex"
-							alignItems="center"
-							onClick={updateSkipImportSummary}
-						>
+						<Flex alignItems="center">
 							<Checkbox
 								marginRight={2}
 								checked={skipImportSummary}
+								onChange={updateSkipImportSummary}
 							/>
 							<Text>
 								Skip Sketch import summary
 							</Text>
-						</InvisibleButton>
+						</Flex>
 					</Stack>
 				</Stack>
 			</Flex>

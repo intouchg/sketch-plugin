@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Box, InvisibleButton, Text } from '@i/components'
+import { Stack, Box, Button, Text } from '@i/components'
 import { Color } from '../ThemeValues'
 import { ColorGrid } from '../ColorGrid'
 import { ImportIcon } from './ImportIcon'
@@ -65,11 +65,12 @@ const Swatch = ({
 	willOverwriteByName?: boolean
 }) => (
 	<Box
+		invisible
 		position="relative"
 		height="0"
 		paddingBottom="100%"
 		flexGrow={1}
-		as={imported ? InvisibleButton : undefined}
+		as={imported ? Button : undefined}
 		onClick={imported ? () => toggleSelectedImportedValue({ ...props, willOverwriteByName }) : undefined}
 	>
 		<Color

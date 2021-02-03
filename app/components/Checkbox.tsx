@@ -40,13 +40,4 @@ const Checkbox = ({
 	</CoreCheckbox>
 )
 
-const CheckboxPlaceholder = styled(Box)`
-	box-sizing: content-box;
-	width: 24px;
-	height: 24px;
-`
-
-export {
-	Checkbox,
-	CheckboxPlaceholder,
-}
+export { Checkbox }
