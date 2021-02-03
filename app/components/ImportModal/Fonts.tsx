@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Stack, Heading, Flex, Box, InvisibleButton } from '@i/components'
+import { Stack, Heading, Flex, Box, Button } from '@i/components'
 import { sortAlphabetical } from '@i/utility'
 import { Font } from '../ThemeValues'
 import { Loading } from '../Loading'
@@ -65,7 +65,8 @@ const FontFamily = ({
 								paddingRight="12px"
 								borderRadius="Large"
 								backgroundColor={selected ? 'Primary Lighter' : interactable ? 'Background' : 'transparent'}
-								as={interactable ? InvisibleButton : undefined}
+								as={interactable ? Button : undefined}
+								invisible={Boolean(interactable)}
 								onClick={interactable ? () => toggleTypeface(matchingValue) : undefined}
 							>
 								{interactable && (

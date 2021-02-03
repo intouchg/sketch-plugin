@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { Stack, Box, Flex, Text, Button, InvisibleButton } from '@i/components'
+import { Stack, Box, Flex, Text, Button } from '@i/components'
 import { Checkbox } from '../Checkbox'
 import { routes, routeTitles } from './index'
 import { setBannerState } from '../../store'
@@ -31,13 +31,14 @@ const CheckboxNavLink = ({
 		marginBottom={1}
 		backgroundColor={isActiveRoute ? 'white' : 'transparent'}
 	>
-		<Box margin={2}>
-			<Checkbox
-				checked={isSelectedForImport}
-				onClick={() => toggleSelectedImportCategory(route)}
-			/>
-		</Box>
-		<InvisibleButton
+		<Checkbox
+			margin={2}
+			flexShrink={0}
+			checked={isSelectedForImport}
+			onClick={() => toggleSelectedImportCategory(route)}
+		/>
+		<Button
+			invisible
 			display="flex"
 			alignItems="center"
 			justifyContent="space-between"
@@ -78,7 +79,7 @@ const CheckboxNavLink = ({
 					</Flex>
 				)}
 			</SaturationFlex>
-		</InvisibleButton>
+		</Button>
 	</Flex>
 )
 
@@ -167,7 +168,8 @@ const RightToolbar = ({
 						))}
 					</select>
 				</Stack>
-				<InvisibleButton
+				<Button
+					invisible
 					marginLeft={3}
 					marginBottom={2}
 					textAlign="left"
@@ -179,7 +181,7 @@ const RightToolbar = ({
 					>
 						{selectedImportCategories.length ? 'Unselect' : 'Select'} All
 					</Text>
-				</InvisibleButton>
+				</Button>
 				{routes.map((route) => (
 					<CheckboxNavLink
 						key={route}

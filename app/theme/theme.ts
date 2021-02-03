@@ -90,7 +90,6 @@ const theme = {
 			backgroundColor: '#0091d4',
 			activeColor: '#ffffff',
 			borderWidth: '1px',
-			borderStyle: 'solid',
 			borderColor: '#0091d4',
 			borderRadius: '6px',
 			fontFamily: 'Avenir Next',
@@ -107,7 +106,6 @@ const theme = {
 			backgroundColor: 'transparent',
 			activeColor: '#232323',
 			borderWidth: '1px',
-			borderStyle: 'solid',
 			borderColor: '#dddddd',
 			borderRadius: '6px',
 			fontFamily: 'Avenir Next',
@@ -228,10 +226,26 @@ const theme = {
 			color: '#232323',
 			fontFamily: 'Avenir Next',
 			fontSize: '0.875rem',
+			backgroundColor: '#ffffff',
+			borderStyle: 'none',
 			borderRadius: '6px',
 			padding: '16px',
 		},
 	},
+	radios: {},
+	checkboxes: {
+		Primary: {
+			width: '1.5em',
+			height: '1.5em',
+			backgroundColor: '#ffffff',
+			borderColor: '#dddddd',
+			borderRadius: '4px',
+		},
+	},
+	selects: {},
+	sliders: {},
+	toggles: {},
+	textareas: {},
 } as const
 
 type StyleTheme = typeof theme

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Stack, Box, Heading, Flex, Text, Button, InvisibleButton } from '@i/components'
+import { Stack, Box, Heading, Flex, Text, Button } from '@i/components'
 import { CloudUpIcon } from '../Icons'
 import { LimitInteraction } from '../LimitInteraction'
 import { useDownloadUpdates, useSaveChanges, useRevertChanges } from '../../hooks'
@@ -90,7 +90,10 @@ const AzureRepoInfo = ({
 						{lastPushTime ? `${timeSince(lastPushTime)} ago` : 'Never'}&nbsp;&nbsp;
 					</Text>
 					{hasLocalChanges && (
-						<InvisibleButton onClick={promptToRevert}>
+						<Button
+							invisible
+							onClick={promptToRevert}
+						>
 							<Text
 								variant="Modal Accent"
 								fontSize={3}
@@ -98,7 +101,7 @@ const AzureRepoInfo = ({
 							>
 								Revert
 							</Text>
-						</InvisibleButton>
+						</Button>
 					)}
 				</Flex>
 			</Stack>

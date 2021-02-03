@@ -9,7 +9,6 @@
 			"backgroundColor": "da13e063-6133-4528-b8e4-9245dfa839fe",
 			"activeColor": "9f80015f-d74c-4c09-b8ab-a4e58ed23ff9",
 			"borderWidth": "25a594f2-f0eb-4ff6-917d-6434fab0f101",
-			"borderStyle": "solid",
 			"borderColor": "da13e063-6133-4528-b8e4-9245dfa839fe",
 			"borderRadius": "861e9edb-de7f-441b-9659-62a55cd9a799",
 			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
@@ -32,7 +31,6 @@
 			"backgroundColor": "transparent",
 			"activeColor": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
 			"borderWidth": "25a594f2-f0eb-4ff6-917d-6434fab0f101",
-			"borderStyle": "solid",
 			"borderColor": "ab6688a5-4c32-4d70-91eb-81a95417b55d",
 			"borderRadius": "861e9edb-de7f-441b-9659-62a55cd9a799",
 			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
@@ -220,8 +218,23 @@
 			"color": "f1d3f95f-bfd8-4dca-b92f-4016488533c6",
 			"fontFamily": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
 			"fontSize": "67f7ad4d-5801-4f59-b1a9-56b29ac6a250",
+			"backgroundColor": "9f80015f-d74c-4c09-b8ab-a4e58ed23ff9",
+			"borderStyle": "none",
 			"borderRadius": "861e9edb-de7f-441b-9659-62a55cd9a799",
 			"padding": "0310d5cd-79e0-40c5-82d3-a638d68fc4f9"
+		}
+	},
+	{
+		"type": "variant",
+		"id": "8b80cfc6-2962-4767-809a-f5afefe0fa24",
+		"variantType": "checkbox",
+		"name": "Primary",
+		"styles": {
+			"width": "1.5em",
+			"height": "1.5em",
+			"backgroundColor": "9f80015f-d74c-4c09-b8ab-a4e58ed23ff9",
+			"borderColor": "ab6688a5-4c32-4d70-91eb-81a95417b55d",
+			"borderRadius": "6d07adc4-fca1-40ae-8282-253945440469"
 		}
 	}
 ]

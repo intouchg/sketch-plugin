@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react'
 import { useDispatch, batch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring'
-import { Stack, Button, InvisibleButton } from '@i/components'
+import { Stack, Button } from '@i/components'
 import { EllipsesIcon } from '../Icons'
 import { topToolbarHeight } from './index'
 import { resetThemeState, resetProjectState, setShowSettingsModal } from '../../store'
@@ -36,7 +36,8 @@ const MoreMenu = ({
 			ref={menuButtonElement}
 			style={{ display: 'inline-block' }}
 		>
-			<InvisibleButton
+			<Button
+				invisible
 				paddingX={2}
 				paddingY={3}
 				onClick={() => setShowMenu((state) => !state)}
@@ -46,7 +47,7 @@ const MoreMenu = ({
 					width="16px"
 					height="8px"
 				/>
-			</InvisibleButton>
+			</Button>
 			<animated.div
 				style={{
                     position: 'fixed',

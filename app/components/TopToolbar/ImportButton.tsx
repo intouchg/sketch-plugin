@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { InvisibleButton, Text } from '@i/components'
+import { Button, Text } from '@i/components'
 import { SketchIcon } from '../Icons'
 import { setBannerState } from '../../store'
 
@@ -22,7 +22,8 @@ const ImportButton = ({
 	}
 
 	return (
-		<InvisibleButton
+		<Button
+			invisible
 			display="inline-flex"
 			marginRight={4}
 			paddingY={3}
@@ -39,7 +40,7 @@ const ImportButton = ({
 				width="16px"
 				height="16px"
 			/>
-		</InvisibleButton>
+		</Button>
 	)
 }
 

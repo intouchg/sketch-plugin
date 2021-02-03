@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Box, InvisibleButton, Text } from '@i/components'
+import { Flex, Box, Button, Text } from '@i/components'
 import { FolderIcon } from './Icons'
 import { useDisplayErrorBanner } from '../hooks'
 import { sendSketchCommand } from '../sketchApi'
@@ -28,14 +28,15 @@ const DirectoryInput = ({
 		.catch((error) => displayErrorBanner(error))
 
 	return (
-		<InvisibleButton
+		<Button
+			invisible
 			position="relative"
 			width="100%"
 			onClick={selectDirectory}
 		>
 			<Flex
 				alignItems="center"
-				height="48px"
+				height="51px"
 				paddingX={3}
 				backgroundColor="Card"
 				borderWidth="1px"
@@ -61,7 +62,7 @@ const DirectoryInput = ({
 					height="21px"
 				/>
 			</Box>
-		</InvisibleButton>
+		</Button>
 	)
 }
 
