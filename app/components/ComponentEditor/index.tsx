@@ -6,7 +6,7 @@ const ComponentEditor = () => (
 		<Route
 			path="/"
 			element={
-				<Navigate to="button" />
+				<Navigate to="button/" />
 			}
 		/>
 		<Route

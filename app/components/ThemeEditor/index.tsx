@@ -7,7 +7,7 @@ const ThemeEditor = () => (
 		<Route
 			path="/"
 			element={
-				<Navigate to="colors" />
+				<Navigate to="colors/" />
 			}
 		/>
 		<Route
