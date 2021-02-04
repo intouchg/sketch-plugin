@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { Stack, Box, Flex, Text, Button } from '@i/components'
+import { Stack, Box, Flex, Text, Button, Select } from '@i/components'
 import { Checkbox } from '../Checkbox'
 import { routes, routeTitles } from './index'
 import { setBannerState } from '../../store'
@@ -153,10 +153,9 @@ const RightToolbar = ({
 					>
 						Document
 					</Text>
-					<select
+					<Select
 						value={selectedSketchDocumentIndex}
-						style={{ fontSize: '1.5rem' }}
-						onChange={(event) => updateSelectedSketchDocumentIndex(parseInt(event.target.value, 10))}
+						onChange={(event: React.ChangeEvent<HTMLSelectElement>) => updateSelectedSketchDocumentIndex(parseInt(event.target.value, 10))}
 					>
 						{sketchDocumentNames.map((name, index) => (
 							<option
@@ -166,7 +165,7 @@ const RightToolbar = ({
 								{name}
 							</option>
 						))}
-					</select>
+					</Select>
 				</Stack>
 				<Button
 					invisible

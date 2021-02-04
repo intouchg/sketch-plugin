@@ -1,5 +1,6 @@
 const { build } = require('tarot')
 const IntouchThemePlugin = require('@i/webpack-theme-plugin')
+const IntouchSVGRPlugin = require('@i/webpack-svgr-plugin')
 
 module.exports = build({
     source: 'app',
@@ -14,6 +15,7 @@ module.exports = build({
     babelConfigPath: 'babel.config.js',
     eslintConfigPath: '.eslintrc.js',
     plugins: [
+        new IntouchSVGRPlugin(),
         new IntouchThemePlugin(),
     ],
 })

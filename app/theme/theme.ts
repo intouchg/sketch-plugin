@@ -242,7 +242,17 @@ const theme = {
 			borderRadius: '4px',
 		},
 	},
-	selects: {},
+	selects: {
+		Primary: {
+			color: '#232323',
+			fontFamily: 'Avenir Next',
+			fontSize: '0.875rem',
+			backgroundColor: '#ffffff',
+			borderStyle: 'none',
+			borderRadius: '6px',
+			padding: '16px',
+		},
+	},
 	sliders: {},
 	toggles: {},
 	textareas: {},
