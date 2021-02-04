@@ -25,8 +25,13 @@ export const selectLocalProject = async (state, payload) => {
 		throw Error(`The folder you selected is not a valid Intouch Design System project. Could not locate a ${configFilename} config file at filepath: ${configFilepath}`)
 	}
 
-	const configData = fs.readFileSync(configFilepath).toString()
-	const config = validateConfig(JSON.parse(configData))
+	const configData = JSON.parse(fs.readFileSync(configFilepath).toString())
+
+	if (configData.entry) {
+		return selectLocalProject(state, { filepath: path.resolve(selectedProjectDirectory, configData.entry) })
+	}
+
+	const config = validateConfig(configData)
 
 	if (!config) {
 		throw Error(`Invalid format for ${configFilename} config file at filepath: ${configFilepath}`)
