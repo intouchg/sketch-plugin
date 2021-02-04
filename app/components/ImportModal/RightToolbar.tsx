@@ -35,7 +35,7 @@ const CheckboxNavLink = ({
 			margin={2}
 			flexShrink={0}
 			checked={isSelectedForImport}
-			onClick={() => toggleSelectedImportCategory(route)}
+			onChange={() => toggleSelectedImportCategory(route)}
 		/>
 		<Button
 			invisible
