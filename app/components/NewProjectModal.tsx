@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { useDispatch, useSelector, batch } from 'react-redux'
 import { Flex, Stack, Heading, Box, Text, Input, Button } from '@i/components'
 import { ModalBackground } from './ModalBackground'
@@ -7,24 +6,6 @@ import { CloseModalButton } from './CloseModalButton'
 import { DirectoryInput } from './DirectoryInput'
 import { sendSketchCommand } from '../sketchApi'
 import { useDisplayErrorBanner } from '../hooks'
-
-const ProjectNameInput = styled(Input).attrs<
-	typeof Input
->((props) => ({
-	autoCorrect: 'off',
-	autoCapitalize: 'off',
-	autoComplete: 'off',
-	spellCheck: 'false',
-}))<{
-	error: boolean
-}>`
-	${(props) => `
-		border-color: ${props.theme.colors.Critical};
-		border-style: ${props.error ? 'solid' : 'none'};
-	`}
-
-	transform: scale3d(1, 1, 1);
-`
 
 const MISSING_PROJECT_NAME_ERROR = 'Input a project name to create a new project.'
 const PROJECT_NAME_COLON_ERROR = 'Project name may not contain a colon ":" character.'
@@ -111,8 +92,14 @@ const NewProjectModal = ({
 						>
 							Project Name *
 						</Text>
-						<ProjectNameInput
-							error={error === MISSING_PROJECT_NAME_ERROR || error === PROJECT_NAME_COLON_ERROR}
+						<Input
+							borderColor="Critical"
+							borderStyle={error === MISSING_PROJECT_NAME_ERROR || error === PROJECT_NAME_COLON_ERROR ? 'solid' : 'none'}
+							style={{ transform: 'scale3d(1, 1, 1)' }}
+							autoCorrect="off"
+							autoCapitalize="off"
+							autoComplete="off"
+							spellCheck="false"
 							value={projectName}
 							onChange={updateProjectName}
 						/>

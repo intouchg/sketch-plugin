@@ -1,8 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { useDispatch, batch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useSpring, animated } from 'react-spring'
-import { Stack, Button } from '@i/components'
+import { Box, Stack, Button } from '@i/components'
 import { Icon } from '../Icon'
 import { topToolbarHeight } from './index'
 import { resetThemeState, resetProjectState, setShowSettingsModal } from '../../store'
@@ -18,7 +17,6 @@ const MoreMenu = ({
 	const navigate = useNavigate()
 	const menuButtonElement = useRef<HTMLDivElement>(null)
 	const [ showMenu, setShowMenu ] = useState(false)
-	const spring = useSpring({ maxHeight: showMenu ? '340px' : '0px' })
 	const hideMenu = useCallback(() => setShowMenu(false), [ setShowMenu ])
 	const displayErrorBanner = useDisplayErrorBanner()
 	useOutsideClickListener(menuButtonElement, hideMenu)
@@ -32,9 +30,9 @@ const MoreMenu = ({
 		.catch((error) => displayErrorBanner(error))
 
 	return (
-		<div
+		<Box
+			display="inline-block"
 			ref={menuButtonElement}
-			style={{ display: 'inline-block' }}
 		>
 			<Button
 				invisible
@@ -49,54 +47,52 @@ const MoreMenu = ({
 					height="8px"
 				/>
 			</Button>
-			<animated.div
-				style={{
-                    position: 'fixed',
-                    top: topToolbarHeight,
-                    right: 0,
-					overflow: 'hidden',
-					transform: 'scale3d(1, 1, 1)',
-                    ...spring,
-				}}
-			>
-				<Stack
-					alignItems="flex-start"
-					padding={3}
-					backgroundColor="Card"
-					borderWidth="1px"
-					borderStyle="solid"
-					borderColor="Accent"
-					borderRadius="Medium"
-					boxShadow="Medium"
+			{showMenu && (
+				<Box
+					position="fixed"
+					top={topToolbarHeight}
+					right="0"
+					overflow="hidden"
 				>
-					<Button
-						variant="Tertiary"
-						padding={2}
-						onClick={() => dispatch(setShowSettingsModal(true))}
+					<Stack
+						alignItems="flex-start"
+						padding={3}
+						backgroundColor="Card"
+						borderWidth="1px"
+						borderStyle="solid"
+						borderColor="Accent"
+						borderRadius="Medium"
+						boxShadow="Medium"
 					>
-						Settings
-					</Button>
-					{showProjectOptions && (
-						<>
-							<Button
-								variant="Tertiary"
-								padding={2}
-								onClick={() => openBrowserWindow('https://google.com')}
-							>
-								Support
-							</Button>
-							<Button
-								variant="Tertiary"
-								padding={2}
-								onClick={closeProject}
-							>
-								Close Project
-							</Button>
-						</>
-					)}
-				</Stack>
-			</animated.div>
-		</div>
+						<Button
+							variant="Tertiary"
+							padding={2}
+							onClick={() => dispatch(setShowSettingsModal(true))}
+						>
+							Settings
+						</Button>
+						{showProjectOptions && (
+							<>
+								<Button
+									variant="Tertiary"
+									padding={2}
+									onClick={() => openBrowserWindow('https://google.com')}
+								>
+									Support
+								</Button>
+								<Button
+									variant="Tertiary"
+									padding={2}
+									onClick={closeProject}
+								>
+									Close Project
+								</Button>
+							</>
+						)}
+					</Stack>
+				</Box>
+			)}
+		</Box>
 	)
 }
 

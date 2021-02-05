@@ -1,24 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import { useDispatch, batch } from 'react-redux'
 import { Flex, Stack, Input, Text, Button } from '@i/components'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
 import { setAzureCredentials, setAzureModalState, setLoadingState, setShowReposModal } from '../../store'
-
-const AzureLoginInput = styled(Input).attrs<
-	typeof Input
->((props) => ({
-	autoCorrect: 'off',
-	autoCapitalize: 'off',
-	autoComplete: 'off',
-	spellCheck: 'false',
-}))<{
-	error: boolean
-}>`
-	border: 1px solid ${(props) => props.error ? props.theme.colors.Critical : 'transparent'};
-	text-transform: lowercase;
-	transform: scale3d(1, 1, 1);
-`
 
 const OFFLINE_ERROR_MESSAGE = 'Restore internet connectivity to sign in.'
 const AUTHENTICATION_ERROR_MESSAGE = 'Authentication failed. Please check your username and access token and try again.'
@@ -89,8 +73,16 @@ const AzureLoginForm = ({
 				>
 					Email Address
 				</Text>
-				<AzureLoginInput
-					error={Boolean(error)}
+				<Input
+					textTransform="lowercase"
+					borderWidth="1px"
+					borderStyle="solid"
+					borderColor={error ? 'Critical' : 'transparent'}
+					style={{ transform: 'scale(1, 1, 1)' }}
+					autoCorrect="off"
+					autoCapitalize="off"
+					autoComplete="off"
+					spellCheck="false"
 					value={usernameValue}
 					onChange={(event) => setUsernameValue(event.target.value)}
 				/>
@@ -102,8 +94,16 @@ const AzureLoginForm = ({
 				>
 					Access Token
 				</Text>
-				<AzureLoginInput
-					error={Boolean(error)}
+				<Input
+					textTransform="lowercase"
+					borderWidth="1px"
+					borderStyle="solid"
+					borderColor={error ? 'Critical' : 'transparent'}
+					style={{ transform: 'scale(1, 1, 1)' }}
+					autoCorrect="off"
+					autoCapitalize="off"
+					autoComplete="off"
+					spellCheck="false"
 					value={accessTokenValue}
 					onChange={(event) => setAccessTokenValue(event.target.value)}
 				/>

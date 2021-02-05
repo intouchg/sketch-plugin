@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import { useSelector, batch } from 'react-redux'
 import { useSpring } from 'react-spring'
 import { Stack, Heading, Input, Flex, Text, Button } from '@i/components'
@@ -9,17 +8,6 @@ import { CloneSuccess } from './CloneSuccess'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import type { AzureGitRepo } from '@i/azure'
-
-const BranchNameInput = styled(Input).attrs<
-	typeof Input
->((props) => ({
-	autoCorrect: 'off',
-	autoCapitalize: 'off',
-	autoComplete: 'off',
-	spellCheck: 'false',
-}))`
-	transform: scale3d(1, 1, 1);
-`
 
 const MISSING_SAVE_LOCATION_ERROR = 'Select a save location to download the project.'
 
@@ -159,7 +147,12 @@ const DownloadRepo = ({
 					>
 						Branch Name
 					</Text>
-					<BranchNameInput
+					<Input
+						autoCorrect="off"
+						autoCapitalize="off"
+						autoComplete="off"
+						spellCheck="false"
+						style={{ transform: 'scale3d(1, 1, 1)' }}
 						value={branchName}
 						placeholder="Only change this if instructed by a developer"
 						onChange={(event) => setBranchName(event.target.value)}
