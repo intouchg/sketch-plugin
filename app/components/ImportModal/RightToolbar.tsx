@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { Stack, Box, Flex, Text, Button, Select } from '@i/components'
-import { Checkbox } from '../Checkbox'
+import { Stack, Box, Flex, Text, Button, Select, Checkbox } from '@i/components'
+import { Icon } from '../Icon'
 import { routes, routeTitles } from './index'
 import { setBannerState } from '../../store'
 import type { ImportModalRoute } from './index'
@@ -34,6 +34,12 @@ const CheckboxNavLink = ({
 		<Checkbox
 			margin={2}
 			flexShrink={0}
+			icon={
+				<Icon
+					icon="Checkmark"
+					padding="2px"
+				/>
+			}
 			checked={isSelectedForImport}
 			onChange={() => toggleSelectedImportCategory(route)}
 		/>

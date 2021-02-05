@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSpring, animated, config } from 'react-spring'
 import { Box, Flex } from '@i/components'
-import { CheckmarkIcon, NotInSketchIcon } from '../Icons'
+import { Icon } from '../Icon'
+import { NotInSketchIcon } from './NotInSketchIcon'
 
 const ImportIcon = ({
 	imported,
@@ -64,7 +65,8 @@ const ImportIcon = ({
 					borderRadius="50%"
 					boxShadow="Medium"
 				>
-					<CheckmarkIcon
+					<Icon
+						icon="Checkmark"
 						fill="Card"
 						width="16px"
 						style={{
