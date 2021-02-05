@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Text } from '@i/components'
-import { SketchIcon } from '../Icons'
+import { Icon } from '../Icon'
 import { setBannerState } from '../../store'
 
 const ImportButton = ({
@@ -36,7 +36,8 @@ const ImportButton = ({
 			>
 				Import
 			</Text>
-			<SketchIcon
+			<Icon
+				icon="Sketch"
 				width="16px"
 				height="16px"
 			/>

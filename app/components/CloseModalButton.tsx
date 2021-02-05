@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@i/components'
-import { CloseIcon } from './Icons'
+import { Icon } from './Icon'
 
 const CloseModalButton = ({
 	onClick,
@@ -23,7 +23,8 @@ const CloseModalButton = ({
 			{...rest}
 			onClick={onClick}
 		>
-			<CloseIcon
+			<Icon
+				icon="Close"
 				width={width ? width : '13px'}
 				fill="Text Light"
 			/>

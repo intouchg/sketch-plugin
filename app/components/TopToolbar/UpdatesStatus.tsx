@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Box, Button } from '@i/components'
 import { Loading } from '../Loading'
-import { CloudDownIcon } from '../Icons'
+import { Icon } from '../Icon'
 import { useDownloadUpdates } from '../../hooks'
 
 const UpdatesStatus = () => {
@@ -38,7 +38,8 @@ const UpdatesStatus = () => {
 			>
 				Download latest
 				<Box marginLeft={1}>
-					<CloudDownIcon
+					<Icon
+						icon="CloudDown"
 						fill="Card"
 						width="14px"
 					/>

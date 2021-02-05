@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Flex, Box, Button, Text } from '@i/components'
-import { FolderIcon } from './Icons'
+import { Icon } from './Icon'
 import { useDisplayErrorBanner } from '../hooks'
 import { sendSketchCommand } from '../sketchApi'
 
@@ -56,7 +56,8 @@ const DirectoryInput = ({
 				margin="14px"
 				marginTop="13px"
 			>
-				<FolderIcon
+				<Icon
+					icon="Folder"
 					fill="Text Light"
 					width="20px"
 					height="21px"

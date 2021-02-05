@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Flex, Button, Box, Text } from '@i/components'
+import { Stack, Flex, Button, Box } from '@i/components'
 import { BorderWidth } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeBorderWidth } from '@i/theme'
@@ -38,34 +38,21 @@ const BorderWidths = ({
 						key={props.id}
 						width="100%"
 						maxWidth="540px"
+						padding={3}
 						alignItems="center"
-						justifyContent="space-around"
 						marginBottom={4}
+						backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
+						borderRadius="Large"
 						as={imported ? Button : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
-						<Flex
-							minWidth="72px"
-							minHeight="36px"
-							padding={2}
-							marginRight={3}
-							alignItems="center"
-							justifyContent="center"
-							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
-							borderRadius="Large"
-							flexShrink={0}
-						>
-							<Box marginRight={2}>
-								<ImportIcon
-									imported={imported}
-									selected={selected}
-									alreadySaved={alreadySaved}
-								/>
-							</Box>
-							<Text paddingRight={2}>
-								{props.value}
-							</Text>
-						</Flex>
+						<Box marginRight={2}>
+							<ImportIcon
+								imported={imported}
+								selected={selected}
+								alreadySaved={alreadySaved}
+							/>
+						</Box>
 						<BorderWidth {...props} />
 					</Flex>
 				)

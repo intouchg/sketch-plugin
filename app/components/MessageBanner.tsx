@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
 import { Text, Box, Stack, Flex, Heading, Button } from '@i/components'
-import { CloseIcon } from './Icons'
+import { Icon } from './Icon'
 import { setBannerState, initialBannerState } from '../store'
 
 const AnimatedBox = animated(Box)
@@ -115,7 +115,8 @@ const MessageBanner = () => {
 				margin={3}
 				onClick={cancel}
 			>
-				<CloseIcon
+				<Icon
+					icon="Close"
 					fill={textColor}
 					width="13px"
 				/>

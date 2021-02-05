@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Text } from '@i/components'
-import { ReactIcon } from '../Icons'
+import { Icon } from '../Icon'
 import { useOpenDevServer } from '../../hooks'
 
 const PreviewButton = () => {
@@ -21,7 +21,8 @@ const PreviewButton = () => {
 			>
 				Preview
 			</Text>
-			<ReactIcon
+			<Icon
+				icon="ReactLogo"
 				width="14px"
 				height="13px"
 			/>

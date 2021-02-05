@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Stack, Box, Heading, Flex, Text, Button } from '@i/components'
-import { CloudUpIcon } from '../Icons'
+import { Icon } from '../Icon'
 import { LimitInteraction } from '../LimitInteraction'
 import { useDownloadUpdates, useSaveChanges, useRevertChanges } from '../../hooks'
 import { timeSince } from '@i/utility'
@@ -124,7 +124,8 @@ const AzureRepoInfo = ({
 				>
 					Save to Azure&nbsp;
 					<Box marginLeft={1}>
-						<CloudUpIcon
+						<Icon
+							icon="CloudUp"
 							fill="Card"
 							width="24px"
 						/>

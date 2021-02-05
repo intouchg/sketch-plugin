@@ -3,7 +3,7 @@ import { useDispatch, batch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useSpring, animated } from 'react-spring'
 import { Stack, Button } from '@i/components'
-import { EllipsesIcon } from '../Icons'
+import { Icon } from '../Icon'
 import { topToolbarHeight } from './index'
 import { resetThemeState, resetProjectState, setShowSettingsModal } from '../../store'
 import { useOutsideClickListener, useDisplayErrorBanner } from '../../hooks'
@@ -42,7 +42,8 @@ const MoreMenu = ({
 				paddingY={3}
 				onClick={() => setShowMenu((state) => !state)}
 			>
-				<EllipsesIcon
+				<Icon
+					icon="Ellipses"
 					fill="Text Light"
 					width="16px"
 					height="8px"

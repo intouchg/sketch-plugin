@@ -14,6 +14,15 @@ module.exports = build({
     tsConfigPath: 'tsconfig.json',
     babelConfigPath: 'babel.config.js',
     eslintConfigPath: '.eslintrc.js',
+    eslintFiles: [
+        '*.tsx',
+        'components',
+        'hooks',
+        'pages',
+        'sketchApi',
+        'store',
+        'theme',
+    ],
     plugins: [
         new IntouchSVGRPlugin(),
         new IntouchThemePlugin(),

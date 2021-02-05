@@ -126,7 +126,7 @@
 "@babel/generator@^7.11.6", "@babel/generator@^7.12.10", "@babel/generator@^7.12.13":
   version "7.12.15"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/generator/-/generator-7.12.15.tgz#4617b5d0b25cc572474cc1aafee1edeaf9b5368f"
-  integrity sha512-6F2xHxBiFXWNSGb7vyCUTBF8RCLY66rS0zEPcP8t/nQyXjha5EuK4z7H5o7fWG8B4M7y6mqVWq1J+1PuwRhecQ==
+  integrity sha1-Rhe10LJcxXJHTMGq/uHt6vm1No8=
   dependencies:
     "@babel/types" "^7.12.13"
     jsesc "^2.5.1"
@@ -328,7 +328,7 @@
 "@babel/parser@^7.11.5", "@babel/parser@^7.12.10", "@babel/parser@^7.12.13", "@babel/parser@^7.7.0":
   version "7.12.15"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/parser/-/parser-7.12.15.tgz#2b20de7f0b4b332d9b119dd9c33409c538b8aacf"
-  integrity sha512-AQBOU2Z9kWwSZMd6lNjCX0GUgFonL1wAM1db8L8PMk9UDaGsRCArBkU4Sc+UCM3AE4hjbXx+h58Lb3QT4oRmrA==
+  integrity sha1-KyDefwtLMy2bEZ3ZwzQJxTi4qs8=
 
 "@babel/plugin-proposal-async-generator-functions@^7.0.0", "@babel/plugin-proposal-async-generator-functions@^7.10.4", "@babel/plugin-proposal-async-generator-functions@^7.12.1", "@babel/plugin-proposal-async-generator-functions@^7.12.13":
   version "7.12.13"
@@ -852,7 +852,7 @@
 "@babel/plugin-transform-runtime@^7.12.1":
   version "7.12.15"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.12.15.tgz#4337b2507288007c2b197059301aa0af8d90c085"
-  integrity sha512-OwptMSRnRWJo+tJ9v9wgAf72ydXWfYSXWhnQjZing8nGZSDFqU1MBleKM3+DriKkcbv7RagA8gVeB0A1PNlNow==
+  integrity sha1-QzeyUHKIAHwrGXBZMBqgr42QwIU=
   dependencies:
     "@babel/helper-module-imports" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.12.13"
@@ -1244,7 +1244,7 @@
 "@babel/standalone@^7.8.7":
   version "7.12.15"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/standalone/-/standalone-7.12.15.tgz#fade4ccb2af79c53300b8e71f4c1f0ecf59123e2"
-  integrity sha512-H4TLICPkno/jBZWW4SC3kVzK3ByrwtyANZ1gCgl4+01DuXDyUFTWqigYvd5vjuixzXfdkDodTvXhv5p249pQNw==
+  integrity sha1-+t5Myyr3nFMwC45x9MHw7PWRI+I=
 
 "@babel/template@^7.10.4", "@babel/template@^7.12.13", "@babel/template@^7.12.7":
   version "7.12.13"
@@ -1437,9 +1437,9 @@
     "@i/utility" latest
 
 "@i/components@latest":
-  version "0.0.91"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.91.tgz#d5609dd6d193b35ab950cbbffd9adbb1a74451dd"
-  integrity sha1-1WCd1tGTs1q5UMu//ZrbsadEUd0=
+  version "0.0.93"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.93.tgz#20c096f63e08d51e07f6bb997471c8fe8f348cc4"
+  integrity sha1-IMCW9j4I1R4H9ruZdHHI/o80jMQ=
   dependencies:
     "@babel/runtime" "7.12.5"
     "@i/theme" latest
@@ -13176,10 +13176,10 @@ tarot-typescript-config@latest:
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tarot-typescript-config/-/tarot-typescript-config-0.0.4.tgz#ed6186fce24046404a08c75d24d353fec10ac888"
   integrity sha1-7WGG/OJARkBKCMddJNNT/sEKyIg=
 
-tarot@0.1.0:
-  version "0.1.0"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tarot/-/tarot-0.1.0.tgz#9bb505d6feb1f93acf44c4a90b3c222f2eb5d472"
-  integrity sha1-m7UF1v6x+TrPRMSpCzwiLy611HI=
+tarot@0.1.1:
+  version "0.1.1"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/tarot/-/tarot-0.1.1.tgz#729e23818f390fdf11035fa5502b4070deeb03ff"
+  integrity sha1-cp4jgY85D98RA1+lUCtAcN7rA/8=
   dependencies:
     "@babel/core" "7.11.6"
     "@babel/plugin-proposal-class-properties" "7.10.4"
