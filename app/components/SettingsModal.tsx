@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Heading, Text, Toggle, DotIcon } from '@i/components'
+import { Flex, Stack, Heading, Text, Toggle, DotIcon, Label } from '@i/components'
 import { ModalBackground } from './ModalBackground'
 import { CloseModalButton } from './CloseModalButton'
 import { DirectoryInput } from './DirectoryInput'
@@ -69,20 +69,25 @@ const SettingsModal = () => {
 							/>
 						</Stack>
 						<Flex alignItems="center">
-							<Toggle
-								icon={<DotIcon variant="" />}
-								color="Card"
-								fill="Primary"
-								stroke="Primary"
-								borderColor="Accent"
-								backgroundColor="Primary"
-								marginRight={2}
-								checked={skipImportSummary}
-								onClick={updateSkipImportSummary}
-							/>
-							<Text>
-								Skip Sketch import summary
-							</Text>
+							<Label
+								display="flex"
+								alignItems="center"
+							>
+								<Toggle
+									icon={<DotIcon variant="" />}
+									color="Card"
+									fill="Primary"
+									stroke="Primary"
+									borderColor="Accent"
+									backgroundColor="Primary"
+									marginRight={2}
+									checked={skipImportSummary}
+									onClick={updateSkipImportSummary}
+								/>
+								<Text>
+									Skip Sketch import summary
+								</Text>
+							</Label>
 						</Flex>
 					</Stack>
 				</Stack>

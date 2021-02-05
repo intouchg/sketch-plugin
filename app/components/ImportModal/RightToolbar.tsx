@@ -8,7 +8,8 @@ import { setBannerState } from '../../store'
 import type { ImportModalRoute } from './index'
 
 const SaturationFlex = styled(Flex)<{ desaturate: boolean }>`
-	filter: saturate(${(props) => props.desaturate ? '0' : '1'});
+	filter: saturate(${(props) => props.desaturate ? 0 : 1});
+	transform: scale3d(1, 1, 1);
 `
 
 const CheckboxNavLink = ({
