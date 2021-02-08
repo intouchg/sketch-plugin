@@ -26,7 +26,7 @@ const AzureStatus = () => {
 					width="8px"
 					height="8px"
 					backgroundColor={!online ? 'Caution' : connected ? 'Positive' : 'Critical'}
-					borderRadius="50%"
+					borderRadius="9999px"
 					marginLeft={1}
 				/>
 			</Text>

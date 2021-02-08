@@ -110,6 +110,7 @@ const LeftNavbar = () => {
 	return (
 		<Stack
 			width="236px"
+			minWidth="122px"
 			height={`calc(100vh - ${topToolbarHeight})`}
 			padding={3}
 			backgroundColor="Card"

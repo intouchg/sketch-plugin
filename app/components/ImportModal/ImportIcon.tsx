@@ -50,7 +50,7 @@ const ImportIcon = ({
 		<animated.div style={spring}>
 			<Box
 				backgroundColor="Card"
-				borderRadius="50%"
+				borderRadius="9999px"
 				margin={1}
 			>
 				<Flex
@@ -62,7 +62,7 @@ const ImportIcon = ({
 					borderWidth="2px"
 					borderStyle="solid"
 					borderColor="Card"
-					borderRadius="50%"
+					borderRadius="9999px"
 					boxShadow="Medium"
 				>
 					<Icon
