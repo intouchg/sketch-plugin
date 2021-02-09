@@ -10,9 +10,9 @@ import { CreateFontSize } from './CreateFontSize'
 import { sortFontSizes } from '../../ImportModal/FontSizes'
 
 const FontSizes = () => {
-	const fontSizes = useSelector((state) => state.theme.values.fontSizes)
+	const values = useSelector((state) => state.theme.values.fontSizes)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
-	const selectedFontSize = selectedId ? fontSizes.find((fontSizes) => fontSizes.id === selectedId)! : null
+	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
 
 	const toggleCreating = () => {
@@ -30,18 +30,18 @@ const FontSizes = () => {
 					gridGap={3}
 					padding={6}
 				>
-					{fontSizes.slice().sort(sortFontSizes).map((fontSize) => (
+					{values.slice().sort(sortFontSizes).map((value) => (
 						<Button
 							invisible
-							key={fontSize.id}
-							backgroundColor={fontSize.id === selectedId ? 'Card' : 'transparent'}
+							key={value.id}
+							backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
 							borderWidth="2px"
-							borderColor={fontSize.id === selectedId ? 'Primary Light' : 'transparent'}
+							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
 							borderStyle="solid"
 							borderRadius="Medium"
-							onClick={() => setSelectedId(fontSize.id)}
+							onClick={() => setSelectedId(value.id)}
 						>
-							<FontSize {...fontSize} />
+							<FontSize {...value} />
 						</Button>
 					))}
 				</Stack>
@@ -57,8 +57,8 @@ const FontSizes = () => {
 						setSelectedId={setSelectedId}
 					/>
                 )}
-				{selectedFontSize && (
-					<EditFontSize fontSize={selectedFontSize} />
+				{selectedValue && (
+					<EditFontSize fontSize={selectedValue} />
                 )}
 			</RightToolbar>
 		</>

@@ -5,7 +5,7 @@ import { PixelInput } from '../PixelInput'
 import { createThemeValue } from '../../../store'
 import { createUuid } from '@i/utility'
 
-const CreateFontSize = ({
+const CreateLineHeight = ({
 	setCreating,
 	setSelectedId,
 }: {
@@ -15,11 +15,11 @@ const CreateFontSize = ({
 	const dispatch = useDispatch()
 	const [ value, setValue ] = useState('16')
 
-	const createFontSize = () => {
+	const createLineHeight = () => {
 		const id = createUuid()
 
 		dispatch(createThemeValue({
-			type: 'fontSize',
+			type: 'lineHeight',
 			id,
 			value: `${parseFloat((Number(value) / 16).toFixed(4))}rem`,
 		}))
@@ -34,7 +34,7 @@ const CreateFontSize = ({
 				marginTop={2}
 				marginBottom={3}
 			>
-				New font size
+				New line height
 			</Heading>
 			<Flex
 				alignItems="center"
@@ -43,10 +43,10 @@ const CreateFontSize = ({
 				marginBottom={4}
 			>
 				<Text>
-					fontSize
+					lineHeight
 				</Text>
 				<PixelInput
-					min={6}
+					min={0}
 					max={200}
 					value={value}
 					onChange={(event) => setValue(event.target.value)}
@@ -59,7 +59,7 @@ const CreateFontSize = ({
 				right="0"
 				marginX={3}
 				marginBottom={4}
-				onClick={createFontSize}
+				onClick={createLineHeight}
 			>
 				Create
 			</Button>
@@ -67,4 +67,4 @@ const CreateFontSize = ({
 	)
 }
 
-export { CreateFontSize }
+export { CreateLineHeight }

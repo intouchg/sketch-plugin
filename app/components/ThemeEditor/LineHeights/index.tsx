@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Button } from '@i/components'
-import { Color } from '../../ThemeValues'
-import { ColorGrid } from '../../ColorGrid'
+import { Button, Stack } from '@i/components'
+import { LineHeight } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
-import { EditColor } from './EditColor'
-import { CreateColor } from './CreateColor'
+import { EditLineHeight } from './EditLineHeight'
+import { CreateLineHeight } from './CreateLineHeight'
+import { sortLineHeights } from '../../ImportModal/LineHeights'
 
-const Colors = () => {
-	const values = useSelector((state) => state.theme.values.colors)
+const LineHeights = () => {
+	const values = useSelector((state) => state.theme.values.lineHeights)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -23,32 +23,28 @@ const Colors = () => {
 	return (
 		<>
 			<ValuesContainer>
-				<ColorGrid
+				<Stack
 					flexGrow={1}
 					maxWidth="860px"
 					margin="auto"
 					gridGap={3}
 					padding={6}
 				>
-					{values.map((value) => (
+					{values.slice().sort(sortLineHeights).map((value) => (
 						<Button
 							invisible
 							key={value.id}
-							position="relative"
-							height="0"
-							paddingBottom="100%"
-							backgroundColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
+							backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
+							borderWidth="2px"
+							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
+							borderStyle="solid"
 							borderRadius="Medium"
-							flexGrow={1}
 							onClick={() => setSelectedId(value.id)}
 						>
-							<Color
-								selected={value.id === selectedId}
-								{...value}
-							/>
+							<LineHeight {...value} />
 						</Button>
 					))}
-				</ColorGrid>
+				</Stack>
 				<CreateOverlay
 					active={creating}
 					onClick={toggleCreating}
@@ -56,17 +52,17 @@ const Colors = () => {
 			</ValuesContainer>
 			<RightToolbar>
 				{creating && (
-					<CreateColor
+					<CreateLineHeight
 						setCreating={setCreating}
 						setSelectedId={setSelectedId}
 					/>
                 )}
 				{selectedValue && (
-					<EditColor color={selectedValue} />
+					<EditLineHeight lineHeight={selectedValue} />
                 )}
 			</RightToolbar>
 		</>
 	)
 }
 
-export { Colors }
+export { LineHeights }

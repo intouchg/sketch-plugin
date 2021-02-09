@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Input, Flex, Text, Label } from '@i/components'
+import { Flex, Text } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeFontSize } from '@i/theme'
+import type { ThemeLineHeight } from '@i/theme'
 
-const EditFontSize = ({
-	fontSize,
+const EditLineHeight = ({
+	lineHeight,
 }: {
-    fontSize: ThemeFontSize
+    lineHeight: ThemeLineHeight
 }) => {
 	const dispatch = useDispatch()
 	const [ value, setValue ] = useState('')
 
 	useEffect(() => {
-		if (fontSize) {
-			setValue(parseFloat((Number(fontSize.value.split('rem')[0]) * 16).toFixed(4)).toString())
+		if (lineHeight) {
+			setValue(parseFloat((Number(lineHeight.value.split('rem')[0]) * 16).toFixed(4)).toString())
 		}
-	}, [ fontSize ])
+	}, [ lineHeight ])
 
-	const updateFontSize = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const updateLineHeight = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(updateThemeValue({
-			...fontSize,
+			...lineHeight,
 			value: `${parseFloat((Number(value) / 16).toFixed(4))}rem`,
 		}))
 	}
@@ -34,17 +34,17 @@ const EditFontSize = ({
 			marginBottom={4}
 		>
 			<Text>
-				fontSize
+				lineHeight
 			</Text>
 			<PixelInput
-				min={6}
+				min={0}
 				max={200}
 				value={value}
 				onChange={(event) => setValue(event.target.value)}
-				onBlur={updateFontSize}
+				onBlur={updateLineHeight}
 			/>
 		</Flex>
 	)
 }
 
-export { EditFontSize }
+export { EditLineHeight }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Colors } from './Colors'
 import { FontSizes } from './FontSizes'
+import { LineHeights } from './LineHeights'
 
 const ThemeEditor = () => (
 	<Routes>
@@ -29,7 +30,9 @@ const ThemeEditor = () => (
 		/>
 		<Route
 			path="lineHeights"
-			element={<div>Line Heights</div>}
+			element={
+				<LineHeights />
+			}
 		/>
 		<Route
 			path="letterSpacings"

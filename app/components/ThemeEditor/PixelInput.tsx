@@ -5,13 +5,33 @@ const PixelInput = ({
 	value,
 	onChange,
 	onBlur,
+	min,
+	max,
 	width = '62px',
 	...props
 }: React.ComponentProps<typeof Label> & {
-    value: string
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-    onBlur: (event: React.ChangeEvent<HTMLInputElement>) => void
+    value?: string
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void
+	min?: number
+	max?: number
 }) => {
+	const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const value = Number(event.target.value)
+
+		if (min && value < min) {
+			event.target.value = String(min)
+		}
+
+		if (max && value > max) {
+			event.target.value = String(max)
+		}
+
+		if (onBlur) {
+			onBlur(event)
+		}
+	}
+
 	return (
 		<Label
 			display="flex"
@@ -32,13 +52,10 @@ const PixelInput = ({
                     appearance: 'none',
                     transform: 'scale3d(1, 1, 1)',
                 }}
-				autoCorrect="off"
-				autoCapitalize="off"
 				autoComplete="off"
-				spellCheck="false"
 				value={value}
 				onChange={onChange}
-				onBlur={onBlur}
+				onBlur={handleBlur}
 			/>
 			<Text
 				color="Text Light"
