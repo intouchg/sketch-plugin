@@ -7,10 +7,11 @@ import type { ThemeFontSize } from '@i/theme'
 
 export const FONT_SIZE_MIN = 6
 export const FONT_SIZE_MAX = 200
+export const FONT_SIZE_PRECISION = 4
 
 // Takes a pixel value from an <Input type="number"> field
 // and returns ThemeFontSize['value'] string
-export const parseFontSize = (value: string) => `${parseFloat((Number(value) / 16).toFixed(4))}rem`
+export const parseFontSize = (value: string) => `${parseFloat((Number(value) / 16).toFixed(FONT_SIZE_PRECISION))}rem`
 
 const EditFontSize = ({
 	fontSize,
@@ -22,7 +23,7 @@ const EditFontSize = ({
 
 	useEffect(() => {
 		if (fontSize) {
-			setValue(parseFloat((Number(fontSize.value.split('rem')[0]) * 16).toFixed(4)).toString())
+			setValue(parseFloat((Number(fontSize.value.split('rem')[0]) * 16).toFixed(FONT_SIZE_PRECISION)).toString())
 		}
 	}, [ fontSize ])
 

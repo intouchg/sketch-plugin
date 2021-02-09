@@ -7,10 +7,11 @@ import type { ThemeLineHeight } from '@i/theme'
 
 export const LINE_HEIGHT_MIN = -50
 export const LINE_HEIGHT_MAX = 200
+export const LINE_HEIGHT_PRECISION = 4
 
 // Takes a pixel value from an <Input type="number"> field
 // and returns ThemeLineHeight['value'] string
-export const parseLineHeight = (value: string) => `${parseFloat((Number(value) / 16).toFixed(4))}rem`
+export const parseLineHeight = (value: string) => `${parseFloat((Number(value) / 16).toFixed(LINE_HEIGHT_PRECISION))}rem`
 
 const EditLineHeight = ({
 	lineHeight,
@@ -22,7 +23,7 @@ const EditLineHeight = ({
 
 	useEffect(() => {
 		if (lineHeight) {
-			setValue(parseFloat((Number(lineHeight.value.split('rem')[0]) * 16).toFixed(4)).toString())
+			setValue(parseFloat((Number(lineHeight.value.split('rem')[0]) * 16).toFixed(LINE_HEIGHT_PRECISION)).toString())
 		}
 	}, [ lineHeight ])
 

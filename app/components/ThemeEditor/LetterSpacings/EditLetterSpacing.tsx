@@ -7,10 +7,11 @@ import type { ThemeLetterSpacing } from '@i/theme'
 
 export const LETTER_SPACING_MIN = -50
 export const LETTER_SPACING_MAX = 50
+export const LETTER_SPACING_PRECISION = 1
 
 // Takes a pixel value from an <Input type="number"> field
 // and returns ThemeLetterSpacing['value'] string
-export const parseLetterSpacing = (value: string) => `${parseFloat(Number(value).toFixed(1))}px`
+export const parseLetterSpacing = (value: string) => `${parseFloat(Number(value).toFixed(LETTER_SPACING_PRECISION))}px`
 
 const EditLetterSpacing = ({
 	letterSpacing,

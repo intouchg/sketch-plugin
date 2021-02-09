@@ -5,6 +5,7 @@ import { FontSizes } from './FontSizes'
 import { LineHeights } from './LineHeights'
 import { LetterSpacings } from './LetterSpacings'
 import { BorderWidths } from './BorderWidths'
+import { Space } from './Space'
 
 const ThemeEditor = () => (
 	<Routes>
@@ -58,7 +59,9 @@ const ThemeEditor = () => (
 		/>
 		<Route
 			path="spacing"
-			element={<div>Spacing</div>}
+			element={
+				<Space />
+			}
 		/>
 	</Routes>
 )

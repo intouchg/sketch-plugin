@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Button, Stack, Flex, Text } from '@i/components'
-import { FontSize } from '../../ThemeValues'
+import { BorderWidth } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
-import { EditFontSize } from './EditFontSize'
-import { CreateFontSize } from './CreateFontSize'
-import { sortFontSizes } from '../../ImportModal/FontSizes'
+import { EditSpace } from './EditSpace'
+import { CreateSpace } from './CreateSpace'
+import { sortBorderWidths } from '../../ImportModal/BorderWidths'
 
-const FontSizes = () => {
-	const values = useSelector((state) => state.theme.values.fontSizes)
+const Space = () => {
+	const values = useSelector((state) => state.theme.values.space)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -30,7 +30,7 @@ const FontSizes = () => {
 					gridGap={3}
 					padding={6}
 				>
-					{values.slice().sort(sortFontSizes).map((value) => (
+					{values.slice().sort(sortBorderWidths as any).map((value) => (
 						<Button
 							invisible
 							key={value.id}
@@ -57,11 +57,11 @@ const FontSizes = () => {
 								borderRadius="Large"
 								flexShrink={0}
 							>
-								<Text color={value.id === selectedId ? 'Primary' : 'Text'}>
-									{Number(value.value.split('rem')[0]) * 16}
+								<Text>
+									{value.value.split('px')[0]}
 								</Text>
 							</Flex>
-							<FontSize {...value} />
+							<BorderWidth {...value as any} />
 						</Button>
 					))}
 				</Stack>
@@ -72,17 +72,17 @@ const FontSizes = () => {
 			</ValuesContainer>
 			<RightToolbar>
 				{creating && (
-					<CreateFontSize
+					<CreateSpace
 						setCreating={setCreating}
 						setSelectedId={setSelectedId}
 					/>
                 )}
 				{selectedValue && (
-					<EditFontSize fontSize={selectedValue} />
+					<EditSpace space={selectedValue} />
                 )}
 			</RightToolbar>
 		</>
 	)
 }
 
-export { FontSizes }
+export { Space }

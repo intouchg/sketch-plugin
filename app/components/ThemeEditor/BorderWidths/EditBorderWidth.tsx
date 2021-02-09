@@ -7,10 +7,11 @@ import type { ThemeBorderWidth } from '@i/theme'
 
 export const BORDER_WIDTH_MIN = 1
 export const BORDER_WIDTH_MAX = 100
+export const BORDER_WIDTH_PRECISION = 1
 
 // Takes a pixel value from an <Input type="number"> field
 // and returns ThemeBorderWidth['value'] string
-export const parseBorderWidth = (value: string) => `${parseFloat(Number(value).toFixed(1))}px`
+export const parseBorderWidth = (value: string) => `${parseFloat(Number(value).toFixed(BORDER_WIDTH_PRECISION))}px`
 
 const EditBorderWidth = ({
 	borderWidth,
