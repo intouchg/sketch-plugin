@@ -5,6 +5,10 @@ import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
 import type { ThemeFontSize } from '@i/theme'
 
+// Takes a pixel value from an <Input type="number"> field
+// and returns ThemeLetterSpacing['value'] string
+export const parseFontSize = (value: string) => `${parseFloat((Number(value) / 16).toFixed(4))}rem`
+
 const EditFontSize = ({
 	fontSize,
 }: {
@@ -22,7 +26,7 @@ const EditFontSize = ({
 	const updateFontSize = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(updateThemeValue({
 			...fontSize,
-			value: `${parseFloat((Number(value) / 16).toFixed(4))}rem`,
+			value: parseFontSize(value),
 		}))
 	}
 

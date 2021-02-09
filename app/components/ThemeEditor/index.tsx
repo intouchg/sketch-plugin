@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { Colors } from './Colors'
 import { FontSizes } from './FontSizes'
 import { LineHeights } from './LineHeights'
+import { LetterSpacings } from './LetterSpacings'
 
 const ThemeEditor = () => (
 	<Routes>
@@ -36,7 +37,9 @@ const ThemeEditor = () => (
 		/>
 		<Route
 			path="letterSpacings"
-			element={<div>Letter Spacings</div>}
+			element={
+				<LetterSpacings />
+			}
 		/>
 		<Route
 			path="shadows"

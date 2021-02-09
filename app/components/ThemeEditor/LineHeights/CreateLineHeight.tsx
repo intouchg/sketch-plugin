@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Heading, Button, Flex, Text } from '@i/components'
 import { PixelInput } from '../PixelInput'
+import { parseLineHeight } from './EditLineHeight'
 import { createThemeValue } from '../../../store'
 import { createUuid } from '@i/utility'
 
@@ -21,7 +22,7 @@ const CreateLineHeight = ({
 		dispatch(createThemeValue({
 			type: 'lineHeight',
 			id,
-			value: `${parseFloat((Number(value) / 16).toFixed(4))}rem`,
+			value: parseLineHeight(value),
 		}))
 
 		setCreating(false)

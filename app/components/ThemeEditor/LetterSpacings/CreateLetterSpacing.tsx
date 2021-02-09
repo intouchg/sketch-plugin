@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Heading, Button, Flex, Text } from '@i/components'
 import { PixelInput } from '../PixelInput'
-import { parseFontSize } from './EditFontSize'
 import { createThemeValue } from '../../../store'
+import { parseLetterSpacing } from './EditLetterSpacing'
 import { createUuid } from '@i/utility'
 
-const CreateFontSize = ({
+const CreateLetterSpacing = ({
 	setCreating,
 	setSelectedId,
 }: {
@@ -14,15 +14,15 @@ const CreateFontSize = ({
 	setSelectedId: (id: string | null) => void
 }) => {
 	const dispatch = useDispatch()
-	const [ value, setValue ] = useState('16')
+	const [ value, setValue ] = useState('1')
 
-	const createFontSize = () => {
+	const createLetterSpacing = () => {
 		const id = createUuid()
 
 		dispatch(createThemeValue({
-			type: 'fontSize',
+			type: 'letterSpacing',
 			id,
-			value: parseFontSize(value),
+			value: parseLetterSpacing(value),
 		}))
 
 		setCreating(false)
@@ -35,7 +35,7 @@ const CreateFontSize = ({
 				marginTop={2}
 				marginBottom={3}
 			>
-				New font size
+				New letter spacing
 			</Heading>
 			<Flex
 				alignItems="center"
@@ -44,11 +44,11 @@ const CreateFontSize = ({
 				marginBottom={4}
 			>
 				<Text>
-					fontSize
+					letterSpacing
 				</Text>
 				<PixelInput
-					min={6}
-					max={200}
+					min={-50}
+					max={50}
 					value={value}
 					onChange={(event) => setValue(event.target.value)}
 				/>
@@ -60,7 +60,7 @@ const CreateFontSize = ({
 				right="0"
 				marginX={3}
 				marginBottom={4}
-				onClick={createFontSize}
+				onClick={createLetterSpacing}
 			>
 				Create
 			</Button>
@@ -68,4 +68,4 @@ const CreateFontSize = ({
 	)
 }
 
-export { CreateFontSize }
+export { CreateLetterSpacing }
