@@ -36,12 +36,14 @@ const BorderWidths = () => {
 							key={value.id}
 							display="flex"
 							alignItems="stretch"
-							marginY={2}
+							paddingY={1}
+							paddingRight={3}
+							marginY={1}
 							backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
 							borderWidth="2px"
 							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
 							borderStyle="solid"
-							borderRadius="Medium"
+							borderRadius="Large"
 							onClick={() => setSelectedId(value.id)}
 						>
 							<Flex

@@ -61,7 +61,9 @@ const MoreMenu = ({
 						borderWidth="1px"
 						borderStyle="solid"
 						borderColor="Accent"
-						borderRadius="Medium"
+						borderRadius="Large"
+						borderTopLeftRadius="0"
+						borderTopRightRadius="0"
 						boxShadow="Medium"
 					>
 						<Button
