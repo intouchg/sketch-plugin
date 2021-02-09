@@ -4,7 +4,7 @@ import { Shadow } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeShadow } from '@i/theme'
 
-const sortShadows = (a: ThemeShadow, b: ThemeShadow) => {
+export const sortShadows = (a: ThemeShadow, b: ThemeShadow) => {
 	// Parse shadow value into an array [ x, y, blur, spread, color ]
 	const av = a.value.split('px').map((s) => Number(s))
 	const bv = b.value.split('px').map((s) => Number(s))

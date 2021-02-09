@@ -2,6 +2,7 @@ import React from 'react'
 import { useSpring, animated } from 'react-spring'
 import { Button, Box } from '@i/components'
 import { Icon } from '../Icon'
+import { rightToolbarWidth } from './RightToolbar'
 
 const CreateOverlay = ({
 	active,
@@ -19,7 +20,7 @@ const CreateOverlay = ({
 		<>
 			<animated.div
 				style={{
-                    position: 'absolute',
+                    position: 'fixed',
                     top: 0,
                     bottom: 0,
                     left: 0,
@@ -29,35 +30,33 @@ const CreateOverlay = ({
                     opacity,
                 } as any}
 			/>
-			<Box margin={4}>
-				<animated.div
-					style={{
-						position: 'absolute',
-						bottom: 0,
-						right: 0,
-						transform,
-					}}
+			<animated.div
+				style={{
+					position: 'fixed',
+					bottom: '24px',
+					right: `calc(${rightToolbarWidth} + 24px)`,
+					transform,
+				}}
+			>
+				<Button
+					display="flex"
+					alignItems="center"
+					justifyContent="center"
+					width="48px"
+					height="48px"
+					padding="0"
+					backgroundColor={active ? 'Critical' : 'Primary'}
+					borderStyle="none"
+					borderRadius="9999px"
+					onClick={onClick}
 				>
-					<Button
-						display="flex"
-						alignItems="center"
-						justifyContent="center"
-						width="48px"
-						height="48px"
-						padding="0"
-						backgroundColor={active ? 'Critical' : 'Primary'}
-						borderStyle="none"
-						borderRadius="9999px"
-						onClick={onClick}
-					>
-						<Icon
-							width="22px"
-							icon="Plus"
-							fill="Card"
-						/>
-					</Button>
-				</animated.div>
-			</Box>
+					<Icon
+						width="22px"
+						icon="Plus"
+						fill="Card"
+					/>
+				</Button>
+			</animated.div>
 		</>
 	)
 }

@@ -4,7 +4,7 @@ import { BorderWidth } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeBorderWidth } from '@i/theme'
 
-const sortBorderWidths = (a: ThemeBorderWidth, b: ThemeBorderWidth) => {
+export const sortBorderWidths = (a: ThemeBorderWidth, b: ThemeBorderWidth) => {
 	const valueA = Number(a.value.split('px')[0])
 	const valueB = Number(b.value.split('px')[0])
 	return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)

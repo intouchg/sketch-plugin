@@ -4,7 +4,7 @@ import { LineHeight } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeLineHeight } from '@i/theme'
 
-const sortLineHeights = (a: ThemeLineHeight, b: ThemeLineHeight) => {
+export const sortLineHeights = (a: ThemeLineHeight, b: ThemeLineHeight) => {
 	const valueA = Number(a.value.split('rem')[0])
 	const valueB = Number(b.value.split('rem')[0])
 	return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)

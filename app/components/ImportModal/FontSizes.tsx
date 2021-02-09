@@ -4,7 +4,7 @@ import { FontSize } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeFontSize } from '@i/theme'
 
-const sortFontSizes = (a: ThemeFontSize, b: ThemeFontSize) => {
+export const sortFontSizes = (a: ThemeFontSize, b: ThemeFontSize) => {
 	const valueA = Number(a.value.split('rem')[0])
 	const valueB = Number(b.value.split('rem')[0])
 	return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)

@@ -88,7 +88,7 @@ const FontFamily = ({
 	)
 }
 
-const sortSystemFonts = (a: SystemFontFamily, b: SystemFontFamily) => sortAlphabetical(a, b, 'name')
+export const sortSystemFonts = (a: SystemFontFamily, b: SystemFontFamily) => sortAlphabetical(a, b, 'name')
 
 const Fonts = ({
 	values = [],

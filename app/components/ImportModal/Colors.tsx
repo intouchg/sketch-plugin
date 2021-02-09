@@ -7,7 +7,7 @@ import { sortAlphabetical } from '@i/utility'
 import type { ImportedValueProps } from './index'
 import type { ThemeColor } from '@i/theme'
 
-const sortColors = (a: ThemeColor, b: ThemeColor) => sortAlphabetical(a, b, 'name')
+export const sortColors = (a: ThemeColor, b: ThemeColor) => sortAlphabetical(a, b, 'name')
 
 const getUniqueImportedColors = (themeColors: ThemeColor[], importedColors: (ThemeColor & ImportedValueProps)[]) => {
 	const uniqueImportedColors = []

@@ -4,7 +4,7 @@ import { LetterSpacing } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeLetterSpacing } from '@i/theme'
 
-const sortLetterSpacings = (a: ThemeLetterSpacing, b: ThemeLetterSpacing) => {
+export const sortLetterSpacings = (a: ThemeLetterSpacing, b: ThemeLetterSpacing) => {
 	const valueA = Number(a.value.split('px')[0])
 	const valueB = Number(b.value.split('px')[0])
 	return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
