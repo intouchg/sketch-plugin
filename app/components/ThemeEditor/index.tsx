@@ -4,6 +4,7 @@ import { Colors } from './Colors'
 import { FontSizes } from './FontSizes'
 import { LineHeights } from './LineHeights'
 import { LetterSpacings } from './LetterSpacings'
+import { BorderWidths } from './BorderWidths'
 
 const ThemeEditor = () => (
 	<Routes>
@@ -47,7 +48,9 @@ const ThemeEditor = () => (
 		/>
 		<Route
 			path="borderWidths"
-			element={<div>Border Widths</div>}
+			element={
+				<BorderWidths />
+			}
 		/>
 		<Route
 			path="radii"

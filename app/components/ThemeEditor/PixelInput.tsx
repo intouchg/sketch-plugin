@@ -10,9 +10,9 @@ const PixelInput = ({
 	width = '62px',
 	...props
 }: React.ComponentProps<typeof Label> & {
-    value?: string
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-    onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    value: string
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    onBlur: (event: React.ChangeEvent<HTMLInputElement>) => void
 	min?: number
 	max?: number
 }) => {
@@ -27,9 +27,7 @@ const PixelInput = ({
 			event.target.value = String(max)
 		}
 
-		if (onBlur) {
-			onBlur(event)
-		}
+		onBlur(event)
 	}
 
 	return (

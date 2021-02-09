@@ -5,8 +5,11 @@ import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
 import type { ThemeLineHeight } from '@i/theme'
 
+export const LINE_HEIGHT_MIN = -50
+export const LINE_HEIGHT_MAX = 200
+
 // Takes a pixel value from an <Input type="number"> field
-// and returns ThemeLetterSpacing['value'] string
+// and returns ThemeLineHeight['value'] string
 export const parseLineHeight = (value: string) => `${parseFloat((Number(value) / 16).toFixed(4))}rem`
 
 const EditLineHeight = ({
@@ -26,7 +29,7 @@ const EditLineHeight = ({
 	const updateLineHeight = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(updateThemeValue({
 			...lineHeight,
-			value: parseLineHeight(value),
+			value: parseLineHeight(event.target.value),
 		}))
 	}
 
@@ -41,8 +44,8 @@ const EditLineHeight = ({
 				lineHeight
 			</Text>
 			<PixelInput
-				min={0}
-				max={200}
+				min={LINE_HEIGHT_MIN}
+				max={LINE_HEIGHT_MAX}
 				value={value}
 				onChange={(event) => setValue(event.target.value)}
 				onBlur={updateLineHeight}

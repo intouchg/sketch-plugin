@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Heading, Button, Flex, Text } from '@i/components'
 import { PixelInput } from '../PixelInput'
+import { parseLetterSpacing, LETTER_SPACING_MIN, LETTER_SPACING_MAX } from './EditLetterSpacing'
 import { createThemeValue } from '../../../store'
-import { parseLetterSpacing } from './EditLetterSpacing'
 import { createUuid } from '@i/utility'
 
 const CreateLetterSpacing = ({
@@ -47,10 +47,11 @@ const CreateLetterSpacing = ({
 					letterSpacing
 				</Text>
 				<PixelInput
-					min={-50}
-					max={50}
+					min={LETTER_SPACING_MIN}
+					max={LETTER_SPACING_MAX}
 					value={value}
 					onChange={(event) => setValue(event.target.value)}
+					onBlur={(event) => setValue(event.target.value)}
 				/>
 			</Flex>
 			<Button

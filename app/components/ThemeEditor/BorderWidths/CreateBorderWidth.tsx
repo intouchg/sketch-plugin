@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Heading, Button, Flex, Text } from '@i/components'
 import { PixelInput } from '../PixelInput'
-import { parseLineHeight, LINE_HEIGHT_MIN, LINE_HEIGHT_MAX } from './EditLineHeight'
+import { parseBorderWidth, BORDER_WIDTH_MIN, BORDER_WIDTH_MAX } from './EditBorderWidth'
 import { createThemeValue } from '../../../store'
 import { createUuid } from '@i/utility'
 
-const CreateLineHeight = ({
+const CreateBorderWidth = ({
 	setCreating,
 	setSelectedId,
 }: {
@@ -14,15 +14,15 @@ const CreateLineHeight = ({
 	setSelectedId: (id: string | null) => void
 }) => {
 	const dispatch = useDispatch()
-	const [ value, setValue ] = useState('16')
+	const [ value, setValue ] = useState('1')
 
-	const createLineHeight = () => {
+	const createBorderWidth = () => {
 		const id = createUuid()
 
 		dispatch(createThemeValue({
-			type: 'lineHeight',
+			type: 'borderWidth',
 			id,
-			value: parseLineHeight(value),
+			value: parseBorderWidth(value),
 		}))
 
 		setCreating(false)
@@ -35,7 +35,7 @@ const CreateLineHeight = ({
 				marginTop={2}
 				marginBottom={3}
 			>
-				New line height
+				New border width
 			</Heading>
 			<Flex
 				alignItems="center"
@@ -44,11 +44,11 @@ const CreateLineHeight = ({
 				marginBottom={4}
 			>
 				<Text>
-					lineHeight
+					borderWidth
 				</Text>
 				<PixelInput
-					min={LINE_HEIGHT_MIN}
-					max={LINE_HEIGHT_MAX}
+					min={BORDER_WIDTH_MIN}
+					max={BORDER_WIDTH_MAX}
 					value={value}
 					onChange={(event) => setValue(event.target.value)}
 					onBlur={(event) => setValue(event.target.value)}
@@ -61,7 +61,7 @@ const CreateLineHeight = ({
 				right="0"
 				marginX={3}
 				marginBottom={4}
-				onClick={createLineHeight}
+				onClick={createBorderWidth}
 			>
 				Create
 			</Button>
@@ -69,4 +69,4 @@ const CreateLineHeight = ({
 	)
 }
 
-export { CreateLineHeight }
+export { CreateBorderWidth }

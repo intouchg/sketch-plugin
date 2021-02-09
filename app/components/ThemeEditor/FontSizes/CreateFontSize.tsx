@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Heading, Button, Flex, Text } from '@i/components'
 import { PixelInput } from '../PixelInput'
-import { parseFontSize } from './EditFontSize'
+import { parseFontSize, FONT_SIZE_MIN, FONT_SIZE_MAX } from './EditFontSize'
 import { createThemeValue } from '../../../store'
 import { createUuid } from '@i/utility'
 
@@ -47,10 +47,11 @@ const CreateFontSize = ({
 					fontSize
 				</Text>
 				<PixelInput
-					min={6}
-					max={200}
+					min={FONT_SIZE_MIN}
+					max={FONT_SIZE_MAX}
 					value={value}
 					onChange={(event) => setValue(event.target.value)}
+					onBlur={(event) => setValue(event.target.value)}
 				/>
 			</Flex>
 			<Button

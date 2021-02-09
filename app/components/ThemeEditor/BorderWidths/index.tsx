@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Button, Stack, Flex, Text } from '@i/components'
-import { LetterSpacing } from '../../ThemeValues'
+import { BorderWidth } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
-import { EditLetterSpacing } from './EditLetterSpacing'
-import { CreateLetterSpacing } from './CreateLetterSpacing'
-import { sortLetterSpacings } from '../../ImportModal/LetterSpacings'
+import { EditBorderWidth } from './EditBorderWidth'
+import { CreateBorderWidth } from './CreateBorderWidth'
+import { sortBorderWidths } from '../../ImportModal/BorderWidths'
 
-const LetterSpacings = () => {
-	const values = useSelector((state) => state.theme.values.letterSpacings)
+const BorderWidths = () => {
+	const values = useSelector((state) => state.theme.values.borderWidths)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -30,7 +30,7 @@ const LetterSpacings = () => {
 					gridGap={3}
 					padding={6}
 				>
-					{values.slice().sort(sortLetterSpacings).map((value) => (
+					{values.slice().sort(sortBorderWidths).map((value) => (
 						<Button
 							invisible
 							key={value.id}
@@ -59,7 +59,7 @@ const LetterSpacings = () => {
 									{value.value.split('px')[0]}
 								</Text>
 							</Flex>
-							<LetterSpacing {...value} />
+							<BorderWidth {...value} />
 						</Button>
 					))}
 				</Stack>
@@ -70,17 +70,17 @@ const LetterSpacings = () => {
 			</ValuesContainer>
 			<RightToolbar>
 				{creating && (
-					<CreateLetterSpacing
+					<CreateBorderWidth
 						setCreating={setCreating}
 						setSelectedId={setSelectedId}
 					/>
                 )}
 				{selectedValue && (
-					<EditLetterSpacing letterSpacing={selectedValue} />
+					<EditBorderWidth borderWidth={selectedValue} />
                 )}
 			</RightToolbar>
 		</>
 	)
 }
 
-export { LetterSpacings }
+export { BorderWidths }

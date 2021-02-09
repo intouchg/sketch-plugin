@@ -55,7 +55,7 @@ const LineHeights = () => {
 								borderRadius="Large"
 								flexShrink={0}
 							>
-								<Text paddingRight={2}>
+								<Text>
 									{Number(value.value.split('rem')[0]) * 16}
 								</Text>
 							</Flex>

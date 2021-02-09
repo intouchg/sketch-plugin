@@ -5,8 +5,11 @@ import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
 import type { ThemeFontSize } from '@i/theme'
 
+export const FONT_SIZE_MIN = 6
+export const FONT_SIZE_MAX = 200
+
 // Takes a pixel value from an <Input type="number"> field
-// and returns ThemeLetterSpacing['value'] string
+// and returns ThemeFontSize['value'] string
 export const parseFontSize = (value: string) => `${parseFloat((Number(value) / 16).toFixed(4))}rem`
 
 const EditFontSize = ({
@@ -26,7 +29,7 @@ const EditFontSize = ({
 	const updateFontSize = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(updateThemeValue({
 			...fontSize,
-			value: parseFontSize(value),
+			value: parseFontSize(event.target.value),
 		}))
 	}
 
@@ -41,8 +44,8 @@ const EditFontSize = ({
 				fontSize
 			</Text>
 			<PixelInput
-				min={6}
-				max={200}
+				min={FONT_SIZE_MIN}
+				max={FONT_SIZE_MAX}
 				value={value}
 				onChange={(event) => setValue(event.target.value)}
 				onBlur={updateFontSize}

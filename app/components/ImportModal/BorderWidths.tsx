@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Flex, Button, Box } from '@i/components'
+import { Stack, Flex, Button, Box, Text } from '@i/components'
 import { BorderWidth } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
 import type { ThemeBorderWidth } from '@i/theme'
@@ -37,7 +37,7 @@ const BorderWidths = ({
 						invisible
 						key={props.id}
 						width="100%"
-						maxWidth="540px"
+						maxWidth="640px"
 						padding={3}
 						alignItems="center"
 						marginBottom={4}
@@ -53,7 +53,19 @@ const BorderWidths = ({
 								alreadySaved={alreadySaved}
 							/>
 						</Box>
-						<BorderWidth {...props} />
+						<Flex
+							alignItems="center"
+							justifyContent="space-around"
+							flexGrow={1}
+						>
+							<Text
+								minWidth="48px"
+								textAlign="left"
+							>
+								{props.value.split('px')[0]}
+							</Text>
+							<BorderWidth {...props} />
+						</Flex>
 					</Flex>
 				)
 			})}

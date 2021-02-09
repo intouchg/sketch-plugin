@@ -5,6 +5,9 @@ import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
 import type { ThemeLetterSpacing } from '@i/theme'
 
+export const LETTER_SPACING_MIN = -50
+export const LETTER_SPACING_MAX = 50
+
 // Takes a pixel value from an <Input type="number"> field
 // and returns ThemeLetterSpacing['value'] string
 export const parseLetterSpacing = (value: string) => `${parseFloat(Number(value).toFixed(1))}px`
@@ -26,7 +29,7 @@ const EditLetterSpacing = ({
 	const updateLetterSpacing = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(updateThemeValue({
 			...letterSpacing,
-			value: parseLetterSpacing(value),
+			value: parseLetterSpacing(event.target.value),
 		}))
 	}
 
@@ -41,8 +44,8 @@ const EditLetterSpacing = ({
 				letterSpacing
 			</Text>
 			<PixelInput
-				min={0}
-				max={200}
+				min={LETTER_SPACING_MIN}
+				max={LETTER_SPACING_MAX}
 				value={value}
 				onChange={(event) => setValue(event.target.value)}
 				onBlur={updateLetterSpacing}
