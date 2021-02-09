@@ -1,8 +1,6 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { Stack } from '@i/components'
 import { Colors } from './Colors'
-import { topToolbarHeight } from '../TopToolbar'
 
 const ThemeEditor = () => (
 	<Routes>
