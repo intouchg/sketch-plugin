@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SketchPicker } from 'react-color'
 import { Heading, Input, Box, Button, Text, Stack } from '@i/components'
 import { createThemeValue } from '../../../store'
+import { createUuid } from '@i/utility'
 
 const MISSING_COLOR_NAME_ERROR = 'Input a color name to create a new color.'
 const DUPLICATE_NAME_ERROR = 'This color name is already in use.'
 
 const CreateColor = ({
 	setCreating,
+	setSelectedId,
 }: {
 	setCreating: (creating: boolean) => void
+	setSelectedId: (id: string | null) => void
 }) => {
 	const dispatch = useDispatch()
 	const colors = useSelector((state) => state.theme.values.colors)
@@ -37,13 +40,17 @@ const CreateColor = ({
 			return setError(DUPLICATE_NAME_ERROR)
 		}
 
+		const id = createUuid()
+
 		dispatch(createThemeValue({
 			type: 'color',
+			id,
 			name,
 			value,
 		}))
 
 		setCreating(false)
+		setSelectedId(id)
 	}
 
 	return (

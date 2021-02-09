@@ -2,23 +2,29 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Heading, Input, Button } from '@i/components'
 import { createThemeValue } from '../../../store'
-import {} from '@i/utility'
+import { createUuid } from '@i/utility'
 
 const CreateFontSize = ({
 	setCreating,
+	setSelectedId,
 }: {
 	setCreating: (creating: boolean) => void
+	setSelectedId: (id: string | null) => void
 }) => {
 	const dispatch = useDispatch()
 	const [ value, setValue ] = useState('16')
 
 	const createFontSize = () => {
+		const id = createUuid()
+
 		dispatch(createThemeValue({
 			type: 'fontSize',
-			value: String((Number(value) / 16).toFixed(3)) + 'rem',
+			id,
+			value: `${parseFloat((Number(value) / 16).toFixed(4))}rem`,
 		}))
 
 		setCreating(false)
+		setSelectedId(id)
 	}
 
 	return (

@@ -52,7 +52,10 @@ const FontSizes = () => {
 			</ValuesContainer>
 			<RightToolbar>
 				{creating && (
-					<CreateFontSize setCreating={setCreating} />
+					<CreateFontSize
+						setCreating={setCreating}
+						setSelectedId={setSelectedId}
+					/>
                 )}
 				{selectedFontSize && (
 					<EditFontSize fontSize={selectedFontSize} />

@@ -56,7 +56,10 @@ const Colors = () => {
 			</ValuesContainer>
 			<RightToolbar>
 				{creating && (
-					<CreateColor setCreating={setCreating} />
+					<CreateColor
+						setCreating={setCreating}
+						setSelectedId={setSelectedId}
+					/>
                 )}
 				{selectedColor && (
 					<EditColor color={selectedColor} />

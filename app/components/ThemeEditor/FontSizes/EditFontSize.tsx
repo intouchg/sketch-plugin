@@ -22,7 +22,7 @@ const EditFontSize = ({
 	const updateFontSize = (event: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(updateThemeValue({
 			...fontSize,
-			value: parseFloat((Number(value) / 16).toFixed(4)).toString() + 'rem',
+			value: `${parseFloat((Number(value) / 16).toFixed(4))}rem`,
 		}))
 	}
 
