@@ -9,7 +9,6 @@ const BorderWidth = ({
 	<Box
 		flexGrow={1}
 		height={value}
-		marginLeft={4}
 		marginY="auto"
 		backgroundColor="#232323"
 	/>

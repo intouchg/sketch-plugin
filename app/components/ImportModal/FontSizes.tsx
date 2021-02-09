@@ -44,12 +44,11 @@ const FontSizes = ({
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Flex
-							minWidth="72px"
+							minWidth="92px"
 							minHeight="36px"
 							padding={2}
 							marginRight={3}
 							alignItems="center"
-							justifyContent="center"
 							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
 							borderRadius="Large"
 							flexShrink={0}

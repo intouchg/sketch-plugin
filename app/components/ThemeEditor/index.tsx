@@ -5,6 +5,7 @@ import { FontSizes } from './FontSizes'
 import { LineHeights } from './LineHeights'
 import { LetterSpacings } from './LetterSpacings'
 import { BorderWidths } from './BorderWidths'
+import { Radii } from './Radii'
 import { Space } from './Space'
 
 const ThemeEditor = () => (
@@ -55,7 +56,9 @@ const ThemeEditor = () => (
 		/>
 		<Route
 			path="radii"
-			element={<div>Radii</div>}
+			element={
+				<Radii />
+			}
 		/>
 		<Route
 			path="spacing"

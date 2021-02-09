@@ -42,7 +42,7 @@ const LetterSpacings = ({
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Flex
-							minWidth="72px"
+							minWidth="92px"
 							minHeight="36px"
 							padding={2}
 							marginRight={3}

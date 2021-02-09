@@ -36,9 +36,8 @@ const BorderWidths = () => {
 							key={value.id}
 							display="flex"
 							alignItems="stretch"
-							paddingY={1}
+							paddingY={2}
 							paddingRight={3}
-							marginY={1}
 							backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
 							borderWidth="2px"
 							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}

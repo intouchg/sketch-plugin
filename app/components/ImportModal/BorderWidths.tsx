@@ -38,32 +38,37 @@ const BorderWidths = ({
 						key={props.id}
 						width="100%"
 						maxWidth="640px"
-						padding={3}
 						alignItems="center"
 						marginBottom={4}
-						backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
-						borderRadius="Large"
 						as={imported ? Button : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
-						<Box marginRight={2}>
-							<ImportIcon
-								imported={imported}
-								selected={selected}
-								alreadySaved={alreadySaved}
-							/>
-						</Box>
 						<Flex
 							alignItems="center"
 							justifyContent="space-around"
 							flexGrow={1}
 						>
-							<Text
-								minWidth="48px"
-								textAlign="left"
+							<Flex
+								minWidth="92px"
+								minHeight="36px"
+								padding={2}
+								marginRight={3}
+								alignItems="center"
+								backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
+								borderRadius="Large"
+								flexShrink={0}
 							>
-								{props.value.split('px')[0]}
-							</Text>
+								<Box marginRight={2}>
+									<ImportIcon
+										imported={imported}
+										selected={selected}
+										alreadySaved={alreadySaved}
+									/>
+								</Box>
+								<Text paddingRight={2}>
+									{props.value.split('px')[0]}
+								</Text>
+							</Flex>
 							<BorderWidth {...props} />
 						</Flex>
 					</Flex>
