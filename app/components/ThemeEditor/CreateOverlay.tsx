@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSpring, animated } from 'react-spring'
-import { Button } from '@i/components'
+import { Button, Box } from '@i/components'
 import { Icon } from '../Icon'
 
 const CreateOverlay = ({
@@ -29,34 +29,35 @@ const CreateOverlay = ({
                     opacity,
                 } as any}
 			/>
-			<animated.div
-				style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    right: 0,
-                    transform,
-                }}
-			>
-				<Button
-					display="flex"
-					alignItems="center"
-					justifyContent="center"
-					width="48px"
-					height="48px"
-					padding="0"
-					margin={4}
-					backgroundColor={active ? 'Critical' : 'Primary'}
-					borderStyle="none"
-					borderRadius="9999px"
-					onClick={onClick}
+			<Box margin={4}>
+				<animated.div
+					style={{
+						position: 'absolute',
+						bottom: 0,
+						right: 0,
+						transform,
+					}}
 				>
-					<Icon
-						width="22px"
-						icon="Plus"
-						fill="Card"
-					/>
-				</Button>
-			</animated.div>
+					<Button
+						display="flex"
+						alignItems="center"
+						justifyContent="center"
+						width="48px"
+						height="48px"
+						padding="0"
+						backgroundColor={active ? 'Critical' : 'Primary'}
+						borderStyle="none"
+						borderRadius="9999px"
+						onClick={onClick}
+					>
+						<Icon
+							width="22px"
+							icon="Plus"
+							fill="Card"
+						/>
+					</Button>
+				</animated.div>
+			</Box>
 		</>
 	)
 }

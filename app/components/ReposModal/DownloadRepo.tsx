@@ -148,11 +148,11 @@ const DownloadRepo = ({
 						Branch Name
 					</Text>
 					<Input
+						style={{ transform: 'scale3d(1, 1, 1)' }}
 						autoCorrect="off"
 						autoCapitalize="off"
 						autoComplete="off"
 						spellCheck="false"
-						style={{ transform: 'scale3d(1, 1, 1)' }}
 						value={branchName}
 						placeholder="Only change this if instructed by a developer"
 						onChange={(event) => setBranchName(event.target.value)}

@@ -27,8 +27,13 @@ const EditColor = ({
 				borderColor="Accent"
 				borderStyle="solid"
 				paddingY="12px"
-				marginTop={1}
+				marginTop={2}
 				marginBottom={4}
+				style={{ transform: 'scale3d(1, 1, 1)' }}
+				autoCorrect="off"
+				autoCapitalize="off"
+				autoComplete="off"
+				spellCheck="false"
 				value={name}
 				onChange={(event) => setName(event.target.value)}
 				onBlur={(event) => dispatch(updateThemeValue({ ...color, name: event.target.value }))}
