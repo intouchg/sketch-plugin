@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Button, Stack } from '@i/components'
+import { Button, Stack, Flex, Text } from '@i/components'
 import { LetterSpacing } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -34,6 +34,9 @@ const LetterSpacings = () => {
 						<Button
 							invisible
 							key={value.id}
+							display="flex"
+							alignItems="stretch"
+							marginY={2}
 							backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
 							borderWidth="2px"
 							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
@@ -41,6 +44,21 @@ const LetterSpacings = () => {
 							borderRadius="Medium"
 							onClick={() => setSelectedId(value.id)}
 						>
+							<Flex
+								minWidth="72px"
+								minHeight="36px"
+								padding={2}
+								marginRight={3}
+								alignItems="center"
+								justifyContent="center"
+								backgroundColor="Card"
+								borderRadius="Large"
+								flexShrink={0}
+							>
+								<Text paddingRight={2}>
+									{value.value.split('px')[0]}
+								</Text>
+							</Flex>
 							<LetterSpacing {...value} />
 						</Button>
 					))}
