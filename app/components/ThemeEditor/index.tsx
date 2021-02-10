@@ -4,6 +4,7 @@ import { Colors } from './Colors'
 import { FontSizes } from './FontSizes'
 import { LineHeights } from './LineHeights'
 import { LetterSpacings } from './LetterSpacings'
+import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
 import { Radii } from './Radii'
 import { Space } from './Space'
@@ -46,7 +47,9 @@ const ThemeEditor = () => (
 		/>
 		<Route
 			path="shadows"
-			element={<div>Shadows</div>}
+			element={
+				<Shadows />
+			}
 		/>
 		<Route
 			path="borderWidths"

@@ -43,7 +43,7 @@ const LetterSpacings = ({
 					>
 						<Flex
 							minWidth="92px"
-							minHeight="36px"
+							minHeight="44px"
 							padding={2}
 							marginRight={3}
 							alignItems="center"

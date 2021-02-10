@@ -3,6 +3,7 @@ import { Stack, Flex, Box, Text } from '@i/components'
 import type { ThemeShadow } from '@i/theme'
 
 const Shadow = ({
+	name,
 	value,
 	...props
 }: ThemeShadow) => {
@@ -37,9 +38,13 @@ const Shadow = ({
 				textAlign="center"
 			>
 				<Stack flexGrow={1}>
+					<Text variant="Secondary">
+						{name}
+					</Text>
 					<Flex
 						alignItems="center"
 						justifyContent="space-around"
+						paddingTop={3}
 					>
 						<Stack>
 							<Text variant="Secondary">

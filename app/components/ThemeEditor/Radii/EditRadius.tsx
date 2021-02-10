@@ -6,7 +6,7 @@ import { updateThemeValue } from '../../../store'
 import type { ThemeRadius } from '@i/theme'
 
 export const RADIUS_MIN = 1
-export const RADIUS_MAX = 100
+export const RADIUS_MAX = 9999
 export const RADIUS_PRECISION = 1
 
 // Takes a pixel value from an <Input type="number"> field

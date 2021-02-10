@@ -36,7 +36,7 @@ const LineHeights = ({
 					<Flex
 						invisible
 						key={props.id}
-						maxWidth="640px"
+						maxWidth="660px"
 						alignItems="stretch"
 						marginBottom={4}
 						as={imported ? Button : undefined}

@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Button, Stack, Flex, Text } from '@i/components'
-import { FontSize } from '../../ThemeValues'
+import { Shadow } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
-import { EditFontSize } from './EditFontSize'
-import { CreateFontSize } from './CreateFontSize'
-import { sortFontSizes } from '../../ImportModal/FontSizes'
+import { EditShadow } from './EditShadow'
+import { CreateShadow } from './CreateShadow'
+import { sortShadows } from '../../ImportModal/Shadows'
 
-const FontSizes = () => {
-	const values = useSelector((state) => state.theme.values.fontSizes)
+const Shadows = () => {
+	const values = useSelector((state) => state.theme.values.shadows)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -25,12 +25,12 @@ const FontSizes = () => {
 			<ValuesContainer>
 				<Stack
 					flexGrow={1}
-					maxWidth="860px"
+					maxWidth="760px"
 					margin="auto"
 					gridGap={3}
 					padding={6}
 				>
-					{values.slice().sort(sortFontSizes).map((value) => (
+					{values.slice().sort(sortShadows).map((value) => (
 						<Button
 							invisible
 							key={value.id}
@@ -45,25 +45,7 @@ const FontSizes = () => {
 							borderRadius="Large"
 							onClick={() => setSelectedId(value.id)}
 						>
-							<Flex
-								minWidth="72px"
-								minHeight="44px"
-								padding={2}
-								marginRight={3}
-								alignItems="center"
-								justifyContent="center"
-								backgroundColor="Card"
-								borderRadius="Large"
-								flexShrink={0}
-							>
-								<Text
-									fontWeight="Demibold"
-									color={value.id === selectedId ? 'Primary' : 'Text'}
-								>
-									{Number(value.value.split('rem')[0]) * 16}
-								</Text>
-							</Flex>
-							<FontSize {...value} />
+							<Shadow {...value} />
 						</Button>
 					))}
 				</Stack>
@@ -74,17 +56,17 @@ const FontSizes = () => {
 			</ValuesContainer>
 			<RightToolbar>
 				{creating && (
-					<CreateFontSize
+					<CreateShadow
 						setCreating={setCreating}
 						setSelectedId={setSelectedId}
 					/>
                 )}
 				{selectedValue && (
-					<EditFontSize fontSize={selectedValue} />
+					<EditShadow shadow={selectedValue} />
                 )}
 			</RightToolbar>
 		</>
 	)
 }
 
-export { FontSizes }
+export { Shadows }
