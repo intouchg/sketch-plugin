@@ -25,7 +25,7 @@ const Radii = () => {
 			<ValuesContainer>
 				<Stack
 					flexGrow={1}
-					maxWidth="860px"
+					maxWidth="760px"
 					margin="auto"
 					gridGap={3}
 					padding={6}
