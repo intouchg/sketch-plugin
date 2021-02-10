@@ -60,7 +60,11 @@ const FontSizes = ({
 									alreadySaved={alreadySaved}
 								/>
 							</Box>
-							<Text paddingRight={2}>
+							<Text
+								fontWeight="Demibold"
+								color={selected ? 'Primary' : 'Text'}
+								paddingRight={2}
+							>
 								{pixelValue}
 							</Text>
 						</Flex>

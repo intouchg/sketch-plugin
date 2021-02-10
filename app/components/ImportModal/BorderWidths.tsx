@@ -65,7 +65,11 @@ const BorderWidths = ({
 										alreadySaved={alreadySaved}
 									/>
 								</Box>
-								<Text paddingRight={2}>
+								<Text
+									fontWeight="Demibold"
+									color={selected ? 'Primary' : 'Text'}
+									paddingRight={2}
+								>
 									{props.value.split('px')[0]}
 								</Text>
 							</Flex>

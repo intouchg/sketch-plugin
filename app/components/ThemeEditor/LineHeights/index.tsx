@@ -56,7 +56,10 @@ const LineHeights = () => {
 								borderRadius="Large"
 								flexShrink={0}
 							>
-								<Text>
+								<Text
+									fontWeight="Demibold"
+									color={value.id === selectedId ? 'Primary' : 'Text'}
+								>
 									{Number(value.value.split('rem')[0]) * 16}
 								</Text>
 							</Flex>

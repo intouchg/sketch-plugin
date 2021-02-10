@@ -56,7 +56,10 @@ const LetterSpacings = () => {
 								borderRadius="Large"
 								flexShrink={0}
 							>
-								<Text>
+								<Text
+									fontWeight="Demibold"
+									color={value.id === selectedId ? 'Primary' : 'Text'}
+								>
 									{value.value.split('px')[0]}
 								</Text>
 							</Flex>

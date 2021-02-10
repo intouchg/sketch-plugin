@@ -59,7 +59,10 @@ const LineHeights = ({
 									alreadySaved={alreadySaved}
 								/>
 							</Box>
-							<Text>
+							<Text
+								fontWeight="Demibold"
+								color={selected ? 'Primary' : 'Text'}
+							>
 								{value.split('rem')[0]}
 							</Text>
 						</Flex>
