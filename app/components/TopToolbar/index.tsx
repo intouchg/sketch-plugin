@@ -23,8 +23,11 @@ const TopToolbar = ({
 			height={topToolbarHeight}
 			alignItems="center"
 			justifyContent="space-between"
-			backgroundColor={setShowImportModal ? 'Card' : 'none'}
 			paddingX={3}
+			backgroundColor={setShowImportModal ? 'Card' : 'none'}
+			borderBottomWidth="1px"
+			borderBottomStyle={showProjectOptions ? 'solid' : 'none'}
+			borderBottomColor="Accent"
 			boxShadow={setShowImportModal ? 'Medium' : 'none'}
 			zIndex={3}
 		>

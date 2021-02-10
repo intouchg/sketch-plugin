@@ -25,6 +25,7 @@ const LetterSpacings = () => {
 			<ValuesContainer>
 				<Stack
 					flexGrow={1}
+					minWidth="560px"
 					maxWidth="860px"
 					margin="auto"
 					gridGap={3}
@@ -42,7 +43,7 @@ const LetterSpacings = () => {
 							borderWidth="2px"
 							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
 							borderStyle="solid"
-							borderRadius="Large"
+							borderRadius="Extra Large"
 							onClick={() => setSelectedId(value.id)}
 						>
 							<Flex

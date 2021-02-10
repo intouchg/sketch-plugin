@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Button, Stack, Flex, Text } from '@i/components'
+import { Button, Stack, Box } from '@i/components'
 import { Shadow } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -25,7 +25,8 @@ const Shadows = () => {
 			<ValuesContainer>
 				<Stack
 					flexGrow={1}
-					maxWidth="760px"
+					minWidth="560px"
+					maxWidth="720px"
 					margin="auto"
 					gridGap={3}
 					padding={6}
@@ -36,16 +37,23 @@ const Shadows = () => {
 							key={value.id}
 							display="flex"
 							alignItems="stretch"
+							justifyContent="center"
 							paddingY={2}
-							paddingRight={3}
+							paddingX={3}
 							backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
 							borderWidth="2px"
 							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
 							borderStyle="solid"
-							borderRadius="Large"
+							borderRadius="Extra Large"
 							onClick={() => setSelectedId(value.id)}
 						>
-							<Shadow {...value} />
+							<Box
+								flexGrow={1}
+								maxWidth="500px"
+								paddingY={3}
+							>
+								<Shadow {...value} />
+							</Box>
 						</Button>
 					))}
 				</Stack>

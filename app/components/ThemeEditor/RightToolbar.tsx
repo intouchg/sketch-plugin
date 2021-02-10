@@ -12,6 +12,9 @@ const RightToolbar = (props: React.ComponentProps<typeof Stack>) => (
 		flexShrink={0}
 		padding={3}
 		backgroundColor="Card"
+		borderLeftWidth="1px"
+		borderLeftStyle="solid"
+		borderLeftColor="Accent"
 		overflow="scroll"
 		{...props}
 	/>

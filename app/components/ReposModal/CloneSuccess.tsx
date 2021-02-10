@@ -1,6 +1,8 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Flex, Stack, Heading, Text, Button } from '@i/components'
 import { useSelectLocalProject } from '../../hooks'
+import { setShowReposModal } from '../../store'
 import type { AzureGitRepo } from '@i/azure'
 
 const CloneSuccess = ({
@@ -10,7 +12,13 @@ const CloneSuccess = ({
     repo: AzureGitRepo
     directory: string
 }) => {
+	const dispatch = useDispatch()
 	const selectLocalProject = useSelectLocalProject(directory)
+
+	const openProject = () => {
+		dispatch(setShowReposModal(false))
+		selectLocalProject()
+	}
 
 	return (
 		<Flex
@@ -33,7 +41,7 @@ const CloneSuccess = ({
 					</Text>
 				</Stack>
 				<Flex justifyContent="flex-end">
-					<Button onClick={selectLocalProject}>
+					<Button onClick={openProject}>
 						Open Project
 					</Button>
 				</Flex>

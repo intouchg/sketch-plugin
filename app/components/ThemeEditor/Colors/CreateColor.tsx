@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SketchPicker } from 'react-color'
-import { Heading, Input, Box, Button, Text, Stack } from '@i/components'
+import { Heading, Input, Button, Text, Stack, Box } from '@i/components'
+import { ColorPicker } from '../../ColorPicker'
 import { createThemeValue } from '../../../store'
 import { createUuid } from '@i/utility'
 
@@ -55,63 +55,53 @@ const CreateColor = ({
 
 	return (
 		<>
-			<Heading
-				marginTop={2}
-				marginBottom={3}
-			>
-				New color
-			</Heading>
 			<Stack
-				marginTop={1}
-				marginBottom={4}
+				flexShrink={0}
+				flexGrow={1}
 			>
-				<Input
-					borderColor={error ? 'Critical' : 'Accent'}
-					borderStyle="solid"
-					paddingY="12px"
-					style={{ transform: 'scale3d(1, 1, 1)' }}
-					autoCorrect="off"
-					autoCapitalize="off"
-					autoComplete="off"
-					spellCheck="false"
-					placeholder="Color Name"
-					value={name}
-					onChange={updateName}
-				/>
-				{(error === MISSING_COLOR_NAME_ERROR || error === DUPLICATE_NAME_ERROR) && (
-					<Text
-						paddingTop={2}
-						color="Critical"
-					>
-						{error}
-					</Text>
-				)}
+				<Heading
+					marginTop={2}
+					marginBottom={3}
+				>
+					New color
+				</Heading>
+				<Stack
+					marginTop={1}
+					marginBottom={4}
+				>
+					<Input
+						borderColor={error ? 'Critical' : 'Accent'}
+						borderStyle="solid"
+						paddingY="12px"
+						style={{ transform: 'scale3d(1, 1, 1)' }}
+						autoCorrect="off"
+						autoCapitalize="off"
+						autoComplete="off"
+						spellCheck="false"
+						placeholder="Color Name"
+						value={name}
+						onChange={updateName}
+					/>
+					{(error === MISSING_COLOR_NAME_ERROR || error === DUPLICATE_NAME_ERROR) && (
+						<Text
+							paddingTop={2}
+							color="Critical"
+						>
+							{error}
+						</Text>
+					)}
+				</Stack>
+				<Box marginBottom={4}>
+					<ColorPicker
+						color={value}
+						presetColors={[]}
+						onChange={(data) => setValue(data.hex)}
+					/>
+				</Box>
 			</Stack>
-			<Box fontFamily="Avenir Next">
-				<SketchPicker
-					styles={{
-                        default: {
-                            picker: {
-                                width: '100%',
-                                padding: 0,
-                                border: 0,
-                                fontFamily: 'inherit',
-                                boxShadow: 'none',
-                            },
-                        },
-                    }}
-					color={value}
-					presetColors={[]}
-					onChange={(data) => setValue(data.hex)}
-				/>
-			</Box>
 			<Button
-				position="absolute"
-				bottom="0"
-				left="0"
-				right="0"
-				marginX={3}
-				marginBottom={4}
+				flexShrink={0}
+				marginBottom={2}
 				onClick={createColor}
 			>
 				Create

@@ -40,16 +40,16 @@ const Shadows = ({
 						invisible
 						key={props.id}
 						width="100%"
-						maxWidth="640px"
+						maxWidth="580px"
 						alignItems="center"
-						marginBottom={4}
+						paddingY={5}
 						as={imported ? Button : undefined}
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Box
-							paddingX={2}
-							paddingY={5}
-							marginRight={4}
+							paddingX={3}
+							paddingY={4}
+							marginRight={6}
 							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
 							borderRadius="Large"
 						>

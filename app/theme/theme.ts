@@ -71,6 +71,7 @@ const theme = {
 		Small: '3px',
 		Medium: '4px',
 		Large: '6px',
+		'Extra Large': '8px',
 	},
 	shadows: {
 		Medium: '0 2px 6px -2px rgba(0, 0, 0, 0.15)',

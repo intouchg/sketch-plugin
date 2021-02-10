@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { SketchPicker } from 'react-color'
-import { Box, Input } from '@i/components'
+import { Input, Box } from '@i/components'
+import { ColorPicker } from '../../ColorPicker'
 import { updateThemeValue } from '../../../store'
 import type { ThemeColor } from '@i/theme'
 
@@ -38,19 +38,8 @@ const EditColor = ({
 				onChange={(event) => setName(event.target.value)}
 				onBlur={(event) => dispatch(updateThemeValue({ ...color, name: event.target.value }))}
 			/>
-			<Box fontFamily="Avenir Next">
-				<SketchPicker
-					styles={{
-                        default: {
-                            picker: {
-                                width: '100%',
-                                padding: 0,
-                                border: 0,
-                                fontFamily: 'inherit',
-                                boxShadow: 'none',
-                            },
-                        },
-                    }}
+			<Box marginBottom={4}>
+				<ColorPicker
 					color={value}
 					presetColors={[]}
 					onChange={(data) => setValue(data.hex)}

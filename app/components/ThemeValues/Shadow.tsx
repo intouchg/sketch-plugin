@@ -17,33 +17,36 @@ const Shadow = ({
 			<Flex
 				alignItems="center"
 				justifyContent="center"
-				width="80px"
-				height="80px"
+				width="90px"
+				height="90px"
 				backgroundColor="Card"
 				borderWidth="1px"
 				borderStyle="solid"
 				borderColor="Accent"
 				borderRadius="Small"
 				boxShadow={value}
-				marginRight={4}
+				marginRight={[ 4, null, null, 6 ]}
 				flexShrink={0}
 			/>
 			<Flex
 				width="100%"
+				maxWidth="360px"
 				justifyContent="space-between"
-				paddingX={5}
-				paddingY={3}
-				backgroundColor="Background"
-				borderRadius="Large"
 				textAlign="center"
 			>
-				<Stack flexGrow={1}>
+				<Stack
+					flexGrow={1}
+					alignItems="center"
+				>
 					<Text variant="Secondary">
 						{name}
 					</Text>
 					<Flex
+						width="100%"
+						minWidth="210px"
+						maxWidth="280px"
 						alignItems="center"
-						justifyContent="space-around"
+						justifyContent="space-between"
 						paddingTop={3}
 					>
 						<Stack>

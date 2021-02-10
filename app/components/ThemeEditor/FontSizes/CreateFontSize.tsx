@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Heading, Button, Flex, Text } from '@i/components'
+import { Heading, Button, Flex, Text, Stack } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { parseFontSize, FONT_SIZE_MIN, FONT_SIZE_MAX } from './EditFontSize'
 import { createThemeValue } from '../../../store'
@@ -31,36 +31,37 @@ const CreateFontSize = ({
 
 	return (
 		<>
-			<Heading
-				marginTop={2}
-				marginBottom={3}
+			<Stack
+				flexShrink={0}
+				flexGrow={1}
 			>
-				New font size
-			</Heading>
-			<Flex
-				alignItems="center"
-				justifyContent="space-between"
-				marginTop={1}
-				marginBottom={4}
-			>
-				<Text>
-					fontSize
-				</Text>
-				<PixelInput
-					min={FONT_SIZE_MIN}
-					max={FONT_SIZE_MAX}
-					value={value}
-					onChange={(event) => setValue(event.target.value)}
-					onBlur={(event) => setValue(event.target.value)}
-				/>
-			</Flex>
+				<Heading
+					marginTop={2}
+					marginBottom={3}
+				>
+					New font size
+				</Heading>
+				<Flex
+					alignItems="center"
+					justifyContent="space-between"
+					marginTop={1}
+					marginBottom={4}
+				>
+					<Text>
+						fontSize
+					</Text>
+					<PixelInput
+						min={FONT_SIZE_MIN}
+						max={FONT_SIZE_MAX}
+						value={value}
+						onChange={(event) => setValue(event.target.value)}
+						onBlur={(event) => setValue(event.target.value)}
+					/>
+				</Flex>
+			</Stack>
 			<Button
-				position="absolute"
-				bottom="0"
-				left="0"
-				right="0"
-				marginX={3}
-				marginBottom={4}
+				flexShrink={0}
+				marginBottom={2}
 				onClick={createFontSize}
 			>
 				Create

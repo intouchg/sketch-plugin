@@ -114,6 +114,9 @@ const LeftNavbar = () => {
 			height={`calc(100vh - ${topToolbarHeight})`}
 			padding={3}
 			backgroundColor="Card"
+			borderRightWidth="1px"
+			borderRightStyle="solid"
+			borderRightColor="Accent"
 			overflow="scroll"
 		>
 			<ThemeNavigation />

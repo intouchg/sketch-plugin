@@ -25,7 +25,8 @@ const BorderWidths = () => {
 			<ValuesContainer>
 				<Stack
 					flexGrow={1}
-					maxWidth="760px"
+					minWidth="560px"
+					maxWidth="680px"
 					margin="auto"
 					gridGap={3}
 					padding={6}
@@ -42,7 +43,7 @@ const BorderWidths = () => {
 							borderWidth="2px"
 							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
 							borderStyle="solid"
-							borderRadius="Large"
+							borderRadius="Extra Large"
 							onClick={() => setSelectedId(value.id)}
 						>
 							<Flex
