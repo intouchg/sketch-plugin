@@ -44,7 +44,7 @@ const SettingsModal = () => {
 				width="560px"
 				padding={5}
 				backgroundColor="Background"
-				boxShadow="Medium"
+				boxShadow="Downward Accent"
 				borderRadius={3}
 			>
 				<CloseModalButton onClick={() => dispatch(setShowSettingsModal(false))} />

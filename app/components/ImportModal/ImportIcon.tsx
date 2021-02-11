@@ -63,7 +63,7 @@ const ImportIcon = ({
 					borderStyle="solid"
 					borderColor="Card"
 					borderRadius="9999px"
-					boxShadow="Medium"
+					boxShadow="Downward Accent"
 				>
 					<Icon
 						icon="Checkmark"

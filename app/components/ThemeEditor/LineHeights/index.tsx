@@ -11,6 +11,7 @@ import { sortLineHeights } from '../../ImportModal/LineHeights'
 
 const LineHeights = () => {
 	const values = useSelector((state) => state.theme.values.lineHeights)
+	const sortedValues = values.slice().sort(sortLineHeights)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -31,7 +32,7 @@ const LineHeights = () => {
 					gridGap={3}
 					padding={6}
 				>
-					{values.slice().sort(sortLineHeights).map((value) => (
+					{sortedValues.map((value) => (
 						<Button
 							invisible
 							key={value.id}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Colors } from './Colors'
+import { Fonts } from './Fonts'
 import { FontSizes } from './FontSizes'
 import { LineHeights } from './LineHeights'
 import { LetterSpacings } from './LetterSpacings'
@@ -25,7 +26,9 @@ const ThemeEditor = () => (
 		/>
 		<Route
 			path="fonts"
-			element={<div>Fonts</div>}
+			element={
+				<Fonts />
+			}
 		/>
 		<Route
 			path="fontSizes"

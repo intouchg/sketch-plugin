@@ -131,7 +131,7 @@ const Fonts = ({
 
 				return (
 					<FontFamily
-						key={systemFont.name}
+						key={name}
 						values={uniqueFontValues.filter((font) => font.family === name)}
 						imported={importedValues.some((v) => v.family === name)}
 						toggleSelectedImportedValue={toggleSelectedImportedValue}

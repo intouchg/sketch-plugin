@@ -64,7 +64,7 @@ const MoreMenu = ({
 						borderRadius={3}
 						borderTopLeftRadius="0"
 						borderTopRightRadius="0"
-						boxShadow="Medium"
+						boxShadow="Downward Accent"
 					>
 						<Button
 							variant="Tertiary"

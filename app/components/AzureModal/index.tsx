@@ -42,7 +42,7 @@ const AzureModal = () => {
 				width={!localProject || showLoginForm ? '560px' : '740px'}
 				padding={5}
 				backgroundColor="Background"
-				boxShadow="Medium"
+				boxShadow="Downward Accent"
 				borderRadius={3}
 			>
 				<CloseModalButton onClick={closeModal} />

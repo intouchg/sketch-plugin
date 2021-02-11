@@ -11,6 +11,7 @@ import { sortShadows } from '../../ImportModal/Shadows'
 
 const Shadows = () => {
 	const values = useSelector((state) => state.theme.values.shadows)
+	const sortedValues = values.slice().sort(sortShadows)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -31,7 +32,7 @@ const Shadows = () => {
 					gridGap={3}
 					padding={6}
 				>
-					{values.slice().sort(sortShadows).map((value) => (
+					{sortedValues.map((value) => (
 						<Button
 							invisible
 							key={value.id}

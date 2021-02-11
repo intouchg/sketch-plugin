@@ -76,7 +76,8 @@ const theme = {
 		'8px',
 	],
 	shadows: {
-		Medium: '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
+		'Downward Accent': '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
+		'Upward Accent': '0 -2px 6px -2px rgba(0, 0, 0, 0.15)',
 		'Inset X Accent': 'inset 0 -1px 0 0 #dddddd',
 		'Inset Y Accent': 'inset -1px 0 0 0 #dddddd',
 	},

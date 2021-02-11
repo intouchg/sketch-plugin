@@ -8,9 +8,11 @@ import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
 import { EditColor } from './EditColor'
 import { CreateColor } from './CreateColor'
+import { sortColors } from '../../ImportModal/Colors'
 
 const Colors = () => {
 	const values = useSelector((state) => state.theme.values.colors)
+	const sortedValues = values.slice().sort(sortColors)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -30,7 +32,7 @@ const Colors = () => {
 					gridGap={3}
 					padding={6}
 				>
-					{values.map((value) => (
+					{sortedValues.map((value) => (
 						<Button
 							invisible
 							key={value.id}

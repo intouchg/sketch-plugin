@@ -11,6 +11,7 @@ import { sortBorderWidths } from '../../ImportModal/BorderWidths'
 
 const BorderWidths = () => {
 	const values = useSelector((state) => state.theme.values.borderWidths)
+	const sortedValues = values.slice().sort(sortBorderWidths)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -31,7 +32,7 @@ const BorderWidths = () => {
 					gridGap={3}
 					padding={6}
 				>
-					{values.slice().sort(sortBorderWidths).map((value) => (
+					{sortedValues.map((value) => (
 						<Button
 							invisible
 							key={value.id}

@@ -11,6 +11,7 @@ import { sortFontSizes } from '../../ImportModal/FontSizes'
 
 const FontSizes = () => {
 	const values = useSelector((state) => state.theme.values.fontSizes)
+	const sortedValues = values.slice().sort(sortFontSizes)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -31,7 +32,7 @@ const FontSizes = () => {
 					gridGap={3}
 					padding={6}
 				>
-					{values.slice().sort(sortFontSizes).map((value) => (
+					{sortedValues.map((value) => (
 						<Button
 							invisible
 							key={value.id}

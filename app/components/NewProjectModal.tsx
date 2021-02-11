@@ -77,7 +77,7 @@ const NewProjectModal = ({
 				width="560px"
 				padding={5}
 				backgroundColor="Background"
-				boxShadow="Medium"
+				boxShadow="Downward Accent"
 				borderRadius={3}
 			>
 				<CloseModalButton onClick={() => setShowNewProjectModal(false)} />
@@ -93,8 +93,8 @@ const NewProjectModal = ({
 							Project Name *
 						</Text>
 						<Input
-							borderColor="Critical"
-							borderStyle={error === MISSING_PROJECT_NAME_ERROR || error === PROJECT_NAME_COLON_ERROR ? 'solid' : 'none'}
+							borderColor={error === MISSING_PROJECT_NAME_ERROR || error === PROJECT_NAME_COLON_ERROR ? 'Critical' : 'transparent'}
+							borderStyle="solid"
 							style={{ transform: 'scale3d(1, 1, 1)' }}
 							autoCorrect="off"
 							autoCapitalize="off"

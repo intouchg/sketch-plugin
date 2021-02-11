@@ -158,7 +158,7 @@ const ImportModal = ({
 				height="calc(100vh - 100px)"
 				minHeight="600px"
 				backgroundColor="Card"
-				boxShadow="Medium"
+				boxShadow="Downward Accent"
 				borderRadius={3}
 				overflow="hidden"
 			>

@@ -50,7 +50,10 @@ const PixelInput = ({
                     appearance: 'none',
                     transform: 'scale3d(1, 1, 1)',
                 }}
+				autoCorrect="off"
+				autoCapitalize="off"
 				autoComplete="off"
+				spellCheck="false"
 				value={value}
 				onChange={onChange}
 				onBlur={handleBlur}

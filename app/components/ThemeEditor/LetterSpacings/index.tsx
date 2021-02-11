@@ -11,6 +11,7 @@ import { sortLetterSpacings } from '../../ImportModal/LetterSpacings'
 
 const LetterSpacings = () => {
 	const values = useSelector((state) => state.theme.values.letterSpacings)
+	const sortedValues = values.slice().sort(sortLetterSpacings)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
@@ -31,7 +32,7 @@ const LetterSpacings = () => {
 					gridGap={3}
 					padding={6}
 				>
-					{values.slice().sort(sortLetterSpacings).map((value) => (
+					{sortedValues.map((value) => (
 						<Button
 							invisible
 							key={value.id}
