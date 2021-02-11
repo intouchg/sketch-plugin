@@ -45,7 +45,7 @@ const SettingsModal = () => {
 				padding={5}
 				backgroundColor="Background"
 				boxShadow="Medium"
-				borderRadius="Large"
+				borderRadius={3}
 			>
 				<CloseModalButton onClick={() => dispatch(setShowSettingsModal(false))} />
 				<Stack flexGrow={1}>

@@ -23,9 +23,9 @@ const Shadow = ({
 				borderWidth="1px"
 				borderStyle="solid"
 				borderColor="Accent"
-				borderRadius="Small"
+				borderRadius={1}
 				boxShadow={value}
-				marginRight={[ 4, null, null, 6 ]}
+				marginRight={6}
 				flexShrink={0}
 			/>
 			<Flex
@@ -102,7 +102,7 @@ const Shadow = ({
 							width="32px"
 							height="32px"
 							backgroundColor={color}
-							borderRadius="Small"
+							borderRadius={1}
 							marginRight={3}
 						/>
 						<Stack justifyContent="center">

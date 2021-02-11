@@ -44,7 +44,7 @@ const Shadows = () => {
 							borderWidth="2px"
 							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
 							borderStyle="solid"
-							borderRadius="Extra Large"
+							borderRadius={4}
 							onClick={() => setSelectedId(value.id)}
 						>
 							<Box

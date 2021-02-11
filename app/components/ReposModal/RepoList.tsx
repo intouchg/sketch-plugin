@@ -8,11 +8,11 @@ const Repo = styled.div`
 		padding: ${theme.space[4]} ${theme.space[4]};
 		margin-bottom: ${theme.space[2]};
 		font-family: ${theme.fonts['Avenir Next']};
-		font-weight: ${theme.fontWeights.Demibold};
+		font-weight: ${theme.fontWeights[4]};
 		color: ${theme.colors.Text};
 		background-color: ${theme.colors.Card};
 		border: 0;
-		border-radius: ${theme.radii.Large};
+		border-radius: ${theme.radii[3]};
 		text-transform: none;
 		cursor: pointer;
 	`}

@@ -31,7 +31,7 @@ const ImportSummary = ({
 			<Stack
 				minWidth="220px"
 				padding={3}
-				borderRadius="Large"
+				borderRadius={3}
 				backgroundColor="Card"
 			>
 				<Flex>
@@ -46,11 +46,11 @@ const ImportSummary = ({
 								alignItems="center"
 								justifyContent="center"
 								backgroundColor="Primary Lighter"
-								borderRadius="Medium"
+								borderRadius={2}
 							>
 								<Text
 									fontSize={1}
-									fontWeight="Demibold"
+									fontWeight={3}
 									color="Primary"
 								>
 									{selectedImportCategories.includes(key) ? number : 0}

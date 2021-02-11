@@ -43,7 +43,7 @@ const AzureModal = () => {
 				padding={5}
 				backgroundColor="Background"
 				boxShadow="Medium"
-				borderRadius="Large"
+				borderRadius={3}
 			>
 				<CloseModalButton onClick={closeModal} />
 				<Stack flexGrow={1}>

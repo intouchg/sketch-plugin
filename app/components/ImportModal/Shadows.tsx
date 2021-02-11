@@ -51,7 +51,7 @@ const Shadows = ({
 							paddingY={4}
 							marginRight={6}
 							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
-							borderRadius="Large"
+							borderRadius={3}
 						>
 							<ImportIcon
 								imported={imported}

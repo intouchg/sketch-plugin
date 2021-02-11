@@ -36,7 +36,7 @@ const AzureRepoInfo = ({
 				paddingX={4}
 				paddingY={6}
 				backgroundColor="Card"
-				borderRadius="Large"
+				borderRadius={3}
 			>
 				<Text fontSize={3}>
 					No project selected.
@@ -49,7 +49,7 @@ const AzureRepoInfo = ({
 		<Flex
 			padding={4}
 			backgroundColor="Card"
-			borderRadius="Large"
+			borderRadius={3}
 		>
 			<Stack
 				width="402px"
@@ -68,7 +68,7 @@ const AzureRepoInfo = ({
 					<Text
 						variant="Modal Accent"
 						fontSize={3}
-						fontWeight="Bold"
+						fontWeight={4}
 						color="Text"
 					>
 						{branchName}
@@ -84,7 +84,7 @@ const AzureRepoInfo = ({
 					<Text
 						variant="Modal Accent"
 						fontSize={3}
-						fontWeight="Bold"
+						fontWeight={4}
 						color="Text"
 					>
 						{lastPushTime ? `${timeSince(lastPushTime)} ago` : 'Never'}&nbsp;&nbsp;

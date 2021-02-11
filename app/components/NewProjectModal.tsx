@@ -78,7 +78,7 @@ const NewProjectModal = ({
 				padding={5}
 				backgroundColor="Background"
 				boxShadow="Medium"
-				borderRadius="Large"
+				borderRadius={3}
 			>
 				<CloseModalButton onClick={() => setShowNewProjectModal(false)} />
 				<Stack flexGrow={1}>
@@ -146,7 +146,7 @@ const NewProjectModal = ({
 							borderWidth="1px"
 							borderStyle="solid"
 							borderColor={error === MISSING_PROJECT_TEMPLATE_ERROR ? 'Critical' : 'transparent'}
-							borderRadius="Large"
+							borderRadius={3}
 						/>
 						{error === MISSING_PROJECT_TEMPLATE_ERROR && (
 							<Text

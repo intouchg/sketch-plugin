@@ -85,7 +85,7 @@ const ReposModal = () => {
 				minHeight="500px"
 				backgroundColor="Card"
 				boxShadow="Medium"
-				borderRadius="Large"
+				borderRadius={3}
 				overflow="hidden"
 			>
 				<Flex

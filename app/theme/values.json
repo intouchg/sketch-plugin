@@ -221,33 +221,33 @@
 		"type": "lineHeight"
 	},
 	{
+		"id": "2cf4c90f-09e3-4b59-ac26-f114f25c3ed8",
+		"value": "100",
+		"type": "fontWeight"
+	},
+	{
 		"id": "a10e0b81-72c7-4188-bed4-16afca9e7712",
 		"value": "300",
-		"name": "Regular",
 		"type": "fontWeight"
 	},
 	{
 		"id": "75ebbc5b-5d21-4c48-822b-61e0d74e4a72",
 		"value": "400",
-		"name": "Medium",
 		"type": "fontWeight"
 	},
 	{
 		"id": "a3560ac3-2d01-443d-aa2f-97dd27e02196",
 		"value": "500",
-		"name": "Demibold",
 		"type": "fontWeight"
 	},
 	{
 		"id": "ac9544cb-b739-4734-9d67-dd45a35c4112",
 		"value": "700",
-		"name": "Bold",
 		"type": "fontWeight"
 	},
 	{
 		"id": "25a594f2-f0eb-4ff6-917d-6434fab0f101",
 		"value": "1px",
-		"name": "Thin",
 		"type": "borderWidth"
 	},
 	{
@@ -276,27 +276,28 @@
 		"type": "zIndex"
 	},
 	{
+		"id": "48de4d34-08b9-4d9c-b7e5-5183dac157d8",
+		"value": "0",
+		"type": "radius"
+	},
+	{
 		"id": "a48f3af8-d67b-4237-8636-ec6d6c5efd6c",
 		"value": "3px",
-		"name": "Small",
 		"type": "radius"
 	},
 	{
 		"id": "6d07adc4-fca1-40ae-8282-253945440469",
 		"value": "4px",
-		"name": "Medium",
 		"type": "radius"
 	},
 	{
 		"id": "861e9edb-de7f-441b-9659-62a55cd9a799",
 		"value": "6px",
-		"name": "Large",
 		"type": "radius"
 	},
 	{
 		"id": "7d08974d-6dbc-4951-aea4-89799cde86d6",
 		"value": "8px",
-		"name": "Extra Large",
 		"type": "radius"
 	},
 	{

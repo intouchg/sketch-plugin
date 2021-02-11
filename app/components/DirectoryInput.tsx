@@ -42,7 +42,7 @@ const DirectoryInput = ({
 				borderWidth="1px"
 				borderStyle="solid"
 				borderColor={error ? 'Critical' : 'transparent'}
-				borderRadius="Large"
+				borderRadius={3}
 				{...props}
 			>
 				<TruncatedText maxWidth="90%">

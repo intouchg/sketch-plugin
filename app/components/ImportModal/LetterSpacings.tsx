@@ -48,7 +48,7 @@ const LetterSpacings = ({
 							marginRight={3}
 							alignItems="center"
 							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
-							borderRadius="Large"
+							borderRadius={3}
 							flexShrink={0}
 						>
 							<Box marginRight={2}>
@@ -59,7 +59,7 @@ const LetterSpacings = ({
 								/>
 							</Box>
 							<Text
-								fontWeight="Demibold"
+								fontWeight={3}
 								color={selected ? 'Primary' : 'Text'}
 								paddingRight={2}
 							>

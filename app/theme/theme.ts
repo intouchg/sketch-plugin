@@ -14,7 +14,7 @@ const theme = {
 		'32px',
 		'48px',
 	],
-	sizes: {},
+	sizes: [],
 	colors: {
 		Accent: '#dddddd',
 		Background: '#f8f8f8',
@@ -45,12 +45,13 @@ const theme = {
 		'1rem',
 		'2rem',
 	],
-	fontWeights: {
-		Regular: '300',
-		Medium: '400',
-		Demibold: '500',
-		Bold: '700',
-	},
+	fontWeights: [
+		'100',
+		'300',
+		'400',
+		'500',
+		'700',
+	],
 	lineHeights: [
 		'0',
 		'1rem',
@@ -63,16 +64,17 @@ const theme = {
 		'1px',
 	],
 	borders: {},
-	borderStyles: {},
-	borderWidths: {
-		Thin: '1px',
-	},
-	radii: {
-		Small: '3px',
-		Medium: '4px',
-		Large: '6px',
-		'Extra Large': '8px',
-	},
+	borderStyles: [],
+	borderWidths: [
+		'1px',
+	],
+	radii: [
+		'0',
+		'3px',
+		'4px',
+		'6px',
+		'8px',
+	],
 	shadows: {
 		Medium: '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
 		'Inset X Accent': 'inset 0 -1px 0 0 #dddddd',

@@ -43,7 +43,7 @@ const LineHeights = () => {
 							borderWidth="2px"
 							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
 							borderStyle="solid"
-							borderRadius="Extra Large"
+							borderRadius={4}
 							onClick={() => setSelectedId(value.id)}
 						>
 							<Flex
@@ -54,11 +54,11 @@ const LineHeights = () => {
 								alignItems="center"
 								justifyContent="center"
 								backgroundColor="Card"
-								borderRadius="Large"
+								borderRadius={3}
 								flexShrink={0}
 							>
 								<Text
-									fontWeight="Demibold"
+									fontWeight={3}
 									color={value.id === selectedId ? 'Primary' : 'Text'}
 								>
 									{Number(value.value.split('rem')[0]) * 16}

@@ -16,7 +16,7 @@ const StyledLink = styled(Link).attrs({
 		padding-bottom: calc(${theme.space[2]} - 2px);
 		margin-left: -${theme.space[2]};
 		margin-right: -${theme.space[2]};
-		border-radius: ${theme.radii.Small};
+		border-radius: ${theme.radii[1]};
 		line-height: 1;
 		text-decoration: none;
 

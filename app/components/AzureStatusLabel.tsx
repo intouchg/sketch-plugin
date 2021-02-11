@@ -11,11 +11,11 @@ const AzureStatusLabel = ({
 	<Text
 		backgroundColor={!online ? 'Caution' : connected ? 'Positive' : 'Critical'}
 		color={!online ? 'Caution Dark' : connected ? 'Positive Dark' : 'Critical Dark'}
-		fontWeight="Demibold"
+		fontWeight={3}
 		fontSize={1}
 		paddingX="4px"
 		paddingY="2px"
-		borderRadius="Medium"
+		borderRadius={2}
 		textTransform="uppercase"
 	>
 		{!online ? 'Interrupted' : connected ? 'Connected' : 'Disconnected'}

@@ -36,7 +36,7 @@ const PixelInput = ({
 			width={width}
 			padding={2}
 			backgroundColor="Background"
-			borderRadius="Medium"
+			borderRadius={2}
 			{...props}
 		>
 			<Input
@@ -44,7 +44,7 @@ const PixelInput = ({
 				padding="0"
 				paddingRight={1}
 				fontSize={1}
-				fontWeight="Demibold"
+				fontWeight={3}
 				backgroundColor="transparent"
 				style={{
                     appearance: 'none',
@@ -58,7 +58,7 @@ const PixelInput = ({
 			<Text
 				color="Text Light"
 				fontSize="9px"
-				fontWeight="Demibold"
+				fontWeight={3}
 				textTransform="uppercase"
 			>
 				px

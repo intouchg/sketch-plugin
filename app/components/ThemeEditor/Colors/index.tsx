@@ -38,7 +38,7 @@ const Colors = () => {
 							height="0"
 							paddingBottom="100%"
 							backgroundColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
-							borderRadius="Large"
+							borderRadius={3}
 							flexGrow={1}
 							onClick={() => setSelectedId(value.id)}
 						>

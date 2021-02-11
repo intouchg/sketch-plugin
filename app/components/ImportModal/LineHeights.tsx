@@ -49,7 +49,7 @@ const LineHeights = ({
 							paddingY={2}
 							marginRight={3}
 							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
-							borderRadius="Large"
+							borderRadius={3}
 							flexShrink={0}
 						>
 							<Box marginRight={2}>
@@ -60,7 +60,7 @@ const LineHeights = ({
 								/>
 							</Box>
 							<Text
-								fontWeight="Demibold"
+								fontWeight={3}
 								color={selected ? 'Primary' : 'Text'}
 							>
 								{value.split('rem')[0]}
