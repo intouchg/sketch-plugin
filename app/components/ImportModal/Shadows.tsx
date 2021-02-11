@@ -47,8 +47,7 @@ const Shadows = ({
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Box
-							paddingX={3}
-							paddingY={4}
+							padding={3}
 							marginRight={6}
 							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
 							borderRadius={3}

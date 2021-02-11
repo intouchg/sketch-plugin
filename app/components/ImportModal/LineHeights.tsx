@@ -43,10 +43,9 @@ const LineHeights = ({
 						onClick={imported ? () => toggleSelectedImportedValue(props) : undefined}
 					>
 						<Flex
-							minWidth="115px"
+							minWidth="92px"
 							alignItems="center"
-							paddingX={3}
-							paddingY={2}
+							padding={2}
 							marginRight={3}
 							backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
 							borderRadius={3}
@@ -62,8 +61,9 @@ const LineHeights = ({
 							<Text
 								fontWeight={3}
 								color={selected ? 'Primary' : 'Text'}
+								paddingRight={2}
 							>
-								{value.split('rem')[0]}
+								{Number(value.split('rem')[0]) * 16}
 							</Text>
 						</Flex>
 						<LineHeight {...props} />
