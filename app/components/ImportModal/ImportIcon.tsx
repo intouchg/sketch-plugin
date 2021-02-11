@@ -69,10 +69,8 @@ const ImportIcon = ({
 						icon="Checkmark"
 						fill="Card"
 						width="16px"
-						style={{
-							stroke: 'white',
-							strokeWidth: '0.25',
-						}}
+						stroke="Card"
+						strokeWidth="0.25"
 					/>
 				</Flex>
 			</Box>

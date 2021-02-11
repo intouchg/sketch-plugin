@@ -30,7 +30,7 @@ const CheckboxNavLink = ({
 	<Flex
 		paddingX={2}
 		marginBottom={1}
-		backgroundColor={isActiveRoute ? 'white' : 'transparent'}
+		backgroundColor={isActiveRoute ? 'Card' : 'transparent'}
 	>
 		<Checkbox
 			margin={2}
