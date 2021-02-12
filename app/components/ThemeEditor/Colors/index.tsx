@@ -13,17 +13,19 @@ import { sortColors } from '../../ImportModal/Colors'
 
 const Colors = () => {
 	const values = useSelector((state) => state.theme.values.colors)
+	const [ selectedId, setSelectedId ] = useState<string | null>(null)
+	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
+	const [ creating, setCreating ] = useState(false)
+
 	const transition = useTransition(values, {
 		keys: (value: typeof values[number]) => value.id,
 		sort: sortColors,
 		trail: 400 / values.length,
+		initial: { opacity: 1, transform: 'scale3d(1, 1, 1)' },
 		from: { opacity: 0, transform: 'scale3d(0, 0, 0)' },
 		enter: { opacity: 1, transform: 'scale3d(1, 1, 1)' },
 		leave: { opacity: 0, transform: 'scale3d(0, 0, 0)' },
 	})
-	const [ selectedId, setSelectedId ] = useState<string | null>(null)
-	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
-	const [ creating, setCreating ] = useState(false)
 
 	const toggleCreating = () => {
 		setSelectedId(null)
