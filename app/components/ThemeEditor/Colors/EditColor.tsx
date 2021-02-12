@@ -41,9 +41,8 @@ const EditColor = ({
 			<Box marginBottom={4}>
 				<ColorPicker
 					color={value}
-					presetColors={[]}
-					onChange={(data) => setValue(data.hex)}
-					onChangeComplete={(data) => dispatch(updateThemeValue({ ...color, value: data.hex }))}
+					onChange={(value) => setValue(value)}
+					onChangeComplete={(value) => dispatch(updateThemeValue({ ...color, value }))}
 				/>
 			</Box>
 		</>

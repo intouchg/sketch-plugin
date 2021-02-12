@@ -94,8 +94,7 @@ const CreateColor = ({
 				<Box marginBottom={4}>
 					<ColorPicker
 						color={value}
-						presetColors={[]}
-						onChange={(data) => setValue(data.hex)}
+						onChange={(value) => setValue(value)}
 					/>
 				</Box>
 			</Stack>

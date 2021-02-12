@@ -147,9 +147,8 @@ const CreateShadow = ({
 				>
 					<ColorPicker
 						color={color}
-						presetColors={[]}
-						onChange={(data) => setColor(data.hex)}
-						onChangeComplete={(data) => setColor(data.hex)}
+						onChange={(value) => setColor(value)}
+						onChangeComplete={(value) => setColor(value)}
 					/>
 				</Box>
 			</Stack>

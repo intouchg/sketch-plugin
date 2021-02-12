@@ -77,10 +77,10 @@ const EditShadow = ({
 		}))
 	}
 
-	const updateShadowColor = (data: ColorResult) => {
+	const updateShadowColor = (value: string) => {
 		dispatch(updateThemeValue({
 			...shadow,
-			value: `${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${data.hex}`,
+			value: `${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${value}`,
 		}))
 	}
 
@@ -184,8 +184,7 @@ const EditShadow = ({
 			>
 				<ColorPicker
 					color={color}
-					presetColors={[]}
-					onChange={(data) => setColor(data.hex)}
+					onChange={(value) => setColor(value)}
 					onChangeComplete={updateShadowColor}
 				/>
 			</Box>
