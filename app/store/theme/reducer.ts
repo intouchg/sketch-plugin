@@ -58,6 +58,10 @@ export const themeReducer = (
 	return produce(state, (nextState) => {
 		switch (action.type) {
 			case UNDO: {
+				if (!changeHistory[currentVersion]) {
+					break
+				}
+
 				return produce(
 					applyPatches(state, changeHistory[currentVersion--].undo),
 					(nextState: ThemeState) => {
@@ -68,6 +72,10 @@ export const themeReducer = (
 			}
 
 			case REDO: {
+				if (!changeHistory[currentVersion + 1]) {
+					break
+				}
+
 				return produce(
 					applyPatches(state, changeHistory[++currentVersion].redo),
 					(nextState: ThemeState) => {

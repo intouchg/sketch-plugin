@@ -20,7 +20,7 @@ const Colors = () => {
 	const transition = useTransition(values, {
 		keys: (value: typeof values[number]) => value.id,
 		sort: sortColors,
-		trail: 400 / values.length,
+		// trail: 400 / values.length,
 		initial: { opacity: 1, transform: 'scale3d(1, 1, 1)' },
 		from: { opacity: 0, transform: 'scale3d(0, 0, 0)' },
 		enter: { opacity: 1, transform: 'scale3d(1, 1, 1)' },

@@ -8,7 +8,8 @@ const FontSize = ({
 }: ThemeFontSize) => (
 	<NoWrapText
 		fontSize={value}
-		lineHeight={value}
+		lineHeight="1"
+		overflow="visible"
 	>
 		The quick brown fox jumps over the lazy dog
 	</NoWrapText>

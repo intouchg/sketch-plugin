@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useTransition, animated } from 'react-spring'
+import { useTransition, useSpring, animated, to } from 'react-spring'
 import { Button, Stack, Flex, Text } from '@i/components'
 import { BorderWidth } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
@@ -9,6 +9,13 @@ import { CreateOverlay } from '../CreateOverlay'
 import { EditBorderWidth } from './EditBorderWidth'
 import { CreateBorderWidth } from './CreateBorderWidth'
 import { sortBorderWidths } from '../../ImportModal/BorderWidths'
+import type { ThemeBorderWidth } from '@i/theme'
+
+const ELEMENT_MIN_HEIGHT = 44 // in pixels
+const ELEMENT_PADDING_Y = 20 // magic number, in pixels
+
+const getHeight = (value: ThemeBorderWidth) =>
+	Math.max(Number(value.value.split('px')[0]), ELEMENT_MIN_HEIGHT) + ELEMENT_PADDING_Y
 
 const BorderWidths = () => {
 	const values = useSelector((state) => state.theme.values.borderWidths)
@@ -16,15 +23,25 @@ const BorderWidths = () => {
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
 
-	const transition = useTransition(values, {
-		keys: (value: typeof values[number]) => value.id,
-		sort: sortBorderWidths,
-		trail: 400 / values.length,
-		initial: { opacity: 1, transform: 'scale3d(1, 1, 1)' },
-		from: { opacity: 0, transform: 'scale3d(0, 0, 0)' },
-		enter: { opacity: 1, transform: 'scale3d(1, 1, 1)' },
-		leave: { opacity: 0, transform: 'scale3d(0, 0, 0)' },
-	})
+	let containerHeight = 0
+
+	const transition = useTransition(
+		values.slice().sort(sortBorderWidths).map((value) => {
+			const height = getHeight(value)
+			return { ...value, height, y: (containerHeight += height) - height }
+		}),
+		{
+			keys: (value: any) => value.id,
+			// trail: 400 / values.length,
+			initial: ({ height, y }) => ({ opacity: 1, size: 1, height, y }),
+			from: { opacity: 0, size: 0, height: 0 },
+			enter: ({ height, y }: any) => ({ opacity: 1, size: 1, height, y }),
+			update: ({ height, y }: any) => ({ height, y }),
+			leave: { opacity: 0, size: 0, height: 0 },
+		},
+	)
+
+	const [ containerHeightSpring ] = useSpring({ height: containerHeight }, [ containerHeight ])
 
 	const toggleCreating = () => {
 		setSelectedId(null)
@@ -34,16 +51,27 @@ const BorderWidths = () => {
 	return (
 		<>
 			<ValuesContainer>
-				<Stack
-					flexGrow={1}
-					minWidth="560px"
-					maxWidth="680px"
-					margin="auto"
-					gridGap={3}
-					padding={6}
+				<animated.div
+					style={{
+						boxSizing: 'content-box',
+						minWidth: '560px',
+						maxWidth: '680px',
+						padding: '48px',
+						margin: 'auto',
+						...containerHeightSpring,
+					}}
 				>
-					{transition((style, value) => (
-						<animated.div style={style as any}>
+					{transition(({ y, size, ...styles }, value, transition, index) => (
+						<animated.div
+							style={{
+								width: '100%',
+								position: 'absolute',
+								willChange: 'transform, height, opacity',
+								zIndex: index + 1,
+								transform: to([ y, size ], (y, s) => `translate3d(0, ${y}px, 0) scale3d(${s}, ${s}, ${s})`),
+								...styles as any,
+							}}
+						>
 							<Button
 								invisible
 								key={value.id}
@@ -61,7 +89,7 @@ const BorderWidths = () => {
 							>
 								<Flex
 									minWidth="72px"
-									minHeight="44px"
+									minHeight={ELEMENT_MIN_HEIGHT}
 									padding={2}
 									marginRight={3}
 									alignItems="center"
@@ -81,7 +109,7 @@ const BorderWidths = () => {
 							</Button>
 						</animated.div>
 					))}
-				</Stack>
+				</animated.div>
 				<CreateOverlay
 					active={creating}
 					onClick={toggleCreating}
