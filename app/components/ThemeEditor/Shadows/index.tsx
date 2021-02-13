@@ -43,7 +43,7 @@ const Shadows = () => {
 						...containerHeight,
 					}}
 				>
-					{transition(({ y, size, ...styles }, value, transition, index) => (
+					{transition(({ y, size, ...styles }, value) => (
 						<animated.div
 							style={{
 								position: 'absolute',
@@ -52,7 +52,6 @@ const Shadows = () => {
 								paddingLeft: 'inherit',
 								paddingRight: 'inherit',
 								willChange: 'transform, height, opacity',
-								zIndex: index + 1,
 								transform: to([ y, size ], (y, s) => `translate3d(0, ${y}px, 0) scale3d(${s}, ${s}, ${s})`),
 								...styles as any,
 							}}
