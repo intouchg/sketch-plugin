@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTransition, useSpring, animated, to } from 'react-spring'
-import { Button, Stack, Flex, Text } from '@i/components'
+import { Button, Flex, Text } from '@i/components'
 import { BorderWidth } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -78,11 +78,11 @@ const BorderWidths = () => {
 						>
 							<Button
 								invisible
-								key={value.id}
 								display="flex"
 								alignItems="stretch"
 								width="100%"
 								paddingY={2}
+								paddingRight={3}
 								backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
 								borderWidth="2px"
 								borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}

@@ -83,6 +83,7 @@ const Space = () => {
 								alignItems="stretch"
 								width="100%"
 								paddingY={2}
+								paddingRight={3}
 								backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
 								borderWidth="2px"
 								borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}

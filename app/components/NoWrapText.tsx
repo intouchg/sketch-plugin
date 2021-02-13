@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { Text } from '@i/components'
 
-const NoWrapText = styled(Text)`
+const NoWrapText = styled(Text)<{ lineHeight?: string }>`
 	white-space: nowrap;
-	line-height: unset;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	align-self: center;
+	line-height: ${(props) => props.lineHeight ? props.lineHeight : 'unset'};
 `
 
 export { NoWrapText }
