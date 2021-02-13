@@ -100,6 +100,7 @@ const EditShadow = ({
 				borderBottomWidth="1px"
 				borderBottomStyle="solid"
 				borderBottomColor="Accent"
+				overflow="hidden"
 			>
 				<Box
 					width="128px"

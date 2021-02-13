@@ -54,7 +54,8 @@ const BorderWidths = () => {
 				<animated.div
 					style={{
 						boxSizing: 'content-box',
-						minWidth: '560px',
+						width: '100%',
+						minWidth: '420px',
 						maxWidth: '680px',
 						padding: '48px',
 						margin: 'auto',
@@ -64,8 +65,11 @@ const BorderWidths = () => {
 					{transition(({ y, size, ...styles }, value, transition, index) => (
 						<animated.div
 							style={{
-								width: '100%',
 								position: 'absolute',
+								left: '0',
+								right: '0',
+								paddingLeft: 'inherit',
+								paddingRight: 'inherit',
 								willChange: 'transform, height, opacity',
 								zIndex: index + 1,
 								transform: to([ y, size ], (y, s) => `translate3d(0, ${y}px, 0) scale3d(${s}, ${s}, ${s})`),
@@ -79,7 +83,6 @@ const BorderWidths = () => {
 								alignItems="stretch"
 								width="100%"
 								paddingY={2}
-								paddingRight={3}
 								backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
 								borderWidth="2px"
 								borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}

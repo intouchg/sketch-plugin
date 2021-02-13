@@ -67,7 +67,7 @@ const ThemeEditor = () => (
 			}
 		/>
 		<Route
-			path="spacing"
+			path="space"
 			element={
 				<Space />
 			}

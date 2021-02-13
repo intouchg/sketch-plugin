@@ -62,8 +62,8 @@ const ThemeNavigation = () => (
 			<StyledLink to="theme/radii/">
 				Radii
 			</StyledLink>
-			<StyledLink to="theme/spacing/">
-				Spacing
+			<StyledLink to="theme/space/">
+				Space
 			</StyledLink>
 		</Stack>
 	</Stack>
