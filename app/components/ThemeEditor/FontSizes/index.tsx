@@ -8,6 +8,7 @@ import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
 import { EditFontSize } from './EditFontSize'
 import { CreateFontSize } from './CreateFontSize'
+import { useListTransition } from '../../../hooks'
 import { sortFontSizes } from '../../ImportModal/FontSizes'
 import type { ThemeFontSize } from '@i/theme'
 
@@ -24,26 +25,7 @@ const FontSizes = () => {
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
-
-	let containerHeight = 0
-
-	const transition = useTransition(
-		values.slice().sort(sortFontSizes).map((value) => {
-			const height = getHeight(value)
-			return { ...value, height, y: (containerHeight += height) - height }
-		}),
-		{
-			keys: (value: any) => value.id,
-			// trail: 400 / values.length,
-			initial: ({ height, y }) => ({ opacity: 1, size: 1, height, y }),
-			from: { opacity: 0, size: 0, height: 0 },
-			enter: ({ height, y }: any) => ({ opacity: 1, size: 1, height, y }),
-			update: ({ height, y }: any) => ({ height, y }),
-			leave: { opacity: 0, size: 0, height: 0 },
-		},
-	)
-
-	const [ containerHeightSpring ] = useSpring({ height: containerHeight }, [ containerHeight ])
+	const [ transition, containerHeight ] = useListTransition(values, getHeight, sortFontSizes)
 
 	const toggleCreating = () => {
 		setSelectedId(null)
@@ -61,7 +43,7 @@ const FontSizes = () => {
 						maxWidth: '680px',
 						padding: '48px',
 						margin: 'auto',
-						...containerHeightSpring,
+						...containerHeight,
 					}}
 				>
 					{transition(({ y, size, ...styles }, value, transition, index) => (

@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useTransition, useSpring, animated, to } from 'react-spring'
-import { Button, Stack, Flex, Text } from '@i/components'
+import { animated, to } from 'react-spring'
+import { Button, Flex, Text } from '@i/components'
 import { BorderWidth } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
 import { EditSpace } from './EditSpace'
 import { CreateSpace } from './CreateSpace'
+import { useListTransition } from '../../../hooks'
 import { sortBorderWidths } from '../../ImportModal/BorderWidths'
 import type { ThemeSpace } from '@i/theme'
 
@@ -22,26 +23,7 @@ const Space = () => {
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
-
-	let containerHeight = 0
-
-	const transition = useTransition(
-		values.slice().sort(sortBorderWidths as any).map((value) => {
-			const height = getHeight(value)
-			return { ...value, height, y: (containerHeight += height) - height }
-		}),
-		{
-			keys: (value: any) => value.id,
-			// trail: 400 / values.length,
-			initial: ({ height, y }) => ({ opacity: 1, size: 1, height, y }),
-			from: { opacity: 0, size: 0, height: 0 },
-			enter: ({ height, y }: any) => ({ opacity: 1, size: 1, height, y }),
-			update: ({ height, y }: any) => ({ height, y }),
-			leave: { opacity: 0, size: 0, height: 0 },
-		},
-	)
-
-	const [ containerHeightSpring ] = useSpring({ height: containerHeight }, [ containerHeight ])
+	const [ transition, containerHeight ] = useListTransition(values, getHeight, sortBorderWidths)
 
 	const toggleCreating = () => {
 		setSelectedId(null)
@@ -59,7 +41,7 @@ const Space = () => {
 						maxWidth: '680px',
 						padding: '48px',
 						margin: 'auto',
-						...containerHeightSpring,
+						...containerHeight,
 					}}
 				>
 					{transition(({ y, size, ...styles }, value, transition, index) => (

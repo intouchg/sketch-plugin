@@ -1,6 +1,7 @@
 export * from './useDisplayErrorBanner'
 export * from './useDownloadUpdates'
 export * from './useInitializeSketchData'
+export * from './useListTransition'
 export * from './useOpenDevServer'
 export * from './useOutsideClickListener'
 export * from './useRevertChanges'
