@@ -1,20 +1,28 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Button, Stack, Box } from '@i/components'
+import { animated, to } from 'react-spring'
+import { Button, Box } from '@i/components'
 import { Shadow } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
 import { EditShadow } from './EditShadow'
 import { CreateShadow } from './CreateShadow'
+import { useListTransition } from '../../../hooks'
 import { sortShadows } from '../../ImportModal/Shadows'
+
+const ELEMENT_BASE_HEIGHT = 152 // in pixels, magic number
+const ELEMENT_PADDING_Y = 8
+const ELEMENT_BORDER_Y = 2
+const ELEMENT_MARGIN_Y = 0
+const ELEMENT_HEIGHT = ELEMENT_BASE_HEIGHT + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
 
 const Shadows = () => {
 	const values = useSelector((state) => state.theme.values.shadows)
-	const sortedValues = values.slice().sort(sortShadows)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
+	const [ transition, containerHeight ] = useListTransition(values, ELEMENT_HEIGHT, sortShadows)
 
 	const toggleCreating = () => {
 		setSelectedId(null)
@@ -24,40 +32,57 @@ const Shadows = () => {
 	return (
 		<>
 			<ValuesContainer>
-				<Stack
-					flexGrow={1}
-					minWidth="560px"
-					maxWidth="720px"
-					margin="auto"
-					gridGap={3}
-					padding={6}
+				<animated.div
+					style={{
+						boxSizing: 'content-box',
+						width: '100%',
+						minWidth: '420px',
+						maxWidth: '680px',
+						padding: '48px',
+						margin: 'auto',
+						...containerHeight,
+					}}
 				>
-					{sortedValues.map((value) => (
-						<Button
-							invisible
-							key={value.id}
-							display="flex"
-							alignItems="stretch"
-							justifyContent="center"
-							paddingY={2}
-							paddingX={3}
-							backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
-							borderWidth="2px"
-							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
-							borderStyle="solid"
-							borderRadius={4}
-							onClick={() => setSelectedId(value.id)}
+					{transition(({ y, size, ...styles }, value, transition, index) => (
+						<animated.div
+							style={{
+								position: 'absolute',
+								left: '0',
+								right: '0',
+								paddingLeft: 'inherit',
+								paddingRight: 'inherit',
+								willChange: 'transform, height, opacity',
+								zIndex: index + 1,
+								transform: to([ y, size ], (y, s) => `translate3d(0, ${y}px, 0) scale3d(${s}, ${s}, ${s})`),
+								...styles as any,
+							}}
 						>
-							<Box
-								flexGrow={1}
-								maxWidth="500px"
-								paddingY={3}
+							<Button
+								invisible
+								display="flex"
+								alignItems="stretch"
+								justifyContent="center"
+								width="100%"
+								paddingY={2}
+								paddingX={3}
+								backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
+								borderWidth="2px"
+								borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
+								borderStyle="solid"
+								borderRadius={4}
+								onClick={() => setSelectedId(value.id)}
 							>
-								<Shadow {...value} />
-							</Box>
-						</Button>
+								<Box
+									flexGrow={1}
+									maxWidth="500px"
+									paddingY={3}
+								>
+									<Shadow {...value} />
+								</Box>
+							</Button>
+						</animated.div>
 					))}
-				</Stack>
+				</animated.div>
 				<CreateOverlay
 					active={creating}
 					onClick={toggleCreating}

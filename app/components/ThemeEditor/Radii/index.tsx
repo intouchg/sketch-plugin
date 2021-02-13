@@ -1,20 +1,28 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Button, Stack, Flex, Text } from '@i/components'
-import { Radius } from '../../ThemeValues'
+import { animated, to } from 'react-spring'
+import { Button, Flex, Text } from '@i/components'
+import { Radius, themeRadiusHeight } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
 import { EditRadius } from './EditRadius'
 import { CreateRadius } from './CreateRadius'
+import { useListTransition } from '../../../hooks'
 import { sortBorderWidths } from '../../ImportModal/BorderWidths'
+
+const ELEMENT_BASE_HEIGHT = themeRadiusHeight
+const ELEMENT_PADDING_Y = 16
+const ELEMENT_BORDER_Y = 2
+const ELEMENT_MARGIN_Y = 0
+const ELEMENT_HEIGHT = ELEMENT_BASE_HEIGHT + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
 
 const Radii = () => {
 	const values = useSelector((state) => state.theme.values.radii)
-	const sortedValues = values.slice().sort(sortBorderWidths as any)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
+	const [ transition, containerHeight ] = useListTransition(values, ELEMENT_HEIGHT, sortBorderWidths)
 
 	const toggleCreating = () => {
 		setSelectedId(null)
@@ -24,51 +32,68 @@ const Radii = () => {
 	return (
 		<>
 			<ValuesContainer>
-				<Stack
-					flexGrow={1}
-					minWidth="560px"
-					maxWidth="680px"
-					margin="auto"
-					gridGap={3}
-					padding={6}
+				<animated.div
+					style={{
+						boxSizing: 'content-box',
+						width: '100%',
+						minWidth: '420px',
+						maxWidth: '680px',
+						padding: '48px',
+						margin: 'auto',
+						...containerHeight,
+					}}
 				>
-					{sortedValues.map((value) => (
-						<Button
-							invisible
-							key={value.id}
-							display="flex"
-							alignItems="stretch"
-							paddingY={3}
-							paddingRight={3}
-							backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
-							borderWidth="2px"
-							borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
-							borderStyle="solid"
-							borderRadius={4}
-							onClick={() => setSelectedId(value.id)}
+					{transition(({ y, size, ...styles }, value, transition, index) => (
+						<animated.div
+							style={{
+								position: 'absolute',
+								left: '0',
+								right: '0',
+								paddingLeft: 'inherit',
+								paddingRight: 'inherit',
+								willChange: 'transform, height, opacity',
+								zIndex: index + 1,
+								transform: to([ y, size ], (y, s) => `translate3d(0, ${y}px, 0) scale3d(${s}, ${s}, ${s})`),
+								...styles as any,
+							}}
 						>
-							<Flex
-								minWidth="72px"
-								minHeight="44px"
-								padding={2}
-								marginRight={3}
-								alignItems="center"
-								justifyContent="center"
-								backgroundColor="Card"
-								borderRadius={3}
-								flexShrink={0}
+							<Button
+								invisible
+								display="flex"
+								alignItems="stretch"
+								width="100%"
+								paddingY={3}
+								paddingRight={3}
+								backgroundColor={value.id === selectedId ? 'Card' : 'transparent'}
+								borderWidth="2px"
+								borderColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
+								borderStyle="solid"
+								borderRadius={4}
+								onClick={() => setSelectedId(value.id)}
 							>
-								<Text
-									fontWeight={3}
-									color={value.id === selectedId ? 'Primary' : 'Text'}
+								<Flex
+									minWidth="72px"
+									minHeight="44px"
+									padding={2}
+									marginRight={3}
+									alignItems="center"
+									justifyContent="center"
+									backgroundColor="Card"
+									borderRadius={3}
+									flexShrink={0}
 								>
-									{value.value.split('px')[0]}
-								</Text>
-							</Flex>
-							<Radius {...value} />
-						</Button>
+									<Text
+										fontWeight={3}
+										color={value.id === selectedId ? 'Primary' : 'Text'}
+									>
+										{value.value.split('px')[0]}
+									</Text>
+								</Flex>
+								<Radius {...value} />
+							</Button>
+						</animated.div>
 					))}
-				</Stack>
+				</animated.div>
 				<CreateOverlay
 					active={creating}
 					onClick={toggleCreating}

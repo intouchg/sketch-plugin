@@ -13,12 +13,17 @@ import { sortFontSizes } from '../../ImportModal/FontSizes'
 import type { ThemeFontSize } from '@i/theme'
 
 const ELEMENT_MIN_HEIGHT = 44 // in pixels
-const ELEMENT_PADDING_Y = 20 // magic number, in pixels
+const ELEMENT_PADDING_Y = 8
+const ELEMENT_BORDER_Y = 2
+const ELEMENT_MARGIN_Y = 0
 
-const getHeight = (value: ThemeFontSize) => Math.max(
-	Math.floor(Number(value.value.split('rem')[0]) * 16 * themeFontSizeLineHeight),
-	ELEMENT_MIN_HEIGHT,
-) + ELEMENT_PADDING_Y
+const getHeight = (value: ThemeFontSize) => {
+	const baseHeight = Math.max(
+		Math.floor(Number(value.value.split('rem')[0]) * 16 * themeFontSizeLineHeight),
+		ELEMENT_MIN_HEIGHT,
+	)
+	return baseHeight + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
+}
 
 const FontSizes = () => {
 	const values = useSelector((state) => state.theme.values.fontSizes)

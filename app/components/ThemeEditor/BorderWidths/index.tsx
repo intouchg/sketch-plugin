@@ -12,11 +12,15 @@ import { useListTransition } from '../../../hooks'
 import { sortBorderWidths } from '../../ImportModal/BorderWidths'
 import type { ThemeBorderWidth } from '@i/theme'
 
-const ELEMENT_MIN_HEIGHT = 44 // in pixels
-const ELEMENT_PADDING_Y = 20 // magic number, in pixels
+const ELEMENT_MIN_HEIGHT = 44
+const ELEMENT_PADDING_Y = 8
+const ELEMENT_BORDER_Y = 2
+const ELEMENT_MARGIN_Y = 0
 
-const getHeight = (value: ThemeBorderWidth) =>
-	Math.max(Number(value.value.split('px')[0]), ELEMENT_MIN_HEIGHT) + ELEMENT_PADDING_Y
+const getHeight = (value: ThemeBorderWidth) => {
+	const baseHeight = Math.max(Number(value.value.split('px')[0]), ELEMENT_MIN_HEIGHT)
+	return baseHeight + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
+}
 
 const BorderWidths = () => {
 	const values = useSelector((state) => state.theme.values.borderWidths)
