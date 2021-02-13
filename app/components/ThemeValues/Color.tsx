@@ -28,6 +28,9 @@ const checkerboardBackgroundStyles = {
 	`,
 }
 
+const ALPHA_THRESHOLD = 0.33
+const BRIGHTNESS_THRESHOLD = 130
+
 const Color = ({
 	name,
 	value,
@@ -35,8 +38,15 @@ const Color = ({
 }: ThemeColor & {
 	selected: boolean | undefined
 }) => {
-	const labelColor = calculateColorBrightness(value) < 130 ? '#ffffff' : '#232323'
 	const spring = useSpring({ config: config.wobbly, transform: `scale3d(${selected ? '0.9, 0.9, 0.9' : '1, 1, 1'})` })
+
+	let alpha = 1
+
+	if (value.includes('rgba')) {
+		alpha = Number((Number(value.split(',')[3].trim().split('%')[0]) / 100).toFixed(2))
+	}
+
+	const labelColor = alpha < ALPHA_THRESHOLD ? '#232323' : calculateColorBrightness(value) < BRIGHTNESS_THRESHOLD ? '#ffffff' : '#232323'
 
 	return (
 		<animated.div

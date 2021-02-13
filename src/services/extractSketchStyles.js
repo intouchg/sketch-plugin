@@ -18,8 +18,9 @@ const convert8DigitHex = (color) => {
 	const r = parseInt(color.substr(1, 2), 16)
 	const g = parseInt(color.substr(3, 2), 16)
 	const b = parseInt(color.substr(5, 2), 16)
+	const a = (parseFloat(alpha.toFixed(2)) * 100).toFixed(0)
 
-	return `rgba(${r}, ${g}, ${b}, ${parseFloat(alpha.toFixed(2))})`
+	return `rgba(${r}, ${g}, ${b}, ${a}%)`
 }
 
 const sortIntegersAscending = (a, b) => a - b

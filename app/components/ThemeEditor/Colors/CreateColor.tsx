@@ -18,7 +18,7 @@ const CreateColor = ({
 	const dispatch = useDispatch()
 	const colors = useSelector((state) => state.theme.values.colors)
 	const [ name, setName ] = useState('')
-	const [ value, setValue ] = useState('')
+	const [ value, setValue ] = useState('#000000')
 	const [ error, setError ] = useState('')
 
 	const updateName = (event: React.ChangeEvent<HTMLInputElement>) => {
