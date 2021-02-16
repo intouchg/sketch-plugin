@@ -210,7 +210,6 @@ const theme = {
 			fontWeight: '700',
 		},
 	},
-	labels: {},
 	links: {
 		Primary: {
 			color: '#0091d4',
@@ -225,6 +224,7 @@ const theme = {
 			fill: '#0091d4',
 		},
 	},
+	labels: {},
 	inputs: {
 		Primary: {
 			color: '#232323',
