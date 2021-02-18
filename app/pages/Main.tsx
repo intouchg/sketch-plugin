@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Flex } from '@i/components'
-import { TopToolbar, LeftNavbar, ThemeEditor, ComponentEditor, ImportModal } from '../components'
-import { useWindowUndoListener } from '../hooks'
+import { TopToolbar, LeftNavbar, ThemeEditor, ComponentEditor, ImportModal, leftNavbarWidth } from '../components'
+import { useWindowUndoListener, useMeasure } from '../hooks'
 
 const Main = () => {
 	const [ showImportModal, setShowImportModal ] = useState(false)
 	const localProject = useSelector((state) => state.azure.localProject)
 	const azureModalState = useSelector((state) => state.azure.azureModalState)
 	useWindowUndoListener(!showImportModal && !azureModalState)
+	const [ containerRef, containerBounds ] = useMeasure<HTMLDivElement>()
 
 	if (!localProject) {
 		return (
@@ -23,7 +24,7 @@ const Main = () => {
 				showProjectOptions
 				setShowImportModal={setShowImportModal}
 			/>
-			<Flex>
+			<Flex ref={containerRef}>
 				<LeftNavbar />
 				<Routes>
 					<Route
@@ -35,7 +36,7 @@ const Main = () => {
 					<Route
 						path="theme/*"
 						element={
-							<ThemeEditor />
+							<ThemeEditor containerWidth={containerBounds.width - leftNavbarWidth} />
 						}
 					/>
 					<Route

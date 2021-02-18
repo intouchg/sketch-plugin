@@ -106,12 +106,14 @@ const ComponentNavigation = () => (
 	</Stack>
 )
 
+export const leftNavbarWidth = 180
+
 const LeftNavbar = () => {
 	return (
 		<Stack
-			width="236px"
-			minWidth="122px"
-			height={`calc(100vh - ${topToolbarHeight})`}
+			width={leftNavbarWidth}
+			height={`calc(100vh - ${topToolbarHeight}px)`}
+			flexShrink={0}
 			padding={3}
 			backgroundColor="Card"
 			borderRightWidth="1px"

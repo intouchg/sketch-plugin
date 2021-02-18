@@ -17,7 +17,7 @@ const Welcome = () => {
 		<>
 			<TopToolbar />
 			<Flex
-				height={`calc(100vh - ${topToolbarHeight})`}
+				height={`calc(100vh - ${topToolbarHeight}px)`}
 				alignItems="center"
 				justifyContent="center"
 			>

@@ -9,8 +9,13 @@ import { Shadows } from './Shadows'
 import { BorderWidths } from './BorderWidths'
 import { Radii } from './Radii'
 import { Space } from './Space'
+import { rightToolbarWidth } from './RightToolbar'
 
-const ThemeEditor = () => (
+const ThemeEditor = ({
+	containerWidth,
+}: {
+	containerWidth: number
+}) => (
 	<Routes>
 		<Route
 			path="/"
@@ -21,7 +26,7 @@ const ThemeEditor = () => (
 		<Route
 			path="colors"
 			element={
-				<Colors />
+				<Colors containerWidth={containerWidth - rightToolbarWidth} />
 			}
 		/>
 		<Route

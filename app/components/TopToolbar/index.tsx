@@ -7,7 +7,7 @@ import { AzureStatus } from './AzureStatus'
 import { MoreMenu } from './MoreMenu'
 import { UpdatesStatus } from './UpdatesStatus'
 
-export const topToolbarHeight = '64px'
+export const topToolbarHeight = 64
 
 const TopToolbar = ({
 	showProjectOptions,

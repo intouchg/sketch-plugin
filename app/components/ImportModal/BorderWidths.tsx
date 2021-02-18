@@ -51,12 +51,12 @@ const BorderWidths = ({
 							<Flex
 								minWidth="92px"
 								minHeight="44px"
+								flexShrink={0}
 								padding={2}
 								marginRight={3}
 								alignItems="center"
 								backgroundColor={selected ? 'Primary Lighter' : imported ? 'Background' : 'transparent'}
 								borderRadius={3}
-								flexShrink={0}
 							>
 								<Box marginRight={2}>
 									<ImportIcon

@@ -1,31 +1,36 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useTransition, animated } from 'react-spring'
+import { animated, to } from 'react-spring'
 import { Button } from '@i/components'
 import { Color } from '../../ThemeValues'
-import { ColorGrid } from '../../ColorGrid'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
 import { CreateOverlay } from '../CreateOverlay'
 import { EditColor } from './EditColor'
 import { CreateColor } from './CreateColor'
 import { sortColors } from '../../ImportModal/Colors'
+import { useGridTransition } from '../../../hooks'
 
-const Colors = () => {
+const colorsContainerMaxWidth = 860
+const colorSwatchWidth = 186
+
+const Colors = ({
+	containerWidth,
+}: {
+	containerWidth: number
+}) => {
 	const values = useSelector((state) => state.theme.values.colors)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
+	const gridWidth = Math.min(Math.max(colorSwatchWidth, containerWidth), colorsContainerMaxWidth)
 
-	const transition = useTransition(values, {
-		keys: (value: typeof values[number]) => value.id,
-		sort: sortColors,
-		// trail: 400 / values.length,
-		initial: { opacity: 1, transform: 'scale3d(1, 1, 1)' },
-		from: { opacity: 0, transform: 'scale3d(0, 0, 0)' },
-		enter: { opacity: 1, transform: 'scale3d(1, 1, 1)' },
-		leave: { opacity: 0, transform: 'scale3d(0, 0, 0)' },
-	})
+	const [ transition, containerSize ] = useGridTransition(
+		values,
+		gridWidth,
+		{ width: colorSwatchWidth, height: colorSwatchWidth },
+		sortColors,
+	)
 
 	const toggleCreating = () => {
 		setSelectedId(null)
@@ -35,35 +40,54 @@ const Colors = () => {
 	return (
 		<>
 			<ValuesContainer>
-				<ColorGrid
-					flexGrow={1}
-					maxWidth="860px"
-					margin="auto"
-					gridGap={3}
-					padding={6}
+				<div
+					style={{
+						width: '100%',
+						minWidth: colorSwatchWidth,
+						maxWidth: colorsContainerMaxWidth,
+						boxSizing: 'content-box',
+						padding: '48px',
+						margin: 'auto',
+					}}
 				>
-					{transition((style, value) => (
-						<animated.div style={style as any}>
-							<Button
-								invisible
-								key={value.id}
-								position="relative"
-								width="100%"
-								height="0"
-								paddingBottom="100%"
-								backgroundColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
-								borderRadius={3}
-								flexGrow={1}
-								onClick={() => setSelectedId(value.id)}
+					<animated.div
+						style={{
+							marginLeft: 'auto',
+							marginRight: 'auto',
+							...containerSize,
+						}}
+					>
+						{transition(({ x, y, scaler, ...styles }, value) => (
+							<animated.div
+								style={{
+									position: 'absolute',
+									left: '0',
+									right: '0',
+									padding: '8px',
+									willChange: 'transform, width, height, opacity',
+									transform: to([ x, y, scaler ], (x, y, s) => `translate3d(${x}px, ${y}px, 0) scale3d(${s}, ${s}, ${s})`),
+									...styles as any,
+								}}
 							>
-								<Color
-									selected={value.id === selectedId}
-									{...value}
-								/>
-							</Button>
-						</animated.div>
-					))}
-				</ColorGrid>
+								<Button
+									invisible
+									key={value.id}
+									position="relative"
+									width="178px"
+									height="178px"
+									backgroundColor={value.id === selectedId ? 'Primary Light' : 'transparent'}
+									borderRadius={3}
+									onClick={() => setSelectedId(value.id)}
+								>
+									<Color
+										selected={value.id === selectedId}
+										{...value}
+									/>
+								</Button>
+							</animated.div>
+						))}
+					</animated.div>
+				</div>
 				<CreateOverlay
 					active={creating}
 					onClick={toggleCreating}

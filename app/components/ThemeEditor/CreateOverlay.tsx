@@ -34,7 +34,7 @@ const CreateOverlay = ({
 				style={{
 					position: 'fixed',
 					bottom: '24px',
-					right: `calc(${rightToolbarWidth} + 24px)`,
+					right: `calc(${rightToolbarWidth}px + 24px)`,
 					transform,
 				}}
 			>
