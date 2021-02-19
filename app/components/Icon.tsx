@@ -1,13 +1,13 @@
 import React from 'react'
 // @ts-ignore
 import * as Icons from '../icons'
-import type { Icon } from '@i/components'
+import type { Svg } from '@i/components'
 
-const MetaIcon = ({ icon, ...props }: React.ComponentProps<typeof Icon> & { icon: string }) => {
+const Icon = ({ icon, ...props }: React.ComponentProps<typeof Svg> & { icon: string }) => {
 	const IconComponent = Icons[icon]
 	return <IconComponent {...props} />
 }
 
-MetaIcon.displayName = 'MetaIcon'
+Icon.displayName = 'Icon'
 
-export { MetaIcon as Icon }
+export { Icon }

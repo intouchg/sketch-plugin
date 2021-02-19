@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text } from '@i/components'
+import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
 import type { ThemeBorderWidth } from '@i/theme'
@@ -34,24 +34,43 @@ const EditBorderWidth = ({
 		}))
 	}
 
+	const showDeleteModal = () => {}
+
 	return (
-		<Flex
-			alignItems="center"
-			justifyContent="space-between"
-			marginTop={2}
-			marginBottom={4}
-		>
-			<Text>
-				borderWidth
-			</Text>
-			<PixelInput
-				min={BORDER_WIDTH_MIN}
-				max={BORDER_WIDTH_MAX}
-				value={value}
-				onChange={(event) => setValue(event.target.value)}
-				onBlur={updateBorderWidth}
-			/>
-		</Flex>
+		<>
+			<Box flexGrow={1}>
+				<Flex
+					alignItems="center"
+					justifyContent="space-between"
+					marginTop={2}
+					marginBottom={4}
+				>
+					<Text>
+						borderWidth
+					</Text>
+					<PixelInput
+						min={BORDER_WIDTH_MIN}
+						max={BORDER_WIDTH_MAX}
+						value={value}
+						onChange={(event) => setValue(event.target.value)}
+						onBlur={updateBorderWidth}
+					/>
+				</Flex>
+			</Box>
+			<Button
+				invisible
+				alignSelf="flex-end"
+				onClick={showDeleteModal}
+			>
+				<Text
+					color="Critical"
+					fontSize={2}
+					fontWeight="Medium"
+				>
+					Delete
+				</Text>
+			</Button>
+		</>
 	)
 }
 

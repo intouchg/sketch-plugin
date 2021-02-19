@@ -1,8 +1,8 @@
 import React from 'react'
-import { Icon } from '@i/components'
+import { Svg } from '@i/components'
 
-const NotInSketchIcon = (props: React.ComponentProps<typeof Icon>) => (
-	<Icon
+const NotInSketchIcon = (props: React.ComponentProps<typeof Svg>) => (
+	<Svg
 		viewBox="0 0 24 26"
 		{...props}
 	>
@@ -90,7 +90,7 @@ const NotInSketchIcon = (props: React.ComponentProps<typeof Icon>) => (
 				</g>
 			</g>
 		</g>
-	</Icon>
+	</Svg>
 )
 
 export { NotInSketchIcon }
