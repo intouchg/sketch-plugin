@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box } from '@i/components'
+import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { ColorPicker } from '../../ColorPicker'
 import { updateThemeValue } from '../../../store'
-import type { ColorResult } from 'react-color'
 import type { ThemeShadow } from '@i/theme'
 
 export const SHADOW_X_MIN = -100
@@ -109,86 +108,101 @@ const EditShadow = ({
 					boxShadow={`${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`}
 				/>
 			</Flex>
-			<Flex
-				flexShrink={0}
-				alignItems="center"
-				justifyContent="space-between"
-				marginY={2}
-				marginTop="224px"
-			>
-				<Text>
-					x
-				</Text>
-				<PixelInput
-					min={SHADOW_X_MIN}
-					max={SHADOW_X_MAX}
-					value={x}
-					onChange={(event) => setX(event.target.value)}
-					onBlur={updateShadowX}
-				/>
-			</Flex>
-			<Flex
-				flexShrink={0}
-				alignItems="center"
-				justifyContent="space-between"
-				marginY={2}
-			>
-				<Text>
-					y
-				</Text>
-				<PixelInput
-					min={SHADOW_Y_MIN}
-					max={SHADOW_Y_MAX}
-					value={y}
-					onChange={(event) => setY(event.target.value)}
-					onBlur={updateShadowY}
-				/>
-			</Flex>
-			<Flex
-				flexShrink={0}
-				alignItems="center"
-				justifyContent="space-between"
-				marginY={2}
-			>
-				<Text>
-					blur
-				</Text>
-				<PixelInput
-					min={SHADOW_BLUR_MIN}
-					max={SHADOW_BLUR_MAX}
-					value={blur}
-					onChange={(event) => setBlur(event.target.value)}
-					onBlur={updateShadowBlur}
-				/>
-			</Flex>
-			<Flex
-				flexShrink={0}
-				alignItems="center"
-				justifyContent="space-between"
-				marginY={2}
-				marginBottom={4}
-			>
-				<Text>
-					spread
-				</Text>
-				<PixelInput
-					min={SHADOW_SPREAD_MIN}
-					max={SHADOW_SPREAD_MAX}
-					value={spread}
-					onChange={(event) => setSpread(event.target.value)}
-					onBlur={updateShadowSpread}
-				/>
-			</Flex>
-			<Box
-				marginY={2}
-				marginBottom={4}
-			>
-				<ColorPicker
-					color={color}
-					onChange={(value) => setColor(value)}
-					onChangeComplete={updateShadowColor}
-				/>
+			<Box flexGrow={1}>
+				<Flex
+					flexShrink={0}
+					alignItems="center"
+					justifyContent="space-between"
+					marginY={2}
+					marginTop="224px"
+				>
+					<Text>
+						x
+					</Text>
+					<PixelInput
+						min={SHADOW_X_MIN}
+						max={SHADOW_X_MAX}
+						value={x}
+						onChange={(event) => setX(event.target.value)}
+						onBlur={updateShadowX}
+					/>
+				</Flex>
+				<Flex
+					flexShrink={0}
+					alignItems="center"
+					justifyContent="space-between"
+					marginY={2}
+				>
+					<Text>
+						y
+					</Text>
+					<PixelInput
+						min={SHADOW_Y_MIN}
+						max={SHADOW_Y_MAX}
+						value={y}
+						onChange={(event) => setY(event.target.value)}
+						onBlur={updateShadowY}
+					/>
+				</Flex>
+				<Flex
+					flexShrink={0}
+					alignItems="center"
+					justifyContent="space-between"
+					marginY={2}
+				>
+					<Text>
+						blur
+					</Text>
+					<PixelInput
+						min={SHADOW_BLUR_MIN}
+						max={SHADOW_BLUR_MAX}
+						value={blur}
+						onChange={(event) => setBlur(event.target.value)}
+						onBlur={updateShadowBlur}
+					/>
+				</Flex>
+				<Flex
+					flexShrink={0}
+					alignItems="center"
+					justifyContent="space-between"
+					marginY={2}
+					marginBottom={4}
+				>
+					<Text>
+						spread
+					</Text>
+					<PixelInput
+						min={SHADOW_SPREAD_MIN}
+						max={SHADOW_SPREAD_MAX}
+						value={spread}
+						onChange={(event) => setSpread(event.target.value)}
+						onBlur={updateShadowSpread}
+					/>
+				</Flex>
+				<Box
+					marginY={2}
+					marginBottom={4}
+				>
+					<ColorPicker
+						color={color}
+						onChange={(value) => setColor(value)}
+						onChangeComplete={updateShadowColor}
+					/>
+				</Box>
 			</Box>
+			<Button
+				invisible
+				alignSelf="flex-end"
+				onClick={() => {}}
+			>
+				<Text
+					color="Critical"
+					fontSize={2}
+					fontWeight="Medium"
+				>
+					Delete
+				</Text>
+			</Button>
 		</>
 	)
 }

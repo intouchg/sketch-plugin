@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text } from '@i/components'
+import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
 import type { ThemeRadius } from '@i/theme'
@@ -35,23 +35,40 @@ const EditRadius = ({
 	}
 
 	return (
-		<Flex
-			alignItems="center"
-			justifyContent="space-between"
-			marginTop={2}
-			marginBottom={4}
-		>
-			<Text>
-				radius
-			</Text>
-			<PixelInput
-				min={RADIUS_MIN}
-				max={RADIUS_MAX}
-				value={value}
-				onChange={(event) => setValue(event.target.value)}
-				onBlur={updateRadius}
-			/>
-		</Flex>
+		<>
+			<Box flexGrow={1}>
+				<Flex
+					alignItems="center"
+					justifyContent="space-between"
+					marginTop={2}
+					marginBottom={4}
+				>
+					<Text>
+						radius
+					</Text>
+					<PixelInput
+						min={RADIUS_MIN}
+						max={RADIUS_MAX}
+						value={value}
+						onChange={(event) => setValue(event.target.value)}
+						onBlur={updateRadius}
+					/>
+				</Flex>
+			</Box>
+			<Button
+				invisible
+				alignSelf="flex-end"
+				onClick={() => {}}
+			>
+				<Text
+					color="Critical"
+					fontSize={2}
+					fontWeight="Medium"
+				>
+					Delete
+				</Text>
+			</Button>
+		</>
 	)
 }
 
