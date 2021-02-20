@@ -44,10 +44,10 @@ const Colors = ({
 			<ValuesContainer>
 				<div
 					style={{
+						boxSizing: 'content-box',
 						width: '100%',
 						minWidth: colorSwatchWidth,
 						maxWidth: colorsContainerMaxWidth,
-						boxSizing: 'content-box',
 						padding: colorsContainerPaddingX,
 						margin: 'auto',
 					}}

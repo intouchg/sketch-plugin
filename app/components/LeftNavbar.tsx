@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { createUuid } from '@i/utility'
-import { Stack, Link, Text } from '@i/components'
+import { Stack, Link, Text, space, radius, color } from '@i/components'
 import { topToolbarHeight } from './TopToolbar'
 
 const activeLinkClass = 'c' + createUuid()
@@ -11,19 +11,17 @@ const StyledLink = styled(Link).attrs({
 	as: NavLink,
 	activeClassName: activeLinkClass,
 })<React.ComponentProps<typeof NavLink>>`
-	${({ theme }) => `
-		padding: ${theme.space[2]};
-		padding-bottom: calc(${theme.space[2]} - 2px);
-		margin-left: -${theme.space[2]};
-		margin-right: -${theme.space[2]};
-		border-radius: ${theme.radii[1]};
-		line-height: 1;
-		text-decoration: none;
+	padding: ${space(2)};
+	padding-bottom: calc(${space(2)} - 2px);
+	margin-left: -${space(2)};
+	margin-right: -${space(2)};
+	border-radius: ${radius(1)};
+	line-height: 1;
+	text-decoration: none;
 
-		&.${activeLinkClass} {
-			background-color: ${theme.colors['Primary Lighter']};
-		}
-	`}
+	&.${activeLinkClass} {
+		background-color: ${color('Primary Lighter')};
+	}
 `
 
 const ThemeNavigation = () => (

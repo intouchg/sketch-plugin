@@ -1,21 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Stack, Text } from '@i/components'
+import { Stack, Text, space, font, fontWeight, color, radius } from '@i/components'
 import type { AzureUserConnection, AzureGitRepo } from '@i/azure'
 
 const Repo = styled.div`
-	${({ theme }) => `
-		padding: ${theme.space[4]} ${theme.space[4]};
-		margin-bottom: ${theme.space[2]};
-		font-family: ${theme.fonts['Avenir Next']};
-		font-weight: ${theme.fontWeights[4]};
-		color: ${theme.colors.Text};
-		background-color: ${theme.colors.Card};
-		border: 0;
-		border-radius: ${theme.radii[3]};
-		text-transform: none;
-		cursor: pointer;
-	`}
+	padding: ${space(4)} ${space(4)};
+	margin-bottom: ${space(2)};
+	font-family: ${font('Avenir Next')};
+	font-weight: ${fontWeight(4)};
+	color: ${color('Text')};
+	background-color: ${color('Card')};
+	border: 0;
+	border-radius: ${radius(3)};
+	text-transform: none;
+	cursor: pointer;
 `
 
 const RepoList = ({

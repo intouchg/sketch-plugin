@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Stack, Text, Box, Button } from '@i/components'
+import { Stack, Text, Box, Button, space } from '@i/components'
 import { useSelectLocalProject } from '../hooks'
 
 const OverflowButton = styled(Button).attrs({ variant: 'Tertiary' })`
@@ -10,7 +10,7 @@ const OverflowButton = styled(Button).attrs({ variant: 'Tertiary' })`
 	max-width: 320px;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	margin-bottom: ${({ theme }) => theme.space[1]};
+	margin-bottom: ${space(1)};
 `
 
 const TruncatedTextBox = styled(Box)`

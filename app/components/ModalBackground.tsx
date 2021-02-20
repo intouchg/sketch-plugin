@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex } from '@i/components'
+import { Flex, zIndex } from '@i/components'
 
 const ModalBackground = styled(Flex)`
     position: fixed;
@@ -13,7 +13,7 @@ const ModalBackground = styled(Flex)`
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: ${(props) => props.theme.zIndices[3]};
+    z-index: ${zIndex(3)};
 `
 
 export { ModalBackground }

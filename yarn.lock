@@ -1436,10 +1436,10 @@
     "@babel/runtime" "7.12.5"
     "@i/utility" latest
 
-"@i/components@latest":
-  version "0.0.95"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.95.tgz#ac5aae84f68b91843f3bc147ea34d7d032c63d9a"
-  integrity sha1-rFquhPaLkYQ/O8FH6jTX0DLGPZo=
+"@i/components@0.0.99":
+  version "0.0.99"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.99.tgz#4504f89eff8e5aaf22ed4351436323496f30c55b"
+  integrity sha1-RQT4nv+OWq8i7UNRQ2MjSW8wxVs=
   dependencies:
     "@babel/runtime" "7.12.5"
     "@i/theme" latest
@@ -1463,6 +1463,14 @@
   integrity sha1-N43GBey7LV4cvCcoAneRe6G7O5o=
   dependencies:
     "@babel/runtime" "7.12.5"
+
+"@i/theme@0.0.48":
+  version "0.0.48"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/theme/-/theme-0.0.48.tgz#2b6ecaf731fd939ea13405243708e8529ccf4ada"
+  integrity sha1-K27K9zH9k56hNAUkNwjoUpzPSto=
+  dependencies:
+    "@babel/runtime" "7.12.5"
+    "@i/utility" latest
 
 "@i/theme@latest":
   version "0.0.47"
@@ -2918,10 +2926,10 @@
     "@types/react" "*"
     "@types/reactcss" "*"
 
-"@types/react-dom@17.0.0":
-  version "17.0.0"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-dom/-/react-dom-17.0.0.tgz#b3b691eb956c4b3401777ee67b900cb28415d95a"
-  integrity sha1-s7aR65VsSzQBd37me5AMsoQV2Vo=
+"@types/react-dom@17.0.1":
+  version "17.0.1"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-dom/-/react-dom-17.0.1.tgz#d92d77d020bfb083e07cc8e0ac9f933599a4d56a"
+  integrity sha1-2S130CC/sIPgfMjgrJ+TNZmk1Wo=
   dependencies:
     "@types/react" "*"
 
@@ -2966,18 +2974,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*":
+"@types/react@*", "@types/react@17.0.2":
   version "17.0.2"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react/-/react-17.0.2.tgz#3de24c4efef902dd9795a49c75f760cbe4f7a5a8"
   integrity sha1-PeJMTv75At2XlaScdfdgy+T3pag=
-  dependencies:
-    "@types/prop-types" "*"
-    csstype "^3.0.2"
-
-"@types/react@17.0.0":
-  version "17.0.0"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react/-/react-17.0.0.tgz#5af3eb7fad2807092f0046a1302b7823e27919b8"
-  integrity sha1-WvPrf60oBwkvAEahMCt4I+J5Gbg=
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"

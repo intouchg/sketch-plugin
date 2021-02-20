@@ -1,20 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Stack, Link, Text } from '@i/components'
+import { Stack, Link, Text, space, radius } from '@i/components'
 import type { AzureUserConnection } from '@i/azure'
 
 const OrganizationButton = styled(Link)`
-	${({ theme }) => `
-		flex-shrink: 0;
-		padding: ${theme.space[2]};
-		padding-bottom: calc(${theme.space[2]} - 2px);
-		margin-left: -${theme.space[2]};
-		margin-right: -${theme.space[2]};
-		border-radius: ${theme.radii[1]};
-		line-height: 1;
-		text-decoration: none;
-		text-align: left;
-	`}
+	flex-shrink: 0;
+	padding: ${space(2)};
+	padding-bottom: calc(${space(2)} - 2px);
+	margin-left: -${space(2)};
+	margin-right: -${space(2)};
+	border-radius: ${radius(1)};
+	line-height: 1;
+	text-decoration: none;
+	text-align: left;
 `
 
 const LeftToolbar = ({

@@ -1,8 +1,22 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Stack, Flex, Heading } from '@i/components'
 import { ModalBackground } from '../ModalBackground'
+import { CloseModalButton } from '../CloseModalButton'
+import { deleteThemeValue } from '../../store'
+import type { ThemeValue } from '@i/theme'
 
-const DeleteModal = () => {
+const DeleteModal = ({
+	deleteValue,
+	setDeleteValue,
+}: {
+	deleteValue: ThemeValue
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
+}) => {
+	const dispatch = useDispatch()
+
+	const confirmDelete = () => dispatch(deleteThemeValue(deleteValue))
+
 	return (
 		<ModalBackground>
 			<Stack
@@ -31,7 +45,7 @@ const DeleteModal = () => {
 						width="16px"
 						padding={2}
 						marginRight={2}
-						onClick={closeModal}
+						onClick={() => setDeleteValue(null)}
 					/>
 				</Flex>
 			</Stack>
