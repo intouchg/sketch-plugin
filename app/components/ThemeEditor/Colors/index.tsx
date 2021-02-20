@@ -12,7 +12,9 @@ import { sortColors } from '../../ImportModal/Colors'
 import { useGridTransition } from '../../../hooks'
 
 const colorsContainerMaxWidth = 860
+const colorsContainerPaddingX = 48
 const colorSwatchWidth = 186
+const colorsContainerMinWidth = colorSwatchWidth + (2 * colorsContainerPaddingX)
 
 const Colors = ({
 	containerWidth,
@@ -23,7 +25,7 @@ const Colors = ({
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
-	const gridWidth = Math.min(Math.max(colorSwatchWidth, containerWidth), colorsContainerMaxWidth)
+	const gridWidth = Math.min(Math.max(colorsContainerMinWidth, containerWidth), colorsContainerMaxWidth) - (2 * colorsContainerPaddingX)
 
 	const [ transition, containerSize ] = useGridTransition(
 		values,
@@ -46,7 +48,7 @@ const Colors = ({
 						minWidth: colorSwatchWidth,
 						maxWidth: colorsContainerMaxWidth,
 						boxSizing: 'content-box',
-						padding: '48px',
+						padding: colorsContainerPaddingX,
 						margin: 'auto',
 					}}
 				>
