@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Flex } from '@i/components'
-import { TopToolbar, LeftNavbar, ThemeEditor, ComponentEditor, ImportModal, leftNavbarWidth } from '../components'
+import { TopToolbar, LeftNavbar, ThemeEditor, VariantEditor, ImportModal, leftNavbarWidth } from '../components'
 import { useWindowUndoListener } from '../hooks'
 
 const Main = ({
@@ -45,7 +45,7 @@ const Main = ({
 					<Route
 						path="components/*"
 						element={
-							<ComponentEditor />
+							<VariantEditor />
 						}
 					/>
 				</Routes>

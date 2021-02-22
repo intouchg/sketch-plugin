@@ -5,6 +5,35 @@ import { createUuid } from '@i/utility'
 import { Stack, Link, Text, space, radius, color } from '@i/components'
 import { topToolbarHeight } from './TopToolbar'
 
+const routesData = {
+	theme: {
+		colors: 'Colors',
+		fonts: 'Fonts',
+		fontSizes: 'Font Sizes',
+		lineHeights: 'Line Heights',
+		letterSpacings: 'Letter Spacings',
+		shadows: 'Shadows',
+		borderWidths: 'Border Widths',
+		radii: 'Radii',
+		space: 'Space',
+	},
+	components: {
+		buttons: 'Button',
+		texts: 'Text',
+		headings: 'Heading',
+		links: 'Link',
+		icons: 'Icon',
+		labels: 'Label',
+		inputs: 'Input',
+		radios: 'Radio',
+		checkboxes: 'Checkbox',
+		selects: 'Select',
+		sliders: 'Slider',
+		toggles: 'Toggle',
+		textareas: 'Textarea',
+	},
+}
+
 const activeLinkClass = 'c' + createUuid()
 
 const StyledLink = styled(Link).attrs({
@@ -36,33 +65,14 @@ const ThemeNavigation = () => (
 			Theme
 		</Text>
 		<Stack>
-			<StyledLink to="theme/colors/">
-				Colors
-			</StyledLink>
-			<StyledLink to="theme/fonts/">
-				Fonts
-			</StyledLink>
-			<StyledLink to="theme/fontSizes/">
-				Font Sizes
-			</StyledLink>
-			<StyledLink to="theme/lineHeights/">
-				Line Heights
-			</StyledLink>
-			<StyledLink to="theme/letterSpacings/">
-				Letter Spacings
-			</StyledLink>
-			<StyledLink to="theme/shadows/">
-				Shadows
-			</StyledLink>
-			<StyledLink to="theme/borderWidths/">
-				Border Widths
-			</StyledLink>
-			<StyledLink to="theme/radii/">
-				Radii
-			</StyledLink>
-			<StyledLink to="theme/space/">
-				Space
-			</StyledLink>
+			{Object.entries(routesData.theme).map(([ route, title ]) => (
+				<StyledLink
+					key={route}
+					to={`theme/${route}/`}
+				>
+					{title}
+				</StyledLink>
+			))}
 		</Stack>
 	</Stack>
 )
@@ -79,27 +89,14 @@ const ComponentNavigation = () => (
 			Components
 		</Text>
 		<Stack>
-			<StyledLink to="components/button/">
-				Button
-			</StyledLink>
-			<StyledLink to="components/heading/">
-				Heading
-			</StyledLink>
-			<StyledLink to="components/icon/">
-				Icon
-			</StyledLink>
-			<StyledLink to="components/input/">
-				Input
-			</StyledLink>
-			<StyledLink to="components/label/">
-				Label
-			</StyledLink>
-			<StyledLink to="components/link/">
-				Link
-			</StyledLink>
-			<StyledLink to="components/text/">
-				Text
-			</StyledLink>
+			{Object.entries(routesData.components).map(([ route, title ]) => (
+				<StyledLink
+					key={route}
+					to={`components/${route}/`}
+				>
+					{title}
+				</StyledLink>
+			))}
 		</Stack>
 	</Stack>
 )
