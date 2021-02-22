@@ -11,7 +11,7 @@ const VariantEditor = () => (
 			}
 		/>
 		<Route
-			path="/:componentName/"
+			path="/:variantKey/"
 			element={
 				<Editor />
 			}
