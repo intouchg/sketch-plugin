@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components'
 import { Flex, Button, Text, Heading, Link, Label, Input, Radio, Checkbox, Select, Slider, Toggle, Textarea } from '@i/components'
 import { RightToolbar } from './RightToolbar'
 import { VariantsList } from './VariantsList'
+import { StyleEditor } from './StyleEditor'
 import { topToolbarHeight } from '../TopToolbar'
 import { themeProcessor, componentVariantsPropertyMap, defaultVariantName } from '@i/theme'
 import type { ThemeVariant } from '@i/theme'
@@ -149,6 +150,7 @@ const Editor = () => {
 					creating={creating}
 					setCreating={setCreating}
 				/>
+				<StyleEditor variant={selectedVariant} />
 			</RightToolbar>
 		</>
 	)

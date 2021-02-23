@@ -78,10 +78,7 @@ const VariantsList = ({
 	}
 
 	return (
-		<Stack
-			paddingBottom={2}
-			boxShadow="Downward Accent"
-		>
+		<Stack boxShadow="Downward Accent">
 			<Flex
 				flexShrink={0}
 				justifyContent="space-between"
@@ -152,16 +149,17 @@ const VariantsList = ({
 			)}
 			<Stack
 				flexShrink={0}
-				maxHeight="76px"
+				maxHeight="68px"
 				overflow="scroll"
 			>
-				{variants.map(({ id, name }) => (
+				{variants.map(({ id, name }, index) => (
 					<Button
 						invisible
 						key={id}
 						flexShrink={0}
 						paddingX={3}
 						paddingY={1}
+						paddingBottom={index === variants.length - 1 ? 2 : 1}
 						backgroundColor={id === selectedId ? 'Primary Lighter' : 'transparent'}
 						textAlign="left"
 						onClick={() => setSelectedId(id)}

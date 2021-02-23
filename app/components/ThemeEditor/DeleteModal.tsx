@@ -5,7 +5,8 @@ import { Color, BorderWidth, Font, FontSize, LineHeight, LetterSpacing, Radius, 
 import { ModalBackground } from '../ModalBackground'
 import { CloseModalButton } from '../CloseModalButton'
 import { deleteThemeValue } from '../../store'
-import type { ThemeValue } from '@i/theme'
+import { sortAlphabetical, titleCase } from '@i/utility'
+import type { ThemeValue, ThemeVariant } from '@i/theme'
 
 const componentConfig = {
 	color: Color,
@@ -32,7 +33,24 @@ const DeleteModal = ({
 	const Component = (componentConfig as any)[deleteValue.type]
 
 	let usageCount = 0
-	variants.forEach((variant) => Object.values(variant.styles).forEach((s) => s === id && ++usageCount))
+	const filteredVariants: ThemeVariant[] = []
+
+	variants.forEach((variant) => {
+		const styles: { [key: string]: string | string[] } = {}
+
+		Object.entries(variant.styles).forEach(([ styleProperty, styleId ]) => {
+			if (styleId === id || styleId?.includes(id)) {
+				++usageCount
+				styles[styleProperty] = styleId
+			}
+		})
+
+		if (Object.values(styles).length) {
+			filteredVariants.push({ ...variant, styles })
+		}
+	})
+
+	const sortedFilteredVariants = filteredVariants.slice().sort((a, b) => sortAlphabetical(a, b, 'variantType'))
 
 	const confirmDelete = () => dispatch(deleteThemeValue(deleteValue))
 
@@ -82,8 +100,15 @@ const DeleteModal = ({
 						<Component {...deleteValue} />
 					</Flex>
 					<Text>
-						This value is used {usageCount} times.
+						This value is used {usageCount} times:
 					</Text>
+					<Stack>
+						{sortedFilteredVariants.map((variant) => Object.entries(variant.styles).map(([ styleProperty, styleValue ]) => (
+							<Flex key={styleProperty}>
+								<Text />
+							</Flex>
+						)))}
+					</Stack>
 				</Stack>
 			</Stack>
 		</ModalBackground>
