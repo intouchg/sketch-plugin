@@ -1,4 +1,4 @@
-import type { ThemeValue } from '@i/theme'
+import type { ThemeValue, ThemeVariant } from '@i/theme'
 import type { ThemeData } from './state'
 import type { RawImportedSketchValues, DirectoryFilepath, SPFontData } from '../../sketchApi'
 
@@ -122,6 +122,36 @@ export const deleteThemeValue = (payload: DeleteThemeValueAction['payload']): De
 	payload,
 })
 
+export const CREATE_THEME_VARIANT = 'CREATE_THEME_VARIANT'
+export type CreateThemeVariantAction = {
+    type: typeof CREATE_THEME_VARIANT
+    payload: Partial<ThemeVariant> & { variantType: ThemeVariant['variantType'] }
+}
+export const createThemeVariant = (variant: CreateThemeVariantAction['payload']): CreateThemeVariantAction => ({
+	type: CREATE_THEME_VARIANT,
+	payload: variant,
+})
+
+export const UPDATE_THEME_VARIANT = 'UPDATE_THEME_VARIANT'
+export type UpdateThemeVariantAction = {
+    type: typeof UPDATE_THEME_VARIANT
+    payload: ThemeVariant
+}
+export const updateThemeVariant = (variant: UpdateThemeVariantAction['payload']): UpdateThemeVariantAction => ({
+	type: UPDATE_THEME_VARIANT,
+	payload: variant,
+})
+
+export const DELETE_THEME_VARIANT = 'DELETE_THEME_VARIANT'
+export type DeleteThemeVariantAction = {
+    type: typeof DELETE_THEME_VARIANT
+    payload: { id: string }
+}
+export const deleteThemeVariant = (payload: DeleteThemeVariantAction['payload']): DeleteThemeVariantAction => ({
+	type: DELETE_THEME_VARIANT,
+	payload,
+})
+
 export type ThemeActionType =
     | UndoAction
     | RedoAction
@@ -135,3 +165,6 @@ export type ThemeActionType =
     | CreateThemeValueAction
     | UpdateThemeValueAction
     | DeleteThemeValueAction
+    | CreateThemeVariantAction
+    | UpdateThemeVariantAction
+    | DeleteThemeVariantAction

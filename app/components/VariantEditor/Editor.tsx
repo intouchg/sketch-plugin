@@ -7,6 +7,7 @@ import { RightToolbar } from './RightToolbar'
 import { VariantsList } from './VariantsList'
 import { topToolbarHeight } from '../TopToolbar'
 import { themeProcessor, componentVariantsPropertyMap, defaultVariantName } from '@i/theme'
+import type { ThemeVariant } from '@i/theme'
 
 const componentConfig = {
 	buttons: {
@@ -101,16 +102,19 @@ const Editor = () => {
 	const values = useSelector((state) => state.theme.values)
 	const variants = useSelector((state) => state.theme.variants)
 	const theme = themeProcessor({ values: Object.values(values).flat(), variants })
-	const variantType = Object.entries(componentVariantsPropertyMap).find((e) => e[1] === variantKey)![0]
-	const filteredVariants = variants.filter((v) => v.variantType === variantType)
+	const variantType = Object.entries(componentVariantsPropertyMap).find((e) => e[1] === variantKey)![0] as ThemeVariant['variantType']
+	const [ filteredVariants, setFilteredVariants ] = useState(variants.filter((v) => v.variantType === variantType))
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedVariant = selectedId ? filteredVariants.find((value) => value.id === selectedId)! : null
+	const [ creating, setCreating ] = useState(false)
 
 	const { component: Component, children, props } = (componentConfig as any)[variantKey]
 
 	useEffect(() => {
-		// TO DO: Fix this.
-		// It prevents changing selectedId when clicking variant names.
+		setFilteredVariants(variants.filter((v) => v.variantType === variantType))
+	}, [ variants, variantType ])
+
+	useEffect(() => {
 		setSelectedId(filteredVariants.find((v) => v.name === defaultVariantName)?.id || null)
 	}, [ filteredVariants ])
 
@@ -138,8 +142,11 @@ const Editor = () => {
 			<RightToolbar>
 				<VariantsList
 					variants={filteredVariants}
+					variantType={variantType}
 					selectedId={selectedId}
 					setSelectedId={setSelectedId}
+					creating={creating}
+					setCreating={setCreating}
 				/>
 			</RightToolbar>
 		</>

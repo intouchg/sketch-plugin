@@ -1,5 +1,5 @@
 import { enablePatches, produce, applyPatches } from 'immer'
-import { createThemeValue, themeTypePropertyMap } from '@i/theme'
+import { createThemeValue, createThemeVariant, themeTypePropertyMap } from '@i/theme'
 import { sortAlphabetical } from '@i/utility'
 import {
 	UNDO,
@@ -11,6 +11,9 @@ import {
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
+	CREATE_THEME_VARIANT,
+	UPDATE_THEME_VARIANT,
+	DELETE_THEME_VARIANT,
 	SET_RECENT_PROJECTS,
 	SET_SKETCH_DOCUMENT_NAMES,
 	SET_SYSTEM_FONTS,
@@ -24,6 +27,8 @@ import type { SystemFontsDictionary } from '../../sketchApi'
 enablePatches()
 
 const findThemeValueByIdError = (id: string) => new Error(`Could not locate ThemeValue with id "${id}"`)
+
+const findThemeVariantByIdError = (id: string) => new Error(`Could not locate ThemeVariant with id "${id}"`)
 
 const changeHistory: { [key: string]: any } = {}
 let currentVersion = -1
@@ -41,6 +46,9 @@ const UNDOABLE_ACTIONS = [
 	CREATE_THEME_VALUE,
 	UPDATE_THEME_VALUE,
 	DELETE_THEME_VALUE,
+	CREATE_THEME_VARIANT,
+	UPDATE_THEME_VARIANT,
+	DELETE_THEME_VARIANT,
 	SAVE_IMPORTED_SKETCH_VALUES,
 ]
 
@@ -213,6 +221,43 @@ export const themeReducer = (
 						}
 					})
 				})
+
+				break
+			}
+
+			case CREATE_THEME_VARIANT: {
+				const value = createThemeVariant(
+					nextState.variants,
+					action.payload.variantType,
+					action.payload,
+				)
+				nextState.variants.push(value)
+				break
+			}
+
+			case UPDATE_THEME_VARIANT: {
+				const { id } = action.payload
+
+				const index = nextState.variants.findIndex((variant) => variant.id === id)
+
+				if (index === undefined) {
+					throw findThemeVariantByIdError(id)
+				}
+
+				nextState.variants[index] = action.payload
+				break
+			}
+
+			case DELETE_THEME_VARIANT: {
+				const { id } = action.payload
+
+				const index = nextState.variants.findIndex((variant) => variant.id === id)
+
+				if (index === -1) {
+					throw findThemeVariantByIdError(id)
+				}
+
+				nextState.variants.splice(index, 1)
 
 				break
 			}
