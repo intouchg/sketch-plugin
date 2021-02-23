@@ -83,6 +83,9 @@ const StyleEditor = ({
 			{color && (
 				<ColorEditor variant={variant} />
 			)}
+			{font && (
+				<FontEditor variant={variant} />
+			)}
 		</Stack>
 	)
 }
