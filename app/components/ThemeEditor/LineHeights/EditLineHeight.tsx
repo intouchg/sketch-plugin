@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeLineHeight } from '@i/theme'
+import type { ThemeValue, ThemeLineHeight } from '@i/theme'
 
 export const LINE_HEIGHT_MIN = -50
 export const LINE_HEIGHT_MAX = 200
@@ -15,8 +15,10 @@ export const parseLineHeight = (value: string) => `${parseFloat((Number(value) /
 
 const EditLineHeight = ({
 	lineHeight,
+	setDeleteValue,
 }: {
     lineHeight: ThemeLineHeight
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
 	const [ value, setValue ] = useState('')
@@ -57,8 +59,10 @@ const EditLineHeight = ({
 			</Box>
 			<Button
 				invisible
+				flexShrink={0}
 				alignSelf="flex-end"
-				onClick={() => {}}
+				paddingBottom={3}
+				onClick={() => setDeleteValue(lineHeight)}
 			>
 				<Text
 					color="Critical"

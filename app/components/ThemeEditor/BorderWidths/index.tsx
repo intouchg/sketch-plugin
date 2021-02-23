@@ -10,7 +10,7 @@ import { EditBorderWidth } from './EditBorderWidth'
 import { CreateBorderWidth } from './CreateBorderWidth'
 import { useListTransition } from '../../../hooks'
 import { sortBorderWidths } from '../../ImportModal/BorderWidths'
-import type { ThemeBorderWidth } from '@i/theme'
+import type { ThemeValue, ThemeBorderWidth } from '@i/theme'
 
 const ELEMENT_MIN_HEIGHT = 44
 const ELEMENT_PADDING_Y = 8
@@ -22,7 +22,11 @@ const getHeight = (value: ThemeBorderWidth) => {
 	return baseHeight + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
 }
 
-const BorderWidths = () => {
+const BorderWidths = ({
+	setDeleteValue,
+}: {
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
+}) => {
 	const values = useSelector((state) => state.theme.values.borderWidths)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
@@ -111,7 +115,10 @@ const BorderWidths = () => {
 					/>
                 )}
 				{selectedValue && (
-					<EditBorderWidth borderWidth={selectedValue} />
+					<EditBorderWidth
+						borderWidth={selectedValue}
+						setDeleteValue={setDeleteValue}
+					/>
                 )}
 			</RightToolbar>
 		</>

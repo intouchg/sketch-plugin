@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeFontSize } from '@i/theme'
+import type { ThemeValue, ThemeFontSize } from '@i/theme'
 
 export const FONT_SIZE_MIN = 6
 export const FONT_SIZE_MAX = 200
@@ -15,8 +15,10 @@ export const parseFontSize = (value: string) => `${parseFloat((Number(value) / 1
 
 const EditFontSize = ({
 	fontSize,
+	setDeleteValue,
 }: {
     fontSize: ThemeFontSize
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
 	const [ value, setValue ] = useState('')
@@ -57,8 +59,10 @@ const EditFontSize = ({
 			</Box>
 			<Button
 				invisible
+				flexShrink={0}
 				alignSelf="flex-end"
-				onClick={() => {}}
+				paddingBottom={3}
+				onClick={() => setDeleteValue(fontSize)}
 			>
 				<Text
 					color="Critical"

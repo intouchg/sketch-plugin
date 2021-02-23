@@ -10,7 +10,7 @@ import { EditLetterSpacing } from './EditLetterSpacing'
 import { CreateLetterSpacing } from './CreateLetterSpacing'
 import { useListTransition } from '../../../hooks'
 import { sortLetterSpacings } from '../../ImportModal/LetterSpacings'
-import type { ThemeLetterSpacing } from '@i/theme'
+import type { ThemeValue, ThemeLetterSpacing } from '@i/theme'
 
 const ELEMENT_MIN_HEIGHT = 44
 const ELEMENT_PADDING_Y = 8
@@ -22,7 +22,11 @@ const getHeight = (value: ThemeLetterSpacing) => {
 	return baseHeight + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
 }
 
-const LetterSpacings = () => {
+const LetterSpacings = ({
+	setDeleteValue,
+}: {
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
+}) => {
 	const values = useSelector((state) => state.theme.values.letterSpacings)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
@@ -111,7 +115,10 @@ const LetterSpacings = () => {
 					/>
                 )}
 				{selectedValue && (
-					<EditLetterSpacing letterSpacing={selectedValue} />
+					<EditLetterSpacing
+						letterSpacing={selectedValue}
+						setDeleteValue={setDeleteValue}
+					/>
                 )}
 			</RightToolbar>
 		</>

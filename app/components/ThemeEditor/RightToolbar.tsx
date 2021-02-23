@@ -11,6 +11,7 @@ const RightToolbar = (props: React.ComponentProps<typeof Stack>) => (
 		height={`calc(100vh - ${topToolbarHeight}px)`}
 		flexShrink={0}
 		padding={3}
+		paddingBottom="0"
 		backgroundColor="Card"
 		borderLeftWidth="1px"
 		borderLeftStyle="solid"

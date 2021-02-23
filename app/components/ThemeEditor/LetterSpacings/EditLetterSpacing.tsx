@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeLetterSpacing } from '@i/theme'
+import type { ThemeValue, ThemeLetterSpacing } from '@i/theme'
 
 export const LETTER_SPACING_MIN = -50
 export const LETTER_SPACING_MAX = 50
@@ -15,8 +15,10 @@ export const parseLetterSpacing = (value: string) => `${parseFloat(Number(value)
 
 const EditLetterSpacing = ({
 	letterSpacing,
+	setDeleteValue,
 }: {
     letterSpacing: ThemeLetterSpacing
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
 	const [ value, setValue ] = useState('')
@@ -57,8 +59,10 @@ const EditLetterSpacing = ({
 			</Box>
 			<Button
 				invisible
+				flexShrink={0}
 				alignSelf="flex-end"
-				onClick={() => {}}
+				paddingBottom={3}
+				onClick={() => setDeleteValue(letterSpacing)}
 			>
 				<Text
 					color="Critical"

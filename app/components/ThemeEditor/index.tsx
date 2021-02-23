@@ -32,7 +32,10 @@ const ThemeEditor = ({
 				<Route
 					path="colors"
 					element={
-						<Colors containerWidth={containerWidth - rightToolbarWidth} />
+						<Colors
+							containerWidth={containerWidth - rightToolbarWidth}
+							setDeleteValue={setDeleteValue}
+						/>
 					}
 				/>
 				<Route
@@ -44,43 +47,43 @@ const ThemeEditor = ({
 				<Route
 					path="fontSizes"
 					element={
-						<FontSizes />
+						<FontSizes setDeleteValue={setDeleteValue} />
 					}
 				/>
 				<Route
 					path="lineHeights"
 					element={
-						<LineHeights />
+						<LineHeights setDeleteValue={setDeleteValue} />
 					}
 				/>
 				<Route
 					path="letterSpacings"
 					element={
-						<LetterSpacings />
+						<LetterSpacings setDeleteValue={setDeleteValue} />
 					}
 				/>
 				<Route
 					path="shadows"
 					element={
-						<Shadows />
+						<Shadows setDeleteValue={setDeleteValue} />
 					}
 				/>
 				<Route
 					path="borderWidths"
 					element={
-						<BorderWidths />
+						<BorderWidths setDeleteValue={setDeleteValue} />
 					}
 				/>
 				<Route
 					path="radii"
 					element={
-						<Radii />
+						<Radii setDeleteValue={setDeleteValue} />
 					}
 				/>
 				<Route
 					path="space"
 					element={
-						<Space />
+						<Space setDeleteValue={setDeleteValue} />
 					}
 				/>
 			</Routes>

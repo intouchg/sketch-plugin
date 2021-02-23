@@ -10,6 +10,7 @@ import { EditShadow } from './EditShadow'
 import { CreateShadow } from './CreateShadow'
 import { useListTransition } from '../../../hooks'
 import { sortShadows } from '../../ImportModal/Shadows'
+import type { ThemeValue } from '@i/theme'
 
 const ELEMENT_BASE_HEIGHT = 152 // in pixels, magic number
 const ELEMENT_PADDING_Y = 8
@@ -17,7 +18,11 @@ const ELEMENT_BORDER_Y = 2
 const ELEMENT_MARGIN_Y = 0
 const ELEMENT_HEIGHT = ELEMENT_BASE_HEIGHT + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
 
-const Shadows = () => {
+const Shadows = ({
+	setDeleteValue,
+}: {
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
+}) => {
 	const values = useSelector((state) => state.theme.values.shadows)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
@@ -95,7 +100,10 @@ const Shadows = () => {
 					/>
                 )}
 				{selectedValue && (
-					<EditShadow shadow={selectedValue} />
+					<EditShadow
+						shadow={selectedValue}
+						setDeleteValue={setDeleteValue}
+					/>
                 )}
 			</RightToolbar>
 		</>

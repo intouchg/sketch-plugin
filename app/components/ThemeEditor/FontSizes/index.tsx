@@ -10,7 +10,7 @@ import { EditFontSize } from './EditFontSize'
 import { CreateFontSize } from './CreateFontSize'
 import { useListTransition } from '../../../hooks'
 import { sortFontSizes } from '../../ImportModal/FontSizes'
-import type { ThemeFontSize } from '@i/theme'
+import type { ThemeValue, ThemeFontSize } from '@i/theme'
 
 const ELEMENT_MIN_HEIGHT = 44 // in pixels
 const ELEMENT_PADDING_Y = 8
@@ -25,7 +25,11 @@ const getHeight = (value: ThemeFontSize) => {
 	return baseHeight + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
 }
 
-const FontSizes = () => {
+const FontSizes = ({
+	setDeleteValue,
+}: {
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
+}) => {
 	const values = useSelector((state) => state.theme.values.fontSizes)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
@@ -114,7 +118,10 @@ const FontSizes = () => {
 					/>
                 )}
 				{selectedValue && (
-					<EditFontSize fontSize={selectedValue} />
+					<EditFontSize
+						fontSize={selectedValue}
+						setDeleteValue={setDeleteValue}
+					/>
                 )}
 			</RightToolbar>
 		</>

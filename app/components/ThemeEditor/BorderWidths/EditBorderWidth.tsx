@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeBorderWidth } from '@i/theme'
+import type { ThemeValue, ThemeBorderWidth } from '@i/theme'
 
 export const BORDER_WIDTH_MIN = 1
 export const BORDER_WIDTH_MAX = 100
@@ -15,8 +15,10 @@ export const parseBorderWidth = (value: string) => `${parseFloat(Number(value).t
 
 const EditBorderWidth = ({
 	borderWidth,
+	setDeleteValue,
 }: {
     borderWidth: ThemeBorderWidth
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
 	const [ value, setValue ] = useState('')
@@ -33,8 +35,6 @@ const EditBorderWidth = ({
 			value: parseBorderWidth(event.target.value),
 		}))
 	}
-
-	const showDeleteModal = () => {}
 
 	return (
 		<>
@@ -59,8 +59,10 @@ const EditBorderWidth = ({
 			</Box>
 			<Button
 				invisible
+				flexShrink={0}
 				alignSelf="flex-end"
-				onClick={showDeleteModal}
+				paddingBottom={3}
+				onClick={() => setDeleteValue(borderWidth)}
 			>
 				<Text
 					color="Critical"

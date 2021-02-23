@@ -4,7 +4,7 @@ import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { ColorPicker } from '../../ColorPicker'
 import { updateThemeValue } from '../../../store'
-import type { ThemeShadow } from '@i/theme'
+import type { ThemeValue, ThemeShadow } from '@i/theme'
 
 export const SHADOW_X_MIN = -100
 export const SHADOW_X_MAX = 100
@@ -26,8 +26,10 @@ export const parseShadowSpread = (value: string) => `${parseFloat(Number(value).
 
 const EditShadow = ({
 	shadow,
+	setDeleteValue,
 }: {
     shadow: ThemeShadow
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
 	const [ x, setX ] = useState('')
@@ -192,8 +194,10 @@ const EditShadow = ({
 			</Box>
 			<Button
 				invisible
+				flexShrink={0}
 				alignSelf="flex-end"
-				onClick={() => {}}
+				paddingBottom={3}
+				onClick={() => setDeleteValue(shadow)}
 			>
 				<Text
 					color="Critical"

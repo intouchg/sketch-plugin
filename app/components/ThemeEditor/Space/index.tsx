@@ -10,7 +10,7 @@ import { EditSpace } from './EditSpace'
 import { CreateSpace } from './CreateSpace'
 import { useListTransition } from '../../../hooks'
 import { sortBorderWidths } from '../../ImportModal/BorderWidths'
-import type { ThemeSpace } from '@i/theme'
+import type { ThemeValue, ThemeSpace } from '@i/theme'
 
 const ELEMENT_MIN_HEIGHT = 44
 const ELEMENT_PADDING_Y = 8
@@ -22,7 +22,11 @@ const getHeight = (value: ThemeSpace) => {
 	return baseHeight + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
 }
 
-const Space = () => {
+const Space = ({
+	setDeleteValue,
+}: {
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
+}) => {
 	const values = useSelector((state) => state.theme.values.space)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
@@ -111,7 +115,10 @@ const Space = () => {
 					/>
                 )}
 				{selectedValue && (
-					<EditSpace space={selectedValue} />
+					<EditSpace
+						space={selectedValue}
+						setDeleteValue={setDeleteValue}
+					/>
                 )}
 			</RightToolbar>
 		</>

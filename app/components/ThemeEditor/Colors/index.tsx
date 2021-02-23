@@ -10,6 +10,7 @@ import { EditColor } from './EditColor'
 import { CreateColor } from './CreateColor'
 import { sortColors } from '../../ImportModal/Colors'
 import { useGridTransition } from '../../../hooks'
+import type { ThemeValue } from '@i/theme'
 
 const colorsContainerMaxWidth = 860
 const colorsContainerPaddingX = 48
@@ -18,8 +19,10 @@ const colorsContainerMinWidth = colorSwatchWidth + (2 * colorsContainerPaddingX)
 
 const Colors = ({
 	containerWidth,
+	setDeleteValue,
 }: {
 	containerWidth: number
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const values = useSelector((state) => state.theme.values.colors)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
@@ -103,7 +106,10 @@ const Colors = ({
 					/>
                 )}
 				{selectedValue && (
-					<EditColor color={selectedValue} />
+					<EditColor
+						color={selectedValue}
+						setDeleteValue={setDeleteValue}
+					/>
                 )}
 			</RightToolbar>
 		</>

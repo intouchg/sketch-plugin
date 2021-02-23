@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux'
 import { Input, Box, Button, Text } from '@i/components'
 import { ColorPicker } from '../../ColorPicker'
 import { updateThemeValue } from '../../../store'
-import type { ThemeColor } from '@i/theme'
+import type { ThemeValue, ThemeColor } from '@i/theme'
 
 const EditColor = ({
 	color,
+	setDeleteValue,
 }: {
     color: ThemeColor
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
 	const [ name, setName ] = useState('')
@@ -49,8 +51,10 @@ const EditColor = ({
 			</Box>
 			<Button
 				invisible
+				flexShrink={0}
 				alignSelf="flex-end"
-				onClick={() => {}}
+				paddingBottom={3}
+				onClick={() => setDeleteValue(color)}
 			>
 				<Text
 					color="Critical"

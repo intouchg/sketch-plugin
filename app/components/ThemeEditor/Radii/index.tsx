@@ -10,6 +10,7 @@ import { EditRadius } from './EditRadius'
 import { CreateRadius } from './CreateRadius'
 import { useListTransition } from '../../../hooks'
 import { sortBorderWidths } from '../../ImportModal/BorderWidths'
+import type { ThemeValue } from '@i/theme'
 
 const ELEMENT_BASE_HEIGHT = themeRadiusHeight
 const ELEMENT_PADDING_Y = 16
@@ -17,7 +18,11 @@ const ELEMENT_BORDER_Y = 2
 const ELEMENT_MARGIN_Y = 0
 const ELEMENT_HEIGHT = ELEMENT_BASE_HEIGHT + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
 
-const Radii = () => {
+const Radii = ({
+	setDeleteValue,
+}: {
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
+}) => {
 	const values = useSelector((state) => state.theme.values.radii)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
@@ -106,7 +111,10 @@ const Radii = () => {
 					/>
                 )}
 				{selectedValue && (
-					<EditRadius radius={selectedValue} />
+					<EditRadius
+						radius={selectedValue}
+						setDeleteValue={setDeleteValue}
+					/>
                 )}
 			</RightToolbar>
 		</>

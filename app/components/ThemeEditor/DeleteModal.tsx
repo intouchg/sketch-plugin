@@ -1,10 +1,23 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Stack, Flex, Heading } from '@i/components'
+import { useDispatch, useSelector } from 'react-redux'
+import { Stack, Flex, Heading, Text } from '@i/components'
+import { Color, BorderWidth, Font, FontSize, LineHeight, LetterSpacing, Radius, Shadow } from '../ThemeValues'
 import { ModalBackground } from '../ModalBackground'
 import { CloseModalButton } from '../CloseModalButton'
 import { deleteThemeValue } from '../../store'
 import type { ThemeValue } from '@i/theme'
+
+const componentConfig = {
+	color: Color,
+	space: BorderWidth,
+	font: Font,
+	fontSize: FontSize,
+	lineHeight: LineHeight,
+	letterSpacing: LetterSpacing,
+	borderWidth: BorderWidth,
+	radius: Radius,
+	shadow: Shadow,
+}
 
 const DeleteModal = ({
 	deleteValue,
@@ -14,6 +27,12 @@ const DeleteModal = ({
 	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
+	const variants = useSelector((state) => state.theme.variants)
+	const id = deleteValue.id
+	const Component = (componentConfig as any)[deleteValue.type]
+
+	let usageCount = 0
+	variants.forEach((variant) => Object.values(variant.styles).forEach((s) => s === id && ++usageCount))
 
 	const confirmDelete = () => dispatch(deleteThemeValue(deleteValue))
 
@@ -48,6 +67,24 @@ const DeleteModal = ({
 						onClick={() => setDeleteValue(null)}
 					/>
 				</Flex>
+				<Stack
+					flexGrow={1}
+					alignItems="center"
+				>
+					<Text>
+						Warning! Deleting a theme value is a dangerous operation.
+						You must inform developers of this deletion.
+					</Text>
+					<Flex
+						width={deleteValue.type === 'color' ? '140px' : '600px'}
+						height={deleteValue.type === 'color' ? '140px' : 'auto'}
+					>
+						<Component {...deleteValue} />
+					</Flex>
+					<Text>
+						This value is used {usageCount} times.
+					</Text>
+				</Stack>
 			</Stack>
 		</ModalBackground>
 	)

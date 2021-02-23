@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeSpace } from '@i/theme'
+import type { ThemeValue, ThemeSpace } from '@i/theme'
 
 export const SPACE_MIN = 1
 export const SPACE_MAX = 100
@@ -15,8 +15,10 @@ export const parseSpace = (value: string) => `${parseFloat(Number(value).toFixed
 
 const EditSpace = ({
 	space,
+	setDeleteValue,
 }: {
     space: ThemeSpace
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
 	const [ value, setValue ] = useState('')
@@ -57,8 +59,10 @@ const EditSpace = ({
 			</Box>
 			<Button
 				invisible
+				flexShrink={0}
 				alignSelf="flex-end"
-				onClick={() => {}}
+				paddingBottom={3}
+				onClick={() => setDeleteValue(space)}
 			>
 				<Text
 					color="Critical"

@@ -10,7 +10,7 @@ import { EditLineHeight } from './EditLineHeight'
 import { CreateLineHeight } from './CreateLineHeight'
 import { useListTransition } from '../../../hooks'
 import { sortLineHeights } from '../../ImportModal/LineHeights'
-import type { ThemeLineHeight } from '@i/theme'
+import type { ThemeValue, ThemeLineHeight } from '@i/theme'
 
 const NUMBER_OF_LINES = 3 // magic number
 const ELEMENT_MIN_HEIGHT = 44
@@ -26,7 +26,11 @@ const getHeight = (value: ThemeLineHeight) => {
 	return baseHeight + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
 }
 
-const LineHeights = () => {
+const LineHeights = ({
+	setDeleteValue,
+}: {
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
+}) => {
 	const values = useSelector((state) => state.theme.values.lineHeights)
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
 	const selectedValue = selectedId ? values.find((value) => value.id === selectedId)! : null
@@ -115,7 +119,10 @@ const LineHeights = () => {
 					/>
                 )}
 				{selectedValue && (
-					<EditLineHeight lineHeight={selectedValue} />
+					<EditLineHeight
+						lineHeight={selectedValue}
+						setDeleteValue={setDeleteValue}
+					/>
                 )}
 			</RightToolbar>
 		</>

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Flex, Text, Box, Button } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeRadius } from '@i/theme'
+import type { ThemeValue, ThemeRadius } from '@i/theme'
 
 export const RADIUS_MIN = 1
 export const RADIUS_MAX = 9999
@@ -15,8 +15,10 @@ export const parseRadius = (value: string) => `${parseFloat(Number(value).toFixe
 
 const EditRadius = ({
 	radius,
+	setDeleteValue,
 }: {
     radius: ThemeRadius
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
 	const [ value, setValue ] = useState('')
@@ -57,8 +59,10 @@ const EditRadius = ({
 			</Box>
 			<Button
 				invisible
+				flexShrink={0}
 				alignSelf="flex-end"
-				onClick={() => {}}
+				paddingBottom={3}
+				onClick={() => setDeleteValue(radius)}
 			>
 				<Text
 					color="Critical"
