@@ -101,7 +101,6 @@ const Editor = () => {
 	const { variantKey } = useParams()
 	const values = useSelector((state) => state.theme.values)
 	const variants = useSelector((state) => state.theme.variants)
-	const theme = themeProcessor({ values: Object.values(values).flat(), variants })
 	const variantType = Object.entries(componentVariantsPropertyMap).find((e) => e[1] === variantKey)![0] as ThemeVariant['variantType']
 	const [ filteredVariants, setFilteredVariants ] = useState(variants.filter((v) => v.variantType === variantType))
 	const [ selectedId, setSelectedId ] = useState<string | null>(null)
@@ -117,6 +116,8 @@ const Editor = () => {
 	useEffect(() => {
 		setSelectedId(filteredVariants.find((v) => v.name === defaultVariantName)?.id || null)
 	}, [ filteredVariants ])
+
+	const theme = themeProcessor({ values: Object.values(values).flat(), variants })
 
 	return (
 		<>
