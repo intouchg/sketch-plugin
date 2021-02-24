@@ -78,7 +78,10 @@ const VariantsList = ({
 	}
 
 	return (
-		<Stack boxShadow="Downward Accent">
+		<Stack
+			boxShadow="Downward Accent"
+			flexShrink={0}
+		>
 			<Flex
 				flexShrink={0}
 				justifyContent="space-between"

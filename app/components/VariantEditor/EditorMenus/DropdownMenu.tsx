@@ -24,7 +24,7 @@ const DropdownMenu = ({
 	return (
 		<Box
 			ref={element}
-			position="relative"
+			position="fixed"
 			width="0"
 			zIndex={1}
 			style={{ transform: 'translateX(-100%)' }}

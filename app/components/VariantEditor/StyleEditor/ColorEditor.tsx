@@ -29,6 +29,7 @@ const ColorEditor = ({
 			{styleProperties.color.map((propertyName) => (
 				<Flex
 					key={propertyName}
+					flexShrink={0}
 					width="100%"
 					alignItems="center"
 					justifyContent="space-between"

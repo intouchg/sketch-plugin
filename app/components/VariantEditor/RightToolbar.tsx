@@ -2,7 +2,7 @@ import React from 'react'
 import { Stack } from '@i/components'
 import { topToolbarHeight } from '../TopToolbar'
 
-export const rightToolbarWidth = 236
+export const rightToolbarWidth = 280
 
 const RightToolbar = (props: React.ComponentProps<typeof Stack>) => (
 	<Stack

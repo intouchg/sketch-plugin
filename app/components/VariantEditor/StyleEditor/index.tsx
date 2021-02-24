@@ -79,12 +79,24 @@ const StyleEditor = ({
 	const { color, shadow, font, padding, border, icon, svg } = variantStylePropertyConfig[variant.variantType]
 
 	return (
-		<Stack paddingTop={3}>
+		<Stack
+			paddingTop={3}
+			paddingBottom={4}
+		>
 			{color && (
-				<ColorEditor variant={variant} />
+				<Stack paddingY={1}>
+					<ColorEditor variant={variant} />
+				</Stack>
 			)}
 			{font && (
-				<FontEditor variant={variant} />
+				<Stack paddingY={1}>
+					<FontEditor variant={variant} />
+				</Stack>
+			)}
+			{border && (
+				<Stack paddingY={1}>
+					<BorderEditor variant={variant} />
+				</Stack>
 			)}
 		</Stack>
 	)

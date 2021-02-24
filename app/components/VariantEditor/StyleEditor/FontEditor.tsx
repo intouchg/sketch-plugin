@@ -12,6 +12,7 @@ const FontEditor = ({
 	return (
 		<>
 			<Flex
+				flexShrink={0}
 				width="100%"
 				alignItems="center"
 				justifyContent="space-between"

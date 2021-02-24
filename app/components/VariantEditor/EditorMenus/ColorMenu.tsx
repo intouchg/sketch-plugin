@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Flex, Box, Text } from '@i/components'
+import { Flex, Box, Button } from '@i/components'
 import { Icon } from '../../Icon'
 import { DropdownMenu } from './DropdownMenu'
-import type { ThemeColor } from '@i/theme'
 
 const ColorSwatch = ({
 	value,
@@ -12,18 +11,21 @@ const ColorSwatch = ({
 	value: string | null
 	onClick: () => void
 }) => (
-	<Flex
+	<Button
+		display="flex"
 		flexShrink={0}
 		width="24px"
 		height="24px"
 		alignItems="center"
 		justifyContent="center"
+		padding="0"
 		margin="2px"
 		backgroundColor={value ? value : 'Accent'}
 		borderWidth="1px"
 		borderStyle="solid"
 		borderColor="rgba(0, 0, 0, 10%)"
 		borderRadius={2}
+		style={{ cursor: 'pointer' }}
 		onClick={onClick}
 	>
 		{!value && (
@@ -33,7 +35,7 @@ const ColorSwatch = ({
 				width="16px"
 			/>
 		)}
-	</Flex>
+	</Button>
 )
 
 const ColorMenu = ({

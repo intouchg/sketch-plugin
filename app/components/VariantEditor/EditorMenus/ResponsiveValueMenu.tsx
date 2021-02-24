@@ -13,23 +13,20 @@ const ResponsiveValueMenu = ({
 		<Flex>
 			{values.map((value, index) => (
 				<Button
-					invisible
 					key={value.id}
 					flexShrink={0}
-					paddingX="2px"
+					padding={1}
+					marginX="2px"
+					fontSize={2}
+					fontWeight={3}
+					color={value.hasOwnProperty('inherited') ? 'Text Light' : 'Text'}
+					backgroundColor="Background"
+					borderStyle="none"
+					borderRadius={2}
+					lineHeight="1"
+					textTransform="lowercase"
 				>
-					<Flex
-						width="24px"
-						height="24px"
-						alignItems="center"
-						justifyContent="center"
-						backgroundColor="Background"
-						borderRadius={2}
-					>
-						<Text color={value.hasOwnProperty('inherited') ? 'Text Light' : 'Text'}>
-							{parseValueForDisplay(value)}
-						</Text>
-					</Flex>
+					{parseValueForDisplay(value)}
 				</Button>
             ))}
 		</Flex>
