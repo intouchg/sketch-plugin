@@ -152,7 +152,7 @@ const VariantsList = ({
 			)}
 			<Stack
 				flexShrink={0}
-				maxHeight="68px"
+				maxHeight="94px"
 				overflow="scroll"
 			>
 				{variants.map(({ id, name }, index) => (

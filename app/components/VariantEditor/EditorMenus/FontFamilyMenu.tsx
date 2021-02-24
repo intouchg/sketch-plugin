@@ -19,6 +19,7 @@ const FontFamilyItem = ({
 			width="100%"
 			alignItems="center"
 			padding={2}
+			borderRadius={2}
 			sx={{
                 '&:hover': {
                     backgroundColor: 'Primary Lighter',

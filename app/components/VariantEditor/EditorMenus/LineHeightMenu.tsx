@@ -20,6 +20,7 @@ const LineHeightItem = ({
 			justifyContent="center"
 			padding={2}
 			textAlign="left"
+			borderRadius={2}
 			sx={{
                 '&:hover': {
                     backgroundColor: 'Primary Lighter',

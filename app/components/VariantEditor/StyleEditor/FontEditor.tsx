@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Text } from '@i/components'
-import { FontFamilyMenu, TextTransformMenu, LetterSpacingMenu, LineHeightMenu } from '../EditorMenus'
+import { FontFamilyMenu, TextMenu, LetterSpacingMenu, LineHeightMenu } from '../EditorMenus'
 import { ItemContainer } from './ItemContainer'
 import { updateThemeVariant } from '../../../store'
 import type { ThemeVariant } from '@i/theme'
@@ -37,11 +37,11 @@ const FontEditor = ({
 			</ItemContainer>
 			<ItemContainer>
 				<Text>
-					textTransform
+					lineHeight
 				</Text>
-				<TextTransformMenu
-					value={(styles.textTransform || '') as string}
-					onChange={(value) => updateVariantProperty('textTransform', value)}
+				<LineHeightMenu
+					id={(styles.lineHeight || '') as string}
+					onChange={(value) => updateVariantProperty('lineHeight', value)}
 				/>
 			</ItemContainer>
 			<ItemContainer>
@@ -55,11 +55,22 @@ const FontEditor = ({
 			</ItemContainer>
 			<ItemContainer>
 				<Text>
-					lineHeight
+					textTransform
 				</Text>
-				<LineHeightMenu
-					id={(styles.lineHeight || '') as string}
-					onChange={(value) => updateVariantProperty('lineHeight', value)}
+				<TextMenu
+					propertyNames={[ 'capitalize', 'uppercase', 'lowercase' ]}
+					value={(styles.textTransform || '') as string}
+					onChange={(value) => updateVariantProperty('textTransform', value)}
+				/>
+			</ItemContainer>
+			<ItemContainer>
+				<Text>
+					textDecoration
+				</Text>
+				<TextMenu
+					propertyNames={[ 'underline', 'overline', 'line-through' ]}
+					value={(styles.textDecoration || '') as string}
+					onChange={(value) => updateVariantProperty('textDecoration', value)}
 				/>
 			</ItemContainer>
 		</>

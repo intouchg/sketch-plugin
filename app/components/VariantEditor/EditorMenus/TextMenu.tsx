@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Stack, Box, Text, Button } from '@i/components'
 import { DropdownMenu } from '../EditorMenus'
 
-const TextTransformItem = ({
+const TextItem = ({
 	value,
 	onClick,
 }: {
@@ -20,6 +20,7 @@ const TextTransformItem = ({
 			justifyContent="center"
 			padding={2}
 			textAlign="left"
+			borderRadius={2}
 			sx={{
                 '&:hover': {
                     backgroundColor: 'Primary Lighter',
@@ -34,12 +35,12 @@ const TextTransformItem = ({
 	)
 }
 
-const textTransformValues = [ 'capitalize', 'uppercase', 'lowercase' ]
-
-const TextTransformMenu = ({
+const TextMenu = ({
+	propertyNames,
 	value,
 	onChange,
 }: {
+	propertyNames: string[]
 	value: string
 	onChange: (value: string) => void
 }) => {
@@ -66,7 +67,7 @@ const TextTransformMenu = ({
 				setShow={setShow}
 			>
 				<Stack
-					width="120px"
+					width="136px"
 					maxHeight="240px"
 					padding={2}
 					backgroundColor="Card"
@@ -78,15 +79,15 @@ const TextTransformMenu = ({
 					overflow="scroll"
 					style={{ transform: 'translateX(-100%)' }}
 				>
-					<TextTransformItem
+					<TextItem
 						value=""
 						onClick={() => onChange('')}
 					/>
-					{textTransformValues.map((value) => (
-						<TextTransformItem
-							key={value}
-							value={value}
-							onClick={() => onChange(value)}
+					{propertyNames.map((propertyName) => (
+						<TextItem
+							key={propertyName}
+							value={propertyName}
+							onClick={() => onChange(propertyName)}
 						/>
                     ))}
 				</Stack>
@@ -95,4 +96,4 @@ const TextTransformMenu = ({
 	)
 }
 
-export { TextTransformMenu }
+export { TextMenu }

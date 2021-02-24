@@ -17,17 +17,6 @@ const TruncatedAccentText = styled(Text).attrs({ variant: 'Accent' })`
 	white-space: nowrap;
 `
 
-const checkerboardBackgroundStyles = {
-	backgroundSize: '30px 30px',
-	backgroundPosition: '0 0, 0 15px, 15px -15px, -15px 0',
-	backgroundImage: `
-		linear-gradient(45deg, #dddddd 25%, transparent 25%),
-		linear-gradient(-45deg, #dddddd 25%, transparent 25%),
-		linear-gradient(45deg, transparent 75%, #dddddd 75%),
-		linear-gradient(-45deg, transparent 75%, #dddddd 75%)
-	`,
-}
-
 const ALPHA_THRESHOLD = 0.33
 const BRIGHTNESS_THRESHOLD = 130
 
@@ -67,7 +56,14 @@ const Color = ({
 				height="100%"
 				backgroundColor="Card"
 				borderRadius={3}
-				{...checkerboardBackgroundStyles}
+				backgroundSize="30px 30px"
+				backgroundPosition="0 0, 0 15px, 15px -15px, -15px 0"
+				backgroundImage={`
+					linear-gradient(45deg, #dddddd 25%, transparent 25%),
+					linear-gradient(-45deg, #dddddd 25%, transparent 25%),
+					linear-gradient(45deg, transparent 75%, #dddddd 75%),
+					linear-gradient(-45deg, transparent 75%, #dddddd 75%)
+				`}
 			>
 				<Box
 					position="absolute"

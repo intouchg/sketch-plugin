@@ -20,10 +20,20 @@ const ColorSwatch = ({
 		alignItems="center"
 		justifyContent="center"
 		padding="0"
-		backgroundColor={value ? value : 'Accent'}
+		backgroundColor={value ? value : 'Card'}
+		{...(value === 'transparent' ? {
+			backgroundSize: '22px 22px',
+			backgroundPosition: '0 0, 0 11px, 11px -11px, -11px 0',
+			backgroundImage: `
+				linear-gradient(45deg, #dddddd 25%, transparent 25%),
+				linear-gradient(-45deg, #dddddd 25%, transparent 25%),
+				linear-gradient(45deg, transparent 75%, #dddddd 75%),
+				linear-gradient(-45deg, transparent 75%, #dddddd 75%)
+			`,
+		} : {})}
 		borderWidth="1px"
 		borderStyle="solid"
-		borderColor="rgba(0, 0, 0, 10%)"
+		borderColor={value === 'transparent' ? '#dddddd' : 'rgba(0, 0, 0, 10%)'}
 		borderRadius={2}
 		style={{ cursor: 'pointer' }}
 		onClick={onClick}
@@ -48,7 +58,7 @@ const ColorMenu = ({
 }) => {
 	const colors = useSelector((state) => state.theme.values.colors)
 	const [ show, setShow ] = useState(false)
-	const value = !id ? id : colors.find((c) => c.id === id)!.value
+	const value = !id || id === 'transparent' ? id : colors.find((c) => c.id === id)!.value
 
 	return (
 		<Box>
@@ -61,7 +71,7 @@ const ColorMenu = ({
 				setShow={setShow}
 			>
 				<Flex
-					width="260px"
+					width="270px"
 					maxHeight="108px"
 					flexWrap="wrap"
 					padding={2}
@@ -78,6 +88,11 @@ const ColorMenu = ({
 						margin="2px"
 						value=""
 						onClick={() => onChange('')}
+					/>
+					<ColorSwatch
+						margin="2px"
+						value="transparent"
+						onClick={() => onChange('transparent')}
 					/>
 					{colors.map((color) => (
 						<ColorSwatch
