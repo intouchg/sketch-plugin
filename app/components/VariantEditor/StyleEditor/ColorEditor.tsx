@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text } from '@i/components'
+import { Text } from '@i/components'
 import { ColorMenu } from '../EditorMenus'
 import { ItemContainer } from './ItemContainer'
 import { updateThemeVariant } from '../../../store'

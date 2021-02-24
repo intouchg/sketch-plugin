@@ -61,11 +61,14 @@ const ColorMenu = ({
 				setShow={setShow}
 			>
 				<Flex
-					width="184px"
+					width="186px"
 					maxHeight="108px"
 					flexWrap="wrap"
 					padding={2}
 					backgroundColor="Card"
+					borderWidth="1px"
+					borderStyle="solid"
+					borderColor="Accent"
 					borderRadius={2}
 					boxShadow="0px 8px 16px -6px rgba(0, 0, 0, 10%), 0px 4px 8px -3px rgba(0, 0, 0, 10%)"
 					overflow="scroll"

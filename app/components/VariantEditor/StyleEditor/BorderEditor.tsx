@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box, Button } from '@i/components'
+import { Text } from '@i/components'
 import { BorderWidthMenu, BorderRadiusMenu } from '../EditorMenus'
 import { ItemContainer } from './ItemContainer'
 import { updateThemeVariant } from '../../../store'

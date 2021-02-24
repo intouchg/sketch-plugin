@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Stack, Box, Text, Button } from '@i/components'
+import { NoWrapText } from '../../NoWrapText'
 import { DropdownMenu } from '../EditorMenus'
 
-const BorderWidthItem = ({
+const LetterSpacingItem = ({
 	value,
 	onClick,
 }: {
@@ -25,25 +26,28 @@ const BorderWidthItem = ({
 			<Text minWidth="46px">
 				{value || 'none'}
 			</Text>
-			<Box
-				flexGrow={1}
-				height={value || 0}
-				backgroundColor="Text"
-			/>
+			<NoWrapText
+				width="100%"
+				fontWeight={4}
+				letterSpacing={value}
+				textAlign="left"
+			>
+				Lorem ipsum dolor sit amet
+			</NoWrapText>
 		</Button>
 	)
 }
 
-const BorderWidthMenu = ({
+const LetterSpacingMenu = ({
 	id,
 	onChange,
 }: {
 	id: string
 	onChange: (id: string) => void
 }) => {
-	const borderWidths = useSelector((state) => state.theme.values.borderWidths)
+	const letterSpacings = useSelector((state) => state.theme.values.letterSpacings)
 	const [ show, setShow ] = useState(false)
-	const value = !id || id === '0px' ? id : borderWidths.find((c) => c.id === id)!.value
+	const value = !id ? id : letterSpacings.find((c) => c.id === id)!.value
 
 	return (
 		<Box>
@@ -78,19 +82,15 @@ const BorderWidthMenu = ({
 					overflow="scroll"
 					style={{ transform: 'translateX(-100%)' }}
 				>
-					<BorderWidthItem
+					<LetterSpacingItem
 						value=""
 						onClick={() => onChange('')}
 					/>
-					<BorderWidthItem
-						value="0px"
-						onClick={() => onChange('0px')}
-					/>
-					{borderWidths.map((borderWidth) => (
-						<BorderWidthItem
-							key={borderWidth.id}
-							value={borderWidth.value}
-							onClick={() => onChange(borderWidth.id)}
+					{letterSpacings.map((letterSpacing) => (
+						<LetterSpacingItem
+							key={letterSpacing.id}
+							value={letterSpacing.value}
+							onClick={() => onChange(letterSpacing.id)}
 						/>
                     ))}
 				</Stack>
@@ -99,4 +99,4 @@ const BorderWidthMenu = ({
 	)
 }
 
-export { BorderWidthMenu }
+export { LetterSpacingMenu }

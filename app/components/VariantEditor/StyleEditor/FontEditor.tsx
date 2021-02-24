@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text } from '@i/components'
-import { FontFamilyMenu, TextTransformMenu } from '../EditorMenus'
+import { Text } from '@i/components'
+import { FontFamilyMenu, TextTransformMenu, LetterSpacingMenu } from '../EditorMenus'
 import { ItemContainer } from './ItemContainer'
 import { updateThemeVariant } from '../../../store'
 import type { ThemeVariant } from '@i/theme'
@@ -44,6 +44,24 @@ const FontEditor = ({
 					onChange={(value) => updateVariantProperty('textTransform', value)}
 				/>
 			</ItemContainer>
+			<ItemContainer>
+				<Text>
+					letterSpacing
+				</Text>
+				<LetterSpacingMenu
+					id={(styles.letterSpacing || '') as string}
+					onChange={(value) => updateVariantProperty('letterSpacing', value)}
+				/>
+			</ItemContainer>
+			{/* <ItemContainer>
+				<Text>
+					lineHeight
+				</Text>
+				<LetterSpacingMenu
+					id={(styles.lineHeight || '') as string}
+					onChange={(value) => updateVariantProperty('lineHeight', value)}
+				/>
+			</ItemContainer> */}
 		</>
 	)
 }
