@@ -14,7 +14,6 @@ const theme = {
 		'32px',
 		'48px',
 	],
-	sizes: [],
 	colors: {
 		Accent: '#dddddd',
 		Background: '#f8f8f8',
@@ -46,6 +45,7 @@ const theme = {
 		'2rem',
 	],
 	fontWeights: [
+		'0',
 		'100',
 		'300',
 		'400',
@@ -63,11 +63,21 @@ const theme = {
 		'0',
 		'1px',
 	],
-	borders: {},
-	borderStyles: [],
 	borderWidths: [
+		'0',
 		'1px',
 	],
+	borderStyles: [
+		'none',
+		'solid',
+	],
+	borders: {},
+	shadows: {
+		'Downward Accent': '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
+		'Upward Accent': '0 -2px 6px -2px rgba(0, 0, 0, 0.15)',
+		'Inset X Accent': 'inset 0 -1px 0 0 #dddddd',
+		'Inset Y Accent': 'inset -1px 0 0 0 #dddddd',
+	},
 	radii: [
 		'0',
 		'3px',
@@ -75,18 +85,15 @@ const theme = {
 		'6px',
 		'8px',
 	],
-	shadows: {
-		'Downward Accent': '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
-		'Upward Accent': '0 -2px 6px -2px rgba(0, 0, 0, 0.15)',
-		'Inset X Accent': 'inset 0 -1px 0 0 #dddddd',
-		'Inset Y Accent': 'inset -1px 0 0 0 #dddddd',
-	},
 	zIndices: [
 		'0',
 		'1',
 		'10',
 		'100',
 		'1000',
+	],
+	sizes: [
+		'0',
 	],
 	buttons: {
 		Primary: {

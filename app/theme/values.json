@@ -128,11 +128,6 @@
 		"type": "color"
 	},
 	{
-		"id": "71f42d7c-c91b-42a7-9079-f72c304522e9",
-		"value": "0",
-		"type": "space"
-	},
-	{
 		"id": "4d0f6558-877e-46d3-a9a4-5b50f8210926",
 		"value": "4px",
 		"type": "space"
@@ -171,11 +166,6 @@
 		"type": "font"
 	},
 	{
-		"id": "9d01c334-1d74-4b13-aebf-86cdb6baecc2",
-		"value": "0",
-		"type": "fontSize"
-	},
-	{
 		"id": "fa87044c-eaa2-477f-adf9-6d487bafe1be",
 		"value": "0.75rem",
 		"type": "fontSize"
@@ -194,11 +184,6 @@
 		"id": "5b2baeff-a810-4491-907b-bdfe95cd2d46",
 		"value": "2rem",
 		"type": "fontSize"
-	},
-	{
-		"id": "ff400338-b936-4b28-b2d7-088d5ffb45c8",
-		"value": "0",
-		"type": "lineHeight"
 	},
 	{
 		"id": "2c4a9dea-d245-404e-8ab2-5e197218eb44",
@@ -251,11 +236,6 @@
 		"type": "borderWidth"
 	},
 	{
-		"id": "24311702-e2b2-4bf0-8337-fed9ab44391c",
-		"value": "0",
-		"type": "zIndex"
-	},
-	{
 		"id": "48884070-5adb-47fe-aa2c-5c479129c782",
 		"value": "1",
 		"type": "zIndex"
@@ -274,11 +254,6 @@
 		"id": "07fce574-f67e-437b-a2a5-de85bb840489",
 		"value": "1000",
 		"type": "zIndex"
-	},
-	{
-		"id": "48de4d34-08b9-4d9c-b7e5-5183dac157d8",
-		"value": "0",
-		"type": "radius"
 	},
 	{
 		"id": "a48f3af8-d67b-4237-8636-ec6d6c5efd6c",
@@ -323,11 +298,6 @@
 		"value": "inset -1px 0 0 0 #dddddd",
 		"name": "Inset Y Accent",
 		"type": "shadow"
-	},
-	{
-		"id": "f7aaceb1-d59c-4284-812a-3c3ac78d3ce5",
-		"value": "0",
-		"type": "letterSpacing"
 	},
 	{
 		"id": "4516d24e-092c-4cab-8788-653e010bb760",

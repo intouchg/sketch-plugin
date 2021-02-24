@@ -55,7 +55,7 @@ const BorderWidthMenu = ({
 			<Button
 				padding={2}
 				fontSize={2}
-				fontWeight={3}
+				fontWeight={4}
 				color={value ? 'Text' : 'Text Light'}
 				backgroundColor="Background"
 				borderStyle="none"

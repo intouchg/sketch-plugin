@@ -11,7 +11,7 @@ const AzureStatusLabel = ({
 	<Text
 		backgroundColor={!online ? 'Caution' : connected ? 'Positive' : 'Critical'}
 		color={!online ? 'Caution Dark' : connected ? 'Positive Dark' : 'Critical Dark'}
-		fontWeight={3}
+		fontWeight={4}
 		fontSize={1}
 		paddingX="4px"
 		paddingY="2px"

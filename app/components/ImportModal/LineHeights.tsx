@@ -59,7 +59,7 @@ const LineHeights = ({
 								/>
 							</Box>
 							<Text
-								fontWeight={3}
+								fontWeight={4}
 								color={selected ? 'Primary' : 'Text'}
 								paddingRight={2}
 							>

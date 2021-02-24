@@ -68,7 +68,7 @@ const AzureRepoInfo = ({
 					<Text
 						variant="Modal Accent"
 						fontSize={3}
-						fontWeight={4}
+						fontWeight={5}
 						color="Text"
 					>
 						{branchName}
@@ -84,7 +84,7 @@ const AzureRepoInfo = ({
 					<Text
 						variant="Modal Accent"
 						fontSize={3}
-						fontWeight={4}
+						fontWeight={5}
 						color="Text"
 					>
 						{lastPushTime ? `${timeSince(lastPushTime)} ago` : 'Never'}&nbsp;&nbsp;

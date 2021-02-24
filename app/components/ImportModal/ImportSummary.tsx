@@ -50,7 +50,7 @@ const ImportSummary = ({
 							>
 								<Text
 									fontSize={1}
-									fontWeight={3}
+									fontWeight={4}
 									color="Primary"
 								>
 									{selectedImportCategories.includes(key) ? number : 0}

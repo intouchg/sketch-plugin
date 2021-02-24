@@ -44,7 +44,7 @@ const PixelInput = ({
 				padding="0"
 				paddingRight={1}
 				fontSize={1}
-				fontWeight={3}
+				fontWeight={4}
 				backgroundColor="transparent"
 				style={{
                     appearance: 'none',
@@ -61,7 +61,7 @@ const PixelInput = ({
 			<Text
 				color="Text Light"
 				fontSize="9px"
-				fontWeight={3}
+				fontWeight={4}
 				textTransform="uppercase"
 			>
 				px

@@ -56,7 +56,7 @@ const CheckboxNavLink = ({
 		>
 			<Text
 				variant="Secondary"
-				fontWeight={2}
+				fontWeight={3}
 				color={isActiveRoute ? 'Primary' : 'Text'}
 			>
 				{routeTitles[route]}
@@ -79,7 +79,7 @@ const CheckboxNavLink = ({
 							paddingX={2}
 							paddingY={1}
 							color="Positive Dark"
-							fontWeight={3}
+							fontWeight={4}
 						>
 							{numberOfSelectedNewValues}
 						</Text>

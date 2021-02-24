@@ -873,9 +873,9 @@
     semver "^5.5.1"
 
 "@babel/plugin-transform-runtime@^7.12.1":
-  version "7.13.6"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.13.6.tgz#c11c806f023d2065bbcc9b751702f4008245951c"
-  integrity sha1-wRyAbwI9IGW7zJt1FwL0AIJFlRw=
+  version "7.13.7"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.13.7.tgz#a856b53681da9193d98dfb03d8192b0a3f4cdd8a"
+  integrity sha512-pXfYTTSbU5ThVTUyQ6TUdUkonZYKKq8M6vDUkFCjFw8vT42hhayrbJPVWGC7B97LkzFYBtdW/SBGVZtRaopW6Q==
   dependencies:
     "@babel/helper-module-imports" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.13.0"
@@ -1263,16 +1263,16 @@
     regenerator-runtime "^0.13.4"
 
 "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
-  version "7.13.6"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/runtime/-/runtime-7.13.6.tgz#86e0fad6cbb46a680e21c1aa4748717a058d345a"
-  integrity sha1-huD61su0amgOIcGqR0hxegWNNFo=
+  version "7.13.7"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/runtime/-/runtime-7.13.7.tgz#d494e39d198ee9ca04f4dcb76d25d9d7a1dc961a"
+  integrity sha1-1JTjnRmO6coE9Ny3bSXZ16Hclho=
   dependencies:
     regenerator-runtime "^0.13.4"
 
 "@babel/standalone@^7.8.7":
-  version "7.13.6"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/standalone/-/standalone-7.13.6.tgz#889e1f31857af0bd4b16ed27fdd071461bd9a1f6"
-  integrity sha1-iJ4fMYV68L1LFu0n/dBxRhvZofY=
+  version "7.13.7"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@babel/standalone/-/standalone-7.13.7.tgz#4c1a9b889d59c332cbc965014aad0d13fb0b9fec"
+  integrity sha512-K1vgq2R7bJe2HOKcoQ2cYjR+9tmzvEDIOH/G5AhlJ9+3hOxL/R/7600LHkO1us3m2tNY5Gm9erj37Fik07jj7w==
 
 "@babel/template@^7.10.4", "@babel/template@^7.12.13", "@babel/template@^7.12.7":
   version "7.12.13"
@@ -1500,10 +1500,10 @@
   dependencies:
     "@babel/runtime" "7.12.5"
 
-"@i/theme@latest":
-  version "0.0.50"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/theme/-/theme-0.0.50.tgz#6ca6a2b09156fa02b1c57a2ca069a5221eaee1d7"
-  integrity sha1-bKaisJFW+gKxxXosoGmlIh6u4dc=
+"@i/theme@0.0.52", "@i/theme@latest":
+  version "0.0.52"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/theme/-/theme-0.0.52.tgz#641bbdf6bf738aa3dbf41a4d08a4d60c22fcd698"
+  integrity sha1-ZBu99r9ziqPb9BpNCKTWDCL81pg=
   dependencies:
     "@babel/runtime" "7.12.5"
     "@i/utility" latest
@@ -4302,7 +4302,7 @@ bluebird@^3.3.5, bluebird@^3.5.5:
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.11.9:
   version "4.12.0"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/bn.js/-/bn.js-4.12.0.tgz#775b3f278efbb9718eec7361f483fb36fbbfea88"
-  integrity sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==
+  integrity sha1-d1s/J477uXGO7HNh9IP7Nvu/6og=
 
 bn.js@^5.0.0, bn.js@^5.1.1:
   version "5.2.0"
@@ -5575,14 +5575,14 @@ csso@^4.0.2:
     css-tree "^1.1.2"
 
 csstype@^2.5.7:
-  version "2.6.15"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/csstype/-/csstype-2.6.15.tgz#655901663db1d652f10cb57ac6af5a05972aea1f"
-  integrity sha1-ZVkBZj2x1lLxDLV6xq9aBZcq6h8=
+  version "2.6.16"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/csstype/-/csstype-2.6.16.tgz#544d69f547013b85a40d15bff75db38f34fe9c39"
+  integrity sha512-61FBWoDHp/gRtsoDkq/B1nWrCUG/ok1E3tUrcNbZjsE9Cxd9yzUirjS3+nAATB8U4cTtaQmAHbNndoFz5L6C9Q==
 
 csstype@^3.0.2, csstype@^3.0.6:
-  version "3.0.6"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/csstype/-/csstype-3.0.6.tgz#865d0b5833d7d8d40f4e5b8a6d76aea3de4725ef"
-  integrity sha1-hl0LWDPX2NQPTluKbXauo95HJe8=
+  version "3.0.7"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/csstype/-/csstype-3.0.7.tgz#2a5fb75e1015e84dd15692f71e89a1450290950b"
+  integrity sha512-KxnUB0ZMlnUWCsx2Z8MUsr6qV6ja1w9ArPErJaJaF8a5SOWoHLIszeCTKGRGRgtLgYrs1E8CHkNSP1VZTTPc9g==
 
 current-git-branch@^1.1.0:
   version "1.1.0"

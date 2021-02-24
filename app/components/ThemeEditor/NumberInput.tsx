@@ -44,7 +44,7 @@ const NumberInput = ({
 				padding="0"
 				paddingRight={1}
 				fontSize={1}
-				fontWeight={3}
+				fontWeight={4}
 				backgroundColor="transparent"
 				style={{
                     appearance: 'none',

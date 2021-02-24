@@ -33,7 +33,7 @@ const LetterSpacingItem = ({
 			</Text>
 			<NoWrapText
 				width="100%"
-				fontWeight={4}
+				fontWeight={5}
 				letterSpacing={value}
 				textAlign="left"
 			>
@@ -59,7 +59,7 @@ const LetterSpacingMenu = ({
 			<Button
 				padding={2}
 				fontSize={2}
-				fontWeight={3}
+				fontWeight={4}
 				color={value ? 'Text' : 'Text Light'}
 				backgroundColor="Background"
 				borderStyle="none"

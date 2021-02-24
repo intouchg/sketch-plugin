@@ -9,7 +9,7 @@ const LetterSpacing = ({
 	<NoWrapText
 		width="100%"
 		fontSize="1.5rem"
-		fontWeight={4}
+		fontWeight={5}
 		letterSpacing={value}
 		textAlign="left"
 	>

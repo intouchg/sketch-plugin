@@ -94,7 +94,7 @@ const FontSizes = ({
 									flexShrink={0}
 								>
 									<Text
-										fontWeight={3}
+										fontWeight={4}
 										color={value.id === selectedId ? 'Primary' : 'Text'}
 									>
 										{Number(value.value.split('rem')[0]) * 16}

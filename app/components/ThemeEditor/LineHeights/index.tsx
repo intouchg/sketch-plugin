@@ -95,7 +95,7 @@ const LineHeights = ({
 									flexShrink={0}
 								>
 									<Text
-										fontWeight={3}
+										fontWeight={4}
 										color={value.id === selectedId ? 'Primary' : 'Text'}
 									>
 										{value.value}
