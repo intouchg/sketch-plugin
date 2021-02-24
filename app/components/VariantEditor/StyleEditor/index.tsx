@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux'
 import { Stack, Flex, Box, Text } from '@i/components'
 import { ColorEditor } from './ColorEditor'
 import { ShadowEditor } from './ShadowEditor'
-import { FontEditor } from './FontEditor'
+import { FontSizeEditor } from './FontSizeEditor'
 import { PaddingEditor } from './PaddingEditor'
+import { FontEditor } from './FontEditor'
 import { BorderEditor } from './BorderEditor'
 import { IconEditor } from './IconEditor'
 import { SvgEditor } from './SvgEditor'
@@ -86,6 +87,11 @@ const StyleEditor = ({
 			{color && (
 				<Stack paddingY={1}>
 					<ColorEditor variant={variant} />
+				</Stack>
+			)}
+			{font && (
+				<Stack paddingY={1}>
+					<FontSizeEditor variant={variant} />
 				</Stack>
 			)}
 			{font && (

@@ -7,8 +7,9 @@ import { DropdownMenu } from './DropdownMenu'
 const ColorSwatch = ({
 	value,
 	onClick,
-}: {
-	value: string | null
+	...props
+}: React.ComponentProps<typeof Button> & {
+	value: string
 	onClick: () => void
 }) => (
 	<Button
@@ -19,7 +20,6 @@ const ColorSwatch = ({
 		alignItems="center"
 		justifyContent="center"
 		padding="0"
-		margin="2px"
 		backgroundColor={value ? value : 'Accent'}
 		borderWidth="1px"
 		borderStyle="solid"
@@ -27,6 +27,7 @@ const ColorSwatch = ({
 		borderRadius={2}
 		style={{ cursor: 'pointer' }}
 		onClick={onClick}
+		{...props}
 	>
 		{!value && (
 			<Icon
@@ -42,17 +43,17 @@ const ColorMenu = ({
 	id,
 	onChange,
 }: {
-	id: string | null
-	onChange: (id: string | null) => void
+	id: string
+	onChange: (id: string) => void
 }) => {
 	const colors = useSelector((state) => state.theme.values.colors)
 	const [ show, setShow ] = useState(false)
-	const value = !id ? null : colors.find((c) => c.id === id)!.value
+	const value = !id ? id : colors.find((c) => c.id === id)!.value
 
 	return (
 		<Box>
 			<ColorSwatch
-				value={value || null}
+				value={value || ''}
 				onClick={() => setShow((s) => !s)}
 			/>
 			<DropdownMenu
@@ -71,12 +72,14 @@ const ColorMenu = ({
 					style={{ transform: 'translateX(-100%)' }}
 				>
 					<ColorSwatch
-						value={null}
-						onClick={() => onChange(null)}
+						margin="2px"
+						value=""
+						onClick={() => onChange('')}
 					/>
 					{colors.map((color) => (
 						<ColorSwatch
 							key={color.id}
+							margin="2px"
 							value={color.value}
 							onClick={() => onChange(color.id)}
 						/>

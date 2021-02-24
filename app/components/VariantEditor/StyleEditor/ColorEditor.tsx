@@ -14,12 +14,12 @@ const ColorEditor = ({
 	const dispatch = useDispatch()
 	const styles = variant.styles
 
-	const updateVariantColor = (styleProperty: string, id: string | null) => {
+	const updateVariantProperty = (styleProperty: string, value: string) => {
 		dispatch(updateThemeVariant({
 			...variant,
 			styles: {
 				...styles,
-				[styleProperty]: id || '',
+				[styleProperty]: value,
 			},
 		}))
 	}
@@ -34,13 +34,14 @@ const ColorEditor = ({
 					alignItems="center"
 					justifyContent="space-between"
 					paddingX={3}
+					marginY={1}
 				>
 					<Text>
 						{propertyName}
 					</Text>
 					<ColorMenu
-						id={styles[propertyName] as string || null}
-						onChange={(id) => updateVariantColor(propertyName, id)}
+						id={(styles[propertyName] || '') as string}
+						onChange={(value) => updateVariantProperty(propertyName, value)}
 					/>
 				</Flex>
 			))}

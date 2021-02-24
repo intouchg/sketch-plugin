@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Stack, Box, Text, Button } from '@i/components'
 import { DropdownMenu } from '../EditorMenus'
 
-const BorderWidthItem = ({
+const BorderRadiusItem = ({
 	value,
 	onClick,
 }: {
@@ -27,23 +27,27 @@ const BorderWidthItem = ({
 			</Text>
 			<Box
 				flexGrow={1}
-				height={value || 0}
-				backgroundColor="Text"
+				height="45px"
+				backgroundColor="Card"
+				borderWidth="1px"
+				borderStyle="solid"
+				borderColor="Accent"
+				borderRadius={value}
 			/>
 		</Button>
 	)
 }
 
-const BorderWidthMenu = ({
+const BorderRadiusMenu = ({
 	id,
 	onChange,
 }: {
 	id: string
-	onChange: (id: string) => void
+	onChange: (id: string | null) => void
 }) => {
-	const borderWidths = useSelector((state) => state.theme.values.borderWidths)
+	const radii = useSelector((state) => state.theme.values.radii)
 	const [ show, setShow ] = useState(false)
-	const value = !id || id === '0px' ? id : borderWidths.find((c) => c.id === id)!.value
+	const value = !id ? id : radii.find((c) => c.id === id)!.value
 
 	return (
 		<Box>
@@ -75,19 +79,15 @@ const BorderWidthMenu = ({
 					overflow="scroll"
 					style={{ transform: 'translateX(-100%)' }}
 				>
-					<BorderWidthItem
+					<BorderRadiusItem
 						value=""
 						onClick={() => onChange('')}
 					/>
-					<BorderWidthItem
-						value="0px"
-						onClick={() => onChange('0px')}
-					/>
-					{borderWidths.map((borderWidth) => (
-						<BorderWidthItem
-							key={borderWidth.id}
-							value={borderWidth.value}
-							onClick={() => onChange(borderWidth.id)}
+					{radii.map((radius) => (
+						<BorderRadiusItem
+							key={radius.id}
+							value={radius.value}
+							onClick={() => onChange(radius.id)}
 						/>
                     ))}
 				</Stack>
@@ -96,4 +96,4 @@ const BorderWidthMenu = ({
 	)
 }
 
-export { BorderWidthMenu }
+export { BorderRadiusMenu }

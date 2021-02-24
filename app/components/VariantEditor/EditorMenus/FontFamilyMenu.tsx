@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Stack, Box, Text, Button } from '@i/components'
 import { DropdownMenu } from '../EditorMenus'
 
-const BorderWidthItem = ({
+const FontFamilyItem = ({
 	value,
 	onClick,
 }: {
@@ -17,37 +17,31 @@ const BorderWidthItem = ({
 			display="flex"
 			width="100%"
 			alignItems="center"
-			justifyContent="center"
 			marginY={2}
-			textAlign="left"
 			onClick={onClick}
 		>
-			<Text minWidth="46px">
+			<Text fontFamily={value}>
 				{value || 'none'}
 			</Text>
-			<Box
-				flexGrow={1}
-				height={value || 0}
-				backgroundColor="Text"
-			/>
 		</Button>
 	)
 }
 
-const BorderWidthMenu = ({
+const FontFamilyMenu = ({
 	id,
 	onChange,
 }: {
 	id: string
 	onChange: (id: string) => void
 }) => {
-	const borderWidths = useSelector((state) => state.theme.values.borderWidths)
+	const fonts = useSelector((state) => state.theme.values.fonts)
 	const [ show, setShow ] = useState(false)
-	const value = !id || id === '0px' ? id : borderWidths.find((c) => c.id === id)!.value
+	const value = !id ? id : fonts.find((c) => c.id === id)!.value
 
 	return (
 		<Box>
 			<Button
+				maxWidth="152px"
 				padding={2}
 				fontSize={2}
 				fontWeight={3}
@@ -56,7 +50,12 @@ const BorderWidthMenu = ({
 				borderStyle="none"
 				borderRadius={2}
 				lineHeight="1"
-				textTransform="lowercase"
+				textTransform="none"
+				overflow="hidden"
+				style={{
+					textOverflow: 'ellipsis',
+					whiteSpace: 'nowrap',
+				}}
 				onClick={() => setShow((s) => !s)}
 			>
 				{value === '' ? 'none' : value}
@@ -75,19 +74,15 @@ const BorderWidthMenu = ({
 					overflow="scroll"
 					style={{ transform: 'translateX(-100%)' }}
 				>
-					<BorderWidthItem
+					<FontFamilyItem
 						value=""
 						onClick={() => onChange('')}
 					/>
-					<BorderWidthItem
-						value="0px"
-						onClick={() => onChange('0px')}
-					/>
-					{borderWidths.map((borderWidth) => (
-						<BorderWidthItem
-							key={borderWidth.id}
-							value={borderWidth.value}
-							onClick={() => onChange(borderWidth.id)}
+					{fonts.map((font) => (
+						<FontFamilyItem
+							key={font.id}
+							value={font.value}
+							onClick={() => onChange(font.id)}
 						/>
                     ))}
 				</Stack>
@@ -96,4 +91,4 @@ const BorderWidthMenu = ({
 	)
 }
 
-export { BorderWidthMenu }
+export { FontFamilyMenu }

@@ -1,7 +1,8 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Flex, Text } from '@i/components'
-import { FontSizeMenu } from '../EditorMenus'
+import { FontFamilyMenu } from '../EditorMenus'
+import { updateThemeVariant } from '../../../store'
 import type { ThemeVariant } from '@i/theme'
 
 const FontEditor = ({
@@ -9,6 +10,19 @@ const FontEditor = ({
 }: {
 	variant: ThemeVariant
 }) => {
+	const dispatch = useDispatch()
+	const styles = variant.styles
+
+	const updateVariantProperty = (styleProperty: string, value: string) => {
+		dispatch(updateThemeVariant({
+			...variant,
+			styles: {
+				...styles,
+				[styleProperty]: value,
+			},
+		}))
+	}
+
 	return (
 		<>
 			<Flex
@@ -19,9 +33,12 @@ const FontEditor = ({
 				paddingX={3}
 			>
 				<Text>
-					fontSize
+					fontFamily
 				</Text>
-				<FontSizeMenu variant={variant} />
+				<FontFamilyMenu
+					id={(styles.fontFamily || '') as string}
+					onChange={(value) => updateVariantProperty('fontFamily', value)}
+				/>
 			</Flex>
 		</>
 	)
