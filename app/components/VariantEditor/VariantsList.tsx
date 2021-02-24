@@ -86,7 +86,7 @@ const VariantsList = ({
 				paddingBottom={2}
 			>
 				<Heading>
-					Variants
+					Variants ({variants.length})
 				</Heading>
 				<animated.div style={spring}>
 					<Button
