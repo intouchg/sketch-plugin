@@ -20,7 +20,7 @@ const ELEMENT_MARGIN_Y = 0
 
 const getHeight = (value: ThemeLineHeight) => {
 	const baseHeight = Math.max(
-		Math.floor(Number(value.value.split('rem')[0]) * 16 * NUMBER_OF_LINES),
+		Math.floor(Number(value.value) * 16 * NUMBER_OF_LINES),
 		ELEMENT_MIN_HEIGHT,
 	)
 	return baseHeight + (2 * ELEMENT_PADDING_Y) + (2 * ELEMENT_BORDER_Y) + (2 * ELEMENT_MARGIN_Y)
@@ -98,7 +98,7 @@ const LineHeights = ({
 										fontWeight={3}
 										color={value.id === selectedId ? 'Primary' : 'Text'}
 									>
-										{Number(value.value.split('rem')[0]) * 16}
+										{value.value}
 									</Text>
 								</Flex>
 								<LineHeight {...value} />

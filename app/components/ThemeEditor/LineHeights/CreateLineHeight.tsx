@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Heading, Button, Flex, Text, Stack } from '@i/components'
-import { PixelInput } from '../PixelInput'
+import { NumberInput } from '../NumberInput'
 import { parseLineHeight, LINE_HEIGHT_MIN, LINE_HEIGHT_MAX } from './EditLineHeight'
 import { createThemeValue } from '../../../store'
 import { createUuid } from '@i/utility'
@@ -14,7 +14,7 @@ const CreateLineHeight = ({
 	setSelectedId: (id: string | null) => void
 }) => {
 	const dispatch = useDispatch()
-	const [ value, setValue ] = useState('16')
+	const [ value, setValue ] = useState('1')
 
 	const createLineHeight = () => {
 		const id = createUuid()
@@ -50,7 +50,7 @@ const CreateLineHeight = ({
 					<Text>
 						lineHeight
 					</Text>
-					<PixelInput
+					<NumberInput
 						min={LINE_HEIGHT_MIN}
 						max={LINE_HEIGHT_MAX}
 						value={value}

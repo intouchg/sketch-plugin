@@ -62,8 +62,10 @@ export const extractSketchDocumentStyles = (document) => {
 			fontWeights.push(fontWeight)
 		}
 
-		if (!lineHeights.includes(lineHeight)) {
-			lineHeights.push(lineHeight)
+		const lineHeightRatio = lineHeight ? Number((lineHeight / fontSize).toFixed(3)) : 1
+
+		if (!lineHeights.includes(lineHeightRatio)) {
+			lineHeights.push(lineHeightRatio)
 		}
 
 		if (!letterSpacings.includes(kerning)) {
@@ -103,7 +105,7 @@ export const extractSketchDocumentStyles = (document) => {
 		fonts: fonts.filter(filterNonStrings),
 		fontSizes: fontSizes.filter(filterNonNumbers).map((v) => convertPxToRem(v)),
 		fontWeights: fontWeights.filter(filterNonNumbers).map((v) => v.toString()),
-		lineHeights: lineHeights.filter(filterNonNumbers).map((v) => convertPxToRem(v)),
+		lineHeights: lineHeights.filter(filterNonNumbers).map((v) => v.toString()),
 		letterSpacings: letterSpacings.filter(filterNonNumbers).map((v) => `${v}px`),
 		borderWidths: borderWidths.filter(filterNonNumbers).map((v) => `${v}px`),
 		shadows: shadows.map(({ x, y, blur, spread, color }) => `${x}px ${y}px ${blur}px ${spread}px ${convert8DigitHex(color)}`),

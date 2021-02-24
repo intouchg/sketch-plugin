@@ -5,8 +5,8 @@ import { ImportIcon } from './ImportIcon'
 import type { ThemeLineHeight } from '@i/theme'
 
 export const sortLineHeights = (a: ThemeLineHeight, b: ThemeLineHeight) => {
-	const valueA = Number(a.value.split('rem')[0])
-	const valueB = Number(b.value.split('rem')[0])
+	const valueA = Number(a.value)
+	const valueB = Number(b.value)
 	return (valueA < valueB ? -1 : valueA > valueB ? 1 : 0)
 }
 
@@ -63,7 +63,7 @@ const LineHeights = ({
 								color={selected ? 'Primary' : 'Text'}
 								paddingRight={2}
 							>
-								{Number(value.split('rem')[0]) * 16}
+								{value}
 							</Text>
 						</Flex>
 						<LineHeight {...props} />

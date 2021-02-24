@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Flex, Text, Box, Button } from '@i/components'
-import { PixelInput } from '../PixelInput'
+import { NumberInput } from '../NumberInput'
 import { updateThemeValue } from '../../../store'
 import type { ThemeValue, ThemeLineHeight } from '@i/theme'
 
-export const LINE_HEIGHT_MIN = -50
-export const LINE_HEIGHT_MAX = 200
-export const LINE_HEIGHT_PRECISION = 4
+export const LINE_HEIGHT_MIN = 0.025
+export const LINE_HEIGHT_MAX = 10
+export const LINE_HEIGHT_PRECISION = 3
 
-// Takes a pixel value from an <Input type="number"> field
+// Takes a numeric value from an <Input type="number"> field
 // and returns ThemeLineHeight['value'] string
-export const parseLineHeight = (value: string) => `${parseFloat((Number(value) / 16).toFixed(LINE_HEIGHT_PRECISION))}rem`
+export const parseLineHeight = (value: string) => `${parseFloat((Number(value)).toFixed(LINE_HEIGHT_PRECISION))}`
 
 const EditLineHeight = ({
 	lineHeight,
@@ -25,7 +25,7 @@ const EditLineHeight = ({
 
 	useEffect(() => {
 		if (lineHeight) {
-			setValue(parseFloat((Number(lineHeight.value.split('rem')[0]) * 16).toFixed(LINE_HEIGHT_PRECISION)).toString())
+			setValue(parseFloat(Number(lineHeight.value).toFixed(LINE_HEIGHT_PRECISION)).toString())
 		}
 	}, [ lineHeight ])
 
@@ -48,7 +48,7 @@ const EditLineHeight = ({
 					<Text>
 						lineHeight
 					</Text>
-					<PixelInput
+					<NumberInput
 						min={LINE_HEIGHT_MIN}
 						max={LINE_HEIGHT_MAX}
 						value={value}
