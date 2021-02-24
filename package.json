@@ -84,10 +84,10 @@
   "dependencies": {
     "@babel/runtime": "7.12.5",
     "@i/azure": "latest",
-    "@i/components": "0.0.99",
+    "@i/components": "latest",
     "@i/fontbook-parser": "latest",
     "@i/random-phrase": "latest",
-    "@i/theme": "0.0.48",
+    "@i/theme": "latest",
     "@i/utility": "latest",
     "@skpm/child_process": "0.4.2",
     "@skpm/dialog": "0.4.1",
