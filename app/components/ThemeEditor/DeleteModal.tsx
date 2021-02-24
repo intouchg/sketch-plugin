@@ -6,7 +6,7 @@ import { ModalBackground } from '../ModalBackground'
 import { CloseModalButton } from '../CloseModalButton'
 import { deleteThemeValue } from '../../store'
 import { sortAlphabetical, titleCase } from '@i/utility'
-import type { ThemeValue, ThemeVariant } from '@i/theme'
+import type { ThemeValue, ThemeVariant, ThemeStyleObject, StyleProperty } from '@i/theme'
 
 const componentConfig = {
 	color: Color,
@@ -36,12 +36,22 @@ const DeleteModal = ({
 	const filteredVariants: ThemeVariant[] = []
 
 	variants.forEach((variant) => {
-		const styles: { [key: string]: string | string[] } = {}
+		const styles: { [key: string]: string | string[] | ThemeStyleObject } = {}
 
-		Object.entries(variant.styles).forEach(([ styleProperty, styleId ]) => {
-			if (styleId === id || styleId?.includes(id)) {
+		Object.entries(variant.styles).forEach(([ styleProperty, styleValue ]) => {
+			if (styleValue === id || (Array.isArray(styleValue) && styleValue.includes(id))) {
 				++usageCount
-				styles[styleProperty] = styleId
+				styles[styleProperty] = styleValue
+			}
+			else if (typeof styleValue === 'object') {
+				styles[styleProperty] = {}
+
+				Object.entries(styleValue).forEach(([ styleProp, styleVal ]) => {
+					if (styleVal === id || (Array.isArray(styleVal) && styleVal.includes(id))) {
+						++usageCount;
+						(styles[styleProperty] as ThemeStyleObject)[styleProp as StyleProperty] = styleVal
+					}
+				})
 			}
 		})
 
