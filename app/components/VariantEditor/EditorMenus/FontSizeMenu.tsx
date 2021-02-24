@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Stack, Text, Box } from '@i/components'
 import { Icon } from '../../Icon'
 import { DropdownMenu } from './DropdownMenu'
 import { ResponsiveValueMenu } from './ResponsiveValueMenu'
-import type { ThemeFontSize } from '@i/theme'
+import { updateThemeVariant } from '../../../store'
+import { createUuid } from '@i/utility'
+import type { ThemeFontSize, ThemeVariant, ThemeValue, ThemeBreakpoint } from '@i/theme'
 
 const FontSize = ({
 	value,
@@ -41,23 +43,53 @@ const FontSize = ({
 	</Stack>
 )
 
+const getResponsiveValues = (
+	variantStyleValue: string | string[] | undefined,
+	breakpoints: ThemeBreakpoint[],
+	themeValues: ThemeValue[],
+) => {
+	const responsiveValues: any[] = []
+
+	new Array(breakpoints.length + 1).fill(1).forEach((_, index) => {
+		if (index === 0 && typeof variantStyleValue === 'string' && variantStyleValue !== '') {
+			responsiveValues.push(themeValues.find((v) => v.id === variantStyleValue)!)
+		}
+		else if (typeof variantStyleValue === 'object') {
+			responsiveValues.push(themeValues.find((v) => v.id === variantStyleValue[index])!)
+		}
+		else {
+			responsiveValues.push({
+				id: createUuid(),
+				value: responsiveValues[index - 1].value,
+				inherited: true,
+			})
+		}
+	})
+
+	return responsiveValues
+}
+
 const parseFontSizeForDisplay = (value: ThemeFontSize) =>
 	String(Number((value.value || '1rem').split('rem')[0]) * 16)
 
 const FontSizeMenu = ({
-	values,
-	onChange,
+	variant,
 }: {
-    values: (ThemeFontSize | { id: string, value: undefined, inherited: boolean })[]
-	onChange: (id: string | null) => void
+	variant: ThemeVariant
 }) => {
-	const fontSizes = useSelector((state) => state.theme.values.fontSizes)
+	const dispatch = useDispatch()
+	const values = useSelector((state) => state.theme.values)
+	const fontSizeValues = getResponsiveValues(variant.styles.fontSize, values.breakpoints, values.fontSizes)
 	const [ show, setShow ] = useState(false)
+
+	const updateFontSize = () => {
+
+	}
 
 	return (
 		<Box>
 			<ResponsiveValueMenu
-				values={values}
+				values={fontSizeValues}
 				parseValueForDisplay={parseFontSizeForDisplay}
 			/>
 			<DropdownMenu
@@ -77,13 +109,13 @@ const FontSizeMenu = ({
 				>
 					<FontSize
 						value={null}
-						onClick={() => onChange(null)}
+						onClick={() => updateFontSize(null)}
 					/>
-					{fontSizes.map((fontSize) => (
+					{values.fontSizes.map((fontSize) => (
 						<FontSize
 							key={fontSize.id}
 							value={fontSize.value}
-							onClick={() => onChange(fontSize.id)}
+							onClick={() => updateFontSize(fontSize.id)}
 						/>
                     ))}
 				</Flex>
