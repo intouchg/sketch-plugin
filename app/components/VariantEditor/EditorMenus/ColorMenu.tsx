@@ -61,7 +61,7 @@ const ColorMenu = ({
 				setShow={setShow}
 			>
 				<Flex
-					width="186px"
+					width="260px"
 					maxHeight="108px"
 					flexWrap="wrap"
 					padding={2}

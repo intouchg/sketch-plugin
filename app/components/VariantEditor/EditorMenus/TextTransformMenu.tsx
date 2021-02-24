@@ -18,8 +18,13 @@ const TextTransformItem = ({
 			width="100%"
 			alignItems="center"
 			justifyContent="center"
-			marginY={2}
+			padding={2}
 			textAlign="left"
+			sx={{
+                '&:hover': {
+                    backgroundColor: 'Primary Lighter',
+                },
+            }}
 			onClick={onClick}
 		>
 			<Text>

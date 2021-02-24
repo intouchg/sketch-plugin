@@ -18,8 +18,13 @@ const BorderWidthItem = ({
 			width="100%"
 			alignItems="center"
 			justifyContent="center"
-			marginY={2}
+			padding={2}
 			textAlign="left"
+			sx={{
+                '&:hover': {
+                    backgroundColor: 'Primary Lighter',
+                },
+            }}
 			onClick={onClick}
 		>
 			<Text minWidth="46px">
@@ -66,7 +71,7 @@ const BorderWidthMenu = ({
 				setShow={setShow}
 			>
 				<Stack
-					width="208px"
+					width="260px"
 					maxHeight="240px"
 					padding={2}
 					backgroundColor="Card"

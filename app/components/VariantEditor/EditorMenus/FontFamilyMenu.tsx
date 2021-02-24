@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Stack, Box, Text, Button } from '@i/components'
+import { NoWrapText } from '../../NoWrapText'
 import { DropdownMenu } from '../EditorMenus'
 
 const FontFamilyItem = ({
@@ -17,12 +18,17 @@ const FontFamilyItem = ({
 			display="flex"
 			width="100%"
 			alignItems="center"
-			marginY={2}
+			padding={2}
+			sx={{
+                '&:hover': {
+                    backgroundColor: 'Primary Lighter',
+                },
+            }}
 			onClick={onClick}
 		>
-			<Text fontFamily={value}>
+			<NoWrapText fontFamily={value}>
 				{value || 'none'}
-			</Text>
+			</NoWrapText>
 		</Button>
 	)
 }
@@ -65,7 +71,7 @@ const FontFamilyMenu = ({
 				setShow={setShow}
 			>
 				<Stack
-					width="208px"
+					width="260px"
 					maxHeight="240px"
 					padding={2}
 					backgroundColor="Card"

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Stack, Box, Text, Button } from '@i/components'
 import { DropdownMenu } from '../EditorMenus'
 
-const BorderRadiusItem = ({
+const LineHeightItem = ({
 	value,
 	onClick,
 }: {
@@ -30,29 +30,23 @@ const BorderRadiusItem = ({
 			<Text minWidth="46px">
 				{value || 'none'}
 			</Text>
-			<Box
-				flexGrow={1}
-				height="45px"
-				backgroundColor="Card"
-				borderWidth="1px"
-				borderStyle="solid"
-				borderColor="Accent"
-				borderRadius={value}
-			/>
+			<Text lineHeight={value}>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+			</Text>
 		</Button>
 	)
 }
 
-const BorderRadiusMenu = ({
+const LineHeightMenu = ({
 	id,
 	onChange,
 }: {
 	id: string
-	onChange: (id: string | null) => void
+	onChange: (id: string) => void
 }) => {
-	const radii = useSelector((state) => state.theme.values.radii)
+	const lineHeights = useSelector((state) => state.theme.values.lineHeights)
 	const [ show, setShow ] = useState(false)
-	const value = !id ? id : radii.find((c) => c.id === id)!.value
+	const value = !id ? id : lineHeights.find((c) => c.id === id)!.value
 
 	return (
 		<Box>
@@ -87,15 +81,15 @@ const BorderRadiusMenu = ({
 					overflow="scroll"
 					style={{ transform: 'translateX(-100%)' }}
 				>
-					<BorderRadiusItem
+					<LineHeightItem
 						value=""
 						onClick={() => onChange('')}
 					/>
-					{radii.map((radius) => (
-						<BorderRadiusItem
-							key={radius.id}
-							value={radius.value}
-							onClick={() => onChange(radius.id)}
+					{lineHeights.map((lineHeight) => (
+						<LineHeightItem
+							key={lineHeight.id}
+							value={lineHeight.value}
+							onClick={() => onChange(lineHeight.id)}
 						/>
                     ))}
 				</Stack>
@@ -104,4 +98,4 @@ const BorderRadiusMenu = ({
 	)
 }
 
-export { BorderRadiusMenu }
+export { LineHeightMenu }
