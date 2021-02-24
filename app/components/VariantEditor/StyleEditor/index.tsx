@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import { Stack, Flex, Box, Text } from '@i/components'
+import { Stack, Heading } from '@i/components'
 import { ColorEditor } from './ColorEditor'
 import { ShadowEditor } from './ShadowEditor'
 import { FontSizeEditor } from './FontSizeEditor'
@@ -34,18 +34,6 @@ export const styleProperties = {
 		'fill', 'fill1', 'fill2', 'fill3', 'stroke', 'stroke1', 'stroke2', 'stroke3',
 	],
 } as const
-
-const stylePropertyComponentConfig: {
-	[key in keyof typeof styleProperties]: React.ReactNode
-} = {
-	color: ColorEditor,
-	shadow: ShadowEditor,
-	font: FontEditor,
-	padding: PaddingEditor,
-	border: BorderEditor,
-	icon: IconEditor,
-	svg: SvgEditor,
-}
 
 // Maps variants to their editable style properties
 const variantStylePropertyConfig: {
@@ -84,6 +72,13 @@ const StyleEditor = ({
 			paddingTop={3}
 			paddingBottom={4}
 		>
+			<Heading
+				flexShrink={0}
+				paddingX={3}
+				paddingBottom={2}
+			>
+				Styles
+			</Heading>
 			{color && (
 				<ColorEditor variant={variant} />
 			)}
