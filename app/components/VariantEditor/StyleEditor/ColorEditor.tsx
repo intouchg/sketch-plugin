@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Flex, Text } from '@i/components'
 import { ColorMenu } from '../EditorMenus'
+import { ItemContainer } from './ItemContainer'
 import { updateThemeVariant } from '../../../store'
 import { styleProperties } from './index'
 import type { ThemeVariant } from '@i/theme'
@@ -27,15 +28,7 @@ const ColorEditor = ({
 	return (
 		<>
 			{styleProperties.color.map((propertyName) => (
-				<Flex
-					key={propertyName}
-					flexShrink={0}
-					width="100%"
-					alignItems="center"
-					justifyContent="space-between"
-					paddingX={3}
-					marginY={1}
-				>
+				<ItemContainer key={propertyName}>
 					<Text>
 						{propertyName}
 					</Text>
@@ -43,7 +36,7 @@ const ColorEditor = ({
 						id={(styles[propertyName] || '') as string}
 						onChange={(value) => updateVariantProperty(propertyName, value)}
 					/>
-				</Flex>
+				</ItemContainer>
 			))}
 		</>
 	)

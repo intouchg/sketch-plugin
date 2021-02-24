@@ -85,24 +85,16 @@ const StyleEditor = ({
 			paddingBottom={4}
 		>
 			{color && (
-				<Stack paddingY={1}>
-					<ColorEditor variant={variant} />
-				</Stack>
+				<ColorEditor variant={variant} />
 			)}
 			{font && (
-				<Stack paddingY={1}>
-					<FontSizeEditor variant={variant} />
-				</Stack>
+				<FontSizeEditor variant={variant} />
 			)}
 			{font && (
-				<Stack paddingY={1}>
-					<FontEditor variant={variant} />
-				</Stack>
+				<FontEditor variant={variant} />
 			)}
 			{border && (
-				<Stack paddingY={1}>
-					<BorderEditor variant={variant} />
-				</Stack>
+				<BorderEditor variant={variant} />
 			)}
 		</Stack>
 	)

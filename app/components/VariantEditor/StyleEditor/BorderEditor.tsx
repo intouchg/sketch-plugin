@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Flex, Text, Box, Button } from '@i/components'
 import { BorderWidthMenu, BorderRadiusMenu } from '../EditorMenus'
+import { ItemContainer } from './ItemContainer'
 import { updateThemeVariant } from '../../../store'
 import type { ThemeVariant } from '@i/theme'
 
@@ -25,14 +26,7 @@ const BorderEditor = ({
 
 	return (
 		<>
-			<Flex
-				flexShrink={0}
-				width="100%"
-				alignItems="center"
-				justifyContent="space-between"
-				paddingX={3}
-				marginY={1}
-			>
+			<ItemContainer>
 				<Text>
 					borderWidth
 				</Text>
@@ -40,15 +34,8 @@ const BorderEditor = ({
 					id={(styles.borderWidth || '') as string}
 					onChange={(value: string) => updateVariantProperty('borderWidth', value)}
 				/>
-			</Flex>
-			<Flex
-				flexShrink={0}
-				width="100%"
-				alignItems="center"
-				justifyContent="space-between"
-				paddingX={3}
-				marginY={1}
-			>
+			</ItemContainer>
+			<ItemContainer>
 				<Text>
 					borderRadius
 				</Text>
@@ -56,7 +43,7 @@ const BorderEditor = ({
 					id={(styles.borderRadius || '') as string}
 					onChange={(value: string) => updateVariantProperty('borderRadius', value)}
 				/>
-			</Flex>
+			</ItemContainer>
 		</>
 	)
 }

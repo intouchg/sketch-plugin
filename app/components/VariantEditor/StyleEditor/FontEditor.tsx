@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Flex, Text } from '@i/components'
 import { FontFamilyMenu, TextTransformMenu } from '../EditorMenus'
+import { ItemContainer } from './ItemContainer'
 import { updateThemeVariant } from '../../../store'
 import type { ThemeVariant } from '@i/theme'
 
@@ -25,14 +26,7 @@ const FontEditor = ({
 
 	return (
 		<>
-			<Flex
-				flexShrink={0}
-				width="100%"
-				alignItems="center"
-				justifyContent="space-between"
-				paddingX={3}
-				marginY={1}
-			>
+			<ItemContainer>
 				<Text>
 					fontFamily
 				</Text>
@@ -40,15 +34,8 @@ const FontEditor = ({
 					id={(styles.fontFamily || '') as string}
 					onChange={(value) => updateVariantProperty('fontFamily', value)}
 				/>
-			</Flex>
-			<Flex
-				flexShrink={0}
-				width="100%"
-				alignItems="center"
-				justifyContent="space-between"
-				paddingX={3}
-				marginY={1}
-			>
+			</ItemContainer>
+			<ItemContainer>
 				<Text>
 					textTransform
 				</Text>
@@ -56,7 +43,7 @@ const FontEditor = ({
 					value={(styles.textTransform || '') as string}
 					onChange={(value) => updateVariantProperty('textTransform', value)}
 				/>
-			</Flex>
+			</ItemContainer>
 		</>
 	)
 }
