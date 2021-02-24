@@ -13,19 +13,19 @@ import type { ThemeVariant } from '@i/theme'
 const componentConfig = {
 	buttons: {
 		component: Button,
-		children: 'Button',
+		children: 'Click me',
 		props: {
 			onClick: () => {},
 		},
 	},
 	texts: {
 		component: Text,
-		children: 'Lorem ipsum dolor sit amet.',
+		children: (<>Lorem ipsum dolor sit amet<br />consectetur adipisicing elit</>),
 		props: {},
 	},
 	headings: {
 		component: Heading,
-		children: 'Heading',
+		children: (<>Lorem ipsum dolor sit amet<br />consectetur adipisicing elit</>),
 		props: {},
 	},
 	links: {
