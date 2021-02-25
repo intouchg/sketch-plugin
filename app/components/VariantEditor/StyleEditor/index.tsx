@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Stack, Heading } from '@i/components'
 import { ColorEditor } from './ColorEditor'
@@ -9,8 +9,9 @@ import { FontEditor } from './FontEditor'
 import { BorderEditor } from './BorderEditor'
 import { IconEditor } from './IconEditor'
 import { SvgEditor } from './SvgEditor'
+import { StateSelector } from './StateSelector'
 import { updateThemeVariant } from '../../../store'
-import type { ThemeVariant } from '@i/theme'
+import type { ThemeVariant, StyleProperty, SelectorProperty } from '@i/theme'
 
 export const styleProperties = {
 	color: [
@@ -38,12 +39,12 @@ export const styleProperties = {
 
 // Maps variants to their editable style properties
 const variantStylePropertyConfig: {
-	[key in ThemeVariant['variantType']]: { [key in keyof typeof styleProperties]?: boolean }
+	[key in ThemeVariant['variantType']]: { [key in keyof typeof styleProperties]?: boolean } & { selectors?: SelectorProperty[] }
 } = {
-	button: { color: true, shadow: true, font: true, padding: true, border: true },
+	button: { color: true, shadow: true, font: true, padding: true, border: true, selectors: [ '&:hover', '&:active' ] },
 	text: { color: true, font: true },
 	heading: { color: true, font: true },
-	link: { color: true, font: true },
+	link: { color: true, font: true, selectors: [ '&:hover', '&:active', '&:visited' ] },
 	icon: { color: true, svg: true },
 	label: { color: true, shadow: true, font: true },
 	input: { color: true, shadow: true, font: true, border: true },
@@ -61,18 +62,31 @@ const StyleEditor = ({
 	variant: ThemeVariant | null
 }) => {
 	const dispatch = useDispatch()
+	const [ selectorProperty, setSelectorProperty ] = useState<SelectorProperty | ''>('')
 
 	if (!variant) {
 		return null
 	}
 
-	const { color, shadow, font, padding, border, icon, svg } = variantStylePropertyConfig[variant.variantType]
+	const { color, shadow, font, padding, border, icon, svg, selectors } = variantStylePropertyConfig[variant.variantType]
 
-	const updateVariantProperty = (propertyName: keyof ThemeVariant['styles'], value: string) => {
+	const updateVariantProperty = (propertyName: StyleProperty, value: string) => {
 		const newVariant = { ...variant, styles: { ...variant.styles } }
 
 		if (Array.isArray(value) && value.every((v) => v === '')) {
-			newVariant.styles[propertyName] = ''
+			value = ''
+		}
+
+		if (selectorProperty) {
+			if (typeof newVariant.styles[selectorProperty] === 'object') {
+				newVariant.styles[selectorProperty] = {
+					...newVariant.styles[selectorProperty],
+					[propertyName]: value,
+				}
+			}
+			else {
+				newVariant.styles[selectorProperty] = { [propertyName]: value }
+			}
 		}
 		else {
 			newVariant.styles[propertyName] = value
@@ -93,22 +107,30 @@ const StyleEditor = ({
 			>
 				Styles
 			</Heading>
+			{selectors && (
+				<StateSelector
+					selectors={selectors}
+					selectorProperty={selectorProperty}
+					setSelectorProperty={setSelectorProperty}
+				/>
+			)}
 			{color && (
 				<ColorEditor
 					variant={variant}
+					selectorProperty={selectorProperty}
 					updateVariantProperty={updateVariantProperty}
 				/>
 			)}
-			{font && (
+			{!selectorProperty && font && (
 				<FontSizeEditor variant={variant} />
 			)}
-			{font && (
+			{!selectorProperty && font && (
 				<FontEditor
 					variant={variant}
 					updateVariantProperty={updateVariantProperty}
 				/>
 			)}
-			{border && (
+			{!selectorProperty && border && (
 				<BorderEditor
 					variant={variant}
 					updateVariantProperty={updateVariantProperty}
