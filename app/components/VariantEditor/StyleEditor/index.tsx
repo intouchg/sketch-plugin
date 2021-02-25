@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Stack, Heading } from '@i/components'
 import { ColorEditor } from './ColorEditor'
 import { ShadowEditor } from './ShadowEditor'
@@ -9,7 +9,8 @@ import { FontEditor } from './FontEditor'
 import { BorderEditor } from './BorderEditor'
 import { IconEditor } from './IconEditor'
 import { SvgEditor } from './SvgEditor'
-import type { ThemeVariant, ThemeValue } from '@i/theme'
+import { updateThemeVariant } from '../../../store'
+import type { ThemeVariant } from '@i/theme'
 
 export const styleProperties = {
 	color: [
@@ -59,13 +60,26 @@ const StyleEditor = ({
 }: {
 	variant: ThemeVariant | null
 }) => {
-	const values = useSelector((state) => state.theme.values)
+	const dispatch = useDispatch()
 
 	if (!variant) {
 		return null
 	}
 
 	const { color, shadow, font, padding, border, icon, svg } = variantStylePropertyConfig[variant.variantType]
+
+	const updateVariantProperty = (propertyName: keyof ThemeVariant['styles'], value: string) => {
+		const newVariant = { ...variant, styles: { ...variant.styles } }
+
+		if (value === '' || (Array.isArray(value) && value.every((v) => v === ''))) {
+			delete newVariant.styles[propertyName]
+		}
+		else {
+			newVariant.styles[propertyName] = value
+		}
+
+		dispatch(updateThemeVariant(newVariant))
+	}
 
 	return (
 		<Stack
@@ -80,16 +94,25 @@ const StyleEditor = ({
 				Styles
 			</Heading>
 			{color && (
-				<ColorEditor variant={variant} />
+				<ColorEditor
+					variant={variant}
+					updateVariantProperty={updateVariantProperty}
+				/>
 			)}
 			{font && (
 				<FontSizeEditor variant={variant} />
 			)}
 			{font && (
-				<FontEditor variant={variant} />
+				<FontEditor
+					variant={variant}
+					updateVariantProperty={updateVariantProperty}
+				/>
 			)}
 			{border && (
-				<BorderEditor variant={variant} />
+				<BorderEditor
+					variant={variant}
+					updateVariantProperty={updateVariantProperty}
+				/>
 			)}
 		</Stack>
 	)

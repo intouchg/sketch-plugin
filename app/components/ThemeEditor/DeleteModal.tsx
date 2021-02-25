@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Stack, Flex, Heading, Text } from '@i/components'
+import { Stack, Flex, Heading, Text, Button } from '@i/components'
 import { Color, BorderWidth, Font, FontSize, LineHeight, LetterSpacing, Radius, Shadow } from '../ThemeValues'
 import { ModalBackground } from '../ModalBackground'
 import { CloseModalButton } from '../CloseModalButton'
@@ -119,6 +119,9 @@ const DeleteModal = ({
 							</Flex>
 						)))}
 					</Stack>
+					<Button onClick={confirmDelete}>
+						Delete
+					</Button>
 				</Stack>
 			</Stack>
 		</ModalBackground>

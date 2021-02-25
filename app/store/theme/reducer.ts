@@ -1,5 +1,5 @@
 import { enablePatches, produce, applyPatches } from 'immer'
-import { createThemeValue, createThemeVariant, themeTypePropertyMap } from '@i/theme'
+import { createThemeValue, createThemeVariant, ThemeSelectorObject, ThemeStyleObject, themeTypePropertyMap } from '@i/theme'
 import { sortAlphabetical } from '@i/utility'
 import {
 	UNDO,
@@ -29,6 +29,31 @@ enablePatches()
 const findThemeValueByIdError = (id: string) => new Error(`Could not locate ThemeValue with id "${id}"`)
 
 const findThemeVariantByIdError = (id: string) => new Error(`Could not locate ThemeVariant with id "${id}"`)
+
+const deleteValueFromVariantStyles = (
+	id: string,
+	styleObject: ThemeStyleObject & ThemeSelectorObject,
+) => {
+	Object.entries(styleObject).forEach(([ styleProperty, styleValue ]) => {
+		if (styleValue === id) {
+			delete styleObject[styleProperty as StyleProperty]
+		}
+		else if (Array.isArray(styleValue) && styleValue.includes(id)) {
+			for (let i = 0; i < styleValue.length; i++) {
+				if (styleValue[i] === id) {
+					styleValue[i] = ''
+				}
+			}
+
+			if (styleValue.every((v) => v === '')) {
+				delete styleObject[styleProperty as StyleProperty]
+			}
+		}
+		else if (typeof styleValue === 'object') {
+			deleteValueFromVariantStyles(id, styleValue as ThemeStyleObject)
+		}
+	})
+}
 
 const changeHistory: { [key: string]: any } = {}
 let currentVersion = -1
@@ -214,13 +239,7 @@ export const themeReducer = (
 				nextState.values[key].splice(index, 1)
 
 				// Update any ThemeVariant style which references the deleted ThemeValue
-				nextState.variants.forEach((variant) => {
-					Object.entries(variant.styles).forEach(([ styleProperty, value ]) => {
-						if (value === id) {
-							variant.styles[styleProperty as StyleProperty] = ''
-						}
-					})
-				})
+				nextState.variants.forEach((variant) => deleteValueFromVariantStyles(id, variant.styles))
 
 				break
 			}
