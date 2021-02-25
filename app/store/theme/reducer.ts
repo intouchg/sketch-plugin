@@ -36,7 +36,7 @@ const deleteValueFromVariantStyles = (
 ) => {
 	Object.entries(styleObject).forEach(([ styleProperty, styleValue ]) => {
 		if (styleValue === id) {
-			delete styleObject[styleProperty as StyleProperty]
+			styleObject[styleProperty as StyleProperty] = ''
 		}
 		else if (Array.isArray(styleValue) && styleValue.includes(id)) {
 			for (let i = 0; i < styleValue.length; i++) {
@@ -46,7 +46,7 @@ const deleteValueFromVariantStyles = (
 			}
 
 			if (styleValue.every((v) => v === '')) {
-				delete styleObject[styleProperty as StyleProperty]
+				styleObject[styleProperty as StyleProperty] = ''
 			}
 		}
 		else if (typeof styleValue === 'object') {

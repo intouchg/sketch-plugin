@@ -71,8 +71,8 @@ const StyleEditor = ({
 	const updateVariantProperty = (propertyName: keyof ThemeVariant['styles'], value: string) => {
 		const newVariant = { ...variant, styles: { ...variant.styles } }
 
-		if (value === '' || (Array.isArray(value) && value.every((v) => v === ''))) {
-			delete newVariant.styles[propertyName]
+		if (Array.isArray(value) && value.every((v) => v === '')) {
+			newVariant.styles[propertyName] = ''
 		}
 		else {
 			newVariant.styles[propertyName] = value
