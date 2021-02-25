@@ -202,7 +202,7 @@ const EditShadow = ({
 				<Text
 					color="Critical"
 					fontSize={2}
-					fontWeight="Medium"
+					fontWeight={3}
 				>
 					Delete
 				</Text>

@@ -28,7 +28,7 @@ const TextItem = ({
             }}
 			onClick={onClick}
 		>
-			<Text>
+			<Text fontWeight={4}>
 				{value || 'none'}
 			</Text>
 		</Button>

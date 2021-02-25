@@ -28,7 +28,10 @@ const BorderWidthItem = ({
             }}
 			onClick={onClick}
 		>
-			<Text minWidth="46px">
+			<Text
+				minWidth="46px"
+				fontWeight={4}
+			>
 				{value || 'none'}
 			</Text>
 			<Box

@@ -79,8 +79,8 @@ const VariantsList = ({
 
 	return (
 		<Stack
-			boxShadow="Downward Accent"
 			flexShrink={0}
+			boxShadow="inset 0 -2px 6px -2px rgba(0, 0, 0, 0.15)"
 		>
 			<Flex
 				flexShrink={0}
