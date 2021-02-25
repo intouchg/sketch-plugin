@@ -12,7 +12,10 @@ const StateSelector = ({
     selectorProperty: SelectorProperty | ''
     setSelectorProperty: React.Dispatch<React.SetStateAction<SelectorProperty | ''>>
 }) => (
-	<Box paddingX={3}>
+	<Box
+		paddingX={3}
+		marginBottom={2}
+	>
 		<Flex
 			flexShrink={0}
 			alignItems="center"

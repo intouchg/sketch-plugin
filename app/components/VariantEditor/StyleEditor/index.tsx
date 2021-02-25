@@ -58,11 +58,14 @@ const variantStylePropertyConfig: {
 
 const StyleEditor = ({
 	variant,
+	selectorProperty,
+	setSelectorProperty,
 }: {
 	variant: ThemeVariant | null
+	selectorProperty: SelectorProperty | ''
+	setSelectorProperty: React.Dispatch<React.SetStateAction<SelectorProperty | ''>>
 }) => {
 	const dispatch = useDispatch()
-	const [ selectorProperty, setSelectorProperty ] = useState<SelectorProperty | ''>('')
 
 	if (!variant) {
 		return null

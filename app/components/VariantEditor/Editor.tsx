@@ -8,7 +8,7 @@ import { VariantsList } from './VariantsList'
 import { StyleEditor } from './StyleEditor'
 import { topToolbarHeight } from '../TopToolbar'
 import { themeProcessor, componentVariantsPropertyMap, defaultVariantName } from '@i/theme'
-import type { ThemeVariant } from '@i/theme'
+import type { ThemeVariant, SelectorProperty, ComponentVariantProperty } from '@i/theme'
 
 const componentConfig = {
 	buttons: {
@@ -107,6 +107,7 @@ const Editor = () => {
 	const [ selectedId, setSelectedId ] = useState<string | null>(filteredVariants.find((v) => v.name === defaultVariantName)?.id || null)
 	const selectedVariant = selectedId ? filteredVariants.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
+	const [ selectorProperty, setSelectorProperty ] = useState<SelectorProperty | ''>('')
 
 	const { component: Component, children, props } = (componentConfig as any)[variantKey]
 
@@ -115,6 +116,7 @@ const Editor = () => {
 	}, [ variants, variantType ])
 
 	const theme = themeProcessor({ values: Object.values(values).flat(), variants })
+	// const variantStyles = !selectedVariant ? {} : theme[variantKey as ComponentVariantProperty][selectedVariant.name]
 
 	return (
 		<>
@@ -146,7 +148,11 @@ const Editor = () => {
 					creating={creating}
 					setCreating={setCreating}
 				/>
-				<StyleEditor variant={selectedVariant} />
+				<StyleEditor
+					variant={selectedVariant}
+					selectorProperty={selectorProperty}
+					setSelectorProperty={setSelectorProperty}
+				/>
 			</RightToolbar>
 		</>
 	)
