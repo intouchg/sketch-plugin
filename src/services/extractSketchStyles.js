@@ -1,3 +1,5 @@
+import { titleCase } from '@i/utility'
+
 const filterNonStrings = (value) => typeof value === 'string'
 
 const filterNonNumbers = (value) => typeof value === 'number'
@@ -46,7 +48,7 @@ export const extractSketchDocumentStyles = (document) => {
 	const borderWidths = []
 
 	document.swatches.forEach(({ name, color }) => {
-		colors.push([ name, convert8DigitHex(color) ])
+		colors.push([ titleCase(name), convert8DigitHex(color) ])
 	})
 
 	document.sharedTextStyles.forEach(({ style: { fontFamily, fontSize, fontWeight, lineHeight, kerning } }) => {
