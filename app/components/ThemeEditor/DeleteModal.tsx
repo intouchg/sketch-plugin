@@ -98,8 +98,9 @@ const DeleteModal = ({
 				<Stack
 					flexGrow={1}
 					alignItems="center"
+					paddingY={6}
 				>
-					<Text>
+					<Text fontSize={5}>
 						Warning! Deleting a theme value is a dangerous operation.
 						You must inform developers of this deletion.
 					</Text>
