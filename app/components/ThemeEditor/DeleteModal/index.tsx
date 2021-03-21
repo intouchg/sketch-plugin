@@ -1,11 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Stack, Flex, Heading, Text, Button } from '@i/components'
-import { Color, BorderWidth, Font, FontSize, LineHeight, LetterSpacing, Radius, Shadow } from '../ThemeValues'
-import { ModalBackground } from '../ModalBackground'
-import { CloseModalButton } from '../CloseModalButton'
-import { deleteThemeValue } from '../../store'
-import { sortAlphabetical, titleCase } from '@i/utility'
+import { Stack, Flex, Heading, Text, Button, Box } from '@i/components'
+import { Color, BorderWidth, Font, FontSize, LineHeight, LetterSpacing, Radius, Shadow } from '../../ThemeValues'
+import { ModalBackground } from '../../ModalBackground'
+import { CloseModalButton } from '../../CloseModalButton'
+import { deleteThemeValue } from '../../../store'
+import { sortAlphabetical } from '@i/utility'
+import { Icon } from '../../Icon'
+import { VariantStyleTable } from './VariantStyleTable'
 import type { ThemeValue, ThemeVariant, ThemeStyleObject, StyleProperty } from '@i/theme'
 
 const componentConfig = {
@@ -95,35 +97,61 @@ const DeleteModal = ({
 						onClick={() => setDeleteValue(null)}
 					/>
 				</Flex>
-				<Stack
-					flexGrow={1}
-					alignItems="center"
-					paddingY={6}
-				>
-					<Text fontSize={5}>
-						Warning! Deleting a theme value is a dangerous operation.
-						You must inform developers of this deletion.
-					</Text>
-					<Flex
-						width={deleteValue.type === 'color' ? '140px' : '600px'}
-						height={deleteValue.type === 'color' ? '140px' : 'auto'}
+				<Box overflow="scroll">
+					<Stack
+						flexGrow={1}
+						alignItems="center"
+						padding={6}
+						flexShrink={0}
 					>
-						<Component {...deleteValue} />
-					</Flex>
-					<Text>
-						This value is used {usageCount} times:
-					</Text>
-					<Stack>
-						{sortedFilteredVariants.map((variant) => Object.entries(variant.styles).map(([ styleProperty, styleValue ]) => (
-							<Flex key={styleProperty}>
-								<Text />
-							</Flex>
-						)))}
+						<Icon
+							icon="Warning"
+							width="100px"
+							fill="Critical"
+						/>
+						<Heading
+							variant="Secondary"
+							paddingTop={3}
+							paddingBottom={4}
+							lineHeight={4}
+							textAlign="center"
+						>
+							Warning!<br />
+							You must inform developers before deleting this value.
+						</Heading>
+						<Text
+							fontSize="1.5rem"
+							lineHeight={4}
+							textAlign="center"
+							paddingBottom={4}
+						>
+							Deleting a theme value is a dangerous operation.<br />
+							Developers may be using this value, even if you&apos;re not.
+						</Text>
+						<Flex
+							width={deleteValue.type === 'color' ? '140px' : '600px'}
+							height={deleteValue.type === 'color' ? '140px' : 'auto'}
+							marginBottom={4}
+						>
+							<Component {...deleteValue} />
+						</Flex>
+						<Text
+							fontSize="1.5rem"
+							textAlign="center"
+							marginBottom={6}
+						>
+							This value is used {usageCount} times:
+						</Text>
+						<VariantStyleTable variants={sortedFilteredVariants} />
+						<Button
+							backgroundColor="Critical"
+							borderColor="Critical"
+							onClick={confirmDelete}
+						>
+							Delete
+						</Button>
 					</Stack>
-					<Button onClick={confirmDelete}>
-						Delete
-					</Button>
-				</Stack>
+				</Box>
 			</Stack>
 		</ModalBackground>
 	)

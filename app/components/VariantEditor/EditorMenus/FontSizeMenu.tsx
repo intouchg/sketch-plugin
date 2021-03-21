@@ -82,8 +82,8 @@ const FontSizeMenu = ({
 	const fontSizeValues = getResponsiveValues(variant.styles.fontSize, values.breakpoints, values.fontSizes)
 	const [ show, setShow ] = useState(false)
 
-	const updateFontSize = () => {
-
+	const updateFontSize = (id?: string) => {
+		console.log('update')
 	}
 
 	return (

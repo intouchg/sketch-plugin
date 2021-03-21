@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import sketchPluginTheme from './theme/theme'
 import { useWindowSketchListener, useWindowInternetListener, useInitializeSketchData } from './hooks'
 import { Welcome, Main } from './pages'
-import { AzureModal, SettingsModal, LoadingScreen, MessageBanner } from './components'
+import { GlobalStyles, AzureModal, SettingsModal, LoadingScreen, MessageBanner } from './components'
 import { useMeasure } from './hooks'
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
 
 	return (
 		<ThemeProvider theme={sketchPluginTheme}>
+			<GlobalStyles />
 			<MessageBanner />
 			<div ref={containerRef}>
 				<Routes>
