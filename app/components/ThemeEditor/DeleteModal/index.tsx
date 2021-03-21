@@ -5,7 +5,7 @@ import { Color, BorderWidth, Font, FontSize, LineHeight, LetterSpacing, Radius, 
 import { ModalBackground } from '../../ModalBackground'
 import { CloseModalButton } from '../../CloseModalButton'
 import { deleteThemeValue } from '../../../store'
-import { sortAlphabetical } from '@i/utility'
+import { sortAlphabetical, titleCase } from '@i/utility'
 import { Icon } from '../../Icon'
 import { VariantStyleTable } from './VariantStyleTable'
 import type { ThemeValue, ThemeVariant, ThemeStyleObject, StyleProperty } from '@i/theme'
@@ -64,7 +64,10 @@ const DeleteModal = ({
 
 	const sortedFilteredVariants = filteredVariants.slice().sort((a, b) => sortAlphabetical(a, b, 'variantType'))
 
-	const confirmDelete = () => dispatch(deleteThemeValue(deleteValue))
+	const confirmDelete = () => {
+		dispatch(deleteThemeValue(deleteValue))
+		setDeleteValue(null)
+	}
 
 	return (
 		<ModalBackground>
@@ -123,18 +126,35 @@ const DeleteModal = ({
 							fontSize="1.5rem"
 							lineHeight={4}
 							textAlign="center"
-							paddingBottom={4}
+							paddingBottom={6}
 						>
 							Deleting a theme value is a dangerous operation.<br />
 							Developers may be using this value, even if you&apos;re not.
 						</Text>
-						<Flex
-							width={deleteValue.type === 'color' ? '140px' : '600px'}
-							height={deleteValue.type === 'color' ? '140px' : 'auto'}
+						<Stack
+							width="100%"
+							alignItems="center"
+							justifyContent="center"
+							padding={6}
 							marginBottom={4}
+							backgroundColor="Background"
+							border="1px solid"
+							borderColor="Accent"
+							borderRadius={3}
 						>
-							<Component {...deleteValue} />
-						</Flex>
+							<Text
+								fontSize="1.5rem"
+								paddingBottom={4}
+							>
+								{titleCase(deleteValue.type)} {(deleteValue as any).name ? `"${(deleteValue as any).name}"` : ''} {deleteValue.value.includes('rem') ? `${Number(deleteValue.value.split('rem')[0]) * 16}px` : deleteValue.value}
+							</Text>
+							<Flex
+								width={deleteValue.type === 'color' ? '140px' : '600px'}
+								height={deleteValue.type === 'color' ? '140px' : 'auto'}
+							>
+								<Component {...deleteValue} />
+							</Flex>
+						</Stack>
 						<Text
 							fontSize="1.5rem"
 							textAlign="center"

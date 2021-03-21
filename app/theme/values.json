@@ -20,6 +20,36 @@
 		"type": "breakpoint"
 	},
 	{
+		"id": "4d0f6558-877e-46d3-a9a4-5b50f8210926",
+		"value": "4px",
+		"type": "space"
+	},
+	{
+		"id": "d177961a-555f-4d90-be34-f10aab41732d",
+		"value": "8px",
+		"type": "space"
+	},
+	{
+		"id": "0310d5cd-79e0-40c5-82d3-a638d68fc4f9",
+		"value": "16px",
+		"type": "space"
+	},
+	{
+		"id": "03fc9958-f028-498a-9c2f-398e8a9b1651",
+		"value": "24px",
+		"type": "space"
+	},
+	{
+		"id": "9331f754-4b24-48f9-b196-14d5788d180f",
+		"value": "32px",
+		"type": "space"
+	},
+	{
+		"id": "0e2f7af8-c37c-4e90-8b52-eed259c0a447",
+		"value": "48px",
+		"type": "space"
+	},
+	{
 		"id": "ab6688a5-4c32-4d70-91eb-81a95417b55d",
 		"value": "#dddddd",
 		"name": "Accent",
@@ -128,36 +158,6 @@
 		"type": "color"
 	},
 	{
-		"id": "4d0f6558-877e-46d3-a9a4-5b50f8210926",
-		"value": "4px",
-		"type": "space"
-	},
-	{
-		"id": "d177961a-555f-4d90-be34-f10aab41732d",
-		"value": "8px",
-		"type": "space"
-	},
-	{
-		"id": "0310d5cd-79e0-40c5-82d3-a638d68fc4f9",
-		"value": "16px",
-		"type": "space"
-	},
-	{
-		"id": "03fc9958-f028-498a-9c2f-398e8a9b1651",
-		"value": "24px",
-		"type": "space"
-	},
-	{
-		"id": "9331f754-4b24-48f9-b196-14d5788d180f",
-		"value": "32px",
-		"type": "space"
-	},
-	{
-		"id": "0e2f7af8-c37c-4e90-8b52-eed259c0a447",
-		"value": "48px",
-		"type": "space"
-	},
-	{
 		"id": "e93a0129-a9d6-4784-8571-cba2e1ca48d0",
 		"value": "Avenir Next",
 		"family": "Avenir Next",
@@ -186,26 +186,6 @@
 		"type": "fontSize"
 	},
 	{
-		"id": "2c4a9dea-d245-404e-8ab2-5e197218eb44",
-		"value": "1rem",
-		"type": "lineHeight"
-	},
-	{
-		"id": "369aacea-e505-4cb3-914a-34228e0cfad9",
-		"value": "1.25rem",
-		"type": "lineHeight"
-	},
-	{
-		"id": "79e12a3d-ae5e-41d4-af2a-fc81ce705b9b",
-		"value": "1.5rem",
-		"type": "lineHeight"
-	},
-	{
-		"id": "3830d6ad-71c9-4db0-9b46-4680759f7e3b",
-		"value": "2rem",
-		"type": "lineHeight"
-	},
-	{
 		"id": "2cf4c90f-09e3-4b59-ac26-f114f25c3ed8",
 		"value": "100",
 		"type": "fontWeight"
@@ -231,29 +211,34 @@
 		"type": "fontWeight"
 	},
 	{
+		"id": "2c4a9dea-d245-404e-8ab2-5e197218eb44",
+		"value": "1rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "369aacea-e505-4cb3-914a-34228e0cfad9",
+		"value": "1.25rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "79e12a3d-ae5e-41d4-af2a-fc81ce705b9b",
+		"value": "1.5rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "3830d6ad-71c9-4db0-9b46-4680759f7e3b",
+		"value": "2rem",
+		"type": "lineHeight"
+	},
+	{
+		"id": "4516d24e-092c-4cab-8788-653e010bb760",
+		"value": "1px",
+		"type": "letterSpacing"
+	},
+	{
 		"id": "25a594f2-f0eb-4ff6-917d-6434fab0f101",
 		"value": "1px",
 		"type": "borderWidth"
-	},
-	{
-		"id": "48884070-5adb-47fe-aa2c-5c479129c782",
-		"value": "1",
-		"type": "zIndex"
-	},
-	{
-		"id": "3cd980c7-6f5d-4a94-a39d-20f1ef289d23",
-		"value": "10",
-		"type": "zIndex"
-	},
-	{
-		"id": "26d050f2-b9d7-41d8-a2fc-1bff5ab3857e",
-		"value": "100",
-		"type": "zIndex"
-	},
-	{
-		"id": "07fce574-f67e-437b-a2a5-de85bb840489",
-		"value": "1000",
-		"type": "zIndex"
 	},
 	{
 		"id": "a48f3af8-d67b-4237-8636-ec6d6c5efd6c",
@@ -300,8 +285,23 @@
 		"type": "shadow"
 	},
 	{
-		"id": "4516d24e-092c-4cab-8788-653e010bb760",
-		"value": "1px",
-		"type": "letterSpacing"
+		"id": "48884070-5adb-47fe-aa2c-5c479129c782",
+		"value": "1",
+		"type": "zIndex"
+	},
+	{
+		"id": "3cd980c7-6f5d-4a94-a39d-20f1ef289d23",
+		"value": "10",
+		"type": "zIndex"
+	},
+	{
+		"id": "26d050f2-b9d7-41d8-a2fc-1bff5ab3857e",
+		"value": "100",
+		"type": "zIndex"
+	},
+	{
+		"id": "07fce574-f67e-437b-a2a5-de85bb840489",
+		"value": "1000",
+		"type": "zIndex"
 	}
 ]

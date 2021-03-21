@@ -75,8 +75,6 @@ const VariantStyleTable = ({
 							<Box
 								as="td"
 								padding={3}
-								borderRight="1px solid"
-								borderColor="Accent"
 								rowSpan={variants.length}
 							>
 								{titleCase(variantType)}
