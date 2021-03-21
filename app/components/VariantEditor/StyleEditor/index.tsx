@@ -124,9 +124,9 @@ const StyleEditor = ({
 					updateVariantProperty={updateVariantProperty}
 				/>
 			)}
-			{!selectorProperty && font && (
+			{/* {!selectorProperty && font && (
 				<FontSizeEditor variant={variant} />
-			)}
+			)} */}
 			{!selectorProperty && font && (
 				<FontEditor
 					variant={variant}
