@@ -25,6 +25,18 @@ const convert8DigitHex = (color) => {
 	return `rgba(${r}, ${g}, ${b}, ${a}%)`
 }
 
+const checkForMatchingShadow = (shadows, shadow) => {
+	const { x, y, blur, spread, color } = shadow
+
+	if (shadows.some(({ x: x2, y: y2, blur: blur2, spread: spread2, color: color2 }) =>
+		(x2 === x && y2 === y && blur2 === blur && spread2 === spread && color2 === color),
+	)) {
+		return true
+	}
+
+	return false
+}
+
 const sortIntegersAscending = (a, b) => a - b
 
 const sortShadowStyles = (a, b) => {
@@ -45,6 +57,7 @@ export const extractSketchDocumentStyles = (document) => {
 	const lineHeights = []
 	const letterSpacings = []
 	const shadows = []
+	const innerShadows = []
 	const borderWidths = []
 
 	document.swatches.forEach(({ name, color }) => {
@@ -75,22 +88,32 @@ export const extractSketchDocumentStyles = (document) => {
 		}
 	})
 
-	document.sharedLayerStyles.forEach(({ style: { borders: sharedBorderStyles, shadows: sharedShadowStyles } }) => {
+	document.sharedLayerStyles.forEach(({ style: { borders: sharedBorderStyles, shadows: sharedShadowStyles, innerShadows: sharedInnerShadowStyles } }) => {
 		sharedBorderStyles.forEach(({ enabled, thickness }) => {
 			if (enabled && !borderWidths.includes(thickness)) {
 				borderWidths.push(thickness)
 			}
 		})
 
-		sharedShadowStyles.forEach(({ enabled, x, y, blur, spread, color }) => {
-			if (enabled) {
-				if (shadows.some(({ x: x2, y: y2, blur: blur2, spread: spread2, color: color2 }) =>
-					(x2 === x && y2 === y && blur2 === blur && spread2 === spread && color2 === color),
-				)) {
+		sharedShadowStyles.forEach((shadow) => {
+			if (shadow.enabled) {
+				if (checkForMatchingShadow(shadows, shadow)) {
 					return
 				}
 
+				const { x, y, blur, spread, color } = shadow
 				shadows.push({ x, y, blur, spread, color })
+			}
+		})
+
+		sharedInnerShadowStyles.forEach((innerShadow) => {
+			if (innerShadow.enabled) {
+				if (checkForMatchingShadow(innerShadows, innerShadow)) {
+					return
+				}
+
+				const { x, y, blur, spread, color } = innerShadow
+				innerShadows.push({ x, y, blur, spread, color })
 			}
 		})
 	})
@@ -101,6 +124,10 @@ export const extractSketchDocumentStyles = (document) => {
 	letterSpacings.sort(sortIntegersAscending)
 	borderWidths.sort(sortIntegersAscending)
 	shadows.sort(sortShadowStyles)
+	innerShadows.sort(sortShadowStyles)
+
+	const shadowStrings = shadows.map(({ x, y, blur, spread, color }) => `${x}px ${y}px ${blur}px ${spread}px ${convert8DigitHex(color)}`)
+	const innerShadowStrings = innerShadows.map(({ x, y, blur, spread, color }) => `inset ${x}px ${y}px ${blur}px ${spread}px ${convert8DigitHex(color)}`)
 
 	return {
 		colors: colors.filter(([ , v ]) => filterNonStrings(v)),
@@ -110,6 +137,6 @@ export const extractSketchDocumentStyles = (document) => {
 		lineHeights: lineHeights.filter(filterNonNumbers).map((v) => v.toString()),
 		letterSpacings: letterSpacings.filter(filterNonNumbers).map((v) => `${v}px`),
 		borderWidths: borderWidths.filter(filterNonNumbers).map((v) => `${v}px`),
-		shadows: shadows.map(({ x, y, blur, spread, color }) => `${x}px ${y}px ${blur}px ${spread}px ${convert8DigitHex(color)}`),
+		shadows: shadowStrings.concat(innerShadowStrings),
 	}
 }

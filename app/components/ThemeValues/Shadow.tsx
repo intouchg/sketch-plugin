@@ -7,7 +7,15 @@ const Shadow = ({
 	value,
 	...props
 }: ThemeShadow) => {
-	const [ x, y, blur, spread, color ] = value.split('px').map((s) => s.trim())
+	let inset = false
+	let shadowString = value
+
+	if (value.includes('inset')) {
+		inset = true
+		shadowString = shadowString.replace('inset ', '')
+	}
+
+	const [ x, y, blur, spread, color ] = shadowString.split('px').map((s) => s.trim())
 
 	return (
 		<Flex
@@ -49,6 +57,11 @@ const Shadow = ({
 						justifyContent="space-between"
 						paddingTop={3}
 					>
+						{inset && (
+							<Text variant="Secondary">
+								inset
+							</Text>
+						)}
 						<Stack>
 							<Text variant="Secondary">
 								{x}px

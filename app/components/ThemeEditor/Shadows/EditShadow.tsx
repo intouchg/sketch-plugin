@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box, Button } from '@i/components'
+import { Flex, Text, Box, Button, Checkbox } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { ColorPicker } from '../../ColorPicker'
+import { Icon } from '../../Icon'
 import { updateThemeValue } from '../../../store'
 import type { ThemeValue, ThemeShadow } from '@i/theme'
 
@@ -32,6 +33,7 @@ const EditShadow = ({
 	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
+	const [ inset, setInset ] = useState(false)
 	const [ x, setX ] = useState('')
 	const [ y, setY ] = useState('')
 	const [ blur, setBlur ] = useState('')
@@ -40,7 +42,17 @@ const EditShadow = ({
 
 	useEffect(() => {
 		if (shadow) {
-			const [ x, y, blur, spread, color ] = shadow.value.split('px').map((s) => s.trim())
+			let shadowString = shadow.value
+
+			if (shadowString.includes('inset')) {
+				setInset(true)
+				shadowString = shadowString.replace('inset ', '')
+			}
+			else {
+				setInset(false)
+			}
+
+			const [ x, y, blur, spread, color ] = shadowString.split('px').map((s) => s.trim())
 
 			setX(x)
 			setY(y)
@@ -50,38 +62,24 @@ const EditShadow = ({
 		}
 	}, [ shadow ])
 
-	const updateShadowX = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const updateShadow = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>, key: 'x' | 'y' | 'blur' | 'spread') => {
 		dispatch(updateThemeValue({
 			...shadow,
-			value: `${parseShadowX(event.target.value)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`,
+			value: `${inset ? 'inset ' : ''}${parseShadowX(key === 'x' ? value : x)} ${parseShadowY(key === 'y' ? value : y)} ${parseShadowBlur(key === 'blur' ? value : blur)} ${parseShadowSpread(key === 'spread' ? value : spread)} ${color}`,
 		}))
 	}
 
-	const updateShadowY = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const updateShadowInset = (inset: boolean) => {
 		dispatch(updateThemeValue({
 			...shadow,
-			value: `${parseShadowX(x)} ${parseShadowY(event.target.value)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`,
-		}))
-	}
-
-	const updateShadowBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
-		dispatch(updateThemeValue({
-			...shadow,
-			value: `${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(event.target.value)} ${parseShadowSpread(spread)} ${color}`,
-		}))
-	}
-
-	const updateShadowSpread = (event: React.ChangeEvent<HTMLInputElement>) => {
-		dispatch(updateThemeValue({
-			...shadow,
-			value: `${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(event.target.value)} ${color}`,
+			value: `${inset ? 'inset ' : ''}${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`,
 		}))
 	}
 
 	const updateShadowColor = (value: string) => {
 		dispatch(updateThemeValue({
 			...shadow,
-			value: `${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${value}`,
+			value: `${inset ? 'inset ' : ''}${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${value}`,
 		}))
 	}
 
@@ -107,7 +105,7 @@ const EditShadow = ({
 					width="128px"
 					height="128px"
 					backgroundColor="Card"
-					boxShadow={`${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`}
+					boxShadow={`${inset ? 'inset ' : ''}${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`}
 				/>
 			</Flex>
 			<Box flexGrow={1}>
@@ -119,6 +117,28 @@ const EditShadow = ({
 					marginTop="224px"
 				>
 					<Text>
+						inset
+					</Text>
+					<Checkbox
+						margin={2}
+						flexShrink={0}
+						icon={
+							<Icon
+								icon="Checkmark"
+								padding="2px"
+							/>
+						}
+						checked={inset}
+						onChange={() => updateShadowInset(!inset)}
+					/>
+				</Flex>
+				<Flex
+					flexShrink={0}
+					alignItems="center"
+					justifyContent="space-between"
+					marginY={2}
+				>
+					<Text>
 						x
 					</Text>
 					<PixelInput
@@ -126,7 +146,7 @@ const EditShadow = ({
 						max={SHADOW_X_MAX}
 						value={x}
 						onChange={(event) => setX(event.target.value)}
-						onBlur={updateShadowX}
+						onBlur={(event) => updateShadow(event, 'x')}
 					/>
 				</Flex>
 				<Flex
@@ -143,7 +163,7 @@ const EditShadow = ({
 						max={SHADOW_Y_MAX}
 						value={y}
 						onChange={(event) => setY(event.target.value)}
-						onBlur={updateShadowY}
+						onBlur={(event) => updateShadow(event, 'y')}
 					/>
 				</Flex>
 				<Flex
@@ -160,7 +180,7 @@ const EditShadow = ({
 						max={SHADOW_BLUR_MAX}
 						value={blur}
 						onChange={(event) => setBlur(event.target.value)}
-						onBlur={updateShadowBlur}
+						onBlur={(event) => updateShadow(event, 'blur')}
 					/>
 				</Flex>
 				<Flex
@@ -178,7 +198,7 @@ const EditShadow = ({
 						max={SHADOW_SPREAD_MAX}
 						value={spread}
 						onChange={(event) => setSpread(event.target.value)}
-						onBlur={updateShadowSpread}
+						onBlur={(event) => updateShadow(event, 'spread')}
 					/>
 				</Flex>
 				<Box

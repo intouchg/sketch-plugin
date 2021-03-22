@@ -262,25 +262,25 @@
 	},
 	{
 		"id": "d631c5b7-bc14-4f00-b225-87d836fe0af4",
-		"value": "0 2px 6px -2px rgba(0, 0, 0, 0.15)",
+		"value": "0px 2px 6px -2px rgba(0, 0, 0, 0.15)",
 		"name": "Downward Accent",
 		"type": "shadow"
 	},
 	{
 		"id": "d82f43f9-8109-4654-8a3b-4218d20c569a",
-		"value": "0 -2px 6px -2px rgba(0, 0, 0, 0.15)",
+		"value": "0px -2px 6px -2px rgba(0, 0, 0, 0.15)",
 		"name": "Upward Accent",
 		"type": "shadow"
 	},
 	{
 		"id": "796b0daa-ad51-478b-ad3f-1c5673b90d39",
-		"value": "inset 0 -1px 0 0 #dddddd",
+		"value": "inset 0px -1px 0px 0px #dddddd",
 		"name": "Inset X Accent",
 		"type": "shadow"
 	},
 	{
 		"id": "ad0c0cab-ff37-4746-b4e8-0d85ce74496c",
-		"value": "inset -1px 0 0 0 #dddddd",
+		"value": "inset -1px 0px 0px 0px #dddddd",
 		"name": "Inset Y Accent",
 		"type": "shadow"
 	},

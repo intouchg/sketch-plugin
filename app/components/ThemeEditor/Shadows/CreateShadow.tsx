@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Heading, Button, Flex, Text, Stack, Box } from '@i/components'
+import { Heading, Button, Flex, Text, Stack, Box, Checkbox } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { ColorPicker } from '../../ColorPicker'
+import { Icon } from '../../Icon'
 import { parseShadowX, SHADOW_X_MIN, SHADOW_X_MAX, parseShadowY, SHADOW_Y_MIN, SHADOW_Y_MAX, parseShadowBlur, SHADOW_BLUR_MIN, SHADOW_BLUR_MAX, parseShadowSpread, SHADOW_SPREAD_MIN, SHADOW_SPREAD_MAX } from './EditShadow'
 import { createThemeValue } from '../../../store'
 import { createUuid } from '@i/utility'
@@ -15,6 +16,7 @@ const CreateShadow = ({
 	setSelectedId: (id: string | null) => void
 }) => {
 	const dispatch = useDispatch()
+	const [ inset, setInset ] = useState(false)
 	const [ x, setX ] = useState('1')
 	const [ y, setY ] = useState('1')
 	const [ blur, setBlur ] = useState('1')
@@ -27,7 +29,7 @@ const CreateShadow = ({
 		dispatch(createThemeValue({
 			type: 'shadow',
 			id,
-			value: `${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`,
+			value: `${inset ? 'inset ' : ''}${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`,
 		}))
 
 		setCreating(false)
@@ -65,7 +67,7 @@ const CreateShadow = ({
 					width="128px"
 					height="128px"
 					backgroundColor="Card"
-					boxShadow={`${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`}
+					boxShadow={`${inset ? 'inset ' : ''}${parseShadowX(x)} ${parseShadowY(y)} ${parseShadowBlur(blur)} ${parseShadowSpread(spread)} ${color}`}
 				/>
 			</Flex>
 			<Stack
@@ -78,6 +80,28 @@ const CreateShadow = ({
 					justifyContent="space-between"
 					marginY={2}
 					marginTop="240px"
+				>
+					<Text>
+						inset
+					</Text>
+					<Checkbox
+						margin={2}
+						flexShrink={0}
+						icon={
+							<Icon
+								icon="Checkmark"
+								padding="2px"
+							/>
+						}
+						checked={inset}
+						onChange={() => setInset((i) => !i)}
+					/>
+				</Flex>
+				<Flex
+					flexShrink={0}
+					alignItems="center"
+					justifyContent="space-between"
+					marginY={2}
 				>
 					<Text>
 						x

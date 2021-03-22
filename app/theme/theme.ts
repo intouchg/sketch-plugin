@@ -73,10 +73,10 @@ const theme = {
 	],
 	borders: {},
 	shadows: {
-		'Downward Accent': '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
-		'Upward Accent': '0 -2px 6px -2px rgba(0, 0, 0, 0.15)',
-		'Inset X Accent': 'inset 0 -1px 0 0 #dddddd',
-		'Inset Y Accent': 'inset -1px 0 0 0 #dddddd',
+		'Downward Accent': '0px 2px 6px -2px rgba(0, 0, 0, 0.15)',
+		'Upward Accent': '0px -2px 6px -2px rgba(0, 0, 0, 0.15)',
+		'Inset X Accent': 'inset 0px -1px 0px 0px #dddddd',
+		'Inset Y Accent': 'inset -1px 0px 0px 0px #dddddd',
 	},
 	radii: [
 		'0',
@@ -149,7 +149,7 @@ const theme = {
 			activeColor: '#0091d4',
 			border: '0',
 			borderRadius: '4px',
-			boxShadow: '0 2px 6px -2px rgba(0, 0, 0, 0.15)',
+			boxShadow: '0px 2px 6px -2px rgba(0, 0, 0, 0.15)',
 			fontFamily: 'Avenir Next',
 			fontSize: '1rem',
 			lineHeight: '1.25rem',

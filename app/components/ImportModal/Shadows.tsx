@@ -5,9 +5,25 @@ import { ImportIcon } from './ImportIcon'
 import type { ThemeShadow } from '@i/theme'
 
 export const sortShadows = (a: ThemeShadow, b: ThemeShadow) => {
+	let shadowA = a.value
+	let shadowB = b.value
+
+	if (shadowA.includes('inset') && !shadowB.includes('inset')) {
+		return -1
+	}
+
+	if (shadowB.includes('inset') && !shadowA.includes('inset')) {
+		return 1
+	}
+
+	if (shadowA.includes('inset') && shadowB.includes('inset')) {
+		shadowA = shadowA.replace('inset ', '')
+		shadowB = shadowB.replace('inset ', '')
+	}
+
 	// Parse shadow value into an array [ x, y, blur, spread, color ]
-	const av = a.value.split('px').map((s) => Number(s))
-	const bv = b.value.split('px').map((s) => Number(s))
+	const av = shadowA.split('px').map((s) => Number(s))
+	const bv = shadowB.split('px').map((s) => Number(s))
 	const valueA = av[2] + av[3] + (0.5 * (Math.abs(av[0]) + Math.abs(av[1])))
 	const valueB = bv[2] + bv[3] + (0.5 * (Math.abs(bv[0]) + Math.abs(bv[1])))
 	return valueA < valueB ? -1 : valueA > valueB ? 1 : 0
