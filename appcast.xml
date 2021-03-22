@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+<title>Intouch Design System Sketch Plugin</title>
+<link>https://ids.intouchg.co/sketch-plugin/appcast.xml</link>
+<description>Intouch Design System Sketch Plugin</description>
+<language>en</language>
+<item>
+  <enclosure url="https://ids.intouchg.co/sketch-plugin/intouch-design-system.sketchplugin-0.0.1.zip" sparkle:version="1.0"/>
+</item>
+</channel>
+</rss>
