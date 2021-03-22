@@ -113,9 +113,24 @@ const Editor = () => {
 
 	const { component: Component, children, props } = (componentConfig as any)[variantKey]
 
+	useEffect(() => setSelectedId(null), [ variantType ])
+
 	useEffect(() => {
 		setFilteredVariants(variants.filter((v) => v.variantType === variantType))
 	}, [ variants, variantType ])
+
+	useEffect(() => {
+		if (!selectedId && filteredVariants.length) {
+			const primaryVariant = filteredVariants.find((v) => v.name === 'Primary')
+
+			if (primaryVariant) {
+				setSelectedId(primaryVariant.id)
+			}
+			else {
+				setSelectedId(filteredVariants[0].id)
+			}
+		}
+	}, [ variantType, selectedId, filteredVariants ])
 
 	const theme = themeProcessor({ values: Object.values(values).flat(), variants })
 	// const variantStyles = !selectedVariant ? {} : theme[variantKey as ComponentVariantProperty][selectedVariant.name]
