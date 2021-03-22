@@ -7,10 +7,11 @@ import { RightToolbar } from './RightToolbar'
 import { VariantsList } from './VariantsList'
 import { StyleEditor } from './StyleEditor'
 import { topToolbarHeight } from '../TopToolbar'
+import { DeleteModal } from './DeleteModal'
 import { themeProcessor, componentVariantsPropertyMap, defaultVariantName } from '@i/theme'
 import type { ThemeVariant, SelectorProperty, ComponentVariantProperty } from '@i/theme'
 
-const componentConfig = {
+export const componentConfig = {
 	buttons: {
 		component: Button,
 		children: 'Click me',
@@ -108,6 +109,7 @@ const Editor = () => {
 	const selectedVariant = selectedId ? filteredVariants.find((value) => value.id === selectedId)! : null
 	const [ creating, setCreating ] = useState(false)
 	const [ selectorProperty, setSelectorProperty ] = useState<SelectorProperty | ''>('')
+	const [ deleteVariant, setDeleteVariant ] = useState<ThemeVariant | null>(null)
 
 	const { component: Component, children, props } = (componentConfig as any)[variantKey]
 
@@ -152,8 +154,15 @@ const Editor = () => {
 					variant={selectedVariant}
 					selectorProperty={selectorProperty}
 					setSelectorProperty={setSelectorProperty}
+					setDeleteVariant={setDeleteVariant}
 				/>
 			</RightToolbar>
+			{deleteVariant && (
+				<DeleteModal
+					deleteVariant={deleteVariant}
+					setDeleteVariant={setDeleteVariant}
+				/>
+			)}
 		</>
 	)
 }

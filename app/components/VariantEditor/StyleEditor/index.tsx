@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Stack, Heading } from '@i/components'
+import { Stack, Heading, Button, Text } from '@i/components'
 import { ColorEditor } from './ColorEditor'
 import { ShadowEditor } from './ShadowEditor'
 import { FontSizeEditor } from './FontSizeEditor'
@@ -60,10 +60,12 @@ const StyleEditor = ({
 	variant,
 	selectorProperty,
 	setSelectorProperty,
+	setDeleteVariant,
 }: {
 	variant: ThemeVariant | null
 	selectorProperty: SelectorProperty | ''
 	setSelectorProperty: React.Dispatch<React.SetStateAction<SelectorProperty | ''>>
+	setDeleteVariant: React.Dispatch<React.SetStateAction<ThemeVariant | null>>
 }) => {
 	const dispatch = useDispatch()
 
@@ -99,47 +101,66 @@ const StyleEditor = ({
 	}
 
 	return (
-		<Stack
-			paddingTop={3}
-			paddingBottom={4}
-		>
-			<Heading
+		<>
+			<Stack
 				flexShrink={0}
-				paddingX={3}
-				paddingBottom={2}
+				flexGrow={1}
+				paddingTop={3}
+				paddingBottom={4}
 			>
-				Styles
-			</Heading>
-			{selectors && (
-				<StateSelector
-					selectors={selectors}
-					selectorProperty={selectorProperty}
-					setSelectorProperty={setSelectorProperty}
-				/>
-			)}
-			{color && (
-				<ColorEditor
-					variant={variant}
-					selectorProperty={selectorProperty}
-					updateVariantProperty={updateVariantProperty}
-				/>
-			)}
-			{/* {!selectorProperty && font && (
-				<FontSizeEditor variant={variant} />
-			)} */}
-			{!selectorProperty && font && (
-				<FontEditor
-					variant={variant}
-					updateVariantProperty={updateVariantProperty}
-				/>
-			)}
-			{!selectorProperty && border && (
-				<BorderEditor
-					variant={variant}
-					updateVariantProperty={updateVariantProperty}
-				/>
-			)}
-		</Stack>
+				<Heading
+					flexShrink={0}
+					paddingX={3}
+					paddingBottom={2}
+				>
+					Styles
+				</Heading>
+				{selectors && (
+					<StateSelector
+						selectors={selectors}
+						selectorProperty={selectorProperty}
+						setSelectorProperty={setSelectorProperty}
+					/>
+				)}
+				{color && (
+					<ColorEditor
+						variant={variant}
+						selectorProperty={selectorProperty}
+						updateVariantProperty={updateVariantProperty}
+					/>
+				)}
+				{/* {!selectorProperty && font && (
+					<FontSizeEditor variant={variant} />
+				)} */}
+				{!selectorProperty && font && (
+					<FontEditor
+						variant={variant}
+						updateVariantProperty={updateVariantProperty}
+					/>
+				)}
+				{!selectorProperty && border && (
+					<BorderEditor
+						variant={variant}
+						updateVariantProperty={updateVariantProperty}
+					/>
+				)}
+			</Stack>
+			<Button
+				invisible
+				flexShrink={0}
+				alignSelf="flex-end"
+				padding={3}
+				onClick={() => setDeleteVariant(variant)}
+			>
+				<Text
+					color="Critical"
+					fontSize={2}
+					fontWeight={3}
+				>
+					Delete
+				</Text>
+			</Button>
+		</>
 	)
 }
 
