@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box, Button, Checkbox } from '@i/components'
+import { Flex, Text, Box, Button, Checkbox, Heading } from '@i/components'
 import { PixelInput } from '../PixelInput'
 import { ColorPicker } from '../../ColorPicker'
 import { Icon } from '../../Icon'
@@ -85,9 +85,15 @@ const EditShadow = ({
 
 	return (
 		<>
+			<Heading
+				marginTop={2}
+				marginBottom={3}
+			>
+				{shadow.name}
+			</Heading>
 			<Flex
 				position="absolute"
-				top="0"
+				top="60px"
 				right="0"
 				left="0"
 				width="100%"
@@ -96,9 +102,9 @@ const EditShadow = ({
 				backgroundColor="Background"
 				alignItems="center"
 				justifyContent="center"
-				borderBottomWidth="1px"
-				borderBottomStyle="solid"
-				borderBottomColor="Accent"
+				borderTop="1px solid"
+				borderBottom="1px solid"
+				borderColor="Accent"
 				overflow="hidden"
 			>
 				<Box
@@ -114,7 +120,7 @@ const EditShadow = ({
 					alignItems="center"
 					justifyContent="space-between"
 					marginY={2}
-					marginTop="224px"
+					marginTop="240px"
 				>
 					<Text>
 						inset

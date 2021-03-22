@@ -55,12 +55,9 @@ const CreateShadow = ({
 				backgroundColor="Background"
 				alignItems="center"
 				justifyContent="center"
-				borderTopWidth="1px"
-				borderTopStyle="solid"
-				borderTopColor="Accent"
-				borderBottomWidth="1px"
-				borderBottomStyle="solid"
-				borderBottomColor="Accent"
+				borderTop="1px solid"
+				borderBottom="1px solid"
+				borderColor="Accent"
 				overflow="hidden"
 			>
 				<Box
