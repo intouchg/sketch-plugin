@@ -13,7 +13,13 @@ import type { ThemeValue, ThemeVariant, ThemeStyleObject, StyleProperty } from '
 const componentConfig = {
 	color: Color,
 	space: BorderWidth,
-	font: Font,
+	font: (props: any) => (
+		<Font
+			_name={props.value}
+			style={props.value}
+			{...props}
+		/>
+	),
 	fontSize: FontSize,
 	lineHeight: LineHeight,
 	letterSpacing: LetterSpacing,
@@ -116,7 +122,7 @@ const DeleteModal = ({
 							variant="Secondary"
 							paddingTop={3}
 							paddingBottom={4}
-							lineHeight={4}
+							lineHeight="2.5rem"
 							textAlign="center"
 						>
 							Warning!<br />
@@ -129,26 +135,69 @@ const DeleteModal = ({
 							paddingBottom={6}
 						>
 							Deleting a theme value is a dangerous operation.<br />
-							Developers may be using this value, even if you&apos;re not.
+							Developers might be using this value, even if you&apos;re not.
 						</Text>
+						<Stack paddingBottom={4}>
+							<Flex>
+								<Text
+									fontSize="1.5rem"
+									lineHeight={4}
+								>
+									Type:&nbsp;
+								</Text>
+								<Text
+									fontSize="1.5rem"
+									lineHeight={4}
+								>
+									{titleCase(deleteValue.type)}
+								</Text>
+							</Flex>
+							{deleteValue.hasOwnProperty('name') && (
+								<Flex>
+									<Text
+										fontSize="1.5rem"
+										lineHeight={4}
+									>
+										Name:&nbsp;
+									</Text>
+									<Text
+										fontSize="1.5rem"
+										lineHeight={4}
+									>
+										{(deleteValue as any).name}
+									</Text>
+								</Flex>
+							)}
+							<Flex>
+								<Text
+									fontSize="1.5rem"
+									lineHeight={4}
+								>
+									Value:&nbsp;
+								</Text>
+								<Text
+									fontSize="1.5rem"
+									lineHeight={4}
+								>
+									{deleteValue.value.includes('rem') ? `${Number(deleteValue.value.split('rem')[0]) * 16}px` : deleteValue.value}
+								</Text>
+							</Flex>
+						</Stack>
 						<Stack
-							width="100%"
+							width="90%"
 							alignItems="center"
 							justifyContent="center"
 							padding={6}
-							marginBottom={4}
+							marginX="auto"
+							marginBottom={6}
 							backgroundColor="Background"
 							border="1px solid"
 							borderColor="Accent"
 							borderRadius={3}
 						>
-							<Text
-								fontSize="1.5rem"
-								paddingBottom={4}
-							>
-								{titleCase(deleteValue.type)} {(deleteValue as any).name ? `"${(deleteValue as any).name}"` : ''} {deleteValue.value.includes('rem') ? `${Number(deleteValue.value.split('rem')[0]) * 16}px` : deleteValue.value}
-							</Text>
 							<Flex
+								alignItems="center"
+								justifyContent="center"
 								width={deleteValue.type === 'color' ? '140px' : '600px'}
 								height={deleteValue.type === 'color' ? '140px' : 'auto'}
 							>
@@ -160,9 +209,11 @@ const DeleteModal = ({
 							textAlign="center"
 							marginBottom={6}
 						>
-							This value is used {usageCount} times:
+							This value is used {usageCount} times.
 						</Text>
-						<VariantStyleTable variants={sortedFilteredVariants} />
+						{usageCount > 0 && (
+							<VariantStyleTable variants={sortedFilteredVariants} />
+						)}
 						<Button
 							backgroundColor="Critical"
 							borderColor="Critical"

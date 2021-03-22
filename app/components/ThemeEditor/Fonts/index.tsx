@@ -10,7 +10,7 @@ import { CreateOverlay } from '../CreateOverlay'
 import { CreateFont } from './CreateFont'
 import { createThemeValue, deleteThemeValue } from '../../../store'
 import { sortSystemFonts } from '../../ImportModal/Fonts'
-import type { ThemeFont } from '@i/theme'
+import type { ThemeFont, ThemeValue } from '@i/theme'
 import type { SystemFontFamily, SPFontTypeface } from '../../../sketchApi'
 
 const FontFamily = ({
@@ -18,14 +18,16 @@ const FontFamily = ({
 	path,
 	typefaces,
 	values,
+	setDeleteValue,
 }: SystemFontFamily & {
 	values: ThemeFont[]
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
 }) => {
 	const dispatch = useDispatch()
 
 	const toggleTypeface = ({ _name, family }: SPFontTypeface, matchingValue?: ThemeFont) => {
 		if (matchingValue) {
-			dispatch(deleteThemeValue(matchingValue))
+			setDeleteValue(matchingValue)
 		}
 		else {
 			dispatch(createThemeValue({
@@ -85,7 +87,11 @@ const FontFamily = ({
 	)
 }
 
-const Fonts = () => {
+const Fonts = ({
+	setDeleteValue,
+}: {
+	setDeleteValue: React.Dispatch<React.SetStateAction<ThemeValue | null>>
+}) => {
 	const values = useSelector((state) => state.theme.values.fonts)
 	const systemFonts = useSelector((state) => state.theme.systemFonts)
 	const [ creating, setCreating ] = useState(false)
@@ -131,6 +137,7 @@ const Fonts = () => {
 							<FontFamily
 								key={name}
 								values={values.filter((font) => font.family === name)}
+								setDeleteValue={setDeleteValue}
 								{...systemFont}
 							/>
 						)

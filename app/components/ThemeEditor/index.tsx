@@ -41,7 +41,7 @@ const ThemeEditor = ({
 				<Route
 					path="fonts"
 					element={
-						<Fonts />
+						<Fonts setDeleteValue={setDeleteValue} />
 					}
 				/>
 				<Route
