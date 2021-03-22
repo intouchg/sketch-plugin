@@ -126,7 +126,7 @@ const DeleteModal = ({
 							textAlign="center"
 						>
 							Warning!<br />
-							You must inform developers before deleting this value.
+							Please speak with a developer before deleting this value.
 						</Heading>
 						<Text
 							fontSize="1.5rem"
