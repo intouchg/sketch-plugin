@@ -5,8 +5,8 @@ import { ColorPicker } from '../../ColorPicker'
 import { createThemeValue } from '../../../store'
 import { createUuid, titleCase } from '@i/utility'
 
-export const MISSING_COLOR_NAME_ERROR = 'Input a color name to create a new color.'
-export const DUPLICATE_NAME_ERROR = 'This color name is already in use.'
+const MISSING_COLOR_NAME_ERROR = 'Input a color name to create a new color.'
+const DUPLICATE_NAME_ERROR = 'This color name is already in use.'
 
 const CreateColor = ({
 	setCreating,
