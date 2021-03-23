@@ -194,6 +194,7 @@ const theme = {
 			fontWeight: '400',
 		},
 	},
+	paragraphs: {},
 	headings: {
 		Primary: {
 			color: '#232323',

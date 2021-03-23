@@ -20,6 +20,7 @@ const routesData = {
 	components: {
 		buttons: 'Button',
 		texts: 'Text',
+		paragraphs: 'Paragraph',
 		headings: 'Heading',
 		links: 'Link',
 		icons: 'Icon',

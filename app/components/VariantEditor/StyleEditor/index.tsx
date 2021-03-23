@@ -43,6 +43,7 @@ const variantStylePropertyConfig: {
 } = {
 	button: { color: true, shadow: true, font: true, padding: true, border: true, selectors: [ '&:hover', '&:active' ] },
 	text: { color: true, font: true },
+	paragraph: { color: true, font: true },
 	heading: { color: true, font: true },
 	link: { color: true, font: true, selectors: [ '&:hover', '&:active', '&:visited' ] },
 	icon: { color: true, svg: true },

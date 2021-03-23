@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import { Flex, Button, Text, Heading, Link, Label, Input, Radio, Checkbox, Select, Slider, Toggle, Textarea } from '@i/components'
+import { Flex, Button, Text, Paragraph, Heading, Link, Label, Input, Radio, Checkbox, Select, Slider, Toggle, Textarea } from '@i/components'
 import { RightToolbar } from './RightToolbar'
 import { VariantsList } from './VariantsList'
 import { StyleEditor } from './StyleEditor'
@@ -21,6 +21,11 @@ export const componentConfig = {
 	},
 	texts: {
 		component: Text,
+		children: (<>Lorem ipsum dolor sit amet<br />consectetur adipisicing elit</>),
+		props: {},
+	},
+	paragraphs: {
+		component: Paragraph,
 		children: (<>Lorem ipsum dolor sit amet<br />consectetur adipisicing elit</>),
 		props: {},
 	},
