@@ -6,7 +6,7 @@
 <description>Intouch Design System Sketch Plugin</description>
 <language>en</language>
 <item>
-  <enclosure url="https://ids.intouchg.co/sketch-plugin/intouch-design-system.sketchplugin-0.0.1.zip" sparkle:version="1.0"/>
+  <enclosure url="https://ids.intouchg.co/sketch-plugin/intouch-design-system.sketchplugin-0.0.1.zip" sparkle:version="0.0.1"/>
 </item>
 </channel>
 </rss>
