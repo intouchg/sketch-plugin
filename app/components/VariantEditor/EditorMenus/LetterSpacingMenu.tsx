@@ -33,7 +33,7 @@ const LetterSpacingItem = ({
 				minWidth="46px"
 				fontWeight={4}
 			>
-				{value || 'none'}
+				{value || 'unset'}
 			</Text>
 			<NoWrapText
 				width="100%"
@@ -72,7 +72,7 @@ const LetterSpacingMenu = ({
 				textTransform="lowercase"
 				onClick={() => setShow((s) => !s)}
 			>
-				{value === '' ? 'none' : value}
+				{value === '' ? 'unset' : value}
 			</Button>
 			<DropdownMenu
 				show={show}

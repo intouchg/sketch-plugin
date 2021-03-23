@@ -28,7 +28,7 @@ const FontFamilyItem = ({
 			onClick={onClick}
 		>
 			<NoWrapText fontFamily={value}>
-				{value || 'none'}
+				{value || 'unset'}
 			</NoWrapText>
 		</Button>
 	)
@@ -65,7 +65,7 @@ const FontFamilyMenu = ({
 				}}
 				onClick={() => setShow((s) => !s)}
 			>
-				{value === '' ? 'none' : value}
+				{value === '' ? 'unset' : value}
 			</Button>
 			<DropdownMenu
 				show={show}

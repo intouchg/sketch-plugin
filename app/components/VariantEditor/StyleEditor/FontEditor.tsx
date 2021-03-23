@@ -54,7 +54,7 @@ const FontEditor = ({
 				textDecoration
 			</Text>
 			<TextMenu
-				propertyNames={[ 'underline', 'overline', 'line-through' ]}
+				propertyNames={[ 'none', 'underline', 'overline', 'line-through' ]}
 				value={(variant.styles.textDecoration || '') as string}
 				onChange={(value) => updateVariantProperty('textDecoration', value)}
 			/>

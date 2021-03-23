@@ -32,7 +32,7 @@ const LineHeightItem = ({
 				minWidth="46px"
 				fontWeight={4}
 			>
-				{value || 'none'}
+				{value || 'unset'}
 			</Text>
 			<Text lineHeight={value}>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -66,7 +66,7 @@ const LineHeightMenu = ({
 				textTransform="lowercase"
 				onClick={() => setShow((s) => !s)}
 			>
-				{value === '' ? 'none' : value}
+				{value === '' ? 'unset' : value}
 			</Button>
 			<DropdownMenu
 				show={show}

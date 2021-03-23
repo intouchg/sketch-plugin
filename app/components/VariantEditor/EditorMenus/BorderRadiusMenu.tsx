@@ -32,7 +32,7 @@ const BorderRadiusItem = ({
 				minWidth="46px"
 				fontWeight={4}
 			>
-				{value || 'none'}
+				{value || 'unset'}
 			</Text>
 			<Box
 				flexGrow={1}
@@ -72,7 +72,7 @@ const BorderRadiusMenu = ({
 				textTransform="lowercase"
 				onClick={() => setShow((s) => !s)}
 			>
-				{value === '' ? 'none' : value}
+				{value === '' ? 'unset' : value}
 			</Button>
 			<DropdownMenu
 				show={show}

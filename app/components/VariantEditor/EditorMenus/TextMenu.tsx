@@ -29,7 +29,7 @@ const TextItem = ({
 			onClick={onClick}
 		>
 			<Text fontWeight={4}>
-				{value || 'none'}
+				{value || 'unset'}
 			</Text>
 		</Button>
 	)
@@ -60,7 +60,7 @@ const TextMenu = ({
 				textTransform="lowercase"
 				onClick={() => setShow((s) => !s)}
 			>
-				{value === '' ? 'none' : value}
+				{value === '' ? 'unset' : value}
 			</Button>
 			<DropdownMenu
 				show={show}
