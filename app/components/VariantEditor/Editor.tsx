@@ -133,7 +133,13 @@ const Editor = () => {
 	}, [ variantType, selectedId, filteredVariants ])
 
 	const theme = themeProcessor({ values: Object.values(values).flat(), variants })
-	// const variantStyles = !selectedVariant ? {} : theme[variantKey as ComponentVariantProperty][selectedVariant.name]
+
+	const selectedVariantStyles = !selectedVariant ? {} : theme[variantKey as ComponentVariantProperty][selectedVariant.name]
+
+	const previewStyles = {
+		...selectedVariantStyles,
+		...!selectorProperty ? {} : (selectedVariantStyles[selectorProperty] || {}),
+	}
 
 	return (
 		<>
@@ -150,6 +156,7 @@ const Editor = () => {
 						<Component
 							variant={selectedVariant.name}
 							{...props}
+							{...previewStyles}
 						>
 							{children}
 						</Component>
