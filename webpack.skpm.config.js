@@ -32,6 +32,7 @@ module.exports = function (config, entry) {
   )
 
   const fontbookParserModulePath = path.resolve('node_modules/@i/fontbook-parser')
+  const xmldomModulePath = path.resolve('node_modules/xmldom')
 
   config.plugins.push(new PluginCopy({
     patterns: [
@@ -39,6 +40,10 @@ module.exports = function (config, entry) {
         from: `${fontbookParserModulePath}/lib/`,
         to: 'fontbook-parser/',
       },
+      {
+        from: `${xmldomModulePath}/`,
+        to: 'node_modules/xmldom/',
+      }
     ],
   }))
 

@@ -3,7 +3,7 @@ import os from '@skpm/os'
 import path from '@skpm/path'
 
 export const METADATA_FILENAME = '.idsmetadata.json'
-const METADATA_STORAGE_FILEPATH = path.resolve('./Contents/Sketch/metadata/')
+const METADATA_STORAGE_FILEPATH = path.resolve('./metadata/')
 const METADATA_FILEPATH = path.resolve(METADATA_STORAGE_FILEPATH, METADATA_FILENAME)
 const RECENT_PROJECTS_MAX_LENGTH = 5
 

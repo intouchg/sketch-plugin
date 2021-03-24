@@ -1,12 +1,13 @@
 import ChildProcess from '../ChildProcess'
 import fs from '@skpm/fs'
 import path from '@skpm/path'
+import { escapeStringForShell } from '../spawn'
 
 const FONTBOOK_PARSER_LIB_FILEPATH = './Contents/Sketch/fontbook-parser/cli.js'
 
 const FONTS_DATA_FILENAME = '.fontsdata.json'
 const TEMP_DATA_FILENAME = '.fontbookdata.xml'
-const FONTS_DATA_STORAGE_FILEPATH = path.resolve('./Contents/Sketch/metadata/')
+const FONTS_DATA_STORAGE_FILEPATH = path.resolve('./metadata/')
 const FONTS_FILEPATH = path.resolve(FONTS_DATA_STORAGE_FILEPATH, FONTS_DATA_FILENAME)
 const TEMP_FILEPATH = path.resolve(FONTS_DATA_STORAGE_FILEPATH, TEMP_DATA_FILENAME)
 
@@ -24,5 +25,5 @@ export const getSystemFonts = () => new Promise((resolve, reject) => {
 		resolve(JSON.parse(data))
 	}
 
-	const systemFontsProcess = new ChildProcess(`node ${FONTBOOK_PARSER_LIB_FILEPATH} ${TEMP_FILEPATH} ${FONTS_FILEPATH}`, { onClose }, true)
+	const systemFontsProcess = new ChildProcess(`node ${FONTBOOK_PARSER_LIB_FILEPATH} ${escapeStringForShell(TEMP_FILEPATH)} ${escapeStringForShell(FONTS_FILEPATH)}`, { onClose }, true)
 })

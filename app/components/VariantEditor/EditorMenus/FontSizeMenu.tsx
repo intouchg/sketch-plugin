@@ -12,7 +12,7 @@ const FontSize = ({
 	value,
 	onClick,
 }: {
-    value: string | null
+    value?: string
     onClick: () => void
 }) => (
 	<Stack onClick={onClick}>
@@ -111,8 +111,8 @@ const FontSizeMenu = ({
 					style={{ transform: 'translateX(-100%)' }}
 				>
 					<FontSize
-						value={null}
-						onClick={() => updateFontSize(null)}
+						value={undefined}
+						onClick={() => updateFontSize(undefined)}
 					/>
 					{values.fontSizes.map((fontSize) => (
 						<FontSize

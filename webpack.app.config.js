@@ -24,7 +24,7 @@ module.exports = build({
         'theme',
     ],
     plugins: [
-        new IntouchSVGRPlugin(),
-        new IntouchThemePlugin(),
+        // new IntouchSVGRPlugin(),
+        // new IntouchThemePlugin(),
     ],
 })

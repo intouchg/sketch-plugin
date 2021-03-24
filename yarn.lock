@@ -1498,9 +1498,9 @@
   integrity sha1-8xDEOSyIs3bujsGydf8d9UTM4U8=
 
 "@i/fontbook-parser@latest":
-  version "0.0.2"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/fontbook-parser/-/fontbook-parser-0.0.2.tgz#d52b229b45243a38fd461db2dd2ed390b6f52a19"
-  integrity sha1-1Ssim0UkOjj9Rh2y3S7TkLb1Khk=
+  version "0.0.3"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/fontbook-parser/-/fontbook-parser-0.0.3.tgz#7563245be1e24fc6de5e1caecde7818c313a2364"
+  integrity sha1-dWMkW+HiT8beXhyuzeeBjDE6I2Q=
   dependencies:
     xmldom "0.3.0"
 
@@ -2978,7 +2978,7 @@
 "@types/react-dom@^16.9.5":
   version "16.9.12"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@types/react-dom/-/react-dom-16.9.12.tgz#55cd6b17e73922edb9545e5355a0016c1734e6f4"
-  integrity sha512-i7NPZZpPte3jtVOoW+eLB7G/jsX5OM6GqQnH+lC0nq0rqwlK0x8WcMEvYDgFWqWhWMlTltTimzdMax6wYfZssA==
+  integrity sha1-Vc1rF+c5Iu25VF5TVaABbBc05vQ=
   dependencies:
     "@types/react" "^16"
 
@@ -3571,11 +3571,11 @@ ansi-colors@^4.1.1:
   integrity sha1-y7muJWv3UK8eqzRPIpqif+lLo0g=
 
 ansi-escapes@^4.2.1:
-  version "4.3.1"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/ansi-escapes/-/ansi-escapes-4.3.1.tgz#a5c47cc43181f1f38ffd7076837700d395522a61"
-  integrity sha1-pcR8xDGB8fOP/XB2g3cA05VSKmE=
+  version "4.3.2"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/ansi-escapes/-/ansi-escapes-4.3.2.tgz#6b2291d1db7d98b6521d5f1efa42d0f3a9feb65e"
+  integrity sha1-ayKR0dt9mLZSHV8e+kLQ86n+tl4=
   dependencies:
-    type-fest "^0.11.0"
+    type-fest "^0.21.3"
 
 ansi-html@0.0.7:
   version "0.0.7"
@@ -6036,9 +6036,9 @@ ejs@^3.1.2:
     jake "^10.6.1"
 
 electron-to-chromium@^1.3.378, electron-to-chromium@^1.3.564, electron-to-chromium@^1.3.649:
-  version "1.3.694"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/electron-to-chromium/-/electron-to-chromium-1.3.694.tgz#f5dbbec0ce9bbf93487b7d38b8396f4e58ab51c8"
-  integrity sha1-9du+wM6bv5NIe304uDlvTlirUcg=
+  version "1.3.699"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/electron-to-chromium/-/electron-to-chromium-1.3.699.tgz#854eea9db8bc8109c409a4807bfdb200dd75a2c7"
+  integrity sha1-hU7qnbi8gQnECaSAe/2yAN11osc=
 
 element-resize-detector@^1.2.1:
   version "1.2.2"
@@ -11523,7 +11523,7 @@ react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
 react-is@^17.0.1:
   version "17.0.2"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
-  integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
+  integrity sha1-5pHUqOnHiTZWVVOas3J2Kw77VPA=
 
 react-layout-effect@^1.0.1:
   version "1.0.5"
@@ -11931,9 +11931,9 @@ regjsgen@^0.5.1:
   integrity sha1-kv8pX7He7L9uzaslQ9IH6RqjNzM=
 
 regjsparser@^0.6.4:
-  version "0.6.8"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/regjsparser/-/regjsparser-0.6.8.tgz#4532c3da36d75d56e3f394ce2ea6842bde7496bd"
-  integrity sha512-3weFrFQREJhJ2PW+iCGaG6TenyzNSZgsBKZ/oEf6Trme31COSeIWhHw9O6FPkuXktfx+b6Hf/5e6dKPHaROq2g==
+  version "0.6.9"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/regjsparser/-/regjsparser-0.6.9.tgz#b489eef7c9a2ce43727627011429cf833a7183e6"
+  integrity sha1-tInu98mizkNydicBFCnPgzpxg+Y=
   dependencies:
     jsesc "~0.5.0"
 
@@ -13626,9 +13626,9 @@ ts-dedent@^1.1.1:
   integrity sha1-aqIinYNxWbttY1trIzACQjuR4LA=
 
 ts-dedent@^2.0.0:
-  version "2.0.0"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/ts-dedent/-/ts-dedent-2.0.0.tgz#47c5eb23d9096f3237cc413bc82d387d36dbe690"
-  integrity sha1-R8XrI9kJbzI3zEE7yC04fTbb5pA=
+  version "2.1.0"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/ts-dedent/-/ts-dedent-2.1.0.tgz#2df17a997ee5310a96d2be7adca0ba7c3eabf36a"
+  integrity sha1-LfF6mX7lMQqW0r563KC6fD6r82o=
 
 ts-easing@^0.2.0:
   version "0.2.0"
@@ -13685,15 +13685,15 @@ type-check@^0.4.0, type-check@~0.4.0:
   dependencies:
     prelude-ls "^1.2.1"
 
-type-fest@^0.11.0:
-  version "0.11.0"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/type-fest/-/type-fest-0.11.0.tgz#97abf0872310fed88a5c466b25681576145e33f1"
-  integrity sha1-l6vwhyMQ/tiKXEZrJWgVdhReM/E=
-
 type-fest@^0.13.1:
   version "0.13.1"
   resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/type-fest/-/type-fest-0.13.1.tgz#0172cb5bce80b0bd542ea348db50c7e21834d934"
   integrity sha1-AXLLW86AsL1ULqNI21DH4hg02TQ=
+
+type-fest@^0.21.3:
+  version "0.21.3"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/type-fest/-/type-fest-0.21.3.tgz#d260a24b0198436e133fa26a524a6d65fa3b2e37"
+  integrity sha1-0mCiSwGYQ24TP6JqUkptZfo7Ljc=
 
 type-fest@^0.6.0:
   version "0.6.0"

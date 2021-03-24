@@ -1,11 +1,11 @@
 {
   "name": "@i/sketch-plugin",
+  "version": "0.0.2",
   "description": "Sketch plugin for the Intouch Design System",
   "repository": "https://intazdoweb.intouchsol.com/IntouchDesignSystem/IntouchDesignSystem/_git/sketch-plugin",
   "author": "Intouch Group",
   "license": "UNLICENSED",
   "private": true,
-  "version": "0.0.1",
   "engines": {
     "sketch": ">=54.0"
   },
