@@ -116,7 +116,7 @@ const MessageBanner = () => {
 				onClick={cancel}
 			>
 				<Icon
-					icon="Close"
+					icon="CloseIcon"
 					fill={textColor}
 					width="13px"
 				/>

@@ -125,7 +125,7 @@ const AzureRepoInfo = ({
 					Save to Azure&nbsp;
 					<Box marginLeft={1}>
 						<Icon
-							icon="CloudUp"
+							icon="CloudUpIcon"
 							fill="Card"
 							width="24px"
 						/>

@@ -97,7 +97,7 @@ const VariantsList = ({
 						onClick={toggleCreating}
 					>
 						<Icon
-							icon="Plus"
+							icon="PlusIcon"
 							fill="Text Light"
 							width="16px"
 						/>
@@ -134,7 +134,7 @@ const VariantsList = ({
 							onClick={createVariant}
 						>
 							<Icon
-								icon="Checkmark"
+								icon="CheckmarkIcon"
 								width="16px"
 							/>
 						</Button>

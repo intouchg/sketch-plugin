@@ -41,7 +41,7 @@ const MoreMenu = ({
 				onClick={() => setShowMenu((state) => !state)}
 			>
 				<Icon
-					icon="Ellipses"
+					icon="EllipsesIcon"
 					fill="Text Light"
 					width="16px"
 					height="8px"

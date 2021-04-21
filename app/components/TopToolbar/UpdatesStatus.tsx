@@ -39,7 +39,7 @@ const UpdatesStatus = () => {
 				Download latest
 				<Box marginLeft={1}>
 					<Icon
-						icon="CloudDown"
+						icon="CloudDownIcon"
 						fill="Card"
 						width="14px"
 					/>

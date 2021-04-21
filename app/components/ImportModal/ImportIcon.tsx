@@ -66,7 +66,7 @@ const ImportIcon = ({
 					boxShadow="Downward Accent"
 				>
 					<Icon
-						icon="Checkmark"
+						icon="CheckmarkIcon"
 						fill="Card"
 						width="16px"
 						stroke="Card"

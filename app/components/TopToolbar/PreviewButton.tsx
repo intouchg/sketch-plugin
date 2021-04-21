@@ -22,7 +22,7 @@ const PreviewButton = () => {
 				Preview
 			</Text>
 			<Icon
-				icon="ReactLogo"
+				icon="ReactLogoIcon"
 				width="14px"
 				height="13px"
 			/>

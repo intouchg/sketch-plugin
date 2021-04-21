@@ -65,7 +65,7 @@ const DeleteModal = ({
 						flexShrink={0}
 					>
 						<Icon
-							icon="Warning"
+							icon="WarningIcon"
 							width="100px"
 							fill="Critical"
 						/>

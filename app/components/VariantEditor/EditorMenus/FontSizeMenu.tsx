@@ -33,7 +33,7 @@ const FontSize = ({
 			{!value ? (
 				<Icon
 					width="16px"
-					icon="Close"
+					icon="CloseIcon"
 					fill="Accent"
 				/>
             ) : (

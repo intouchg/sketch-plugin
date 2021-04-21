@@ -41,7 +41,7 @@ const ColorSwatch = ({
 	>
 		{!value && (
 			<Icon
-				icon="Close"
+				icon="CloseIcon"
 				fill="Text Light"
 				width="16px"
 			/>

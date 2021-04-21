@@ -37,7 +37,7 @@ const ImportButton = ({
 				Import
 			</Text>
 			<Icon
-				icon="Sketch"
+				icon="SketchIcon"
 				width="16px"
 				height="16px"
 			/>

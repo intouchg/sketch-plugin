@@ -1,6 +1,0 @@
-import * as React from "react";
-import { Svg } from '@i/components';
-
-const NotInSketch = (props) => <Svg viewBox="0 0 24 26" {...props}><g transform="translate(0 .341)"><path d="M3.1 2.1l8.985 8.985L21.071 2.1a1 1 0 011.414 1.414L13.5 12.5l7.986 7.985a1 1 0 11-1.414 1.414l-7.986-7.985-7.984 7.985a1 1 0 01-1.415-1.414L10.67 12.5 1.686 3.515A1 1 0 013.101 2.1z" fill="#ff2660" /><mask id="prefix__a" fill="#fff"><use /></mask><g mask="url(#prefix__a)"><path fill="#FDB300" d="M5.226 1.04l6.75-.714 6.75.713 5.226 7.015L11.976 22 0 8.054z" /><g fill="none"><path fill="#EA6C00" d="M4.85 8.054L11.977 22 0 8.054zM19.1 8.054L11.977 22 23.952 8.054z" /><path fill="#FDAD00" d="M4.85 8.054H19.1L11.977 22z" /></g><g fill="none"><path fill="#FDD231" d="M11.976.326l-6.75.713-.375 7.015zM11.976.326l6.75.713.375 7.015z" /><path fill="#FDAD00" d="M23.952 8.054L18.726 1.04l.375 7.015zM0 8.054L5.226 1.04 4.85 8.054z" /><path fill="#FEEEB7" d="M11.976.326L4.85 8.054H19.1z" /></g></g></g></Svg>;
-
-export default NotInSketch;

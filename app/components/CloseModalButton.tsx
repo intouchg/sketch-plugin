@@ -24,7 +24,7 @@ const CloseModalButton = ({
 			onClick={onClick}
 		>
 			<Icon
-				icon="Close"
+				icon="CloseIcon"
 				width={width ? width : '13px'}
 				fill="Text Light"
 			/>

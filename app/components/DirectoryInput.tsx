@@ -57,7 +57,7 @@ const DirectoryInput = ({
 				marginTop="13px"
 			>
 				<Icon
-					icon="Folder"
+					icon="FolderIcon"
 					fill="Text Light"
 					width="20px"
 					height="21px"

@@ -52,7 +52,7 @@ const CreateOverlay = ({
 				>
 					<Icon
 						width="22px"
-						icon="Plus"
+						icon="PlusIcon"
 						fill="Card"
 					/>
 				</Button>

@@ -86,7 +86,7 @@ const CreateShadow = ({
 						flexShrink={0}
 						icon={
 							<Icon
-								icon="Checkmark"
+								icon="CheckmarkIcon"
 								padding="2px"
 							/>
 						}
