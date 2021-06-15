@@ -8,7 +8,7 @@ export const saveThemeData = async (state, payload, webContents, showError) => {
 		const { themeFilepaths } = state
 
 		await Promise.all(Object.entries(newThemeData).map(async ([ key, value ]) => {
-			fs.writeFileSync(themeFilepaths[key], JSON.stringify(value, null, '\t'))
+			fs.writeFileSync(themeFilepaths[key], JSON.stringify(value, null, 2))
 		}))
 
 		const hasChanges = await hasLocalChanges()

@@ -33,7 +33,7 @@ export const writeMetadata = (mergeFunction) => {
 	const metadata = readMetadata()
 	const newMetadata = mergeFunction(metadata)
 
-	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify(newMetadata, null, '\t'))
+	fs.writeFileSync(METADATA_FILEPATH, JSON.stringify(newMetadata, null, 2))
 }
 
 export const readAzureCredentialsMetadata = () => {
