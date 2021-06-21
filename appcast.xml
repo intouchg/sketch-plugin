@@ -14,5 +14,8 @@
 <item>
   <enclosure url="https://ids.intouchg.co/sketch-plugin/intouch-design-system.sketchplugin-0.0.3.zip" sparkle:version="0.0.3"/>
 </item>
+<item>
+  <enclosure url="https://ids.intouchg.co/sketch-plugin/intouch-design-system.sketchplugin-0.0.4.zip" sparkle:version="0.0.4"/>
+</item>
 </channel>
 </rss>

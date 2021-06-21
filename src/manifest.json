@@ -2,7 +2,7 @@
   "name": "Intouch Design System",
   "description": "Intouch Design System Sketch Plugin",
   "author": "Intouch Group",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://ids.intouchg.co",
   "appcast": "https://ids.intouchg.co/sketch-plugin/appcast.xml",
   "compatibleVersion": 3,
