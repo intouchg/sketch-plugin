@@ -6,7 +6,7 @@ import { updateThemeValue } from '../../../store'
 import type { ThemeValue, ThemeSpace } from '@i/theme'
 
 export const SPACE_MIN = 1
-export const SPACE_MAX = 100
+export const SPACE_MAX = 999
 export const SPACE_PRECISION = 1
 
 // Takes a pixel value from an <Input type="number"> field
