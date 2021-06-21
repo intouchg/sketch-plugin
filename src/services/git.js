@@ -181,8 +181,8 @@ export const resetLocalChanges = () => new Promise((resolve, reject) => {
 
 export const commitChanges = (message) => new Promise((resolve, reject) => {
 	try {
-		const onStdOut = (data) => {}
-		const onStdErr = (data) => reject(data)
+		const onStdOut = (data) => console.log('std out', data.toString())
+		const onStdErr = (data) => console.log('std err', data.toString())
 		const onClose = (code) => resolve(true)
 		const onError = (error) => reject(error)
 
