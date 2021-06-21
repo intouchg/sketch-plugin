@@ -10,6 +10,25 @@ Sketch plugin for the Intouch Design System
 - Double-click on intouch-design-system.sketchplugin
 
 
+## Production Build
+
+1. Update the version number in the `package.json` and `src/manifest.json`
+
+2. Add the new plugin version to the `appcast.xml`
+
+3. Run the `build-prod` npm script
+
+4. Delete the metadata files from the Sketch Plugin: `intouch-design-system.sketchplugin/Contents/Sketch/metadata`
+
+5. Zip the Sketch Plugin: `intouch-design-system.sketchplugin`
+
+6. Add the zipped Sketch Plugin and the `appcast.xml` file to the @i/docs `public` directory
+
+7. Run the `@i/docs` release process
+
+8. Users of the Sketch Plugin will be automatically notified to update
+
+
 ## Architecture
 
 The plugin is split into three main directories.
