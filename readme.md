@@ -20,7 +20,10 @@ Sketch plugin for the Intouch Design System
 
 4. Delete the metadata files from the Sketch Plugin: `intouch-design-system.sketchplugin/Contents/Sketch/metadata`
 
-5. Zip the Sketch Plugin: `intouch-design-system.sketchplugin`
+5. Zip the Sketch Plugin:
+```bash
+zip -r sketch-plugin.zip intouch-design-system.sketchplugin
+```
 
 6. Rename the zipped Sketch Plugin according to the naming scheme in the `appcast.xml` file
 
