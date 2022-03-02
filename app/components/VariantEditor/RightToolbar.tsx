@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack } from '@i/components'
+import { Stack } from '@intouchg/components'
 import { topToolbarHeight } from '../TopToolbar'
 
 export const rightToolbarWidth = 280

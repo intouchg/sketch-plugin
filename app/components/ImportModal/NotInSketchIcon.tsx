@@ -1,5 +1,5 @@
 import React from 'react'
-import { Svg } from '@i/components'
+import { Svg } from '@intouchg/components'
 
 const NotInSketchIcon = (props: React.ComponentProps<typeof Svg>) => (
 	<Svg

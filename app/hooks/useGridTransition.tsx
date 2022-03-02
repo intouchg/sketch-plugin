@@ -1,5 +1,5 @@
 import { useTransition, useSpring } from 'react-spring'
-import type { ThemeValue } from '@i/theme'
+import type { ThemeValue } from '@intouchg/theme'
 
 export const useGridTransition = (
 	values: ThemeValue[],

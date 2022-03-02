@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Stack, Flex, Box, Heading } from '@i/components'
+import { Button, Stack, Flex, Box, Heading } from '@intouchg/components'
 import { Font } from '../../ThemeValues'
 import { Loading } from '../../Loading'
 import { ImportIcon } from '../../ImportModal/ImportIcon'
@@ -10,7 +10,7 @@ import { CreateOverlay } from '../CreateOverlay'
 import { CreateFont } from './CreateFont'
 import { createThemeValue, deleteThemeValue } from '../../../store'
 import { sortSystemFonts } from '../../ImportModal/Fonts'
-import type { ThemeFont, ThemeValue } from '@i/theme'
+import type { ThemeFont, ThemeValue } from '@intouchg/theme'
 import type { SystemFontFamily, SPFontTypeface } from '../../../sketchApi'
 
 const FontFamily = ({

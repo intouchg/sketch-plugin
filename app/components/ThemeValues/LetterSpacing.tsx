@@ -1,6 +1,6 @@
 import React from 'react'
 import { NoWrapText } from '../NoWrapText'
-import type { ThemeLetterSpacing } from '@i/theme'
+import type { ThemeLetterSpacing } from '@intouchg/theme'
 
 const LetterSpacing = ({
 	value,

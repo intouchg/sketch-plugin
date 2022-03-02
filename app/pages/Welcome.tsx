@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, Stack, Flex, Heading, Button, Text } from '@i/components'
+import { Box, Stack, Flex, Heading, Button, Text } from '@intouchg/components'
 import { TopToolbar, RecentProjects, HelpfulResources, NewProjectModal, ReposModal, topToolbarHeight } from '../components'
 import { useSelectLocalProject } from '../hooks'
 import { setShowReposModal, setAzureModalState } from '../store'

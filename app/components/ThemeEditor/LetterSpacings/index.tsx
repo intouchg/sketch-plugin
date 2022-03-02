@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useSpring, animated, to } from 'react-spring'
-import { Button, Stack, Flex, Text } from '@i/components'
+import { Button, Stack, Flex, Text } from '@intouchg/components'
 import { LetterSpacing } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -10,7 +10,7 @@ import { EditLetterSpacing } from './EditLetterSpacing'
 import { CreateLetterSpacing } from './CreateLetterSpacing'
 import { useListTransition } from '../../../hooks'
 import { sortLetterSpacings } from '../../ImportModal/LetterSpacings'
-import type { ThemeValue, ThemeLetterSpacing } from '@i/theme'
+import type { ThemeValue, ThemeLetterSpacing } from '@intouchg/theme'
 
 const ELEMENT_MIN_HEIGHT = 44
 const ELEMENT_PADDING_Y = 8

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box, Button } from '@i/components'
+import { Flex, Text, Box, Button } from '@intouchg/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeValue, ThemeFontSize } from '@i/theme'
+import type { ThemeValue, ThemeFontSize } from '@intouchg/theme'
 
 export const FONT_SIZE_MIN = 6
 export const FONT_SIZE_MAX = 200

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Heading, Text, Toggle, DotIcon, Label } from '@i/components'
+import { Flex, Stack, Heading, Text, Toggle, DotIcon, Label } from '@intouchg/components'
 import { ModalBackground } from './ModalBackground'
 import { CloseModalButton } from './CloseModalButton'
 import { DirectoryInput } from './DirectoryInput'

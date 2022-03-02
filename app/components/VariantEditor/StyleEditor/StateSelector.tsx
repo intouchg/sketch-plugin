@@ -1,7 +1,7 @@
 import React from 'react'
-import { Flex, Button, Box, Text } from '@i/components'
-import { titleCase } from '@i/utility'
-import type { SelectorProperty } from '@i/theme'
+import { Flex, Button, Box, Text } from '@intouchg/components'
+import { titleCase } from '@intouchg/utility'
+import type { SelectorProperty } from '@intouchg/theme'
 
 const StateSelector = ({
 	selectors,

@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Text } from '@i/components'
+import { Text } from '@intouchg/components'
 import { FontSizeMenu } from '../EditorMenus'
 import { ItemContainer } from './ItemContainer'
-import type { ThemeVariant } from '@i/theme'
+import type { ThemeVariant } from '@intouchg/theme'
 
 const FontSizeEditor = ({
 	variant,

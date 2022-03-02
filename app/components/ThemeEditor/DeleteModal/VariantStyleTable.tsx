@@ -1,7 +1,7 @@
 import React from 'react'
-import { Stack, Text, Box } from '@i/components'
-import { titleCase } from '@i/utility'
-import type { ThemeVariant } from '@i/theme'
+import { Stack, Text, Box } from '@intouchg/components'
+import { titleCase } from '@intouchg/utility'
+import type { ThemeVariant } from '@intouchg/theme'
 
 const VariantStyleTable = ({
 	variants,

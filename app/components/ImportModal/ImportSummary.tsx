@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Flex, Heading, Text, Button } from '@i/components'
+import { Stack, Flex, Heading, Text, Button } from '@intouchg/components'
 import { routeTitles } from './index'
 import type { ImportModalRoute } from './index'
 

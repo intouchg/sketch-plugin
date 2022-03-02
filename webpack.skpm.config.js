@@ -31,7 +31,7 @@ module.exports = function (config, entry) {
     },
   )
 
-  const fontbookParserModulePath = path.resolve('node_modules/@i/fontbook-parser')
+  const fontbookParserModulePath = path.resolve('node_modules/@intouchg/fontbook-parser')
   const xmldomModulePath = path.resolve('node_modules/xmldom')
 
   config.plugins.push(new PluginCopy({

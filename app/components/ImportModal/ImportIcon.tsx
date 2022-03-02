@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSpring, animated, config } from 'react-spring'
-import { Box, Flex } from '@i/components'
+import { Box, Flex } from '@intouchg/components'
 import { Icon } from '../Icon'
 import { NotInSketchIcon } from './NotInSketchIcon'
 

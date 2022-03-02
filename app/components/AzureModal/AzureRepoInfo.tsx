@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Stack, Box, Heading, Flex, Text, Button } from '@i/components'
+import { Stack, Box, Heading, Flex, Text, Button } from '@intouchg/components'
 import { Icon } from '../Icon'
 import { LimitInteraction } from '../LimitInteraction'
 import { useDownloadUpdates, useSaveChanges, useRevertChanges } from '../../hooks'
-import { timeSince } from '@i/utility'
+import { timeSince } from '@intouchg/utility'
 
 const TruncatedProjectName = styled(Heading).attrs({ variant: 'Tertiary' })`
 	text-overflow: ellipsis;

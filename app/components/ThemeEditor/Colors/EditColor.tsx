@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Box, Button, Text, Heading } from '@i/components'
+import { Box, Button, Text, Heading } from '@intouchg/components'
 import { ColorPicker } from '../../ColorPicker'
 import { updateThemeValue } from '../../../store'
-import type { ThemeValue, ThemeColor } from '@i/theme'
+import type { ThemeValue, ThemeColor } from '@intouchg/theme'
 
 const EditColor = ({
 	color,

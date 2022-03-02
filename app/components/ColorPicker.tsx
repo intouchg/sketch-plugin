@@ -1,6 +1,6 @@
 import React from 'react'
 import { SketchPicker } from 'react-color'
-import { Box } from '@i/components'
+import { Box } from '@intouchg/components'
 import type { SketchPickerProps, ColorResult } from 'react-color'
 
 export const parseColorPickerInput = (color: string) => {

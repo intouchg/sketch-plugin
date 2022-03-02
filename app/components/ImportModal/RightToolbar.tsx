@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import { Stack, Box, Flex, Text, Button, Select, Checkbox } from '@i/components'
+import { Stack, Box, Flex, Text, Button, Select, Checkbox } from '@intouchg/components'
 import { Icon } from '../Icon'
 import { routes, routeTitles } from './index'
 import { setBannerState } from '../../store'

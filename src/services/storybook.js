@@ -1,6 +1,6 @@
 import fs from '@skpm/fs'
 import path from '@skpm/path'
-import { themeProcessor } from '@i/theme'
+import { themeProcessor } from '@intouchg/theme'
 import ChildProcess from '../ChildProcess'
 
 const PARSE_STORYBOOK_WEBPACK_PROGRESS_REGEX = /\[webpack\.Progress\] (\d*)%/

@@ -1,11 +1,11 @@
 import React from 'react'
-import { Stack, Box, Button, Text } from '@i/components'
+import { Stack, Box, Button, Text } from '@intouchg/components'
 import { Color } from '../ThemeValues'
 import { ColorGrid } from '../ColorGrid'
 import { ImportIcon } from './ImportIcon'
-import { sortAlphabetical } from '@i/utility'
+import { sortAlphabetical } from '@intouchg/utility'
 import type { ImportedValueProps } from './index'
-import type { ThemeColor } from '@i/theme'
+import type { ThemeColor } from '@intouchg/theme'
 
 export const sortColors = (a: ThemeColor, b: ThemeColor) => sortAlphabetical(a, b, 'name')
 

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Heading, Button, Flex, Text, Stack } from '@i/components'
+import { Heading, Button, Flex, Text, Stack } from '@intouchg/components'
 import { NumberInput } from '../NumberInput'
 import { parseLineHeight, LINE_HEIGHT_MIN, LINE_HEIGHT_MAX } from './EditLineHeight'
 import { createThemeValue } from '../../../store'
-import { createUuid } from '@i/utility'
+import { createUuid } from '@intouchg/utility'
 
 const CreateLineHeight = ({
 	setCreating,

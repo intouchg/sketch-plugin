@@ -1,7 +1,7 @@
 import fs from '@skpm/fs'
 import path from '@skpm/path'
 import dialog from '@skpm/dialog'
-import { configFilename, validateConfig } from '@i/theme'
+import { configFilename, validateConfig } from '@intouchg/theme'
 import { updateStorybookTempTheme, writeRecentProjectMetadata, openGitRepo, hasLocalChanges, getTimestampOfLastPush } from '../services'
 
 export const selectLocalProject = async (state, payload) => {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Heading, Input, Button, Text, Stack, Box } from '@i/components'
+import { Heading, Input, Button, Text, Stack, Box } from '@intouchg/components'
 import { ColorPicker } from '../../ColorPicker'
 import { createThemeValue } from '../../../store'
-import { createUuid, titleCase } from '@i/utility'
+import { createUuid, titleCase } from '@intouchg/utility'
 
 const MISSING_COLOR_NAME_ERROR = 'Input a color name to create a new color.'
 const DUPLICATE_NAME_ERROR = 'This color name is already in use.'

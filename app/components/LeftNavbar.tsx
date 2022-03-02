@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { createUuid } from '@i/utility'
-import { Stack, Link, Text, space, radius, color } from '@i/components'
+import { createUuid } from '@intouchg/utility'
+import { Stack, Link, Text, space, radius, color } from '@intouchg/components'
 import { topToolbarHeight } from './TopToolbar'
 
 const routesData = {

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, zIndex } from '@i/components'
+import { Flex, zIndex } from '@intouchg/components'
 
 const ModalBackground = styled(Flex)`
     position: fixed;

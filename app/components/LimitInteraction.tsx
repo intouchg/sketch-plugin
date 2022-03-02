@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box } from '@i/components'
+import { Box } from '@intouchg/components'
 
 const LimitInteraction = styled(Box)<{ unlimit: boolean }>`
 	${(props) => props.unlimit ? `

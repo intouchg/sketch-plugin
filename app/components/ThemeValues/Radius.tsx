@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box } from '@i/components'
-import type { ThemeRadius } from '@i/theme'
+import { Box } from '@intouchg/components'
+import type { ThemeRadius } from '@intouchg/theme'
 
 export const themeRadiusHeight = 90
 

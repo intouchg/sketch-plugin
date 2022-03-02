@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { Stack, Text, Box, Button, space } from '@i/components'
+import { Stack, Text, Box, Button, space } from '@intouchg/components'
 import { useSelectLocalProject } from '../hooks'
 
 const OverflowButton = styled(Button).attrs({ variant: 'Tertiary' })`

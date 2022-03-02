@@ -1,6 +1,6 @@
 import React from 'react'
 import { NoWrapText } from '../NoWrapText'
-import type { ThemeFontSize } from '@i/theme'
+import type { ThemeFontSize } from '@intouchg/theme'
 
 export const themeFontSizeLineHeight = 1.2
 

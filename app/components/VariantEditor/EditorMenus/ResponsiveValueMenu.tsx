@@ -1,6 +1,6 @@
 import React from 'react'
-import { Flex, Button, Text } from '@i/components'
-import type { ThemeFontSize } from '@i/theme'
+import { Flex, Button, Text } from '@intouchg/components'
+import type { ThemeFontSize } from '@intouchg/theme'
 
 const ResponsiveValueMenu = ({
 	values,

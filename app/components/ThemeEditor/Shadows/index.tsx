@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { animated, to } from 'react-spring'
-import { Button, Box } from '@i/components'
+import { Button, Box } from '@intouchg/components'
 import { Shadow } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -10,7 +10,7 @@ import { EditShadow } from './EditShadow'
 import { CreateShadow } from './CreateShadow'
 import { useListTransition } from '../../../hooks'
 import { sortShadows } from '../../ImportModal/Shadows'
-import type { ThemeValue } from '@i/theme'
+import type { ThemeValue } from '@intouchg/theme'
 
 const ELEMENT_BASE_HEIGHT = 152 // in pixels, magic number
 const ELEMENT_PADDING_Y = 8

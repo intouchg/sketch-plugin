@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Stack, Text } from '@i/components'
+import { Stack, Text } from '@intouchg/components'
 import { Loading } from './Loading'
 
 const LoadingScreen = () => {

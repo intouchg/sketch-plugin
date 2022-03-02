@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Text, Box } from '@i/components'
+import { Flex, Stack, Text, Box } from '@intouchg/components'
 import { Icon } from '../../Icon'
 import { DropdownMenu } from './DropdownMenu'
 import { ResponsiveValueMenu } from './ResponsiveValueMenu'
 import { updateThemeVariant } from '../../../store'
-import { createUuid } from '@i/utility'
-import type { ThemeFontSize, ThemeVariant, ThemeValue, ThemeBreakpoint } from '@i/theme'
+import { createUuid } from '@intouchg/utility'
+import type { ThemeFontSize, ThemeVariant, ThemeValue, ThemeBreakpoint } from '@intouchg/theme'
 
 const FontSize = ({
 	value,

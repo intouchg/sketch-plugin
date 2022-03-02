@@ -1,7 +1,7 @@
 import fs from '@skpm/fs'
 import ChildProcess from '../ChildProcess'
 import { spawnSync, escapeStringForShell } from '../spawn'
-import { randomPhrase } from '@i/random-phrase'
+import { randomPhrase } from '@intouchg/random-phrase'
 
 let gitDirectory = null
 let branchName = null

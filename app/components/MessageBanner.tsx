@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSpring, animated } from 'react-spring'
-import { Text, Box, Stack, Flex, Heading, Button } from '@i/components'
+import { Text, Box, Stack, Flex, Heading, Button } from '@intouchg/components'
 import { Icon } from './Icon'
 import { setBannerState, initialBannerState } from '../store'
 

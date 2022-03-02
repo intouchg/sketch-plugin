@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, batch } from 'react-redux'
 import { useSpring } from 'react-spring'
-import { Stack, Heading, Input, Flex, Text, Button } from '@i/components'
+import { Stack, Heading, Input, Flex, Text, Button } from '@intouchg/components'
 import { DirectoryInput } from '../DirectoryInput'
 import { CloneProgress } from './CloneProgress'
 import { CloneSuccess } from './CloneSuccess'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
-import type { AzureGitRepo } from '@i/azure'
+import type { AzureGitRepo } from '@intouchg/azure'
 
 const MISSING_SAVE_LOCATION_ERROR = 'Select a save location to download the project.'
 

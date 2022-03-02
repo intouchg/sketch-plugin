@@ -1,8 +1,8 @@
 import React from 'react'
-import { Stack, Flex, Button, Box, Text } from '@i/components'
+import { Stack, Flex, Button, Box, Text } from '@intouchg/components'
 import { BorderWidth } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
-import type { ThemeBorderWidth } from '@i/theme'
+import type { ThemeBorderWidth } from '@intouchg/theme'
 
 export const sortBorderWidths = (a: ThemeBorderWidth, b: ThemeBorderWidth) => {
 	const valueA = Number(a.value.split('px')[0])

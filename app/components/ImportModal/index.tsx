@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
-import { themeTypePropertyMap } from '@i/theme'
-import { Flex, Stack, Heading } from '@i/components'
+import { themeTypePropertyMap } from '@intouchg/theme'
+import { Flex, Stack, Heading } from '@intouchg/components'
 import { ModalBackground } from '../ModalBackground'
 import { CloseModalButton } from '../CloseModalButton'
 import { RightToolbar } from './RightToolbar'
@@ -17,7 +17,7 @@ import { ImportSummary } from './ImportSummary'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { setImportedSketchValues, saveImportedSketchValues } from '../../store'
-import type { ThemeValue } from '@i/theme'
+import type { ThemeValue } from '@intouchg/theme'
 
 const views = {
 	color: Colors,

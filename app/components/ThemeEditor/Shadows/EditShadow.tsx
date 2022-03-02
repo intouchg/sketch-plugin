@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box, Button, Checkbox, Heading } from '@i/components'
+import { Flex, Text, Box, Button, Checkbox, Heading } from '@intouchg/components'
 import { PixelInput } from '../PixelInput'
 import { ColorPicker } from '../../ColorPicker'
 import { Icon } from '../../Icon'
 import { updateThemeValue } from '../../../store'
-import type { ThemeValue, ThemeShadow } from '@i/theme'
+import type { ThemeValue, ThemeShadow } from '@intouchg/theme'
 
 export const SHADOW_X_MIN = -100
 export const SHADOW_X_MAX = 100

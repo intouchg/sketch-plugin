@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Box, Button, Text } from '@i/components'
+import { Flex, Box, Button, Text } from '@intouchg/components'
 import { Icon } from './Icon'
 import { useDisplayErrorBanner } from '../hooks'
 import { sendSketchCommand } from '../sketchApi'

@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { font } from '@i/components'
+import { font } from '@intouchg/components'
 
 const GlobalStyles = createGlobalStyle`
     html {

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Box, color } from '@i/components'
+import { Box, color } from '@intouchg/components'
 
 const spinAnimation = keyframes`
     0% { transform: rotate(0deg); }

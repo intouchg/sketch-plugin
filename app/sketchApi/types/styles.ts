@@ -1,4 +1,4 @@
-import type { ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLineHeight, ThemeLetterSpacing, ThemeBorderWidth, ThemeShadow } from '@i/theme'
+import type { ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLineHeight, ThemeLetterSpacing, ThemeBorderWidth, ThemeShadow } from '@intouchg/theme'
 
 export type RawImportedSketchValues = {
     colors: [ string, string ][]

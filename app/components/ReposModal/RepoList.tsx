@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Stack, Text, space, font, fontWeight, color, radius } from '@i/components'
-import type { AzureUserConnection, AzureGitRepo } from '@i/azure'
+import { Stack, Text, space, font, fontWeight, color, radius } from '@intouchg/components'
+import type { AzureUserConnection, AzureGitRepo } from '@intouchg/azure'
 
 const Repo = styled.div`
 	padding: ${space(4)} ${space(4)};

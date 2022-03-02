@@ -1,14 +1,14 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Stack, Flex, Heading, Text, Button, Box } from '@i/components'
+import { Stack, Flex, Heading, Text, Button, Box } from '@intouchg/components'
 import { ModalBackground } from '../ModalBackground'
 import { CloseModalButton } from '../CloseModalButton'
 import { deleteThemeVariant } from '../../store'
-import { titleCase } from '@i/utility'
+import { titleCase } from '@intouchg/utility'
 import { Icon } from '../Icon'
-import { componentVariantsPropertyMap } from '@i/theme'
+import { componentVariantsPropertyMap } from '@intouchg/theme'
 import { componentConfig } from './Editor'
-import type { ThemeVariant } from '@i/theme'
+import type { ThemeVariant } from '@intouchg/theme'
 
 const DeleteModal = ({
 	deleteVariant,

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Heading, Button, Flex, Text, Stack } from '@i/components'
+import { Heading, Button, Flex, Text, Stack } from '@intouchg/components'
 import { PixelInput } from '../PixelInput'
 import { parseSpace, SPACE_MIN, SPACE_MAX } from './EditSpace'
 import { createThemeValue } from '../../../store'
-import { createUuid } from '@i/utility'
+import { createUuid } from '@intouchg/utility'
 
 const CreateSpace = ({
 	setCreating,

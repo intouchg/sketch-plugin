@@ -1,8 +1,8 @@
 import React from 'react'
-import { Stack, Flex, Text, Button, Box } from '@i/components'
+import { Stack, Flex, Text, Button, Box } from '@intouchg/components'
 import { LineHeight } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
-import type { ThemeLineHeight } from '@i/theme'
+import type { ThemeLineHeight } from '@intouchg/theme'
 
 export const sortLineHeights = (a: ThemeLineHeight, b: ThemeLineHeight) => {
 	const valueA = Number(a.value)

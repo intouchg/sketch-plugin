@@ -15,5 +15,5 @@ export {
     Tabs,
     Test,
     Text,
-} from '@i/components'
+} from '@intouchg/components'
 export { Spring } from 'react-spring'

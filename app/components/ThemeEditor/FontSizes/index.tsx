@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useTransition, useSpring, animated, to } from 'react-spring'
-import { Button, Stack, Flex, Text } from '@i/components'
+import { Button, Stack, Flex, Text } from '@intouchg/components'
 import { FontSize, themeFontSizeLineHeight } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -10,7 +10,7 @@ import { EditFontSize } from './EditFontSize'
 import { CreateFontSize } from './CreateFontSize'
 import { useListTransition } from '../../../hooks'
 import { sortFontSizes } from '../../ImportModal/FontSizes'
-import type { ThemeValue, ThemeFontSize } from '@i/theme'
+import type { ThemeValue, ThemeFontSize } from '@intouchg/theme'
 
 const ELEMENT_MIN_HEIGHT = 44 // in pixels
 const ELEMENT_PADDING_Y = 8

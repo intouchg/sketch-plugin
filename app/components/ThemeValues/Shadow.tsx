@@ -1,6 +1,6 @@
 import React from 'react'
-import { Stack, Flex, Box, Text } from '@i/components'
-import type { ThemeShadow } from '@i/theme'
+import { Stack, Flex, Box, Text } from '@intouchg/components'
+import type { ThemeShadow } from '@intouchg/theme'
 
 const Shadow = ({
 	name,

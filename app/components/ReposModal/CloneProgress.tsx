@@ -1,6 +1,6 @@
 import React from 'react'
 import { animated } from 'react-spring'
-import { Flex, Stack, Text } from '@i/components'
+import { Flex, Stack, Text } from '@intouchg/components'
 import type { SpringValue } from 'react-spring'
 
 const CloneProgress = ({

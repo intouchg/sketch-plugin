@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Text } from '@i/components'
+import { Button, Text } from '@intouchg/components'
 import { Icon } from '../Icon'
 import { setBannerState } from '../../store'
 

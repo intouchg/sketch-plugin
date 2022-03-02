@@ -1,5 +1,5 @@
 import React from 'react'
-import { Stack, Button, Text } from '@i/components'
+import { Stack, Button, Text } from '@intouchg/components'
 import { openBrowserWindow } from '../sketchApi'
 
 const HelpfulResources = () => {

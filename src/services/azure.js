@@ -1,5 +1,5 @@
-import { AzureUserConnection } from '@i/azure'
-import { sortAlphabetical } from '@i/utility'
+import { AzureUserConnection } from '@intouchg/azure'
+import { sortAlphabetical } from '@intouchg/utility'
 
 const AZURE_INSTANCE_URL = 'https://intazdoweb.intouchsol.com'
 

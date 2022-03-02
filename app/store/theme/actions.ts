@@ -1,4 +1,4 @@
-import type { ThemeValue, ThemeVariant } from '@i/theme'
+import type { ThemeValue, ThemeVariant } from '@intouchg/theme'
 import type { ThemeData } from './state'
 import type { RawImportedSketchValues, DirectoryFilepath, SPFontData } from '../../sketchApi'
 

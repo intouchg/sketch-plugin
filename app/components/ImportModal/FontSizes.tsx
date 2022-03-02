@@ -1,8 +1,8 @@
 import React from 'react'
-import { Stack, Flex, Text, Button, Box } from '@i/components'
+import { Stack, Flex, Text, Button, Box } from '@intouchg/components'
 import { FontSize } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
-import type { ThemeFontSize } from '@i/theme'
+import type { ThemeFontSize } from '@intouchg/theme'
 
 export const sortFontSizes = (a: ThemeFontSize, b: ThemeFontSize) => {
 	const valueA = Number(a.value.split('rem')[0])

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Label, Input, Text } from '@i/components'
+import { Label, Input, Text } from '@intouchg/components'
 
 const PixelInput = ({
 	value,

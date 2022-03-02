@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Heading, Button, Flex, Text, Stack, Box, Checkbox } from '@i/components'
+import { Heading, Button, Flex, Text, Stack, Box, Checkbox } from '@intouchg/components'
 import { PixelInput } from '../PixelInput'
 import { ColorPicker } from '../../ColorPicker'
 import { Icon } from '../../Icon'
 import { parseShadowX, SHADOW_X_MIN, SHADOW_X_MAX, parseShadowY, SHADOW_Y_MIN, SHADOW_Y_MAX, parseShadowBlur, SHADOW_BLUR_MIN, SHADOW_BLUR_MAX, parseShadowSpread, SHADOW_SPREAD_MIN, SHADOW_SPREAD_MAX } from './EditShadow'
 import { createThemeValue } from '../../../store'
-import { createUuid } from '@i/utility'
+import { createUuid } from '@intouchg/utility'
 
 const CreateShadow = ({
 	setCreating,

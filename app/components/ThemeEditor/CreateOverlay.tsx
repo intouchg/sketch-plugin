@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSpring, animated } from 'react-spring'
-import { Button, Box } from '@i/components'
+import { Button, Box } from '@intouchg/components'
 import { Icon } from '../Icon'
 import { rightToolbarWidth } from './RightToolbar'
 

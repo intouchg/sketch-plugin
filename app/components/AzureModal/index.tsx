@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Heading, Button, Text } from '@i/components'
+import { Flex, Stack, Heading, Button, Text } from '@intouchg/components'
 import { ModalBackground } from '../ModalBackground'
 import { CloseModalButton } from '../CloseModalButton'
 import { AzureLoginForm } from './AzureLoginForm'

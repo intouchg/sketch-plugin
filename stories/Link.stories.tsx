@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from '@i/components'
+import { Link } from '@intouchg/components'
 
 export default { title: 'Link' }
 

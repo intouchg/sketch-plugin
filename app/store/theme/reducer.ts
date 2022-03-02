@@ -1,6 +1,6 @@
 import { enablePatches, produce, applyPatches } from 'immer'
-import { createThemeValue, createThemeVariant, ThemeSelectorObject, ThemeStyleObject, themeTypePropertyMap } from '@i/theme'
-import { sortAlphabetical } from '@i/utility'
+import { createThemeValue, createThemeVariant, ThemeSelectorObject, ThemeStyleObject, themeTypePropertyMap } from '@intouchg/theme'
+import { sortAlphabetical } from '@intouchg/utility'
 import {
 	UNDO,
 	REDO,
@@ -19,7 +19,7 @@ import {
 	SET_SYSTEM_FONTS,
 } from './actions'
 import { initialThemeState } from './state'
-import type { ThemeValue, StyleProperty } from '@i/theme'
+import type { ThemeValue, StyleProperty } from '@intouchg/theme'
 import type { ThemeActionType } from './actions'
 import type { ThemeState } from './state'
 import type { SystemFontsDictionary } from '../../sketchApi'

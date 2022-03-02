@@ -1,4 +1,4 @@
-import { titleCase } from '@i/utility'
+import { titleCase } from '@intouchg/utility'
 
 const filterNonStrings = (value) => typeof value === 'string'
 

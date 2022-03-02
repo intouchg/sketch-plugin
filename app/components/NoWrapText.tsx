@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text } from '@i/components'
+import { Text } from '@intouchg/components'
 
 const NoWrapText = styled(Text)<{ lineHeight?: string }>`
 	white-space: nowrap;

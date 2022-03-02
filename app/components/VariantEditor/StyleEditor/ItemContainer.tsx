@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex } from '@i/components'
+import { Flex } from '@intouchg/components'
 
 const ItemContainer = (props: React.ComponentProps<typeof Flex>) => (
 	<Flex

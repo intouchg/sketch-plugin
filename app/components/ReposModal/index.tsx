@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { batch, useDispatch, useSelector } from 'react-redux'
-import { Flex, Text, Stack, Input, Heading } from '@i/components'
+import { Flex, Text, Stack, Input, Heading } from '@intouchg/components'
 import { ModalBackground } from '../ModalBackground'
 import { LeftToolbar } from './LeftToolbar'
 import { RepoList } from './RepoList'
@@ -10,7 +10,7 @@ import { Loading } from '../Loading'
 import { sendSketchCommand } from '../../sketchApi'
 import { useDisplayErrorBanner } from '../../hooks'
 import { setShowReposModal } from '../../store'
-import type { AzureUserConnection, AzureGitRepo } from '@i/azure'
+import type { AzureUserConnection, AzureGitRepo } from '@intouchg/azure'
 
 const OFFLINE_ERROR_MESSAGE = 'Restore internet connectivity to browse Azure projects.'
 

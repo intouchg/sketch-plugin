@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Flex, Box, Button } from '@i/components'
+import { Flex, Box, Button } from '@intouchg/components'
 import { Icon } from '../../Icon'
 import { DropdownMenu } from './DropdownMenu'
 

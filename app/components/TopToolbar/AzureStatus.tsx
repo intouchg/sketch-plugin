@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, Button, Text } from '@i/components'
+import { Box, Button, Text } from '@intouchg/components'
 import { setAzureModalState } from '../../store'
 
 const AzureStatus = () => {

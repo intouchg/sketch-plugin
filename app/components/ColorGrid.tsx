@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Grid } from '@i/components'
+import { Grid } from '@intouchg/components'
 
 const ColorGrid = styled(Grid)`
 	width: 100%;

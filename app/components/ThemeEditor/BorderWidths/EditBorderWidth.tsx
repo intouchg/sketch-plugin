@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box, Button } from '@i/components'
+import { Flex, Text, Box, Button } from '@intouchg/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeValue, ThemeBorderWidth } from '@i/theme'
+import type { ThemeValue, ThemeBorderWidth } from '@intouchg/theme'
 
 export const BORDER_WIDTH_MIN = 1
 export const BORDER_WIDTH_MAX = 100

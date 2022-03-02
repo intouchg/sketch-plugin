@@ -1494,61 +1494,66 @@
     gud "^1.0.0"
     warning "^4.0.3"
 
-"@i/azure@latest":
-  version "0.0.17"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/azure/-/azure-0.0.17.tgz#b62e54ca295d2ee4fb2e7ecce80b8dfa5592248a"
-  integrity sha1-ti5UyildLuT7Ln7M6AuN+lWSJIo=
+"@icons/material@^0.2.4":
+  version "0.2.4"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
+  integrity sha1-6QyfcXaLNzbnbX3WeD/Gwq+oi8g=
+
+"@intouchg/azure@0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@intouchg/azure/-/azure-0.1.3.tgz#e216d03310d28973d4c9e64f8875f286fa8d055d"
+  integrity sha512-DjBbxmICVBkuNKUmw6KeEU6Dmt/UZpA9MmIp/a8fnm1nNJI39XI5awtL2GU+QY3KKzT/yRXfraZ4b3pBIc+Dng==
   dependencies:
     "@babel/runtime" "7.12.5"
-    "@i/utility" latest
+    "@intouchg/utility" latest
 
-"@i/components@latest":
-  version "0.0.112"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/components/-/components-0.0.112.tgz#1a14f06975ca8af1747b050c5ffc930dcd91cbf7"
-  integrity sha1-GhTwaXXKivF0ewUMX/yTDc2Ry/c=
+"@intouchg/components@0.1.1":
+  version "0.1.1"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@intouchg/components/-/components-0.1.1.tgz#436279807d7221a00a9065b721e422e5c98bd4e5"
+  integrity sha1-Q2J5gH1yIaAKkGW3IeQi5cmL1OU=
   dependencies:
     "@babel/runtime" "7.13.10"
-    "@i/theme" latest
+    "@intouchg/theme" latest
     "@styled-system/should-forward-prop" "5.1.5"
 
-"@i/eslint-config@latest":
+"@intouchg/eslint-config@0.0.18":
   version "0.0.18"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/eslint-config/-/eslint-config-0.0.18.tgz#f310c4392c88b376ee8ec1b275ff1df544cce14f"
-  integrity sha1-8xDEOSyIs3bujsGydf8d9UTM4U8=
+  resolved "https://registry.yarnpkg.com/@intouchg/eslint-config/-/eslint-config-0.0.18.tgz#364f00d424269c101bba7089752cb54de13af240"
+  integrity sha512-OgbSBe2zB/rFx3RswSzAx4TPuLpbpefkftG6btAMBYtEZ54kaPqt3oeAdQ9zlcEKn2/1M7Jp6HDymUS28Nd3pQ==
 
-"@i/fontbook-parser@latest":
-  version "0.0.3"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/fontbook-parser/-/fontbook-parser-0.0.3.tgz#7563245be1e24fc6de5e1caecde7818c313a2364"
-  integrity sha1-dWMkW+HiT8beXhyuzeeBjDE6I2Q=
+"@intouchg/fontbook-parser@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@intouchg/fontbook-parser/-/fontbook-parser-0.1.0.tgz#e9459d9c250f0a20e9589219abd8f8d253f924c7"
+  integrity sha512-lVCZ8sDbZQOvtqWRW+QdSWxGTfuxmSj5DPUmwmxkRR991pGdOZsexFMahCVjWGkGfKk4lrVkz8rWVwXCiZGCmg==
   dependencies:
     xmldom "0.3.0"
 
-"@i/random-phrase@latest":
-  version "0.0.3"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/random-phrase/-/random-phrase-0.0.3.tgz#378dc605ecbb2d5e1cbc27280277917ba1bb3b9a"
-  integrity sha1-N43GBey7LV4cvCcoAneRe6G7O5o=
+"@intouchg/random-phrase@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@intouchg/random-phrase/-/random-phrase-0.1.0.tgz#6a8ede1402e7bcd47008f73401dfdd5356506c8d"
+  integrity sha512-TFv43faZYCDLsWkHAlb84iXhio9KQYAIOwHYI1E9jSJk3J0/lL4CZQc6sTyBLCeWJfIqVwC29nOjFRTtnDIJng==
   dependencies:
     "@babel/runtime" "7.12.5"
 
-"@i/theme@latest":
-  version "0.0.59"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/theme/-/theme-0.0.59.tgz#3ad99c2fc29be9fa4d4d6ac5f98a250e89d17ab5"
-  integrity sha1-OtmcL8Kb6fpNTWrF+YolDonRerU=
+"@intouchg/theme@0.1.2", "@intouchg/theme@latest":
+  version "0.1.2"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@intouchg/theme/-/theme-0.1.2.tgz#d5d8741c8d6b2dbb78ed851308771437acea9cd5"
+  integrity sha1-1dh0HI1rLbt47YUTCHcUN6zqnNU=
   dependencies:
     "@babel/runtime" "7.13.10"
-    "@i/utility" latest
+    "@intouchg/utility" latest
 
-"@i/utility@latest":
-  version "0.0.20"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/utility/-/utility-0.0.20.tgz#d0a99af69e3d5b762cfba5ec9184c18a4d08d958"
-  integrity sha1-0Kma9p49W3Ys+6XskYTBik0I2Vg=
+"@intouchg/utility@0.1.0", "@intouchg/utility@latest":
+  version "0.1.0"
+  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@intouchg/utility/-/utility-0.1.0.tgz#39d8d26e15ed5434358f45982c525f4ff0c7e643"
+  integrity sha1-OdjSbhXtVDQ1j0WYLFJfT/DH5kM=
   dependencies:
     "@babel/runtime" "7.13.10"
 
-"@i/webpack-svgr-plugin@latest":
-  version "0.0.14"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/webpack-svgr-plugin/-/webpack-svgr-plugin-0.0.14.tgz#0b033ceaf1afb3644e23489458f039dc295c360d"
-  integrity sha1-CwM86vGvs2ROI0iUWPA53ClcNg0=
+"@intouchg/webpack-svgr-plugin@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@intouchg/webpack-svgr-plugin/-/webpack-svgr-plugin-0.1.1.tgz#56f91707f79c99a04117714db64970eb217efde0"
+  integrity sha512-6ZxVXo3T+27A2S0RRlQ3PBembJc30USUZhz5l1QLjfTYE/ACRHOdSCA8jrMI+ZatazrUM5SJc7JYWSAlS+IPjg==
   dependencies:
     "@svgr/core" "5.5.0"
     "@svgr/plugin-jsx" "5.5.0"
@@ -1557,18 +1562,13 @@
     chokidar "3.5.1"
     glob "7.1.6"
 
-"@i/webpack-theme-plugin@latest":
-  version "0.0.34"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@i/webpack-theme-plugin/-/webpack-theme-plugin-0.0.34.tgz#d2c22d45ba7206ca806dc8df9eeb83e7df2da3d7"
-  integrity sha1-0sItRbpyBsqAbcjfnuuD598to9c=
+"@intouchg/webpack-theme-plugin@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@intouchg/webpack-theme-plugin/-/webpack-theme-plugin-0.1.1.tgz#fa917e300f6007c86ca1e889436d2b76209fd68d"
+  integrity sha512-Q6fWqLJ72HNWu/iGarNhK5opQeLUA5kIGWCL0dluECjPR3xE2I/WyRdNUvJkdT3cG6IAGnJWTJ08O8n9BWgLuw==
   dependencies:
-    "@i/theme" latest
+    "@intouchg/theme" latest
     chokidar "3.5.1"
-
-"@icons/material@^0.2.4":
-  version "0.2.4"
-  resolved "https://intazdoweb.intouchsol.com/IntouchDesignSystem/_packaging/IntouchDesignSystem/npm/registry/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
-  integrity sha1-6QyfcXaLNzbnbX3WeD/Gwq+oi8g=
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

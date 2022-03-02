@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Stack, Heading, Text, Button } from '@i/components'
+import { Flex, Stack, Heading, Text, Button } from '@intouchg/components'
 import { useSelectLocalProject } from '../../hooks'
 import { setShowReposModal } from '../../store'
-import type { AzureGitRepo } from '@i/azure'
+import type { AzureGitRepo } from '@intouchg/azure'
 
 const CloneSuccess = ({
 	repo,

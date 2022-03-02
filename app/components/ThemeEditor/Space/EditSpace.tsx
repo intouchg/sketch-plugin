@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box, Button } from '@i/components'
+import { Flex, Text, Box, Button } from '@intouchg/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeValue, ThemeSpace } from '@i/theme'
+import type { ThemeValue, ThemeSpace } from '@intouchg/theme'
 
 export const SPACE_MIN = 1
 export const SPACE_MAX = 999

@@ -1,4 +1,4 @@
-import type { ThemeBorder, ThemeBorderStyle, ThemeBorderWidth, ThemeBreakpoint, ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLetterSpacing, ThemeLineHeight, ThemeRadius, ThemeShadow, ThemeSize, ThemeSpace, ThemeValue, ThemeVariant, ThemeZIndex } from '@i/theme'
+import type { ThemeBorder, ThemeBorderStyle, ThemeBorderWidth, ThemeBreakpoint, ThemeColor, ThemeFont, ThemeFontSize, ThemeFontWeight, ThemeLetterSpacing, ThemeLineHeight, ThemeRadius, ThemeShadow, ThemeSize, ThemeSpace, ThemeValue, ThemeVariant, ThemeZIndex } from '@intouchg/theme'
 import type { DirectoryFilepath, ParsedImportedSketchValues, SystemFontsDictionary } from '../../sketchApi'
 
 export type ThemeData = {

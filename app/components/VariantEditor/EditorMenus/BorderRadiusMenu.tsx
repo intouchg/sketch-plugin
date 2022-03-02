@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Stack, Box, Text, Button } from '@i/components'
+import { Stack, Box, Text, Button } from '@intouchg/components'
 import { DropdownMenu } from '../EditorMenus'
 
 const BorderRadiusItem = ({

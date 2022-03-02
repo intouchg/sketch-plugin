@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { useDispatch, batch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Box, Stack, Button } from '@i/components'
+import { Box, Stack, Button } from '@intouchg/components'
 import { Icon } from '../Icon'
 import { topToolbarHeight } from './index'
 import { resetThemeState, resetProjectState, setShowSettingsModal } from '../../store'

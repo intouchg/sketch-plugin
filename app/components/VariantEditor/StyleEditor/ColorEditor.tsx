@@ -1,9 +1,9 @@
 import React from 'react'
-import { Text } from '@i/components'
+import { Text } from '@intouchg/components'
 import { ColorMenu } from '../EditorMenus'
 import { ItemContainer } from './ItemContainer'
 import { styleProperties } from './index'
-import type { ThemeVariant, SelectorProperty } from '@i/theme'
+import type { ThemeVariant, SelectorProperty } from '@intouchg/theme'
 
 const ColorEditor = ({
 	variant,

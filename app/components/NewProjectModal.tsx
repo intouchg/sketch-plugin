@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector, batch } from 'react-redux'
-import { Flex, Stack, Heading, Box, Text, Input, Button } from '@i/components'
+import { Flex, Stack, Heading, Box, Text, Input, Button } from '@intouchg/components'
 import { ModalBackground } from './ModalBackground'
 import { CloseModalButton } from './CloseModalButton'
 import { DirectoryInput } from './DirectoryInput'

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import { Flex, Button, Text, Paragraph, Heading, Link, Label, Input, Radio, Checkbox, Select, Slider, Toggle, Textarea } from '@i/components'
+import { Flex, Button, Text, Paragraph, Heading, Link, Label, Input, Radio, Checkbox, Select, Slider, Toggle, Textarea } from '@intouchg/components'
 import { RightToolbar } from './RightToolbar'
 import { VariantsList } from './VariantsList'
 import { StyleEditor } from './StyleEditor'
 import { topToolbarHeight } from '../TopToolbar'
 import { DeleteModal } from './DeleteModal'
-import { themeProcessor, componentVariantsPropertyMap, defaultVariantName } from '@i/theme'
-import type { ThemeVariant, SelectorProperty, ComponentVariantProperty } from '@i/theme'
+import { themeProcessor, componentVariantsPropertyMap, defaultVariantName } from '@intouchg/theme'
+import type { ThemeVariant, SelectorProperty, ComponentVariantProperty } from '@intouchg/theme'
 
 export const componentConfig = {
 	buttons: {

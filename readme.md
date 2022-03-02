@@ -1,9 +1,9 @@
-# @i/sketch-plugin
+# @intouchg/sketch-plugin
 
-Sketch plugin for the Intouch Design System
+Experimental Sketch plugin for the Intouch Design System
 
 
-## Installation
+## Plugin Installation
 
 - Download the latest release of the plugin
 - Un-zip
@@ -11,6 +11,8 @@ Sketch plugin for the Intouch Design System
 
 
 ## Production Build
+
+Note: Make sure you are using the version of Node listed in the `.nvmrc` file.
 
 1. Update the version number in the `package.json` and `src/manifest.json`
 
@@ -27,9 +29,9 @@ zip -r sketch-plugin.zip intouch-design-system.sketchplugin
 
 6. Rename the zipped Sketch Plugin according to the naming scheme in the `appcast.xml` file
 
-7. Add the renamed zipped Sketch Plugin and the `appcast.xml` file to the @i/docs `public/sketch-plugin` directory
+7. Add the renamed zipped Sketch Plugin and the `appcast.xml` file to the @intouchg/docs `public/sketch-plugin` directory
 
-8. Run the `@i/docs` release process
+8. Run the `@intouchg/docs` release process
 
 9. Users of the Sketch Plugin will be automatically notified to update
 
@@ -50,7 +52,7 @@ The `app/` directory contains the React TypeScript application code which is ren
 
 ### Fontbook Parser
 
-This plugin includes the [@i/fontbook-parser](https://intazdoweb.intouchsol.com/IntouchDesignSystem/IntouchDesignSystem/_git/fontbook-parser) module in the production bundle using the `copy-webpack-plugin` as part of the `webpack.skpm.config.js`. The ADAL Server is initialized using NodeJS `child_process.spawn` and passing an XML filepath and JSON filepath.
+This plugin includes the [@intouchg/fontbook-parser](https://intazdoweb.intouchsol.com/IntouchDesignSystem/IntouchDesignSystem/_git/fontbook-parser) module in the production bundle using the `copy-webpack-plugin` as part of the `webpack.skpm.config.js`. The ADAL Server is initialized using NodeJS `child_process.spawn` and passing an XML filepath and JSON filepath.
 <br>
 
 

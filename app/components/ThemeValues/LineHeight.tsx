@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text } from '@i/components'
-import type { ThemeLineHeight } from '@i/theme'
+import { Text } from '@intouchg/components'
+import type { ThemeLineHeight } from '@intouchg/theme'
 
 const LineHeight = ({
 	value,

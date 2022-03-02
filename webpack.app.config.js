@@ -1,6 +1,6 @@
 const { build } = require('tarot')
-const IntouchThemePlugin = require('@i/webpack-theme-plugin')
-const IntouchSVGRPlugin = require('@i/webpack-svgr-plugin')
+const IntouchThemePlugin = require('@intouchg/webpack-theme-plugin')
+const IntouchSVGRPlugin = require('@intouchg/webpack-svgr-plugin')
 
 module.exports = build({
     source: 'app',

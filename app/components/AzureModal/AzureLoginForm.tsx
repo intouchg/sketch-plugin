@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, batch } from 'react-redux'
-import { Flex, Stack, Input, Text, Button } from '@i/components'
+import { Flex, Stack, Input, Text, Button } from '@intouchg/components'
 import { sendSketchCommand, openBrowserWindow } from '../../sketchApi'
 import { setAzureCredentials, setAzureModalState, setLoadingState, setShowReposModal } from '../../store'
 

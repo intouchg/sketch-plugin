@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box, Button } from '@i/components'
+import { Flex, Text, Box, Button } from '@intouchg/components'
 import { NumberInput } from '../NumberInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeValue, ThemeLineHeight } from '@i/theme'
+import type { ThemeValue, ThemeLineHeight } from '@intouchg/theme'
 
 export const LINE_HEIGHT_MIN = 0.025
 export const LINE_HEIGHT_MAX = 10

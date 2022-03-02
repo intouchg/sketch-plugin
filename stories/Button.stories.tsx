@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@i/components'
+import { Button } from '@intouchg/components'
 import { text as textKnob, boolean as booleanKnob } from '@storybook/addon-knobs'
 
 export default { title: 'Button' }

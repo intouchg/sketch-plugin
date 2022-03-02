@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { animated, to } from 'react-spring'
-import { Button, Flex, Text } from '@i/components'
+import { Button, Flex, Text } from '@intouchg/components'
 import { LineHeight } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -10,7 +10,7 @@ import { EditLineHeight } from './EditLineHeight'
 import { CreateLineHeight } from './CreateLineHeight'
 import { useListTransition } from '../../../hooks'
 import { sortLineHeights } from '../../ImportModal/LineHeights'
-import type { ThemeValue, ThemeLineHeight } from '@i/theme'
+import type { ThemeValue, ThemeLineHeight } from '@intouchg/theme'
 
 const NUMBER_OF_LINES = 3 // magic number
 const ELEMENT_MIN_HEIGHT = 44

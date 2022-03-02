@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Stack, Heading, Flex, Box, Button } from '@i/components'
-import { sortAlphabetical } from '@i/utility'
+import { Stack, Heading, Flex, Box, Button } from '@intouchg/components'
+import { sortAlphabetical } from '@intouchg/utility'
 import { Font } from '../ThemeValues'
 import { Loading } from '../Loading'
 import { ImportIcon } from './ImportIcon'
-import type { ThemeFont } from '@i/theme'
+import type { ThemeFont } from '@intouchg/theme'
 import type { SystemFontFamily } from '../../sketchApi'
 
 const FontFamily = ({

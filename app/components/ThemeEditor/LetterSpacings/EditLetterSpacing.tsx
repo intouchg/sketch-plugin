@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Flex, Text, Box, Button } from '@i/components'
+import { Flex, Text, Box, Button } from '@intouchg/components'
 import { PixelInput } from '../PixelInput'
 import { updateThemeValue } from '../../../store'
-import type { ThemeValue, ThemeLetterSpacing } from '@i/theme'
+import type { ThemeValue, ThemeLetterSpacing } from '@intouchg/theme'
 
 export const LETTER_SPACING_MIN = -50
 export const LETTER_SPACING_MAX = 50

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@i/components'
+import { Button } from '@intouchg/components'
 import { Icon } from './Icon'
 
 const CloseModalButton = ({

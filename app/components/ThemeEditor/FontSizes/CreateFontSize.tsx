@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Heading, Button, Flex, Text, Stack } from '@i/components'
+import { Heading, Button, Flex, Text, Stack } from '@intouchg/components'
 import { PixelInput } from '../PixelInput'
 import { parseFontSize, FONT_SIZE_MIN, FONT_SIZE_MAX } from './EditFontSize'
 import { createThemeValue } from '../../../store'
-import { createUuid } from '@i/utility'
+import { createUuid } from '@intouchg/utility'
 
 const CreateFontSize = ({
 	setCreating,

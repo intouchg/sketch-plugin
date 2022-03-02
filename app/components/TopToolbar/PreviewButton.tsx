@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Text } from '@i/components'
+import { Button, Text } from '@intouchg/components'
 import { Icon } from '../Icon'
 import { useOpenDevServer } from '../../hooks'
 

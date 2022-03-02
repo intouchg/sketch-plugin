@@ -1,8 +1,8 @@
 import React from 'react'
-import { Text } from '@i/components'
+import { Text } from '@intouchg/components'
 import { BorderWidthMenu, BorderRadiusMenu } from '../EditorMenus'
 import { ItemContainer } from './ItemContainer'
-import type { ThemeVariant } from '@i/theme'
+import type { ThemeVariant } from '@intouchg/theme'
 
 const BorderEditor = ({
 	variant,

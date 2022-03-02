@@ -1,8 +1,8 @@
 import React from 'react'
-import { Stack, Flex, Text, Button, Box } from '@i/components'
+import { Stack, Flex, Text, Button, Box } from '@intouchg/components'
 import { LetterSpacing } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
-import type { ThemeLetterSpacing } from '@i/theme'
+import type { ThemeLetterSpacing } from '@intouchg/theme'
 
 export const sortLetterSpacings = (a: ThemeLetterSpacing, b: ThemeLetterSpacing) => {
 	const valueA = Number(a.value.split('px')[0])

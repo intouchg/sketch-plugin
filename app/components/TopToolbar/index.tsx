@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Flex, Heading, Box } from '@i/components'
+import { Flex, Heading, Box } from '@intouchg/components'
 import { ImportButton } from './ImportButton'
 import { PreviewButton } from './PreviewButton'
 import { AzureStatus } from './AzureStatus'

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Box } from '@i/components'
+import { Box } from '@intouchg/components'
 import { useOutsideClickListener } from '../../../hooks'
 
 const DropdownMenu = ({

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Stack, Heading, Button, Text } from '@i/components'
+import { Stack, Heading, Button, Text } from '@intouchg/components'
 import { ColorEditor } from './ColorEditor'
 import { ShadowEditor } from './ShadowEditor'
 import { FontSizeEditor } from './FontSizeEditor'
@@ -11,7 +11,7 @@ import { IconEditor } from './IconEditor'
 import { SvgEditor } from './SvgEditor'
 import { StateSelector } from './StateSelector'
 import { updateThemeVariant } from '../../../store'
-import type { ThemeVariant, StyleProperty, SelectorProperty } from '@i/theme'
+import type { ThemeVariant, StyleProperty, SelectorProperty } from '@intouchg/theme'
 
 export const styleProperties = {
 	color: [
@@ -45,6 +45,8 @@ const variantStylePropertyConfig: {
 	text: { color: true, font: true },
 	paragraph: { color: true, font: true },
 	heading: { color: true, font: true },
+	list: { color: true, font: true },
+	listItem: { color: true, font: true },
 	link: { color: true, font: true, selectors: [ '&:hover', '&:active', '&:visited' ] },
 	icon: { color: true, svg: true },
 	label: { color: true, shadow: true, font: true },

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Flex, Box, Text } from '@i/components'
-import type { ThemeBorderWidth } from '@i/theme'
+import { Flex, Box, Text } from '@intouchg/components'
+import type { ThemeBorderWidth } from '@intouchg/theme'
 
 const BorderWidth = ({
 	value,

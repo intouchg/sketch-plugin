@@ -1,8 +1,8 @@
 import React from 'react'
-import { Text } from '@i/components'
+import { Text } from '@intouchg/components'
 import { FontFamilyMenu, TextMenu, LetterSpacingMenu, LineHeightMenu } from '../EditorMenus'
 import { ItemContainer } from './ItemContainer'
-import type { ThemeVariant } from '@i/theme'
+import type { ThemeVariant } from '@intouchg/theme'
 
 const FontEditor = ({
 	variant,

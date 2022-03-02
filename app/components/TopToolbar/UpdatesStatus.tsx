@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Box, Button } from '@i/components'
+import { Box, Button } from '@intouchg/components'
 import { Loading } from '../Loading'
 import { Icon } from '../Icon'
 import { useDownloadUpdates } from '../../hooks'

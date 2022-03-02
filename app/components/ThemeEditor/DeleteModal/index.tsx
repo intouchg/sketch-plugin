@@ -1,14 +1,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Stack, Flex, Heading, Text, Button, Box } from '@i/components'
+import { Stack, Flex, Heading, Text, Button, Box } from '@intouchg/components'
 import { Color, BorderWidth, Font, FontSize, LineHeight, LetterSpacing, Radius, Shadow } from '../../ThemeValues'
 import { ModalBackground } from '../../ModalBackground'
 import { CloseModalButton } from '../../CloseModalButton'
 import { deleteThemeValue } from '../../../store'
-import { sortAlphabetical, titleCase } from '@i/utility'
+import { sortAlphabetical, titleCase } from '@intouchg/utility'
 import { Icon } from '../../Icon'
 import { VariantStyleTable } from './VariantStyleTable'
-import type { ThemeValue, ThemeVariant, ThemeStyleObject, StyleProperty } from '@i/theme'
+import type { ThemeValue, ThemeVariant, ThemeStyleObject, StyleProperty } from '@intouchg/theme'
 
 const componentConfig = {
 	color: Color,

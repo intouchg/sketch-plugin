@@ -11,7 +11,7 @@ import { Radii } from './Radii'
 import { Space } from './Space'
 import { DeleteModal } from './DeleteModal'
 import { rightToolbarWidth } from './RightToolbar'
-import type { ThemeValue } from '@i/theme'
+import type { ThemeValue } from '@intouchg/theme'
 
 const ThemeEditor = ({
 	containerWidth,

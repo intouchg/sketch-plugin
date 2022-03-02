@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSpring, animated, config } from 'react-spring'
-import { Box, Stack, Text } from '@i/components'
-import { calculateColorBrightness } from '@i/utility'
-import type { ThemeColor } from '@i/theme'
+import { Box, Stack, Text } from '@intouchg/components'
+import { calculateColorBrightness } from '@intouchg/utility'
+import type { ThemeColor } from '@intouchg/theme'
 
 const TruncatedSecondaryText = styled(Text).attrs({ variant: 'Secondary' })`
 	overflow: hidden;

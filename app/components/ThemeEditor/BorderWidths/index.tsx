@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { animated, to } from 'react-spring'
-import { Button, Flex, Text } from '@i/components'
+import { Button, Flex, Text } from '@intouchg/components'
 import { BorderWidth } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -10,7 +10,7 @@ import { EditBorderWidth } from './EditBorderWidth'
 import { CreateBorderWidth } from './CreateBorderWidth'
 import { useListTransition } from '../../../hooks'
 import { sortBorderWidths } from '../../ImportModal/BorderWidths'
-import type { ThemeValue, ThemeBorderWidth } from '@i/theme'
+import type { ThemeValue, ThemeBorderWidth } from '@intouchg/theme'
 
 const ELEMENT_MIN_HEIGHT = 44
 const ELEMENT_PADDING_Y = 8

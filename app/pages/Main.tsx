@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { Flex } from '@i/components'
+import { Flex } from '@intouchg/components'
 import { TopToolbar, LeftNavbar, ThemeEditor, VariantEditor, ImportModal, leftNavbarWidth } from '../components'
 import { useWindowUndoListener } from '../hooks'
 

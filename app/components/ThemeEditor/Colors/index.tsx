@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { animated, to } from 'react-spring'
-import { Button } from '@i/components'
+import { Button } from '@intouchg/components'
 import { Color } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -10,7 +10,7 @@ import { EditColor } from './EditColor'
 import { CreateColor } from './CreateColor'
 import { sortColors } from '../../ImportModal/Colors'
 import { useGridTransition } from '../../../hooks'
-import type { ThemeValue } from '@i/theme'
+import type { ThemeValue } from '@intouchg/theme'
 
 const colorsContainerMaxWidth = 860
 const colorsContainerPaddingX = 48

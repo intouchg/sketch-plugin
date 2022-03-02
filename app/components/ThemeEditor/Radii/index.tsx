@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { animated, to } from 'react-spring'
-import { Button, Flex, Text } from '@i/components'
+import { Button, Flex, Text } from '@intouchg/components'
 import { Radius, themeRadiusHeight } from '../../ThemeValues'
 import { ValuesContainer } from '../ValuesContainer'
 import { RightToolbar } from '../RightToolbar'
@@ -10,7 +10,7 @@ import { EditRadius } from './EditRadius'
 import { CreateRadius } from './CreateRadius'
 import { useListTransition } from '../../../hooks'
 import { sortBorderWidths } from '../../ImportModal/BorderWidths'
-import type { ThemeValue } from '@i/theme'
+import type { ThemeValue } from '@intouchg/theme'
 
 const ELEMENT_BASE_HEIGHT = themeRadiusHeight
 const ELEMENT_PADDING_Y = 16

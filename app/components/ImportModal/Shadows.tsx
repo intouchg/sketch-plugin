@@ -1,8 +1,8 @@
 import React from 'react'
-import { Stack, Flex, Button, Box } from '@i/components'
+import { Stack, Flex, Button, Box } from '@intouchg/components'
 import { Shadow } from '../ThemeValues'
 import { ImportIcon } from './ImportIcon'
-import type { ThemeShadow } from '@i/theme'
+import type { ThemeShadow } from '@intouchg/theme'
 
 export const sortShadows = (a: ThemeShadow, b: ThemeShadow) => {
 	let shadowA = a.value

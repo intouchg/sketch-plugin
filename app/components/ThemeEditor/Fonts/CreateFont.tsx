@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Heading, Button, Text, Stack, Input } from '@i/components'
+import { Heading, Button, Text, Stack, Input } from '@intouchg/components'
 import { createThemeValue } from '../../../store'
 
 const CreateFont = ({

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Stack, Link, Text, space, radius } from '@i/components'
-import type { AzureUserConnection } from '@i/azure'
+import { Stack, Link, Text, space, radius } from '@intouchg/components'
+import type { AzureUserConnection } from '@intouchg/azure'
 
 const OrganizationButton = styled(Link)`
 	flex-shrink: 0;

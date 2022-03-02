@@ -1,11 +1,10 @@
 {
-  "name": "@i/sketch-plugin",
-  "version": "0.0.4",
-  "description": "Sketch plugin for the Intouch Design System",
-  "repository": "https://intazdoweb.intouchsol.com/IntouchDesignSystem/IntouchDesignSystem/_git/sketch-plugin",
+  "name": "@intouchg/sketch-plugin",
+  "version": "0.1.0",
+  "description": "Experimental Sketch plugin for the Intouch Design System",
+  "repository": "https://github.com/intouchg/sketch-plugin",
   "author": "Intouch Group",
-  "license": "UNLICENSED",
-  "private": true,
+  "license": "MIT",
   "engines": {
     "sketch": ">=54.0"
   },
@@ -27,7 +26,7 @@
     "playroom-build": "playroom build",
     "preview": "run-p playroom-start storybook",
     "patch-react-spring-issue-1078": "find node_modules -path \\*@react-spring/\\*/package.json -exec sed -i.bak 's/\"sideEffects\": false/\"sideEffects\": true/g' {} +",
-    "postinstall": "run-s patch-react-spring-issue-1078 build-app build-plugin skpm-link"
+    "postinstall": "run-s patch-react-spring-issue-1078 build-plugin build-app skpm-link"
   },
   "skpm": {
     "name": "Intouch Design System",
@@ -49,9 +48,9 @@
     "@babel/preset-env": "7.12.11",
     "@babel/preset-react": "7.12.10",
     "@babel/preset-typescript": "7.12.7",
-    "@i/eslint-config": "latest",
-    "@i/webpack-svgr-plugin": "latest",
-    "@i/webpack-theme-plugin": "latest",
+    "@intouchg/eslint-config": "0.0.18",
+    "@intouchg/webpack-svgr-plugin": "0.1.1",
+    "@intouchg/webpack-theme-plugin": "0.1.1",
     "@skpm/builder": "0.7.11",
     "@skpm/extract-loader": "2.0.3",
     "@skpm/promise": "0.1.0",
@@ -83,12 +82,12 @@
   },
   "dependencies": {
     "@babel/runtime": "7.12.5",
-    "@i/azure": "latest",
-    "@i/components": "latest",
-    "@i/fontbook-parser": "latest",
-    "@i/random-phrase": "latest",
-    "@i/theme": "latest",
-    "@i/utility": "latest",
+    "@intouchg/azure": "0.1.3",
+    "@intouchg/components": "0.1.1",
+    "@intouchg/fontbook-parser": "0.1.0",
+    "@intouchg/random-phrase": "0.1.0",
+    "@intouchg/theme": "0.1.2",
+    "@intouchg/utility": "0.1.0",
     "@skpm/child_process": "0.4.2",
     "@skpm/dialog": "0.4.1",
     "@skpm/fs": "0.2.6",

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@i/components'
+import { Text } from '@intouchg/components'
 
 export default { title: 'Text' }
 

@@ -7,7 +7,7 @@ import type {
 	SPFontData,
 	Settings,
 } from './types'
-import type { AzureUserConnection } from '@i/azure'
+import type { AzureUserConnection } from '@intouchg/azure'
 
 export type SketchCommand<P extends object, R> = { payload: P, response: R }
 export type SketchError = { error: string }
